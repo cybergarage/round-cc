@@ -1,0 +1,35 @@
+#!/usr/bin/perl
+print<<HEADER;
+###################################################################
+#
+# Round for C++
+#
+# Copyright (C) Satoshi Konno 2014
+#
+# This is licensed under BSD-style license, see file COPYING.
+#
+###################################################################
+
+lib_LIBRARIES = libround++.a
+
+AM_CPPFLAGS = \\
+        -I\$(top_srcdir)/include \\
+        -I\$(top_srcdir)/src
+
+roundcc_sources = \\
+HEADER
+
+my @find_files = `find ../../src/round -name *.cpp`;
+my @source_files;
+foreach $file (@find_files) {
+	$file =~ s/\n//;
+	$file = "\t" . $file;
+	push @source_files, $file;
+}
+print join(" \\\n", @source_files) . "\n";
+
+print<<FOTTER;
+
+libround___a_SOURCES = \\
+        \$(roundcc_sources)
+FOTTER

@@ -1,0 +1,38 @@
+#!/usr/bin/perl
+print<<HEADER;
+###################################################################
+#
+# Round for C++
+#
+# Copyright (C) Satoshi Konno 2014
+#
+# This is licensed under BSD-style license, see file COPYING.
+#
+###################################################################
+
+noinst_PROGRAMS = roundtest
+
+AM_CPPFLAGS = \\
+        -I\$(top_srcdir)/include -I../ \\
+        -I\$(top_srcdir)/src \\
+        \@XML_CFLAGS\@
+
+roundtest_SOURCES = \\
+HEADER
+
+my @find_files = `find ../ -name *.cpp`;
+my @source_files;
+foreach $file (@find_files) {
+	$file =~ s/\n//;
+	$file = "\t" . $file;
+	push @source_files, $file;
+}
+print join(" \\\n", @source_files) . "\n";
+
+print<<FOTTER;
+
+roundtest_LDADD = \\
+        ../../lib/unix/libround++.a \\
+        \@XML_LIBS\@
+FOTTER
+

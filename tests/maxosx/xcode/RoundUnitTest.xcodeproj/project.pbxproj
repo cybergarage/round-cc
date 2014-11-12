@@ -1,0 +1,529 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		215C20BB1A13B6C000CE71E2 /* RoundTestMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215C20BA1A13B6C000CE71E2 /* RoundTestMain.cpp */; };
+		21AD429D1A13B7FC00741A08 /* BitOptionTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD428B1A13B7FC00741A08 /* BitOptionTests.cpp */; };
+		21AD429E1A13B7FC00741A08 /* ClockTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD428C1A13B7FC00741A08 /* ClockTests.cpp */; };
+		21AD429F1A13B7FC00741A08 /* ConfigurationTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD428D1A13B7FC00741A08 /* ConfigurationTests.cpp */; };
+		21AD42A01A13B7FC00741A08 /* ConsistentHashTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD428E1A13B7FC00741A08 /* ConsistentHashTests.cpp */; };
+		21AD42A11A13B7FC00741A08 /* DictionaryTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD428F1A13B7FC00741A08 /* DictionaryTests.cpp */; };
+		21AD42A21A13B7FC00741A08 /* ErrorTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42901A13B7FC00741A08 /* ErrorTests.cpp */; };
+		21AD42A31A13B7FC00741A08 /* HashObjectTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42911A13B7FC00741A08 /* HashObjectTests.cpp */; };
+		21AD42A41A13B7FC00741A08 /* JSONParserTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42921A13B7FC00741A08 /* JSONParserTests.cpp */; };
+		21AD42A51A13B7FC00741A08 /* JSONTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42931A13B7FC00741A08 /* JSONTests.cpp */; };
+		21AD42A61A13B7FC00741A08 /* MessageTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42941A13B7FC00741A08 /* MessageTests.cpp */; };
+		21AD42A71A13B7FC00741A08 /* MutexTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42951A13B7FC00741A08 /* MutexTests.cpp */; };
+		21AD42A81A13B7FC00741A08 /* NotificationTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42961A13B7FC00741A08 /* NotificationTests.cpp */; };
+		21AD42A91A13B7FC00741A08 /* OperationTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42971A13B7FC00741A08 /* OperationTests.cpp */; };
+		21AD42AA1A13B7FC00741A08 /* PropertiesTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42981A13B7FC00741A08 /* PropertiesTests.cpp */; };
+		21AD42AB1A13B7FC00741A08 /* RandomTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42991A13B7FC00741A08 /* RandomTest.cpp */; };
+		21AD42AC1A13B7FC00741A08 /* SemaphoreTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD429A1A13B7FC00741A08 /* SemaphoreTests.cpp */; };
+		21AD42AD1A13B7FC00741A08 /* StringTokenizerTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD429B1A13B7FC00741A08 /* StringTokenizerTests.cpp */; };
+		21AD42AE1A13B7FC00741A08 /* ThreadTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD429C1A13B7FC00741A08 /* ThreadTests.cpp */; };
+		21AD42AF1A13B88C00741A08 /* liblibround++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 215C20B81A13B6A000CE71E2 /* liblibround++.a */; };
+		21CD1BC6192DC94E00452ADF /* libuhttp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CD1BBF192DC91D00452ADF /* libuhttp++.a */; };
+		21CD1BC7192DC95000452ADF /* liblibclink++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CD1BB9192DC8F500452ADF /* liblibclink++.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		215C20B71A13B6A000CE71E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 215C20B21A13B6A000CE71E2 /* libround++.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 21A9FFAA154014F300BDFCDC;
+			remoteInfo = "libround++";
+		};
+		21CD1BB8192DC8F500452ADF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21CD1BB4192DC8F500452ADF /* libclink++.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 219C21ED155C7877003ABA46;
+			remoteInfo = "libclink++";
+		};
+		21CD1BBE192DC91D00452ADF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21CD1BBA192DC91D00452ADF /* libuhttp.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 21E1EB1C1535D1E0005AA247;
+			remoteInfo = libuhttp;
+		};
+		21CD1BC0192DC93C00452ADF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21CD1BB4192DC8F500452ADF /* libclink++.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 219C21EC155C7877003ABA46;
+			remoteInfo = "libclink++";
+		};
+		21CD1BC4192DC94100452ADF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21CD1BBA192DC91D00452ADF /* libuhttp.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 21E1EB1B1535D1E0005AA247;
+			remoteInfo = libuhttp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2143143A15401BEE009CC3FA /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2143143C15401BEE009CC3FA /* RoundUnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RoundUnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		215C20B21A13B6A000CE71E2 /* libround++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libround++.xcodeproj"; path = "../../../lib/macosx/xcode/libround++.xcodeproj"; sourceTree = "<group>"; };
+		215C20B91A13B6C000CE71E2 /* RoundTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoundTest.h; path = ../../RoundTest.h; sourceTree = "<group>"; };
+		215C20BA1A13B6C000CE71E2 /* RoundTestMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RoundTestMain.cpp; path = ../../RoundTestMain.cpp; sourceTree = "<group>"; };
+		21AD428B1A13B7FC00741A08 /* BitOptionTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BitOptionTests.cpp; sourceTree = "<group>"; };
+		21AD428C1A13B7FC00741A08 /* ClockTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClockTests.cpp; sourceTree = "<group>"; };
+		21AD428D1A13B7FC00741A08 /* ConfigurationTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConfigurationTests.cpp; sourceTree = "<group>"; };
+		21AD428E1A13B7FC00741A08 /* ConsistentHashTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsistentHashTests.cpp; sourceTree = "<group>"; };
+		21AD428F1A13B7FC00741A08 /* DictionaryTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DictionaryTests.cpp; sourceTree = "<group>"; };
+		21AD42901A13B7FC00741A08 /* ErrorTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ErrorTests.cpp; sourceTree = "<group>"; };
+		21AD42911A13B7FC00741A08 /* HashObjectTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HashObjectTests.cpp; sourceTree = "<group>"; };
+		21AD42921A13B7FC00741A08 /* JSONParserTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONParserTests.cpp; sourceTree = "<group>"; };
+		21AD42931A13B7FC00741A08 /* JSONTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONTests.cpp; sourceTree = "<group>"; };
+		21AD42941A13B7FC00741A08 /* MessageTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MessageTests.cpp; sourceTree = "<group>"; };
+		21AD42951A13B7FC00741A08 /* MutexTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MutexTests.cpp; sourceTree = "<group>"; };
+		21AD42961A13B7FC00741A08 /* NotificationTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NotificationTests.cpp; sourceTree = "<group>"; };
+		21AD42971A13B7FC00741A08 /* OperationTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OperationTests.cpp; sourceTree = "<group>"; };
+		21AD42981A13B7FC00741A08 /* PropertiesTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PropertiesTests.cpp; sourceTree = "<group>"; };
+		21AD42991A13B7FC00741A08 /* RandomTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RandomTest.cpp; sourceTree = "<group>"; };
+		21AD429A1A13B7FC00741A08 /* SemaphoreTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SemaphoreTests.cpp; sourceTree = "<group>"; };
+		21AD429B1A13B7FC00741A08 /* StringTokenizerTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringTokenizerTests.cpp; sourceTree = "<group>"; };
+		21AD429C1A13B7FC00741A08 /* ThreadTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadTests.cpp; sourceTree = "<group>"; };
+		21CD1BB4192DC8F500452ADF /* libclink++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libclink++.xcodeproj"; path = "../../../../clinkcc/lib/macosx/xcode/libclink++.xcodeproj"; sourceTree = "<group>"; };
+		21CD1BBA192DC91D00452ADF /* libuhttp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuhttp.xcodeproj; path = ../../../../uhttp/lib/macosx/xcode/libuhttp.xcodeproj; sourceTree = "<group>"; };
+		21DE0ECF155B9EBA00A08E1F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2143143915401BEE009CC3FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21AD42AF1A13B88C00741A08 /* liblibround++.a in Frameworks */,
+				21CD1BC7192DC95000452ADF /* liblibclink++.a in Frameworks */,
+				21CD1BC6192DC94E00452ADF /* libuhttp++.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2143143115401BEE009CC3FA = {
+			isa = PBXGroup;
+			children = (
+				215C7EF51540267800762EEC /* Sources */,
+				215C7EF31540266E00762EEC /* Frameworks */,
+				2143143D15401BEE009CC3FA /* Products */,
+			);
+			indentWidth = 2;
+			sourceTree = "<group>";
+			tabWidth = 2;
+			usesTabs = 0;
+		};
+		2143143D15401BEE009CC3FA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2143143C15401BEE009CC3FA /* RoundUnitTest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		215C20B31A13B6A000CE71E2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				215C20B81A13B6A000CE71E2 /* liblibround++.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		215C7EF31540266E00762EEC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				21DE0ECF155B9EBA00A08E1F /* Security.framework */,
+				215C20B21A13B6A000CE71E2 /* libround++.xcodeproj */,
+				21CD1BBA192DC91D00452ADF /* libuhttp.xcodeproj */,
+				21CD1BB4192DC8F500452ADF /* libclink++.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		215C7EF51540267800762EEC /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				21AD42771A13B7FC00741A08 /* common */,
+				215C20B91A13B6C000CE71E2 /* RoundTest.h */,
+				215C20BA1A13B6C000CE71E2 /* RoundTestMain.cpp */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		21AD42771A13B7FC00741A08 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				21AD428B1A13B7FC00741A08 /* BitOptionTests.cpp */,
+				21AD428C1A13B7FC00741A08 /* ClockTests.cpp */,
+				21AD428D1A13B7FC00741A08 /* ConfigurationTests.cpp */,
+				21AD428E1A13B7FC00741A08 /* ConsistentHashTests.cpp */,
+				21AD428F1A13B7FC00741A08 /* DictionaryTests.cpp */,
+				21AD42901A13B7FC00741A08 /* ErrorTests.cpp */,
+				21AD42911A13B7FC00741A08 /* HashObjectTests.cpp */,
+				21AD42921A13B7FC00741A08 /* JSONParserTests.cpp */,
+				21AD42931A13B7FC00741A08 /* JSONTests.cpp */,
+				21AD42941A13B7FC00741A08 /* MessageTests.cpp */,
+				21AD42951A13B7FC00741A08 /* MutexTests.cpp */,
+				21AD42961A13B7FC00741A08 /* NotificationTests.cpp */,
+				21AD42971A13B7FC00741A08 /* OperationTests.cpp */,
+				21AD42981A13B7FC00741A08 /* PropertiesTests.cpp */,
+				21AD42991A13B7FC00741A08 /* RandomTest.cpp */,
+				21AD429A1A13B7FC00741A08 /* SemaphoreTests.cpp */,
+				21AD429B1A13B7FC00741A08 /* StringTokenizerTests.cpp */,
+				21AD429C1A13B7FC00741A08 /* ThreadTests.cpp */,
+			);
+			name = common;
+			path = ../../common;
+			sourceTree = "<group>";
+		};
+		21CD1BB5192DC8F500452ADF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21CD1BB9192DC8F500452ADF /* liblibclink++.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		21CD1BBB192DC91D00452ADF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21CD1BBF192DC91D00452ADF /* libuhttp++.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2143143B15401BEE009CC3FA /* RoundUnitTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2143144615401BEE009CC3FA /* Build configuration list for PBXNativeTarget "RoundUnitTest" */;
+			buildPhases = (
+				2143143815401BEE009CC3FA /* Sources */,
+				2143143915401BEE009CC3FA /* Frameworks */,
+				2143143A15401BEE009CC3FA /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				21CD1BC1192DC93C00452ADF /* PBXTargetDependency */,
+				21CD1BC5192DC94100452ADF /* PBXTargetDependency */,
+			);
+			name = RoundUnitTest;
+			productName = RoundUnitTest;
+			productReference = 2143143C15401BEE009CC3FA /* RoundUnitTest */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2143143315401BEE009CC3FA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+			};
+			buildConfigurationList = 2143143615401BEE009CC3FA /* Build configuration list for PBXProject "RoundUnitTest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2143143115401BEE009CC3FA;
+			productRefGroup = 2143143D15401BEE009CC3FA /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 21CD1BB5192DC8F500452ADF /* Products */;
+					ProjectRef = 21CD1BB4192DC8F500452ADF /* libclink++.xcodeproj */;
+				},
+				{
+					ProductGroup = 215C20B31A13B6A000CE71E2 /* Products */;
+					ProjectRef = 215C20B21A13B6A000CE71E2 /* libround++.xcodeproj */;
+				},
+				{
+					ProductGroup = 21CD1BBB192DC91D00452ADF /* Products */;
+					ProjectRef = 21CD1BBA192DC91D00452ADF /* libuhttp.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				2143143B15401BEE009CC3FA /* RoundUnitTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		215C20B81A13B6A000CE71E2 /* liblibround++.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "liblibround++.a";
+			remoteRef = 215C20B71A13B6A000CE71E2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		21CD1BB9192DC8F500452ADF /* liblibclink++.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "liblibclink++.a";
+			remoteRef = 21CD1BB8192DC8F500452ADF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		21CD1BBF192DC91D00452ADF /* libuhttp++.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libuhttp++.a";
+			remoteRef = 21CD1BBE192DC91D00452ADF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2143143815401BEE009CC3FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21AD42AB1A13B7FC00741A08 /* RandomTest.cpp in Sources */,
+				21AD429E1A13B7FC00741A08 /* ClockTests.cpp in Sources */,
+				21AD42A51A13B7FC00741A08 /* JSONTests.cpp in Sources */,
+				21AD42A01A13B7FC00741A08 /* ConsistentHashTests.cpp in Sources */,
+				21AD42AA1A13B7FC00741A08 /* PropertiesTests.cpp in Sources */,
+				21AD42A31A13B7FC00741A08 /* HashObjectTests.cpp in Sources */,
+				21AD42AC1A13B7FC00741A08 /* SemaphoreTests.cpp in Sources */,
+				21AD42A41A13B7FC00741A08 /* JSONParserTests.cpp in Sources */,
+				21AD429D1A13B7FC00741A08 /* BitOptionTests.cpp in Sources */,
+				21AD42A21A13B7FC00741A08 /* ErrorTests.cpp in Sources */,
+				21AD42AD1A13B7FC00741A08 /* StringTokenizerTests.cpp in Sources */,
+				21AD42A91A13B7FC00741A08 /* OperationTests.cpp in Sources */,
+				21AD42AE1A13B7FC00741A08 /* ThreadTests.cpp in Sources */,
+				21AD42A61A13B7FC00741A08 /* MessageTests.cpp in Sources */,
+				21AD429F1A13B7FC00741A08 /* ConfigurationTests.cpp in Sources */,
+				21AD42A71A13B7FC00741A08 /* MutexTests.cpp in Sources */,
+				215C20BB1A13B6C000CE71E2 /* RoundTestMain.cpp in Sources */,
+				21AD42A81A13B7FC00741A08 /* NotificationTests.cpp in Sources */,
+				21AD42A11A13B7FC00741A08 /* DictionaryTests.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		21CD1BC1192DC93C00452ADF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "libclink++";
+			targetProxy = 21CD1BC0192DC93C00452ADF /* PBXContainerItemProxy */;
+		};
+		21CD1BC5192DC94100452ADF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libuhttp;
+			targetProxy = 21CD1BC4192DC94100452ADF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2143144415401BEE009CC3FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					../../../include,
+					../../../src,
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lleveldb",
+					"-lsqlite3",
+					"-lxml2",
+					"-lboost_unit_test_framework",
+					"-lboost_filesystem",
+					"-lboost_system",
+					"-lboost_thread-mt",
+				);
+				SDKROOT = macosx;
+				VALID_ARCHS = "i386 x86_64";
+			};
+			name = Debug;
+		};
+		2143144515401BEE009CC3FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					../../../include,
+					../../../src,
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-lleveldb",
+					"-lsqlite3",
+					"-lxml2",
+					"-lboost_unit_test_framework",
+					"-lboost_filesystem",
+					"-lboost_system",
+					"-lboost_thread-mt",
+				);
+				SDKROOT = macosx;
+				VALID_ARCHS = "i386 x86_64";
+			};
+			name = Release;
+		};
+		2143144715401BEE009CC3FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				INFOPLIST_PREPROCESSOR_DEFINITIONS = (
+					"-lleveldb",
+					"-lusql++",
+					"-lboost_unit_test_framework",
+					"-lboost_filesystem",
+					"-lboost_system",
+					"-lsqlite3",
+					"-lantlr3c",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = (
+					"-lleveldb",
+					"-lsqlite3",
+					"-lxml2",
+					"-lboost_unit_test_framework",
+					"-lboost_filesystem",
+					"-lboost_system",
+					"-lboost_thread-mt",
+				);
+				PRODUCT_NAME = RoundUnitTest;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		2143144815401BEE009CC3FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				INFOPLIST_PREPROCESSOR_DEFINITIONS = (
+					"-lleveldb",
+					"-lusql++",
+					"-lboost_unit_test_framework",
+					"-lboost_filesystem",
+					"-lboost_system",
+					"-lsqlite3",
+					"-lantlr3c",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = (
+					"-lleveldb",
+					"-lsqlite3",
+					"-lxml2",
+					"-lboost_unit_test_framework",
+					"-lboost_filesystem",
+					"-lboost_system",
+					"-lboost_thread-mt",
+				);
+				PRODUCT_NAME = RoundUnitTest;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2143143615401BEE009CC3FA /* Build configuration list for PBXProject "RoundUnitTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2143144415401BEE009CC3FA /* Debug */,
+				2143144515401BEE009CC3FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2143144615401BEE009CC3FA /* Build configuration list for PBXNativeTarget "RoundUnitTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2143144715401BEE009CC3FA /* Debug */,
+				2143144815401BEE009CC3FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2143143315401BEE009CC3FA /* Project object */;
+}

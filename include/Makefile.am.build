@@ -1,0 +1,29 @@
+#!/usr/bin/perl
+print<<HEADER;
+###################################################################
+#
+# Round for C++
+#
+# Copyright (C) Satoshi Konno 2014
+#
+# This is licensed under BSD-style license, see file COPYING.
+#
+###################################################################
+
+roundcc_headers = \\
+HEADER
+
+my @find_files = `find ./round -name *.h`;
+my @include_files;
+foreach $file (@find_files) {
+	$file =~ s/\n//;
+	$file = "\t" . $file;
+	push @include_files, $file;
+}
+print join(" \\\n", @include_files) . "\n";
+
+print<<FOTTER;
+
+nobase_include_HEADERS = \
+	\$(roundcc_headers)
+FOTTER

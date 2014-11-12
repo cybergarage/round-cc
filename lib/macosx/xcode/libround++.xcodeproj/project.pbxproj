@@ -1,0 +1,682 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		21CD1BA6192DC84B00452ADF /* liblibclink++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CD1BA1192DC83400452ADF /* liblibclink++.a */; };
+		21DE681B1A13B3D60049227E /* BitOption.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE68071A13B3D60049227E /* BitOption.h */; };
+		21DE681C1A13B3D60049227E /* Clock.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE68081A13B3D60049227E /* Clock.h */; };
+		21DE681D1A13B3D60049227E /* Cloneable.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE68091A13B3D60049227E /* Cloneable.h */; };
+		21DE681E1A13B3D60049227E /* Configuration.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE680A1A13B3D60049227E /* Configuration.h */; };
+		21DE681F1A13B3D60049227E /* ConsistentHash.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE680B1A13B3D60049227E /* ConsistentHash.h */; };
+		21DE68201A13B3D60049227E /* Dictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE680C1A13B3D60049227E /* Dictionary.h */; };
+		21DE68211A13B3D60049227E /* Error.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE680D1A13B3D60049227E /* Error.h */; };
+		21DE68221A13B3D60049227E /* HashObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE680E1A13B3D60049227E /* HashObject.h */; };
+		21DE68231A13B3D60049227E /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE680F1A13B3D60049227E /* JSON.h */; };
+		21DE68241A13B3D60049227E /* Message.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE68101A13B3D60049227E /* Message.h */; };
+		21DE68251A13B3D60049227E /* Mutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE68111A13B3D60049227E /* Mutex.h */; };
+		21DE68261A13B3D60049227E /* Notification.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE68121A13B3D60049227E /* Notification.h */; };
+		21DE68271A13B3D60049227E /* Operation.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE68131A13B3D60049227E /* Operation.h */; };
+		21DE68281A13B3D60049227E /* Properties.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE68141A13B3D60049227E /* Properties.h */; };
+		21DE68291A13B3D60049227E /* Random.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE68151A13B3D60049227E /* Random.h */; };
+		21DE682A1A13B3D60049227E /* Semaphore.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE68161A13B3D60049227E /* Semaphore.h */; };
+		21DE682B1A13B3D60049227E /* Settings.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE68171A13B3D60049227E /* Settings.h */; };
+		21DE682C1A13B3D60049227E /* Strategy.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE68181A13B3D60049227E /* Strategy.h */; };
+		21DE682D1A13B3D60049227E /* StringTokenizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE68191A13B3D60049227E /* StringTokenizer.h */; };
+		21DE682E1A13B3D60049227E /* Thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE681A1A13B3D60049227E /* Thread.h */; };
+		21DE68811A13B3EA0049227E /* BitOption.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE685C1A13B3EA0049227E /* BitOption.cpp */; };
+		21DE68821A13B3EA0049227E /* Clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE685D1A13B3EA0049227E /* Clock.cpp */; };
+		21DE68831A13B3EA0049227E /* Configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE685E1A13B3EA0049227E /* Configuration.cpp */; };
+		21DE68841A13B3EA0049227E /* ConsistentHashGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE685F1A13B3EA0049227E /* ConsistentHashGraph.cpp */; };
+		21DE68851A13B3EA0049227E /* ConsistentHashNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68601A13B3EA0049227E /* ConsistentHashNode.cpp */; };
+		21DE68861A13B3EA0049227E /* ConsistentHashObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68611A13B3EA0049227E /* ConsistentHashObject.cpp */; };
+		21DE68871A13B3EA0049227E /* Dictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68621A13B3EA0049227E /* Dictionary.cpp */; };
+		21DE68881A13B3EA0049227E /* DictionaryKeyList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68631A13B3EA0049227E /* DictionaryKeyList.cpp */; };
+		21DE68891A13B3EA0049227E /* Error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68641A13B3EA0049227E /* Error.cpp */; };
+		21DE688A1A13B3EA0049227E /* HashObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68651A13B3EA0049227E /* HashObject.cpp */; };
+		21DE688B1A13B3EA0049227E /* JSONArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68661A13B3EA0049227E /* JSONArray.cpp */; };
+		21DE688C1A13B3EA0049227E /* JSONDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68671A13B3EA0049227E /* JSONDictionary.cpp */; };
+		21DE688D1A13B3EA0049227E /* JSONObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68681A13B3EA0049227E /* JSONObject.cpp */; };
+		21DE688E1A13B3EA0049227E /* JSONParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68691A13B3EA0049227E /* JSONParser.cpp */; };
+		21DE688F1A13B3EA0049227E /* JSONString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE686A1A13B3EA0049227E /* JSONString.cpp */; };
+		21DE68901A13B3EA0049227E /* MD5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE686B1A13B3EA0049227E /* MD5.cpp */; };
+		21DE68911A13B3EA0049227E /* MD5.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE686C1A13B3EA0049227E /* MD5.h */; };
+		21DE68921A13B3EA0049227E /* Message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE686D1A13B3EA0049227E /* Message.cpp */; };
+		21DE68931A13B3EA0049227E /* MessageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE686E1A13B3EA0049227E /* MessageManager.cpp */; };
+		21DE68941A13B3EA0049227E /* MessageQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE686F1A13B3EA0049227E /* MessageQueue.cpp */; };
+		21DE68951A13B3EA0049227E /* Mutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68701A13B3EA0049227E /* Mutex.cpp */; };
+		21DE68961A13B3EA0049227E /* NotificationCenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68711A13B3EA0049227E /* NotificationCenter.cpp */; };
+		21DE68971A13B3EA0049227E /* NotificationObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68721A13B3EA0049227E /* NotificationObserver.cpp */; };
+		21DE68981A13B3EA0049227E /* Operation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68731A13B3EA0049227E /* Operation.cpp */; };
+		21DE68991A13B3EA0049227E /* OperationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68741A13B3EA0049227E /* OperationManager.cpp */; };
+		21DE689A1A13B3EA0049227E /* OperationQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68751A13B3EA0049227E /* OperationQueue.cpp */; };
+		21DE689B1A13B3EA0049227E /* Properties.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68761A13B3EA0049227E /* Properties.cpp */; };
+		21DE689C1A13B3EA0049227E /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68771A13B3EA0049227E /* Random.cpp */; };
+		21DE689D1A13B3EA0049227E /* Semaphore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68781A13B3EA0049227E /* Semaphore.cpp */; };
+		21DE689E1A13B3EA0049227E /* Settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68791A13B3EA0049227E /* Settings.cpp */; };
+		21DE689F1A13B3EA0049227E /* SHA1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE687A1A13B3EA0049227E /* SHA1.cpp */; };
+		21DE68A01A13B3EA0049227E /* SHA1.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE687B1A13B3EA0049227E /* SHA1.h */; };
+		21DE68A11A13B3EA0049227E /* Strategy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE687C1A13B3EA0049227E /* Strategy.cpp */; };
+		21DE68A21A13B3EA0049227E /* StringTokenizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE687D1A13B3EA0049227E /* StringTokenizer.cpp */; };
+		21DE68A31A13B3EA0049227E /* ThreadCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE687E1A13B3EA0049227E /* ThreadCore.cpp */; };
+		21DE68A41A13B3EA0049227E /* ThreadList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE687F1A13B3EA0049227E /* ThreadList.cpp */; };
+		21DE68A51A13B3EA0049227E /* ThreadManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68801A13B3EA0049227E /* ThreadManager.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		21CD1BA0192DC83400452ADF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21CD1B9C192DC83300452ADF /* libclink++.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 219C21ED155C7877003ABA46;
+			remoteInfo = "libclink++";
+		};
+		21CD1BA2192DC84400452ADF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21CD1B9C192DC83300452ADF /* libclink++.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 219C21EC155C7877003ABA46;
+			remoteInfo = "libclink++";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		21A9FFAA154014F300BDFCDC /* liblibround++.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "liblibround++.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		21CD1B9C192DC83300452ADF /* libclink++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libclink++.xcodeproj"; path = "../../../../clinkcc/lib/macosx/xcode/libclink++.xcodeproj"; sourceTree = "<group>"; };
+		21DE68071A13B3D60049227E /* BitOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitOption.h; sourceTree = "<group>"; };
+		21DE68081A13B3D60049227E /* Clock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clock.h; sourceTree = "<group>"; };
+		21DE68091A13B3D60049227E /* Cloneable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cloneable.h; sourceTree = "<group>"; };
+		21DE680A1A13B3D60049227E /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
+		21DE680B1A13B3D60049227E /* ConsistentHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsistentHash.h; sourceTree = "<group>"; };
+		21DE680C1A13B3D60049227E /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dictionary.h; sourceTree = "<group>"; };
+		21DE680D1A13B3D60049227E /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Error.h; sourceTree = "<group>"; };
+		21DE680E1A13B3D60049227E /* HashObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HashObject.h; sourceTree = "<group>"; };
+		21DE680F1A13B3D60049227E /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		21DE68101A13B3D60049227E /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		21DE68111A13B3D60049227E /* Mutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mutex.h; sourceTree = "<group>"; };
+		21DE68121A13B3D60049227E /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
+		21DE68131A13B3D60049227E /* Operation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operation.h; sourceTree = "<group>"; };
+		21DE68141A13B3D60049227E /* Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Properties.h; sourceTree = "<group>"; };
+		21DE68151A13B3D60049227E /* Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
+		21DE68161A13B3D60049227E /* Semaphore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Semaphore.h; sourceTree = "<group>"; };
+		21DE68171A13B3D60049227E /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		21DE68181A13B3D60049227E /* Strategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Strategy.h; sourceTree = "<group>"; };
+		21DE68191A13B3D60049227E /* StringTokenizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringTokenizer.h; sourceTree = "<group>"; };
+		21DE681A1A13B3D60049227E /* Thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Thread.h; sourceTree = "<group>"; };
+		21DE68311A13B3EA0049227E /* .dirstamp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .dirstamp; sourceTree = "<group>"; };
+		21DE68321A13B3EA0049227E /* Client.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Client.Po; sourceTree = "<group>"; };
+		21DE68331A13B3EA0049227E /* ClientStrategy.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ClientStrategy.Po; sourceTree = "<group>"; };
+		21DE68341A13B3EA0049227E /* Finder.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Finder.Po; sourceTree = "<group>"; };
+		21DE68351A13B3EA0049227E /* Server.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Server.Po; sourceTree = "<group>"; };
+		21DE68361A13B3EA0049227E /* .dirstamp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .dirstamp; sourceTree = "<group>"; };
+		21DE68391A13B3EA0049227E /* BitOption.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BitOption.Po; sourceTree = "<group>"; };
+		21DE683A1A13B3EA0049227E /* Clock.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Clock.Po; sourceTree = "<group>"; };
+		21DE683B1A13B3EA0049227E /* Configuration.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Configuration.Po; sourceTree = "<group>"; };
+		21DE683C1A13B3EA0049227E /* ConsistentHashGraph.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ConsistentHashGraph.Po; sourceTree = "<group>"; };
+		21DE683D1A13B3EA0049227E /* ConsistentHashNode.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ConsistentHashNode.Po; sourceTree = "<group>"; };
+		21DE683E1A13B3EA0049227E /* ConsistentHashObject.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ConsistentHashObject.Po; sourceTree = "<group>"; };
+		21DE683F1A13B3EA0049227E /* Dictionary.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Dictionary.Po; sourceTree = "<group>"; };
+		21DE68401A13B3EA0049227E /* DictionaryKeyList.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DictionaryKeyList.Po; sourceTree = "<group>"; };
+		21DE68411A13B3EA0049227E /* Error.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Error.Po; sourceTree = "<group>"; };
+		21DE68421A13B3EA0049227E /* HashObject.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HashObject.Po; sourceTree = "<group>"; };
+		21DE68431A13B3EA0049227E /* JSONArray.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JSONArray.Po; sourceTree = "<group>"; };
+		21DE68441A13B3EA0049227E /* JSONDictionary.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JSONDictionary.Po; sourceTree = "<group>"; };
+		21DE68451A13B3EA0049227E /* JSONObject.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JSONObject.Po; sourceTree = "<group>"; };
+		21DE68461A13B3EA0049227E /* JSONParser.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JSONParser.Po; sourceTree = "<group>"; };
+		21DE68471A13B3EA0049227E /* JSONString.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JSONString.Po; sourceTree = "<group>"; };
+		21DE68481A13B3EA0049227E /* MD5.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MD5.Po; sourceTree = "<group>"; };
+		21DE68491A13B3EA0049227E /* Message.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Message.Po; sourceTree = "<group>"; };
+		21DE684A1A13B3EA0049227E /* MessageManager.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MessageManager.Po; sourceTree = "<group>"; };
+		21DE684B1A13B3EA0049227E /* MessageQueue.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MessageQueue.Po; sourceTree = "<group>"; };
+		21DE684C1A13B3EA0049227E /* Mutex.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Mutex.Po; sourceTree = "<group>"; };
+		21DE684D1A13B3EA0049227E /* NotificationCenter.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NotificationCenter.Po; sourceTree = "<group>"; };
+		21DE684E1A13B3EA0049227E /* NotificationObserver.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NotificationObserver.Po; sourceTree = "<group>"; };
+		21DE684F1A13B3EA0049227E /* Operation.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Operation.Po; sourceTree = "<group>"; };
+		21DE68501A13B3EA0049227E /* OperationManager.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OperationManager.Po; sourceTree = "<group>"; };
+		21DE68511A13B3EA0049227E /* OperationQueue.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OperationQueue.Po; sourceTree = "<group>"; };
+		21DE68521A13B3EA0049227E /* Properties.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Properties.Po; sourceTree = "<group>"; };
+		21DE68531A13B3EA0049227E /* Random.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Random.Po; sourceTree = "<group>"; };
+		21DE68541A13B3EA0049227E /* Semaphore.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Semaphore.Po; sourceTree = "<group>"; };
+		21DE68551A13B3EA0049227E /* Settings.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Settings.Po; sourceTree = "<group>"; };
+		21DE68561A13B3EA0049227E /* SHA1.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SHA1.Po; sourceTree = "<group>"; };
+		21DE68571A13B3EA0049227E /* Strategy.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Strategy.Po; sourceTree = "<group>"; };
+		21DE68581A13B3EA0049227E /* StringTokenizer.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = StringTokenizer.Po; sourceTree = "<group>"; };
+		21DE68591A13B3EA0049227E /* ThreadCore.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ThreadCore.Po; sourceTree = "<group>"; };
+		21DE685A1A13B3EA0049227E /* ThreadList.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ThreadList.Po; sourceTree = "<group>"; };
+		21DE685B1A13B3EA0049227E /* ThreadManager.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ThreadManager.Po; sourceTree = "<group>"; };
+		21DE685C1A13B3EA0049227E /* BitOption.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BitOption.cpp; sourceTree = "<group>"; };
+		21DE685D1A13B3EA0049227E /* Clock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Clock.cpp; sourceTree = "<group>"; };
+		21DE685E1A13B3EA0049227E /* Configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Configuration.cpp; sourceTree = "<group>"; };
+		21DE685F1A13B3EA0049227E /* ConsistentHashGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsistentHashGraph.cpp; sourceTree = "<group>"; };
+		21DE68601A13B3EA0049227E /* ConsistentHashNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsistentHashNode.cpp; sourceTree = "<group>"; };
+		21DE68611A13B3EA0049227E /* ConsistentHashObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsistentHashObject.cpp; sourceTree = "<group>"; };
+		21DE68621A13B3EA0049227E /* Dictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Dictionary.cpp; sourceTree = "<group>"; };
+		21DE68631A13B3EA0049227E /* DictionaryKeyList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DictionaryKeyList.cpp; sourceTree = "<group>"; };
+		21DE68641A13B3EA0049227E /* Error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Error.cpp; sourceTree = "<group>"; };
+		21DE68651A13B3EA0049227E /* HashObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HashObject.cpp; sourceTree = "<group>"; };
+		21DE68661A13B3EA0049227E /* JSONArray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONArray.cpp; sourceTree = "<group>"; };
+		21DE68671A13B3EA0049227E /* JSONDictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONDictionary.cpp; sourceTree = "<group>"; };
+		21DE68681A13B3EA0049227E /* JSONObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONObject.cpp; sourceTree = "<group>"; };
+		21DE68691A13B3EA0049227E /* JSONParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONParser.cpp; sourceTree = "<group>"; };
+		21DE686A1A13B3EA0049227E /* JSONString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONString.cpp; sourceTree = "<group>"; };
+		21DE686B1A13B3EA0049227E /* MD5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MD5.cpp; sourceTree = "<group>"; };
+		21DE686C1A13B3EA0049227E /* MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5.h; sourceTree = "<group>"; };
+		21DE686D1A13B3EA0049227E /* Message.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Message.cpp; sourceTree = "<group>"; };
+		21DE686E1A13B3EA0049227E /* MessageManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MessageManager.cpp; sourceTree = "<group>"; };
+		21DE686F1A13B3EA0049227E /* MessageQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MessageQueue.cpp; sourceTree = "<group>"; };
+		21DE68701A13B3EA0049227E /* Mutex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mutex.cpp; sourceTree = "<group>"; };
+		21DE68711A13B3EA0049227E /* NotificationCenter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NotificationCenter.cpp; sourceTree = "<group>"; };
+		21DE68721A13B3EA0049227E /* NotificationObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NotificationObserver.cpp; sourceTree = "<group>"; };
+		21DE68731A13B3EA0049227E /* Operation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Operation.cpp; sourceTree = "<group>"; };
+		21DE68741A13B3EA0049227E /* OperationManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OperationManager.cpp; sourceTree = "<group>"; };
+		21DE68751A13B3EA0049227E /* OperationQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OperationQueue.cpp; sourceTree = "<group>"; };
+		21DE68761A13B3EA0049227E /* Properties.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Properties.cpp; sourceTree = "<group>"; };
+		21DE68771A13B3EA0049227E /* Random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Random.cpp; sourceTree = "<group>"; };
+		21DE68781A13B3EA0049227E /* Semaphore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Semaphore.cpp; sourceTree = "<group>"; };
+		21DE68791A13B3EA0049227E /* Settings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Settings.cpp; sourceTree = "<group>"; };
+		21DE687A1A13B3EA0049227E /* SHA1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SHA1.cpp; sourceTree = "<group>"; };
+		21DE687B1A13B3EA0049227E /* SHA1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHA1.h; sourceTree = "<group>"; };
+		21DE687C1A13B3EA0049227E /* Strategy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Strategy.cpp; sourceTree = "<group>"; };
+		21DE687D1A13B3EA0049227E /* StringTokenizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringTokenizer.cpp; sourceTree = "<group>"; };
+		21DE687E1A13B3EA0049227E /* ThreadCore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadCore.cpp; sourceTree = "<group>"; };
+		21DE687F1A13B3EA0049227E /* ThreadList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadList.cpp; sourceTree = "<group>"; };
+		21DE68801A13B3EA0049227E /* ThreadManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadManager.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		21A9FFA7154014F300BDFCDC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21CD1BA6192DC84B00452ADF /* liblibclink++.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		21A41AB01540235B008085EB /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				21DE68051A13B3D60049227E /* round */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		21A41AB21540236B008085EB /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				21DE682F1A13B3EA0049227E /* round */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		21A9FF9F154014F300BDFCDC = {
+			isa = PBXGroup;
+			children = (
+				21A41AB01540235B008085EB /* Headers */,
+				21A41AB21540236B008085EB /* Sources */,
+				21CD1B95192DC7E000452ADF /* Libraries */,
+				21A9FFAB154014F300BDFCDC /* Products */,
+			);
+			indentWidth = 2;
+			sourceTree = "<group>";
+			tabWidth = 2;
+		};
+		21A9FFAB154014F300BDFCDC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21A9FFAA154014F300BDFCDC /* liblibround++.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		21CD1B95192DC7E000452ADF /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				21CD1B9C192DC83300452ADF /* libclink++.xcodeproj */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		21CD1B9D192DC83300452ADF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21CD1BA1192DC83400452ADF /* liblibclink++.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		21DE68051A13B3D60049227E /* round */ = {
+			isa = PBXGroup;
+			children = (
+				21DE68061A13B3D60049227E /* common */,
+			);
+			name = round;
+			path = ../../../include/round;
+			sourceTree = "<group>";
+		};
+		21DE68061A13B3D60049227E /* common */ = {
+			isa = PBXGroup;
+			children = (
+				21DE68071A13B3D60049227E /* BitOption.h */,
+				21DE68081A13B3D60049227E /* Clock.h */,
+				21DE68091A13B3D60049227E /* Cloneable.h */,
+				21DE680A1A13B3D60049227E /* Configuration.h */,
+				21DE680B1A13B3D60049227E /* ConsistentHash.h */,
+				21DE680C1A13B3D60049227E /* Dictionary.h */,
+				21DE680D1A13B3D60049227E /* Error.h */,
+				21DE680E1A13B3D60049227E /* HashObject.h */,
+				21DE680F1A13B3D60049227E /* JSON.h */,
+				21DE68101A13B3D60049227E /* Message.h */,
+				21DE68111A13B3D60049227E /* Mutex.h */,
+				21DE68121A13B3D60049227E /* Notification.h */,
+				21DE68131A13B3D60049227E /* Operation.h */,
+				21DE68141A13B3D60049227E /* Properties.h */,
+				21DE68151A13B3D60049227E /* Random.h */,
+				21DE68161A13B3D60049227E /* Semaphore.h */,
+				21DE68171A13B3D60049227E /* Settings.h */,
+				21DE68181A13B3D60049227E /* Strategy.h */,
+				21DE68191A13B3D60049227E /* StringTokenizer.h */,
+				21DE681A1A13B3D60049227E /* Thread.h */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		21DE682F1A13B3EA0049227E /* round */ = {
+			isa = PBXGroup;
+			children = (
+				21DE68301A13B3EA0049227E /* .deps */,
+				21DE68361A13B3EA0049227E /* .dirstamp */,
+				21DE68371A13B3EA0049227E /* common */,
+			);
+			name = round;
+			path = ../../../src/round;
+			sourceTree = "<group>";
+		};
+		21DE68301A13B3EA0049227E /* .deps */ = {
+			isa = PBXGroup;
+			children = (
+				21DE68311A13B3EA0049227E /* .dirstamp */,
+				21DE68321A13B3EA0049227E /* Client.Po */,
+				21DE68331A13B3EA0049227E /* ClientStrategy.Po */,
+				21DE68341A13B3EA0049227E /* Finder.Po */,
+				21DE68351A13B3EA0049227E /* Server.Po */,
+			);
+			path = .deps;
+			sourceTree = "<group>";
+		};
+		21DE68371A13B3EA0049227E /* common */ = {
+			isa = PBXGroup;
+			children = (
+				21DE68381A13B3EA0049227E /* .deps */,
+				21DE685C1A13B3EA0049227E /* BitOption.cpp */,
+				21DE685D1A13B3EA0049227E /* Clock.cpp */,
+				21DE685E1A13B3EA0049227E /* Configuration.cpp */,
+				21DE685F1A13B3EA0049227E /* ConsistentHashGraph.cpp */,
+				21DE68601A13B3EA0049227E /* ConsistentHashNode.cpp */,
+				21DE68611A13B3EA0049227E /* ConsistentHashObject.cpp */,
+				21DE68621A13B3EA0049227E /* Dictionary.cpp */,
+				21DE68631A13B3EA0049227E /* DictionaryKeyList.cpp */,
+				21DE68641A13B3EA0049227E /* Error.cpp */,
+				21DE68651A13B3EA0049227E /* HashObject.cpp */,
+				21DE68661A13B3EA0049227E /* JSONArray.cpp */,
+				21DE68671A13B3EA0049227E /* JSONDictionary.cpp */,
+				21DE68681A13B3EA0049227E /* JSONObject.cpp */,
+				21DE68691A13B3EA0049227E /* JSONParser.cpp */,
+				21DE686A1A13B3EA0049227E /* JSONString.cpp */,
+				21DE686B1A13B3EA0049227E /* MD5.cpp */,
+				21DE686C1A13B3EA0049227E /* MD5.h */,
+				21DE686D1A13B3EA0049227E /* Message.cpp */,
+				21DE686E1A13B3EA0049227E /* MessageManager.cpp */,
+				21DE686F1A13B3EA0049227E /* MessageQueue.cpp */,
+				21DE68701A13B3EA0049227E /* Mutex.cpp */,
+				21DE68711A13B3EA0049227E /* NotificationCenter.cpp */,
+				21DE68721A13B3EA0049227E /* NotificationObserver.cpp */,
+				21DE68731A13B3EA0049227E /* Operation.cpp */,
+				21DE68741A13B3EA0049227E /* OperationManager.cpp */,
+				21DE68751A13B3EA0049227E /* OperationQueue.cpp */,
+				21DE68761A13B3EA0049227E /* Properties.cpp */,
+				21DE68771A13B3EA0049227E /* Random.cpp */,
+				21DE68781A13B3EA0049227E /* Semaphore.cpp */,
+				21DE68791A13B3EA0049227E /* Settings.cpp */,
+				21DE687A1A13B3EA0049227E /* SHA1.cpp */,
+				21DE687B1A13B3EA0049227E /* SHA1.h */,
+				21DE687C1A13B3EA0049227E /* Strategy.cpp */,
+				21DE687D1A13B3EA0049227E /* StringTokenizer.cpp */,
+				21DE687E1A13B3EA0049227E /* ThreadCore.cpp */,
+				21DE687F1A13B3EA0049227E /* ThreadList.cpp */,
+				21DE68801A13B3EA0049227E /* ThreadManager.cpp */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		21DE68381A13B3EA0049227E /* .deps */ = {
+			isa = PBXGroup;
+			children = (
+				21DE68391A13B3EA0049227E /* BitOption.Po */,
+				21DE683A1A13B3EA0049227E /* Clock.Po */,
+				21DE683B1A13B3EA0049227E /* Configuration.Po */,
+				21DE683C1A13B3EA0049227E /* ConsistentHashGraph.Po */,
+				21DE683D1A13B3EA0049227E /* ConsistentHashNode.Po */,
+				21DE683E1A13B3EA0049227E /* ConsistentHashObject.Po */,
+				21DE683F1A13B3EA0049227E /* Dictionary.Po */,
+				21DE68401A13B3EA0049227E /* DictionaryKeyList.Po */,
+				21DE68411A13B3EA0049227E /* Error.Po */,
+				21DE68421A13B3EA0049227E /* HashObject.Po */,
+				21DE68431A13B3EA0049227E /* JSONArray.Po */,
+				21DE68441A13B3EA0049227E /* JSONDictionary.Po */,
+				21DE68451A13B3EA0049227E /* JSONObject.Po */,
+				21DE68461A13B3EA0049227E /* JSONParser.Po */,
+				21DE68471A13B3EA0049227E /* JSONString.Po */,
+				21DE68481A13B3EA0049227E /* MD5.Po */,
+				21DE68491A13B3EA0049227E /* Message.Po */,
+				21DE684A1A13B3EA0049227E /* MessageManager.Po */,
+				21DE684B1A13B3EA0049227E /* MessageQueue.Po */,
+				21DE684C1A13B3EA0049227E /* Mutex.Po */,
+				21DE684D1A13B3EA0049227E /* NotificationCenter.Po */,
+				21DE684E1A13B3EA0049227E /* NotificationObserver.Po */,
+				21DE684F1A13B3EA0049227E /* Operation.Po */,
+				21DE68501A13B3EA0049227E /* OperationManager.Po */,
+				21DE68511A13B3EA0049227E /* OperationQueue.Po */,
+				21DE68521A13B3EA0049227E /* Properties.Po */,
+				21DE68531A13B3EA0049227E /* Random.Po */,
+				21DE68541A13B3EA0049227E /* Semaphore.Po */,
+				21DE68551A13B3EA0049227E /* Settings.Po */,
+				21DE68561A13B3EA0049227E /* SHA1.Po */,
+				21DE68571A13B3EA0049227E /* Strategy.Po */,
+				21DE68581A13B3EA0049227E /* StringTokenizer.Po */,
+				21DE68591A13B3EA0049227E /* ThreadCore.Po */,
+				21DE685A1A13B3EA0049227E /* ThreadList.Po */,
+				21DE685B1A13B3EA0049227E /* ThreadManager.Po */,
+			);
+			path = .deps;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		21A9FFA8154014F300BDFCDC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21DE681B1A13B3D60049227E /* BitOption.h in Headers */,
+				21DE682C1A13B3D60049227E /* Strategy.h in Headers */,
+				21DE681E1A13B3D60049227E /* Configuration.h in Headers */,
+				21DE682B1A13B3D60049227E /* Settings.h in Headers */,
+				21DE68241A13B3D60049227E /* Message.h in Headers */,
+				21DE68251A13B3D60049227E /* Mutex.h in Headers */,
+				21DE68271A13B3D60049227E /* Operation.h in Headers */,
+				21DE682A1A13B3D60049227E /* Semaphore.h in Headers */,
+				21DE682D1A13B3D60049227E /* StringTokenizer.h in Headers */,
+				21DE68281A13B3D60049227E /* Properties.h in Headers */,
+				21DE68201A13B3D60049227E /* Dictionary.h in Headers */,
+				21DE681C1A13B3D60049227E /* Clock.h in Headers */,
+				21DE68911A13B3EA0049227E /* MD5.h in Headers */,
+				21DE681D1A13B3D60049227E /* Cloneable.h in Headers */,
+				21DE68291A13B3D60049227E /* Random.h in Headers */,
+				21DE68221A13B3D60049227E /* HashObject.h in Headers */,
+				21DE68231A13B3D60049227E /* JSON.h in Headers */,
+				21DE681F1A13B3D60049227E /* ConsistentHash.h in Headers */,
+				21DE68211A13B3D60049227E /* Error.h in Headers */,
+				21DE682E1A13B3D60049227E /* Thread.h in Headers */,
+				21DE68261A13B3D60049227E /* Notification.h in Headers */,
+				21DE68A01A13B3EA0049227E /* SHA1.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		21A9FFA9154014F300BDFCDC /* libround++ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21A9FFAE154014F300BDFCDC /* Build configuration list for PBXNativeTarget "libround++" */;
+			buildPhases = (
+				21A9FFA6154014F300BDFCDC /* Sources */,
+				21A9FFA7154014F300BDFCDC /* Frameworks */,
+				21A9FFA8154014F300BDFCDC /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				21CD1BA3192DC84400452ADF /* PBXTargetDependency */,
+			);
+			name = "libround++";
+			productName = libfractal;
+			productReference = 21A9FFAA154014F300BDFCDC /* liblibround++.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		21A9FFA1154014F300BDFCDC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+			};
+			buildConfigurationList = 21A9FFA4154014F300BDFCDC /* Build configuration list for PBXProject "libround++" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 21A9FF9F154014F300BDFCDC;
+			productRefGroup = 21A9FFAB154014F300BDFCDC /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 21CD1B9D192DC83300452ADF /* Products */;
+					ProjectRef = 21CD1B9C192DC83300452ADF /* libclink++.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				21A9FFA9154014F300BDFCDC /* libround++ */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		21CD1BA1192DC83400452ADF /* liblibclink++.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			name = "liblibclink++.a";
+			path = "liblibround++.a";
+			remoteRef = 21CD1BA0192DC83400452ADF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		21A9FFA6154014F300BDFCDC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21DE68841A13B3EA0049227E /* ConsistentHashGraph.cpp in Sources */,
+				21DE68A11A13B3EA0049227E /* Strategy.cpp in Sources */,
+				21DE68881A13B3EA0049227E /* DictionaryKeyList.cpp in Sources */,
+				21DE68871A13B3EA0049227E /* Dictionary.cpp in Sources */,
+				21DE689A1A13B3EA0049227E /* OperationQueue.cpp in Sources */,
+				21DE689E1A13B3EA0049227E /* Settings.cpp in Sources */,
+				21DE68891A13B3EA0049227E /* Error.cpp in Sources */,
+				21DE68961A13B3EA0049227E /* NotificationCenter.cpp in Sources */,
+				21DE68821A13B3EA0049227E /* Clock.cpp in Sources */,
+				21DE68A31A13B3EA0049227E /* ThreadCore.cpp in Sources */,
+				21DE68A51A13B3EA0049227E /* ThreadManager.cpp in Sources */,
+				21DE68931A13B3EA0049227E /* MessageManager.cpp in Sources */,
+				21DE689B1A13B3EA0049227E /* Properties.cpp in Sources */,
+				21DE688D1A13B3EA0049227E /* JSONObject.cpp in Sources */,
+				21DE68A41A13B3EA0049227E /* ThreadList.cpp in Sources */,
+				21DE68831A13B3EA0049227E /* Configuration.cpp in Sources */,
+				21DE68991A13B3EA0049227E /* OperationManager.cpp in Sources */,
+				21DE68851A13B3EA0049227E /* ConsistentHashNode.cpp in Sources */,
+				21DE68971A13B3EA0049227E /* NotificationObserver.cpp in Sources */,
+				21DE689D1A13B3EA0049227E /* Semaphore.cpp in Sources */,
+				21DE688F1A13B3EA0049227E /* JSONString.cpp in Sources */,
+				21DE688C1A13B3EA0049227E /* JSONDictionary.cpp in Sources */,
+				21DE68861A13B3EA0049227E /* ConsistentHashObject.cpp in Sources */,
+				21DE68981A13B3EA0049227E /* Operation.cpp in Sources */,
+				21DE688E1A13B3EA0049227E /* JSONParser.cpp in Sources */,
+				21DE68A21A13B3EA0049227E /* StringTokenizer.cpp in Sources */,
+				21DE68951A13B3EA0049227E /* Mutex.cpp in Sources */,
+				21DE68921A13B3EA0049227E /* Message.cpp in Sources */,
+				21DE689C1A13B3EA0049227E /* Random.cpp in Sources */,
+				21DE689F1A13B3EA0049227E /* SHA1.cpp in Sources */,
+				21DE688B1A13B3EA0049227E /* JSONArray.cpp in Sources */,
+				21DE688A1A13B3EA0049227E /* HashObject.cpp in Sources */,
+				21DE68901A13B3EA0049227E /* MD5.cpp in Sources */,
+				21DE68811A13B3EA0049227E /* BitOption.cpp in Sources */,
+				21DE68941A13B3EA0049227E /* MessageQueue.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		21CD1BA3192DC84400452ADF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "libclink++";
+			targetProxy = 21CD1BA2192DC84400452ADF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		21A9FFAC154014F300BDFCDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../../include;
+				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
+				SDKROOT = macosx;
+				VALID_ARCHS = "i386 x86_64";
+			};
+			name = Debug;
+		};
+		21A9FFAD154014F300BDFCDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../../include;
+				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = "";
+				SDKROOT = macosx;
+				VALID_ARCHS = "i386 x86_64";
+			};
+			name = Release;
+		};
+		21A9FFAF154014F300BDFCDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				HEADER_SEARCH_PATHS = (
+					../../../include,
+					../../../src,
+					/usr/local/include,
+					/opt/local/include,
+				);
+				PRODUCT_NAME = "libround++";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		21A9FFB0154014F300BDFCDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				HEADER_SEARCH_PATHS = (
+					../../../include,
+					../../../src,
+					/usr/local/include,
+					/opt/local/include,
+				);
+				PRODUCT_NAME = "libround++";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		21A9FFA4154014F300BDFCDC /* Build configuration list for PBXProject "libround++" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21A9FFAC154014F300BDFCDC /* Debug */,
+				21A9FFAD154014F300BDFCDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21A9FFAE154014F300BDFCDC /* Build configuration list for PBXNativeTarget "libround++" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21A9FFAF154014F300BDFCDC /* Debug */,
+				21A9FFB0154014F300BDFCDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 21A9FFA1154014F300BDFCDC /* Project object */;
+}
