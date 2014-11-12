@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _FRACTALCC_DICTIONARY_H_
-#define _FRACTALCC_DICTIONARY_H_
+#ifndef _ROUNDCC_DICTIONARY_H_
+#define _ROUNDCC_DICTIONARY_H_
 
 #include <string>
 #include <map>

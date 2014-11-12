@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _FRACTALCC_STRATEGY_H_
-#define _FRACTALCC_STRATEGY_H_
+#ifndef _ROUNDCC_STRATEGY_H_
+#define _ROUNDCC_STRATEGY_H_
 
 #include <stdlib.h>
 

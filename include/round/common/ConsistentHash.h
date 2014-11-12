@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _FRACTALCC_CONSISTENTHASH_H_
-#define _FRACTALCC_CONSISTENTHASH_H_
+#ifndef _ROUNDCC_CONSISTENTHASH_H_
+#define _ROUNDCC_CONSISTENTHASH_H_
 
 #include <vector>
 #include <string>

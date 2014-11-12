@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _FRACTALCC_PROPERTIES_H_
-#define _FRACTALCC_PROPERTIES_H_
+#ifndef _ROUNDCC_PROPERTIES_H_
+#define _ROUNDCC_PROPERTIES_H_
 
 #include <round/common/Dictionary.h>
 

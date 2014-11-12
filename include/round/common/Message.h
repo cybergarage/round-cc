@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _FRACTALCC_MESSAGE_H_
-#define _FRACTALCC_MESSAGE_H_
+#ifndef _ROUNDCC_MESSAGE_H_
+#define _ROUNDCC_MESSAGE_H_
 
 #include <queue>
 

@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _FRACTALCC_CLOCK_H_
-#define _FRACTALCC_CLOCK_H_
+#ifndef _ROUNDCC_CLOCK_H_
+#define _ROUNDCC_CLOCK_H_
 
 namespace Round {
 

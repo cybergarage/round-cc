@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _FRACTALCC_BITOPTION_H_
-#define _FRACTALCC_BITOPTION_H_
+#ifndef _ROUNDCC_BITOPTION_H_
+#define _ROUNDCC_BITOPTION_H_
 
 namespace Round {
   

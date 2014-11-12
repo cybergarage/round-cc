@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _FRACTALCC_OPERATION_H_
-#define _FRACTALCC_OPERATION_H_
+#ifndef _ROUNDCC_OPERATION_H_
+#define _ROUNDCC_OPERATION_H_
 
 #include <queue>
 

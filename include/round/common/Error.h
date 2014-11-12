@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _FRACTALCC_ERROR_H_
-#define _FRACTALCC_ERROR_H_
+#ifndef _ROUNDCC_ERROR_H_
+#define _ROUNDCC_ERROR_H_
 
 #include <string>
 

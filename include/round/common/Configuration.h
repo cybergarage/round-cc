@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _FRACTALCC_COFIGURATION_H_
-#define _FRACTALCC_COFIGURATION_H_
+#ifndef _ROUNDCC_COFIGURATION_H_
+#define _ROUNDCC_COFIGURATION_H_
 
 #include <iostream>
 

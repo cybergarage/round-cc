@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _FRACTALCC_NOTIFICATION_H_
-#define _FRACTALCC_NOTIFICATION_H_
+#ifndef _ROUNDCC_NOTIFICATION_H_
+#define _ROUNDCC_NOTIFICATION_H_
 
 #include <vector>
 #include <stdlib.h>

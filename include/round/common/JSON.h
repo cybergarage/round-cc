@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _FRACTALCC_JSON_H_
-#define _FRACTALCC_JSON_H_
+#ifndef _ROUNDCC_JSON_H_
+#define _ROUNDCC_JSON_H_
 
 #include <string>
 #include <vector>

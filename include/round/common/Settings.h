@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _FRACTALCC_SETTINGS_H_
-#define _FRACTALCC_SETTINGS_H_
+#ifndef _ROUNDCC_SETTINGS_H_
+#define _ROUNDCC_SETTINGS_H_
 
 #include <round/common/Dictionary.h>
 

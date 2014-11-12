@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _FRACTALCC_TEST_H_
-#define _FRACTALCC_TEST_H_
+#ifndef _ROUNDCC_TEST_H_
+#define _ROUNDCC_TEST_H_
 
 static const std::string FRACTAL_TEST_CLUSTER_NAME = "fractal_test";
 

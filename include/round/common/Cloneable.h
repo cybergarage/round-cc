@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _FRACTALCC_CLONEABLE_H_
-#define _FRACTALCC_CLONEABLE_H_
+#ifndef _ROUNDCC_CLONEABLE_H_
+#define _ROUNDCC_CLONEABLE_H_
 
 namespace Round {
 
