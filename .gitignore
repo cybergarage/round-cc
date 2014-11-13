@@ -3,7 +3,6 @@
 *.lo
 *.o
 *.obj
-*.Po
 
 # Precompiled Headers
 *.gch
@@ -30,3 +29,9 @@
 
 # MacOSX
 .DS_Store
+project.xcworkspace/
+xcuserdata/
+
+# Automake
+.deps/
+*.Po
