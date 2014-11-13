@@ -6,6 +6,9 @@ AM_CPPFLAGS = \
 	-I$(top_srcdir)/src \
 	@XML_CFLAGS@
 
+AUTOMAKE_OPTIONS = \
+        subdir-objects
+
 fractald_SOURCES = \
 	../fractald.cpp
 
