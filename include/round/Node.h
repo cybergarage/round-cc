@@ -15,6 +15,8 @@
 
 #include <cybergarage/upnp/Device.h>
 #include <cybergarage/upnp/ControlPoint.h>
+#include <round/core/Logger.h>
+#include <round/core/NodeConfig.h>
 
 #include <round/Finder.h>
 
@@ -36,12 +38,27 @@ class Node : public CyberLink::Device {
 
   bool start(Error *error);
   bool stop(Error *error);
+  bool restart(Error *error) {
+    stop(error);
+    return start(error);
+  }
 
   void deviceAdded(CyberLink::Device * dev);
   void deviceRemoved(CyberLink::Device * dev);
   void deviceNotifyReceived(CyberLink::SSDPPacket *ssdpPacket);
   void deviceSearchResponseReceived(CyberLink::SSDPPacket *ssdpPacket);
+  
+  bool getLogFilename(std::string *value, Error *error);
+  bool getErrorLogFilename(std::string *value, Error *error);
+  
+  Logger *getLogger() {
+    return &logger;
+  }
 
+  bool loadConfigFromString(const std::string &string, Error *error);
+  bool loadConfigFromFile(const std::string &filename, Error *error);
+  bool isConfigValid(Error *error);
+  
 private:
 
   CyberLink::Service *getNodeService();
@@ -57,6 +74,9 @@ private:
   bool initialized;
 
   Finder nodeFinder;
+  static Logger logger;
+  
+  NodeConfig nodeConfig;
 };
 
 }

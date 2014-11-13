@@ -100,6 +100,22 @@ Round::Node::Node() : Device() {
 Round::Node::~Node() {
 }
 
+bool Round::Node::loadConfigFromString(const std::string &string, Error *error) {
+  if (this->nodeConfig.loadFromString(string, error) == false)
+    return false;
+  return true;
+}
+
+bool Round::Node::loadConfigFromFile(const std::string &filename, Error *error) {
+  if (this->nodeConfig.loadFromFile(filename, error) == false)
+    return false;
+  return true;
+}
+
+bool Round::Node::isConfigValid(Error *error) {
+  return this->nodeConfig.isValid(error);
+}
+
 bool Round::Node::initDevice() {
   if (loadDescription(FRACTAL_NODESERVER_DEVICE_DESCRIPTION) == false)
     return false;

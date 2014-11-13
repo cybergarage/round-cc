@@ -1,0 +1,14 @@
+bin_PROGRAMS = round
+
+AM_CPPFLAGS = \
+	../ \
+	-I$(top_srcdir)/include \
+	-I$(top_srcdir)/src \
+	@XML_CFLAGS@
+
+round_SOURCES = \
+	../round.cpp
+
+round_LDADD = \
+	../../../lib/unix/libround++.a \
+	@XML_LIBS@

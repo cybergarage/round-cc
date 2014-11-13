@@ -7,12 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		211FBA391A14792C00B9B71E /* Round.h in Headers */ = {isa = PBXBuildFile; fileRef = 211FBA381A14792C00B9B71E /* Round.h */; };
+		21620E4D1A147A5600690EA8 /* Log.h in Headers */ = {isa = PBXBuildFile; fileRef = 21620E4A1A147A5600690EA8 /* Log.h */; };
+		21620E4E1A147A5600690EA8 /* Logger.h in Headers */ = {isa = PBXBuildFile; fileRef = 21620E4B1A147A5600690EA8 /* Logger.h */; };
+		21620E4F1A147A5600690EA8 /* LoggerTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = 21620E4C1A147A5600690EA8 /* LoggerTarget.h */; };
+		21620E521A147A6400690EA8 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21620E511A147A6400690EA8 /* Logger.cpp */; };
+		21620E541A14807D00690EA8 /* NodeConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 21620E531A14807D00690EA8 /* NodeConfig.h */; };
+		21620E561A14809D00690EA8 /* NodeConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21620E551A14809D00690EA8 /* NodeConfig.cpp */; };
 		216E5FC31A13CBD80043C28B /* Client.h in Headers */ = {isa = PBXBuildFile; fileRef = 216E5FC01A13CBD80043C28B /* Client.h */; };
 		216E5FC41A13CBD80043C28B /* Finder.h in Headers */ = {isa = PBXBuildFile; fileRef = 216E5FC11A13CBD80043C28B /* Finder.h */; };
 		216E5FC51A13CBD80043C28B /* Node.h in Headers */ = {isa = PBXBuildFile; fileRef = 216E5FC21A13CBD80043C28B /* Node.h */; };
 		216E5FC91A13CBEE0043C28B /* Client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216E5FC61A13CBEE0043C28B /* Client.cpp */; };
 		216E5FCA1A13CBEE0043C28B /* Finder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216E5FC71A13CBEE0043C28B /* Finder.cpp */; };
 		216E5FCB1A13CBEE0043C28B /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216E5FC81A13CBEE0043C28B /* Node.cpp */; };
+		21CCABC51A145AAF00FE57DF /* ConsoleClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 21CCABC31A145AAF00FE57DF /* ConsoleClient.h */; };
+		21CCABC61A145AAF00FE57DF /* ConsoleError.h in Headers */ = {isa = PBXBuildFile; fileRef = 21CCABC41A145AAF00FE57DF /* ConsoleError.h */; };
+		21CCABCA1A145AC900FE57DF /* ConsoleClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21CCABC81A145AC900FE57DF /* ConsoleClient.cpp */; };
+		21CCABCB1A145AC900FE57DF /* ConsoleError.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21CCABC91A145AC900FE57DF /* ConsoleError.cpp */; };
 		21CD1BA6192DC84B00452ADF /* liblibclink++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CD1BA1192DC83400452ADF /* liblibclink++.a */; };
 		21DE681B1A13B3D60049227E /* BitOption.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE68071A13B3D60049227E /* BitOption.h */; };
 		21DE681C1A13B3D60049227E /* Clock.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE68081A13B3D60049227E /* Clock.h */; };
@@ -91,6 +102,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		211FBA381A14792C00B9B71E /* Round.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Round.h; sourceTree = "<group>"; };
+		21620E4A1A147A5600690EA8 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
+		21620E4B1A147A5600690EA8 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
+		21620E4C1A147A5600690EA8 /* LoggerTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerTarget.h; sourceTree = "<group>"; };
+		21620E511A147A6400690EA8 /* Logger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Logger.cpp; sourceTree = "<group>"; };
+		21620E531A14807D00690EA8 /* NodeConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeConfig.h; sourceTree = "<group>"; };
+		21620E551A14809D00690EA8 /* NodeConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeConfig.cpp; sourceTree = "<group>"; };
 		216E5FC01A13CBD80043C28B /* Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
 		216E5FC11A13CBD80043C28B /* Finder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Finder.h; sourceTree = "<group>"; };
 		216E5FC21A13CBD80043C28B /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
@@ -98,6 +116,10 @@
 		216E5FC71A13CBEE0043C28B /* Finder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Finder.cpp; sourceTree = "<group>"; };
 		216E5FC81A13CBEE0043C28B /* Node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Node.cpp; sourceTree = "<group>"; };
 		21A9FFAA154014F300BDFCDC /* liblibround++.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "liblibround++.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		21CCABC31A145AAF00FE57DF /* ConsoleClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleClient.h; sourceTree = "<group>"; };
+		21CCABC41A145AAF00FE57DF /* ConsoleError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleError.h; sourceTree = "<group>"; };
+		21CCABC81A145AC900FE57DF /* ConsoleClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleClient.cpp; sourceTree = "<group>"; };
+		21CCABC91A145AC900FE57DF /* ConsoleError.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleError.cpp; sourceTree = "<group>"; };
 		21CD1B9C192DC83300452ADF /* libclink++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libclink++.xcodeproj"; path = "../../../../clinkcc/lib/macosx/xcode/libclink++.xcodeproj"; sourceTree = "<group>"; };
 		21DE68071A13B3D60049227E /* BitOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitOption.h; sourceTree = "<group>"; };
 		21DE68081A13B3D60049227E /* Clock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clock.h; sourceTree = "<group>"; };
@@ -119,41 +141,6 @@
 		21DE68181A13B3D60049227E /* Strategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Strategy.h; sourceTree = "<group>"; };
 		21DE68191A13B3D60049227E /* StringTokenizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringTokenizer.h; sourceTree = "<group>"; };
 		21DE681A1A13B3D60049227E /* Thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Thread.h; sourceTree = "<group>"; };
-		21DE68391A13B3EA0049227E /* BitOption.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BitOption.Po; sourceTree = "<group>"; };
-		21DE683A1A13B3EA0049227E /* Clock.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Clock.Po; sourceTree = "<group>"; };
-		21DE683B1A13B3EA0049227E /* Configuration.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Configuration.Po; sourceTree = "<group>"; };
-		21DE683C1A13B3EA0049227E /* ConsistentHashGraph.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ConsistentHashGraph.Po; sourceTree = "<group>"; };
-		21DE683D1A13B3EA0049227E /* ConsistentHashNode.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ConsistentHashNode.Po; sourceTree = "<group>"; };
-		21DE683E1A13B3EA0049227E /* ConsistentHashObject.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ConsistentHashObject.Po; sourceTree = "<group>"; };
-		21DE683F1A13B3EA0049227E /* Dictionary.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Dictionary.Po; sourceTree = "<group>"; };
-		21DE68401A13B3EA0049227E /* DictionaryKeyList.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DictionaryKeyList.Po; sourceTree = "<group>"; };
-		21DE68411A13B3EA0049227E /* Error.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Error.Po; sourceTree = "<group>"; };
-		21DE68421A13B3EA0049227E /* HashObject.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HashObject.Po; sourceTree = "<group>"; };
-		21DE68431A13B3EA0049227E /* JSONArray.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JSONArray.Po; sourceTree = "<group>"; };
-		21DE68441A13B3EA0049227E /* JSONDictionary.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JSONDictionary.Po; sourceTree = "<group>"; };
-		21DE68451A13B3EA0049227E /* JSONObject.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JSONObject.Po; sourceTree = "<group>"; };
-		21DE68461A13B3EA0049227E /* JSONParser.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JSONParser.Po; sourceTree = "<group>"; };
-		21DE68471A13B3EA0049227E /* JSONString.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JSONString.Po; sourceTree = "<group>"; };
-		21DE68481A13B3EA0049227E /* MD5.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MD5.Po; sourceTree = "<group>"; };
-		21DE68491A13B3EA0049227E /* Message.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Message.Po; sourceTree = "<group>"; };
-		21DE684A1A13B3EA0049227E /* MessageManager.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MessageManager.Po; sourceTree = "<group>"; };
-		21DE684B1A13B3EA0049227E /* MessageQueue.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MessageQueue.Po; sourceTree = "<group>"; };
-		21DE684C1A13B3EA0049227E /* Mutex.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Mutex.Po; sourceTree = "<group>"; };
-		21DE684D1A13B3EA0049227E /* NotificationCenter.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NotificationCenter.Po; sourceTree = "<group>"; };
-		21DE684E1A13B3EA0049227E /* NotificationObserver.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NotificationObserver.Po; sourceTree = "<group>"; };
-		21DE684F1A13B3EA0049227E /* Operation.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Operation.Po; sourceTree = "<group>"; };
-		21DE68501A13B3EA0049227E /* OperationManager.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OperationManager.Po; sourceTree = "<group>"; };
-		21DE68511A13B3EA0049227E /* OperationQueue.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OperationQueue.Po; sourceTree = "<group>"; };
-		21DE68521A13B3EA0049227E /* Properties.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Properties.Po; sourceTree = "<group>"; };
-		21DE68531A13B3EA0049227E /* Random.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Random.Po; sourceTree = "<group>"; };
-		21DE68541A13B3EA0049227E /* Semaphore.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Semaphore.Po; sourceTree = "<group>"; };
-		21DE68551A13B3EA0049227E /* Settings.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Settings.Po; sourceTree = "<group>"; };
-		21DE68561A13B3EA0049227E /* SHA1.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SHA1.Po; sourceTree = "<group>"; };
-		21DE68571A13B3EA0049227E /* Strategy.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Strategy.Po; sourceTree = "<group>"; };
-		21DE68581A13B3EA0049227E /* StringTokenizer.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = StringTokenizer.Po; sourceTree = "<group>"; };
-		21DE68591A13B3EA0049227E /* ThreadCore.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ThreadCore.Po; sourceTree = "<group>"; };
-		21DE685A1A13B3EA0049227E /* ThreadList.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ThreadList.Po; sourceTree = "<group>"; };
-		21DE685B1A13B3EA0049227E /* ThreadManager.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ThreadManager.Po; sourceTree = "<group>"; };
 		21DE685C1A13B3EA0049227E /* BitOption.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BitOption.cpp; sourceTree = "<group>"; };
 		21DE685D1A13B3EA0049227E /* Clock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Clock.cpp; sourceTree = "<group>"; };
 		21DE685E1A13B3EA0049227E /* Configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Configuration.cpp; sourceTree = "<group>"; };
@@ -205,6 +192,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		21620E491A147A5600690EA8 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				21620E531A14807D00690EA8 /* NodeConfig.h */,
+				21620E4A1A147A5600690EA8 /* Log.h */,
+				21620E4B1A147A5600690EA8 /* Logger.h */,
+				21620E4C1A147A5600690EA8 /* LoggerTarget.h */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		21620E501A147A6400690EA8 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				21620E551A14809D00690EA8 /* NodeConfig.cpp */,
+				21620E511A147A6400690EA8 /* Logger.cpp */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
 		21A41AB01540235B008085EB /* Headers */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +248,24 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		21CCABC21A145AAF00FE57DF /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				21CCABC31A145AAF00FE57DF /* ConsoleClient.h */,
+				21CCABC41A145AAF00FE57DF /* ConsoleError.h */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		21CCABC71A145AC900FE57DF /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				21CCABC81A145AC900FE57DF /* ConsoleClient.cpp */,
+				21CCABC91A145AC900FE57DF /* ConsoleError.cpp */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
 		21CD1B95192DC7E000452ADF /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -260,10 +285,13 @@
 		21DE68051A13B3D60049227E /* round */ = {
 			isa = PBXGroup;
 			children = (
+				21620E491A147A5600690EA8 /* core */,
 				21DE68061A13B3D60049227E /* common */,
+				21CCABC21A145AAF00FE57DF /* ui */,
 				216E5FC01A13CBD80043C28B /* Client.h */,
 				216E5FC11A13CBD80043C28B /* Finder.h */,
 				216E5FC21A13CBD80043C28B /* Node.h */,
+				211FBA381A14792C00B9B71E /* Round.h */,
 			);
 			name = round;
 			path = ../../../include/round;
@@ -299,10 +327,12 @@
 		21DE682F1A13B3EA0049227E /* round */ = {
 			isa = PBXGroup;
 			children = (
+				21620E501A147A6400690EA8 /* core */,
+				21DE68371A13B3EA0049227E /* common */,
+				21CCABC71A145AC900FE57DF /* ui */,
 				216E5FC61A13CBEE0043C28B /* Client.cpp */,
 				216E5FC71A13CBEE0043C28B /* Finder.cpp */,
 				216E5FC81A13CBEE0043C28B /* Node.cpp */,
-				21DE68371A13B3EA0049227E /* common */,
 			);
 			name = round;
 			path = ../../../src/round;
@@ -311,7 +341,6 @@
 		21DE68371A13B3EA0049227E /* common */ = {
 			isa = PBXGroup;
 			children = (
-				21DE68381A13B3EA0049227E /* .deps */,
 				21DE685C1A13B3EA0049227E /* BitOption.cpp */,
 				21DE685D1A13B3EA0049227E /* Clock.cpp */,
 				21DE685E1A13B3EA0049227E /* Configuration.cpp */,
@@ -353,48 +382,6 @@
 			path = common;
 			sourceTree = "<group>";
 		};
-		21DE68381A13B3EA0049227E /* .deps */ = {
-			isa = PBXGroup;
-			children = (
-				21DE68391A13B3EA0049227E /* BitOption.Po */,
-				21DE683A1A13B3EA0049227E /* Clock.Po */,
-				21DE683B1A13B3EA0049227E /* Configuration.Po */,
-				21DE683C1A13B3EA0049227E /* ConsistentHashGraph.Po */,
-				21DE683D1A13B3EA0049227E /* ConsistentHashNode.Po */,
-				21DE683E1A13B3EA0049227E /* ConsistentHashObject.Po */,
-				21DE683F1A13B3EA0049227E /* Dictionary.Po */,
-				21DE68401A13B3EA0049227E /* DictionaryKeyList.Po */,
-				21DE68411A13B3EA0049227E /* Error.Po */,
-				21DE68421A13B3EA0049227E /* HashObject.Po */,
-				21DE68431A13B3EA0049227E /* JSONArray.Po */,
-				21DE68441A13B3EA0049227E /* JSONDictionary.Po */,
-				21DE68451A13B3EA0049227E /* JSONObject.Po */,
-				21DE68461A13B3EA0049227E /* JSONParser.Po */,
-				21DE68471A13B3EA0049227E /* JSONString.Po */,
-				21DE68481A13B3EA0049227E /* MD5.Po */,
-				21DE68491A13B3EA0049227E /* Message.Po */,
-				21DE684A1A13B3EA0049227E /* MessageManager.Po */,
-				21DE684B1A13B3EA0049227E /* MessageQueue.Po */,
-				21DE684C1A13B3EA0049227E /* Mutex.Po */,
-				21DE684D1A13B3EA0049227E /* NotificationCenter.Po */,
-				21DE684E1A13B3EA0049227E /* NotificationObserver.Po */,
-				21DE684F1A13B3EA0049227E /* Operation.Po */,
-				21DE68501A13B3EA0049227E /* OperationManager.Po */,
-				21DE68511A13B3EA0049227E /* OperationQueue.Po */,
-				21DE68521A13B3EA0049227E /* Properties.Po */,
-				21DE68531A13B3EA0049227E /* Random.Po */,
-				21DE68541A13B3EA0049227E /* Semaphore.Po */,
-				21DE68551A13B3EA0049227E /* Settings.Po */,
-				21DE68561A13B3EA0049227E /* SHA1.Po */,
-				21DE68571A13B3EA0049227E /* Strategy.Po */,
-				21DE68581A13B3EA0049227E /* StringTokenizer.Po */,
-				21DE68591A13B3EA0049227E /* ThreadCore.Po */,
-				21DE685A1A13B3EA0049227E /* ThreadList.Po */,
-				21DE685B1A13B3EA0049227E /* ThreadManager.Po */,
-			);
-			path = .deps;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -403,12 +390,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				21DE681B1A13B3D60049227E /* BitOption.h in Headers */,
+				21CCABC61A145AAF00FE57DF /* ConsoleError.h in Headers */,
 				21DE682C1A13B3D60049227E /* Strategy.h in Headers */,
 				21DE681E1A13B3D60049227E /* Configuration.h in Headers */,
 				21DE682B1A13B3D60049227E /* Settings.h in Headers */,
 				21DE68241A13B3D60049227E /* Message.h in Headers */,
 				216E5FC51A13CBD80043C28B /* Node.h in Headers */,
 				21DE68251A13B3D60049227E /* Mutex.h in Headers */,
+				21CCABC51A145AAF00FE57DF /* ConsoleClient.h in Headers */,
 				216E5FC41A13CBD80043C28B /* Finder.h in Headers */,
 				21DE68271A13B3D60049227E /* Operation.h in Headers */,
 				21DE682A1A13B3D60049227E /* Semaphore.h in Headers */,
@@ -423,9 +412,14 @@
 				21DE68231A13B3D60049227E /* JSON.h in Headers */,
 				21DE681F1A13B3D60049227E /* ConsistentHash.h in Headers */,
 				21DE68211A13B3D60049227E /* Error.h in Headers */,
+				21620E4F1A147A5600690EA8 /* LoggerTarget.h in Headers */,
 				216E5FC31A13CBD80043C28B /* Client.h in Headers */,
+				21620E4E1A147A5600690EA8 /* Logger.h in Headers */,
 				21DE682E1A13B3D60049227E /* Thread.h in Headers */,
+				211FBA391A14792C00B9B71E /* Round.h in Headers */,
 				21DE68261A13B3D60049227E /* Notification.h in Headers */,
+				21620E4D1A147A5600690EA8 /* Log.h in Headers */,
+				21620E541A14807D00690EA8 /* NodeConfig.h in Headers */,
 				21DE68A01A13B3EA0049227E /* SHA1.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -508,6 +502,7 @@
 				21DE68821A13B3EA0049227E /* Clock.cpp in Sources */,
 				21DE68A31A13B3EA0049227E /* ThreadCore.cpp in Sources */,
 				21DE68A51A13B3EA0049227E /* ThreadManager.cpp in Sources */,
+				21CCABCA1A145AC900FE57DF /* ConsoleClient.cpp in Sources */,
 				216E5FCB1A13CBEE0043C28B /* Node.cpp in Sources */,
 				21DE68931A13B3EA0049227E /* MessageManager.cpp in Sources */,
 				21DE689B1A13B3EA0049227E /* Properties.cpp in Sources */,
@@ -518,6 +513,7 @@
 				216E5FCA1A13CBEE0043C28B /* Finder.cpp in Sources */,
 				21DE68851A13B3EA0049227E /* ConsistentHashNode.cpp in Sources */,
 				21DE68971A13B3EA0049227E /* NotificationObserver.cpp in Sources */,
+				21CCABCB1A145AC900FE57DF /* ConsoleError.cpp in Sources */,
 				21DE689D1A13B3EA0049227E /* Semaphore.cpp in Sources */,
 				21DE688F1A13B3EA0049227E /* JSONString.cpp in Sources */,
 				21DE688C1A13B3EA0049227E /* JSONDictionary.cpp in Sources */,
@@ -526,6 +522,8 @@
 				21DE688E1A13B3EA0049227E /* JSONParser.cpp in Sources */,
 				21DE68A21A13B3EA0049227E /* StringTokenizer.cpp in Sources */,
 				216E5FC91A13CBEE0043C28B /* Client.cpp in Sources */,
+				21620E561A14809D00690EA8 /* NodeConfig.cpp in Sources */,
+				21620E521A147A6400690EA8 /* Logger.cpp in Sources */,
 				21DE68951A13B3EA0049227E /* Mutex.cpp in Sources */,
 				21DE68921A13B3EA0049227E /* Message.cpp in Sources */,
 				21DE689C1A13B3EA0049227E /* Random.cpp in Sources */,

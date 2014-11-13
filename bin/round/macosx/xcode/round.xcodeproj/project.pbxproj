@@ -1,0 +1,392 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		218A8C5F195D63060000234F /* libuhttp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 218A8C4C195D62A50000234F /* libuhttp++.a */; };
+		218A8C61195D630F0000234F /* liblibclink++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 218A8C52195D62D00000234F /* liblibclink++.a */; };
+		21CCABCD1A145D0300FE57DF /* liblibround++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2135E2631A13C81100E20DF9 /* liblibround++.a */; };
+		21EC1EC515493D01003945A5 /* round.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EC1EC415493D01003945A5 /* round.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2135E2621A13C81100E20DF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2135E25D1A13C81100E20DF9 /* libround++.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 21A9FFAA154014F300BDFCDC;
+			remoteInfo = "libround++";
+		};
+		218A8C4B195D62A50000234F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 218A8C47195D62A50000234F /* libuhttp.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 21E1EB1C1535D1E0005AA247;
+			remoteInfo = libuhttp;
+		};
+		218A8C51195D62D00000234F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 218A8C4D195D62CF0000234F /* libclink++.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 219C21ED155C7877003ABA46;
+			remoteInfo = "libclink++";
+		};
+		218A8C5B195D62F90000234F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 218A8C47195D62A50000234F /* libuhttp.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 21E1EB1B1535D1E0005AA247;
+			remoteInfo = libuhttp;
+		};
+		218A8C5D195D62FB0000234F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 218A8C4D195D62CF0000234F /* libclink++.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 219C21EC155C7877003ABA46;
+			remoteInfo = "libclink++";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2136E04815493B2B007AC214 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2135E25D1A13C81100E20DF9 /* libround++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libround++.xcodeproj"; path = "../../../../lib/macosx/xcode/libround++.xcodeproj"; sourceTree = "<group>"; };
+		2136E04A15493B2B007AC214 /* round */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = round; sourceTree = BUILT_PRODUCTS_DIR; };
+		218A8C47195D62A50000234F /* libuhttp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuhttp.xcodeproj; path = ../../../../../uhttp/lib/macosx/xcode/libuhttp.xcodeproj; sourceTree = "<group>"; };
+		218A8C4D195D62CF0000234F /* libclink++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libclink++.xcodeproj"; path = "../../../../../clinkcc/lib/macosx/xcode/libclink++.xcodeproj"; sourceTree = "<group>"; };
+		21EC1EC415493D01003945A5 /* round.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; name = round.cpp; path = ../../round.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2136E04715493B2B007AC214 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21CCABCD1A145D0300FE57DF /* liblibround++.a in Frameworks */,
+				218A8C61195D630F0000234F /* liblibclink++.a in Frameworks */,
+				218A8C5F195D63060000234F /* libuhttp++.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2135E25E1A13C81100E20DF9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2135E2631A13C81100E20DF9 /* liblibround++.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2136E03F15493B2B007AC214 = {
+			isa = PBXGroup;
+			children = (
+				21EC1EB815493CBE003945A5 /* Sources */,
+				21EC1EBA15493CC6003945A5 /* Frameworks */,
+				2136E04B15493B2B007AC214 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2136E04B15493B2B007AC214 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2136E04A15493B2B007AC214 /* round */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		218A8C48195D62A50000234F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				218A8C4C195D62A50000234F /* libuhttp++.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		218A8C4E195D62CF0000234F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				218A8C52195D62D00000234F /* liblibclink++.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		21EC1EB815493CBE003945A5 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				21EC1EC415493D01003945A5 /* round.cpp */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		21EC1EBA15493CC6003945A5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2135E25D1A13C81100E20DF9 /* libround++.xcodeproj */,
+				218A8C4D195D62CF0000234F /* libclink++.xcodeproj */,
+				218A8C47195D62A50000234F /* libuhttp.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2136E04915493B2B007AC214 /* round */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2136E05415493B2B007AC214 /* Build configuration list for PBXNativeTarget "round" */;
+			buildPhases = (
+				2136E04615493B2B007AC214 /* Sources */,
+				2136E04715493B2B007AC214 /* Frameworks */,
+				2136E04815493B2B007AC214 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				218A8C5E195D62FB0000234F /* PBXTargetDependency */,
+				218A8C5C195D62F90000234F /* PBXTargetDependency */,
+			);
+			name = round;
+			productName = fractal;
+			productReference = 2136E04A15493B2B007AC214 /* round */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2136E04115493B2B007AC214 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+			};
+			buildConfigurationList = 2136E04415493B2B007AC214 /* Build configuration list for PBXProject "round" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2136E03F15493B2B007AC214;
+			productRefGroup = 2136E04B15493B2B007AC214 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 218A8C4E195D62CF0000234F /* Products */;
+					ProjectRef = 218A8C4D195D62CF0000234F /* libclink++.xcodeproj */;
+				},
+				{
+					ProductGroup = 2135E25E1A13C81100E20DF9 /* Products */;
+					ProjectRef = 2135E25D1A13C81100E20DF9 /* libround++.xcodeproj */;
+				},
+				{
+					ProductGroup = 218A8C48195D62A50000234F /* Products */;
+					ProjectRef = 218A8C47195D62A50000234F /* libuhttp.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				2136E04915493B2B007AC214 /* round */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		2135E2631A13C81100E20DF9 /* liblibround++.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "liblibround++.a";
+			remoteRef = 2135E2621A13C81100E20DF9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		218A8C4C195D62A50000234F /* libuhttp++.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libuhttp++.a";
+			remoteRef = 218A8C4B195D62A50000234F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		218A8C52195D62D00000234F /* liblibclink++.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "liblibclink++.a";
+			remoteRef = 218A8C51195D62D00000234F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2136E04615493B2B007AC214 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21EC1EC515493D01003945A5 /* round.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		218A8C5C195D62F90000234F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libuhttp;
+			targetProxy = 218A8C5B195D62F90000234F /* PBXContainerItemProxy */;
+		};
+		218A8C5E195D62FB0000234F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "libclink++";
+			targetProxy = 218A8C5D195D62FB0000234F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2136E05215493B2B007AC214 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../../../include/,
+					../../../../src,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ledit",
+					"-lxml2",
+					"-lleveldb",
+					"-lsqlite3",
+					"-lboost_filesystem",
+					"-lboost_system",
+				);
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		2136E05315493B2B007AC214 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../../../include/,
+					../../../../src,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = (
+					"-ledit",
+					"-lxml2",
+					"-lleveldb",
+					"-lsqlite3",
+					"-lboost_filesystem",
+					"-lboost_system",
+				);
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		2136E05515493B2B007AC214 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				PRODUCT_NAME = round;
+			};
+			name = Debug;
+		};
+		2136E05615493B2B007AC214 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				PRODUCT_NAME = round;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2136E04415493B2B007AC214 /* Build configuration list for PBXProject "round" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2136E05215493B2B007AC214 /* Debug */,
+				2136E05315493B2B007AC214 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2136E05415493B2B007AC214 /* Build configuration list for PBXNativeTarget "round" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2136E05515493B2B007AC214 /* Debug */,
+				2136E05615493B2B007AC214 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2136E04115493B2B007AC214 /* Project object */;
+}
