@@ -68,7 +68,7 @@ class MessageManager {
   int getId();
 
  private:
-
+ 
   Semaphore *msgSem;
   MessageQueue *msgQueue;
 };

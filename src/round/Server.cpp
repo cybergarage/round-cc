@@ -15,7 +15,7 @@
 
 #include <string.h>
 
-#include <round/Node.h>
+#include <round/Server.h>
 
 #include <uhttp/net/URL.h>
 
@@ -23,7 +23,7 @@
 //  Constants
 ////////////////////////////////////////////////
 
-const std::string Round::Node::DEVICE_TYPE = "urn:cybergarage-org:device:fractal:1";
+const std::string Round::Server::DEVICE_TYPE = "urn:cybergarage-org:device:fractal:1";
 
 static const std::string FRACTAL_NODESERVER_DESCRIPTION_URI = "description/description.xml";
 static const std::string FRACTAL_NODESERVER_PRESENTATION_URI = "/presentation";
@@ -89,38 +89,38 @@ static const std::string FRACTAL_NODESERVER_SERVICE_NODE_DESCRIPTION =
 "</scpd>\n";
 
 ////////////////////////////////////////////////
-//  Node
+//  Server
 ////////////////////////////////////////////////
 
-Round::Node::Node() : Device() {
+Round::Server::Server() : Device() {
   this->initialized = initDevice();
   //nodeFinder.addObserver(this);
 }
 
-Round::Node::~Node() {
+Round::Server::~Server() {
 }
 
-bool Round::Node::loadConfigFromString(const std::string &string, Error *error) {
+bool Round::Server::loadConfigFromString(const std::string &string, Error *error) {
   if (this->nodeConfig.loadFromString(string, error) == false)
     return false;
   return true;
 }
 
-bool Round::Node::loadConfigFromFile(const std::string &filename, Error *error) {
+bool Round::Server::loadConfigFromFile(const std::string &filename, Error *error) {
   if (this->nodeConfig.loadFromFile(filename, error) == false)
     return false;
   return true;
 }
 
-bool Round::Node::isConfigValid(Error *error) {
+bool Round::Server::isConfigValid(Error *error) {
   return this->nodeConfig.isValid(error);
 }
 
-bool Round::Node::initDevice() {
+bool Round::Server::initDevice() {
   if (loadDescription(FRACTAL_NODESERVER_DEVICE_DESCRIPTION) == false)
     return false;
 
-  CyberLink::Service *nodeService = getNodeService();
+  CyberLink::Service *nodeService = getServerService();
   if (!nodeService)
     return false;
   
@@ -132,27 +132,27 @@ bool Round::Node::initDevice() {
   return true;
 }
 
-CyberLink::Service *Round::Node::getNodeService() {
+CyberLink::Service *Round::Server::getServerService() {
   return getService(FRACTAL_NODESERVER_SERVICE_NODE_TYPE);
 }
 
-bool Round::Node::start(Error *error) {
+bool Round::Server::start(Error *error) {
   if (!this->initialized)
     return false;
   
   // Configuration
   
   std::string localAddress;
-  //if (!getNodeConfig()->getHttpdBindAddress(&localAddress, error))
+  //if (!getServerConfig()->getHttpdBindAddress(&localAddress, error))
   //  return false;
 
   //int localPort;
-  //if (!getNodeConfig()->getHttpdBindPort(&localPort, error))
+  //if (!getServerConfig()->getHttpdBindPort(&localPort, error))
   //  return false;
   //
   //Device::setHTTPPort(localPort);
   
-  // Node Finder
+  // Server Finder
 
   if (this->nodeFinder.start(error) == false)
     return false;
@@ -165,12 +165,12 @@ bool Round::Node::start(Error *error) {
   ///setRequestAddress(localAddress);
   //setRequestPort(Device::getHTTPPort());
 
-  //setState(NodeStatus::ACTIVE);
+  //setState(ServerStatus::ACTIVE);
 
   return true;
 }
 
-bool Round::Node::stop(Error *error) {
+bool Round::Server::stop(Error *error) {
   bool isSuccess = true;
 
   if (Device::stop() == false)
@@ -180,12 +180,12 @@ bool Round::Node::stop(Error *error) {
     isSuccess = false;
 
   //if (isSuccess == true)
-  //  setState(NodeStatus::STOP);
+  //  setState(ServerStatus::STOP);
 
   return isSuccess;
 }
 
-bool Round::Node::actionControlReceived(CyberLink::Action *action) {
+bool Round::Server::actionControlReceived(CyberLink::Action *action) {
   const std::string actionName = action->getName();
 
   if (boost::iequals(actionName, FRACTAL_NODESERVER_ACTION_GETSTATUS)) {
@@ -200,18 +200,18 @@ bool Round::Node::actionControlReceived(CyberLink::Action *action) {
   return false;
 }
 
-bool Round::Node::queryControlReceived(CyberLink::StateVariable *stateVar) {
+bool Round::Server::queryControlReceived(CyberLink::StateVariable *stateVar) {
   return false;
 }
 
-uHTTP::HTTP::StatusCode Round::Node::httpRequestRecieved(uHTTP::HTTPRequest *httpReq) {
+uHTTP::HTTP::StatusCode Round::Server::httpRequestRecieved(uHTTP::HTTPRequest *httpReq) {
   std::string method;
   httpReq->getMethod(method);
   std::string uri;
   httpReq->getURI(uri);
 /*
-  if (isNodeHttpRequest(method, uri)) {
-    if (ServerNode::httpRequestRecieved(httpReq))
+  if (isServerHttpRequest(method, uri)) {
+    if (ServerServer::httpRequestRecieved(httpReq))
       return uHTTP::HTTP::OK_REQUEST;
   }
 */

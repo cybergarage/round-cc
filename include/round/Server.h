@@ -22,19 +22,19 @@
 
 namespace Round {
 
-class Node : public CyberLink::Device {
+class Server : public CyberLink::Device {
  public:
   static const std::string DEVICE_TYPE;
 
   public:
   
   static bool IsRoundDeviceType(const std::string &deviceType) {
-    return (deviceType.compare(Node::DEVICE_TYPE) == 0) ? true : false;
+    return (deviceType.compare(Server::DEVICE_TYPE) == 0) ? true : false;
   }
   
  public:
-  Node();
-  virtual ~Node();
+  Server();
+  virtual ~Server();
 
   bool start(Error *error);
   bool stop(Error *error);
@@ -61,7 +61,7 @@ class Node : public CyberLink::Device {
   
 private:
 
-  CyberLink::Service *getNodeService();
+  CyberLink::Service *getServerService();
 
   bool actionControlReceived(CyberLink::Action *action);
   bool queryControlReceived(CyberLink::StateVariable *stateVar);
