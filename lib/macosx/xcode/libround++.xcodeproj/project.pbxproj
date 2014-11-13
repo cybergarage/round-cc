@@ -42,7 +42,6 @@
 		21DE68291A13B3D60049227E /* Random.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE68151A13B3D60049227E /* Random.h */; };
 		21DE682A1A13B3D60049227E /* Semaphore.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE68161A13B3D60049227E /* Semaphore.h */; };
 		21DE682B1A13B3D60049227E /* Settings.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE68171A13B3D60049227E /* Settings.h */; };
-		21DE682C1A13B3D60049227E /* Strategy.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE68181A13B3D60049227E /* Strategy.h */; };
 		21DE682D1A13B3D60049227E /* StringTokenizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE68191A13B3D60049227E /* StringTokenizer.h */; };
 		21DE682E1A13B3D60049227E /* Thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE681A1A13B3D60049227E /* Thread.h */; };
 		21DE68811A13B3EA0049227E /* BitOption.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE685C1A13B3EA0049227E /* BitOption.cpp */; };
@@ -77,7 +76,6 @@
 		21DE689E1A13B3EA0049227E /* Settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68791A13B3EA0049227E /* Settings.cpp */; };
 		21DE689F1A13B3EA0049227E /* SHA1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE687A1A13B3EA0049227E /* SHA1.cpp */; };
 		21DE68A01A13B3EA0049227E /* SHA1.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE687B1A13B3EA0049227E /* SHA1.h */; };
-		21DE68A11A13B3EA0049227E /* Strategy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE687C1A13B3EA0049227E /* Strategy.cpp */; };
 		21DE68A21A13B3EA0049227E /* StringTokenizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE687D1A13B3EA0049227E /* StringTokenizer.cpp */; };
 		21DE68A31A13B3EA0049227E /* ThreadCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE687E1A13B3EA0049227E /* ThreadCore.cpp */; };
 		21DE68A41A13B3EA0049227E /* ThreadList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE687F1A13B3EA0049227E /* ThreadList.cpp */; };
@@ -138,7 +136,6 @@
 		21DE68151A13B3D60049227E /* Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
 		21DE68161A13B3D60049227E /* Semaphore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Semaphore.h; sourceTree = "<group>"; };
 		21DE68171A13B3D60049227E /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
-		21DE68181A13B3D60049227E /* Strategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Strategy.h; sourceTree = "<group>"; };
 		21DE68191A13B3D60049227E /* StringTokenizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringTokenizer.h; sourceTree = "<group>"; };
 		21DE681A1A13B3D60049227E /* Thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Thread.h; sourceTree = "<group>"; };
 		21DE685C1A13B3EA0049227E /* BitOption.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BitOption.cpp; sourceTree = "<group>"; };
@@ -173,7 +170,6 @@
 		21DE68791A13B3EA0049227E /* Settings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Settings.cpp; sourceTree = "<group>"; };
 		21DE687A1A13B3EA0049227E /* SHA1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SHA1.cpp; sourceTree = "<group>"; };
 		21DE687B1A13B3EA0049227E /* SHA1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHA1.h; sourceTree = "<group>"; };
-		21DE687C1A13B3EA0049227E /* Strategy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Strategy.cpp; sourceTree = "<group>"; };
 		21DE687D1A13B3EA0049227E /* StringTokenizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringTokenizer.cpp; sourceTree = "<group>"; };
 		21DE687E1A13B3EA0049227E /* ThreadCore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadCore.cpp; sourceTree = "<group>"; };
 		21DE687F1A13B3EA0049227E /* ThreadList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadList.cpp; sourceTree = "<group>"; };
@@ -317,7 +313,6 @@
 				21DE68151A13B3D60049227E /* Random.h */,
 				21DE68161A13B3D60049227E /* Semaphore.h */,
 				21DE68171A13B3D60049227E /* Settings.h */,
-				21DE68181A13B3D60049227E /* Strategy.h */,
 				21DE68191A13B3D60049227E /* StringTokenizer.h */,
 				21DE681A1A13B3D60049227E /* Thread.h */,
 			);
@@ -373,7 +368,6 @@
 				21DE68791A13B3EA0049227E /* Settings.cpp */,
 				21DE687A1A13B3EA0049227E /* SHA1.cpp */,
 				21DE687B1A13B3EA0049227E /* SHA1.h */,
-				21DE687C1A13B3EA0049227E /* Strategy.cpp */,
 				21DE687D1A13B3EA0049227E /* StringTokenizer.cpp */,
 				21DE687E1A13B3EA0049227E /* ThreadCore.cpp */,
 				21DE687F1A13B3EA0049227E /* ThreadList.cpp */,
@@ -391,7 +385,6 @@
 			files = (
 				21DE681B1A13B3D60049227E /* BitOption.h in Headers */,
 				21CCABC61A145AAF00FE57DF /* ConsoleError.h in Headers */,
-				21DE682C1A13B3D60049227E /* Strategy.h in Headers */,
 				21DE681E1A13B3D60049227E /* Configuration.h in Headers */,
 				21DE682B1A13B3D60049227E /* Settings.h in Headers */,
 				21DE68241A13B3D60049227E /* Message.h in Headers */,
@@ -492,7 +485,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				21DE68841A13B3EA0049227E /* ConsistentHashGraph.cpp in Sources */,
-				21DE68A11A13B3EA0049227E /* Strategy.cpp in Sources */,
 				21DE68881A13B3EA0049227E /* DictionaryKeyList.cpp in Sources */,
 				21DE68871A13B3EA0049227E /* Dictionary.cpp in Sources */,
 				21DE689A1A13B3EA0049227E /* OperationQueue.cpp in Sources */,
