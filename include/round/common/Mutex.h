@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _FRACTAL_MUTEX_H_
-#define _FRACTAL_MUTEX_H_
+#ifndef _ROUNDCC_MUTEX_H_
+#define _ROUNDCC_MUTEX_H_
 
 #if defined(WIN32) && defined(ITRON) && defined (_AFXDLL)
 #include <afxwin.h>

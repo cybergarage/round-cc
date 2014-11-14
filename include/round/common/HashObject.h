@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _FRACTAL_HASHOBJECT_H_
-#define _FRACTAL_HASHOBJECT_H_
+#ifndef _ROUND_HASHOBJECT_H_
+#define _ROUND_HASHOBJECT_H_
 
 #include <string>
 

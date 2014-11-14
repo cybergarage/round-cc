@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _FRACTAL_THREAD_H_
-#define _FRACTAL_THREAD_H_
+#ifndef _ROUNDCC_THREAD_H_
+#define _ROUNDCC_THREAD_H_
 
 #include <vector>
 

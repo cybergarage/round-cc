@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _FRACTAL_STRINGTOKENIZER_H_
-#define _FRACTAL_STRINGTOKENIZER_H_
+#ifndef _REOUNDCC_STRINGTOKENIZER_H_
+#define _REOUNDCC_STRINGTOKENIZER_H_
 
 #include <string>
 #include <vector>

@@ -21,6 +21,13 @@
 			remoteGlobalIDString = 21A9FFAA154014F300BDFCDC;
 			remoteInfo = "libround++";
 		};
+		212200C91A14F31D0099B245 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 211FBA301A1478BA00B9B71E /* libround++.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 21A9FFA9154014F300BDFCDC;
+			remoteInfo = "libround++";
+		};
 		21BB27BD15AE635300FBA099 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 21BB27B615AE635200FBA099 /* libuhttp.xcodeproj */;
@@ -158,6 +165,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				212200CA1A14F31D0099B245 /* PBXTargetDependency */,
 				21BB27CB15AE638200FBA099 /* PBXTargetDependency */,
 				21BB27C915AE637E00FBA099 /* PBXTargetDependency */,
 			);
@@ -241,6 +249,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		212200CA1A14F31D0099B245 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "libround++";
+			targetProxy = 212200C91A14F31D0099B245 /* PBXContainerItemProxy */;
+		};
 		21BB27C915AE637E00FBA099 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "libclink++";
@@ -335,15 +348,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
-					/opt/local/include,
 					/usr/local/include,
 					../../../../include,
 					../../../../src,
 				);
-				LIBRARY_SEARCH_PATHS = (
-					/opt/local/lib,
-					/usr/local/lib,
-				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				PRODUCT_NAME = roundd;
 			};
 			name = Debug;
@@ -352,15 +361,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
-					/opt/local/include,
 					/usr/local/include,
 					../../../../include,
 					../../../../src,
 				);
-				LIBRARY_SEARCH_PATHS = (
-					/opt/local/lib,
-					/usr/local/lib,
-				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				PRODUCT_NAME = roundd;
 			};
 			name = Release;

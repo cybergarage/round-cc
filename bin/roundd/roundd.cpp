@@ -107,7 +107,7 @@ int httpdPort = 0;//Round::Server::DEFAULT_HTTPD_PORT;
   }
  
   Round::Error err;
-  Round::Node *nodeServer = new Round::Node();
+  Round::Server *nodeServer = new Round::Server();
   
   if (0 < configFilename.length()) {
     if (nodeServer->loadConfigFromString(configFilename, &err))

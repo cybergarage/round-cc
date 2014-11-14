@@ -217,3 +217,12 @@ uHTTP::HTTP::StatusCode Round::Server::httpRequestRecieved(uHTTP::HTTPRequest *h
 */
   return Device::httpRequestRecieved(httpReq);
 }
+
+bool Round::Server::getLogFilename(std::string *value, Error *error) {
+  return false;
+}
+
+bool Round::Server::getErrorLogFilename(std::string *value, Error *error) {
+  return false;
+}
+

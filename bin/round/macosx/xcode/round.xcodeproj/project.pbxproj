@@ -49,6 +49,13 @@
 			remoteGlobalIDString = 219C21EC155C7877003ABA46;
 			remoteInfo = "libclink++";
 		};
+		21B552A61A14F34500EE1D06 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2135E25D1A13C81100E20DF9 /* libround++.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 21A9FFA9154014F300BDFCDC;
+			remoteInfo = "libround++";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -158,6 +165,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				21B552A71A14F34500EE1D06 /* PBXTargetDependency */,
 				218A8C5E195D62FB0000234F /* PBXTargetDependency */,
 				218A8C5C195D62F90000234F /* PBXTargetDependency */,
 			);
@@ -250,6 +258,11 @@
 			isa = PBXTargetDependency;
 			name = "libclink++";
 			targetProxy = 218A8C5D195D62FB0000234F /* PBXContainerItemProxy */;
+		};
+		21B552A71A14F34500EE1D06 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "libround++";
+			targetProxy = 21B552A61A14F34500EE1D06 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

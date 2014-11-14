@@ -74,7 +74,7 @@ private:
   bool initialized;
 
   Finder nodeFinder;
-  static Logger logger;
+  Logger logger;
   
   NodeConfig nodeConfig;
 };

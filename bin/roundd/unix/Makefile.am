@@ -1,4 +1,4 @@
-bin_PROGRAMS = fractald
+bin_PROGRAMS = roundd
 
 AM_CPPFLAGS = \
 	../ \
@@ -9,9 +9,9 @@ AM_CPPFLAGS = \
 AUTOMAKE_OPTIONS = \
         subdir-objects
 
-fractald_SOURCES = \
-	../fractald.cpp
+roundd_SOURCES = \
+	../roundd.cpp
 
-fractald_LDADD = \
-	../../../lib/unix/libfractal++.a \
+roundd_LDADD = \
+	../../../lib/unix/libround++.a \
 	@XML_LIBS@

@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _FRACTAL_RANDOM_H_
-#define _FRACTAL_RANDOM_H_
+#ifndef _ROUNDCC_RANDOM_H_
+#define _ROUNDCC_RANDOM_H_
 
 namespace Round {
 

@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _FRACTAL_SEMAPHORE_H_
-#define _FRACTAL_SEMAPHORE_H_
+#ifndef _ROUNDCC_SEMAPHORE_H_
+#define _ROUNDCC_SEMAPHORE_H_
 
 #include <time.h>
 
