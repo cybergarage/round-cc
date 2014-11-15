@@ -50,14 +50,14 @@ const std::string FRACTAL_CONFIGURATION_SAMPLE01= \
 "; Round Configuration\n" \
 "; \n" \
 "[node]\n" \
-"name = fractal\n" \
+"name = round\n" \
 "\n" \
 "[httpd]\n" \
 "port = 4649\n" \
 "bind_address = 127.0.0.1\n" \
 "\n" \
 "[log]\n" \
-"file = /var/log/fractal.log\n" \
+"file = /var/log/round.log\n" \
 "level = info\n" \
 "\n";
 
@@ -70,9 +70,9 @@ Configuration config;
   std::string value;
 
   BOOST_CHECK(config.getString("node", "name", &value));
-  BOOST_CHECK_EQUAL(value.compare("fractal"), 0);
+  BOOST_CHECK_EQUAL(value.compare("round"), 0);
   BOOST_CHECK(config.getStringByPath("/node/name", &value));
-  BOOST_CHECK_EQUAL(value.compare("fractal"), 0);
+  BOOST_CHECK_EQUAL(value.compare("round"), 0);
 
   BOOST_CHECK(config.getString("httpd", "port", &value));
   BOOST_CHECK_EQUAL(value.compare("4649"), 0);
@@ -85,9 +85,9 @@ Configuration config;
   BOOST_CHECK_EQUAL(value.compare("127.0.0.1"), 0);
 
   BOOST_CHECK(config.getString("log", "file", &value));
-  BOOST_CHECK_EQUAL(value.compare("/var/log/fractal.log"), 0);
+  BOOST_CHECK_EQUAL(value.compare("/var/log/round.log"), 0);
   BOOST_CHECK(config.getStringByPath("/log/file", &value));
-  BOOST_CHECK_EQUAL(value.compare("/var/log/fractal.log"), 0);
+  BOOST_CHECK_EQUAL(value.compare("/var/log/round.log"), 0);
 
   BOOST_CHECK(config.getString("log", "level", &value));
   BOOST_CHECK_EQUAL(value.compare("info"), 0);
@@ -115,9 +115,9 @@ Configuration config;
   std::string value;
 
   BOOST_CHECK(copyConfig.getString("node", "name", &value));
-  BOOST_CHECK_EQUAL(value.compare("fractal"), 0);
+  BOOST_CHECK_EQUAL(value.compare("round"), 0);
   BOOST_CHECK(copyConfig.getStringByPath("/node/name", &value));
-  BOOST_CHECK_EQUAL(value.compare("fractal"), 0);
+  BOOST_CHECK_EQUAL(value.compare("round"), 0);
 
   BOOST_CHECK(copyConfig.getString("httpd", "port", &value));
   BOOST_CHECK_EQUAL(value.compare("4649"), 0);
@@ -130,9 +130,9 @@ Configuration config;
   BOOST_CHECK_EQUAL(value.compare("127.0.0.1"), 0);
 
   BOOST_CHECK(copyConfig.getString("log", "file", &value));
-  BOOST_CHECK_EQUAL(value.compare("/var/log/fractal.log"), 0);
+  BOOST_CHECK_EQUAL(value.compare("/var/log/round.log"), 0);
   BOOST_CHECK(copyConfig.getStringByPath("/log/file", &value));
-  BOOST_CHECK_EQUAL(value.compare("/var/log/fractal.log"), 0);
+  BOOST_CHECK_EQUAL(value.compare("/var/log/round.log"), 0);
 
   BOOST_CHECK(copyConfig.getString("log", "level", &value));
   BOOST_CHECK_EQUAL(value.compare("info"), 0);

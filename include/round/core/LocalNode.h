@@ -1,0 +1,101 @@
+/******************************************************************
+*
+* Round for C++
+*
+* Copyright (C) Satoshi Konno 2012
+*
+* This is licensed under BSD-style license, see file COPYING.
+*
+******************************************************************/
+
+#ifndef _ROUNDCC_LOCALNODE_H_
+#define _ROUNDCC_LOCALNODE_H_
+
+#include <round/common/Thread.h>
+#include <round/core/NodeMessage.h>
+#include <round/core/Node.h>
+#include <round/core/NodeGraph.h>
+#include <round/core/NodeFinder.h>
+#include <round/core/LocalNodeConfig.h>
+#include <round/core/NodeOperation.h>
+
+namespace Round {
+  
+class LocalNode : public Node, public NodeFinderObserver, public NodeOperationErrorHander {
+ public:
+  LocalNode();
+  virtual ~LocalNode();
+
+  bool loadConfigFromString(const std::string &string, Error *error);
+  bool loadConfigFromFile(const std::string &filename, Error *error);
+  bool isConfigValid(Error *error);
+  
+  bool getCluster(Cluster *cluster, Error *error) const;
+  bool getVersion(std::string *buffer, Error *error) const;
+  bool getName(std::string *buffer, Error *error) const;
+  bool getStatus(NodeStatus *status, Error *error) const;
+
+  bool getNodeGraph(NodeGraph *nodeGraph, Error *error);
+
+  bool nodeAdded(Node *node);
+  bool nodeRemoved(Node *node);
+
+  bool postMessage(const Message *msg);
+
+  bool waitMessage(Message *msg);
+  bool execMessage(const Message *msg);
+
+  virtual bool start(Error *error);
+  virtual bool stop(Error *error);
+
+  bool restart(Error *error);
+  
+  LocalNodeConfig *getNodeConfig() {
+    return &this->nodeConfig;
+  }
+
+  NodeGraph *getNodeGraph() {
+    return &this->nodeGraph;
+  }
+  
+  void nodeOperationErrorOccurred(const NodeOperation *operation, const Error *error);
+  
+  bool isCloneable() const {
+    return false;
+  }
+  
+protected:
+
+  virtual bool redo(Error *error);
+  virtual bool clean(Error *error);
+  virtual bool activate(Error *error);
+
+  void setState(NodeStatus::State value) {
+    this->nodeStatus.setState(value);
+  }
+
+  NodeStatus::State getState() {
+    return this->nodeStatus.getState();
+  }
+
+private:
+
+  void init();
+
+  bool addNodeOperation(NodeOperation *nodeOperation) {
+    return this->operationManager.addOperation(nodeOperation);
+  }
+  
+private:
+
+  LocalNodeConfig nodeConfig;
+  NodeGraph nodeGraph;
+  NodeStatus nodeStatus;
+
+  NodeOperationManager operationManager;
+  ThreadManager threadManager;
+};
+
+}
+
+#endif

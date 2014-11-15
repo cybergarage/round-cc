@@ -1,6 +1,6 @@
 /******************************************************************
 *
-* Fractal for C++
+* Round for C++
 *
 * Copyright (C) Satoshi Konno 2012
 *
@@ -11,39 +11,14 @@
 #ifndef _ROUNDCC_NODECOMFIG_H_
 #define _ROUNDCC_NODECOMFIG_H_
 
-#include <round/common/Error.h>
 #include <round/common/Configuration.h>
+#include <round/core/ErrorNo.h>
 
 namespace Round {
 class NodeConfig : public Configuration {
  public:
   NodeConfig();
   ~NodeConfig();
-  enum Sections {
-    General = 0,
-    Httpd,
-    Log,
-    SectionCount,
-  };
-  
-  enum GeneralSectionKeys {
-    Cluster = 0,
-    DatabaseDir,
-    GeneralKeyCount,
-  };
-  
-  enum HttpdSectionKeys {
-    HttpdBindAddress = 0,
-    HttpdBindPort,
-    HttpdKeyCount,
-  };
-  
-  enum LogSectionKeys {
-    LogFile = 0,
-    ErrorLogFile,
-    LogLevel,
-    LogKeyCount,
-  };
 
   bool loadFromString(const std::string &string, Error *error);
   bool loadFromFile(const std::string &filename, Error *error);
@@ -60,11 +35,11 @@ class NodeConfig : public Configuration {
   ssize_t getSectionKeyIndex(size_t section, const std::string &value) const;
   ssize_t getSectionIndex(const std::string &value) const;
 
-  size_t getSectionCount() const;
-  size_t getSectionKeyCount(size_t section) const;
+  virtual size_t getSectionCount() const = 0;
+  virtual size_t getSectionKeyCount(size_t section) const = 0;
 
-  const char *getSectionKeyString(size_t section, size_t n) const;
-  const char *getSectionString(size_t n) const;
+  virtual const char *getSectionKeyString(size_t section, size_t n) const = 0;
+  virtual const char *getSectionString(size_t n) const = 0;
 
 private:
 

@@ -76,7 +76,7 @@ private:
   Finder nodeFinder;
   Logger logger;
   
-  NodeConfig nodeConfig;
+  //NodeConfig nodeConfig;
 };
 
 }

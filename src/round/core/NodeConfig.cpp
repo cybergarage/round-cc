@@ -15,6 +15,7 @@
 #include <sstream>
 
 #include <round/core/NodeConfig.h>
+#include <round/common/Error.h>
 
 static const std::string FRACTAL_CONFIG_ERRMSG_OPEN = "Failed to open configuration file.";
 static const std::string FRACTAL_CONFIG_ERRMSG_PARSER = "Failed to parse configuration.";
@@ -122,7 +123,7 @@ bool Round::NodeConfig::setValue(size_t section, size_t key, int intValue) {
 void Round::NodeConfig::setErrorMessage(const std::string &message, Error *error) const {
   if (!error)
     return;
-  //error->setCode(NodeErrorConfigurationFailure);
+  error->setCode(NodeErrorConfigurationFailure);
   error->setMessage(message);
 }
 
@@ -153,66 +154,3 @@ ssize_t Round::NodeConfig::getSectionKeyIndex(size_t section, const std::string 
   }
   return -1;
 }
-
-size_t Round::NodeConfig::getSectionCount() const {
-  return SectionCount;
-}
-
-size_t Round::NodeConfig::getSectionKeyCount(size_t section) const {
-  switch (section) {
-    case General:
-      return GeneralKeyCount;
-    case Httpd:
-      return HttpdKeyCount;
-  }
-  
-  return 0;
-}
-
-const char *Round::NodeConfig::getSectionString(size_t type) const  {
-  switch (type) {
-    case General:
-      return "node";
-    case Httpd:
-      return "httpd";
-    case Log:
-      return "log";
-  }
-  
-  return "";
-}
-
-const char *Round::NodeConfig::getSectionKeyString(size_t section, size_t key) const {
-  switch (section) {
-    case General:
-      switch (key) {
-        case Cluster:
-          return "cluster";
-        case DatabaseDir:
-          return "database_dir";
-      }
-      break;
-    case Httpd:
-      switch (key) {
-        case HttpdBindAddress:
-          return "bind_address";
-        case HttpdBindPort:
-          return "bind_port";
-      }
-      break;
-    case Log:
-      switch (key) {
-        case LogFile:
-          return "file";
-        case ErrorLogFile:
-          return "err";
-        case LogLevel:
-          return "level";
-      }
-      break;
-  }
-  
-  return "";
-}
-
-

@@ -38,9 +38,9 @@ void Round::ConsoleClient::setProgramNameFromArgument(const std::string &argValu
   this->promptName.append("> ");
 }
 
-struct fractalcc_tocapital {
+struct roundcc_tocapital {
   bool isFirstChar;
-  fractalcc_tocapital(){
+  roundcc_tocapital(){
     isFirstChar = true;
   }
   int operator()(int c) {
@@ -55,10 +55,10 @@ struct fractalcc_tocapital {
 const char *Round::ConsoleClient::getBootMessage(std::string &buffer)
 {
   std::stringstream bootMsg;
-  //bootMsg << FRACTALCC_PRODUCT_NAME << " " << FRACTALCC_VERSION;
+  //bootMsg << ROUNDCC_PRODUCT_NAME << " " << ROUNDCC_VERSION;
   buffer = bootMsg.str();
 
-  std::transform(buffer.begin(), buffer.end(), buffer.begin(), fractalcc_tocapital());
+  std::transform(buffer.begin(), buffer.end(), buffer.begin(), roundcc_tocapital());
 
   return buffer.c_str();
 }

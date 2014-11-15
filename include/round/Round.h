@@ -14,10 +14,13 @@
 #include <string>
 
 static const std::string ROUNDCC_PRODUCT_NAME = "round";
-static const std::string ROUNDLCC_VERSION = "0.1";
+static const std::string ROUNDCC_VERSION = "0.1";
 
 #include <round/common/Error.h>
 #include <round/core/Log.h>
+
+#include <round/core/LocalNode.h>
+#include <round/core/RemoteNode.h>
 
 #include <round/Client.h>
 #include <round/Server.h>

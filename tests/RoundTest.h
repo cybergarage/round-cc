@@ -11,7 +11,7 @@
 #ifndef _ROUNDCC_TEST_H_
 #define _ROUNDCC_TEST_H_
 
-static const std::string FRACTAL_TEST_CLUSTER_NAME = "fractal_test";
+static const std::string FRACTAL_TEST_CLUSTER_NAME = "round_test";
 
 namespace Round {
 

@@ -23,7 +23,7 @@
 //  Constants
 ////////////////////////////////////////////////
 
-const std::string Round::Server::DEVICE_TYPE = "urn:cybergarage-org:device:fractal:1";
+const std::string Round::Server::DEVICE_TYPE = "urn:cybergarage-org:device:round:1";
 
 static const std::string FRACTAL_NODESERVER_DESCRIPTION_URI = "description/description.xml";
 static const std::string FRACTAL_NODESERVER_PRESENTATION_URI = "/presentation";
@@ -40,7 +40,7 @@ static const std::string FRACTAL_NODESERVER_DEVICE_DESCRIPTION =
 "     <minor>0</minor>\n"
 "   </specVersion>\n"
 "   <device>\n"
-"     <deviceType>urn:cybergarage-org:device:fractal:1</deviceType>\n"
+"     <deviceType>urn:cybergarage-org:device:round:1</deviceType>\n"
 "     <friendlyName>Round</friendlyName>\n"
 "     <manufacturer>CyberGarage</manufacturer>\n"
 "     <manufacturerURL>http://www.cybergarage.org</manufacturerURL>\n"
@@ -101,19 +101,20 @@ Round::Server::~Server() {
 }
 
 bool Round::Server::loadConfigFromString(const std::string &string, Error *error) {
-  if (this->nodeConfig.loadFromString(string, error) == false)
-    return false;
+  //if (this->nodeConfig.loadFromString(string, error) == false)
+  //  return false;
   return true;
 }
 
 bool Round::Server::loadConfigFromFile(const std::string &filename, Error *error) {
-  if (this->nodeConfig.loadFromFile(filename, error) == false)
-    return false;
+  //if (this->nodeConfig.loadFromFile(filename, error) == false)
+  //  return false;
   return true;
 }
 
 bool Round::Server::isConfigValid(Error *error) {
-  return this->nodeConfig.isValid(error);
+  //return this->nodeConfig.isValid(error);
+  return false;
 }
 
 bool Round::Server::initDevice() {
