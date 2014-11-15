@@ -21,7 +21,7 @@ Round::Server::Server() {
 }
 
 Round::Server::~Server() {
-} 
+}
 
 void Round::Server::setHttpdPort(int port) {
   getNodeConfig()->setHttpdBindPort(port);

@@ -17,11 +17,10 @@
 #include <round/core/NodeGraph.h>
 #include <round/core/NodeFinder.h>
 #include <round/core/LocalNodeConfig.h>
-#include <round/core/NodeOperation.h>
 
 namespace Round {
   
-class LocalNode : public Node, public NodeFinderObserver, public NodeOperationErrorHander {
+class LocalNode : public Node, public NodeFinderObserver {
  public:
   LocalNode();
   virtual ~LocalNode();
@@ -58,8 +57,6 @@ class LocalNode : public Node, public NodeFinderObserver, public NodeOperationEr
     return &this->nodeGraph;
   }
   
-  void nodeOperationErrorOccurred(const NodeOperation *operation, const Error *error);
-  
   bool isCloneable() const {
     return false;
   }
@@ -82,18 +79,13 @@ private:
 
   void init();
 
-  bool addNodeOperation(NodeOperation *nodeOperation) {
-    return this->operationManager.addOperation(nodeOperation);
-  }
-  
 private:
 
   LocalNodeConfig nodeConfig;
   NodeGraph nodeGraph;
   NodeStatus nodeStatus;
 
-  NodeOperationManager operationManager;
-  ThreadManager threadManager;
+  ThreadManager NodeOperation;
 };
 
 }

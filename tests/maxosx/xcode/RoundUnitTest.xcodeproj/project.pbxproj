@@ -20,7 +20,6 @@
 		21AD42A61A13B7FC00741A08 /* MessageTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42941A13B7FC00741A08 /* MessageTests.cpp */; };
 		21AD42A71A13B7FC00741A08 /* MutexTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42951A13B7FC00741A08 /* MutexTests.cpp */; };
 		21AD42A81A13B7FC00741A08 /* NotificationTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42961A13B7FC00741A08 /* NotificationTests.cpp */; };
-		21AD42A91A13B7FC00741A08 /* OperationTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42971A13B7FC00741A08 /* OperationTests.cpp */; };
 		21AD42AA1A13B7FC00741A08 /* PropertiesTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42981A13B7FC00741A08 /* PropertiesTests.cpp */; };
 		21AD42AB1A13B7FC00741A08 /* RandomTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42991A13B7FC00741A08 /* RandomTest.cpp */; };
 		21AD42AC1A13B7FC00741A08 /* SemaphoreTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD429A1A13B7FC00741A08 /* SemaphoreTests.cpp */; };
@@ -35,7 +34,6 @@
 		21DA08B01A174A4900D3DCE0 /* LocalNodeTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA089D1A174A4900D3DCE0 /* LocalNodeTests.cpp */; };
 		21DA08B11A174A4900D3DCE0 /* NodeConfigTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA089E1A174A4900D3DCE0 /* NodeConfigTests.cpp */; };
 		21DA08B31A174A4900D3DCE0 /* NodeGraphTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08A01A174A4900D3DCE0 /* NodeGraphTests.cpp */; };
-		21DA08B61A174A4900D3DCE0 /* NodeOperationTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08A31A174A4900D3DCE0 /* NodeOperationTests.cpp */; };
 		21DA08B71A174A4900D3DCE0 /* NodeStatusTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08A41A174A4900D3DCE0 /* NodeStatusTests.cpp */; };
 		21DA08B91A174A4900D3DCE0 /* NodeTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08A71A174A4900D3DCE0 /* NodeTests.cpp */; };
 		21DA08BC1A174BB700D3DCE0 /* NodeListTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08BB1A174BB700D3DCE0 /* NodeListTests.cpp */; };
@@ -108,7 +106,6 @@
 		21AD42941A13B7FC00741A08 /* MessageTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MessageTests.cpp; sourceTree = "<group>"; };
 		21AD42951A13B7FC00741A08 /* MutexTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MutexTests.cpp; sourceTree = "<group>"; };
 		21AD42961A13B7FC00741A08 /* NotificationTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NotificationTests.cpp; sourceTree = "<group>"; };
-		21AD42971A13B7FC00741A08 /* OperationTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OperationTests.cpp; sourceTree = "<group>"; };
 		21AD42981A13B7FC00741A08 /* PropertiesTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PropertiesTests.cpp; sourceTree = "<group>"; };
 		21AD42991A13B7FC00741A08 /* RandomTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RandomTest.cpp; sourceTree = "<group>"; };
 		21AD429A1A13B7FC00741A08 /* SemaphoreTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SemaphoreTests.cpp; sourceTree = "<group>"; };
@@ -122,7 +119,6 @@
 		21DA089D1A174A4900D3DCE0 /* LocalNodeTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalNodeTests.cpp; sourceTree = "<group>"; };
 		21DA089E1A174A4900D3DCE0 /* NodeConfigTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeConfigTests.cpp; sourceTree = "<group>"; };
 		21DA08A01A174A4900D3DCE0 /* NodeGraphTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeGraphTests.cpp; sourceTree = "<group>"; };
-		21DA08A31A174A4900D3DCE0 /* NodeOperationTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeOperationTests.cpp; sourceTree = "<group>"; };
 		21DA08A41A174A4900D3DCE0 /* NodeStatusTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeStatusTests.cpp; sourceTree = "<group>"; };
 		21DA08A71A174A4900D3DCE0 /* NodeTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeTests.cpp; sourceTree = "<group>"; };
 		21DA08BB1A174BB700D3DCE0 /* NodeListTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeListTests.cpp; sourceTree = "<group>"; };
@@ -210,7 +206,6 @@
 				21AD42941A13B7FC00741A08 /* MessageTests.cpp */,
 				21AD42951A13B7FC00741A08 /* MutexTests.cpp */,
 				21AD42961A13B7FC00741A08 /* NotificationTests.cpp */,
-				21AD42971A13B7FC00741A08 /* OperationTests.cpp */,
 				21AD42981A13B7FC00741A08 /* PropertiesTests.cpp */,
 				21AD42991A13B7FC00741A08 /* RandomTest.cpp */,
 				21AD429A1A13B7FC00741A08 /* SemaphoreTests.cpp */,
@@ -246,7 +241,6 @@
 				21DA089D1A174A4900D3DCE0 /* LocalNodeTests.cpp */,
 				21DA089E1A174A4900D3DCE0 /* NodeConfigTests.cpp */,
 				21DA08A01A174A4900D3DCE0 /* NodeGraphTests.cpp */,
-				21DA08A31A174A4900D3DCE0 /* NodeOperationTests.cpp */,
 				21DA08A41A174A4900D3DCE0 /* NodeStatusTests.cpp */,
 				21DA08A71A174A4900D3DCE0 /* NodeTests.cpp */,
 				21DA08BB1A174BB700D3DCE0 /* NodeListTests.cpp */,
@@ -351,7 +345,6 @@
 				21AD42A51A13B7FC00741A08 /* JSONTests.cpp in Sources */,
 				21AD42A01A13B7FC00741A08 /* ConsistentHashTests.cpp in Sources */,
 				21DA08B01A174A4900D3DCE0 /* LocalNodeTests.cpp in Sources */,
-				21DA08B61A174A4900D3DCE0 /* NodeOperationTests.cpp in Sources */,
 				21DA08AC1A174A4900D3DCE0 /* ClusterTests.cpp in Sources */,
 				21AD42AA1A13B7FC00741A08 /* PropertiesTests.cpp in Sources */,
 				21AD42A31A13B7FC00741A08 /* HashObjectTests.cpp in Sources */,
@@ -363,7 +356,6 @@
 				21DA08B71A174A4900D3DCE0 /* NodeStatusTests.cpp in Sources */,
 				21DA08B31A174A4900D3DCE0 /* NodeGraphTests.cpp in Sources */,
 				21AD42AD1A13B7FC00741A08 /* StringTokenizerTests.cpp in Sources */,
-				21AD42A91A13B7FC00741A08 /* OperationTests.cpp in Sources */,
 				21DA08BC1A174BB700D3DCE0 /* NodeListTests.cpp in Sources */,
 				21AD42AE1A13B7FC00741A08 /* ThreadTests.cpp in Sources */,
 				21DA08B11A174A4900D3DCE0 /* NodeConfigTests.cpp in Sources */,

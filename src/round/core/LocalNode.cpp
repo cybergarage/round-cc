@@ -24,8 +24,6 @@ Round::LocalNode::~LocalNode() {
 
 void Round::LocalNode::init() {
   setState(NodeStatus::STOP);
-
-  this->operationManager.setNodeErrorHandler(this);
 }
 
 bool Round::LocalNode::getCluster(Cluster *cluster, Error *error) const {
@@ -190,16 +188,6 @@ bool Round::LocalNode::start(Error *error) {
     return false;
   }
 
-  if (!this->threadManager.start()) {
-    stop(error);
-    return false;
-  }
-
-  if (!this->operationManager.start()) {
-    stop(error);
-    return false;
-  }
-  
   setState(NodeStatus::ACTIVE);
   
   return true;
@@ -215,14 +203,6 @@ bool Round::LocalNode::stop(Error *error) {
     }
   }
   
-  if (this->threadManager.stop() == false) {
-    areAllOperationSucess = false;
-  }
-  
-  if (this->operationManager.stop() == false) {
-    areAllOperationSucess = false;
-  }
-  
   if (areAllOperationSucess == true) {
     setState(NodeStatus::STOP);
   }
@@ -234,7 +214,4 @@ bool Round::LocalNode::restart(Error *error) {
   if (stop(error) == false)
     return false;
   return start(error);
-}
-
-void Round::LocalNode::nodeOperationErrorOccurred(const NodeOperation *nodeOpe, const Error *error) {
 }
