@@ -60,6 +60,12 @@
 		21DA08C11A174EAB00D3DCE0 /* NodeMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08BE1A174EAB00D3DCE0 /* NodeMessage.cpp */; };
 		21DA08C21A174EAB00D3DCE0 /* NodeStatus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08BF1A174EAB00D3DCE0 /* NodeStatus.cpp */; };
 		21DA08C31A174EAB00D3DCE0 /* RemoteNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08C01A174EAB00D3DCE0 /* RemoteNode.cpp */; };
+		21DA08C91A175E7500D3DCE0 /* UPnPNodeFinder.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DA08C71A175E7500D3DCE0 /* UPnPNodeFinder.h */; };
+		21DA08CA1A175E7500D3DCE0 /* UPnPServerNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DA08C81A175E7500D3DCE0 /* UPnPServerNode.h */; };
+		21DA08CE1A175E8200D3DCE0 /* UPnPNodeFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08CC1A175E8200D3DCE0 /* UPnPNodeFinder.cpp */; };
+		21DA08CF1A175E8200D3DCE0 /* UPnPServerNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08CD1A175E8200D3DCE0 /* UPnPServerNode.cpp */; };
+		21DA08D11A175F1000D3DCE0 /* ServerNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DA08D01A175F1000D3DCE0 /* ServerNode.h */; };
+		21DA08D31A175F3100D3DCE0 /* ServerNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08D21A175F3100D3DCE0 /* ServerNode.cpp */; };
 		21DE681B1A13B3D60049227E /* BitOption.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE68071A13B3D60049227E /* BitOption.h */; };
 		21DE681C1A13B3D60049227E /* Clock.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE68081A13B3D60049227E /* Clock.h */; };
 		21DE681D1A13B3D60049227E /* Cloneable.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE68091A13B3D60049227E /* Cloneable.h */; };
@@ -189,6 +195,12 @@
 		21DA08BE1A174EAB00D3DCE0 /* NodeMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeMessage.cpp; sourceTree = "<group>"; };
 		21DA08BF1A174EAB00D3DCE0 /* NodeStatus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeStatus.cpp; sourceTree = "<group>"; };
 		21DA08C01A174EAB00D3DCE0 /* RemoteNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RemoteNode.cpp; sourceTree = "<group>"; };
+		21DA08C71A175E7500D3DCE0 /* UPnPNodeFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPnPNodeFinder.h; sourceTree = "<group>"; };
+		21DA08C81A175E7500D3DCE0 /* UPnPServerNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPnPServerNode.h; sourceTree = "<group>"; };
+		21DA08CC1A175E8200D3DCE0 /* UPnPNodeFinder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UPnPNodeFinder.cpp; sourceTree = "<group>"; };
+		21DA08CD1A175E8200D3DCE0 /* UPnPServerNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UPnPServerNode.cpp; sourceTree = "<group>"; };
+		21DA08D01A175F1000D3DCE0 /* ServerNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerNode.h; sourceTree = "<group>"; };
+		21DA08D21A175F3100D3DCE0 /* ServerNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ServerNode.cpp; sourceTree = "<group>"; };
 		21DE68071A13B3D60049227E /* BitOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitOption.h; sourceTree = "<group>"; };
 		21DE68081A13B3D60049227E /* Clock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clock.h; sourceTree = "<group>"; };
 		21DE68091A13B3D60049227E /* Cloneable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cloneable.h; sourceTree = "<group>"; };
@@ -261,24 +273,26 @@
 		21620E491A147A5600690EA8 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				21DA08531A17424A00D3DCE0 /* Cluster.h */,
+				21DA087F1A1742EE00D3DCE0 /* ErrorNo.h */,
 				21DA08911A1747EB00D3DCE0 /* HTTP.h */,
 				21DA08831A17478400D3DCE0 /* JSONRequest.h */,
 				21DA08841A17478400D3DCE0 /* JSONResponse.h */,
-				21DA08811A17457D00D3DCE0 /* NodeMessage.h */,
-				21DA087F1A1742EE00D3DCE0 /* ErrorNo.h */,
-				21DA08531A17424A00D3DCE0 /* Cluster.h */,
 				21DA08541A17424A00D3DCE0 /* LocalNode.h */,
 				21DA08551A17424A00D3DCE0 /* LocalNodeConfig.h */,
-				21DA08561A17424A00D3DCE0 /* Node.h */,
-				21DA08571A17424A00D3DCE0 /* NodeFinder.h */,
-				21DA08581A17424A00D3DCE0 /* NodeGraph.h */,
-				21DA08591A17424A00D3DCE0 /* NodeOperation.h */,
-				21DA085A1A17424A00D3DCE0 /* NodeStatus.h */,
-				21DA085B1A17424A00D3DCE0 /* RemoteNode.h */,
-				21620E531A14807D00690EA8 /* NodeConfig.h */,
 				21620E4A1A147A5600690EA8 /* Log.h */,
 				21620E4B1A147A5600690EA8 /* Logger.h */,
 				21620E4C1A147A5600690EA8 /* LoggerTarget.h */,
+				21DA08561A17424A00D3DCE0 /* Node.h */,
+				21620E531A14807D00690EA8 /* NodeConfig.h */,
+				21DA08571A17424A00D3DCE0 /* NodeFinder.h */,
+				21DA08581A17424A00D3DCE0 /* NodeGraph.h */,
+				21DA08811A17457D00D3DCE0 /* NodeMessage.h */,
+				21DA08591A17424A00D3DCE0 /* NodeOperation.h */,
+				21DA085A1A17424A00D3DCE0 /* NodeStatus.h */,
+				21DA085B1A17424A00D3DCE0 /* RemoteNode.h */,
+				21DA08D01A175F1000D3DCE0 /* ServerNode.h */,
+				21DA08C61A175E7500D3DCE0 /* impl */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -286,29 +300,31 @@
 		21620E501A147A6400690EA8 /* core */ = {
 			isa = PBXGroup;
 			children = (
-				21DA08BE1A174EAB00D3DCE0 /* NodeMessage.cpp */,
-				21DA08BF1A174EAB00D3DCE0 /* NodeStatus.cpp */,
-				21DA08C01A174EAB00D3DCE0 /* RemoteNode.cpp */,
+				21DA08651A17426500D3DCE0 /* Cluster.cpp */,
+				21DA08661A17426500D3DCE0 /* ClusterList.cpp */,
 				21DA08871A17478E00D3DCE0 /* JSONRequest.cpp */,
 				21DA08881A17478E00D3DCE0 /* JSONRequestDictionary.cpp */,
 				21DA08891A17478E00D3DCE0 /* JSONResponse.cpp */,
 				21DA088A1A17478E00D3DCE0 /* JSONResponseArray.cpp */,
 				21DA088B1A17478E00D3DCE0 /* JSONResponseDictionary.cpp */,
-				21DA08651A17426500D3DCE0 /* Cluster.cpp */,
-				21DA08661A17426500D3DCE0 /* ClusterList.cpp */,
 				21DA08671A17426500D3DCE0 /* LocalNode.cpp */,
 				21DA08681A17426500D3DCE0 /* LocalNodeConfig.cpp */,
+				21620E511A147A6400690EA8 /* Logger.cpp */,
 				21DA08691A17426500D3DCE0 /* Node.cpp */,
+				21620E551A14809D00690EA8 /* NodeConfig.cpp */,
 				21DA086A1A17426500D3DCE0 /* NodeFinder.cpp */,
 				21DA086B1A17426500D3DCE0 /* NodeFinderNotification.cpp */,
 				21DA086C1A17426500D3DCE0 /* NodeFinderObserver.cpp */,
 				21DA086D1A17426500D3DCE0 /* NodeGraph.cpp */,
 				21DA086E1A17426500D3DCE0 /* NodeList.cpp */,
+				21DA08BE1A174EAB00D3DCE0 /* NodeMessage.cpp */,
 				21DA086F1A17426500D3DCE0 /* NodeOperation.cpp */,
 				21DA08701A17426500D3DCE0 /* NodeOperationManager.cpp */,
 				21DA08711A17426500D3DCE0 /* NodeOperationQueue.cpp */,
-				21620E551A14809D00690EA8 /* NodeConfig.cpp */,
-				21620E511A147A6400690EA8 /* Logger.cpp */,
+				21DA08BF1A174EAB00D3DCE0 /* NodeStatus.cpp */,
+				21DA08C01A174EAB00D3DCE0 /* RemoteNode.cpp */,
+				21DA08D21A175F3100D3DCE0 /* ServerNode.cpp */,
+				21DA08CB1A175E8200D3DCE0 /* impl */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -381,6 +397,24 @@
 				21CD1BA1192DC83400452ADF /* liblibclink++.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		21DA08C61A175E7500D3DCE0 /* impl */ = {
+			isa = PBXGroup;
+			children = (
+				21DA08C71A175E7500D3DCE0 /* UPnPNodeFinder.h */,
+				21DA08C81A175E7500D3DCE0 /* UPnPServerNode.h */,
+			);
+			path = impl;
+			sourceTree = "<group>";
+		};
+		21DA08CB1A175E8200D3DCE0 /* impl */ = {
+			isa = PBXGroup;
+			children = (
+				21DA08CC1A175E8200D3DCE0 /* UPnPNodeFinder.cpp */,
+				21DA08CD1A175E8200D3DCE0 /* UPnPServerNode.cpp */,
+			);
+			path = impl;
 			sourceTree = "<group>";
 		};
 		21DE68051A13B3D60049227E /* round */ = {
@@ -504,6 +538,7 @@
 				216E5FC41A13CBD80043C28B /* Finder.h in Headers */,
 				21DA08641A17424A00D3DCE0 /* RemoteNode.h in Headers */,
 				21DA08921A1747EB00D3DCE0 /* HTTP.h in Headers */,
+				21DA08CA1A175E7500D3DCE0 /* UPnPServerNode.h in Headers */,
 				21DE68271A13B3D60049227E /* Operation.h in Headers */,
 				21DA08601A17424A00D3DCE0 /* NodeFinder.h in Headers */,
 				21DE682A1A13B3D60049227E /* Semaphore.h in Headers */,
@@ -525,6 +560,7 @@
 				21620E4F1A147A5600690EA8 /* LoggerTarget.h in Headers */,
 				21DA08801A1742EE00D3DCE0 /* ErrorNo.h in Headers */,
 				216E5FC31A13CBD80043C28B /* Client.h in Headers */,
+				21DA08C91A175E7500D3DCE0 /* UPnPNodeFinder.h in Headers */,
 				21DA085E1A17424A00D3DCE0 /* LocalNodeConfig.h in Headers */,
 				21620E4E1A147A5600690EA8 /* Logger.h in Headers */,
 				21DE682E1A13B3D60049227E /* Thread.h in Headers */,
@@ -533,6 +569,7 @@
 				21620E4D1A147A5600690EA8 /* Log.h in Headers */,
 				21620E541A14807D00690EA8 /* NodeConfig.h in Headers */,
 				21DE68A01A13B3EA0049227E /* SHA1.h in Headers */,
+				21DA08D11A175F1000D3DCE0 /* ServerNode.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,6 +666,7 @@
 				21DE68831A13B3EA0049227E /* Configuration.cpp in Sources */,
 				21DE68991A13B3EA0049227E /* OperationManager.cpp in Sources */,
 				21DA08731A17426500D3DCE0 /* ClusterList.cpp in Sources */,
+				21DA08D31A175F3100D3DCE0 /* ServerNode.cpp in Sources */,
 				21DA08791A17426500D3DCE0 /* NodeFinderObserver.cpp in Sources */,
 				216E5FCA1A13CBEE0043C28B /* Finder.cpp in Sources */,
 				21DE68851A13B3EA0049227E /* ConsistentHashNode.cpp in Sources */,
@@ -638,6 +676,7 @@
 				21DE689D1A13B3EA0049227E /* Semaphore.cpp in Sources */,
 				21DE688F1A13B3EA0049227E /* JSONString.cpp in Sources */,
 				21DE688C1A13B3EA0049227E /* JSONDictionary.cpp in Sources */,
+				21DA08CF1A175E8200D3DCE0 /* UPnPServerNode.cpp in Sources */,
 				21DA088F1A17478E00D3DCE0 /* JSONResponseArray.cpp in Sources */,
 				21DA088C1A17478E00D3DCE0 /* JSONRequest.cpp in Sources */,
 				21DE68861A13B3EA0049227E /* ConsistentHashObject.cpp in Sources */,
@@ -662,6 +701,7 @@
 				21DE688A1A13B3EA0049227E /* HashObject.cpp in Sources */,
 				21DE68901A13B3EA0049227E /* MD5.cpp in Sources */,
 				21DE68811A13B3EA0049227E /* BitOption.cpp in Sources */,
+				21DA08CE1A175E8200D3DCE0 /* UPnPNodeFinder.cpp in Sources */,
 				21DA087A1A17426500D3DCE0 /* NodeGraph.cpp in Sources */,
 				21DE68941A13B3EA0049227E /* MessageQueue.cpp in Sources */,
 				21DA08C31A174EAB00D3DCE0 /* RemoteNode.cpp in Sources */,
