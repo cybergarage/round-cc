@@ -34,12 +34,7 @@ bool Round::MessageManager::pushMessage(const Message *message) {
   if (!message)
     return false;
 
-  std::string jsonString;
-  message->toJSONString(&jsonString);
-  if (jsonString.length() <= 0)
-    return true;
-
-  this->msgQueue->pushMessage(jsonString);
+  this->msgQueue->pushMessage(message);
   this->msgSem->post();
 
   return true;
@@ -51,20 +46,6 @@ bool Round::MessageManager::popMessage(Message *message) {
 
   if  (this->msgSem->wait() == false)
     return false;
-
-  std::string jsonString;
-  if (this->msgQueue->popMessage(&jsonString) == false)
-    return false;
-
-  Round::JSONParser jsonParser;
-  if (jsonParser.parse(jsonString) == false)
-    return false;
-
-  Round::JSONObject *jsonObject = jsonParser.getObject();
-  if (jsonObject->isDictionary() == false)
-    return false;
-
-  message->set(static_cast<Round::JSONDictionary *>(jsonObject));
-
-  return true;
+  
+  return this->msgQueue->popMessage(message);
 }

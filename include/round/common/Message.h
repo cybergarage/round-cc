@@ -43,8 +43,8 @@ public:
   MessageQueue();
   virtual ~MessageQueue();
   
-  bool pushMessage(const std::string &message);
-  bool popMessage(std::string *message);
+  bool pushMessage(const Message *message);
+  bool popMessage(Message *message);
   
 private:
   
