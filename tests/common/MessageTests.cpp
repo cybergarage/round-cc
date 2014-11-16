@@ -20,11 +20,24 @@ using namespace Round;
 
 #define FRACTAL_MESSAGE_BASIC_TEST_COUNT 10
 
+class TestMessage : public Message {
+  
+public:
+  
+  TestMessage() {
+  }
+  
+  MessageType getType() {
+    return 0;
+  }
+};
+
+
 BOOST_AUTO_TEST_CASE(RoundMessageClockTest) {
   time_t timeValue = time(NULL);
   Clock clock(timeValue);
 
-  Message msg;
+  TestMessage msg;
   Clock retClock;
 
   BOOST_CHECK(!msg.getClock(&retClock));
@@ -41,7 +54,7 @@ BOOST_AUTO_TEST_CASE(RoundMessageManagerTest) {
   for (int n = 0; n < FRACTAL_MESSAGE_BASIC_TEST_COUNT; n++) {
     snprintf(key, sizeof(key), "key%d", n);
     snprintf(value, sizeof(value), "%d", n);
-    Message msg;
+    TestMessage msg;
     msg.set(key, value);
     BOOST_CHECK(msgMgr.pushMessage(&msg));
   }
@@ -49,7 +62,7 @@ BOOST_AUTO_TEST_CASE(RoundMessageManagerTest) {
   for (int n = 0; n < FRACTAL_MESSAGE_BASIC_TEST_COUNT; n++) {
     snprintf(key, sizeof(key), "key%d", n);
     snprintf(value, sizeof(value), "%d", n);
-    Message msg;
+    TestMessage msg;
     BOOST_CHECK(msgMgr.popMessage(&msg));
     string value;
     BOOST_CHECK(msg.get(key, &value));
