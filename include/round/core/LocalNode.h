@@ -12,7 +12,6 @@
 #define _ROUNDCC_LOCALNODE_H_
 
 #include <round/common/Thread.h>
-#include <round/core/NodeMessage.h>
 #include <round/core/Node.h>
 #include <round/core/NodeGraph.h>
 #include <round/core/NodeFinder.h>

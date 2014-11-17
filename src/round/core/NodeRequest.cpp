@@ -8,19 +8,15 @@
 *
 ******************************************************************/
 
-#ifndef _ROUNDCC_NODEMESSAGE_H_
-#define _ROUNDCC_NODEMESSAGE_H_
+#include <string.h>
+#include <sstream>
 
-#include <round/common/Message.h>
+#include <round/core/NodeRequest.h>
 
-namespace Round {
+const std::string Round::NodeRequest::KEY_METHOD = "_method";
 
-class NodeMessage : public Message {
- public:
-  NodeMessage();
-  virtual ~NodeMessage();
-};
-
+Round::NodeRequest::NodeRequest() {
 }
 
-#endif
+Round::NodeRequest::~NodeRequest() {
+}

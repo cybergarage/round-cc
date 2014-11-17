@@ -8,17 +8,21 @@
 *
 ******************************************************************/
 
-#ifndef _ROUNDCC_NODEMESSAGE_H_
-#define _ROUNDCC_NODEMESSAGE_H_
+#ifndef _ROUNDCC_NODERESPONSE_H_
+#define _ROUNDCC_NODERESPONSE_H_
 
-#include <round/common/Message.h>
+#include <round/core/NodeMessage.h>
 
 namespace Round {
-
-class NodeMessage : public Message {
+  
+class NodeResponse : public NodeMessage {
  public:
-  NodeMessage();
-  virtual ~NodeMessage();
+  static const std::string KEY_CODE;
+  static const std::string KEY_DETAILCODE;
+  
+ public:
+  NodeResponse();
+  virtual ~NodeResponse();
 };
 
 }
