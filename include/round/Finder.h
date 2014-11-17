@@ -2,14 +2,14 @@
  *
  * Round for C++
  *
- * Copyright (C) Satoshi Konno 2012
+ * Copyright (C) Satoshi Konno 2014
  *
  * This is licensed under BSD-style license, see file COPYING.
  *
  ******************************************************************/
 
-#ifndef _FRACTALCC_FINDER_H_
-#define _FRACTALCC_FINDER_H_
+#ifndef _ROUNDCC_FINDER_H_
+#define _ROUNDCC_FINDER_H_
 
 #include <round/core/impl/UPnPNodeFinder.h>
 

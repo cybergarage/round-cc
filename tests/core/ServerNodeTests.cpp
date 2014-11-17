@@ -10,13 +10,16 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <round/common/Mutex.h>
+#include <round/Round.h>
+#include "TestNode.h"
 
 using namespace Round;
 
-BOOST_AUTO_TEST_CASE(MutexTests) {
-Mutex *mutex = new Mutex();
-  BOOST_CHECK_EQUAL(mutex->lock(), true);
-  BOOST_CHECK_EQUAL(mutex->unlock(), true);
-  delete mutex;
+BOOST_AUTO_TEST_CASE(RoundServerNodeTest) {
+  Error err;
+
+  TestServerNode *nodeServer = new TestServerNode();
+  nodeServer->start(&err);
+  nodeServer->stop(&err);
+  delete nodeServer;
 }

@@ -2,7 +2,7 @@
  *
  * Round for C++
  *
- * Copyright (C) Satoshi Konno 2012
+ * Copyright (C) Satoshi Konno 2014
  *
  * This is licensed under BSD-style license, see file COPYING.
  *
@@ -11,11 +11,12 @@
 #ifndef _ROUNDCC_CLIENT_H_
 #define _ROUNDCC_CLIENT_H_
 
+#include <round/core/ClientCore.h>
 #include <round/Finder.h>
 
 namespace Round {
   
-class Client {
+class Client : public ClientCore {
   
 public:
   

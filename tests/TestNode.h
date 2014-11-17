@@ -2,7 +2,7 @@
  *
  * Round for C++
  *
- * Copyright (C) Satoshi Konno 2012
+ * Copyright (C) Satoshi Konno 2014
  *
  * This is licensed under BSD-style license, see file COPYING.
  *
@@ -14,6 +14,7 @@
 #include <sstream>
 #include <string>
 #include <round/core/LocalNode.h>
+#include <round/core/ServerNode.h>
 
 #include "RoundTest.h"
 
@@ -77,7 +78,6 @@ private:
   int port;
 };
 
-/*
 class TestServerNode : public Round::ServerNode {
  public:
   TestServerNode() {
@@ -95,6 +95,5 @@ class TestServerNode : public Round::ServerNode {
   bool isRunning() {return true;}
   bool stop(Round::Error *error) {return true;}
 };
-*/
 
 #endif

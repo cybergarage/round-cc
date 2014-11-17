@@ -20,6 +20,8 @@
 		216E5FC91A13CBEE0043C28B /* Client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216E5FC61A13CBEE0043C28B /* Client.cpp */; };
 		216E5FCA1A13CBEE0043C28B /* Finder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216E5FC71A13CBEE0043C28B /* Finder.cpp */; };
 		216E5FCB1A13CBEE0043C28B /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216E5FC81A13CBEE0043C28B /* Server.cpp */; };
+		2184F20E1A19938E007F1326 /* ClientCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 2184F20D1A19938E007F1326 /* ClientCore.h */; };
+		2184F2101A1993A3007F1326 /* ClientCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F20F1A1993A3007F1326 /* ClientCore.cpp */; };
 		21CCABC51A145AAF00FE57DF /* ConsoleClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 21CCABC31A145AAF00FE57DF /* ConsoleClient.h */; };
 		21CCABC61A145AAF00FE57DF /* ConsoleError.h in Headers */ = {isa = PBXBuildFile; fileRef = 21CCABC41A145AAF00FE57DF /* ConsoleError.h */; };
 		21CCABCA1A145AC900FE57DF /* ConsoleClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21CCABC81A145AC900FE57DF /* ConsoleClient.cpp */; };
@@ -146,6 +148,8 @@
 		216E5FC61A13CBEE0043C28B /* Client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Client.cpp; sourceTree = "<group>"; };
 		216E5FC71A13CBEE0043C28B /* Finder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Finder.cpp; sourceTree = "<group>"; };
 		216E5FC81A13CBEE0043C28B /* Server.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Server.cpp; sourceTree = "<group>"; };
+		2184F20D1A19938E007F1326 /* ClientCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientCore.h; sourceTree = "<group>"; };
+		2184F20F1A1993A3007F1326 /* ClientCore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClientCore.cpp; sourceTree = "<group>"; };
 		21A9FFAA154014F300BDFCDC /* liblibround++.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "liblibround++.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21CCABC31A145AAF00FE57DF /* ConsoleClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleClient.h; sourceTree = "<group>"; };
 		21CCABC41A145AAF00FE57DF /* ConsoleError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleError.h; sourceTree = "<group>"; };
@@ -257,6 +261,7 @@
 		21620E491A147A5600690EA8 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				2184F20D1A19938E007F1326 /* ClientCore.h */,
 				21DA08531A17424A00D3DCE0 /* Cluster.h */,
 				21DA087F1A1742EE00D3DCE0 /* ErrorNo.h */,
 				21DA08911A1747EB00D3DCE0 /* HTTP.h */,
@@ -283,6 +288,7 @@
 		21620E501A147A6400690EA8 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				2184F20F1A1993A3007F1326 /* ClientCore.cpp */,
 				21DA08651A17426500D3DCE0 /* Cluster.cpp */,
 				21DA08661A17426500D3DCE0 /* ClusterList.cpp */,
 				21DA08871A17478E00D3DCE0 /* JSONRequest.cpp */,
@@ -540,6 +546,7 @@
 				21DE682E1A13B3D60049227E /* Thread.h in Headers */,
 				211FBA391A14792C00B9B71E /* Round.h in Headers */,
 				21DE68261A13B3D60049227E /* Notification.h in Headers */,
+				2184F20E1A19938E007F1326 /* ClientCore.h in Headers */,
 				21620E4D1A147A5600690EA8 /* Log.h in Headers */,
 				21620E541A14807D00690EA8 /* NodeConfig.h in Headers */,
 				21DE68A01A13B3EA0049227E /* SHA1.h in Headers */,
@@ -673,6 +680,7 @@
 				21DA087A1A17426500D3DCE0 /* NodeGraph.cpp in Sources */,
 				21DE68941A13B3EA0049227E /* MessageQueue.cpp in Sources */,
 				21DA08C31A174EAB00D3DCE0 /* RemoteNode.cpp in Sources */,
+				2184F2101A1993A3007F1326 /* ClientCore.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
