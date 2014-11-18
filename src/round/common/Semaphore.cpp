@@ -10,69 +10,73 @@
 
 #include <round/common/Semaphore.h>
 
-Round::Semaphore::Semaphore(size_t count) {
-  this->semCount = 0;
-  this->isCanceled = false;
-
-#if defined(__APPLE__)
-#if defined(FRACTAL_USE_MACOSX_DISPATCH_SEMAPHORE)
-  this->semId = dispatch_semaphore_create(count);
-#else
-  MPCreateSemaphore(count, 0, &this->semId);
-#endif
-#else
-  sem_init(&semId, 0, count);
-#endif
+Round::Semaphore::Semaphore(size_t maxCount) {
+  this->isInitialized = false;
+  this->maxCount = maxCount;
+  
+  init(maxCount);
 }
 
 Round::Semaphore::~Semaphore() {
-  cancel();
+  destory();
+}
 
+bool Round::Semaphore::init(size_t maxCount) {
+  if (this->isInitialized)
+    return true;
+  
 #if defined(__APPLE__)
-#if defined(FRACTAL_USE_MACOSX_DISPATCH_SEMAPHORE)
-  dispatch_release(this->semId);
+  this->isInitialized = (semaphore_create(mach_task_self(), &semId, SYNC_POLICY_FIFO, (int)maxCount) == KERN_SUCCESS) ? true : false;
 #else
-  MPDeleteSemaphore(this->semId);
+  this->isInitialized = (sem_init(&semId, 0, maxCount) == 0)  ? true : false;
 #endif
+  return this->isInitialized;
+}
+
+bool Round::Semaphore::destory() {
+  if (!this->isInitialized)
+    return true;
+  
+#if defined(__APPLE__)
+  this->isInitialized = (semaphore_destroy(mach_task_self(), semId) == KERN_SUCCESS) ? false : true;
 #else
-  sem_destroy(&semId);
+  this->isInitialized = (sem_destroy(&semId) == 0)  ? false : true;
 #endif
+  
+  return !this->isInitialized;
 }
 
 bool Round::Semaphore::post() {
+  if (!this->isInitialized)
+    return false;
+  
   bool isSuccess = true;
   
-  this->semMutex.lock();
-  this->semCount++;
-  this->semMutex.unlock();
-
 #if defined(__APPLE__)
-#if defined(FRACTAL_USE_MACOSX_DISPATCH_SEMAPHORE)  
-  dispatch_semaphore_signal(this->semId);
-#else
-  isSuccess = (MPSignalSemaphore(this->semId) == 0) ? true : false;
-#endif
+  isSuccess = (semaphore_signal(semId) == KERN_SUCCESS) ? true : false;
 #else
   isSuccess = (sem_post(&semId) == 0)  ? true : false;
 #endif
-
+  
   return isSuccess;
 }
 
 bool Round::Semaphore::wait(time_t timeoutSec) {
+  if (!this->isInitialized)
+    return false;
+  
   bool isSuccess = true;
   
-  this->semMutex.lock();
-  this->semCount--;
-  this->semMutex.unlock();
-  
 #if defined(__APPLE__)
-#if defined(FRACTAL_USE_MACOSX_DISPATCH_SEMAPHORE)
-  dispatch_time_t disPatchTimeout = dispatch_time(DISPATCH_TIME_NOW, (timeoutSec * NSEC_PER_SEC));
-  isSuccess = (dispatch_semaphore_wait(this->semId, ((0 < timeoutSec) ? disPatchTimeout : DISPATCH_TIME_FOREVER)) == 0) ? true : false;
-#else
-  isSuccess = (MPWaitOnSemaphore(this->semId, ((0 < timeoutSec) ? kDurationMillisecond : kDurationForever)) == 0) ? true : false;
-#endif
+  if (0 < timeoutSec) {
+    mach_timespec_t machTimeout;
+    machTimeout.tv_sec = (unsigned int)timeoutSec;
+    machTimeout.tv_nsec = 0;
+    isSuccess = (semaphore_timedwait(semId, machTimeout) == KERN_SUCCESS) ? true : false;
+  }
+  else {
+    isSuccess = (semaphore_wait(semId) == KERN_SUCCESS) ? true : false;
+  }
 #else
   if (0 < timeoutSec) {
     timespec absTimeout;
@@ -85,29 +89,15 @@ bool Round::Semaphore::wait(time_t timeoutSec) {
   }
 #endif
   
-  if (this->isCanceled)
-    return false;
-  
   return isSuccess;
 }
 
+bool Round::Semaphore::reset() {
+  if (!destory())
+    return false;
+  return init(this->maxCount);
+}
 
-void Round::Semaphore::cancel() {
-  this->isCanceled = true;
-  
-#if defined(__APPLE__)
-#if defined(FRACTAL_USE_MACOSX_DISPATCH_SEMAPHORE)
-  this->semMutex.lock();
-  if (this->semCount < 0) {
-    for (int n=0; n<(-this->semCount); n++)
-      dispatch_semaphore_signal(this->semId);
-  }
-  if (0 < this->semCount) {
-    for (int n=0; n<(-this->semCount); n++)
-      dispatch_semaphore_wait(this->semId, DISPATCH_TIME_FOREVER);
-  }
-  this->semCount = 0;
-  this->semMutex.unlock();
-#endif
-#endif
+bool Round::Semaphore::cancel() {
+  return destory();
 }

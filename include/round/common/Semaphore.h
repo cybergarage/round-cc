@@ -14,47 +14,42 @@
 #include <time.h>
 
 #if defined(__APPLE__)
-#include <CoreServices/CoreServices.h>
+#include <mach/mach.h>
+#include <mach/semaphore.h>
 #else
 #include <pthread.h>
 #include <semaphore.h>
 #endif
 
-#include <round/common/Mutex.h>
-
 namespace Round {
+
 #if defined(__APPLE__)
-
-#if defined(__MAC_OS_X_VERSION_MIN_REQUIRED) && (__MAC_10_6 < __MAC_OS_X_VERSION_MIN_REQUIRED)
-#define FRACTAL_USE_MACOSX_DISPATCH_SEMAPHORE
-typedef dispatch_semaphore_t SemaphoreId;
+  typedef semaphore_t SemaphoreId;
 #else
-typedef MPSemaphoreID SemaphoreId;
+  typedef sem_t SemaphoreId;
 #endif
-
-#else
-typedef sem_t SemaphoreId;
-#endif
-
+  
 class Semaphore {
- public:
-  Semaphore(size_t count);
-  ~Semaphore();
-
-  bool post();
-  bool wait(time_t timeoutSec = 0);
-
-  void cancel();
+  public:
+    Semaphore(size_t maxCount);
+    ~Semaphore();
+    
+    bool post();
+    bool wait(time_t timeoutSec = 0);
+    
+    bool reset();
+    bool cancel();
+    
+  private:
+    
+    bool init(size_t maxCount);
+    bool destory();
+    
+    SemaphoreId semId;
+    bool isInitialized;
+    size_t maxCount;
+  };
   
-private:
-
-  SemaphoreId semId;
-  bool isCanceled;
-  
-  Mutex semMutex;
-  int semCount;
-};
-
 }
 
 #endif
