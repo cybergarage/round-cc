@@ -26,45 +26,6 @@ void Round::LocalNode::init() {
   setState(NodeStatus::STOP);
 }
 
-bool Round::LocalNode::getCluster(Cluster *cluster, Error *error) const {
-  std::string clusterName;
-  if (!this->nodeConfig.getCluster(&clusterName, error)) {
-    clusterName = ROUNDCC_PRODUCT_NAME;
-  }
-  cluster->setName(clusterName);
-  return true;
-}
-
-bool Round::LocalNode::getName(std::string *buffer, Error *error) const {
-  std::stringstream nodeName;
-  std::string ipaddr = getRequestAddress();
-  if (0 < ipaddr.length())
-    nodeName << getRequestAddress() << "-";
-  nodeName << getRequestPort();
-  *buffer = nodeName.str();
-  return true;
-}
-
-bool Round::LocalNode::getVersion(std::string *buffer, Error *error) const {
-  *buffer = VER.c_str();
-  return true;
-}
-
-bool Round::LocalNode::getStatus(NodeStatus *status, Error *error) const {
-  *status = this->nodeStatus;
-  return true;
-}
-
-bool Round::LocalNode::getNodeGraph(NodeGraph *nodeGraph, Error *error) {
-  size_t nodeCount = this->nodeGraph.size();
-  for (size_t n = 0; n < nodeCount; n++) {
-    Node *node = this->nodeGraph.getNode(n);
-    Round::RemoteNode *remoteNode = new Round::RemoteNode(node);
-    nodeGraph->addNode(remoteNode);
-  }
-  return true;
-}
-
 bool Round::LocalNode::nodeAdded(Round::Node *addedNode)  {
   Error error;
   

@@ -36,15 +36,6 @@ class RemoteNode : public Node {
     return this->requestAddress.c_str();
   }
 
-  bool getCluster(Cluster *cluster, Error *error) const;
-  bool getName(std::string *buffer, Error *error) const;
-  bool getVersion(std::string *buffer, Error *error) const;
-  bool getStatus(NodeStatus *status, Error *error) const;
-
-  bool getTabletSpaces(TabletSpaceList *tabletSpaceList, Error *error);
-
-  bool getNodeGraph(NodeGraph *nodeGraph, Error *error);
-
   bool postMessage(const Message *msg);
 
   bool isCloneable() const {

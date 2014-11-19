@@ -28,13 +28,6 @@ class LocalNode : public Node, public NodeFinderObserver {
   bool loadConfigFromFile(const std::string &filename, Error *error);
   bool isConfigValid(Error *error);
   
-  bool getCluster(Cluster *cluster, Error *error) const;
-  bool getVersion(std::string *buffer, Error *error) const;
-  bool getName(std::string *buffer, Error *error) const;
-  bool getStatus(NodeStatus *status, Error *error) const;
-
-  bool getNodeGraph(NodeGraph *nodeGraph, Error *error);
-
   bool nodeAdded(Node *node);
   bool nodeRemoved(Node *node);
 

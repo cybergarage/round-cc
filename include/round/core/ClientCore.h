@@ -48,7 +48,6 @@ protected:
   }
   
   bool addCluster(Node *node);
-  
   bool nodeAdded(Node *node);
   bool nodeRemoved(Node *node);
 
