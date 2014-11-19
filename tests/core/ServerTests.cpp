@@ -53,12 +53,23 @@ BOOST_AUTO_TEST_CASE(RoundRealServerFindTest) {
     Round::Test::Sleep();
   }
   
-  for (int n=0; n<TEST_SERVER_COUNT; n++) {
-    Cluster cluster;
-    BOOST_CHECK(servers[n]->getCluster(&cluster, &err));
-    NodeGraph *nodeGraph = cluster.getNodeGraph();
-    BOOST_CHECK(nodeGraph);
-    BOOST_CHECK_EQUAL(nodeGraph->size(), TEST_SERVER_COUNT);
+  Round::Test::Sleep(1000 * 5);
+
+  bool isServerNotFound = true;
+  while (isServerNotFound) {
+    isServerNotFound = false;
+    for (int n=0; n<TEST_SERVER_COUNT; n++) {
+      Cluster cluster;
+      BOOST_CHECK(servers[n]->getCluster(&cluster, &err));
+      NodeGraph *nodeGraph = cluster.getNodeGraph();
+      BOOST_CHECK(nodeGraph);
+      BOOST_CHECK_EQUAL(nodeGraph->size(), TEST_SERVER_COUNT);
+      if (nodeGraph->size() != TEST_SERVER_COUNT) {
+        isServerNotFound = true;
+        break;
+      }
+    }
+    Round::Test::Sleep();
   }
   
   for (int n=0; n<TEST_SERVER_COUNT; n++) {
