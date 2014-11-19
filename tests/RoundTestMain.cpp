@@ -15,14 +15,10 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/test/detail/unit_test_parameters.hpp>
 
-#include <boost/filesystem.hpp>
-#include <boost/foreach.hpp>
 #include <boost/random.hpp>
 #include <boost/thread.hpp>
 
-#include <iostream>
-#include <string>
-#include <cstdlib>
+#include <round/core/Log.h>
 
 #include "RoundTest.h"
 
@@ -43,6 +39,20 @@ struct RoundFixture {
 BOOST_GLOBAL_FIXTURE(RoundFixture);
 
 void Round::Test::Setup() {
+  // Setup Log Level
+  boost::unit_test::log_level logLevel = boost::unit_test::runtime_config::log_level();
+  
+  int loggerLevel = LoggerLevel::WARN;
+  if (logLevel <= boost::unit_test::log_level::log_messages) {
+    loggerLevel = LoggerLevel::INFO;
+    if (logLevel < boost::unit_test::log_level::log_messages)
+      loggerLevel = LoggerLevel::TRACE;
+  }
+  
+  Logger *sharedLogger = Logger::GetSharedInstance();
+  sharedLogger->setLevel(loggerLevel);
+  sharedLogger->clearAllTargets();
+  sharedLogger->addTarget(new LoggerStdoutTarget());
 }
 
 int Round::Test::GetRandomRepeatCount(int min, int max) {

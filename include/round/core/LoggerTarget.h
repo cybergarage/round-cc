@@ -16,6 +16,7 @@
 #include <uhttp/util/LoggerStdTarget.h>
 
 namespace Round {
+  
 class LoggerLevel : public uHTTP::LoggerLevel {
 };
 

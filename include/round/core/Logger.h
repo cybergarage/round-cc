@@ -15,6 +15,7 @@
 #include <uhttp/util/Logger.h>
 
 namespace Round {
+
 class Logger : public uHTTP::Logger {
 
  public:
