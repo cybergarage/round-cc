@@ -8,19 +8,23 @@
 *
 ******************************************************************/
 
-#ifndef _ROUNDCC_BASENODE_H_
-#define _ROUNDCC_BASENODE_H_
+#ifndef _ROUNDCC_NODE_H_
+#define _ROUNDCC_NODE_H_
 
 #include <string>
 #include <vector>
 
+#include <round/common/Cloneable.h>
+#include <round/common/Error.h>
 #include <round/core/NodeCore.h>
+#include <round/core/NodeStatus.h>
+#include <round/core/Cluster.h>
 
 namespace Round {
 
 class NodeGraph;
 
-class Node : public NodeCore {
+class Node : public NodeCore, public Cloneable<Node> {
  public:
   static const std::string NAME;
   static const std::string VER;
@@ -75,7 +79,11 @@ public:
     return at(index);
   }
 };
-  
+
+class NodeMessageListener {
+ public:
+  virtual bool nodeMessageReceived(const NodeRequest &reqMsg, NodeResponse *resMsg) = 0;
+};
 
 }
 

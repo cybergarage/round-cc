@@ -66,7 +66,7 @@ int Round::RemoteNode::postJSONRequest(const std::string &method, const std::str
   return statusCode;
 }
 
-bool Round::RemoteNode::postMessage(const Message *msg)  {
+bool Round::RemoteNode::postMessage(const NodeRequest &reqMsg, NodeResponse *resMsg) {
   return false;
 }
 

@@ -36,7 +36,7 @@ class RemoteNode : public Node {
     return this->requestAddress.c_str();
   }
 
-  bool postMessage(const Message *msg);
+  bool postMessage(const NodeRequest &reqMsg, NodeResponse *resMsg);
 
   bool isCloneable() const {
     return true;

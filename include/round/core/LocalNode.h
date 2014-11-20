@@ -18,8 +18,8 @@
 #include <round/core/LocalNodeConfig.h>
 
 namespace Round {
-  
-class LocalNode : public Node, public NodeFinderObserver {
+
+class LocalNode : public Node, public NodeFinderObserver, public NodeMessageListener {
  public:
   LocalNode();
   virtual ~LocalNode();
@@ -31,7 +31,8 @@ class LocalNode : public Node, public NodeFinderObserver {
   bool nodeAdded(Node *node);
   bool nodeRemoved(Node *node);
 
-  bool postMessage(const Message *msg);
+  bool postMessage(const NodeRequest &reqMsg, NodeResponse *resMsg);
+  bool nodeMessageReceived(const NodeRequest &reqMsg, NodeResponse *resMsg);
 
   bool waitMessage(Message *msg);
   bool execMessage(const Message *msg);

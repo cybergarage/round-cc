@@ -8,23 +8,18 @@
 *
 ******************************************************************/
 
-#ifndef _ROUNDCC_NODE_H_
-#define _ROUNDCC_NODE_H_
+#ifndef _ROUNDCC_NODECORE_H_
+#define _ROUNDCC_NODECORE_H_
 
 #include <string>
 #include <vector>
 
 #include <round/common/ConsistentHash.h>
-#include <round/common/Cloneable.h>
-#include <round/common/Message.h>
-#include <round/common/Dictionary.h>
-#include <round/core/Cluster.h>
-#include <round/core/ErrorNo.h>
-#include <round/core/NodeStatus.h>
+#include <round/core/NodeMessage.h>
 
 namespace Round {
 
-class NodeCore : public ConsistentHashNode, public Cloneable<Node> {
+class NodeCore : public ConsistentHashNode {
 
  public:
   NodeCore();
@@ -34,7 +29,7 @@ class NodeCore : public ConsistentHashNode, public Cloneable<Node> {
 
   virtual int getRequestPort() const = 0;
   virtual const char *getRequestAddress() const = 0;
-  virtual bool postMessage(const Message *msg) = 0;
+  virtual bool postMessage(const NodeRequest &reqMsg, NodeResponse *resMsg) = 0;
 
  public:
 
