@@ -5,11 +5,21 @@
 ## Zeroconf
 
 
+## Structured Overlay
+
+Round is based on Chord, and Chord is based on [consistent hasing](http://en.wikipedia.org/wiki/Consistent_hashing).
+
+Round will support other structues .....
+
 ## Consensus Protocol
 
 Round uses a traditional consensus protocol, [Paxos](http://en.wikipedia.org/wiki/Paxos_(computer_science), to provide consistency.
 
 ## Broadcast
+
+## Clock
+
+The node of Round has a simple logical clock.
 
 ## Interface
 
