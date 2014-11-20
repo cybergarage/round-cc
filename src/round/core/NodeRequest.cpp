@@ -11,7 +11,7 @@
 #include <string.h>
 #include <sstream>
 
-#include <round/core/NodeRequest.h>
+#include <round/core/NodeMessage.h>
 
 const std::string Round::NodeRequest::KEY_METHOD = "_method";
 

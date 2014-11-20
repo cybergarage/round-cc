@@ -10,7 +10,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <round/core/NodeRequest.h>
+#include <round/core/NodeMessage.h>
 
 using namespace std;
 using namespace Round;

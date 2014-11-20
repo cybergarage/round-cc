@@ -21,6 +21,25 @@ class NodeMessage : public Message {
   virtual ~NodeMessage();
 };
 
+class NodeRequest : public NodeMessage {
+ public:
+  static const std::string KEY_METHOD;
+    
+ public:
+  NodeRequest();
+  virtual ~NodeRequest();
+};
+  
+class NodeResponse : public NodeMessage {
+public:
+  static const std::string KEY_CODE;
+  static const std::string KEY_DETAILCODE;
+    
+public:
+  NodeResponse();
+  virtual ~NodeResponse();
+};
+  
 }
 
 #endif

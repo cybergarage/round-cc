@@ -10,7 +10,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <round/core/NodeResponse.h>
+#include <round/core/NodeMessage.h>
 
 using namespace std;
 using namespace Round;
@@ -19,7 +19,6 @@ class TestNodeResponse : public NodeResponse {
 public:
   TestNodeResponse() {}
   MessageType getType() {return 0;}
-  
 };
 
 BOOST_AUTO_TEST_CASE(NodeResponseNewTest) {

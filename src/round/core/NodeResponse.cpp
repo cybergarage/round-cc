@@ -11,7 +11,7 @@
 #include <string.h>
 #include <sstream>
 
-#include <round/core/NodeResponse.h>
+#include <round/core/NodeMessage.h>
 
 const std::string Round::NodeResponse::KEY_CODE = "_code";
 const std::string Round::NodeResponse::KEY_DETAILCODE = "_detailCode";
