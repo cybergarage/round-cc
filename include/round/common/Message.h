@@ -29,8 +29,6 @@ public:
   Message();
   ~Message();
 
-  virtual MessageType getType() = 0;
-  
   void setClock(const Clock &clock);
   bool hasClock() const;
   bool getClock(Clock *clock) const;

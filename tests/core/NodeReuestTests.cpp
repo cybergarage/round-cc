@@ -15,15 +15,8 @@
 using namespace std;
 using namespace Round;
 
-class TestNodeRequest : public NodeRequest {
-public:
-  TestNodeRequest() {}
-  MessageType getType() {return 0;}
-  
-};
-
 BOOST_AUTO_TEST_CASE(NodeRequestNewTest) {
-  NodeRequest *req = new TestNodeRequest();
+  NodeRequest *req = new NodeRequest();
   BOOST_CHECK(req);
   delete req;
 }

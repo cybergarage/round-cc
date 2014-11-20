@@ -15,15 +15,8 @@
 using namespace std;
 using namespace Round;
 
-class TestNodeMessage : public NodeMessage {
-public:
-  TestNodeMessage() {}
-  MessageType getType() {return 0;}
-  
-};
-
 BOOST_AUTO_TEST_CASE(NodeMessageNewTest) {
-  NodeMessage *msg = new TestNodeMessage();
+  NodeMessage *msg = new NodeMessage();
   BOOST_CHECK(msg);
   delete msg;
 }
