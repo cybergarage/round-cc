@@ -24,7 +24,7 @@ Round will support other structues .....
 
 ## Messaging
 
-Node can communicate to other nodes in the same cluster using [RPC (remote procedure call)](http://en.wikipedia.org/wiki/Remote_procedure_call) over HTTP.
+Node can communicate to other nodes in the same cluster using [RPC (remote procedure call)](http://en.wikipedia.org/wiki/Remote_procedure_call) over HTTP or HTTPU.
 
 ### Protocol
 
@@ -57,3 +57,12 @@ Round
 Round has a JavaScrpit engine based on [V8](http://en.wikipedia.org/wiki/V8_\(JavaScript_engine\) to define basic strategies such as structured network and failure detection.
 
 ### Native Interface
+
+## Security
+
+Round supports a security model based on crumb [1] to reject unreliable messages from evil users. 
+
+The node
+a session key.
+
+[1] Rasmus Lerdorf, Bigger and Faster, OSCON 2007
