@@ -1,3 +1,5 @@
+![overview_design_zeroconf](./img/round_logo.png)
+
 # Overview
 
 ## What is Round ?
@@ -14,6 +16,8 @@ In typical cloud systems, some configurations such as the ip address and the ser
 
 ![overview_design_zeroconf](/img/overview_design_zeroconf.svg)
 
+In Round, some noficication events are defined for the node statues. When a node status is changed, the notification message is sent to all other nodes  in the same cluster. For example, each existing node is recieved a notirication message when a new node is added or removed.
+
 ### Decentralized
 
 Round is a decentralized and distributed system, every nodes in a cluster has equal roll, the cluster has no master node. In typical distributed systems are centric, they has a master node. Round manages all nodes in the cluster using a structured networking base on based on [distributed hash table](http://en.wikipedia.org/wiki/Distributed_hash_table) as default.
@@ -22,15 +26,23 @@ Round is a decentralized and distributed system, every nodes in a cluster has eq
 
 However, Round can support other networking structure too because every nodes can manage networking structure of the cluster in accordance with a specified strategy. To manage the networking structure in Round, see the related section in [Round Internals](./round_internals.md).
 
-### 自律的
+### Autonomous
+
+Each node run as an autonomous agent in the cluster, a node communicate to other nodes based on the specified behaviors using the message protocol synchronously or asynchronously.
+
+![overview_design_autonomous](/img/overview_design_autonomous.svg)
+
+The some basic behaviors are defined as default, and developers can add new behaviors using programming language script dynamically.
 
 ### Dynamics
 
-The distributed functions of Round are defined using scripting language, so the distributed strategies and algorithms are configurable dynamically. To send a script, you can change the strategy and algorithm of all nodes in the cluster dynamically.
+The distributed functions of Round are defined using programming language script, so the distributed strategies and algorithms are configurable dynamically. To send a script, developers can change the strategy and algorithm of all nodes in the cluster dynamically.
 
 ![overview_design_dynamics](/img/overview_design_dynamics.svg)
 
 ### Immutable
+
+![overview_design_immutable](/img/overview_design_immutable.svg)
 
 ## Support Functions
 

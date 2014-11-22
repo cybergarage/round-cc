@@ -1,12 +1,14 @@
+![overview_design_zeroconf](./img/round_logo.png)
+
 # Getting Started
 
-## Getting Started
-
-### Getting Round
+## Getting Round
 
 The latest release and setup instructions are available at [GitHub](https://github.com/cybergarage/Round).
 
-### Running etcd
+## Install Round
+
+## Running Round
 
 First start a single-machine cluster of etcd:
 
