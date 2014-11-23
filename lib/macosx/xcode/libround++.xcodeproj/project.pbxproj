@@ -10,6 +10,8 @@
 		2104C9BD1A21BBEA0049DA92 /* Script.h in Headers */ = {isa = PBXBuildFile; fileRef = 2104C9BC1A21BBEA0049DA92 /* Script.h */; };
 		2104C9BF1A21BC640049DA92 /* Script.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2104C9BE1A21BC640049DA92 /* Script.cpp */; };
 		2104C9C11A21BDCF0049DA92 /* ScriptList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2104C9C01A21BDCF0049DA92 /* ScriptList.cpp */; };
+		2104C9C61A21E6D30049DA92 /* JavaScript.h in Headers */ = {isa = PBXBuildFile; fileRef = 2104C9C51A21E6D30049DA92 /* JavaScript.h */; };
+		2104C9C81A21E7240049DA92 /* JavaScript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2104C9C71A21E7240049DA92 /* JavaScript.cpp */; };
 		211FBA391A14792C00B9B71E /* Round.h in Headers */ = {isa = PBXBuildFile; fileRef = 211FBA381A14792C00B9B71E /* Round.h */; };
 		212BFD161A1D0032002549F0 /* Node.h in Headers */ = {isa = PBXBuildFile; fileRef = 212BFD151A1D0032002549F0 /* Node.h */; };
 		212BFD181A1D0056002549F0 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212BFD171A1D0056002549F0 /* Node.cpp */; };
@@ -145,6 +147,8 @@
 		2104C9BC1A21BBEA0049DA92 /* Script.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Script.h; sourceTree = "<group>"; };
 		2104C9BE1A21BC640049DA92 /* Script.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Script.cpp; sourceTree = "<group>"; };
 		2104C9C01A21BDCF0049DA92 /* ScriptList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptList.cpp; sourceTree = "<group>"; };
+		2104C9C51A21E6D30049DA92 /* JavaScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaScript.h; sourceTree = "<group>"; };
+		2104C9C71A21E7240049DA92 /* JavaScript.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JavaScript.cpp; sourceTree = "<group>"; };
 		211FBA381A14792C00B9B71E /* Round.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Round.h; sourceTree = "<group>"; };
 		212BFD151A1D0032002549F0 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
 		212BFD171A1D0056002549F0 /* Node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Node.cpp; sourceTree = "<group>"; };
@@ -409,6 +413,7 @@
 		21DA08C61A175E7500D3DCE0 /* impl */ = {
 			isa = PBXGroup;
 			children = (
+				2104C9C51A21E6D30049DA92 /* JavaScript.h */,
 				21DA08C71A175E7500D3DCE0 /* UPnPNodeFinder.h */,
 				21DA08C81A175E7500D3DCE0 /* UPnPServerNode.h */,
 			);
@@ -418,6 +423,7 @@
 		21DA08CB1A175E8200D3DCE0 /* impl */ = {
 			isa = PBXGroup;
 			children = (
+				2104C9C71A21E7240049DA92 /* JavaScript.cpp */,
 				21DA08CC1A175E8200D3DCE0 /* UPnPNodeFinder.cpp */,
 				21DA08CD1A175E8200D3DCE0 /* UPnPServerNode.cpp */,
 			);
@@ -526,6 +532,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21DA08631A17424A00D3DCE0 /* NodeStatus.h in Headers */,
+				2104C9C61A21E6D30049DA92 /* JavaScript.h in Headers */,
 				21DE681B1A13B3D60049227E /* BitOption.h in Headers */,
 				21DA085C1A17424A00D3DCE0 /* Cluster.h in Headers */,
 				21CCABC61A145AAF00FE57DF /* ConsoleError.h in Headers */,
@@ -678,6 +685,7 @@
 				21CCABCB1A145AC900FE57DF /* ConsoleError.cpp in Sources */,
 				21DE689D1A13B3EA0049227E /* Semaphore.cpp in Sources */,
 				21DE688F1A13B3EA0049227E /* JSONString.cpp in Sources */,
+				2104C9C81A21E7240049DA92 /* JavaScript.cpp in Sources */,
 				21DE688C1A13B3EA0049227E /* JSONDictionary.cpp in Sources */,
 				21DA08CF1A175E8200D3DCE0 /* UPnPServerNode.cpp in Sources */,
 				21DA088F1A17478E00D3DCE0 /* JSONResponseArray.cpp in Sources */,

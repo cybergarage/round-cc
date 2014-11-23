@@ -8,23 +8,25 @@
 *
 ******************************************************************/
 
-#include <boost/test/unit_test.hpp>
+#ifndef _ROUNDCC_JAVASCRIPT_H_
+#define _ROUNDCC_JAVASCRIPT_H_
 
 #include <round/core/Script.h>
 
-using namespace std;
-using namespace Round;
+namespace Round {
 
-class TestScript : public Script {
+class ScriptGraph;
+
+class JavaScript : public Script {
+
+ public:
+  JavaScript();
+  virtual ~JavaScript();
+
+  bool run();
   
-public:
-  TestScript() {
-  }
-  
-  bool run() {return true;}
 };
 
-BOOST_AUTO_TEST_CASE(ScriptNodeTest) {
-  TestScript script;
-  BOOST_CHECK(script.run());
 }
+
+#endif

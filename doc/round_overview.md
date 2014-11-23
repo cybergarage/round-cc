@@ -32,11 +32,11 @@ Each node run as an autonomous agent in the cluster, a node communicate to other
 
 ![overview_design_autonomous](/img/overview_design_autonomous.svg)
 
-The some basic behaviors are defined as default, and developers can add new behaviors using programming language script dynamically.
+The some basic behaviors are defined as default, and developers can add new behaviors using a dynamic programming language script.
 
 ### Dynamics
 
-The distributed functions of Round are defined using programming language script, so the distributed strategies and algorithms are configurable dynamically. To send a script, developers can change the strategy and algorithm of all nodes in the cluster dynamically.
+The behaviors of node are defined using a dynamic programming language script, so the distributed strategies and algorithms are configurable dynamically. To send a script, developers can change the strategy and algorithm of all nodes in the cluster dynamically.
 
 ![overview_design_dynamics](/img/overview_design_dynamics.svg)
 

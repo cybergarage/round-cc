@@ -15,14 +15,14 @@
 
 namespace Round {
 
-class ScriptGraph;
-
 class Script {
 
  public:
   Script();
   virtual ~Script();
 
+  virtual bool run() = 0;
+  
 };
 
 class ScriptList : public std::vector<Script *> {
