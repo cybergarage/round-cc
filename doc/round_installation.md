@@ -1,4 +1,4 @@
-![overview_design_zeroconf](./img/round_logo.png)
+![round_logo](./img/round_logo.png)
 
 # Getting Started
 

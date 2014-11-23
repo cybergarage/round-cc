@@ -1,4 +1,4 @@
-![overview_design_zeroconf](./img/round_logo.png)
+![round_logo](./img/round_logo.png)
 
 # Overview
 
@@ -42,7 +42,11 @@ The distributed functions of Round are defined using programming language script
 
 ### Immutable
 
+When a node is suspected of failing by other nodes in the cluster, the node will be removed and disposed. Once a node is disposed, the node will not be able to become active because the suspected node will might occur unexpected problems such as [Byzantine generals problem](http://en.wikipedia.org/wiki/Byzantine_fault_tolerance).
+
 ![overview_design_immutable](/img/overview_design_immutable.svg)
+
+To add a node instead of the disposed node into the cluster, developers should create a new node and add the node newly into the cluster.
 
 ## Support Functions
 
@@ -61,13 +65,5 @@ To add a new node into a cluster.
 Node can communicate to other nodes in the same cluster using [RPC (remote procedure call)](http://en.wikipedia.org/wiki/Remote_procedure_call).
 
 ### Security
-
-
-
-
-
-
-
-
 
 Monochrome iconset by [Danny Allen](http://dannya.org).

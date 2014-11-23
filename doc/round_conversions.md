@@ -1,4 +1,4 @@
-# Round
+![round_logo](./img/round_logo.png)
 
 # Consensus Service
 

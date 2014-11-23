@@ -1,8 +1,6 @@
+![round_logo](./img/round_logo.png)
+
 # Round Internals
-
-## Principle
-
-## ????
 
 ## Zeroconf
 
@@ -60,7 +58,7 @@ Round has a JavaScrpit engine based on [V8](http://en.wikipedia.org/wiki/V8_\(Ja
 
 ## Security
 
-Round supports a security model based on crumb [1] to reject unreliable messages from evil users. 
+Round supports a security model based on crumb [1] to reject unreliable messages from evil users.
 
 The node
 a session key.

@@ -1,3 +1,5 @@
+![round_logo](./img/round_logo.png)
+
 # Round APIs
 
 ## APIs
