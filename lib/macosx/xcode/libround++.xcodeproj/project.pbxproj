@@ -9,9 +9,10 @@
 /* Begin PBXBuildFile section */
 		2104C9BD1A21BBEA0049DA92 /* Script.h in Headers */ = {isa = PBXBuildFile; fileRef = 2104C9BC1A21BBEA0049DA92 /* Script.h */; };
 		2104C9BF1A21BC640049DA92 /* Script.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2104C9BE1A21BC640049DA92 /* Script.cpp */; };
-		2104C9C11A21BDCF0049DA92 /* ScriptList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2104C9C01A21BDCF0049DA92 /* ScriptList.cpp */; };
 		2104C9C61A21E6D30049DA92 /* JavaScript.h in Headers */ = {isa = PBXBuildFile; fileRef = 2104C9C51A21E6D30049DA92 /* JavaScript.h */; };
 		2104C9C81A21E7240049DA92 /* JavaScript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2104C9C71A21E7240049DA92 /* JavaScript.cpp */; };
+		210E577C1A235BFD000B60FC /* ScriptEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210E577B1A235BFD000B60FC /* ScriptEngine.cpp */; };
+		210E577E1A235D49000B60FC /* ScriptMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210E577D1A235D49000B60FC /* ScriptMap.cpp */; };
 		211FBA391A14792C00B9B71E /* Round.h in Headers */ = {isa = PBXBuildFile; fileRef = 211FBA381A14792C00B9B71E /* Round.h */; };
 		212BFD161A1D0032002549F0 /* Node.h in Headers */ = {isa = PBXBuildFile; fileRef = 212BFD151A1D0032002549F0 /* Node.h */; };
 		212BFD181A1D0056002549F0 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212BFD171A1D0056002549F0 /* Node.cpp */; };
@@ -31,7 +32,6 @@
 		2184F2101A1993A3007F1326 /* ClientCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F20F1A1993A3007F1326 /* ClientCore.cpp */; };
 		2184F2191A19B62C007F1326 /* NodeRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2171A19B62C007F1326 /* NodeRequest.cpp */; };
 		2184F21A1A19B62C007F1326 /* NodeResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2181A19B62C007F1326 /* NodeResponse.cpp */; };
-		218804291A22CB530053473E /* JavaScriptList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218804281A22CB530053473E /* JavaScriptList.cpp */; };
 		2188042B1A22EF690053473E /* JavaScriptEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2188042A1A22EF690053473E /* JavaScriptEngine.cpp */; };
 		21CCABC51A145AAF00FE57DF /* ConsoleClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 21CCABC31A145AAF00FE57DF /* ConsoleClient.h */; };
 		21CCABC61A145AAF00FE57DF /* ConsoleError.h in Headers */ = {isa = PBXBuildFile; fileRef = 21CCABC41A145AAF00FE57DF /* ConsoleError.h */; };
@@ -148,9 +148,10 @@
 /* Begin PBXFileReference section */
 		2104C9BC1A21BBEA0049DA92 /* Script.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Script.h; sourceTree = "<group>"; };
 		2104C9BE1A21BC640049DA92 /* Script.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Script.cpp; sourceTree = "<group>"; };
-		2104C9C01A21BDCF0049DA92 /* ScriptList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptList.cpp; sourceTree = "<group>"; };
 		2104C9C51A21E6D30049DA92 /* JavaScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaScript.h; sourceTree = "<group>"; };
 		2104C9C71A21E7240049DA92 /* JavaScript.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JavaScript.cpp; sourceTree = "<group>"; };
+		210E577B1A235BFD000B60FC /* ScriptEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptEngine.cpp; sourceTree = "<group>"; };
+		210E577D1A235D49000B60FC /* ScriptMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptMap.cpp; sourceTree = "<group>"; };
 		211FBA381A14792C00B9B71E /* Round.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Round.h; sourceTree = "<group>"; };
 		212BFD151A1D0032002549F0 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
 		212BFD171A1D0056002549F0 /* Node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Node.cpp; sourceTree = "<group>"; };
@@ -170,7 +171,6 @@
 		2184F20F1A1993A3007F1326 /* ClientCore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClientCore.cpp; sourceTree = "<group>"; };
 		2184F2171A19B62C007F1326 /* NodeRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeRequest.cpp; sourceTree = "<group>"; };
 		2184F2181A19B62C007F1326 /* NodeResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeResponse.cpp; sourceTree = "<group>"; };
-		218804281A22CB530053473E /* JavaScriptList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JavaScriptList.cpp; sourceTree = "<group>"; };
 		2188042A1A22EF690053473E /* JavaScriptEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JavaScriptEngine.cpp; sourceTree = "<group>"; };
 		21A9FFAA154014F300BDFCDC /* liblibround++.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "liblibround++.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21CCABC31A145AAF00FE57DF /* ConsoleClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleClient.h; sourceTree = "<group>"; };
@@ -312,9 +312,6 @@
 		21620E501A147A6400690EA8 /* core */ = {
 			isa = PBXGroup;
 			children = (
-				2104C9C01A21BDCF0049DA92 /* ScriptList.cpp */,
-				2104C9BE1A21BC640049DA92 /* Script.cpp */,
-				212BFD171A1D0056002549F0 /* Node.cpp */,
 				2184F20F1A1993A3007F1326 /* ClientCore.cpp */,
 				21DA08651A17426500D3DCE0 /* Cluster.cpp */,
 				21DA08661A17426500D3DCE0 /* ClusterList.cpp */,
@@ -326,8 +323,9 @@
 				21DA08671A17426500D3DCE0 /* LocalNode.cpp */,
 				21DA08681A17426500D3DCE0 /* LocalNodeConfig.cpp */,
 				21620E511A147A6400690EA8 /* Logger.cpp */,
-				21DA08691A17426500D3DCE0 /* NodeCore.cpp */,
+				212BFD171A1D0056002549F0 /* Node.cpp */,
 				21620E551A14809D00690EA8 /* NodeConfig.cpp */,
+				21DA08691A17426500D3DCE0 /* NodeCore.cpp */,
 				21DA086A1A17426500D3DCE0 /* NodeFinder.cpp */,
 				21DA086B1A17426500D3DCE0 /* NodeFinderNotification.cpp */,
 				21DA086C1A17426500D3DCE0 /* NodeFinderObserver.cpp */,
@@ -338,6 +336,9 @@
 				2184F2181A19B62C007F1326 /* NodeResponse.cpp */,
 				21DA08BF1A174EAB00D3DCE0 /* NodeStatus.cpp */,
 				21DA08C01A174EAB00D3DCE0 /* RemoteNode.cpp */,
+				2104C9BE1A21BC640049DA92 /* Script.cpp */,
+				210E577B1A235BFD000B60FC /* ScriptEngine.cpp */,
+				210E577D1A235D49000B60FC /* ScriptMap.cpp */,
 				21DA08D21A175F3100D3DCE0 /* ServerNode.cpp */,
 				21DA08CB1A175E8200D3DCE0 /* impl */,
 			);
@@ -429,7 +430,6 @@
 			children = (
 				2104C9C71A21E7240049DA92 /* JavaScript.cpp */,
 				2188042A1A22EF690053473E /* JavaScriptEngine.cpp */,
-				218804281A22CB530053473E /* JavaScriptList.cpp */,
 				21DA08CC1A175E8200D3DCE0 /* UPnPNodeFinder.cpp */,
 				21DA08CD1A175E8200D3DCE0 /* UPnPServerNode.cpp */,
 			);
@@ -675,7 +675,6 @@
 				21DE689B1A13B3EA0049227E /* Properties.cpp in Sources */,
 				21DE688D1A13B3EA0049227E /* JSONObject.cpp in Sources */,
 				21DA088E1A17478E00D3DCE0 /* JSONResponse.cpp in Sources */,
-				2104C9C11A21BDCF0049DA92 /* ScriptList.cpp in Sources */,
 				21DE68A41A13B3EA0049227E /* ThreadList.cpp in Sources */,
 				21DA08761A17426500D3DCE0 /* NodeCore.cpp in Sources */,
 				21DA08771A17426500D3DCE0 /* NodeFinder.cpp in Sources */,
@@ -686,7 +685,6 @@
 				216E5FCA1A13CBEE0043C28B /* Finder.cpp in Sources */,
 				21DE68851A13B3EA0049227E /* ConsistentHashNode.cpp in Sources */,
 				21DE68971A13B3EA0049227E /* NotificationObserver.cpp in Sources */,
-				218804291A22CB530053473E /* JavaScriptList.cpp in Sources */,
 				212BFD181A1D0056002549F0 /* Node.cpp in Sources */,
 				21DA08901A17478E00D3DCE0 /* JSONResponseDictionary.cpp in Sources */,
 				21CCABCB1A145AC900FE57DF /* ConsoleError.cpp in Sources */,
@@ -718,6 +716,7 @@
 				21DA08741A17426500D3DCE0 /* LocalNode.cpp in Sources */,
 				21DE688A1A13B3EA0049227E /* HashObject.cpp in Sources */,
 				2184F2191A19B62C007F1326 /* NodeRequest.cpp in Sources */,
+				210E577E1A235D49000B60FC /* ScriptMap.cpp in Sources */,
 				21DE68901A13B3EA0049227E /* MD5.cpp in Sources */,
 				21DE68811A13B3EA0049227E /* BitOption.cpp in Sources */,
 				21DA08CE1A175E8200D3DCE0 /* UPnPNodeFinder.cpp in Sources */,
@@ -725,6 +724,7 @@
 				21DE68941A13B3EA0049227E /* MessageQueue.cpp in Sources */,
 				21DA08C31A174EAB00D3DCE0 /* RemoteNode.cpp in Sources */,
 				2184F2101A1993A3007F1326 /* ClientCore.cpp in Sources */,
+				210E577C1A235BFD000B60FC /* ScriptEngine.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

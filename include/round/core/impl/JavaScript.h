@@ -11,12 +11,11 @@
 #ifndef _ROUNDCC_JAVASCRIPT_H_
 #define _ROUNDCC_JAVASCRIPT_H_
 
+#include <v8.h>
 #include <round/core/Script.h>
 
 namespace Round {
 
-class JavaScriptList;
-  
 class JavaScript : public Script {
 
  public:
@@ -27,21 +26,14 @@ class JavaScript : public Script {
   
 };
 
-class JavaScriptList : public std::vector<Script *> {
+class JavaScriptEngine : public ScriptEngine {
     
-  public:
-    
-  JavaScriptList();
-  virtual ~JavaScriptList();
-    
+ public:
+  JavaScriptEngine();
+  virtual ~JavaScriptEngine();
+  
+  bool run(Script *script, const std::string &params, std::string *results, Error *error);
 };
-
-class JavaScriptEngine {
-    
-  public:
-    JavaScriptEngine();
-    virtual ~JavaScriptEngine();
-  };
   
 }
 

@@ -11,12 +11,6 @@
 #include <round/core/impl/JavaScript.h>
 #include <round/common/Mutex.h>
 
-namespace Round {
-
-static JavaScriptEngine gJavaScriptEngine;
-
-}
-
 Round::JavaScript::JavaScript() {
 }
 

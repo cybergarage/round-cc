@@ -15,7 +15,7 @@
 using namespace std;
 using namespace Round;
 
-BOOST_AUTO_TEST_CASE(JavaScriptTest) {
-  JavaScript script;
-  BOOST_CHECK(script.run());
+BOOST_AUTO_TEST_CASE(JavaScriptEngineTest) {
+  JavaScriptEngine jsEngine;
+  //jsEngine.run(NULL);
 }

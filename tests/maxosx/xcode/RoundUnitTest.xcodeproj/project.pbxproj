@@ -483,6 +483,7 @@
 					"-lboost_filesystem",
 					"-lboost_system",
 					"-lboost_thread-mt",
+					"-lv8",
 				);
 				SDKROOT = macosx;
 				VALID_ARCHS = "i386 x86_64";
@@ -531,6 +532,7 @@
 					"-lboost_filesystem",
 					"-lboost_system",
 					"-lboost_thread-mt",
+					"-lv8",
 				);
 				SDKROOT = macosx;
 				VALID_ARCHS = "i386 x86_64";
@@ -560,6 +562,7 @@
 					"-lboost_filesystem",
 					"-lboost_system",
 					"-lboost_thread-mt",
+					"-lv8",
 				);
 				PRODUCT_NAME = RoundUnitTest;
 				SDKROOT = macosx;
@@ -589,6 +592,7 @@
 					"-lboost_filesystem",
 					"-lboost_system",
 					"-lboost_thread-mt",
+					"-lv8",
 				);
 				PRODUCT_NAME = RoundUnitTest;
 				SDKROOT = macosx;
