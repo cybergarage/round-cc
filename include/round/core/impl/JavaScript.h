@@ -15,8 +15,8 @@
 
 namespace Round {
 
-class ScriptGraph;
-
+class JavaScriptList;
+  
 class JavaScript : public Script {
 
  public:
@@ -27,6 +27,22 @@ class JavaScript : public Script {
   
 };
 
+class JavaScriptList : public std::vector<Script *> {
+    
+  public:
+    
+  JavaScriptList();
+  virtual ~JavaScriptList();
+    
+};
+
+class JavaScriptEngine {
+    
+  public:
+    JavaScriptEngine();
+    virtual ~JavaScriptEngine();
+  };
+  
 }
 
 #endif

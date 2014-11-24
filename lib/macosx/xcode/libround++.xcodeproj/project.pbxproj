@@ -31,6 +31,8 @@
 		2184F2101A1993A3007F1326 /* ClientCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F20F1A1993A3007F1326 /* ClientCore.cpp */; };
 		2184F2191A19B62C007F1326 /* NodeRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2171A19B62C007F1326 /* NodeRequest.cpp */; };
 		2184F21A1A19B62C007F1326 /* NodeResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2181A19B62C007F1326 /* NodeResponse.cpp */; };
+		218804291A22CB530053473E /* JavaScriptList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218804281A22CB530053473E /* JavaScriptList.cpp */; };
+		2188042B1A22EF690053473E /* JavaScriptEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2188042A1A22EF690053473E /* JavaScriptEngine.cpp */; };
 		21CCABC51A145AAF00FE57DF /* ConsoleClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 21CCABC31A145AAF00FE57DF /* ConsoleClient.h */; };
 		21CCABC61A145AAF00FE57DF /* ConsoleError.h in Headers */ = {isa = PBXBuildFile; fileRef = 21CCABC41A145AAF00FE57DF /* ConsoleError.h */; };
 		21CCABCA1A145AC900FE57DF /* ConsoleClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21CCABC81A145AC900FE57DF /* ConsoleClient.cpp */; };
@@ -168,6 +170,8 @@
 		2184F20F1A1993A3007F1326 /* ClientCore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClientCore.cpp; sourceTree = "<group>"; };
 		2184F2171A19B62C007F1326 /* NodeRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeRequest.cpp; sourceTree = "<group>"; };
 		2184F2181A19B62C007F1326 /* NodeResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeResponse.cpp; sourceTree = "<group>"; };
+		218804281A22CB530053473E /* JavaScriptList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JavaScriptList.cpp; sourceTree = "<group>"; };
+		2188042A1A22EF690053473E /* JavaScriptEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JavaScriptEngine.cpp; sourceTree = "<group>"; };
 		21A9FFAA154014F300BDFCDC /* liblibround++.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "liblibround++.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21CCABC31A145AAF00FE57DF /* ConsoleClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleClient.h; sourceTree = "<group>"; };
 		21CCABC41A145AAF00FE57DF /* ConsoleError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleError.h; sourceTree = "<group>"; };
@@ -424,6 +428,8 @@
 			isa = PBXGroup;
 			children = (
 				2104C9C71A21E7240049DA92 /* JavaScript.cpp */,
+				2188042A1A22EF690053473E /* JavaScriptEngine.cpp */,
+				218804281A22CB530053473E /* JavaScriptList.cpp */,
 				21DA08CC1A175E8200D3DCE0 /* UPnPNodeFinder.cpp */,
 				21DA08CD1A175E8200D3DCE0 /* UPnPServerNode.cpp */,
 			);
@@ -680,10 +686,12 @@
 				216E5FCA1A13CBEE0043C28B /* Finder.cpp in Sources */,
 				21DE68851A13B3EA0049227E /* ConsistentHashNode.cpp in Sources */,
 				21DE68971A13B3EA0049227E /* NotificationObserver.cpp in Sources */,
+				218804291A22CB530053473E /* JavaScriptList.cpp in Sources */,
 				212BFD181A1D0056002549F0 /* Node.cpp in Sources */,
 				21DA08901A17478E00D3DCE0 /* JSONResponseDictionary.cpp in Sources */,
 				21CCABCB1A145AC900FE57DF /* ConsoleError.cpp in Sources */,
 				21DE689D1A13B3EA0049227E /* Semaphore.cpp in Sources */,
+				2188042B1A22EF690053473E /* JavaScriptEngine.cpp in Sources */,
 				21DE688F1A13B3EA0049227E /* JSONString.cpp in Sources */,
 				2104C9C81A21E7240049DA92 /* JavaScript.cpp in Sources */,
 				21DE688C1A13B3EA0049227E /* JSONDictionary.cpp in Sources */,

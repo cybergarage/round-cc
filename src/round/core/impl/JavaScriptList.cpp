@@ -9,20 +9,9 @@
 ******************************************************************/
 
 #include <round/core/impl/JavaScript.h>
-#include <round/common/Mutex.h>
 
-namespace Round {
-
-static JavaScriptEngine gJavaScriptEngine;
-
+Round::JavaScriptList::JavaScriptList() {
 }
 
-Round::JavaScript::JavaScript() {
-}
-
-Round::JavaScript::~JavaScript() {
-}
-
-bool Round::JavaScript::run() {
-  return true;
+Round::JavaScriptList::~JavaScriptList() {
 }
