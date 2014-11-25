@@ -17,11 +17,11 @@ Round::ScriptMap::~ScriptMap() {
   clear();
 }
 
-bool Round::ScriptMap::hasScript(const std::string &name) {
+bool Round::ScriptMap::hasScript(const ScriptName &name) {
   return (find(name) != end()) ? true : false;
 }
 
-Round::Script *Round::ScriptMap::getScript(const std::string &name) {
+Round::Script *Round::ScriptMap::getScript(const ScriptName &name) {
   ScriptMap::iterator scriptIt = find(name);
   if (scriptIt == end())
     return NULL;

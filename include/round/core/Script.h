@@ -18,18 +18,25 @@
 
 namespace Round {
 
+typedef std::string ScriptName;
+typedef std::string ScriptContent;
+typedef std::string ScriptParams;
+typedef std::string ScriptResults;
+  
 class Script {
 
  public:
   Script();
+  Script(const ScriptName &name, const ScriptContent &content);
+  
   virtual ~Script();
 
-  bool setName(const std::string &name) {
+  bool setName(const ScriptName &name) {
     this->name = name;
     return true;
   }
   
-  const std::string &getName() const {
+  const ScriptName &getName() const {
     return this->name;
   }
   
@@ -37,20 +44,22 @@ class Script {
     return (0 < this->name.length()) ? true : false;
   }
   
-  bool setContent(const std::string &content) {
+  bool setContent(const ScriptContent &content) {
     this->content = content;
     return true;
   }
   
-  const std::string &getContent() const {
+  const ScriptContent &getContent() const {
     return this->content;
   }
   
-  virtual bool run(const std::string &params, std::string *results, Error *error) = 0;
-
+  const bool hasContent() const {
+    return (0 < this->content.length()) ? true : false;
+  }
+  
  private:
-  std::string name;
-  std::string content;
+  ScriptName    name;
+  ScriptContent content;
 };
 
 class ScriptMap : public std::map<std::string, Script *> {
@@ -59,8 +68,8 @@ public:
     
   ScriptMap();
   virtual ~ScriptMap();
-  bool hasScript(const std::string &name);
-  Script *getScript(const std::string &name);
+  bool hasScript(const ScriptName &name);
+  Script *getScript(const ScriptName &name);
 
   void clear();
 };
@@ -89,11 +98,14 @@ public:
   virtual ~ScriptEngine();
 
   bool setScript(Script *script);
-  bool hasScript(const std::string &name);
   
-  bool run(const std::string &name, const std::string &params, std::string *results, Error *error);
+  bool hasScript(const ScriptName &name) {
+    return this->scripts.hasScript(name);
+  }
   
-  virtual bool run(Script *script, const std::string &params, std::string *results, Error *error) = 0;
+  bool run(const ScriptName &name, const ScriptParams &params, ScriptResults *results, Error *error);
+  
+  virtual bool run(const Script *script, const ScriptParams &params, ScriptResults *results, Error *error) = 0;
 
 private:
   

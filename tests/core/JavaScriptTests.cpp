@@ -15,7 +15,26 @@
 using namespace std;
 using namespace Round;
 
-BOOST_AUTO_TEST_CASE(JavaScriptEngineTest) {
+BOOST_AUTO_TEST_CASE(JavaScriptEngineEchoTest) {
+  
+  const std::string ECHO_NAME = "echo";
+  const std::string ECHO_CONTEXT =
+    "function echo(params) {" \
+    "  return params;" \
+    "}";
+  
+  JavaScript *helloScript = new JavaScript(ECHO_NAME, ECHO_CONTEXT);
+  
   JavaScriptEngine jsEngine;
-  //jsEngine.run(NULL);
+  
+  BOOST_CHECK(!jsEngine.hasScript(ECHO_NAME));
+  jsEngine.setScript(helloScript);
+  BOOST_CHECK(jsEngine.hasScript(ECHO_NAME));
+  
+  ScriptResults results;
+  Error error;
+
+  const std::string ECHO_PARAM_01 = "{}";
+  BOOST_CHECK(jsEngine.run(ECHO_NAME, ECHO_PARAM_01, &results, &error));
+  BOOST_CHECK_EQUAL(ECHO_PARAM_01.compare(results), 0);
 }

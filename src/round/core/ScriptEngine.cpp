@@ -25,7 +25,7 @@ bool Round::ScriptEngine::setScript(Script *script) {
   return true;
 }
 
-bool Round::ScriptEngine::run(const std::string &name, const std::string &params, std::string *results, Error *error) {
+bool Round::ScriptEngine::run(const ScriptName &name, const ScriptResults &params, std::string *results, Error *error) {
   error->setCode(ScriptEngineStatusOk);
   error->setDetailCode(ScriptEngineDetailStatusOk);
 

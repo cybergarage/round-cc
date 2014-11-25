@@ -8,6 +8,7 @@
 *
 ******************************************************************/
 
+#include <iostream>
 #include <sstream>
 
 #include <round/core/impl/JavaScript.h>
@@ -18,9 +19,11 @@ Round::JavaScriptEngine::JavaScriptEngine() {
   //Platform* platform = v8::platform::CreateDefaultPlatform();
   //v8::V8::InitializePlatform(platform);
   v8::V8::Initialize();
+
+  this->isolate = v8::Isolate::New();
 }
 
-bool Round::JavaScriptEngine::run(Script *jsScript, const std::string &params, std::string *results, Error *error) {
+bool Round::JavaScriptEngine::run(const Script *jsScript, const ScriptParams &params, ScriptResults *results, Error *error) {
   std::stringstream jsSource;
   
   jsSource << jsScript->getContent() << std::endl;
@@ -39,21 +42,22 @@ bool Round::JavaScriptEngine::run(Script *jsScript, const std::string &params, s
 
 bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *results, Error *error) {
 
-  v8::Isolate* isolate = v8::Isolate::New();
-  if (!isolate) {
+  std::cout << jsSource << std::endl;
+  
+  if (!this->isolate) {
     error->setCode(ScriptEngineStatusBadRequest);
     error->setCode(ScriptEngineDetailStatusInternalError);
     isolate->Dispose();
     return false;
   }
   
-  v8::Isolate::Scope isolate_scope(isolate);
+  v8::Isolate::Scope isolate_scope(this->isolate);
   
   // Create a stack-allocated handle scope.
-  v8::HandleScope handle_scope(isolate);
+  v8::HandleScope handle_scope(this->isolate);
   
   // Create a new context.
-  v8::Local<v8::Context> context = v8::Context::New(isolate);
+  v8::Local<v8::Context> context = v8::Context::New(this->isolate);
   
   // Enter the context for compiling and running the hello world script.
   v8::Context::Scope context_scope(context);
@@ -89,13 +93,16 @@ bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *resu
   v8::String::Utf8Value utf8(result);
   *results = *utf8;
   
-  // Dispose the isolate
-  isolate->Dispose();
+  std::cout << *results << std::endl;
   
   return true;
 }
 
 Round::JavaScriptEngine::~JavaScriptEngine() {
+  // Dispose the isolate
+  if (this->isolate)
+    isolate->Dispose();
+  
   v8::V8::Dispose();
   //v8::V8::ShutdownPlatform();
   //delete platform;

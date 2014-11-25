@@ -13,5 +13,10 @@
 Round::Script::Script() {
 }
 
+Round::Script::Script(const ScriptName &name, const ScriptContent &content) {
+  setName(name);
+  setContent(content);
+}
+
 Round::Script::~Script() {
 }

@@ -14,9 +14,8 @@
 Round::JavaScript::JavaScript() {
 }
 
-Round::JavaScript::~JavaScript() {
+Round::JavaScript::JavaScript(const ScriptName &name, const ScriptContent &content) : Script(name, content) {
 }
 
-bool Round::JavaScript::run() {
-  return true;
+Round::JavaScript::~JavaScript() {
 }
