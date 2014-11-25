@@ -10,6 +10,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include <vector>
 #include <round/core/impl/JavaScript.h>
 
 using namespace std;
@@ -31,22 +32,30 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineEchoTest) {
   jsEngine.setScript(helloScript);
   BOOST_CHECK(jsEngine.hasScript(ECHO_NAME));
   
+
+  std::vector<std::string> echoParams;
+  
+  echoParams.push_back("[]");
+  
+  echoParams.push_back("[0]");
+  echoParams.push_back("[0,1]");
+  echoParams.push_back("[0,1,2]");
+  
+  echoParams.push_back("{}");
+  
+  echoParams.push_back("{\"key\":0}");
+  echoParams.push_back("{\"key0\":0,\"key1\":1}");
+  echoParams.push_back("{\"key0\":0,\"key1\":1,\"key2\":2}");
+  
+  echoParams.push_back("{\"key0\":\"value0\"}");
+  echoParams.push_back("{\"key0\":\"value0\",\"key1\":\"value1\"}");
+  echoParams.push_back("{\"key0\":\"value0\",\"key1\":\"value1\",\"key2\":\"value2\"}");
+
   ScriptResults results;
   Error error;
-
-  const std::string ECHO_PARAM_01 = "{}";
-  BOOST_CHECK(jsEngine.run(ECHO_NAME, ECHO_PARAM_01, &results, &error));
-  BOOST_CHECK_EQUAL(ECHO_PARAM_01.compare(results), 0);
-
-  const std::string ECHO_PARAM_02 = "[]";
-  BOOST_CHECK(jsEngine.run(ECHO_NAME, ECHO_PARAM_02, &results, &error));
-  BOOST_CHECK_EQUAL(ECHO_PARAM_02.compare(results), 0);
-
-  const std::string ECHO_PARAM_03 = "{\"key\":0}";
-  BOOST_CHECK(jsEngine.run(ECHO_NAME, ECHO_PARAM_03, &results, &error));
-  BOOST_CHECK_EQUAL(ECHO_PARAM_03.compare(results), 0);
-
-  const std::string ECHO_PARAM_04 = "{\"key\":\"value\"}";
-  BOOST_CHECK(jsEngine.run(ECHO_NAME, ECHO_PARAM_04, &results, &error));
-  BOOST_CHECK_EQUAL(ECHO_PARAM_04.compare(results), 0);
+  for (std::vector<std::string>::iterator echoParamIt = echoParams.begin(); echoParamIt != echoParams.end(); echoParamIt++) {
+    std::string &echoParam = *echoParamIt;
+    BOOST_CHECK(jsEngine.run(ECHO_NAME, echoParam, &results, &error));
+    BOOST_CHECK_EQUAL(echoParam.compare(results), 0);
+  }
 }
