@@ -35,11 +35,20 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineEchoTest) {
 
   std::vector<std::string> echoParams;
   
+  echoParams.push_back("");
+  echoParams.push_back("1");
+  echoParams.push_back("\"1\"");
+  echoParams.push_back("\"Hello\"");
+  
   echoParams.push_back("[]");
   
   echoParams.push_back("[0]");
   echoParams.push_back("[0,1]");
   echoParams.push_back("[0,1,2]");
+  
+  echoParams.push_back("[\"0\"]");
+  echoParams.push_back("[\"0\",\"1\"]");
+  echoParams.push_back("[\"0\",\"1\",\"2\"]");
   
   echoParams.push_back("{}");
   

@@ -8,11 +8,11 @@
 *
 ******************************************************************/
 
-#include <iostream>
 #include <sstream>
-
-#include <round/core/impl/JavaScript.h>
 #include <boost/algorithm/string/replace.hpp>
+
+#include <round/core/Log.h>
+#include <round/core/impl/JavaScript.h>
 
 Round::JavaScriptEngine::JavaScriptEngine() {
   v8::V8::InitializeICU();
@@ -42,12 +42,11 @@ bool Round::JavaScriptEngine::run(const Script *jsScript, const ScriptParams &pa
 
 bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *results, Error *error) {
 
-  std::cout << jsSource << std::endl;
+  RoundLogTrace("%s", jsSource.c_str());
   
   if (!this->isolate) {
     error->setCode(ScriptEngineStatusBadRequest);
     error->setCode(ScriptEngineDetailStatusInternalError);
-    isolate->Dispose();
     return false;
   }
   
@@ -68,7 +67,6 @@ bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *resu
   if (source->Length() <= 0) {
     error->setCode(ScriptEngineStatusBadRequest);
     error->setCode(ScriptEngineDetailStatusSourceNotFound);
-    isolate->Dispose();
     return false;
   }
 
@@ -77,24 +75,21 @@ bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *resu
   if (script.IsEmpty()) {
     error->setCode(ScriptEngineStatusBadRequest);
     error->setCode(ScriptEngineDetailStatusCompileError);
-    isolate->Dispose();
     return false;
   }
   
   // Run the script to get the result.
   v8::Local<v8::Value> result = script->Run();
-  if (result.IsEmpty()) {
-    error->setCode(ScriptEngineStatusBadRequest);
-    error->setCode(ScriptEngineDetailStatusExecutionError);
-    isolate->Dispose();
-    return false;
+  if (!result.IsEmpty()) {
+    // Convert the result to an UTF8 string
+    v8::String::Utf8Value utf8(result);
+    *results = *utf8;
   }
-  
-  // Convert the result to an UTF8 string and print it.
-  v8::String::Utf8Value utf8(result);
-  *results = *utf8;
-  
-  std::cout << *results << std::endl;
+  else {
+    *results = "";
+  }
+
+  RoundLogTrace("%s", results->c_str());
   
   return true;
 }
