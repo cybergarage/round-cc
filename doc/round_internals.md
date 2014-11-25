@@ -34,7 +34,9 @@ Any node has a simple logical clock based on [Lamport timestamps](http://en.wiki
 
 ## Consensus Protocol
 
-Round uses a traditional consensus protocol, [Paxos](http://en.wikipedia.org/wiki/Paxos_(computer_science), to provide consistency.
+Round uses a traditional consensus protocol, [Paxos](http://en.wikipedia.org/wiki/Paxos_(computer_science), to provide consistency. Each node acts in three roles; Proposer, Acceptor and Learner in Paxos to reduces the message complexity significantly.
+
+![round_internal_paxos](/img/round_internal_paxos.svg)
 
 ## Failure Detection
 
