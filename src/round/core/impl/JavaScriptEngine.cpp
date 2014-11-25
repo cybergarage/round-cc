@@ -16,8 +16,10 @@
 
 Round::JavaScriptEngine::JavaScriptEngine() {
   v8::V8::InitializeICU();
-  //Platform* platform = v8::platform::CreateDefaultPlatform();
-  //v8::V8::InitializePlatform(platform);
+#if defined(ROUND_V8_USE_LIBPLATFORM)
+  this->platform = v8::platform::CreateDefaultPlatform();
+  v8::V8::InitializePlatform(this->platform);
+#endif
   v8::V8::Initialize();
 
   this->isolate = v8::Isolate::New();
@@ -100,6 +102,8 @@ Round::JavaScriptEngine::~JavaScriptEngine() {
     isolate->Dispose();
   
   v8::V8::Dispose();
-  //v8::V8::ShutdownPlatform();
-  //delete platform;
+#if defined(ROUND_V8_USE_LIBPLATFORM)
+  v8::V8::ShutdownPlatform();
+  delete platform;
+#endif
 }
