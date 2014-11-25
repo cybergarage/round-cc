@@ -51,6 +51,7 @@ bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *resu
     return false;
   }
   
+  // Make this isolate the current one.
   v8::Isolate::Scope isolate_scope(this->isolate);
   
   // Create a stack-allocated handle scope.

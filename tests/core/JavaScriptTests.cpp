@@ -37,4 +37,16 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineEchoTest) {
   const std::string ECHO_PARAM_01 = "{}";
   BOOST_CHECK(jsEngine.run(ECHO_NAME, ECHO_PARAM_01, &results, &error));
   BOOST_CHECK_EQUAL(ECHO_PARAM_01.compare(results), 0);
+
+  const std::string ECHO_PARAM_02 = "[]";
+  BOOST_CHECK(jsEngine.run(ECHO_NAME, ECHO_PARAM_02, &results, &error));
+  BOOST_CHECK_EQUAL(ECHO_PARAM_02.compare(results), 0);
+
+  const std::string ECHO_PARAM_03 = "{\"key\":0}";
+  BOOST_CHECK(jsEngine.run(ECHO_NAME, ECHO_PARAM_03, &results, &error));
+  BOOST_CHECK_EQUAL(ECHO_PARAM_03.compare(results), 0);
+
+  const std::string ECHO_PARAM_04 = "{\"key\":\"value\"}";
+  BOOST_CHECK(jsEngine.run(ECHO_NAME, ECHO_PARAM_04, &results, &error));
+  BOOST_CHECK_EQUAL(ECHO_PARAM_04.compare(results), 0);
 }
