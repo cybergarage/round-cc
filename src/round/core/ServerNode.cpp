@@ -124,7 +124,7 @@ Round::HttpStatusCode Round::ServerNode::httpDatabaseRequestRecieved(uHTTP::HTTP
 
 Round::HttpStatusCode Round::ServerNode::httpStatusRequestRecieved(uHTTP::HTTPRequest *httpReq, const std::string &uri) {
   Error error;
-  
+  /*
   if (uri.find(HTTP::URI::STATUS_NODE) == 0) {
     NodeStatus nodeStatus;
     nodeStatus.setState(getState());
@@ -138,7 +138,8 @@ Round::HttpStatusCode Round::ServerNode::httpStatusRequestRecieved(uHTTP::HTTPRe
     jsonArray.setNodeGraphResponse(getNodeGraph());
     return postJSONResponse(httpReq, jsonArray);
   }
-
+   */
+  
   return uHTTP::HTTP::BAD_REQUEST;
 }
 

@@ -58,13 +58,6 @@
 		21DA087B1A17426500D3DCE0 /* NodeList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA086E1A17426500D3DCE0 /* NodeList.cpp */; };
 		21DA08801A1742EE00D3DCE0 /* ErrorNo.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DA087F1A1742EE00D3DCE0 /* ErrorNo.h */; };
 		21DA08821A17457D00D3DCE0 /* NodeMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DA08811A17457D00D3DCE0 /* NodeMessage.h */; };
-		21DA08851A17478400D3DCE0 /* JSONRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DA08831A17478400D3DCE0 /* JSONRequest.h */; };
-		21DA08861A17478400D3DCE0 /* JSONResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DA08841A17478400D3DCE0 /* JSONResponse.h */; };
-		21DA088C1A17478E00D3DCE0 /* JSONRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08871A17478E00D3DCE0 /* JSONRequest.cpp */; };
-		21DA088D1A17478E00D3DCE0 /* JSONRequestDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08881A17478E00D3DCE0 /* JSONRequestDictionary.cpp */; };
-		21DA088E1A17478E00D3DCE0 /* JSONResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08891A17478E00D3DCE0 /* JSONResponse.cpp */; };
-		21DA088F1A17478E00D3DCE0 /* JSONResponseArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA088A1A17478E00D3DCE0 /* JSONResponseArray.cpp */; };
-		21DA08901A17478E00D3DCE0 /* JSONResponseDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA088B1A17478E00D3DCE0 /* JSONResponseDictionary.cpp */; };
 		21DA08921A1747EB00D3DCE0 /* HTTP.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DA08911A1747EB00D3DCE0 /* HTTP.h */; };
 		21DA08C11A174EAB00D3DCE0 /* NodeMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08BE1A174EAB00D3DCE0 /* NodeMessage.cpp */; };
 		21DA08C21A174EAB00D3DCE0 /* NodeStatus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08BF1A174EAB00D3DCE0 /* NodeStatus.cpp */; };
@@ -198,13 +191,6 @@
 		21DA086E1A17426500D3DCE0 /* NodeList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeList.cpp; sourceTree = "<group>"; };
 		21DA087F1A1742EE00D3DCE0 /* ErrorNo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorNo.h; sourceTree = "<group>"; };
 		21DA08811A17457D00D3DCE0 /* NodeMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeMessage.h; sourceTree = "<group>"; };
-		21DA08831A17478400D3DCE0 /* JSONRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRequest.h; sourceTree = "<group>"; };
-		21DA08841A17478400D3DCE0 /* JSONResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONResponse.h; sourceTree = "<group>"; };
-		21DA08871A17478E00D3DCE0 /* JSONRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONRequest.cpp; sourceTree = "<group>"; };
-		21DA08881A17478E00D3DCE0 /* JSONRequestDictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONRequestDictionary.cpp; sourceTree = "<group>"; };
-		21DA08891A17478E00D3DCE0 /* JSONResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONResponse.cpp; sourceTree = "<group>"; };
-		21DA088A1A17478E00D3DCE0 /* JSONResponseArray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONResponseArray.cpp; sourceTree = "<group>"; };
-		21DA088B1A17478E00D3DCE0 /* JSONResponseDictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONResponseDictionary.cpp; sourceTree = "<group>"; };
 		21DA08911A1747EB00D3DCE0 /* HTTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTP.h; sourceTree = "<group>"; };
 		21DA08BE1A174EAB00D3DCE0 /* NodeMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeMessage.cpp; sourceTree = "<group>"; };
 		21DA08BF1A174EAB00D3DCE0 /* NodeStatus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeStatus.cpp; sourceTree = "<group>"; };
@@ -288,8 +274,6 @@
 				21DA08531A17424A00D3DCE0 /* Cluster.h */,
 				21DA087F1A1742EE00D3DCE0 /* ErrorNo.h */,
 				21DA08911A1747EB00D3DCE0 /* HTTP.h */,
-				21DA08831A17478400D3DCE0 /* JSONRequest.h */,
-				21DA08841A17478400D3DCE0 /* JSONResponse.h */,
 				21DA08541A17424A00D3DCE0 /* LocalNode.h */,
 				21DA08551A17424A00D3DCE0 /* LocalNodeConfig.h */,
 				21620E4A1A147A5600690EA8 /* Log.h */,
@@ -315,11 +299,6 @@
 				2184F20F1A1993A3007F1326 /* ClientCore.cpp */,
 				21DA08651A17426500D3DCE0 /* Cluster.cpp */,
 				21DA08661A17426500D3DCE0 /* ClusterList.cpp */,
-				21DA08871A17478E00D3DCE0 /* JSONRequest.cpp */,
-				21DA08881A17478E00D3DCE0 /* JSONRequestDictionary.cpp */,
-				21DA08891A17478E00D3DCE0 /* JSONResponse.cpp */,
-				21DA088A1A17478E00D3DCE0 /* JSONResponseArray.cpp */,
-				21DA088B1A17478E00D3DCE0 /* JSONResponseDictionary.cpp */,
 				21DA08671A17426500D3DCE0 /* LocalNode.cpp */,
 				21DA08681A17426500D3DCE0 /* LocalNodeConfig.cpp */,
 				21620E511A147A6400690EA8 /* Logger.cpp */,
@@ -543,7 +522,6 @@
 				21DA085C1A17424A00D3DCE0 /* Cluster.h in Headers */,
 				21CCABC61A145AAF00FE57DF /* ConsoleError.h in Headers */,
 				21DE681E1A13B3D60049227E /* Configuration.h in Headers */,
-				21DA08861A17478400D3DCE0 /* JSONResponse.h in Headers */,
 				212BFD161A1D0032002549F0 /* Node.h in Headers */,
 				21DE682B1A13B3D60049227E /* Settings.h in Headers */,
 				21DE68241A13B3D60049227E /* Message.h in Headers */,
@@ -551,7 +529,6 @@
 				216E5FC51A13CBD80043C28B /* Server.h in Headers */,
 				21DE68251A13B3D60049227E /* Mutex.h in Headers */,
 				21CCABC51A145AAF00FE57DF /* ConsoleClient.h in Headers */,
-				21DA08851A17478400D3DCE0 /* JSONRequest.h in Headers */,
 				216E5FC41A13CBD80043C28B /* Finder.h in Headers */,
 				21DA08641A17424A00D3DCE0 /* RemoteNode.h in Headers */,
 				21DA08921A1747EB00D3DCE0 /* HTTP.h in Headers */,
@@ -674,7 +651,6 @@
 				21DE68931A13B3EA0049227E /* MessageManager.cpp in Sources */,
 				21DE689B1A13B3EA0049227E /* Properties.cpp in Sources */,
 				21DE688D1A13B3EA0049227E /* JSONObject.cpp in Sources */,
-				21DA088E1A17478E00D3DCE0 /* JSONResponse.cpp in Sources */,
 				21DE68A41A13B3EA0049227E /* ThreadList.cpp in Sources */,
 				21DA08761A17426500D3DCE0 /* NodeCore.cpp in Sources */,
 				21DA08771A17426500D3DCE0 /* NodeFinder.cpp in Sources */,
@@ -686,7 +662,6 @@
 				21DE68851A13B3EA0049227E /* ConsistentHashNode.cpp in Sources */,
 				21DE68971A13B3EA0049227E /* NotificationObserver.cpp in Sources */,
 				212BFD181A1D0056002549F0 /* Node.cpp in Sources */,
-				21DA08901A17478E00D3DCE0 /* JSONResponseDictionary.cpp in Sources */,
 				21CCABCB1A145AC900FE57DF /* ConsoleError.cpp in Sources */,
 				21DE689D1A13B3EA0049227E /* Semaphore.cpp in Sources */,
 				2188042B1A22EF690053473E /* JavaScriptEngine.cpp in Sources */,
@@ -694,8 +669,6 @@
 				2104C9C81A21E7240049DA92 /* JavaScript.cpp in Sources */,
 				21DE688C1A13B3EA0049227E /* JSONDictionary.cpp in Sources */,
 				21DA08CF1A175E8200D3DCE0 /* UPnPServerNode.cpp in Sources */,
-				21DA088F1A17478E00D3DCE0 /* JSONResponseArray.cpp in Sources */,
-				21DA088C1A17478E00D3DCE0 /* JSONRequest.cpp in Sources */,
 				21DE68861A13B3EA0049227E /* ConsistentHashObject.cpp in Sources */,
 				21DE688E1A13B3EA0049227E /* JSONParser.cpp in Sources */,
 				21DA08C21A174EAB00D3DCE0 /* NodeStatus.cpp in Sources */,
@@ -704,7 +677,6 @@
 				21DA08721A17426500D3DCE0 /* Cluster.cpp in Sources */,
 				21620E561A14809D00690EA8 /* NodeConfig.cpp in Sources */,
 				21DA087B1A17426500D3DCE0 /* NodeList.cpp in Sources */,
-				21DA088D1A17478E00D3DCE0 /* JSONRequestDictionary.cpp in Sources */,
 				21620E521A147A6400690EA8 /* Logger.cpp in Sources */,
 				21DE68951A13B3EA0049227E /* Mutex.cpp in Sources */,
 				2104C9BF1A21BC640049DA92 /* Script.cpp in Sources */,

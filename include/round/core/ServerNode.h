@@ -14,8 +14,6 @@
 #include <uhttp/http/HTTPServer.h>
 
 #include <round/core/LocalNode.h>
-#include <round/core/JSONRequest.h>
-#include <round/core/JSONResponse.h>
 
 namespace Round {
       

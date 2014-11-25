@@ -14,8 +14,6 @@
 #include <uhttp/http/HTTPStatus.h>
 
 #include <round/core/Node.h>
-#include <round/core/JSONRequest.h>
-#include <round/core/JSONResponse.h>
 
 namespace Round {
   
@@ -44,11 +42,6 @@ class RemoteNode : public Node {
   
   Node *clone() const;
   
-private:
-
-  void setJSONResponseError(Error *error) const;
-  int postJSONRequest(const std::string &method, const std::string &uri, const JSONObject *jsonContent, JSONObject **jsonResponse, Error *error) const;
-
 private:
 
   std::string requestAddress;
