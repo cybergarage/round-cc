@@ -33,6 +33,10 @@ class JavaScriptEngine : public ScriptEngine {
   virtual ~JavaScriptEngine();
   
   bool run(Script *script, const std::string &params, std::string *results, Error *error);
+
+ private:
+
+  bool run(const std::string &source, std::string *results, Error *error);
 };
   
 }

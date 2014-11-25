@@ -65,6 +65,23 @@ public:
   void clear();
 };
 
+enum JavaScriptEngineStatus {
+  ScriptEngineStatusOk          = 200,
+  ScriptEngineStatusBadRequest  = 400,
+};
+
+enum JavaScriptEngineDetailStatus {
+  ScriptEngineDetailStatusOk              = 0,
+  ScriptEngineDetailStatusParserError     = -32700,
+  ScriptEngineDetailStatusInvalidRequest  = -32600,
+  ScriptEngineDetailStatusMethodNotFound  = -32601,
+  ScriptEngineDetailStatusInvalidParams   = -32602,
+  ScriptEngineDetailStatusInternalError   = -32603,
+  ScriptEngineDetailStatusSourceNotFound  = -32000,
+  ScriptEngineDetailStatusCompileError    = -32001,
+  ScriptEngineDetailStatusExecutionError  = -32002,
+};
+  
 class ScriptEngine {
     
 public:

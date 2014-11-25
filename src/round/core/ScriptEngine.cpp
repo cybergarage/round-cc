@@ -26,8 +26,15 @@ bool Round::ScriptEngine::setScript(Script *script) {
 }
 
 bool Round::ScriptEngine::run(const std::string &name, const std::string &params, std::string *results, Error *error) {
+  error->setCode(ScriptEngineStatusOk);
+  error->setDetailCode(ScriptEngineDetailStatusOk);
+
   Script *script = this->scripts.getScript(name);
-  if (!script)
+  if (!script) {
+    error->setCode(ScriptEngineStatusBadRequest);
+    error->setDetailCode(ScriptEngineDetailStatusMethodNotFound);
     return false;
+  }
+  
   return run(script, params, results, error);
 }
