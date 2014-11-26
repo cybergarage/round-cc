@@ -22,6 +22,9 @@ namespace Round {
 
 class JavaScript : public Script {
 
+public:
+  static const ScriptName LANGUAGE;
+  
  public:
   JavaScript();
   JavaScript(const ScriptName &name, const ScriptContent &content);

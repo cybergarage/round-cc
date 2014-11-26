@@ -18,6 +18,7 @@
 
 namespace Round {
 
+typedef std::string ScriptLanguage;
 typedef std::string ScriptName;
 typedef std::string ScriptContent;
 typedef std::string ScriptParams;
@@ -26,11 +27,19 @@ typedef std::string ScriptResults;
 class Script {
 
  public:
-  Script();
+  Script(const ScriptLanguage &lang);
   Script(const ScriptName &name, const ScriptContent &content);
   
   virtual ~Script();
 
+  const ScriptLanguage &getLanguage() const {
+    return this->language;
+  }
+  
+  bool isLanguage(const ScriptLanguage &language) const {
+    return (this->language.compare(language) == 0) ? true : false;
+  }
+  
   bool setName(const ScriptName &name) {
     this->name = name;
     return true;
@@ -58,8 +67,9 @@ class Script {
   }
   
  private:
-  ScriptName    name;
-  ScriptContent content;
+  ScriptLanguage  language;
+  ScriptName      name;
+  ScriptContent   content;
 };
 
 class ScriptMap : public std::map<std::string, Script *> {

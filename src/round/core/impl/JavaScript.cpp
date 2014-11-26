@@ -11,7 +11,9 @@
 #include <round/core/impl/JavaScript.h>
 #include <round/common/Mutex.h>
 
-Round::JavaScript::JavaScript() {
+const std::string Round::JavaScript::LANGUAGE = "js";
+
+Round::JavaScript::JavaScript() : Script(LANGUAGE) {
 }
 
 Round::JavaScript::JavaScript(const ScriptName &name, const ScriptContent &content) : Script(name, content) {
