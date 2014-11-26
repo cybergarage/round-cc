@@ -15,9 +15,13 @@
 using namespace std;
 using namespace Round;
 
-BOOST_AUTO_TEST_CASE(NodeRequestNewTest) {
-  NodeRequest *req = new NodeRequest();
-  BOOST_CHECK(req);
-  delete req;
+BOOST_AUTO_TEST_CASE(NodeRequestConstructorTest) {
+  const std::string TEST_METHOD = "hello";
+  
+  NodeRequest nodeReq(TEST_METHOD);
+  BOOST_CHECK(nodeReq.hasMethod());
+  BOOST_CHECK(nodeReq.isMethod(TEST_METHOD));
+
+  BOOST_CHECK(!nodeReq.isMethod(""));
 }
 

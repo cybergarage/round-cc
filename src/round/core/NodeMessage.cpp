@@ -10,6 +10,8 @@
 
 #include <round/core/NodeMessage.h>
 
+const std::string Round::NodeMessage::KEY_CLOCK = "_clock";
+
 Round::NodeMessage::NodeMessage() {
 }
 

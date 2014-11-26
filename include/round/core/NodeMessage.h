@@ -16,6 +16,9 @@
 namespace Round {
 
 class NodeMessage : public Message {
+public:
+  static const std::string KEY_CLOCK;
+  
  public:
   NodeMessage();
   virtual ~NodeMessage();
@@ -26,14 +29,17 @@ class NodeRequest : public NodeMessage {
   static const std::string KEY_METHOD;
     
  public:
-  NodeRequest();
+  NodeRequest(const std::string &method);
   virtual ~NodeRequest();
-};
   
+  bool hasMethod() const;
+  bool isMethod(const std::string &method) const;
+};
+
 class NodeResponse : public NodeMessage {
 public:
-  static const std::string KEY_CODE;
-  static const std::string KEY_DETAILCODE;
+  static const std::string KEY_ERROR_CODE;
+  static const std::string KEY_ERROR_MESSAGE;
     
 public:
   NodeResponse();
