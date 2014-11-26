@@ -35,3 +35,6 @@ xcuserdata/
 # Automake
 .deps/
 *.Po
+.dirstamp
+Makefile
+Makefile.in
