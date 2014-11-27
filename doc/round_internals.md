@@ -4,7 +4,7 @@
 
 ## Zeroconf
 
-Round is designed based on [Zeroconf](http://www.zeroconf.org/) concept to achieve automatically scalable distributed systems. Specifically, Round uses [UPnP](http://upnp.org) as [Zeroconf](http://www.zeroconf.org/) protocol.
+Round is designed based on [Zeroconf](http://www.zeroconf.org/) concept to achieve automatically scalable distributed systems. Specifically, Round uses [UPnP](http://upnp.org), Universal Plug and Play, as [Zeroconf](http://www.zeroconf.org/) protocol.
 
 Using the [Zeroconf](http://www.zeroconf.org/) protocol,  
 
@@ -18,6 +18,8 @@ Dynamic Configuration
 
 Round is based on Chord, and Chord is based on [consistent hasing](http://en.wikipedia.org/wiki/Consistent_hashing).
 
+Developers can change the algorithm
+
 Round will support other structues .....
 
 ## Messaging
@@ -30,7 +32,19 @@ Round uses [JSON-RPC 2.0](http://www.jsonrpc.org/specification) over HTTP to exe
 
 ### Clock
 
-Any node has a simple logical clock based on [Lamport timestamps](http://en.wikipedia.org/wiki/Lamport_timestamps). Round updates the logical clock in any node every a messaging, and the parameter is added into the messaging automatically.
+Round supports some logical clock algorithm such as [Lamport clock](http://en.wikipedia.org/wiki/Lamport_timestamps) and [vector clock](http://en.wikipedia.org/wiki/Vector_clock), and developers can select the clock algorithm.
+
+Round updates the logical clock in any node every a messaging, and the parameter is added into the messaging automatically.
+
+### System Methods
+
+Method names that begin with the word followed by a underscore character (_) are reserved for Round to implement the internal system methods.
+
+| Method Name | Perpose | Params |
+|-|-|-|
+| _set_name | Set a node name | - |
+| _set_method | Set a script method | {"language" : "js", "name" : (value), "script" : (value)} |
+| _set_shared_key | Set a shared key for MAC | {"key" : (value)} |
 
 ## Consensus Protocol
 
