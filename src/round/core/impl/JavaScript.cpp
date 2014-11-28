@@ -16,7 +16,7 @@ const std::string Round::JavaScript::LANGUAGE = "js";
 Round::JavaScript::JavaScript() : Script(LANGUAGE) {
 }
 
-Round::JavaScript::JavaScript(const ScriptName &name, const ScriptContent &content) : Script(name, content) {
+Round::JavaScript::JavaScript(const ScriptName &name, const ScriptContent &content) : Script(LANGUAGE, name, content) {
 }
 
 Round::JavaScript::~JavaScript() {

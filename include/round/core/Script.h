@@ -18,7 +18,7 @@
 
 namespace Round {
 
-typedef std::string ScriptLanguage;
+typedef std::string ScriptLang;
 typedef std::string ScriptName;
 typedef std::string ScriptContent;
 typedef std::string ScriptParams;
@@ -27,16 +27,16 @@ typedef std::string ScriptResults;
 class Script {
 
  public:
-  Script(const ScriptLanguage &lang);
-  Script(const ScriptName &name, const ScriptContent &content);
+  Script(const ScriptLang &lang);
+  Script(const ScriptLang &lang, const ScriptName &name, const ScriptContent &content);
   
   virtual ~Script();
 
-  const ScriptLanguage &getLanguage() const {
+  const ScriptLang &getLanguage() const {
     return this->language;
   }
   
-  bool isLanguage(const ScriptLanguage &language) const {
+  bool isLanguage(const ScriptLang &language) const {
     return (this->language.compare(language) == 0) ? true : false;
   }
   
@@ -67,19 +67,20 @@ class Script {
   }
   
  private:
-  ScriptLanguage  language;
+  ScriptLang  language;
   ScriptName      name;
   ScriptContent   content;
 };
 
-class ScriptMap : public std::map<std::string, Script *> {
+class ScriptMap : public std::map<ScriptName, Script *> {
     
 public:
     
   ScriptMap();
   virtual ~ScriptMap();
-  bool hasScript(const ScriptName &name);
-  Script *getScript(const ScriptName &name);
+  
+  bool hasScript(const ScriptName &name) const;
+  const Script *getScript(const ScriptName &name) const;
 
   void clear();
 };
@@ -89,42 +90,74 @@ enum JavaScriptEngineStatus {
   ScriptEngineStatusBadRequest  = 400,
 };
 
-enum JavaScriptEngineDetailStatus {
-  ScriptEngineDetailStatusOk              = 0,
-  ScriptEngineDetailStatusParserError     = -32700,
-  ScriptEngineDetailStatusInvalidRequest  = -32600,
-  ScriptEngineDetailStatusMethodNotFound  = -32601,
-  ScriptEngineDetailStatusInvalidParams   = -32602,
-  ScriptEngineDetailStatusInternalError   = -32603,
-  ScriptEngineDetailStatusSourceNotFound  = -32000,
-  ScriptEngineDetailStatusCompileError    = -32001,
-  ScriptEngineDetailStatusExecutionError  = -32002,
+enum JavaScriptManagerDetailErrorStatus {
+  ScriptManagerDetailStatusOk                   = 0,
+  ScriptManagerDetailStatusParserError          = -32700,
+  ScriptManagerDetailStatusInvalidRequest       = -32600,
+  ScriptManagerDetailStatusMethodNotFound       = -32601,
+  ScriptManagerDetailStatusInvalidParams        = -32602,
+  ScriptManagerDetailStatusInternalError        = -32603,
+  ScriptManagerDetailStatusSourceNotFound       = -32000,
+  ScriptManagerDetailStatusScriptEngineNotFound = -32001,
+  ScriptManagerDetailStatusCompileError         = -32002,
+  ScriptManagerDetailStatusExecutionError       = -32003,
 };
   
 class ScriptEngine {
     
 public:
-  ScriptEngine(const ScriptLanguage &lang);
+  ScriptEngine(const ScriptLang &lang);
   virtual ~ScriptEngine();
 
-  const ScriptLanguage &getLanguage() const {
+  const ScriptLang &getLanguage() const {
     return this->language;
   }
   
+  virtual bool run(const Script *script, const ScriptParams &params, ScriptResults *results, Error *error) const = 0;
+
+private:
+  
+  ScriptLang  language;
+};
+
+class ScriptEngineMap : public std::map<ScriptLang, ScriptEngine *> {
+    
+ public:
+    
+  ScriptEngineMap();
+  virtual ~ScriptEngineMap();
+  
+  bool hasEngine(const ScriptLang &lang) const;
+  const ScriptEngine *getEngine(const ScriptLang &lang) const;
+    
+  void clear();
+};
+
+class ScriptManager {
+    
+ public:
+  
+  ScriptManager();
+  virtual ~ScriptManager();
+    
   bool setScript(Script *script);
   
-  bool hasScript(const ScriptName &name) {
+  bool hasScript(const ScriptName &name) const {
     return this->scripts.hasScript(name);
+  }
+  
+  bool setEngine(ScriptEngine *engine);
+  
+  bool hasEngine(const ScriptLang &lang) {
+    return this->engines.hasEngine(lang);
   }
   
   bool run(const ScriptName &name, const ScriptParams &params, ScriptResults *results, Error *error);
   
-  virtual bool run(const Script *script, const ScriptParams &params, ScriptResults *results, Error *error) = 0;
-
-private:
-  
-  ScriptLanguage  language;
+ private:
+    
   ScriptMap       scripts;
+  ScriptEngineMap engines;
 };
 
 }

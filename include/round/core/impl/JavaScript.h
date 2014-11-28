@@ -30,9 +30,6 @@ public:
   JavaScript(const ScriptName &name, const ScriptContent &content);
   
   virtual ~JavaScript();
-
-  bool run();
-  
 };
 
 class JavaScriptEngine : public ScriptEngine {
@@ -42,15 +39,11 @@ class JavaScriptEngine : public ScriptEngine {
   
   virtual ~JavaScriptEngine();
   
-  bool run(const ScriptName &name, const ScriptParams &params, ScriptResults *results, Error *error) {
-    return ScriptEngine::run(name, params, results, error);
-  }
-  
-  bool run(const Script *script, const ScriptParams &params, ScriptResults *results, Error *error);
+  bool run(const Script *script, const ScriptParams &params, ScriptResults *results, Error *error) const;
 
  private:
 
-  bool run(const std::string &source, std::string *results, Error *error);
+  bool run(const std::string &source, std::string *results, Error *error) const;
 
  private:
   v8::Isolate *isolate;

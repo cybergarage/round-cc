@@ -119,6 +119,8 @@
 		21DE68A31A13B3EA0049227E /* ThreadCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE687E1A13B3EA0049227E /* ThreadCore.cpp */; };
 		21DE68A41A13B3EA0049227E /* ThreadList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE687F1A13B3EA0049227E /* ThreadList.cpp */; };
 		21DE68A51A13B3EA0049227E /* ThreadManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68801A13B3EA0049227E /* ThreadManager.cpp */; };
+		21E6AAA61A28BF83004E6762 /* ScriptEngineMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E6AAA51A28BF83004E6762 /* ScriptEngineMap.cpp */; };
+		21E6AAA81A28CCFA004E6762 /* ScriptManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E6AAA71A28CCFA004E6762 /* ScriptManager.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -252,6 +254,8 @@
 		21DE687E1A13B3EA0049227E /* ThreadCore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadCore.cpp; sourceTree = "<group>"; };
 		21DE687F1A13B3EA0049227E /* ThreadList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadList.cpp; sourceTree = "<group>"; };
 		21DE68801A13B3EA0049227E /* ThreadManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadManager.cpp; sourceTree = "<group>"; };
+		21E6AAA51A28BF83004E6762 /* ScriptEngineMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptEngineMap.cpp; sourceTree = "<group>"; };
+		21E6AAA71A28CCFA004E6762 /* ScriptManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptManager.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,6 +321,8 @@
 				21DA08C01A174EAB00D3DCE0 /* RemoteNode.cpp */,
 				2104C9BE1A21BC640049DA92 /* Script.cpp */,
 				210E577B1A235BFD000B60FC /* ScriptEngine.cpp */,
+				21E6AAA51A28BF83004E6762 /* ScriptEngineMap.cpp */,
+				21E6AAA71A28CCFA004E6762 /* ScriptManager.cpp */,
 				210E577D1A235D49000B60FC /* ScriptMap.cpp */,
 				21DA08D21A175F3100D3DCE0 /* ServerNode.cpp */,
 				21DA08CB1A175E8200D3DCE0 /* impl */,
@@ -641,6 +647,7 @@
 				21DE68871A13B3EA0049227E /* Dictionary.cpp in Sources */,
 				21DE689E1A13B3EA0049227E /* Settings.cpp in Sources */,
 				21DE68891A13B3EA0049227E /* Error.cpp in Sources */,
+				21E6AAA81A28CCFA004E6762 /* ScriptManager.cpp in Sources */,
 				21DA08751A17426500D3DCE0 /* LocalNodeConfig.cpp in Sources */,
 				21DE68961A13B3EA0049227E /* NotificationCenter.cpp in Sources */,
 				21DE68821A13B3EA0049227E /* Clock.cpp in Sources */,
@@ -679,6 +686,7 @@
 				21DA087B1A17426500D3DCE0 /* NodeList.cpp in Sources */,
 				21620E521A147A6400690EA8 /* Logger.cpp in Sources */,
 				21DE68951A13B3EA0049227E /* Mutex.cpp in Sources */,
+				21E6AAA61A28BF83004E6762 /* ScriptEngineMap.cpp in Sources */,
 				2104C9BF1A21BC640049DA92 /* Script.cpp in Sources */,
 				21DE68921A13B3EA0049227E /* Message.cpp in Sources */,
 				21DE689C1A13B3EA0049227E /* Random.cpp in Sources */,

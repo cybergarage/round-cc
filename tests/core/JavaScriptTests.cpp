@@ -23,16 +23,15 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineEchoTest) {
     "function echo(params) {" \
     "  return params;" \
     "}";
-  
-  JavaScript *helloScript = new JavaScript(ECHO_NAME, ECHO_CONTEXT);
-  
-  JavaScriptEngine jsEngine;
-  
-  BOOST_CHECK(!jsEngine.hasScript(ECHO_NAME));
-  jsEngine.setScript(helloScript);
-  BOOST_CHECK(jsEngine.hasScript(ECHO_NAME));
-  
 
+  ScriptManager scriptMgr;
+
+  BOOST_CHECK(scriptMgr.setScript(new JavaScript(ECHO_NAME, ECHO_CONTEXT)));
+  BOOST_CHECK(scriptMgr.hasScript(ECHO_NAME));
+  
+  BOOST_CHECK(scriptMgr.setEngine(new JavaScriptEngine()));
+  BOOST_CHECK(scriptMgr.hasEngine(JavaScript::LANGUAGE));
+  
   std::vector<std::string> echoParams;
   
   echoParams.push_back("");
@@ -64,7 +63,7 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineEchoTest) {
   Error error;
   for (std::vector<std::string>::iterator echoParamIt = echoParams.begin(); echoParamIt != echoParams.end(); echoParamIt++) {
     std::string &echoParam = *echoParamIt;
-    BOOST_CHECK(jsEngine.run(ECHO_NAME, echoParam, &results, &error));
+    BOOST_CHECK(scriptMgr.run(ECHO_NAME, echoParam, &results, &error));
     BOOST_CHECK_EQUAL(echoParam.compare(results), 0);
   }
 }

@@ -25,7 +25,7 @@ Round::JavaScriptEngine::JavaScriptEngine() : ScriptEngine(JavaScript::LANGUAGE)
   this->isolate = v8::Isolate::New();
 }
 
-bool Round::JavaScriptEngine::run(const Script *jsScript, const ScriptParams &params, ScriptResults *results, Error *error) {
+bool Round::JavaScriptEngine::run(const Script *jsScript, const ScriptParams &params, ScriptResults *results, Error *error) const {
   std::stringstream jsSource;
   
   jsSource << jsScript->getContent() << std::endl;
@@ -42,13 +42,13 @@ bool Round::JavaScriptEngine::run(const Script *jsScript, const ScriptParams &pa
   return run(jsSource.str(), results, error);
 }
 
-bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *results, Error *error) {
+bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *results, Error *error) const {
 
   RoundLogTrace("%s", jsSource.c_str());
   
   if (!this->isolate) {
     error->setCode(ScriptEngineStatusBadRequest);
-    error->setCode(ScriptEngineDetailStatusInternalError);
+    error->setCode(ScriptManagerDetailStatusInternalError);
     return false;
   }
   
@@ -68,7 +68,7 @@ bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *resu
   v8::Local<v8::String> source = v8::String::NewFromUtf8(isolate, jsSource.c_str());
   if (source->Length() <= 0) {
     error->setCode(ScriptEngineStatusBadRequest);
-    error->setCode(ScriptEngineDetailStatusSourceNotFound);
+    error->setCode(ScriptManagerDetailStatusSourceNotFound);
     return false;
   }
 
@@ -76,7 +76,7 @@ bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *resu
   v8::Local<v8::Script> script = v8::Script::Compile(source);
   if (script.IsEmpty()) {
     error->setCode(ScriptEngineStatusBadRequest);
-    error->setCode(ScriptEngineDetailStatusCompileError);
+    error->setCode(ScriptManagerDetailStatusCompileError);
     return false;
   }
   
