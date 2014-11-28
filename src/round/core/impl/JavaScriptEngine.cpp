@@ -14,7 +14,7 @@
 #include <round/core/Log.h>
 #include <round/core/impl/JavaScript.h>
 
-Round::JavaScriptEngine::JavaScriptEngine() {
+Round::JavaScriptEngine::JavaScriptEngine() : ScriptEngine(JavaScript::LANGUAGE) {
   v8::V8::InitializeICU();
 #if defined(ROUND_V8_USE_LIBPLATFORM)
   this->platform = v8::platform::CreateDefaultPlatform();

@@ -10,7 +10,8 @@
 
 #include <round/core/Script.h>
 
-Round::ScriptEngine::ScriptEngine() {
+Round::ScriptEngine::ScriptEngine(const ScriptLanguage &language) {
+  this->language = language;
 }
 
 Round::ScriptEngine::~ScriptEngine() {
@@ -18,9 +19,14 @@ Round::ScriptEngine::~ScriptEngine() {
 
 bool Round::ScriptEngine::setScript(Script *script) {
   if (!script)
+
     return false;
   if (!script->hasName())
     return false;
+  
+  const ScriptLanguage &scriptLang = script->getLanguage();
+  const ScriptLanguage &engineLang = getLanguage();
+  
   this->scripts[script->getName()] = script;
   return true;
 }

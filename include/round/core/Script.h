@@ -104,9 +104,13 @@ enum JavaScriptEngineDetailStatus {
 class ScriptEngine {
     
 public:
-  ScriptEngine();
+  ScriptEngine(const ScriptLanguage &lang);
   virtual ~ScriptEngine();
 
+  const ScriptLanguage &getLanguage() const {
+    return this->language;
+  }
+  
   bool setScript(Script *script);
   
   bool hasScript(const ScriptName &name) {
@@ -119,7 +123,8 @@ public:
 
 private:
   
-  ScriptMap scripts;
+  ScriptLanguage  language;
+  ScriptMap       scripts;
 };
 
 }
