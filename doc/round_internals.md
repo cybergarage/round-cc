@@ -36,15 +36,9 @@ Round supports some logical clock algorithm such as [Lamport clock](http://en.wi
 
 Round updates the logical clock in any node every a messaging, and the parameter is added into the messaging automatically.
 
-### System Methods
+### Methods
 
-Method names that begin with the word followed by a underscore character (_) are reserved for Round to implement the internal system methods.
-
-| Method Name | Perpose | Params |
-|-|-|-|
-| _set_name | Set a node name | - |
-| _set_method | Set a script method | {"language" : "js", "name" : (value), "script" : (value)} |
-| _set_shared_key | Set a shared key for MAC | {"key" : (value)} |
+Check [Round RPC Methods](./round_rpc_methods.md)
 
 ## Consensus Protocol
 
