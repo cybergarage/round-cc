@@ -10,12 +10,12 @@
 
 #include <round/core/Script.h>
 
-Round::Script::Script(const ScriptLang &language) {
-  this->language = language;
+Round::Script::Script(const ScriptLang &lang) {
+  this->language = lang;
 }
 
 Round::Script::Script(const ScriptLang &lang, const ScriptName &name, const ScriptContent &content) {
-  this->language = language;
+  this->language = lang;
   setName(name);
   setContent(content);
 }
