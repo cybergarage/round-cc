@@ -44,7 +44,7 @@ class JavaEngine : public ScriptEngine {
 
  private:
   JavaVM *jvm;
-  JNIEnv *env;
+  JNIEnv *jniEnv;
 };
   
 }

@@ -17,29 +17,31 @@
 Round::JavaEngine::JavaEngine() : ScriptEngine(Java::LANGUAGE) {
   JavaVMInitArgs vm_args; /* JDK/JRE 6 VM initialization arguments */
   JavaVMOption* options = new JavaVMOption[1];
+#if defined(ROUND_UES_JVMOPTIONS)
   vm_args.version = JNI_VERSION_1_6;
   vm_args.nOptions = 1;
   vm_args.options = options;
   vm_args.ignoreUnrecognized = false;
+#endif
   
   /* load and initialize a Java VM, return a JNI interface pointer in env */
-  JNI_CreateJavaVM(&this->jvm, (void**)&this->env, &vm_args);
+  JNI_CreateJavaVM(&this->jvm, (void**)&this->jniEnv, &vm_args);
   
   delete options;
 }
 
 bool Round::JavaEngine::run(const Script *jsScript, const ScriptParams &params, ScriptResults *results, Error *error) const {
-  jclass clazz = this->env->FindClass("Script");
+  jclass clazz = this->jniEnv->FindClass("Script");
   
-  jmethodID initMethodID	= this->env->GetMethodID(clazz, "<init>",	"()V");
-  jmethodID methodId      = env->GetMethodID(clazz, "run",	"(Ljava/lang/String;)V");
+  jmethodID initMethodID	= this->jniEnv->GetMethodID(clazz, "<init>",	"()V");
+  jmethodID methodId      = this->jniEnv->GetMethodID(clazz, "run",	"(Ljava/lang/String;)V");
   
-  jobject object = this->env->NewObject(clazz, initMethodID);
+  jobject scriptObject = this->jniEnv->NewObject(clazz, initMethodID);
   
-  jstring jstringResults = (jstring)this->env->CallObjectMethod(object, methodId);
-  const char* stringResults = env->GetStringUTFChars(jstringResults, NULL);
+  jstring jstringResults = (jstring)this->jniEnv->CallObjectMethod(scriptObject, methodId);
+  const char* stringResults = this->jniEnv->GetStringUTFChars(jstringResults, NULL);
   *results = stringResults;
-  env->ReleaseStringUTFChars(jstringResults, stringResults);
+  this->jniEnv->ReleaseStringUTFChars(jstringResults, stringResults);
   
   return true;
 }
