@@ -13,6 +13,9 @@
 		2104C9C81A21E7240049DA92 /* JavaScript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2104C9C71A21E7240049DA92 /* JavaScript.cpp */; };
 		210E577C1A235BFD000B60FC /* ScriptEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210E577B1A235BFD000B60FC /* ScriptEngine.cpp */; };
 		210E577E1A235D49000B60FC /* ScriptMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210E577D1A235D49000B60FC /* ScriptMap.cpp */; };
+		210E57821A29A4A2000B60FC /* Java.h in Headers */ = {isa = PBXBuildFile; fileRef = 210E57811A29A4A2000B60FC /* Java.h */; };
+		210E57851A29A574000B60FC /* Java.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210E57831A29A574000B60FC /* Java.cpp */; };
+		210E57861A29A574000B60FC /* JavaEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210E57841A29A574000B60FC /* JavaEngine.cpp */; };
 		211FBA391A14792C00B9B71E /* Round.h in Headers */ = {isa = PBXBuildFile; fileRef = 211FBA381A14792C00B9B71E /* Round.h */; };
 		212BFD161A1D0032002549F0 /* Node.h in Headers */ = {isa = PBXBuildFile; fileRef = 212BFD151A1D0032002549F0 /* Node.h */; };
 		212BFD181A1D0056002549F0 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212BFD171A1D0056002549F0 /* Node.cpp */; };
@@ -147,6 +150,9 @@
 		2104C9C71A21E7240049DA92 /* JavaScript.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JavaScript.cpp; sourceTree = "<group>"; };
 		210E577B1A235BFD000B60FC /* ScriptEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptEngine.cpp; sourceTree = "<group>"; };
 		210E577D1A235D49000B60FC /* ScriptMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptMap.cpp; sourceTree = "<group>"; };
+		210E57811A29A4A2000B60FC /* Java.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Java.h; sourceTree = "<group>"; };
+		210E57831A29A574000B60FC /* Java.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Java.cpp; path = ../core/impl/Java.cpp; sourceTree = "<group>"; };
+		210E57841A29A574000B60FC /* JavaEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = JavaEngine.cpp; path = ../core/impl/JavaEngine.cpp; sourceTree = "<group>"; };
 		211FBA381A14792C00B9B71E /* Round.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Round.h; sourceTree = "<group>"; };
 		212BFD151A1D0032002549F0 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
 		212BFD171A1D0056002549F0 /* Node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Node.cpp; sourceTree = "<group>"; };
@@ -403,6 +409,7 @@
 		21DA08C61A175E7500D3DCE0 /* impl */ = {
 			isa = PBXGroup;
 			children = (
+				210E57811A29A4A2000B60FC /* Java.h */,
 				2104C9C51A21E6D30049DA92 /* JavaScript.h */,
 				21DA08C71A175E7500D3DCE0 /* UPnPNodeFinder.h */,
 				21DA08C81A175E7500D3DCE0 /* UPnPServerNode.h */,
@@ -478,6 +485,8 @@
 		21DE68371A13B3EA0049227E /* common */ = {
 			isa = PBXGroup;
 			children = (
+				210E57831A29A574000B60FC /* Java.cpp */,
+				210E57841A29A574000B60FC /* JavaEngine.cpp */,
 				21DE685C1A13B3EA0049227E /* BitOption.cpp */,
 				21DE685D1A13B3EA0049227E /* Clock.cpp */,
 				21DE685E1A13B3EA0049227E /* Configuration.cpp */,
@@ -527,6 +536,7 @@
 				21DE681B1A13B3D60049227E /* BitOption.h in Headers */,
 				21DA085C1A17424A00D3DCE0 /* Cluster.h in Headers */,
 				21CCABC61A145AAF00FE57DF /* ConsoleError.h in Headers */,
+				210E57821A29A4A2000B60FC /* Java.h in Headers */,
 				21DE681E1A13B3D60049227E /* Configuration.h in Headers */,
 				212BFD161A1D0032002549F0 /* Node.h in Headers */,
 				21DE682B1A13B3D60049227E /* Settings.h in Headers */,
@@ -677,6 +687,7 @@
 				21DE688C1A13B3EA0049227E /* JSONDictionary.cpp in Sources */,
 				21DA08CF1A175E8200D3DCE0 /* UPnPServerNode.cpp in Sources */,
 				21DE68861A13B3EA0049227E /* ConsistentHashObject.cpp in Sources */,
+				210E57861A29A574000B60FC /* JavaEngine.cpp in Sources */,
 				21DE688E1A13B3EA0049227E /* JSONParser.cpp in Sources */,
 				21DA08C21A174EAB00D3DCE0 /* NodeStatus.cpp in Sources */,
 				21DE68A21A13B3EA0049227E /* StringTokenizer.cpp in Sources */,
@@ -697,6 +708,7 @@
 				21DE688A1A13B3EA0049227E /* HashObject.cpp in Sources */,
 				2184F2191A19B62C007F1326 /* NodeRequest.cpp in Sources */,
 				210E577E1A235D49000B60FC /* ScriptMap.cpp in Sources */,
+				210E57851A29A574000B60FC /* Java.cpp in Sources */,
 				21DE68901A13B3EA0049227E /* MD5.cpp in Sources */,
 				21DE68811A13B3EA0049227E /* BitOption.cpp in Sources */,
 				21DA08CE1A175E8200D3DCE0 /* UPnPNodeFinder.cpp in Sources */,

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2104C9C31A21BED40049DA92 /* ScriptTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2104C9C21A21BED40049DA92 /* ScriptTests.cpp */; };
 		2104C9CA1A21E77E0049DA92 /* JavaScriptTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2104C9C91A21E77E0049DA92 /* JavaScriptTests.cpp */; };
+		210E578C1A29A73E000B60FC /* JavaVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 210E578A1A29A73E000B60FC /* JavaVM.framework */; };
 		215C20BB1A13B6C000CE71E2 /* RoundTestMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215C20BA1A13B6C000CE71E2 /* RoundTestMain.cpp */; };
 		2184F2041A18E359007F1326 /* ClientTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F1FF1A18E359007F1326 /* ClientTests.cpp */; };
 		2184F2051A18E359007F1326 /* NodeFinderTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2001A18E359007F1326 /* NodeFinderTests.cpp */; };
@@ -51,6 +52,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		210E578D1A29A793000B60FC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 215C20B21A13B6A000CE71E2 /* libround++.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 21A9FFA9154014F300BDFCDC;
+			remoteInfo = "libround++";
+		};
 		215C20B71A13B6A000CE71E2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 215C20B21A13B6A000CE71E2 /* libround++.xcodeproj */;
@@ -103,6 +111,7 @@
 /* Begin PBXFileReference section */
 		2104C9C21A21BED40049DA92 /* ScriptTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptTests.cpp; sourceTree = "<group>"; };
 		2104C9C91A21E77E0049DA92 /* JavaScriptTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JavaScriptTests.cpp; sourceTree = "<group>"; };
+		210E578A1A29A73E000B60FC /* JavaVM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaVM.framework; path = System/Library/Frameworks/JavaVM.framework; sourceTree = SDKROOT; };
 		2143143C15401BEE009CC3FA /* RoundUnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RoundUnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		215C20B21A13B6A000CE71E2 /* libround++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libround++.xcodeproj"; path = "../../../lib/macosx/xcode/libround++.xcodeproj"; sourceTree = "<group>"; };
 		215C20B91A13B6C000CE71E2 /* RoundTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoundTest.h; path = ../../RoundTest.h; sourceTree = "<group>"; };
@@ -156,6 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				210E578C1A29A73E000B60FC /* JavaVM.framework in Frameworks */,
 				21AD42AF1A13B88C00741A08 /* liblibround++.a in Frameworks */,
 				21CD1BC7192DC95000452ADF /* liblibclink++.a in Frameworks */,
 				21CD1BC6192DC94E00452ADF /* libuhttp++.a in Frameworks */,
@@ -196,6 +206,7 @@
 		215C7EF31540266E00762EEC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				210E578A1A29A73E000B60FC /* JavaVM.framework */,
 				21DE0ECF155B9EBA00A08E1F /* Security.framework */,
 				215C20B21A13B6A000CE71E2 /* libround++.xcodeproj */,
 				21CD1BBA192DC91D00452ADF /* libuhttp.xcodeproj */,
@@ -302,6 +313,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				210E578E1A29A793000B60FC /* PBXTargetDependency */,
 				21CD1BC1192DC93C00452ADF /* PBXTargetDependency */,
 				21CD1BC5192DC94100452ADF /* PBXTargetDependency */,
 			);
@@ -422,6 +434,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		210E578E1A29A793000B60FC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "libround++";
+			targetProxy = 210E578D1A29A793000B60FC /* PBXContainerItemProxy */;
+		};
 		21CD1BC1192DC93C00452ADF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "libclink++";
