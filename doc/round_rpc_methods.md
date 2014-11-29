@@ -16,19 +16,6 @@ Method names that begin with the word followed by a underscore character (_) are
 |-|-|-|
 | _set_method | Set a script method | {"language" : "js", "method" : (value), "encode": <EncodeType>, "script" : (value)} |
 
-
-#### Supprted Programming Languages
-
-You can combined .....
-
-##### JavaScript
-
-In JavaScript JSON encode
-
-##### Java
-
-In Java, Base64
-
 ### Dynamic Methods
 
 Round prepares the following default dynamic methods. Developers can override the default functions using '_set_method'.
@@ -68,6 +55,34 @@ The following methods is defined in Round using the native programming language 
 | Target | O | Operation Target | DEST | DEST, ALL, Number |
 | Data | O | Operation data | (NULL) | - |
 
+## Supprted Programming Languages
+
+You can combined .....
+
+##### JavaScript
+
+In JavaScript JSON encode
+
+##### Java
+
+In Java, Base64
+
+Camelcase
+
+| Method | Java Class |
+|-|-|
+| _get_node_name | _GetNodeName |
+
+```
+public class _GetNodeName {
+  public _GetNodeName() {
+  }
+  public String run(String params) {
+    .....
+    return results;
+  }
+}
+```
 
 ## Examples
 

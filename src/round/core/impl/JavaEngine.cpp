@@ -15,19 +15,21 @@
 #include <round/core/impl/Java.h>
 
 Round::JavaEngine::JavaEngine() : ScriptEngine(Java::LANGUAGE) {
-  JavaVMInitArgs vm_args; /* JDK/JRE 6 VM initialization arguments */
-  JavaVMOption* options = new JavaVMOption[1];
-#if defined(ROUND_UES_JVMOPTIONS)
-  vm_args.version = JNI_VERSION_1_6;
-  vm_args.nOptions = 1;
-  vm_args.options = options;
+  JavaVMInitArgs vm_args;
   vm_args.ignoreUnrecognized = false;
+  vm_args.nOptions = 0  ;
+  
+#if defined(ROUND_UES_JVMOPTIONS)
+  JavaVMOption* options = new JavaVMOption[1];
+  vm_args.version = JNI_VERSION_1_6;
+  vm_args.options = options;
 #endif
   
-  /* load and initialize a Java VM, return a JNI interface pointer in env */
   JNI_CreateJavaVM(&this->jvm, (void**)&this->jniEnv, &vm_args);
   
+#if defined(ROUND_UES_JVMOPTIONS)
   delete options;
+#endif
 }
 
 bool Round::JavaEngine::run(const Script *jsScript, const ScriptParams &params, ScriptResults *results, Error *error) const {
@@ -38,7 +40,11 @@ bool Round::JavaEngine::run(const Script *jsScript, const ScriptParams &params, 
   
   jobject scriptObject = this->jniEnv->NewObject(clazz, initMethodID);
   
-  jstring jstringResults = (jstring)this->jniEnv->CallObjectMethod(scriptObject, methodId);
+  jstring jstringParams = this->jniEnv->NewStringUTF(params.c_str());
+  
+  jstring jstringResults = (jstring)this->jniEnv->CallObjectMethod(scriptObject, methodId, jstringParams);
+  
+  
   const char* stringResults = this->jniEnv->GetStringUTFChars(jstringResults, NULL);
   *results = stringResults;
   this->jniEnv->ReleaseStringUTFChars(jstringResults, stringResults);
