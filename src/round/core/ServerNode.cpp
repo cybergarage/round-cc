@@ -14,6 +14,9 @@
 #include <round/common/StringTokenizer.h>
 #include <round/core/Log.h>
 
+const std::string Round::ServerNode::HTTP_JSON_RPC_ENTRYPOINT  = "/rpc/do";
+const std::string Round::ServerNode::HTTP_JSON_RPC_CONTENTTYPE = "application/json-rpc";
+
 Round::ServerNode::ServerNode() {
 }
 
@@ -124,6 +127,7 @@ Round::HttpStatusCode Round::ServerNode::httpDatabaseRequestRecieved(uHTTP::HTTP
 
 Round::HttpStatusCode Round::ServerNode::httpStatusRequestRecieved(uHTTP::HTTPRequest *httpReq, const std::string &uri) {
   Error error;
+  
   /*
   if (uri.find(HTTP::URI::STATUS_NODE) == 0) {
     NodeStatus nodeStatus;
@@ -141,6 +145,14 @@ Round::HttpStatusCode Round::ServerNode::httpStatusRequestRecieved(uHTTP::HTTPRe
    */
   
   return uHTTP::HTTP::BAD_REQUEST;
+}
+
+bool Round::ServerNode::isNodeRpcRequest(const std::string &method, const std::string &uri) {
+  if (method.compare("PUT") == 0) {
+    if (uri.compare(HTTP_JSON_RPC_ENTRYPOINT) == 0)
+      return true;
+  }
+  return false;
 }
 
 bool Round::ServerNode::isNodeHttpRequest(const std::string &method, const std::string &uri) {

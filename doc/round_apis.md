@@ -10,7 +10,7 @@
 | Parameter | Value |
 |-|-|
 | ENDPOINT | /rpc/do |
-
+| | application/json-rpc |
 ### Request
 
 | Parameter | M/U | Detail | Default | Constants |
@@ -22,6 +22,7 @@ HTTP or HTTPU
 
 ```
 PUT /rpc/do HTTP/1.1
+Accept : "application/json-rpc"
 {
   "jsonrpc": "2.0",
   "method": "subtract",

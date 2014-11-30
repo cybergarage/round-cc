@@ -20,6 +20,10 @@ namespace Round {
 typedef uHTTP::HTTP::StatusCode HttpStatusCode;
 
 class ServerNode : public LocalNode {
+public:
+  static const std::string HTTP_JSON_RPC_ENTRYPOINT;
+  static const std::string HTTP_JSON_RPC_CONTENTTYPE;
+  
  public:
   ServerNode();
   virtual ~ServerNode();
@@ -56,6 +60,7 @@ protected:
 
 private:
 
+  bool isNodeRpcRequest(const std::string &method, const std::string &uri);
   bool isNodeRootHttpRequest(const std::string &method, const std::string &uri);
   bool isNodeDocumentRequest(const std::string &method, const std::string &uri);
   bool isNodeStatusHttpRequest(const std::string &method, const std::string &uri);
