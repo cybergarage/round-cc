@@ -147,6 +147,25 @@ Round::HttpStatusCode Round::ServerNode::httpStatusRequestRecieved(uHTTP::HTTPRe
   return uHTTP::HTTP::BAD_REQUEST;
 }
 
+Round::HttpStatusCode Round::ServerNode::httpNodeRpcRequestReceived(uHTTP::HTTPRequest *httpReq) {
+  std::string httpContent = httpReq->getContent();
+  if (httpContent.length() <= 0)
+    return uHTTP::HTTP::BAD_REQUEST;
+  
+  JSONParser jsonParser;
+  if (jsonParser.parse(httpContent) == false)
+    return uHTTP::HTTP::BAD_REQUEST;
+  
+  if (jsonParser.getObject()->isDictionary() == false)
+    return uHTTP::HTTP::BAD_REQUEST;
+  
+  JSONDictionary *reqDict = static_cast<JSONDictionary *>(jsonParser.getObject());
+  if (!reqDict)
+    return uHTTP::HTTP::BAD_REQUEST;
+  
+  return uHTTP::HTTP::BAD_REQUEST;
+}
+
 bool Round::ServerNode::isNodeRpcRequest(const std::string &method, const std::string &uri) {
   if (method.compare("PUT") == 0) {
     if (uri.compare(HTTP_JSON_RPC_ENTRYPOINT) == 0)

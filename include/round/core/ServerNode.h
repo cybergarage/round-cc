@@ -65,6 +65,8 @@ private:
   bool isNodeDocumentRequest(const std::string &method, const std::string &uri);
   bool isNodeStatusHttpRequest(const std::string &method, const std::string &uri);
 
+  HttpStatusCode httpNodeRpcRequestReceived(uHTTP::HTTPRequest *httpReq);
+  
   HttpStatusCode postJSONResponse(uHTTP::HTTPRequest *httpReq, const JSONObject &jsonObject);
 
   HttpStatusCode httpGetRequestDictionaries(uHTTP::HTTPRequest *httpReq, JSONDictionary *dataDict, JSONDictionary *optionDict);

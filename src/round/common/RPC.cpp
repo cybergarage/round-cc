@@ -8,7 +8,7 @@
 *
 ******************************************************************/
 
-#include <round/core/RPC.h>
+#include <round/common/RPC.h>
 #include <uhttp/HTTP.h>
 
 /*

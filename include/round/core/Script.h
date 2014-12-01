@@ -15,7 +15,7 @@
 #include <map>
 
 #include <round/common/Error.h>
-#include <round/core/RPC.h>
+#include <round/common/RPC.h>
 
 namespace Round {
 

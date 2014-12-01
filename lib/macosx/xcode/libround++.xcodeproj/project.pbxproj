@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		210461661A2C25D2008927A6 /* RPC.h in Headers */ = {isa = PBXBuildFile; fileRef = 210461651A2C25D2008927A6 /* RPC.h */; };
-		210461681A2C294B008927A6 /* RPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210461671A2C294B008927A6 /* RPC.cpp */; };
 		2104C9BD1A21BBEA0049DA92 /* Script.h in Headers */ = {isa = PBXBuildFile; fileRef = 2104C9BC1A21BBEA0049DA92 /* Script.h */; };
 		2104C9BF1A21BC640049DA92 /* Script.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2104C9BE1A21BC640049DA92 /* Script.cpp */; };
 		2104C9C61A21E6D30049DA92 /* JavaScript.h in Headers */ = {isa = PBXBuildFile; fileRef = 2104C9C51A21E6D30049DA92 /* JavaScript.h */; };
@@ -38,6 +36,8 @@
 		2184F2191A19B62C007F1326 /* NodeRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2171A19B62C007F1326 /* NodeRequest.cpp */; };
 		2184F21A1A19B62C007F1326 /* NodeResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2181A19B62C007F1326 /* NodeResponse.cpp */; };
 		2188042B1A22EF690053473E /* JavaScriptEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2188042A1A22EF690053473E /* JavaScriptEngine.cpp */; };
+		21C169791A2CA5970059D95E /* RPC.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C169781A2CA5970059D95E /* RPC.h */; };
+		21C1697B1A2CA60A0059D95E /* RPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C1697A1A2CA60A0059D95E /* RPC.cpp */; };
 		21CCABC51A145AAF00FE57DF /* ConsoleClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 21CCABC31A145AAF00FE57DF /* ConsoleClient.h */; };
 		21CCABC61A145AAF00FE57DF /* ConsoleError.h in Headers */ = {isa = PBXBuildFile; fileRef = 21CCABC41A145AAF00FE57DF /* ConsoleError.h */; };
 		21CCABCA1A145AC900FE57DF /* ConsoleClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21CCABC81A145AC900FE57DF /* ConsoleClient.cpp */; };
@@ -146,8 +146,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		210461651A2C25D2008927A6 /* RPC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPC.h; sourceTree = "<group>"; };
-		210461671A2C294B008927A6 /* RPC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPC.cpp; sourceTree = "<group>"; };
 		2104C9BC1A21BBEA0049DA92 /* Script.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Script.h; sourceTree = "<group>"; };
 		2104C9BE1A21BC640049DA92 /* Script.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Script.cpp; sourceTree = "<group>"; };
 		2104C9C51A21E6D30049DA92 /* JavaScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaScript.h; sourceTree = "<group>"; };
@@ -178,6 +176,8 @@
 		2184F2181A19B62C007F1326 /* NodeResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeResponse.cpp; sourceTree = "<group>"; };
 		2188042A1A22EF690053473E /* JavaScriptEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JavaScriptEngine.cpp; sourceTree = "<group>"; };
 		21A9FFAA154014F300BDFCDC /* liblibround++.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "liblibround++.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		21C169781A2CA5970059D95E /* RPC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPC.h; sourceTree = "<group>"; };
+		21C1697A1A2CA60A0059D95E /* RPC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPC.cpp; sourceTree = "<group>"; };
 		21CCABC31A145AAF00FE57DF /* ConsoleClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleClient.h; sourceTree = "<group>"; };
 		21CCABC41A145AAF00FE57DF /* ConsoleError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleError.h; sourceTree = "<group>"; };
 		21CCABC81A145AC900FE57DF /* ConsoleClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleClient.cpp; sourceTree = "<group>"; };
@@ -300,7 +300,6 @@
 				21DA08811A17457D00D3DCE0 /* NodeMessage.h */,
 				21DA085A1A17424A00D3DCE0 /* NodeStatus.h */,
 				21DA085B1A17424A00D3DCE0 /* RemoteNode.h */,
-				210461651A2C25D2008927A6 /* RPC.h */,
 				2104C9BC1A21BBEA0049DA92 /* Script.h */,
 				21DA08D01A175F1000D3DCE0 /* ServerNode.h */,
 				21DA08C61A175E7500D3DCE0 /* impl */,
@@ -311,7 +310,6 @@
 		21620E501A147A6400690EA8 /* core */ = {
 			isa = PBXGroup;
 			children = (
-				210461671A2C294B008927A6 /* RPC.cpp */,
 				2184F20F1A1993A3007F1326 /* ClientCore.cpp */,
 				21DA08651A17426500D3DCE0 /* Cluster.cpp */,
 				21DA08661A17426500D3DCE0 /* ClusterList.cpp */,
@@ -452,6 +450,7 @@
 		21DE68061A13B3D60049227E /* common */ = {
 			isa = PBXGroup;
 			children = (
+				21C169781A2CA5970059D95E /* RPC.h */,
 				21DE68071A13B3D60049227E /* BitOption.h */,
 				21DE68081A13B3D60049227E /* Clock.h */,
 				21DE68091A13B3D60049227E /* Cloneable.h */,
@@ -491,6 +490,7 @@
 		21DE68371A13B3EA0049227E /* common */ = {
 			isa = PBXGroup;
 			children = (
+				21C1697A1A2CA60A0059D95E /* RPC.cpp */,
 				210E57831A29A574000B60FC /* Java.cpp */,
 				210E57841A29A574000B60FC /* JavaEngine.cpp */,
 				21DE685C1A13B3EA0049227E /* BitOption.cpp */,
@@ -585,7 +585,7 @@
 				21620E4D1A147A5600690EA8 /* Log.h in Headers */,
 				21620E541A14807D00690EA8 /* NodeConfig.h in Headers */,
 				21DE68A01A13B3EA0049227E /* SHA1.h in Headers */,
-				210461661A2C25D2008927A6 /* RPC.h in Headers */,
+				21C169791A2CA5970059D95E /* RPC.h in Headers */,
 				21DA08D11A175F1000D3DCE0 /* ServerNode.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -686,7 +686,7 @@
 				21DE68851A13B3EA0049227E /* ConsistentHashNode.cpp in Sources */,
 				21DE68971A13B3EA0049227E /* NotificationObserver.cpp in Sources */,
 				212BFD181A1D0056002549F0 /* Node.cpp in Sources */,
-				210461681A2C294B008927A6 /* RPC.cpp in Sources */,
+				21C1697B1A2CA60A0059D95E /* RPC.cpp in Sources */,
 				21CCABCB1A145AC900FE57DF /* ConsoleError.cpp in Sources */,
 				21DE689D1A13B3EA0049227E /* Semaphore.cpp in Sources */,
 				2188042B1A22EF690053473E /* JavaScriptEngine.cpp in Sources */,
