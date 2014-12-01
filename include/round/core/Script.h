@@ -15,6 +15,7 @@
 #include <map>
 
 #include <round/common/Error.h>
+#include <round/core/RPC.h>
 
 namespace Round {
 
@@ -85,18 +86,18 @@ public:
   void clear();
 };
 
-enum JavaScriptEngineStatus {
+enum ScriptEngineStatus {
   ScriptEngineStatusOk          = 200,
   ScriptEngineStatusBadRequest  = 400,
 };
 
-enum JavaScriptManagerDetailErrorStatus {
+enum ScriptManagerDetailErrorStatus {
   ScriptManagerDetailStatusOk                   = 0,
-  ScriptManagerDetailStatusParserError          = -32700,
-  ScriptManagerDetailStatusInvalidRequest       = -32600,
-  ScriptManagerDetailStatusMethodNotFound       = -32601,
-  ScriptManagerDetailStatusInvalidParams        = -32602,
-  ScriptManagerDetailStatusInternalError        = -32603,
+  ScriptManagerDetailStatusParserError          = RPC::JSON::DetailStatusParserError,
+  ScriptManagerDetailStatusInvalidRequest       = RPC::JSON::DetailStatusInvalidRequest,
+  ScriptManagerDetailStatusMethodNotFound       = RPC::JSON::DetailStatusMethodNotFound,
+  ScriptManagerDetailStatusInvalidParams        = RPC::JSON::DetailStatusInvalidParams,
+  ScriptManagerDetailStatusInternalError        = RPC::JSON::DetailStatusInternalError,
   ScriptManagerDetailStatusSourceNotFound       = -32000,
   ScriptManagerDetailStatusScriptEngineNotFound = -32001,
   ScriptManagerDetailStatusCompileError         = -32002,
