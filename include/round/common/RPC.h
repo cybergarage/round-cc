@@ -11,10 +11,7 @@
 #ifndef _ROUNDCC_RPC_H_
 #define _ROUNDCC_RPC_H_
 
-#include <string>
-#include <map>
-
-#include <round/common/Error.h>
+#include <round/common/Message.h>
 
 namespace Round {
 
@@ -36,6 +33,14 @@ namespace HTTP {
   int JSONDetailStatus2HTTPStatus(int jsonDetailStatus);
 }
 
+class Message : public ::Round::Message {
+  public:
+    static const std::string KEY_CLOCK;
+    
+  public:
+    Message();
+    virtual ~Message();
+  };
 }
   
 }

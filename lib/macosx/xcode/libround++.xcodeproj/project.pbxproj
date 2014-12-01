@@ -38,6 +38,7 @@
 		2188042B1A22EF690053473E /* JavaScriptEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2188042A1A22EF690053473E /* JavaScriptEngine.cpp */; };
 		21C169791A2CA5970059D95E /* RPC.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C169781A2CA5970059D95E /* RPC.h */; };
 		21C1697B1A2CA60A0059D95E /* RPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C1697A1A2CA60A0059D95E /* RPC.cpp */; };
+		21C1697E1A2CAD960059D95E /* Message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C1697D1A2CAD960059D95E /* Message.cpp */; };
 		21CCABC51A145AAF00FE57DF /* ConsoleClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 21CCABC31A145AAF00FE57DF /* ConsoleClient.h */; };
 		21CCABC61A145AAF00FE57DF /* ConsoleError.h in Headers */ = {isa = PBXBuildFile; fileRef = 21CCABC41A145AAF00FE57DF /* ConsoleError.h */; };
 		21CCABCA1A145AC900FE57DF /* ConsoleClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21CCABC81A145AC900FE57DF /* ConsoleClient.cpp */; };
@@ -178,6 +179,7 @@
 		21A9FFAA154014F300BDFCDC /* liblibround++.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "liblibround++.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21C169781A2CA5970059D95E /* RPC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPC.h; sourceTree = "<group>"; };
 		21C1697A1A2CA60A0059D95E /* RPC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPC.cpp; sourceTree = "<group>"; };
+		21C1697D1A2CAD960059D95E /* Message.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Message.cpp; sourceTree = "<group>"; };
 		21CCABC31A145AAF00FE57DF /* ConsoleClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleClient.h; sourceTree = "<group>"; };
 		21CCABC41A145AAF00FE57DF /* ConsoleError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleError.h; sourceTree = "<group>"; };
 		21CCABC81A145AC900FE57DF /* ConsoleClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleClient.cpp; sourceTree = "<group>"; };
@@ -376,6 +378,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		21C1697C1A2CAD960059D95E /* rpc */ = {
+			isa = PBXGroup;
+			children = (
+				21C1697D1A2CAD960059D95E /* Message.cpp */,
+			);
+			path = rpc;
+			sourceTree = "<group>";
+		};
 		21CCABC21A145AAF00FE57DF /* ui */ = {
 			isa = PBXGroup;
 			children = (
@@ -490,6 +500,7 @@
 		21DE68371A13B3EA0049227E /* common */ = {
 			isa = PBXGroup;
 			children = (
+				21C1697C1A2CAD960059D95E /* rpc */,
 				21C1697A1A2CA60A0059D95E /* RPC.cpp */,
 				210E57831A29A574000B60FC /* Java.cpp */,
 				210E57841A29A574000B60FC /* JavaEngine.cpp */,
@@ -707,6 +718,7 @@
 				21DE68951A13B3EA0049227E /* Mutex.cpp in Sources */,
 				21E6AAA61A28BF83004E6762 /* ScriptEngineMap.cpp in Sources */,
 				2104C9BF1A21BC640049DA92 /* Script.cpp in Sources */,
+				21C1697E1A2CAD960059D95E /* Message.cpp in Sources */,
 				21DE68921A13B3EA0049227E /* Message.cpp in Sources */,
 				21DE689C1A13B3EA0049227E /* Random.cpp in Sources */,
 				21DA08C11A174EAB00D3DCE0 /* NodeMessage.cpp in Sources */,
