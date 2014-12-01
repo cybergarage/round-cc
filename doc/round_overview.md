@@ -1,4 +1,4 @@
-![round_logo](./img/round_logo.png)
+![round_logo](img/round_logo.png)
 
 # Overview
 
@@ -14,7 +14,7 @@ Round is desined based on the following characteristics.
 
 In typical cloud systems, some configurations such as the ip address and the service port are needed to add a new node manually, but the manual configurations are obstacle for auto scale distributed systems. In Round, all new nodes are added into a cluster without special configuration and the nodes are available soon automatically.
 
-![round_overview_zeroconf](/img/round_overview_zeroconf.svg)
+![round_overview_zeroconf](img/round_overview_zeroconf.svg)
 
 In Round, some noficication events are defined for the node statues. When a node status is changed, the notification message is sent to all other nodes  in the same cluster. For example, each existing node is recieved a notirication message when a new node is added or removed.
 
@@ -22,7 +22,7 @@ In Round, some noficication events are defined for the node statues. When a node
 
 Round is a decentralized and distributed system, every nodes in a cluster has equal roll, the cluster has no master node. In typical distributed systems are centric, they has a master node. Round manages all nodes in the cluster using a structured networking base on based on [distributed hash table](http://en.wikipedia.org/wiki/Distributed_hash_table) as default.
 
-![round_overview_zeroconf](/img/round_overview_decentralized.svg)
+![round_overview_zeroconf](img/round_overview_decentralized.svg)
 
 However, Round can support other networking structure too because every nodes can manage networking structure of the cluster in accordance with a specified strategy. To manage the networking structure in Round, see the related section in [Round Internals](./round_internals.md).
 
@@ -36,7 +36,7 @@ Some coordinating frameworks for distributed systems such as [ZooKeeper](http://
 
 Each node run as an autonomous agent in the cluster, a node communicate to other nodes based on the specified behaviors using the message protocol synchronously or asynchronously.
 
-![round_overview_autonomous](/img/round_overview_autonomous.svg)
+![round_overview_autonomous](img/round_overview_autonomous.svg)
 
 The some basic behaviors are defined as default, and developers can override the default behaviors or add new behaviors using some programming languages such as JavaScript or Java.
 
@@ -44,13 +44,13 @@ The some basic behaviors are defined as default, and developers can override the
 
 The behaviors of node are defined using a dynamic programming language script, so the distributed strategies and algorithms are configurable dynamically. To send a script, developers can change the strategy and algorithm of all nodes in the cluster dynamically.
 
-![round_overview_dynamics](/img/round_overview_dynamics.svg)
+![round_overview_dynamics](img/round_overview_dynamics.svg)
 
 ### Immutable
 
 When a node is suspected of failing by other nodes in the cluster, the node will be removed and disposed. Once a node is disposed, the node will not be able to become active because the suspected node will might occur unexpected problems such as [Byzantine generals problem](http://en.wikipedia.org/wiki/Byzantine_fault_tolerance).
 
-![round_overview_immutable](/img/round_overview_immutable.svg)
+![round_overview_immutable](img/round_overview_immutable.svg)
 
 To add a node instead of the disposed node into the cluster, developers should create a new node and add the node newly into the cluster.
 
