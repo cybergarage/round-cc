@@ -26,13 +26,19 @@ Round is a decentralized and distributed system, every nodes in a cluster has eq
 
 However, Round can support other networking structure too because every nodes can manage networking structure of the cluster in accordance with a specified strategy. To manage the networking structure in Round, see the related section in [Round Internals](./round_internals.md).
 
+### Simplify
+
+To add the method implementations.
+
+Some coordinating frameworks for distributed systems such as [ZooKeeper](http://zookeeper.apache.org) are based on notification events using synchronous connection. In Round, even the notification events are implemented as the node methods without the synchronous connection.
+
 ### Autonomous
 
 Each node run as an autonomous agent in the cluster, a node communicate to other nodes based on the specified behaviors using the message protocol synchronously or asynchronously.
 
 ![round_overview_autonomous](/img/round_overview_autonomous.svg)
 
-The some basic behaviors are defined as default, and developers can add new behaviors using a dynamic programming language script.
+The some basic behaviors are defined as default, and developers can override the default behaviors or add new behaviors using some programming languages such as JavaScript or Java.
 
 ### Dynamics
 
