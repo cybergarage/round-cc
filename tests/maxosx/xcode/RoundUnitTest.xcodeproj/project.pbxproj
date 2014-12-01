@@ -11,6 +11,7 @@
 		2104C9CA1A21E77E0049DA92 /* JavaScriptTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2104C9C91A21E77E0049DA92 /* JavaScriptTests.cpp */; };
 		210E578C1A29A73E000B60FC /* JavaVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 210E578A1A29A73E000B60FC /* JavaVM.framework */; };
 		215C20BB1A13B6C000CE71E2 /* RoundTestMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215C20BA1A13B6C000CE71E2 /* RoundTestMain.cpp */; };
+		217727821A2CE5E4001B4CE0 /* RPCMessageTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217727811A2CE5E4001B4CE0 /* RPCMessageTests.cpp */; };
 		2184F2041A18E359007F1326 /* ClientTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F1FF1A18E359007F1326 /* ClientTests.cpp */; };
 		2184F2051A18E359007F1326 /* NodeFinderTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2001A18E359007F1326 /* NodeFinderTests.cpp */; };
 		2184F2061A18E359007F1326 /* RemoteNodeTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2011A18E359007F1326 /* RemoteNodeTests.cpp */; };
@@ -116,6 +117,7 @@
 		215C20B21A13B6A000CE71E2 /* libround++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libround++.xcodeproj"; path = "../../../lib/macosx/xcode/libround++.xcodeproj"; sourceTree = "<group>"; };
 		215C20B91A13B6C000CE71E2 /* RoundTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoundTest.h; path = ../../RoundTest.h; sourceTree = "<group>"; };
 		215C20BA1A13B6C000CE71E2 /* RoundTestMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RoundTestMain.cpp; path = ../../RoundTestMain.cpp; sourceTree = "<group>"; };
+		217727811A2CE5E4001B4CE0 /* RPCMessageTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCMessageTests.cpp; sourceTree = "<group>"; };
 		2184F1FF1A18E359007F1326 /* ClientTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClientTests.cpp; sourceTree = "<group>"; };
 		2184F2001A18E359007F1326 /* NodeFinderTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeFinderTests.cpp; sourceTree = "<group>"; };
 		2184F2011A18E359007F1326 /* RemoteNodeTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RemoteNodeTests.cpp; sourceTree = "<group>"; };
@@ -229,9 +231,18 @@
 			name = Sources;
 			sourceTree = "<group>";
 		};
+		217727801A2CE5E4001B4CE0 /* rpc */ = {
+			isa = PBXGroup;
+			children = (
+				217727811A2CE5E4001B4CE0 /* RPCMessageTests.cpp */,
+			);
+			path = rpc;
+			sourceTree = "<group>";
+		};
 		21AD42771A13B7FC00741A08 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				217727801A2CE5E4001B4CE0 /* rpc */,
 				21DA08BD1A174C1300D3DCE0 /* TestNode.h */,
 				21AD428B1A13B7FC00741A08 /* BitOptionTests.cpp */,
 				21AD428C1A13B7FC00741A08 /* ClockTests.cpp */,
@@ -426,6 +437,7 @@
 				21DA08B91A174A4900D3DCE0 /* NodeTests.cpp in Sources */,
 				21AD42A71A13B7FC00741A08 /* MutexTests.cpp in Sources */,
 				215C20BB1A13B6C000CE71E2 /* RoundTestMain.cpp in Sources */,
+				217727821A2CE5E4001B4CE0 /* RPCMessageTests.cpp in Sources */,
 				21AD42A81A13B7FC00741A08 /* NotificationTests.cpp in Sources */,
 				21AD42A11A13B7FC00741A08 /* DictionaryTests.cpp in Sources */,
 			);

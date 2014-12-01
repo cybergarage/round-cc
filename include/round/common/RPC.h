@@ -34,9 +34,17 @@ namespace HTTP {
 }
 
 class Message : public ::Round::Message {
-  public:
-    static const std::string KEY_CLOCK;
-    
+ public:
+  static const std::string VERSION;
+  
+  static const std::string JSON_RPC;
+  static const std::string METHOD;
+  static const std::string PARAMS;
+  static const std::string ID;
+  static const std::string ERROR;
+  static const std::string CODE;
+  static const std::string MESSAGE;
+  
   public:
     Message();
     virtual ~Message();
