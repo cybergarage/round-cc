@@ -11,6 +11,7 @@
 #ifndef _ROUNDCC_RPC_H_
 #define _ROUNDCC_RPC_H_
 
+#include <round/common/Error.h>
 #include <round/common/Message.h>
 
 namespace Round {
@@ -45,10 +46,42 @@ class Message : public ::Round::Message {
   static const std::string CODE;
   static const std::string MESSAGE;
   
-  public:
-    Message();
-    virtual ~Message();
-  };
+ public:
+  Message();
+  virtual ~Message();
+
+  bool getVersion(std::string *value) const {
+    return get(JSON_RPC, value);
+  }
+
+  bool setMethod(const std::string &value) {
+    return set(METHOD, value);
+  }
+  
+  bool getMethod(std::string *value) const {
+    return get(METHOD, value);
+  }
+
+  bool setParams(const std::string &value) {
+    return set(PARAMS, value);
+  }
+  
+  bool getParams(std::string *value) const {
+    return get(PARAMS, value);
+  }
+
+  bool setId(const std::string &value) {
+    return set(ID, value);
+  }
+  
+  bool getId(std::string *value) const {
+    return get(ID, value);
+  }
+  
+  bool setError(const Error &error);
+  bool getError(Error *error);
+};
+
 }
   
 }

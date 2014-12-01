@@ -25,3 +25,37 @@ Round::RPC::JSON::Message::Message() {
 
 Round::RPC::JSON::Message::~Message() {
 }
+
+bool Round::RPC::JSON::Message::setError(const Error &error) {
+  JSONDictionary *errorDict = new JSONDictionary();
+  if (!errorDict)
+    return false;
+  errorDict->set(CODE, error.getCode());
+  errorDict->set(MESSAGE, error.getMessage());
+  
+  return set(ERROR, errorDict);
+}
+
+bool Round::RPC::JSON::Message::getError(Error *error) {
+  if (!error)
+    return false;
+  
+  JSONObject *errorObj;
+  if (!get(ERROR, &errorObj))
+    return false;
+  JSONDictionary *errorDict = dynamic_cast<JSONDictionary *>(errorObj);
+  if (!errorDict)
+    return false;
+  
+  int errorCode;
+  if (!errorDict->get(CODE, &errorCode))
+    return false;
+  error->setCode(errorCode);
+  
+  std::string errorMsg;
+  if (!errorDict->get(MESSAGE, &errorMsg))
+    return false;
+  error->setMessage(errorMsg);
+  
+  return true;
+}
