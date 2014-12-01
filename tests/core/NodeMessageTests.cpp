@@ -21,3 +21,16 @@ BOOST_AUTO_TEST_CASE(NodeMessageNewTest) {
   delete msg;
 }
 
+BOOST_AUTO_TEST_CASE(NodeMessageClockTest) {
+  time_t timeValue = time(NULL);
+  Clock clock(timeValue);
+  
+  NodeMessage msg;
+  Clock retClock;
+  
+  BOOST_CHECK(!msg.getClock(&retClock));
+  
+  msg.setClock(clock);
+  BOOST_CHECK(msg.getClock(&retClock));
+  BOOST_CHECK_EQUAL(retClock.getValue(), timeValue);
+}

@@ -20,20 +20,6 @@ using namespace Round;
 
 #define FRACTAL_MESSAGE_BASIC_TEST_COUNT 10
 
-BOOST_AUTO_TEST_CASE(RoundMessageClockTest) {
-  time_t timeValue = time(NULL);
-  Clock clock(timeValue);
-
-  Message msg;
-  Clock retClock;
-
-  BOOST_CHECK(!msg.getClock(&retClock));
-
-  msg.setClock(clock);
-  BOOST_CHECK(msg.getClock(&retClock));
-  BOOST_CHECK_EQUAL(retClock.getValue(), timeValue);
-}
-
 BOOST_AUTO_TEST_CASE(RoundMessageManagerTest) {
   MessageManager msgMgr;
 

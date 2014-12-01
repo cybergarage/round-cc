@@ -22,6 +22,10 @@ public:
  public:
   NodeMessage();
   virtual ~NodeMessage();
+
+  void setClock(const Clock &clock);
+  bool hasClock() const;
+  bool getClock(Clock *clock) const;
 };
 
 class NodeRequest : public NodeMessage {

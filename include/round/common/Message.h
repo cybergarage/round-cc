@@ -28,10 +28,6 @@ public:
   
   Message();
   ~Message();
-
-  void setClock(const Clock &clock);
-  bool hasClock() const;
-  bool getClock(Clock *clock) const;
 };
 
 class MessageQueue : private std::queue<std::string> {
