@@ -10,8 +10,21 @@
 
 package org.cybergarage.round.node;
 
+import java.net.InetAddress;
+
 public class Node
 {
-	public Node() {
+	private InetAddress host;
+	
+	public Node(InetAddress host) {
+		this.host = host;
+	}
+	
+	public InetAddress getHost() {
+		return host;
+	}
+
+	public boolean postMessage() {
+		return false;
 	}
 }
