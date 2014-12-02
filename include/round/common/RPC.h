@@ -42,6 +42,7 @@ class Message : public ::Round::Message {
   static const std::string METHOD;
   static const std::string PARAMS;
   static const std::string ID;
+  static const std::string RESULT;
   static const std::string ERROR;
   static const std::string CODE;
   static const std::string MESSAGE;
@@ -70,6 +71,14 @@ class Message : public ::Round::Message {
     return get(PARAMS, value);
   }
 
+  bool setResult(const std::string &value) {
+    return set(RESULT, value);
+  }
+  
+  bool getResult(std::string *value) const {
+    return get(RESULT, value);
+  }
+  
   bool setId(const std::string &value) {
     return set(ID, value);
   }

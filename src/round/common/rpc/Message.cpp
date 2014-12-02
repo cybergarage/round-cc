@@ -18,6 +18,7 @@ const std::string Round::RPC::JSON::Message::ID = "id";
 const std::string Round::RPC::JSON::Message::ERROR = "error";
 const std::string Round::RPC::JSON::Message::CODE = "code";
 const std::string Round::RPC::JSON::Message::MESSAGE = "message";
+const std::string Round::RPC::JSON::Message::RESULT = "result";
 
 Round::RPC::JSON::Message::Message() {
   set(JSON_RPC, VERSION);

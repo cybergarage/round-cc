@@ -46,10 +46,37 @@ BOOST_AUTO_TEST_CASE(RoundRPCMessageMethodTest) {
   BOOST_CHECK(rpcMsg.getId(&id));
   BOOST_CHECK_EQUAL(id.compare(TEST_ID), 0);
 
+  const std::string TEST_RESULT = "{\"value\":1}";
+  std::string result;
+  BOOST_CHECK(!rpcMsg.getResult(&params));
+  BOOST_CHECK(rpcMsg.setResult(TEST_RESULT));
+  BOOST_CHECK(rpcMsg.getParams(&result));
+  BOOST_CHECK_EQUAL(result.compare(TEST_RESULT), 0);
+  
   Error TEST_ERROR(12345, "12345");
   Error err;
   BOOST_CHECK(!rpcMsg.getError(&err));
   BOOST_CHECK(rpcMsg.setError(TEST_ERROR));
   BOOST_CHECK(rpcMsg.getError(&err));
   BOOST_CHECK(err.equals(TEST_ERROR));
+  
+  // Check again not to orverride.
+  
+  BOOST_CHECK_EQUAL(ver.compare(RPC::JSON::Message::VERSION), 0);
+  
+  BOOST_CHECK(rpcMsg.getMethod(&method));
+  BOOST_CHECK_EQUAL(method.compare(TEST_METHOD), 0);
+  
+  BOOST_CHECK(rpcMsg.getParams(&params));
+  BOOST_CHECK_EQUAL(params.compare(TEST_PARAMS), 0);
+  
+  BOOST_CHECK(rpcMsg.getId(&id));
+  BOOST_CHECK_EQUAL(id.compare(TEST_ID), 0);
+  
+  BOOST_CHECK(rpcMsg.getParams(&result));
+  BOOST_CHECK_EQUAL(result.compare(TEST_RESULT), 0);
+  
+  BOOST_CHECK(rpcMsg.getParams(&result));
+  BOOST_CHECK_EQUAL(result.compare(TEST_RESULT), 0);
+
 }
