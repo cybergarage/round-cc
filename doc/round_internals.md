@@ -2,6 +2,12 @@
 
 # Round Internals
 
+## Open Architecture
+
+Round consists some open standard network protocols and script engines.
+
+![round_protocol](./img/round_protocol.svg)
+
 ## Zeroconf
 
 Round is designed based on [Zeroconf](http://www.zeroconf.org/) concept to achieve automatically scalable distributed systems. Specifically, Round uses [UPnP](http://upnp.org), Universal Plug and Play, as [Zeroconf](http://www.zeroconf.org/) protocol.
@@ -26,6 +32,7 @@ Round will support other structues .....
 
 Node can communicate to other nodes in the same cluster using [RPC (remote procedure call)](http://en.wikipedia.org/wiki/Remote_procedure_call) over HTTP or HTTPU.
 
+###
 ### Protocol
 
 Round uses [JSON-RPC 2.0](http://www.jsonrpc.org/specification) over HTTP to execute [RPC](http://en.wikipedia.org/wiki/Remote_procedure_call). For efficient communication for between the nodes, we will support more efficient remote procedure call like  [BSON](http://bsonspec.org) in the future release.
