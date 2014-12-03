@@ -51,7 +51,7 @@ protected:
     this->serverPort = port;
   }
   
-  bool isNodeRpcRequest(const std::string &method, const std::string &uri);
+  bool isNodeRpcRequest(uHTTP::HTTPRequest *httpReq);
   HttpStatusCode httpBadRpcRequestRecieved(uHTTP::HTTPRequest *httpReq, int rpcErrorCode);
   HttpStatusCode httpNodeRpcRequestReceived(uHTTP::HTTPRequest *httpReq);
 

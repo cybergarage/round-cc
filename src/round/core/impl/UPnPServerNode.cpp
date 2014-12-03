@@ -195,12 +195,7 @@ bool Round::UPnPServerNode::queryControlReceived(CyberLink::StateVariable *state
 }
 
 uHTTP::HTTP::StatusCode Round::UPnPServerNode::httpRequestRecieved(uHTTP::HTTPRequest *httpReq) {
-  std::string method;
-  httpReq->getMethod(method);
-  std::string uri;
-  httpReq->getURI(uri);
-
-  if (isNodeRpcRequest(method, uri)) {
+  if (isNodeRpcRequest(httpReq)) {
     return ServerNode::httpNodeRpcRequestReceived(httpReq);
   }
   

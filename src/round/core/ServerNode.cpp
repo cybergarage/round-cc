@@ -50,7 +50,12 @@ Round::HttpStatusCode Round::ServerNode::httpBadRpcRequestRecieved(uHTTP::HTTPRe
   return httpReq->post(&httpRes);
 }
 
-bool Round::ServerNode::isNodeRpcRequest(const std::string &method, const std::string &uri) {
+bool Round::ServerNode::isNodeRpcRequest(uHTTP::HTTPRequest *httpReq) {
+  std::string method;
+  httpReq->getMethod(method);
+  std::string uri;
+  httpReq->getURI(uri);
+  
   if (method.compare("PUT") == 0) {
     if (uri.compare(HTTP_JSON_RPC_ENTRYPOINT) == 0)
       return true;
