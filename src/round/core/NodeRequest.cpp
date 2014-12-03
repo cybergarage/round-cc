@@ -35,3 +35,7 @@ bool Round::NodeRequest::isMethod(const std::string &method) const {
     return false;
   return (method.compare(reqMethod) == 0) ? true : false;
 }
+
+bool Round::NodeRequest::isValid() {
+  return false;
+}

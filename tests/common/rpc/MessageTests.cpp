@@ -18,7 +18,7 @@
 using namespace std;
 using namespace Round;
 
-BOOST_AUTO_TEST_CASE(RoundRPCMessageMethodTest) {
+BOOST_AUTO_TEST_CASE(RPCMessageMethodTest) {
   RPC::JSON::Message rpcMsg;
   
   std::string ver;
@@ -80,3 +80,33 @@ BOOST_AUTO_TEST_CASE(RoundRPCMessageMethodTest) {
   BOOST_CHECK_EQUAL(result.compare(TEST_RESULT), 0);
 
 }
+
+class TestMessageParser : public JSONParser {
+  
+public:
+  
+  TestMessageParser() {
+  }
+
+  JSONDictionary *createJSONDictionary() {
+    return new RPC::JSON::Request();
+  }
+};
+
+BOOST_AUTO_TEST_CASE(RPCRequestTest) {
+  TestMessageParser jsonParser;
+  RPC::JSON::Request *req;
+  
+  BOOST_CHECK(jsonParser.parse("{\"jsonrpc\": \"2.0\", \"method\": \"subtract\", \"params\": [42, 23], \"id\": 1}"));
+  req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getObject());
+  BOOST_CHECK(req);
+  BOOST_CHECK(req->isValid());
+  BOOST_CHECK(!req->isNotify());
+  
+  BOOST_CHECK(jsonParser.parse("{\"jsonrpc\": \"2.0\", \"method\": \"subtract\", \"params\": [42, 23]}"));
+  req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getObject());
+  BOOST_CHECK(req);
+  BOOST_CHECK(req->isValid());
+  BOOST_CHECK(req->isNotify());
+}
+

@@ -89,6 +89,24 @@ class Message : public ::Round::Message {
   
   bool setError(const Error &error);
   bool getError(Error *error);
+
+};
+
+class Request : public Message {
+ public:
+  Request();
+  virtual ~Request();
+
+  bool isValid();
+  bool isNotify();
+};
+
+class Response : public Message {
+ public:
+  Response();
+  virtual ~Response();
+    
+  bool isValid();
 };
 
 }

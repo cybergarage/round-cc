@@ -31,6 +31,8 @@
 		216E5FC91A13CBEE0043C28B /* Client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216E5FC61A13CBEE0043C28B /* Client.cpp */; };
 		216E5FCA1A13CBEE0043C28B /* Finder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216E5FC71A13CBEE0043C28B /* Finder.cpp */; };
 		216E5FCB1A13CBEE0043C28B /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216E5FC81A13CBEE0043C28B /* Server.cpp */; };
+		217727891A2F8499001B4CE0 /* Request.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217727881A2F8499001B4CE0 /* Request.cpp */; };
+		2177278B1A2F85F4001B4CE0 /* Response.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2177278A1A2F85F4001B4CE0 /* Response.cpp */; };
 		2184F20E1A19938E007F1326 /* ClientCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 2184F20D1A19938E007F1326 /* ClientCore.h */; };
 		2184F2101A1993A3007F1326 /* ClientCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F20F1A1993A3007F1326 /* ClientCore.cpp */; };
 		2184F2191A19B62C007F1326 /* NodeRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2171A19B62C007F1326 /* NodeRequest.cpp */; };
@@ -172,6 +174,8 @@
 		216E5FC61A13CBEE0043C28B /* Client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Client.cpp; sourceTree = "<group>"; };
 		216E5FC71A13CBEE0043C28B /* Finder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Finder.cpp; sourceTree = "<group>"; };
 		216E5FC81A13CBEE0043C28B /* Server.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Server.cpp; sourceTree = "<group>"; };
+		217727881A2F8499001B4CE0 /* Request.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Request.cpp; sourceTree = "<group>"; };
+		2177278A1A2F85F4001B4CE0 /* Response.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Response.cpp; sourceTree = "<group>"; };
 		2184F20D1A19938E007F1326 /* ClientCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientCore.h; sourceTree = "<group>"; };
 		2184F20F1A1993A3007F1326 /* ClientCore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClientCore.cpp; sourceTree = "<group>"; };
 		2184F2171A19B62C007F1326 /* NodeRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeRequest.cpp; sourceTree = "<group>"; };
@@ -384,6 +388,8 @@
 		21C1697C1A2CAD960059D95E /* rpc */ = {
 			isa = PBXGroup;
 			children = (
+				2177278A1A2F85F4001B4CE0 /* Response.cpp */,
+				217727881A2F8499001B4CE0 /* Request.cpp */,
 				21C1697D1A2CAD960059D95E /* Message.cpp */,
 			);
 			path = rpc;
@@ -691,9 +697,11 @@
 				21DE688D1A13B3EA0049227E /* JSONObject.cpp in Sources */,
 				21DE68A41A13B3EA0049227E /* ThreadList.cpp in Sources */,
 				21DA08761A17426500D3DCE0 /* NodeCore.cpp in Sources */,
+				2177278B1A2F85F4001B4CE0 /* Response.cpp in Sources */,
 				21DA08771A17426500D3DCE0 /* NodeFinder.cpp in Sources */,
 				21DE68831A13B3EA0049227E /* Configuration.cpp in Sources */,
 				21DA08731A17426500D3DCE0 /* ClusterList.cpp in Sources */,
+				217727891A2F8499001B4CE0 /* Request.cpp in Sources */,
 				21DA08D31A175F3100D3DCE0 /* ServerNode.cpp in Sources */,
 				21DA08791A17426500D3DCE0 /* NodeFinderObserver.cpp in Sources */,
 				216E5FCA1A13CBEE0043C28B /* Finder.cpp in Sources */,

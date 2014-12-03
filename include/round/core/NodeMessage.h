@@ -40,6 +40,8 @@ class NodeRequest : public NodeMessage {
   
   bool hasMethod() const;
   bool isMethod(const std::string &method) const;
+
+  bool isValid();
 };
 
 class NodeResponse : public NodeMessage {
