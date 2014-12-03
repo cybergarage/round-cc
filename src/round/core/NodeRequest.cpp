@@ -15,6 +15,9 @@
 
 const std::string Round::NodeRequest::KEY_METHOD = "_method";
 
+Round::NodeRequest::NodeRequest() {
+}
+
 Round::NodeRequest::NodeRequest(const std::string &method) {
   set(KEY_METHOD, method);
 }

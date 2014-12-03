@@ -78,7 +78,7 @@ Round::HttpStatusCode Round::ServerNode::httpNodeRpcRequestReceived(uHTTP::HTTPR
   JSONDictionary *reqDict = static_cast<JSONDictionary *>(jsonParser.getObject());
   if (!reqDict)
     return httpBadRpcRequestRecieved(httpReq, RPC::JSON::DetailStatusInvalidRequest);
-  
+
   return uHTTP::HTTP::BAD_REQUEST;
 }
 

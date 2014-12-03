@@ -33,6 +33,8 @@ class NodeRequest : public NodeMessage {
   static const std::string KEY_METHOD;
     
  public:
+  
+  NodeRequest();
   NodeRequest(const std::string &method);
   virtual ~NodeRequest();
   
@@ -48,6 +50,18 @@ public:
 public:
   NodeResponse();
   virtual ~NodeResponse();
+};
+  
+class NodeMessageRequestParser : public JSONParser {
+    
+  public:
+    
+    NodeMessageRequestParser();
+    virtual ~NodeMessageRequestParser();
+    
+    JSONDictionary *createJSONDictionary() {
+      return new NodeRequest();
+    }
 };
   
 }

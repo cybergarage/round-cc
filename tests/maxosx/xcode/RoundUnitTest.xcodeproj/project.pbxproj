@@ -50,6 +50,7 @@
 		21DA08B71A174A4900D3DCE0 /* NodeStatusTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08A41A174A4900D3DCE0 /* NodeStatusTests.cpp */; };
 		21DA08B91A174A4900D3DCE0 /* NodeTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08A71A174A4900D3DCE0 /* NodeTests.cpp */; };
 		21DA08BC1A174BB700D3DCE0 /* NodeListTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08BB1A174BB700D3DCE0 /* NodeListTests.cpp */; };
+		21F2C6421A2F4EEC001E62CA /* NodeMessageRequestParserTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F2C6411A2F4EEC001E62CA /* NodeMessageRequestParserTests.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +161,7 @@
 		21DA08BB1A174BB700D3DCE0 /* NodeListTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeListTests.cpp; sourceTree = "<group>"; };
 		21DA08BD1A174C1300D3DCE0 /* TestNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestNode.h; path = ../TestNode.h; sourceTree = "<group>"; };
 		21DE0ECF155B9EBA00A08E1F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		21F2C6411A2F4EEC001E62CA /* NodeMessageRequestParserTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeMessageRequestParserTests.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,6 +287,7 @@
 		21DA08931A174A4900D3DCE0 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				21F2C6411A2F4EEC001E62CA /* NodeMessageRequestParserTests.cpp */,
 				2104C9C91A21E77E0049DA92 /* JavaScriptTests.cpp */,
 				2104C9C21A21BED40049DA92 /* ScriptTests.cpp */,
 				2184F2111A1993B4007F1326 /* ClientCoreTests.cpp */,
@@ -423,6 +426,7 @@
 				2184F2121A1993B4007F1326 /* ClientCoreTests.cpp in Sources */,
 				21AD42A41A13B7FC00741A08 /* JSONParserTests.cpp in Sources */,
 				21AD429D1A13B7FC00741A08 /* BitOptionTests.cpp in Sources */,
+				21F2C6421A2F4EEC001E62CA /* NodeMessageRequestParserTests.cpp in Sources */,
 				21AD42A21A13B7FC00741A08 /* ErrorTests.cpp in Sources */,
 				21DA08B71A174A4900D3DCE0 /* NodeStatusTests.cpp in Sources */,
 				21DA08B31A174A4900D3DCE0 /* NodeGraphTests.cpp in Sources */,
