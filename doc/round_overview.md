@@ -30,6 +30,8 @@ However, Round can support other networking structure too because every nodes ca
 
 To add the method implementations.
 
+![round_overview_simplify](img/round_overview_simplify.svg)
+
 Some coordinating frameworks for distributed systems such as [ZooKeeper](http://zookeeper.apache.org) are based on notification events using synchronous connection. In Round, even the notification events are implemented as the node methods without the synchronous connection.
 
 ### Autonomous

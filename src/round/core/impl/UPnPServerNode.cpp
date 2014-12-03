@@ -200,9 +200,8 @@ uHTTP::HTTP::StatusCode Round::UPnPServerNode::httpRequestRecieved(uHTTP::HTTPRe
   std::string uri;
   httpReq->getURI(uri);
 
-  if (isNodeHttpRequest(method, uri)) {
-    if (ServerNode::httpRequestRecieved(httpReq))
-      return uHTTP::HTTP::OK_REQUEST;
+  if (isNodeRpcRequest(method, uri)) {
+    return ServerNode::httpNodeRpcRequestReceived(httpReq);
   }
   
   return Device::httpRequestRecieved(httpReq);

@@ -51,28 +51,9 @@ protected:
     this->serverPort = port;
   }
   
-  bool isNodeHttpRequest(const std::string &method, const std::string &uri);
-  
-  HttpStatusCode httpRequestRecieved(uHTTP::HTTPRequest *httpReq);
-  HttpStatusCode httpBadRequestRecieved(uHTTP::HTTPRequest *httpReq);
-  HttpStatusCode httpNotFoundRequestRecieved(uHTTP::HTTPRequest *httpReq);
-  HttpStatusCode httpInternaServerErrorOccured(uHTTP::HTTPRequest *httpReq);
-
-private:
-
   bool isNodeRpcRequest(const std::string &method, const std::string &uri);
-  bool isNodeRootHttpRequest(const std::string &method, const std::string &uri);
-  bool isNodeDocumentRequest(const std::string &method, const std::string &uri);
-  bool isNodeStatusHttpRequest(const std::string &method, const std::string &uri);
-
+  HttpStatusCode httpBadRpcRequestRecieved(uHTTP::HTTPRequest *httpReq, int rpcErrorCode);
   HttpStatusCode httpNodeRpcRequestReceived(uHTTP::HTTPRequest *httpReq);
-  
-  HttpStatusCode postJSONResponse(uHTTP::HTTPRequest *httpReq, const JSONObject &jsonObject);
-
-  HttpStatusCode httpGetRequestDictionaries(uHTTP::HTTPRequest *httpReq, JSONDictionary *dataDict, JSONDictionary *optionDict);
-  HttpStatusCode httpRootRequestRecieved(uHTTP::HTTPRequest *httpReq);
-  HttpStatusCode httpStatusRequestRecieved(uHTTP::HTTPRequest *httpReq, const std::string &uri);
-  HttpStatusCode httpDatabaseRequestRecieved(uHTTP::HTTPRequest *httpReq, const std::string &method, const std::string &uri);
 
 private:
   

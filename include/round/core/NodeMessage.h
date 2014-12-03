@@ -11,11 +11,11 @@
 #ifndef _ROUNDCC_NODEMESSAGE_H_
 #define _ROUNDCC_NODEMESSAGE_H_
 
-#include <round/common/Message.h>
+#include <round/common/RPC.h>
 
 namespace Round {
 
-class NodeMessage : public Message {
+class NodeMessage : public RPC::JSON::Message {
 public:
   static const std::string KEY_CLOCK;
   
