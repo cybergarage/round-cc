@@ -4,13 +4,7 @@
 
 ## APIs
 
-[JSON-RPC over HTTP](http://jsonrpc.org/historical/json-rpc-over-http.html)
-### POST
 
-| Parameter | Value |
-|-|-|
-| ENDPOINT | /rpc/do |
-| | application/json-rpc |
 ### Request
 
 | Parameter | M/U | Detail | Default | Constants |
