@@ -68,14 +68,14 @@ Round::HttpStatusCode Round::ServerNode::httpNodeRpcRequestReceived(uHTTP::HTTPR
   if (httpContent.length() <= 0)
     return httpBadRpcRequestRecieved(httpReq, RPC::JSON::DetailStatusInvalidRequest);
   
-  JSONParser jsonParser;
+  NodeMessageRequestParser jsonParser;
   if (jsonParser.parse(httpContent) == false)
     return httpBadRpcRequestRecieved(httpReq, RPC::JSON::DetailStatusParserError);
   
   if (jsonParser.getObject()->isDictionary() == false)
     return httpBadRpcRequestRecieved(httpReq, RPC::JSON::DetailStatusInvalidRequest);
-  
-  JSONDictionary *reqDict = static_cast<JSONDictionary *>(jsonParser.getObject());
+
+  NodeRequest *reqDict = dynamic_cast<NodeRequest *>(jsonParser.getObject());
   if (!reqDict)
     return httpBadRpcRequestRecieved(httpReq, RPC::JSON::DetailStatusInvalidRequest);
 

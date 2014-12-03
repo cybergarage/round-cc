@@ -21,7 +21,7 @@ JSONParser jsonParser;
   BOOST_CHECK(jsonParser.parse("[\"milk\", \"bread\", \"eggs\"]"));
   BOOST_CHECK(jsonParser.getObject());
   BOOST_CHECK(jsonParser.getObject()->isArray());
-  JSONArray *jsonArray = static_cast<JSONArray *>(jsonParser.getObject());
+  JSONArray *jsonArray = dynamic_cast<JSONArray *>(jsonParser.getObject());
   BOOST_CHECK(jsonArray);
   BOOST_CHECK_EQUAL(jsonArray->size(), 3);
 
