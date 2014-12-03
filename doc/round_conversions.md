@@ -1,10 +1,12 @@
 ![round_logo](./img/round_logo.png)
 
-# Consensus Service
+# Other Consensus Services
 
 ## Conversion
 
-|  | mediator | ZooKeeper | Consul | etcd |
+| - | Round | ZooKeeper | Consul | etcd |
 |-|-|-|-|-|
-| Consensus Protocol | Paxos | Paxos? | [Raft](http://www.consul.io/docs/internals/consensus.html) | Raft |
-| Membership | mDNS | | [gossip](http://www.consul.io/docs/internals/gossip.html) | |
+| Implementation | C++ | Java | Go | Go |
+| Notification | Asynchronous | Synchronous | Synchronous | Synchronous |
+| Consensus Protocol | Paxos | ZAB | [Raft](http://www.consul.io/docs/internals/consensus.html) | Raft |
+| Membership | Multicast | (none) | [gossip](http://www.consul.io/docs/internals/gossip.html) | (?) |

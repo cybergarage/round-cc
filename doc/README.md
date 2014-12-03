@@ -21,3 +21,5 @@ Round is architected for:
 - [Internal](round_internals.md)
 - [API](round_apis.md)
 - [RPC](round_rpc_methods.md)
+- [Application](round_applications.md)
+- [Coversion](round_conversions.md)
