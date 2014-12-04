@@ -2,8 +2,28 @@
 
 # Design Patterns
 
-## Vote Pattern
+## Execution
 
-## Map Reduce Pattern
+### Client Centric Consistency
 
-## Mult cluster Pattern
+such as eventual consistency.
+
+### Mult Cluster
+
+Map Reduce Pattern
+
+## Decide
+
+### Vote
+
+### Election
+
+## Failer Detection
+
+### Node Repair
+
+### Failer Detection
+
+### Immutable
+
+In distributed system
