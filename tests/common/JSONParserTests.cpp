@@ -93,7 +93,23 @@ BOOST_AUTO_TEST_CASE(JSONParseArraySerialize) {
 // For Dictionary
 ////////////////////////////////////////////////////////////
 
-BOOST_AUTO_TEST_CASE(JSONParseDictionaryTest01) {
+BOOST_AUTO_TEST_CASE(JSONParseNumberDictionaryTest) {
+  JSONParser jsonParser;
+  BOOST_CHECK(jsonParser.parse("{\"a\": 1, \"b\": 2}"));
+  BOOST_CHECK(jsonParser.getObject());
+  BOOST_CHECK(jsonParser.getObject()->isDictionary());
+  JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(jsonParser.getObject());
+  BOOST_CHECK(jsonDict);
+  BOOST_CHECK_EQUAL(jsonDict->size(), 2);
+  string value;
+  int intValue;
+  BOOST_CHECK(jsonDict->get("a", &intValue));
+  BOOST_CHECK_EQUAL(intValue, 1);
+  BOOST_CHECK(jsonDict->get("b", &intValue));
+  BOOST_CHECK_EQUAL(intValue, 2);
+}
+
+BOOST_AUTO_TEST_CASE(JSONParseStringDictionaryTest) {
   JSONParser jsonParser;
   BOOST_CHECK(jsonParser.parse("{\"name\": \"John Smith\", \"age\": 33}"));
   BOOST_CHECK(jsonParser.getObject());
