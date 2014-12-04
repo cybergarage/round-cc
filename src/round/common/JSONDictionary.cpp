@@ -13,6 +13,15 @@
 
 #include <round/common/JSON.h>
 
+inline bool isNumeric(const std::string &strValue) {
+  size_t strLen = strValue.length();
+  for (size_t n=0; n<strLen; n++) {
+    if (!isnumber(strValue[n]))
+      return false;
+  }
+  return true;
+}
+
 Round::JSONDictionary::JSONDictionary() {
 }
 
@@ -91,32 +100,50 @@ bool Round::JSONDictionary::get(const std::string &key, std::string *value) cons
 }
 
 bool Round::JSONDictionary::get(const std::string &key, std::size_t *value) const {
-  std::string stringValue;
-  if (get(key, &stringValue) == false)
+  std::string strValue;
+  if (get(key, &strValue) == false)
     return false;
-  if (stringValue.length() <= 0)
+  
+  if (strValue.length() <= 0)
     return false;
-  *value = atol(stringValue.c_str());
+  
+  if (!isNumeric(strValue))
+    return false;
+
+  *value = atol(strValue.c_str());
+  
   return true;
 }
 
 bool Round::JSONDictionary::get(const std::string &key, int *value) const {
-  std::string stringValue;
-  if (get(key, &stringValue) == false)
+  std::string strValue;
+  if (get(key, &strValue) == false)
     return false;
-  if (stringValue.length() <= 0)
+  
+  if (strValue.length() <= 0)
     return false;
-  *value = atoi(stringValue.c_str());
+  
+  if (!isNumeric(strValue))
+    return false;
+
+  *value = atoi(strValue.c_str());
+  
   return true;
 }
 
 bool Round::JSONDictionary::get(const std::string &key, long *value) const {
-  std::string stringValue;
-  if (get(key, &stringValue) == false)
+  std::string strValue;
+  if (get(key, &strValue) == false)
     return false;
-  if (stringValue.length() <= 0)
+  
+  if (strValue.length() <= 0)
     return false;
-  *value = atol(stringValue.c_str());
+  
+  if (!isNumeric(strValue))
+    return false;
+  
+  *value = atol(strValue.c_str());
+  
   return true;
 }
 
