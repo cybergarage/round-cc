@@ -129,7 +129,6 @@
 		21DE68A51A13B3EA0049227E /* ThreadManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68801A13B3EA0049227E /* ThreadManager.cpp */; };
 		21E6AAA61A28BF83004E6762 /* ScriptEngineMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E6AAA51A28BF83004E6762 /* ScriptEngineMap.cpp */; };
 		21E6AAA81A28CCFA004E6762 /* ScriptManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E6AAA71A28CCFA004E6762 /* ScriptManager.cpp */; };
-		21F2C6401A2F4E0C001E62CA /* NodeMessageRequestParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F2C63F1A2F4E0C001E62CA /* NodeMessageRequestParser.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -273,7 +272,6 @@
 		21DE68801A13B3EA0049227E /* ThreadManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadManager.cpp; sourceTree = "<group>"; };
 		21E6AAA51A28BF83004E6762 /* ScriptEngineMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptEngineMap.cpp; sourceTree = "<group>"; };
 		21E6AAA71A28CCFA004E6762 /* ScriptManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptManager.cpp; sourceTree = "<group>"; };
-		21F2C63F1A2F4E0C001E62CA /* NodeMessageRequestParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeMessageRequestParser.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,7 +331,6 @@
 				21DA086D1A17426500D3DCE0 /* NodeGraph.cpp */,
 				21DA086E1A17426500D3DCE0 /* NodeList.cpp */,
 				21DA08BE1A174EAB00D3DCE0 /* NodeMessage.cpp */,
-				21F2C63F1A2F4E0C001E62CA /* NodeMessageRequestParser.cpp */,
 				2184F2171A19B62C007F1326 /* NodeRequest.cpp */,
 				2184F2181A19B62C007F1326 /* NodeResponse.cpp */,
 				21DA08BF1A174EAB00D3DCE0 /* NodeStatus.cpp */,
@@ -725,7 +722,6 @@
 				21DA08721A17426500D3DCE0 /* Cluster.cpp in Sources */,
 				21620E561A14809D00690EA8 /* NodeConfig.cpp in Sources */,
 				21DA087B1A17426500D3DCE0 /* NodeList.cpp in Sources */,
-				21F2C6401A2F4E0C001E62CA /* NodeMessageRequestParser.cpp in Sources */,
 				21620E521A147A6400690EA8 /* Logger.cpp in Sources */,
 				21DE68951A13B3EA0049227E /* Mutex.cpp in Sources */,
 				21E6AAA61A28BF83004E6762 /* ScriptEngineMap.cpp in Sources */,

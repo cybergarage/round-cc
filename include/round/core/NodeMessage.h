@@ -58,12 +58,12 @@ class NodeMessageRequestParser : public JSONParser {
     
   public:
     
-    NodeMessageRequestParser();
-    virtual ~NodeMessageRequestParser();
-    
-    JSONDictionary *createJSONDictionary() {
-      return new NodeRequest();
-    }
+  NodeMessageRequestParser() {
+  }
+  
+  JSONDictionary *createJSONDictionary() {
+    return new NodeRequest();
+  }
 };
   
 }
