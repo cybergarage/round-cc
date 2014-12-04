@@ -20,8 +20,14 @@ Round::RPC::JSON::Request::~Request() {
 bool Round::RPC::JSON::Request::isValid() {
   if (!hasKey(JSON_RPC))
     return false;
+
   if (!hasKey(METHOD))
     return false;
+  
+  int value;
+  if (get(METHOD, &value))
+    return false;
+
   return true;
 }
 
