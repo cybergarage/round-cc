@@ -96,36 +96,57 @@ BOOST_AUTO_TEST_CASE(RPCRequestTest) {
   RPC::JSON::Request *req;
   std::string inputStr, jsonStr;
   
-  //inputStr = "{\"jsonrpc\": \"2.0\", \"method\": \"foobar, \"params\": \"bar\", \"baz]";
-  //BOOST_CHECK(!jsonParser.parse(inputStr));
+  // rpc call with positional parameters:
   
-  inputStr = "{\"jsonrpc\": \"2.0\", \"method\": \"subtract\", \"id\": 1}";
+  inputStr = "{\"jsonrpc\": \"2.0\", \"method\": \"subtract\", \"params\": [42, 23], \"id\": 1}";
   BOOST_CHECK(jsonParser.parse(inputStr));
   req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getObject());
-  BOOST_CHECK(req);
   BOOST_CHECK(req->isValid());
   BOOST_CHECK(!req->isNotify());
-  req->toJSONString(&jsonStr);
   
-  inputStr = "{\"jsonrpc\": \"2.0\", \"method\": \"subtract\", \"id\": \"1\"}";
+  // rpc call with named parameters:
+
+  inputStr = "{\"jsonrpc\": \"2.0\", \"method\": \"subtract\", \"params\": {\"subtrahend\": 23, \"minuend\": 42}, \"id\": 3}";
   BOOST_CHECK(jsonParser.parse(inputStr));
   req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getObject());
-  BOOST_CHECK(req);
   BOOST_CHECK(req->isValid());
   BOOST_CHECK(!req->isNotify());
   req->toJSONString(&jsonStr);
+  std::cout << inputStr << std::endl;
+  std::cout << jsonStr << std::endl;
   
-  BOOST_CHECK(jsonParser.parse("{\"jsonrpc\": \"2.0\", \"method\": \"subtract\", \"params\": [42, 23], \"id\": 1}"));
+  // a Notification:
+
+  inputStr = "{\"jsonrpc\": \"2.0\", \"method\": \"update\", \"params\": [1,2,3,4,5]}";
+  BOOST_CHECK(jsonParser.parse(inputStr));
   req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getObject());
-  BOOST_CHECK(req);
-  BOOST_CHECK(req->isValid());
-  BOOST_CHECK(!req->isNotify());
-  req->toJSONString(&jsonStr);
-  
-  BOOST_CHECK(jsonParser.parse("{\"jsonrpc\": \"2.0\", \"method\": \"subtract\", \"params\": [42, 23]}"));
-  req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getObject());
-  BOOST_CHECK(req);
   BOOST_CHECK(req->isValid());
   BOOST_CHECK(req->isNotify());
+
+  // rpc call with invalid JSON:
+
+  inputStr = " {\"jsonrpc\": \"2.0\", \"method\": \"foobar, \"params\": \"bar\", \"baz]";
+  BOOST_CHECK(!jsonParser.parse(inputStr));
+  
+  // rpc call with invalid Request object:
+  
+  inputStr = "{\"jsonrpc\": \"2.0\", \"method\": 1, \"params\": \"bar\"}";
+  BOOST_CHECK(jsonParser.parse(inputStr));
+  req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getObject());
+  BOOST_CHECK(!req->isValid());
+  
+  //rpc call with an empty Array:
+  
+  inputStr = "[]";
+  BOOST_CHECK(jsonParser.parse(inputStr));
+  req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getObject());
+  BOOST_CHECK(!req);
+  
+  // rpc call with an invalid Batch (but not empty):
+
+  inputStr = "[1]";
+  BOOST_CHECK(jsonParser.parse(inputStr));
+  req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getObject());
+  BOOST_CHECK(!req);
 }
 
