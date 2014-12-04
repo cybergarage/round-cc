@@ -30,7 +30,6 @@ static std::string JSON_KEY_TRIMS = "\" []:";
 static std::string JSON_VAL_TRIMS = "\" ";
 
 static void RoundJSONSeparateString(const std::string &str, const std::string &start, const std::string &end, std::vector<std::string> *result);
-static void RoundJSONSeparateString(const std::string &str, const std::string &delim, std::vector<std::string> *result);
 static void RoundJSONTrimString(const std::string &str, const std::string &trims, std::string *value);
 
 Round::JSONParser::JSONParser() {
@@ -102,7 +101,7 @@ bool Round::JSONParser::parse(const std::string &jsonString, JSONDictionary *par
         parentDir->set(key, stringObj);
       }
     } else {
-      valueEndIndex = jsonString.find_first_not_of(" \n\t", (valueBeginIndex + 1));
+      valueEndIndex = jsonString.find_first_not_of(" \n\t", valueBeginIndex);
       if (valueEndIndex != std::string::npos) {
         std::string stringValue = std::string(jsonString, valueBeginIndex, (valueEndIndex - valueBeginIndex + 1));
         JSONString *stringObj = createJSONString(stringValue);
@@ -170,28 +169,6 @@ static void RoundJSONSeparateString(const std::string &str, const std::string &s
     if (beginIndex == std::string::npos)
       break;
     lastIndex = str.find_first_of(end, (beginIndex + 1));
-    if (lastIndex == std::string::npos)
-      lastIndex = str.length() - 1;
-  }
-}
-
-static void RoundJSONSeparateString(const std::string &str, const std::string &delim, std::vector<std::string> *result) {
-  if(str.length() <= 0)
-    return;
-
-  //std::cout << str << std::endl;
-
-  std::size_t beginIndex = str.find_first_not_of(delim);
-  if (beginIndex == std::string::npos)
-    return;
-  std::size_t lastIndex = str.find_first_of(delim, (beginIndex + 1));
-  while (lastIndex != std::string::npos) {
-    //std::cout << beginIndex << ":" << lastIndex << " " << std::string(str, beginIndex, lastIndex - beginIndex + 1) << std::endl;
-    result->push_back(std::string(str, beginIndex, lastIndex - beginIndex + 1));
-    beginIndex = str.find_first_not_of(delim, (lastIndex + 1));
-    if (beginIndex == std::string::npos)
-      break;
-    lastIndex = str.find_first_of(delim, (beginIndex + 1));
     if (lastIndex == std::string::npos)
       lastIndex = str.length() - 1;
   }

@@ -17,7 +17,7 @@ using namespace std;
 using namespace Round;
 
 BOOST_AUTO_TEST_CASE(JSONParseArrayTest01) {
-JSONParser jsonParser;
+  JSONParser jsonParser;
   BOOST_CHECK(jsonParser.parse("[\"milk\", \"bread\", \"eggs\"]"));
   BOOST_CHECK(jsonParser.getObject());
   BOOST_CHECK(jsonParser.getObject()->isArray());
@@ -38,7 +38,7 @@ JSONParser jsonParser;
 }
 
 BOOST_AUTO_TEST_CASE(JSONParseArrayTest02) {
-JSONParser jsonParser;
+  JSONParser jsonParser;
   BOOST_CHECK(jsonParser.parse("[\"name\", \"John Smith\"]"));
   BOOST_CHECK(jsonParser.getObject());
   BOOST_CHECK(jsonParser.getObject()->isArray());
@@ -56,7 +56,7 @@ JSONParser jsonParser;
 }
 
 BOOST_AUTO_TEST_CASE(JSONParseArraySerialize) {
-const char *testString = "[\"milk\",\"bread\",\"eggs\"]";
+  const char *testString = "[\"milk\",\"bread\",\"eggs\"]";
   JSONParser jsonParser;
   BOOST_CHECK(jsonParser.parse(testString));
   BOOST_CHECK(jsonParser.getObject());
@@ -70,7 +70,7 @@ const char *testString = "[\"milk\",\"bread\",\"eggs\"]";
 }
 
 BOOST_AUTO_TEST_CASE(JSONParseDictionaryTest01) {
-JSONParser jsonParser;
+  JSONParser jsonParser;
   BOOST_CHECK(jsonParser.parse("{\"name\": \"John Smith\", \"age\": 33}"));
   BOOST_CHECK(jsonParser.getObject());
   BOOST_CHECK(jsonParser.getObject()->isDictionary());
@@ -88,7 +88,7 @@ JSONParser jsonParser;
 }
 
 BOOST_AUTO_TEST_CASE(JSONParseDictionarySerialize) {
-const char *testString = "{\"age\":\"33\",\"name\":\"John Smith\"}";
+  const char *testString = "{\"age\":\"33\",\"name\":\"John Smith\"}";
   JSONParser jsonParser;
   BOOST_CHECK(jsonParser.parse(testString));
   BOOST_CHECK(jsonParser.getObject());
@@ -102,7 +102,7 @@ const char *testString = "{\"age\":\"33\",\"name\":\"John Smith\"}";
 }
 
 BOOST_AUTO_TEST_CASE(JSONParseCheckParserObject) {
-const char *testString = "[\"milk\",\"bread\",\"eggs\"]";
+  const char *testString = "[\"milk\",\"bread\",\"eggs\"]";
   JSONObject *jsonObject = NULL;
   JSONParser jsonParser;
   BOOST_CHECK(jsonParser.parse(testString, &jsonObject));
@@ -115,7 +115,7 @@ const char *testString = "[\"milk\",\"bread\",\"eggs\"]";
 }
 
 BOOST_AUTO_TEST_CASE(JSONParseDictionaryInArrayTest01) {
-const char *testString = "[ {\"age\":\"33\",\"name\":\"John Smith\"},{\"age\":\"31\",\"name\":\"John Lennon\"} ]";
+  const char *testString = "[ {\"age\":\"33\",\"name\":\"John Smith\"},{\"age\":\"31\",\"name\":\"John Lennon\"} ]";
   JSONParser jsonParser;
   BOOST_CHECK(jsonParser.parse(testString));
   BOOST_CHECK(jsonParser.getObject());
@@ -149,7 +149,7 @@ const char *testString = "[ {\"age\":\"33\",\"name\":\"John Smith\"},{\"age\":\"
 }
 
 BOOST_AUTO_TEST_CASE(JSONParseDictionaryInArrayTest02) {
-const char *testString = "[\n{\"age\":\"33\",\"name\":\"John Smith\"},\n{\"age\":\"31\",\"name\":\"John Lennon\"}\n]";
+  const char *testString = "[\n{\"age\":\"33\",\"name\":\"John Smith\"},\n{\"age\":\"31\",\"name\":\"John Lennon\"}\n]";
   JSONParser jsonParser;
   BOOST_CHECK(jsonParser.parse(testString));
   BOOST_CHECK(jsonParser.getObject());
@@ -183,7 +183,7 @@ const char *testString = "[\n{\"age\":\"33\",\"name\":\"John Smith\"},\n{\"age\"
 }
 
 BOOST_AUTO_TEST_CASE(JSONParseArrayInDictionaryTest01) {
-const char *testString = "{\"phoneNumber\": [\"212 555-1234\", \"646 555-4567\"]}";
+  const char *testString = "{\"phoneNumber\": [\"212 555-1234\", \"646 555-4567\"]}";
   JSONParser jsonParser;
   BOOST_CHECK(jsonParser.parse(testString));
 
@@ -214,7 +214,7 @@ const char *testString = "{\"phoneNumber\": [\"212 555-1234\", \"646 555-4567\"]
  }
 
 BOOST_AUTO_TEST_CASE(RoundJSONDictionaryParserTest) {
-string testJSONValue = "{\"key\":\"value\"}";
+  string testJSONValue = "{\"key\":\"value\"}";
 
   JSONParser jsonParser;
   BOOST_CHECK(jsonParser.parse(testJSONValue));

@@ -10,9 +10,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <stdio.h>
-#include <time.h>
-
+#include <iostream>
 #include <round/common/RPC.h>
 
 using namespace std;
@@ -96,12 +94,33 @@ public:
 BOOST_AUTO_TEST_CASE(RPCRequestTest) {
   TestMessageParser jsonParser;
   RPC::JSON::Request *req;
+  std::string inputStr, jsonStr;
+  
+  //inputStr = "{\"jsonrpc\": \"2.0\", \"method\": \"foobar, \"params\": \"bar\", \"baz]";
+  //BOOST_CHECK(!jsonParser.parse(inputStr));
+  
+  inputStr = "{\"jsonrpc\": \"2.0\", \"method\": \"subtract\", \"id\": 1}";
+  BOOST_CHECK(jsonParser.parse(inputStr));
+  req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getObject());
+  BOOST_CHECK(req);
+  BOOST_CHECK(req->isValid());
+  BOOST_CHECK(!req->isNotify());
+  req->toJSONString(&jsonStr);
+  
+  inputStr = "{\"jsonrpc\": \"2.0\", \"method\": \"subtract\", \"id\": \"1\"}";
+  BOOST_CHECK(jsonParser.parse(inputStr));
+  req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getObject());
+  BOOST_CHECK(req);
+  BOOST_CHECK(req->isValid());
+  BOOST_CHECK(!req->isNotify());
+  req->toJSONString(&jsonStr);
   
   BOOST_CHECK(jsonParser.parse("{\"jsonrpc\": \"2.0\", \"method\": \"subtract\", \"params\": [42, 23], \"id\": 1}"));
   req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getObject());
   BOOST_CHECK(req);
   BOOST_CHECK(req->isValid());
   BOOST_CHECK(!req->isNotify());
+  req->toJSONString(&jsonStr);
   
   BOOST_CHECK(jsonParser.parse("{\"jsonrpc\": \"2.0\", \"method\": \"subtract\", \"params\": [42, 23]}"));
   req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getObject());
