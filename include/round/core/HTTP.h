@@ -43,35 +43,6 @@ const char SYSTEM[] = "/sys/";
 
 }
 
-namespace JSONParam {
-  
-const char ID[] = "id";
-const char STATUS[] = "status";
-const char VER[] = "version";
-const char NAME[] = "name";
-const char CLUSTER[] = "cluster";
-const char ADDR[] = "addr";
-const char PORT[] = "port";
-const char KEY[] = "id";
-const char BEGIN_INDEX[] = "beginIndex";
-const char END_INDEX[] = "endIndex";
-const char OFFSET[] = "offset";
-const char LIMIT[] = "limit";
-const char COUNT[] = "count";
-
-const char REPLICA[] = "_replica";
-const char KEYONLY[] = "_idOnly";
-
-inline bool IsOptionParameter(const std::string &param) {
-  return (param.find_first_of("_") == 0)? true : false;
-}
-
-inline bool IsDataParameter(const std::string &param)  {
-  return !IsOptionParameter(param);
-}
-
-}
-
 }
 
 }

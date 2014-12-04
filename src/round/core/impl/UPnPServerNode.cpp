@@ -195,8 +195,8 @@ bool Round::UPnPServerNode::queryControlReceived(CyberLink::StateVariable *state
 }
 
 uHTTP::HTTP::StatusCode Round::UPnPServerNode::httpRequestRecieved(uHTTP::HTTPRequest *httpReq) {
-  if (isNodeRpcRequest(httpReq)) {
-    return ServerNode::httpNodeRpcRequestReceived(httpReq);
+  if (isRpcRequest(httpReq)) {
+    return ServerNode::httpRpcRequestReceived(httpReq);
   }
   
   return Device::httpRequestRecieved(httpReq);

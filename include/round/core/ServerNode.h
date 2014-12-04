@@ -51,11 +51,13 @@ protected:
     this->serverPort = port;
   }
   
-  bool isNodeRpcRequest(uHTTP::HTTPRequest *httpReq);
-  HttpStatusCode httpBadRpcRequestRecieved(uHTTP::HTTPRequest *httpReq, int rpcErrorCode);
-  HttpStatusCode httpNodeRpcRequestReceived(uHTTP::HTTPRequest *httpReq);
+  bool isRpcRequest(uHTTP::HTTPRequest *httpReq);
+  HttpStatusCode httpRpcRequestReceived(uHTTP::HTTPRequest *httpReq);
 
 private:
+  
+  HttpStatusCode httpRpcRequestRecieved(uHTTP::HTTPRequest *httpReq, int rpcErrorCode);
+  HttpStatusCode postRpcRequest(uHTTP::HTTPRequest *httpReq, NodeRequest *nodeReq);
   
   int serverPort;
   std::string serverAddress;
