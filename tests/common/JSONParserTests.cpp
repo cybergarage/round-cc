@@ -16,7 +16,27 @@
 using namespace std;
 using namespace Round;
 
-BOOST_AUTO_TEST_CASE(JSONParseArrayTest01) {
+////////////////////////////////////////////////////////////
+// For Array
+////////////////////////////////////////////////////////////
+
+BOOST_AUTO_TEST_CASE(JSONParseNumberArrayTest) {
+  JSONParser jsonParser;
+  BOOST_CHECK(jsonParser.parse("[0, 1, 2]"));
+  BOOST_CHECK(jsonParser.getObject());
+  BOOST_CHECK(jsonParser.getObject()->isArray());
+  JSONArray *jsonArray = dynamic_cast<JSONArray *>(jsonParser.getObject());
+  BOOST_CHECK(jsonArray);
+  BOOST_CHECK_EQUAL(jsonArray->size(), 3);
+  
+  for (int n=0; n<3; n++) {
+    int value;
+    BOOST_CHECK(jsonArray->getInteger(n, &value));
+    BOOST_CHECK_EQUAL(value, n);
+  }
+}
+
+BOOST_AUTO_TEST_CASE(JSONParseStringArrayTest) {
   JSONParser jsonParser;
   BOOST_CHECK(jsonParser.parse("[\"milk\", \"bread\", \"eggs\"]"));
   BOOST_CHECK(jsonParser.getObject());
@@ -37,12 +57,12 @@ BOOST_AUTO_TEST_CASE(JSONParseArrayTest01) {
   BOOST_CHECK_EQUAL(value.compare("eggs"), 0);
 }
 
-BOOST_AUTO_TEST_CASE(JSONParseArrayTest02) {
+BOOST_AUTO_TEST_CASE(JSONParseAStringWithSpaceArrayTest) {
   JSONParser jsonParser;
   BOOST_CHECK(jsonParser.parse("[\"name\", \"John Smith\"]"));
   BOOST_CHECK(jsonParser.getObject());
   BOOST_CHECK(jsonParser.getObject()->isArray());
-  JSONArray *jsonArray = static_cast<JSONArray *>(jsonParser.getObject());
+  JSONArray *jsonArray = dynamic_cast<JSONArray *>(jsonParser.getObject());
   BOOST_CHECK(jsonArray);
   BOOST_CHECK_EQUAL(jsonArray->size(), 2);
 
@@ -61,7 +81,7 @@ BOOST_AUTO_TEST_CASE(JSONParseArraySerialize) {
   BOOST_CHECK(jsonParser.parse(testString));
   BOOST_CHECK(jsonParser.getObject());
   BOOST_CHECK(jsonParser.getObject()->isArray());
-  JSONArray *jsonArray = static_cast<JSONArray *>(jsonParser.getObject());
+  JSONArray *jsonArray = dynamic_cast<JSONArray *>(jsonParser.getObject());
   BOOST_CHECK(jsonArray);
   string value;
   jsonArray->toJSONString(&value);
@@ -69,12 +89,16 @@ BOOST_AUTO_TEST_CASE(JSONParseArraySerialize) {
   BOOST_CHECK_EQUAL(value.compare(testString), 0);
 }
 
+////////////////////////////////////////////////////////////
+// For Dictionary
+////////////////////////////////////////////////////////////
+
 BOOST_AUTO_TEST_CASE(JSONParseDictionaryTest01) {
   JSONParser jsonParser;
   BOOST_CHECK(jsonParser.parse("{\"name\": \"John Smith\", \"age\": 33}"));
   BOOST_CHECK(jsonParser.getObject());
   BOOST_CHECK(jsonParser.getObject()->isDictionary());
-  JSONDictionary *jsonDict = static_cast<JSONDictionary *>(jsonParser.getObject());
+  JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(jsonParser.getObject());
   BOOST_CHECK(jsonDict);
   BOOST_CHECK_EQUAL(jsonDict->size(), 2);
   string value;
@@ -93,26 +117,16 @@ BOOST_AUTO_TEST_CASE(JSONParseDictionarySerialize) {
   BOOST_CHECK(jsonParser.parse(testString));
   BOOST_CHECK(jsonParser.getObject());
   BOOST_CHECK(jsonParser.getObject()->isDictionary());
-  JSONDictionary *jsonDict = static_cast<JSONDictionary *>(jsonParser.getObject());
+  JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(jsonParser.getObject());
   BOOST_CHECK(jsonDict);
   string value;
   jsonDict->toJSONString(&value);
   //cout << value << endl;
   BOOST_CHECK_EQUAL(value.compare(testString), 0);
 }
-
-BOOST_AUTO_TEST_CASE(JSONParseCheckParserObject) {
-  const char *testString = "[\"milk\",\"bread\",\"eggs\"]";
-  JSONObject *jsonObject = NULL;
-  JSONParser jsonParser;
-  BOOST_CHECK(jsonParser.parse(testString, &jsonObject));
-  BOOST_CHECK(jsonObject);
-  BOOST_CHECK(!jsonParser.getObject());
-  BOOST_CHECK(jsonObject->isArray());
-  JSONArray *jsonArray = static_cast<JSONArray *>(jsonObject);
-  BOOST_CHECK(jsonArray);
-  delete jsonObject;
-}
+////////////////////////////////////////////////////////////
+// For Dictionary in Array
+////////////////////////////////////////////////////////////
 
 BOOST_AUTO_TEST_CASE(JSONParseDictionaryInArrayTest01) {
   const char *testString = "[ {\"age\":\"33\",\"name\":\"John Smith\"},{\"age\":\"31\",\"name\":\"John Lennon\"} ]";

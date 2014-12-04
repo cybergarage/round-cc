@@ -15,7 +15,7 @@
 
 static std::string JSON_ARRAY_TRIMS = "[], \n\t";
 static std::string JSON_ARRAY_BEGIN = "\", ";
-static std::string JSON_ARRAY_END = "\"";
+static std::string JSON_ARRAY_END = "\",";
 static std::string JSON_ARRAY_DIR_BIGIN = "{";
 static std::string JSON_ARRAY_DIR_END = "}";
 
@@ -161,6 +161,7 @@ static void RoundJSONSeparateString(const std::string &str, const std::string &s
   std::size_t beginIndex = str.find_first_not_of(start);
   if (beginIndex == std::string::npos)
     return;
+  
   std::size_t lastIndex = str.find_first_of(end, (beginIndex + 1));
   while (lastIndex != std::string::npos) {
     //std::cout << beginIndex << ":" << lastIndex << " " << std::string(str, beginIndex, lastIndex - beginIndex + 1) << std::endl;
