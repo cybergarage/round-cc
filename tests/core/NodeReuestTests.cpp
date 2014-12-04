@@ -25,3 +25,13 @@ BOOST_AUTO_TEST_CASE(NodeRequestConstructorTest) {
   BOOST_CHECK(!nodeReq.isMethod(""));
 }
 
+BOOST_AUTO_TEST_CASE(NodeMessageRequestParserTest) {
+  NodeMessageRequestParser jsonParser;
+  BOOST_CHECK(jsonParser.parse("{\"name\": \"John Smith\", \"age\": 33}"));
+  BOOST_CHECK(jsonParser.getObject());
+  BOOST_CHECK(jsonParser.getObject()->isDictionary());
+  NodeRequest *nodeReq = static_cast<NodeRequest *>(jsonParser.getObject());
+  BOOST_CHECK(nodeReq);
+}
+
+
