@@ -12,6 +12,10 @@ such as eventual consistency.
 
 Map Reduce Pattern
 
+### Transaction
+
+JSON-RPC batch
+
 ## Decide
 
 ### Vote
