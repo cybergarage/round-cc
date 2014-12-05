@@ -49,8 +49,6 @@ bool Round::LocalNode::nodeAdded(Round::Node *addedNode)  {
   if (equals(addedNode))
     return true;
   
-  setState(NodeStatus::OPTIMIZING);
-  
   return true;
 }
 
@@ -70,8 +68,6 @@ bool Round::LocalNode::nodeRemoved(Round::Node *removedNode)  {
   Node *failedNode = this->nodeGraph.getNode(removedNodeIndex);
   if (!failedNode)
     return false;
-  
-  setState(NodeStatus::REPAIRING);
   
   return true;
 }
@@ -108,51 +104,11 @@ bool Round::LocalNode::isConfigValid(Error *error) {
   return this->nodeConfig.isValid(error);
 }
 
-bool Round::LocalNode::redo(Error *error) {
-  return true;
-}
-
-bool Round::LocalNode::clean(Error *error) {
-  return true;
-}
-
-bool Round::LocalNode::activate(Error *error) {
-  setState(NodeStatus::ACTIVATING);
-
-  NodeGraph *nodeGraph = getNodeGraph();
-  if (nodeGraph->hasNode(this) == false) {
-    if (nodeGraph->addNode(this) == false)
-      return false;
-  }
-  
-  if (nodeGraph->size() <= 1)
-    return true;
-
-  setState(NodeStatus::ACTIVE);
-  
-  return true;
-}
-
 bool Round::LocalNode::start(Error *error) {
   stop(error);
   
   setState(NodeStatus::ACTIVATING);
   
-  if (!redo(error)) {
-    stop(error);
-    return false;
-  }
-  
-  if (!clean(error)) {
-    stop(error);
-    return false;
-  }
-
-  if (!activate(error)) {
-    stop(error);
-    return false;
-  }
-
   setState(NodeStatus::ACTIVE);
   
   return true;

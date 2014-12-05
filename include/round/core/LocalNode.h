@@ -56,10 +56,6 @@ class LocalNode : public Node, public NodeFinderObserver, public NodeMessageList
   
  protected:
 
-  virtual bool redo(Error *error);
-  virtual bool clean(Error *error);
-  virtual bool activate(Error *error);
-
   void setState(NodeStatus::State value) {
     this->nodeStatus.setState(value);
   }
