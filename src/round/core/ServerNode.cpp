@@ -44,13 +44,13 @@ bool Round::ServerNode::stop(Error *error) {
   return isSuccess;
 }
 
-Round::HttpStatusCode Round::ServerNode::httpBadRpcRequestRecieved(uHTTP::HTTPRequest *httpReq, int rpcErrorCode) {
+Round::HttpStatusCode Round::ServerNode::httpRpcRequestRecieved(uHTTP::HTTPRequest *httpReq, int rpcErrorCode) {
   uHTTP::HTTPResponse httpRes;
   httpRes.setStatusCode(RPC::JSON::HTTP::JSONDetailStatus2HTTPStatus(rpcErrorCode));
   return httpReq->post(&httpRes);
 }
 
-bool Round::ServerNode::isNodeRpcRequest(uHTTP::HTTPRequest *httpReq) {
+bool Round::ServerNode::isRpcRequest(uHTTP::HTTPRequest *httpReq) {
   std::string method;
   httpReq->getMethod(method);
   std::string uri;
@@ -63,22 +63,31 @@ bool Round::ServerNode::isNodeRpcRequest(uHTTP::HTTPRequest *httpReq) {
   return false;
 }
 
-Round::HttpStatusCode Round::ServerNode::httpNodeRpcRequestReceived(uHTTP::HTTPRequest *httpReq) {
+Round::HttpStatusCode Round::ServerNode::postRpcRequest(uHTTP::HTTPRequest *httpReq, NodeRequest *nodeReq) {
+  return uHTTP::HTTP::PROCESSING;
+}
+
+Round::HttpStatusCode Round::ServerNode::httpRpcRequestReceived(uHTTP::HTTPRequest *httpReq) {
+  
+  // Check RPC Request
+
   std::string httpContent = httpReq->getContent();
   if (httpContent.length() <= 0)
-    return httpBadRpcRequestRecieved(httpReq, RPC::JSON::DetailStatusInvalidRequest);
+    return httpRpcRequestRecieved(httpReq, RPC::JSON::DetailStatusInvalidRequest);
   
   NodeMessageRequestParser jsonParser;
   if (jsonParser.parse(httpContent) == false)
-    return httpBadRpcRequestRecieved(httpReq, RPC::JSON::DetailStatusParserError);
+    return httpRpcRequestRecieved(httpReq, RPC::JSON::DetailStatusParserError);
   
   if (jsonParser.getObject()->isDictionary() == false)
-    return httpBadRpcRequestRecieved(httpReq, RPC::JSON::DetailStatusInvalidRequest);
+    return httpRpcRequestRecieved(httpReq, RPC::JSON::DetailStatusInvalidRequest);
 
-  NodeRequest *reqDict = dynamic_cast<NodeRequest *>(jsonParser.getObject());
-  if (!reqDict)
-    return httpBadRpcRequestRecieved(httpReq, RPC::JSON::DetailStatusInvalidRequest);
+  NodeRequest *nodeReq = dynamic_cast<NodeRequest *>(jsonParser.getObject());
+  if (!nodeReq)
+    return httpRpcRequestRecieved(httpReq, RPC::JSON::DetailStatusInvalidRequest);
 
-  return uHTTP::HTTP::BAD_REQUEST;
+  // Post RPC Request
+  
+  return postRpcRequest(httpReq, nodeReq);
 }
 
