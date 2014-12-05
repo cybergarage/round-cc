@@ -72,6 +72,11 @@ bool Round::LocalNode::nodeRemoved(Round::Node *removedNode)  {
   return true;
 }
 
+bool Round::LocalNode::postMessage(NodeRequest *reqMsg) {
+  
+}
+
+
 bool Round::LocalNode::postMessage(const NodeRequest &reqMsg, NodeResponse *resMsg) {
   return nodeMessageReceived(reqMsg, resMsg);
 }

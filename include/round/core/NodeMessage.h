@@ -13,6 +13,8 @@
 
 #include <round/common/RPC.h>
 
+#include <uhttp/HTTP.h>
+
 namespace Round {
 
 class NodeMessage : public RPC::JSON::Message {
@@ -37,11 +39,23 @@ class NodeRequest : public NodeMessage {
   NodeRequest();
   NodeRequest(const std::string &method);
   virtual ~NodeRequest();
+ 
+  bool setHttpRequest(uHTTP::HTTPRequest *httpReq);
+  
+  uHTTP::HTTPRequest *getHttpRequest() {
+    return this->httpReq;
+  }
   
   bool hasMethod() const;
   bool isMethod(const std::string &method) const;
 
   bool isValid();
+
+ private:
+  
+  uHTTP::HTTPRequest *httpReq;
+
+  bool close();
 };
 
 class NodeResponse : public NodeMessage {

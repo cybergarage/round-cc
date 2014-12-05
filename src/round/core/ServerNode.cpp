@@ -64,7 +64,7 @@ bool Round::ServerNode::isRpcRequest(uHTTP::HTTPRequest *httpReq) {
 }
 
 Round::HttpStatusCode Round::ServerNode::postRpcRequest(uHTTP::HTTPRequest *httpReq, NodeRequest *nodeReq) {
-  return uHTTP::HTTP::PROCESSING;
+  return postMessage(nodeReq);
 }
 
 Round::HttpStatusCode Round::ServerNode::httpRpcRequestReceived(uHTTP::HTTPRequest *httpReq) {
@@ -88,6 +88,8 @@ Round::HttpStatusCode Round::ServerNode::httpRpcRequestReceived(uHTTP::HTTPReque
 
   // Post RPC Request
   
-  return postRpcRequest(httpReq, nodeReq);
+  if (!postRpcRequest(httpReq, nodeReq))
+    return httpRpcRequestRecieved(httpReq, RPC::JSON::DetailStatusInternalError);
+  
+  return uHTTP::HTTP::PROCESSING;
 }
-

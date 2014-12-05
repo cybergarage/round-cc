@@ -34,6 +34,8 @@ class LocalNode : public Node, public NodeFinderObserver, public NodeMessageList
   bool postMessage(const NodeRequest &reqMsg, NodeResponse *resMsg);
   bool nodeMessageReceived(const NodeRequest &reqMsg, NodeResponse *resMsg);
 
+  bool postMessage(NodeRequest *reqMsg);
+  
   bool waitMessage(Message *msg);
   bool execMessage(const Message *msg);
 

@@ -16,13 +16,33 @@
 const std::string Round::NodeRequest::KEY_METHOD = "_method";
 
 Round::NodeRequest::NodeRequest() {
+  this->httpReq = NULL;
 }
 
 Round::NodeRequest::NodeRequest(const std::string &method) {
   set(KEY_METHOD, method);
+  this->httpReq = NULL;
 }
 
 Round::NodeRequest::~NodeRequest() {
+  close();
+}
+
+bool Round::NodeRequest::close() {
+  if (!this->httpReq)
+    return false;
+  delete this->httpReq;
+  this->httpReq = NULL;
+
+  return true;
+}
+
+bool Round::NodeRequest::setHttpRequest(uHTTP::HTTPRequest *httpReq) {
+  close();
+  
+  this->httpReq = httpReq;
+
+  return true;
 }
 
 bool Round::NodeRequest::hasMethod() const {
