@@ -32,29 +32,40 @@ Round uses [JSON-RPC 2.0](http://www.jsonrpc.org/specification) over HTTP or HTT
 | Target | O | Operation Target | DEST | DEST, ALL, Number |
 | Data | O | Operation data | (NULL) | - |
 
+## RPC Methods
 
-## Methods
-
-### Basic Methods
+### System Methods
 
 Method names that begin with the word followed by a underscore character (_) are reserved for Round to implement the internal system methods.
+
+### Static Methods
+
+Round prepares the following default static methods. The methods are implemented using the native programming language as default, and developers can't modify the static methods.
 
 | Name | Perpose | Params |
 |-|-|-|
 | _set_method | Set a script method | {"language" : "js", "method" : (value), "encode": <EncodeType>, "script" : (value)} |
+| _del_method | Remove the specified method | {"language" : "js", "method" : (value)} |
 
 ### Dynamic Methods
 
-Round prepares the following default dynamic methods. Developers can override the default functions using '_set_method'.
+Round prepares the following default dynamic methods. The methods are implemented using the native programming language as default, but developers can override the default functions using '_set_method'.
 
 | Method Name | Perpose | Params | Outputs | Default |
 |-|-|-|-| - |
-| _get_node_name | Get a node name | - | - | - |
-| _get_log_level | Get the current log level | (none) | "TRACE", "LOG", "WARN", "ERR"  | "LOG" |
-| _get_node_hashseed | Get a prefix and seed string to generate a hash | - | - | - |
-| _get_node_hashalgorithm | Get a shared key for HMAC | (none) | "SHA2", "SHA1", "MD5" | - |
+| _get_node_info | Get a node name | - | - | - |
+| _get_node_hash | Get a prefix and seed string to generate a hash | - | - | - |
 | _get_node_sharedkey | Set a shared key for HMAC | - | - | - |
-| _get_node_digest | Set a shared key for HMAC | - | - | - |
+| _get_node_msg_digest | Set a shared key for HMAC | - | - | - |
+| _get_log_level | Get the current log level | (none) | "TRACE", "LOG", "WARN", "ERR" "FATAL" | "LOG" |
+
+### System Notification Methods
+
+| Method Name | Perpose | Params | Outputs | Default |
+|-|-|-|-| - |
+| _notify_method_added | - | - | - | - |
+| _notify_method_removed | - | - | - | - |
+| _notify_method_updated | - | - | - | - |
 | _notify_node_added | - | - | - | - |
 | _notify_node_removed | - | - | - | - |
 | _notify_node_suspected | - | - | - | - |
