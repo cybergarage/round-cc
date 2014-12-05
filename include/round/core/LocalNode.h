@@ -54,7 +54,7 @@ class LocalNode : public Node, public NodeFinderObserver, public NodeMessageList
     return false;
   }
   
-protected:
+ protected:
 
   virtual bool redo(Error *error);
   virtual bool clean(Error *error);
@@ -78,6 +78,7 @@ private:
   NodeGraph nodeGraph;
   NodeStatus nodeStatus;
 
+  NodeMessageManager msgManager;
   ThreadManager NodeOperation;
 };
 

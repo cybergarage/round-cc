@@ -65,6 +65,12 @@ class NodeMessageRequestParser : public JSONParser {
     return new NodeRequest();
   }
 };
+
+class NodeMessageManager : public MessageManager {
+ public:
+  NodeMessageManager() {
+  }
+};
   
 }
 
