@@ -29,6 +29,11 @@ void Round::LocalNodeWorkder::run() {
     if (!nodeReq)
       break;
     
-    node->execMessage(nodeReq);
+    NodeResponse nodeRes;
+    Error err;
+    
+    node->execMessage(nodeReq, &nodeRes, &err);
+    
+    delete nodeReq;
   }
 }

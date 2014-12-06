@@ -29,7 +29,7 @@ class NodeCore : public ConsistentHashNode {
 
   virtual int getRequestPort() const = 0;
   virtual const char *getRequestAddress() const = 0;
-  virtual bool postMessage(const NodeRequest &reqMsg, NodeResponse *resMsg) = 0;
+  virtual bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes) = 0;
 
  public:
 

@@ -16,6 +16,7 @@
 #include <round/core/NodeGraph.h>
 #include <round/core/NodeFinder.h>
 #include <round/core/LocalNodeConfig.h>
+#include <round/core/Script.h>
 
 namespace Round {
 
@@ -41,11 +42,10 @@ class LocalNode : public Node, public NodeFinderObserver {
   bool nodeAdded(Node *node);
   bool nodeRemoved(Node *node);
 
-  bool postMessage(const NodeRequest &reqMsg, NodeResponse *resMsg);
-
-  bool postMessage(const NodeRequest *nodeReq);
+  bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes);
+  bool pushMessage(const NodeRequest *nodeReq);
   bool waitMessage(const NodeRequest **nodeReq);
-  bool execMessage(const NodeRequest *nodeReq);
+  bool execMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
 
   virtual bool start(Error *error);
   virtual bool stop(Error *error);
@@ -82,8 +82,10 @@ private:
   LocalNodeConfig     nodeConfig;
   NodeGraph           nodeGraph;
   NodeStatus          nodeStatus;
-  NodeMessageManager  nodeMsgManager;
+  
+  NodeMessageManager  nodeMsgMgr;
   LocalNodeWorkder    nodeWorker;
+  ScriptManager       scriptMgr;
 };
 
 }

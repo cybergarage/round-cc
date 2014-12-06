@@ -27,7 +27,7 @@ Round::RemoteNode::RemoteNode(const std::string &address, int port) {
 Round::RemoteNode::~RemoteNode() {
 }
 
-bool Round::RemoteNode::postMessage(const NodeRequest &reqMsg, NodeResponse *resMsg) {
+bool Round::RemoteNode::postMessage(const NodeRequest *reqMsg, NodeResponse *resMsg) {
   return false;
 }
 

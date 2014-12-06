@@ -21,17 +21,22 @@ namespace RPC {
 namespace JSON {
 
 enum {
-  DetailStatusParserError          = -32700,
-  DetailStatusInvalidRequest       = -32600,
-  DetailStatusMethodNotFound       = -32601,
-  DetailStatusInvalidParams        = -32602,
-  DetailStatusInternalError        = -32603,
-  DetailStatusSpecificErrorMax     = -32000,
-  DetailStatusSpecificErrorMin     = -32099,
+  ErrorCodeUnknown        = 0,
+  ErrorCodeParserError    = -32700,
+  ErrorCodeInvalidRequest = -32600,
+  ErrorCodeMethodNotFound = -32601,
+  ErrorCodeInvalidParams  = -32602,
+  ErrorCodeInternalError  = -32603,
+  ErrorCodeServerErrorMax = -32000,
+  ErrorCodeServerErrorMin = -32099,
+  ErrorCodeServerError    = ErrorCodeServerErrorMax,
 };
 
+const std::string &ErrorCodeToString(int jsonErrorCode);
+bool IsServerErrorCode(int jsonErrorCode);
+
 namespace HTTP {
-  int JSONDetailStatus2HTTPStatus(int jsonDetailStatus);
+  int ErrorCodeToHTTPStatus(int jsonErrorCode);
 }
 
 class Message : public ::Round::Message {

@@ -56,26 +56,26 @@ bool Round::ScriptManager::setEngine(ScriptEngine *engine) {
 
 bool Round::ScriptManager::run(const ScriptName &name, const ScriptParams &params, ScriptResults *results, Error *error) {
   error->setCode(ScriptEngineStatusOk);
-  error->setDetailCode(ScriptManagerDetailStatusOk);
+  error->setDetailCode(ScriptManagerErrorCodeOk);
   
   const Script *script = this->scripts.getScript(name);
   if (!script) {
     error->setCode(ScriptEngineStatusBadRequest);
-    error->setDetailCode(ScriptManagerDetailStatusMethodNotFound);
+    error->setDetailCode(ScriptManagerErrorCodeMethodNotFound);
     return false;
   }
   
   const ScriptLang &scriptLang = script->getLanguage();
   if (scriptLang.length() <= 0) {
     error->setCode(ScriptEngineStatusBadRequest);
-    error->setDetailCode(ScriptManagerDetailStatusScriptEngineNotFound);
+    error->setDetailCode(ScriptManagerErrorCodeScriptEngineNotFound);
     return false;
   }
   
   const ScriptEngine *scriptEngine = this->engines.getEngine(scriptLang);
   if (!scriptEngine) {
     error->setCode(ScriptEngineStatusBadRequest);
-    error->setDetailCode(ScriptManagerDetailStatusScriptEngineNotFound);
+    error->setDetailCode(ScriptManagerErrorCodeScriptEngineNotFound);
     return false;
   }
   

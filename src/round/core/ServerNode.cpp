@@ -46,7 +46,7 @@ bool Round::ServerNode::stop(Error *error) {
 
 Round::HttpStatusCode Round::ServerNode::httpRpcRequestRecieved(uHTTP::HTTPRequest *httpReq, int rpcErrorCode) {
   uHTTP::HTTPResponse httpRes;
-  httpRes.setStatusCode(RPC::JSON::HTTP::JSONDetailStatus2HTTPStatus(rpcErrorCode));
+  httpRes.setStatusCode(RPC::JSON::HTTP::ErrorCodeToHTTPStatus(rpcErrorCode));
   return httpReq->post(&httpRes);
 }
 
@@ -68,7 +68,7 @@ Round::HttpStatusCode Round::ServerNode::postRpcRequest(uHTTP::HTTPRequest *http
   if (!httpReq || !nodeReq)
     return false;
   nodeReq->setHttpRequest(httpReq);
-  return postMessage(nodeReq);
+  return pushMessage(nodeReq);
 }
 
 Round::HttpStatusCode Round::ServerNode::httpRpcRequestReceived(uHTTP::HTTPRequest *httpReq) {
@@ -77,23 +77,23 @@ Round::HttpStatusCode Round::ServerNode::httpRpcRequestReceived(uHTTP::HTTPReque
 
   std::string httpContent = httpReq->getContent();
   if (httpContent.length() <= 0)
-    return httpRpcRequestRecieved(httpReq, RPC::JSON::DetailStatusInvalidRequest);
+    return httpRpcRequestRecieved(httpReq, RPC::JSON::ErrorCodeInvalidRequest);
   
   NodeMessageRequestParser jsonParser;
   if (jsonParser.parse(httpContent) == false)
-    return httpRpcRequestRecieved(httpReq, RPC::JSON::DetailStatusParserError);
+    return httpRpcRequestRecieved(httpReq, RPC::JSON::ErrorCodeParserError);
   
   if (jsonParser.getObject()->isDictionary() == false)
-    return httpRpcRequestRecieved(httpReq, RPC::JSON::DetailStatusInvalidRequest);
+    return httpRpcRequestRecieved(httpReq, RPC::JSON::ErrorCodeInvalidRequest);
 
   NodeRequest *nodeReq = dynamic_cast<NodeRequest *>(jsonParser.getObject());
   if (!nodeReq)
-    return httpRpcRequestRecieved(httpReq, RPC::JSON::DetailStatusInvalidRequest);
+    return httpRpcRequestRecieved(httpReq, RPC::JSON::ErrorCodeInvalidRequest);
 
   // Post RPC Request
   
   if (!postRpcRequest(httpReq, nodeReq))
-    return httpRpcRequestRecieved(httpReq, RPC::JSON::DetailStatusInternalError);
+    return httpRpcRequestRecieved(httpReq, RPC::JSON::ErrorCodeInternalError);
   
   return uHTTP::HTTP::PROCESSING;
 }
