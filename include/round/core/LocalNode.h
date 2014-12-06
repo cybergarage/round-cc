@@ -38,6 +38,8 @@ class LocalNode : public Node, public NodeFinderObserver {
   LocalNode();
   virtual ~LocalNode();
 
+  bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  
   bool loadConfigFromString(const std::string &string, Error *error);
   bool loadConfigFromFile(const std::string &filename, Error *error);
   bool isConfigValid(Error *error);
@@ -45,11 +47,10 @@ class LocalNode : public Node, public NodeFinderObserver {
   bool nodeAdded(Node *node);
   bool nodeRemoved(Node *node);
 
-  bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes);
   bool pushMessage(const NodeRequest *nodeReq);
   bool waitMessage(const NodeRequest **nodeReq);
   bool execMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
-
+  
   virtual bool start(Error *error);
   virtual bool stop(Error *error);
   bool restart(Error *error);

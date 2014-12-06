@@ -23,21 +23,17 @@ class NodeRequest : public RPC::JSON::Request {
   NodeRequest();
   NodeRequest(const std::string &method);
   virtual ~NodeRequest();
- 
-  bool hasMethod() const;
-  bool isMethod(const std::string &method) const;
-  bool isValid();
-  
+   
   bool setHttpRequest(uHTTP::HTTPRequest *httpReq);
   uHTTP::HTTPRequest *getHttpRequest() const {return this->httpReq;}
   
-  void setResponse(NodeResponse *nodeRes) {this->nodeRes = nodeRes;}
+  void setResponse(NodeResponse *nodeRes) const {this->nodeRes = nodeRes;}
   NodeResponse *getResponse() const {return this->nodeRes;}
 
  private:
   
-  uHTTP::HTTPRequest *httpReq;
-  NodeResponse       *nodeRes;
+  mutable uHTTP::HTTPRequest *httpReq;
+  mutable NodeResponse       *nodeRes;
 
   void init();
   bool close();

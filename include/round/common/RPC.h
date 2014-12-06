@@ -107,6 +107,7 @@ class Request : public Message {
   bool isValid();
   bool isNotify();
 
+  bool hasMethod() const {return hasKey(METHOD);}
   bool isMethod(const std::string &method) const;
 };
 

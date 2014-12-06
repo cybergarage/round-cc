@@ -11,9 +11,9 @@
 #ifndef _ROUNDCC_REMOTENODE_H_
 #define _ROUNDCC_REMOTENODE_H_
 
-#include <uhttp/http/HTTPStatus.h>
-
 #include <round/core/Node.h>
+
+#include <uhttp/http/HTTPStatus.h>
 
 namespace Round {
   
@@ -34,7 +34,7 @@ class RemoteNode : public Node {
     return this->requestAddress.c_str();
   }
 
-  bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes);
+  bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
 
   bool isCloneable() const {
     return true;
