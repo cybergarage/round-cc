@@ -80,11 +80,6 @@ public:
   }
 };
 
-class NodeMessageListener {
- public:
-  virtual bool nodeMessageReceived(const NodeRequest &reqMsg, NodeResponse *resMsg) = 0;
-};
-
 }
 
 #endif

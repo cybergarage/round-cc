@@ -19,7 +19,7 @@
 
 namespace Round {
 
-class LocalNode : public Node, public NodeFinderObserver, public NodeMessageListener {
+class LocalNode : public Node, public NodeFinderObserver {
  public:
   LocalNode();
   virtual ~LocalNode();
