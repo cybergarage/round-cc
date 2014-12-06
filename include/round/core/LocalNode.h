@@ -19,6 +19,16 @@
 
 namespace Round {
 
+class LocalNode;
+
+class LocalNodeWorkder : public Thread<LocalNode> {
+ public:
+  LocalNodeWorkder();
+  ~LocalNodeWorkder();
+
+  void run();
+};
+  
 class LocalNode : public Node, public NodeFinderObserver {
  public:
   LocalNode();
@@ -32,16 +42,13 @@ class LocalNode : public Node, public NodeFinderObserver {
   bool nodeRemoved(Node *node);
 
   bool postMessage(const NodeRequest &reqMsg, NodeResponse *resMsg);
-  bool nodeMessageReceived(const NodeRequest &reqMsg, NodeResponse *resMsg);
 
-  bool postMessage(NodeRequest *reqMsg);
-  
-  bool waitMessage(Message *msg);
-  bool execMessage(const Message *msg);
+  bool postMessage(const NodeRequest *nodeReq);
+  bool waitMessage(const NodeRequest **nodeReq);
+  bool execMessage(const NodeRequest *nodeReq);
 
   virtual bool start(Error *error);
   virtual bool stop(Error *error);
-
   bool restart(Error *error);
   
   LocalNodeConfig *getNodeConfig() {
@@ -72,12 +79,11 @@ private:
 
 private:
 
-  LocalNodeConfig nodeConfig;
-  NodeGraph nodeGraph;
-  NodeStatus nodeStatus;
-
-  NodeMessageManager msgManager;
-  ThreadManager NodeOperation;
+  LocalNodeConfig     nodeConfig;
+  NodeGraph           nodeGraph;
+  NodeStatus          nodeStatus;
+  NodeMessageManager  nodeMsgManager;
+  LocalNodeWorkder    nodeWorker;
 };
 
 }

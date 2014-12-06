@@ -72,25 +72,22 @@ bool Round::LocalNode::nodeRemoved(Round::Node *removedNode)  {
   return true;
 }
 
-bool Round::LocalNode::postMessage(NodeRequest *reqMsg) {
-  
-}
-
-
 bool Round::LocalNode::postMessage(const NodeRequest &reqMsg, NodeResponse *resMsg) {
-  return nodeMessageReceived(reqMsg, resMsg);
 }
 
-bool Round::LocalNode::nodeMessageReceived(const NodeRequest &reqMsg, NodeResponse *resMsg) {
-  return false;
+bool Round::LocalNode::postMessage(const NodeRequest *nodeReq) {
+  return this->nodeMsgManager.pushMessage(nodeReq);
 }
 
-bool Round::LocalNode::waitMessage(Message *msg)  {
-  return false;
+bool Round::LocalNode::waitMessage(const NodeRequest **nodeReq) {
+  const Message *nodeMsg = dynamic_cast<const Message *>(*nodeReq);
+  if (!nodeMsg)
+    return false;
+  return this->nodeMsgManager.waitMessage(&nodeMsg);
 }
 
-bool Round::LocalNode::execMessage(const Message *msg) {
-  return false;
+bool Round::LocalNode::execMessage(const NodeRequest *nodeReq) {
+  
 }
 
 bool Round::LocalNode::loadConfigFromString(const std::string &string, Error *error) {
@@ -113,6 +110,12 @@ bool Round::LocalNode::start(Error *error) {
   stop(error);
   
   setState(NodeStatus::ACTIVATING);
+
+  nodeWorker.setObject(this);
+  if (!nodeWorker.start()) {
+    setState(NodeStatus::STOP);
+    return false;
+  }
   
   setState(NodeStatus::ACTIVE);
   
@@ -121,6 +124,11 @@ bool Round::LocalNode::start(Error *error) {
 
 bool Round::LocalNode::stop(Error *error) {
   bool areAllOperationSucess = true;
+  
+  if (!nodeWorker.stop()) {
+    areAllOperationSucess = false;
+    return false;
+  }
   
   NodeGraph *nodeGraph = getNodeGraph();
   if (nodeGraph->hasNode(this) == true) {

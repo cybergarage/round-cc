@@ -30,15 +30,15 @@ public:
   ~Message();
 };
 
-class MessageQueue : private std::queue<Message *> {
+class MessageQueue : private std::queue<const Message *> {
   
 public:
   
   MessageQueue();
   virtual ~MessageQueue();
   
-  bool pushMessage(Message *msg);
-  bool popMessage(Message **msg);
+  bool pushMessage(const Message *msg);
+  bool popMessage(const Message **msg);
   
 private:
   
@@ -54,8 +54,8 @@ class MessageManager {
   MessageManager();
   virtual ~MessageManager();
 
-  bool pushMessage(Message *msg);
-  bool popMessage(Message **msg);
+  bool pushMessage(const Message *msg);
+  bool waitMessage(const Message **msg);
 
  private:
 

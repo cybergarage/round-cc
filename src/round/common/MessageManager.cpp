@@ -30,7 +30,7 @@ Round::MessageManager::~MessageManager() {
   delete this->msgQueue;
 }
 
-bool Round::MessageManager::pushMessage(Message *msg) {
+bool Round::MessageManager::pushMessage(const Message *msg) {
   if (!msg)
     return false;
 
@@ -40,7 +40,7 @@ bool Round::MessageManager::pushMessage(Message *msg) {
   return true;
 }
 
-bool Round::MessageManager::popMessage(Message **msg) {
+bool Round::MessageManager::waitMessage(const Message **msg) {
   if (!msg)
     return false;
 

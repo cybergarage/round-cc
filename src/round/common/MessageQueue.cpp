@@ -20,7 +20,7 @@ Round::MessageQueue::MessageQueue() {
 Round::MessageQueue::~MessageQueue() {
 }
 
-bool Round::MessageQueue::pushMessage(Message *msg) {
+bool Round::MessageQueue::pushMessage(const Message *msg) {
   if (!msg)
     return false;
   
@@ -31,7 +31,7 @@ bool Round::MessageQueue::pushMessage(Message *msg) {
   return true;
 }
 
-bool Round::MessageQueue::popMessage(Message **msg) {
+bool Round::MessageQueue::popMessage(const Message **msg) {
   if (!msg)
     return false;
   
