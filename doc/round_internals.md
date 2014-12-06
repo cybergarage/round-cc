@@ -32,7 +32,6 @@ Round will support other structues .....
 
 Node can communicate to other nodes in the same cluster using [RPC (remote procedure call)](http://en.wikipedia.org/wiki/Remote_procedure_call) over HTTP or HTTPU.
 
-###
 ### Protocol
 
 Round uses [JSON-RPC 2.0](http://www.jsonrpc.org/specification) over HTTP to execute [RPC](http://en.wikipedia.org/wiki/Remote_procedure_call). For efficient communication for between the nodes, we will support more efficient remote procedure call like  [BSON](http://bsonspec.org) in the future release.
@@ -46,6 +45,14 @@ Round updates the logical clock in any node every a messaging, and the parameter
 ### Methods
 
 Check [Round RPC Methods](./round_rpc_methods.md)
+
+### Staging
+
+The received message is split into multiple stages similar to the SEDA [[??]][seda] architecture.
+
+[??] [Welsh, M., Culler, D., and Brewer, E. 2001. SEDA: an architecture for well-conditioned, scalable internet services][seda].
+
+[seda]: http://dl.acm.org/citation.cfm?id=502057
 
 ## Consensus Protocol
 
