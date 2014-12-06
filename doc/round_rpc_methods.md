@@ -4,7 +4,7 @@
 
 ## Overview
 
-Node can communicate to other nodes in the same cluster using [RPC (remote procedure call)](http://en.wikipedia.org/wiki/Remote_procedure_call) over HTTP or HTTPU.
+Node can communicate to other nodes in the same cluster using [RPC (remote procedure call)](http://en.wikipedia.org/wiki/Remote_procedure_call) over HTTP, HTTPU and HTTPMU.
 
 # HTTP or HTTP
 [JSON-RPC over HTTP](http://jsonrpc.org/historical/json-rpc-over-http.html)

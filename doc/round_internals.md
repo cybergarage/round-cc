@@ -30,11 +30,30 @@ Round will support other structues .....
 
 ## Messaging
 
-Node can communicate to other nodes in the same cluster using [RPC (remote procedure call)](http://en.wikipedia.org/wiki/Remote_procedure_call) over HTTP or HTTPU.
+Node can communicate to other nodes in the same cluster using [RPC (remote procedure call)][rpc] over HTTP, HTTPU and HTTPMU.
 
 ### Protocol
 
-Round uses [JSON-RPC 2.0](http://www.jsonrpc.org/specification) over HTTP to execute [RPC](http://en.wikipedia.org/wiki/Remote_procedure_call). For efficient communication for between the nodes, we will support more efficient remote procedure call like  [BSON](http://bsonspec.org) in the future release.
+Round uses [JSON-RPC 2.0][json-rpc] over HTTP to execute [RPC][rpc], but Round extends the specification to support transaction.
+
+For efficient communication for between the nodes, we will support more efficient remote procedure call like  [BSON](http://bsonspec.org) in the future release.
+
+### JSON-RPC over HTTP
+
+Round is based on [JSON-RPC over HTTP][json-rpc-http], but Round extends the specification to support asynchronous [RPC][rpc].
+
+
+X-Aync : ON
+
+X-ResponseHost 
+
+
+[rpc]: http://en.wikipedia.org/wiki/Remote_procedure_call
+[json-rpc]: http://www.jsonrpc.org/specification
+[json-rpc-http]: http://jsonrpc.org/historical/json-rpc-over-http.html
+
+200 OK
+202 Accepted
 
 ### Clock
 
