@@ -30,6 +30,8 @@ public:
   bool getClock(Clock *clock) const;
 };
 
+class NodeResponse;
+  
 class NodeRequest : public NodeMessage {
  public:
   static const std::string KEY_METHOD;
@@ -40,20 +42,20 @@ class NodeRequest : public NodeMessage {
   NodeRequest(const std::string &method);
   virtual ~NodeRequest();
  
-  bool setHttpRequest(uHTTP::HTTPRequest *httpReq);
-  
-  uHTTP::HTTPRequest *getHttpRequest() {
-    return this->httpReq;
-  }
-  
   bool hasMethod() const;
   bool isMethod(const std::string &method) const;
-
   bool isValid();
+  
+  bool setHttpRequest(uHTTP::HTTPRequest *httpReq);
+  uHTTP::HTTPRequest *getHttpRequest() {return this->httpReq;}
+  
+  void setResponse(NodeResponse *nodeRes) {this->nodeRes = nodeRes;}
+  NodeResponse *getResponse() {return this->nodeRes;}
 
  private:
   
   uHTTP::HTTPRequest *httpReq;
+  NodeResponse       *nodeRes;
 
   bool close();
 };

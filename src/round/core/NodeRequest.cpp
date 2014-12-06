@@ -31,6 +31,7 @@ Round::NodeRequest::~NodeRequest() {
 bool Round::NodeRequest::close() {
   if (!this->httpReq)
     return false;
+  
   delete this->httpReq;
   this->httpReq = NULL;
 
