@@ -28,12 +28,27 @@ void Round::LocalNodeWorkder::run() {
     
     if (!nodeReq)
       break;
+
+    NodeResponse nodeResLocal;
+    NodeResponse *nodeRes = nodeReq->getResponse();
+    if (!nodeRes) {
+      nodeRes = &nodeResLocal;
+    }
     
-    NodeResponse nodeRes;
     Error err;
-    
-    node->execMessage(nodeReq, &nodeRes, &err);
+    node->execMessage(nodeReq, nodeRes, &err);
+
+    uHTTP::HTTPRequest *httpRes = nodeReq->getHttpRequest();
+    if (httpRes) {
+      post(nodeRes, httpRes);
+    }
     
     delete nodeReq;
   }
+}
+
+void Round::LocalNodeWorkder::post(const NodeResponse *nodeRes, uHTTP::HTTPRequest *httpReq) {
+  uHTTP::HTTPResponse httpRes;
+  nodeRes->toHTTPResponse(&httpRes);
+  httpReq->post(&httpRes);
 }

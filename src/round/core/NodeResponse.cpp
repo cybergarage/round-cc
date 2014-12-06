@@ -13,9 +13,6 @@
 
 #include <round/core/NodeMessage.h>
 
-const std::string Round::NodeResponse::KEY_ERROR_CODE = "_error_code";
-const std::string Round::NodeResponse::KEY_ERROR_MESSAGE = "_error_message";
-
 Round::NodeResponse::NodeResponse() {
 }
 

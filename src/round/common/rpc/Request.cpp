@@ -17,6 +17,13 @@ Round::RPC::JSON::Request::Request() {
 Round::RPC::JSON::Request::~Request() {
 }
 
+bool Round::RPC::JSON::Request::isMethod(const std::string &method) const {
+  std::string reqMethod;
+  if (!get(METHOD, &reqMethod))
+    return false;
+  return (method.compare(reqMethod) == 0) ? true : false;
+}
+
 bool Round::RPC::JSON::Request::isValid() {
   if (!hasKey(JSON_RPC))
     return false;

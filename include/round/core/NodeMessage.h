@@ -13,29 +13,11 @@
 
 #include <round/common/RPC.h>
 
-#include <uhttp/HTTP.h>
-
 namespace Round {
-
-class NodeMessage : public RPC::JSON::Message {
-public:
-  static const std::string KEY_CLOCK;
-  
- public:
-  NodeMessage();
-  virtual ~NodeMessage();
-
-  void setClock(const Clock &clock);
-  bool hasClock() const;
-  bool getClock(Clock *clock) const;
-};
 
 class NodeResponse;
   
-class NodeRequest : public NodeMessage {
- public:
-  static const std::string KEY_METHOD;
-    
+class NodeRequest : public RPC::JSON::Request {
  public:
   
   NodeRequest();
@@ -47,24 +29,21 @@ class NodeRequest : public NodeMessage {
   bool isValid();
   
   bool setHttpRequest(uHTTP::HTTPRequest *httpReq);
-  uHTTP::HTTPRequest *getHttpRequest() {return this->httpReq;}
+  uHTTP::HTTPRequest *getHttpRequest() const {return this->httpReq;}
   
   void setResponse(NodeResponse *nodeRes) {this->nodeRes = nodeRes;}
-  NodeResponse *getResponse() {return this->nodeRes;}
+  NodeResponse *getResponse() const {return this->nodeRes;}
 
  private:
   
   uHTTP::HTTPRequest *httpReq;
   NodeResponse       *nodeRes;
 
+  void init();
   bool close();
 };
 
-class NodeResponse : public NodeMessage {
-public:
-  static const std::string KEY_ERROR_CODE;
-  static const std::string KEY_ERROR_MESSAGE;
-    
+class NodeResponse : public RPC::JSON::Response {
 public:
   NodeResponse();
   virtual ~NodeResponse();

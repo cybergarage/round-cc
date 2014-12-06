@@ -20,9 +20,21 @@ Round::RPC::JSON::Response::~Response() {
 bool Round::RPC::JSON::Response::isValid() {
   if (!hasKey(JSON_RPC))
     return false;
+  
   if (hasKey(ERROR))
-    return false;
-  if (!hasKey(RESULT))
     return true;
+  
+  if (hasKey(RESULT))
+    return true;
+  
   return false;
+}
+
+void Round::RPC::JSON::Response::toHTTPResponse(uHTTP::HTTPResponse *httpRes) const {
+  if (!httpRes)
+    return;
+  
+  std::string resContent;
+  toJSONString(&resContent);
+  httpRes->setContent(resContent);
 }

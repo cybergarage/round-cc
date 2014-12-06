@@ -14,6 +14,8 @@
 #include <round/common/Error.h>
 #include <round/common/Message.h>
 
+#include <uhttp/HTTP.h>
+
 namespace Round {
 
 namespace RPC {
@@ -104,6 +106,8 @@ class Request : public Message {
 
   bool isValid();
   bool isNotify();
+
+  bool isMethod(const std::string &method) const;
 };
 
 class Response : public Message {
@@ -112,6 +116,8 @@ class Response : public Message {
   virtual ~Response();
     
   bool isValid();
+  
+  void toHTTPResponse(uHTTP::HTTPResponse *httpRes) const;
 };
 
 }

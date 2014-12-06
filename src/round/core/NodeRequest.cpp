@@ -13,15 +13,18 @@
 
 #include <round/core/NodeMessage.h>
 
-const std::string Round::NodeRequest::KEY_METHOD = "_method";
-
 Round::NodeRequest::NodeRequest() {
-  this->httpReq = NULL;
+  init();
 }
 
 Round::NodeRequest::NodeRequest(const std::string &method) {
-  set(KEY_METHOD, method);
-  this->httpReq = NULL;
+  init();
+  setMethod(method);
+}
+
+void Round::NodeRequest::init() {
+  setHttpRequest(NULL);
+  setResponse(NULL);
 }
 
 Round::NodeRequest::~NodeRequest() {
@@ -44,19 +47,4 @@ bool Round::NodeRequest::setHttpRequest(uHTTP::HTTPRequest *httpReq) {
   this->httpReq = httpReq;
 
   return true;
-}
-
-bool Round::NodeRequest::hasMethod() const {
-  return hasKey(KEY_METHOD);
-}
-
-bool Round::NodeRequest::isMethod(const std::string &method) const {
-  std::string reqMethod;
-  if (!get(KEY_METHOD, &reqMethod))
-    return false;
-  return (method.compare(reqMethod) == 0) ? true : false;
-}
-
-bool Round::NodeRequest::isValid() {
-  return false;
 }

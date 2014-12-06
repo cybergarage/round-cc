@@ -68,7 +68,6 @@
 		21DA08801A1742EE00D3DCE0 /* ErrorNo.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DA087F1A1742EE00D3DCE0 /* ErrorNo.h */; };
 		21DA08821A17457D00D3DCE0 /* NodeMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DA08811A17457D00D3DCE0 /* NodeMessage.h */; };
 		21DA08921A1747EB00D3DCE0 /* HTTP.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DA08911A1747EB00D3DCE0 /* HTTP.h */; };
-		21DA08C11A174EAB00D3DCE0 /* NodeMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08BE1A174EAB00D3DCE0 /* NodeMessage.cpp */; };
 		21DA08C21A174EAB00D3DCE0 /* NodeStatus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08BF1A174EAB00D3DCE0 /* NodeStatus.cpp */; };
 		21DA08C31A174EAB00D3DCE0 /* RemoteNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08C01A174EAB00D3DCE0 /* RemoteNode.cpp */; };
 		21DA08C91A175E7500D3DCE0 /* UPnPNodeFinder.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DA08C71A175E7500D3DCE0 /* UPnPNodeFinder.h */; };
@@ -212,7 +211,6 @@
 		21DA087F1A1742EE00D3DCE0 /* ErrorNo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorNo.h; sourceTree = "<group>"; };
 		21DA08811A17457D00D3DCE0 /* NodeMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeMessage.h; sourceTree = "<group>"; };
 		21DA08911A1747EB00D3DCE0 /* HTTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTP.h; sourceTree = "<group>"; };
-		21DA08BE1A174EAB00D3DCE0 /* NodeMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeMessage.cpp; sourceTree = "<group>"; };
 		21DA08BF1A174EAB00D3DCE0 /* NodeStatus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeStatus.cpp; sourceTree = "<group>"; };
 		21DA08C01A174EAB00D3DCE0 /* RemoteNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RemoteNode.cpp; sourceTree = "<group>"; };
 		21DA08C71A175E7500D3DCE0 /* UPnPNodeFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPnPNodeFinder.h; sourceTree = "<group>"; };
@@ -333,7 +331,6 @@
 				21DA086C1A17426500D3DCE0 /* NodeFinderObserver.cpp */,
 				21DA086D1A17426500D3DCE0 /* NodeGraph.cpp */,
 				21DA086E1A17426500D3DCE0 /* NodeList.cpp */,
-				21DA08BE1A174EAB00D3DCE0 /* NodeMessage.cpp */,
 				2184F2171A19B62C007F1326 /* NodeRequest.cpp */,
 				2184F2181A19B62C007F1326 /* NodeResponse.cpp */,
 				21DA08BF1A174EAB00D3DCE0 /* NodeStatus.cpp */,
@@ -732,7 +729,6 @@
 				21C1697E1A2CAD960059D95E /* Message.cpp in Sources */,
 				21DE68921A13B3EA0049227E /* Message.cpp in Sources */,
 				21DE689C1A13B3EA0049227E /* Random.cpp in Sources */,
-				21DA08C11A174EAB00D3DCE0 /* NodeMessage.cpp in Sources */,
 				21DE689F1A13B3EA0049227E /* SHA1.cpp in Sources */,
 				21DE688B1A13B3EA0049227E /* JSONArray.cpp in Sources */,
 				21DA08741A17426500D3DCE0 /* LocalNode.cpp in Sources */,

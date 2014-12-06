@@ -18,7 +18,6 @@
 		2184F2071A18E359007F1326 /* ServerNodeTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2021A18E359007F1326 /* ServerNodeTests.cpp */; };
 		2184F2081A18E359007F1326 /* ServerTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2031A18E359007F1326 /* ServerTests.cpp */; };
 		2184F2121A1993B4007F1326 /* ClientCoreTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2111A1993B4007F1326 /* ClientCoreTests.cpp */; };
-		2184F21E1A19B9A0007F1326 /* NodeMessageTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F21B1A19B9A0007F1326 /* NodeMessageTests.cpp */; };
 		2184F21F1A19B9A0007F1326 /* NodeReuestTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F21C1A19B9A0007F1326 /* NodeReuestTests.cpp */; };
 		2184F2201A19B9A0007F1326 /* NodeResponseTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F21D1A19B9A0007F1326 /* NodeResponseTests.cpp */; };
 		21AD429D1A13B7FC00741A08 /* BitOptionTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD428B1A13B7FC00741A08 /* BitOptionTests.cpp */; };
@@ -128,7 +127,6 @@
 		2184F20B1A18E550007F1326 /* TestFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestFinder.h; path = ../../TestFinder.h; sourceTree = "<group>"; };
 		2184F20C1A18E550007F1326 /* TestServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestServer.h; path = ../../TestServer.h; sourceTree = "<group>"; };
 		2184F2111A1993B4007F1326 /* ClientCoreTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClientCoreTests.cpp; sourceTree = "<group>"; };
-		2184F21B1A19B9A0007F1326 /* NodeMessageTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeMessageTests.cpp; sourceTree = "<group>"; };
 		2184F21C1A19B9A0007F1326 /* NodeReuestTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeReuestTests.cpp; sourceTree = "<group>"; };
 		2184F21D1A19B9A0007F1326 /* NodeResponseTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeResponseTests.cpp; sourceTree = "<group>"; };
 		21AD428B1A13B7FC00741A08 /* BitOptionTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BitOptionTests.cpp; sourceTree = "<group>"; };
@@ -300,7 +298,6 @@
 				2184F2001A18E359007F1326 /* NodeFinderTests.cpp */,
 				21DA08A01A174A4900D3DCE0 /* NodeGraphTests.cpp */,
 				21DA08BB1A174BB700D3DCE0 /* NodeListTests.cpp */,
-				2184F21B1A19B9A0007F1326 /* NodeMessageTests.cpp */,
 				2184F21C1A19B9A0007F1326 /* NodeReuestTests.cpp */,
 				2184F21D1A19B9A0007F1326 /* NodeResponseTests.cpp */,
 				21DA08A41A174A4900D3DCE0 /* NodeStatusTests.cpp */,
@@ -410,7 +407,6 @@
 				21AD429E1A13B7FC00741A08 /* ClockTests.cpp in Sources */,
 				21AD42A51A13B7FC00741A08 /* JSONTests.cpp in Sources */,
 				21AD42A01A13B7FC00741A08 /* ConsistentHashTests.cpp in Sources */,
-				2184F21E1A19B9A0007F1326 /* NodeMessageTests.cpp in Sources */,
 				2184F2071A18E359007F1326 /* ServerNodeTests.cpp in Sources */,
 				2184F2051A18E359007F1326 /* NodeFinderTests.cpp in Sources */,
 				21DA08B01A174A4900D3DCE0 /* LocalNodeTests.cpp in Sources */,

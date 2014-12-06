@@ -28,6 +28,9 @@ class LocalNodeWorkder : public Thread<LocalNode> {
   ~LocalNodeWorkder();
 
   void run();
+  
+ private:
+  void post(const NodeResponse *nodeRes, uHTTP::HTTPRequest *httpReq);
 };
   
 class LocalNode : public Node, public NodeFinderObserver {
