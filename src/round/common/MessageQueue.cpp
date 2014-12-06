@@ -20,24 +20,19 @@ Round::MessageQueue::MessageQueue() {
 Round::MessageQueue::~MessageQueue() {
 }
 
-bool Round::MessageQueue::pushMessage(const Message *message) {
-  if (!message)
-    return false;
-  
-  std::string jsonString;
-  message->toJSONString(&jsonString);
-  if (jsonString.length() <= 0)
+bool Round::MessageQueue::pushMessage(Message *msg) {
+  if (!msg)
     return false;
   
   this->mutex.lock();
-  push(jsonString);
+  push(msg);
   this->mutex.unlock();
 
   return true;
 }
 
-bool Round::MessageQueue::popMessage(Message *message) {
-  if (!message)
+bool Round::MessageQueue::popMessage(Message **msg) {
+  if (!msg)
     return false;
   
   if (empty())
@@ -45,20 +40,10 @@ bool Round::MessageQueue::popMessage(Message *message) {
 
   this->mutex.lock();
   
-  std::string jsonString = front();
+  *msg = front();
   pop();
   
   this->mutex.unlock();
   
-  Round::JSONParser jsonParser;
-  if (jsonParser.parse(jsonString) == false)
-    return false;
-   
-  Round::JSONObject *jsonObject = jsonParser.getObject();
-  if (jsonObject->isDictionary() == false)
-    return false;
-   
-  message->set(static_cast<Round::JSONDictionary *>(jsonObject));
-
   return true;
 }

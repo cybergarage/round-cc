@@ -60,10 +60,14 @@ bool Round::ServerNode::isRpcRequest(uHTTP::HTTPRequest *httpReq) {
     if (uri.compare(HTTP_JSON_RPC_ENTRYPOINT) == 0)
       return true;
   }
+  
   return false;
 }
 
 Round::HttpStatusCode Round::ServerNode::postRpcRequest(uHTTP::HTTPRequest *httpReq, NodeRequest *nodeReq) {
+  if (!httpReq || !nodeReq)
+    return false;
+  nodeReq->setHttpRequest(httpReq);
   return postMessage(nodeReq);
 }
 

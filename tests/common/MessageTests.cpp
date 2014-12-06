@@ -27,18 +27,19 @@ BOOST_AUTO_TEST_CASE(RoundMessageManagerTest) {
   for (int n = 0; n < FRACTAL_MESSAGE_BASIC_TEST_COUNT; n++) {
     snprintf(key, sizeof(key), "key%d", n);
     snprintf(value, sizeof(value), "%d", n);
-    Message msg;
-    msg.set(key, value);
-    BOOST_CHECK(msgMgr.pushMessage(&msg));
+    Message *msg = new Message();
+    msg->set(key, value);
+    BOOST_CHECK(msgMgr.pushMessage(msg));
   }
 
   for (int n = 0; n < FRACTAL_MESSAGE_BASIC_TEST_COUNT; n++) {
     snprintf(key, sizeof(key), "key%d", n);
     snprintf(value, sizeof(value), "%d", n);
-    Message msg;
+    Message *msg;
     BOOST_CHECK(msgMgr.popMessage(&msg));
     string value;
-    BOOST_CHECK(msg.get(key, &value));
+    BOOST_CHECK(msg->get(key, &value));
     BOOST_CHECK_EQUAL(value.compare(value), 0);
+    delete msg;
   }
 }

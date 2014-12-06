@@ -30,22 +30,22 @@ Round::MessageManager::~MessageManager() {
   delete this->msgQueue;
 }
 
-bool Round::MessageManager::pushMessage(const Message *message) {
-  if (!message)
+bool Round::MessageManager::pushMessage(Message *msg) {
+  if (!msg)
     return false;
 
-  this->msgQueue->pushMessage(message);
+  this->msgQueue->pushMessage(msg);
   this->msgSem->post();
 
   return true;
 }
 
-bool Round::MessageManager::popMessage(Message *message) {
-  if (!message)
+bool Round::MessageManager::popMessage(Message **msg) {
+  if (!msg)
     return false;
 
   if  (this->msgSem->wait() == false)
     return false;
   
-  return this->msgQueue->popMessage(message);
+  return this->msgQueue->popMessage(msg);
 }
