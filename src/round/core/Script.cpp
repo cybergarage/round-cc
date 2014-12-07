@@ -14,10 +14,10 @@ Round::Script::Script(const ScriptLang &lang) {
   this->language = lang;
 }
 
-Round::Script::Script(const ScriptLang &lang, const ScriptName &name, const ScriptContent &content) {
+Round::Script::Script(const ScriptLang &lang, const ScriptName &name, const ScriptCode &content) {
   this->language = lang;
   setName(name);
-  setContent(content);
+  setCode(content);
 }
 
 Round::Script::~Script() {

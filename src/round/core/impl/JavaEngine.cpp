@@ -14,7 +14,9 @@
 #include <round/core/Log.h>
 #include <round/core/impl/Java.h>
 
-Round::JavaEngine::JavaEngine() : ScriptEngine(Java::LANGUAGE) {
+const Round::ScriptName Round::JavaEngine::LANGUAGE = "java";
+
+Round::JavaEngine::JavaEngine() : ScriptEngine(LANGUAGE) {
   JavaVMInitArgs vm_args;
   vm_args.ignoreUnrecognized = false;
   vm_args.nOptions = 0  ;
@@ -30,6 +32,10 @@ Round::JavaEngine::JavaEngine() : ScriptEngine(Java::LANGUAGE) {
 #if defined(ROUND_UES_JVMOPTIONS)
   delete options;
 #endif
+}
+
+bool Round::JavaEngine::compile(const Script *script) const {
+  return true;
 }
 
 bool Round::JavaEngine::run(const Script *jsScript, const ScriptParams &params, ScriptResults *results, Error *error) const {

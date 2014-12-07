@@ -21,7 +21,7 @@ namespace Round {
 
 typedef std::string ScriptLang;
 typedef std::string ScriptName;
-typedef std::string ScriptContent;
+typedef std::string ScriptCode;
 typedef std::string ScriptParams;
 typedef std::string ScriptResults;
   
@@ -29,7 +29,7 @@ class Script {
 
  public:
   Script(const ScriptLang &lang);
-  Script(const ScriptLang &lang, const ScriptName &name, const ScriptContent &content);
+  Script(const ScriptLang &lang, const ScriptName &name, const ScriptCode &content);
   
   virtual ~Script();
 
@@ -54,23 +54,23 @@ class Script {
     return (0 < this->name.length()) ? true : false;
   }
   
-  bool setContent(const ScriptContent &content) {
-    this->content = content;
+  bool setCode(const ScriptCode &content) {
+    this->code = content;
     return true;
   }
   
-  const ScriptContent &getContent() const {
-    return this->content;
+  const ScriptCode &getCode() const {
+    return this->code;
   }
   
-  const bool hasContent() const {
-    return (0 < this->content.length()) ? true : false;
+  const bool hasCode() const {
+    return (0 < this->code.length()) ? true : false;
   }
   
  private:
-  ScriptLang  language;
-  ScriptName      name;
-  ScriptContent   content;
+  ScriptLang language;
+  ScriptName name;
+  ScriptCode code;
 };
 
 class ScriptMap : public std::map<ScriptName, Script *> {
@@ -98,10 +98,9 @@ enum ScriptManagerDetailErrorStatus {
   ScriptManagerErrorCodeMethodNotFound       = RPC::JSON::ErrorCodeMethodNotFound,
   ScriptManagerErrorCodeInvalidParams        = RPC::JSON::ErrorCodeInvalidParams,
   ScriptManagerErrorCodeInternalError        = RPC::JSON::ErrorCodeInternalError,
-  ScriptManagerErrorCodeSourceNotFound       = -32000,
   ScriptManagerErrorCodeScriptEngineNotFound = -32001,
   ScriptManagerErrorCodeCompileError         = -32002,
-  ScriptManagerErrorCodeExecutionError       = -32003,
+  ScriptManagerErrorCodeRuntimeError         = -32003,
 };
   
 class ScriptEngine {
@@ -114,6 +113,7 @@ public:
     return this->language;
   }
   
+  virtual bool compile(const Script *script) const = 0;
   virtual bool run(const Script *script, const ScriptParams &params, ScriptResults *results, Error *error) const = 0;
 
 private:
@@ -141,6 +141,7 @@ class ScriptManager {
   ScriptManager();
   virtual ~ScriptManager();
     
+  bool setScript(const ScriptName &method, const ScriptLang &lang, const ScriptCode &script, Error *error);
   bool setScript(Script *script);
   
   bool hasScript(const ScriptName &name) const {
@@ -156,7 +157,9 @@ class ScriptManager {
   bool run(const ScriptName &name, const ScriptParams &params, ScriptResults *results, Error *error);
   
  private:
-    
+
+  void setError(Error *error, int detailCode);
+  
   ScriptMap       scripts;
   ScriptEngineMap engines;
 };

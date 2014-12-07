@@ -32,11 +32,14 @@ class LocalNodeWorkder : public Thread<LocalNode> {
  private:
   void post(const NodeResponse *nodeRes, uHTTP::HTTPRequest *httpReq);
 };
-  
+
 class LocalNode : public Node, public NodeFinderObserver {
  public:
   
-  const std::string SYSTEM_METHOD_SET_METHOD;
+  static const std::string SYSTEM_METHOD_SET_METHOD;
+  static const std::string SYSTEM_METHOD_SET_METHOD_LANGUAGE;
+  static const std::string SYSTEM_METHOD_SET_METHOD_METHOD;
+  static const std::string SYSTEM_METHOD_SET_METHOD_SCRIPT;
   
  public:
   LocalNode();
@@ -54,6 +57,9 @@ class LocalNode : public Node, public NodeFinderObserver {
   bool pushMessage(const NodeRequest *nodeReq);
   bool waitMessage(const NodeRequest **nodeReq);
   bool execMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  
+  bool isSetMethod(const std::string &method);
+  bool setMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
   
   virtual bool start(Error *error);
   virtual bool stop(Error *error);

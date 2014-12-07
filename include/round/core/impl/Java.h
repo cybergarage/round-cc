@@ -21,25 +21,18 @@
 
 namespace Round {
 
-class Java : public Script {
-
-public:
-  static const ScriptName LANGUAGE;
-  
- public:
-  Java();
-  Java(const ScriptName &name, const ScriptContent &content);
-  
-  virtual ~Java();
-};
-
 class JavaEngine : public ScriptEngine {
     
  public:
+  
+  static const ScriptName LANGUAGE;
+  
+ public:
   JavaEngine();
   
-  virtual ~JavaEngine();
+  ~JavaEngine();
   
+  bool compile(const Script *script) const;
   bool run(const Script *script, const ScriptParams &params, ScriptResults *results, Error *error) const;
 
  private:

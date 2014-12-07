@@ -10,8 +10,15 @@ Round is based on [JSON-RPC][json-rpc] and [JSON-RPC over HTTP][json-rpc-http] t
 
 Round uses [JSON-RPC][json-rpc] as [RPC][rpc] protocol
 
+### Error code
+
+Round added the folloinwg error codes in the  implementation defined range [JSON-RPC][json-rpc]. Round returns the following error code when the specified method couldn't be executed.
+
 | code | message | meaning |
 |-|-|-|
+| -32001 | Invalid script language | The specified script language is not available.|
+| -32002 | Invalid script code | The specified script code is invalid |
+| -32003 | Script runtime error  | The specified method with  parameters couldn't be executed normally |
 
 For efficient communication for between the nodes, we will support more efficient remote procedure call like  [BSON](http://bsonspec.org) in the future release.
 
@@ -105,7 +112,6 @@ Round prepares the following default static methods. The methods are implemented
 | Name | Perpose | Params |
 |-|-|-|
 | _set_method | Set a script method | {"language" : "js", "method" : (value), "encode": <EncodeType>, "script" : (value)} |
-| _del_method | Remove the specified method | {"language" : "js", "method" : (value)} |
 
 ### Dynamic Methods
 

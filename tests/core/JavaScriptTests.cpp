@@ -25,11 +25,11 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineEchoTest) {
   
   ScriptManager scriptMgr;
 
-  BOOST_CHECK(scriptMgr.setScript(new JavaScript(JS_NAME, JS_SCRIPT)));
+  BOOST_CHECK(scriptMgr.setScript(new Script(JavaScriptEngine::LANGUAGE, JS_NAME, JS_SCRIPT)));
   BOOST_CHECK(scriptMgr.hasScript(JS_NAME));
   
   BOOST_CHECK(scriptMgr.setEngine(new JavaScriptEngine()));
-  BOOST_CHECK(scriptMgr.hasEngine(JavaScript::LANGUAGE));
+  BOOST_CHECK(scriptMgr.hasEngine(JavaScriptEngine::LANGUAGE));
   
   std::vector<std::string> params;
   
@@ -74,11 +74,11 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineTest) {
 
   ScriptManager scriptMgr;
   
-  BOOST_CHECK(scriptMgr.setScript(new JavaScript(JS_NAME, JS_SCRIPT)));
+  BOOST_CHECK(scriptMgr.setScript(new Script(JavaScriptEngine::LANGUAGE, JS_NAME, JS_SCRIPT)));
   BOOST_CHECK(scriptMgr.hasScript(JS_NAME));
   
   BOOST_CHECK(scriptMgr.setEngine(new JavaScriptEngine()));
-  BOOST_CHECK(scriptMgr.hasEngine(JavaScript::LANGUAGE));
+  BOOST_CHECK(scriptMgr.hasEngine(JavaScriptEngine::LANGUAGE));
   
   std::vector<std::string> params;
   std::vector<std::string> results;
