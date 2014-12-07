@@ -37,51 +37,6 @@ Round will support other structues .....
 
 Node can communicate to other nodes in the same cluster using [RPC (remote procedure call)][rpc] over HTTP, HTTPU and HTTPMU.
 
-### Protocol
-
-Round uses [JSON-RPC 2.0][json-rpc] over HTTP to execute [RPC][rpc], but Round extends the specification to support transaction.
-
-For efficient communication for between the nodes, we will support more efficient remote procedure call like  [BSON](http://bsonspec.org) in the future release.
-
-### Asynchronous Request
-
-Round is based on [JSON-RPC over HTTP][json-rpc-http], but Round extends the specification to support asynchronous [RPC][rpc].
-
-#### HTTP Header
-
-In addition to standard headers of [JSON-RPC over HTTP][json-rpc-http], Round supports the following extra headers.
-
-##### X-Async-Location
-
-
-
-```
-X-Aync-Location = locationURI
-locationURI = protocol "://" host ":" port
-prorocol = "http" | "httpu"
-```
-
-The request over HTTPU or HTTPMU SHOULD has this header to receive the result response. If the header is not included in a request message over HTTPU or HTTPMU, the request is recognized as a notification request even if the request has a 'id' member.
-
-#### Response Code
-
-For the asynchronous request, Round returns the following HTTP status code immediately.
-
-| Code | Status | Description |
-| - | - | - |
-| 202 | Accepted | 'result' member is not inclued |
-| 500 | Internal Server Error | - |
-
-Round doesn't check the request message in more detail. Thus all JSON-RPC errors such as 'Parser Error' are returns into the specified location asynchronously.
-
-The 'result' member is required on success in [JSON-RPC 2.0][json-rpc]. However, Round does't include the result member in the immediate response for asynchronous request because the operation is not executed yet.
-
-
-[rpc]: http://en.wikipedia.org/wiki/Remote_procedure_call
-[json-rpc]: http://www.jsonrpc.org/specification
-[json-rpc-http]: http://jsonrpc.org/historical/json-rpc-over-http.html
-
-
 ### Clock
 
 Round supports some logical clock algorithm such as [Lamport clock](http://en.wikipedia.org/wiki/Lamport_timestamps) and [vector clock](http://en.wikipedia.org/wiki/Vector_clock), and developers can select the clock algorithm.
