@@ -158,8 +158,9 @@
 		21DA08A41A174A4900D3DCE0 /* NodeStatusTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeStatusTests.cpp; sourceTree = "<group>"; };
 		21DA08A71A174A4900D3DCE0 /* NodeTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeTests.cpp; sourceTree = "<group>"; };
 		21DA08BB1A174BB700D3DCE0 /* NodeListTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeListTests.cpp; sourceTree = "<group>"; };
-		21DA08BD1A174C1300D3DCE0 /* TestNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestNode.h; path = ../TestNode.h; sourceTree = "<group>"; };
+		21DA08BD1A174C1300D3DCE0 /* TestNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestNode.h; path = ../../TestNode.h; sourceTree = "<group>"; };
 		21DE0ECF155B9EBA00A08E1F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		21EC22FE1A33E5C00074289E /* TestScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestScript.h; path = ../../TestScript.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,8 +221,10 @@
 		215C7EF51540267800762EEC /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				21EC22FE1A33E5C00074289E /* TestScript.h */,
 				215C20BA1A13B6C000CE71E2 /* RoundTestMain.cpp */,
 				215C20B91A13B6C000CE71E2 /* RoundTest.h */,
+				21DA08BD1A174C1300D3DCE0 /* TestNode.h */,
 				2184F20A1A18E550007F1326 /* TestClient.h */,
 				2184F20B1A18E550007F1326 /* TestFinder.h */,
 				2184F20C1A18E550007F1326 /* TestServer.h */,
@@ -244,7 +247,6 @@
 			isa = PBXGroup;
 			children = (
 				217727801A2CE5E4001B4CE0 /* rpc */,
-				21DA08BD1A174C1300D3DCE0 /* TestNode.h */,
 				21AD428B1A13B7FC00741A08 /* BitOptionTests.cpp */,
 				21AD428C1A13B7FC00741A08 /* ClockTests.cpp */,
 				21AD428D1A13B7FC00741A08 /* ConfigurationTests.cpp */,
