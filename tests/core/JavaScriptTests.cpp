@@ -71,8 +71,6 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineTest) {
   
   const std::string JS_NAME = "sum";
   const std::string JS_SCRIPT = Round::Test::JS_SUM;
-  
-  std::cout << JS_SCRIPT << std::endl;
 
   ScriptManager scriptMgr;
   
@@ -114,7 +112,6 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineTest) {
     ScriptResults result;
     Error error;
     BOOST_CHECK(scriptMgr.run(JS_NAME, params[n], &result, &error));
-    std::cout << result << std::endl;
     BOOST_CHECK_EQUAL(result.compare(results[n]), 0);
   }
 }

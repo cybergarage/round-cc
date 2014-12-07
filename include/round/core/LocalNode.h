@@ -35,6 +35,10 @@ class LocalNodeWorkder : public Thread<LocalNode> {
   
 class LocalNode : public Node, public NodeFinderObserver {
  public:
+  
+  const std::string SYSTEM_METHOD_SET_METHOD;
+  
+ public:
   LocalNode();
   virtual ~LocalNode();
 
