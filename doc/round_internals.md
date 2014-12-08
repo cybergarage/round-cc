@@ -38,6 +38,7 @@ Round will support other structues .....
 
 Node can communicate to other nodes in the same cluster using [RPC (remote procedure call)][rpc] over HTTP, HTTPU and HTTPMU.
 
+<<<<<<< HEAD
 ### Protocol
 
 Round is based on [JSON-RPC 2.0][json-rpc], and Round extends the specification for distributed system applications.
@@ -123,6 +124,8 @@ The 'result' member is required on success in [JSON-RPC 2.0][json-rpc]. However,
 [json-rpc-http]: http://jsonrpc.org/historical/json-rpc-over-http.html
 
 
+=======
+>>>>>>> 18164205b2034aa008207c95898f31a6322fd774
 ### Clock
 
 Round supports some logical clock algorithm such as [Lamport clock](http://en.wikipedia.org/wiki/Lamport_timestamps) and [vector clock](http://en.wikipedia.org/wiki/Vector_clock), and developers can select the clock algorithm.

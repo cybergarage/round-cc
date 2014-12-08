@@ -54,28 +54,41 @@ bool Round::ScriptManager::setEngine(ScriptEngine *engine) {
   return true;
 }
 
+void Round::ScriptManager::setError(Error *error, int detailCode) {
+  error->setCode(ScriptEngineStatusBadRequest);
+  error->setDetailCode(detailCode);
+  error->setDetailMessage("");
+}
+
+bool Round::ScriptManager::setScript(const ScriptName &method, const ScriptLang &lang, const ScriptCode &script, Error *error) {
+  const ScriptEngine *scriptEngine = this->engines.getEngine(lang);
+  if (!scriptEngine) {
+    setError(error, ScriptManagerErrorCodeScriptEngineNotFound);
+    return false;
+  }
+  
+  return true;
+}
+
 bool Round::ScriptManager::run(const ScriptName &name, const ScriptParams &params, ScriptResults *results, Error *error) {
   error->setCode(ScriptEngineStatusOk);
   error->setDetailCode(ScriptManagerErrorCodeOk);
   
   const Script *script = this->scripts.getScript(name);
   if (!script) {
-    error->setCode(ScriptEngineStatusBadRequest);
-    error->setDetailCode(ScriptManagerErrorCodeMethodNotFound);
+    setError(error, ScriptManagerErrorCodeMethodNotFound);
     return false;
   }
   
   const ScriptLang &scriptLang = script->getLanguage();
   if (scriptLang.length() <= 0) {
-    error->setCode(ScriptEngineStatusBadRequest);
-    error->setDetailCode(ScriptManagerErrorCodeScriptEngineNotFound);
+    setError(error, ScriptManagerErrorCodeScriptEngineNotFound);
     return false;
   }
   
   const ScriptEngine *scriptEngine = this->engines.getEngine(scriptLang);
   if (!scriptEngine) {
-    error->setCode(ScriptEngineStatusBadRequest);
-    error->setDetailCode(ScriptManagerErrorCodeScriptEngineNotFound);
+    setError(error, ScriptManagerErrorCodeScriptEngineNotFound);
     return false;
   }
   

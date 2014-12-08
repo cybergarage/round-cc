@@ -20,25 +20,18 @@
 
 namespace Round {
 
-class JavaScript : public Script {
-
-public:
+class JavaScriptEngine : public ScriptEngine {
+  
+ public:
+  
   static const ScriptName LANGUAGE;
   
  public:
-  JavaScript();
-  JavaScript(const ScriptName &name, const ScriptContent &content);
-  
-  virtual ~JavaScript();
-};
-
-class JavaScriptEngine : public ScriptEngine {
-    
- public:
   JavaScriptEngine();
   
-  virtual ~JavaScriptEngine();
+  ~JavaScriptEngine();
   
+  bool compile(const Script *script) const;
   bool run(const Script *script, const ScriptParams &params, ScriptResults *results, Error *error) const;
 
  private:

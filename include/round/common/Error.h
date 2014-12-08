@@ -15,20 +15,18 @@
 
 namespace Round {
 
-typedef int ErrorCodeType;
-
 class Error {
 
  public:
   Error();
-  Error(ErrorCodeType code);
-  Error(ErrorCodeType code, const std::string &message);
+  Error(int code);
+  Error(int code, const std::string &message);
 
   virtual ~Error();
 
   bool isError();
 
-  void setCode(ErrorCodeType value) {
+  void setCode(int value) {
     this->code = value;
   }
 
@@ -36,7 +34,7 @@ class Error {
     this->message = value;
   }
 
-  ErrorCodeType getCode() const {
+  int getCode() const {
     return this->code;
   }
 
@@ -44,7 +42,7 @@ class Error {
     return this->message.c_str();
   }
 
-  void setDetailCode(ErrorCodeType value) {
+  void setDetailCode(int value) {
     this->detailCode = value;
   }
   
@@ -52,7 +50,7 @@ class Error {
     this->detailMessage = value;
   }
   
-  ErrorCodeType getDetailCode() const {
+  int getDetailCode() const {
     return this->detailCode;
   }
   
@@ -66,10 +64,10 @@ class Error {
 
   void initialize();
   
-  ErrorCodeType code;
+  int code;
   std::string message;
 
-  ErrorCodeType detailCode;
+  int detailCode;
   std::string detailMessage;
 };
 

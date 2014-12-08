@@ -4,10 +4,77 @@
 
 ## Overview
 
-Node can communicate to other nodes in the same cluster using [RPC (remote procedure call)](http://en.wikipedia.org/wiki/Remote_procedure_call) over HTTP, HTTPU and HTTPMU.
+Round is based on [JSON-RPC][json-rpc] and [JSON-RPC over HTTP][json-rpc-http] to communicate to the node from client or other nodes.
 
-# HTTP or HTTP
-[JSON-RPC over HTTP](http://jsonrpc.org/historical/json-rpc-over-http.html)
+## Protocol
+
+Round uses [JSON-RPC][json-rpc] as [RPC][rpc] protocol
+
+### Error code
+
+Round added the folloinwg error codes in the  implementation defined range [JSON-RPC][json-rpc]. Round returns the following error code when the specified method couldn't be executed.
+
+| code | message | meaning |
+|-|-|-|
+| -32001 | Invalid script language | The specified script language is not available.|
+| -32002 | Invalid script code | The specified script code is invalid |
+| -32003 | Script runtime error  | The specified method with  parameters couldn't be executed normally |
+
+For efficient communication for between the nodes, we will support more efficient remote procedure call like  [BSON](http://bsonspec.org) in the future release.
+
+
+# HTTP, HTTPMU and HTTPU
+
+Round is based on [JSON-RPC over HTTP][json-rpc-http], and Round extends the specification.
+
+the specification to support asynchronous [RPC][rpc].
+
+over HTTP, HTTPU and HTTPMU.
+
+[rpc]: http://en.wikipedia.org/wiki/Remote_procedure_call
+[json-rpc]: http://www.jsonrpc.org/specification
+[json-rpc-http]: http://jsonrpc.org/historical/json-rpc-over-http.html
+
+### Asynchronous Request
+
+
+#### HTTP Header
+
+In addition to standard headers of [JSON-RPC over HTTP][json-rpc-http], Round supports the following extra headers.
+
+##### X-Async-Location
+
+
+
+```
+X-Aync-Location = locationURI
+locationURI = protocol "://" host ":" port
+prorocol = "http" | "httpu"
+```
+
+The request over HTTPU or HTTPMU SHOULD has this header to receive the result response. If the header is not included in a request message over HTTPU or HTTPMU, the request is recognized as a notification request even if the request has a 'id' member.
+
+#### Response Code
+
+For the asynchronous request, Round returns the following HTTP status code immediately.
+
+| Code | Status | Description |
+| - | - | - |
+| 202 | Accepted | 'result' member is not inclued |
+| 500 | Internal Server Error | - |
+
+Round doesn't check the request message in more detail. Thus all JSON-RPC errors such as 'Parser Error' are returns into the specified location asynchronously.
+
+The 'result' member is required on success in [JSON-RPC 2.0][json-rpc]. However, Round does't include the result member in the immediate response for asynchronous request because the operation is not executed yet.
+
+
+[rpc]: http://en.wikipedia.org/wiki/Remote_procedure_call
+[json-rpc]: http://www.jsonrpc.org/specification
+[json-rpc-http]: http://jsonrpc.org/historical/json-rpc-over-http.html
+
+### ENDPOINT
+
+###
 
 ### POST
 
@@ -54,7 +121,6 @@ Round prepares the following default static methods. The methods are implemented
 | Name | Perpose | Params |
 |-|-|-|
 | _set_method | Set a script method | {"language" : "js", "method" : (value), "encode": <EncodeType>, "script" : (value)} |
-| _del_method | Remove the specified method | {"language" : "js", "method" : (value)} |
 
 ### Dynamic Methods
 

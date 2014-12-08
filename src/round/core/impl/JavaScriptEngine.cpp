@@ -14,7 +14,9 @@
 #include <round/core/Log.h>
 #include <round/core/impl/JavaScript.h>
 
-Round::JavaScriptEngine::JavaScriptEngine() : ScriptEngine(JavaScript::LANGUAGE) {
+const Round::ScriptName Round::JavaScriptEngine::LANGUAGE = "js";
+
+Round::JavaScriptEngine::JavaScriptEngine() : ScriptEngine(LANGUAGE) {
   v8::V8::InitializeICU();
 #if defined(ROUND_V8_USE_LIBPLATFORM)
   this->platform = v8::platform::CreateDefaultPlatform();
@@ -25,10 +27,14 @@ Round::JavaScriptEngine::JavaScriptEngine() : ScriptEngine(JavaScript::LANGUAGE)
   this->isolate = v8::Isolate::New();
 }
 
+bool Round::JavaScriptEngine::compile(const Script *script) const {
+  return true;
+}
+
 bool Round::JavaScriptEngine::run(const Script *jsScript, const ScriptParams &params, ScriptResults *results, Error *error) const {
   std::stringstream jsSource;
   
-  jsSource << jsScript->getContent() << std::endl;
+  jsSource << jsScript->getCode() << std::endl;
   
   std::string jsonParams = boost::algorithm::replace_all_copy(params, "\"", "\\\"");
   
@@ -68,7 +74,7 @@ bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *resu
   v8::Local<v8::String> source = v8::String::NewFromUtf8(isolate, jsSource.c_str());
   if (source->Length() <= 0) {
     error->setCode(ScriptEngineStatusBadRequest);
-    error->setCode(ScriptManagerErrorCodeSourceNotFound);
+    error->setCode(ScriptManagerErrorCodeCompileError);
     return false;
   }
 
