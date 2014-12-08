@@ -10,19 +10,6 @@ Round is based on [JSON-RPC][json-rpc] and [JSON-RPC over HTTP][json-rpc-http] t
 
 Round uses [JSON-RPC][json-rpc] as [RPC][rpc] protocol
 
-### Error code
-
-Round added the folloinwg error codes in the  implementation defined range [JSON-RPC][json-rpc]. Round returns the following error code when the specified method couldn't be executed.
-
-| code | message | meaning |
-|-|-|-|
-| -32001 | Invalid script language | The specified script language is not available.|
-| -32002 | Invalid script code | The specified script code is invalid |
-| -32003 | Script runtime error  | The specified method with  parameters couldn't be executed normally |
-
-For efficient communication for between the nodes, we will support more efficient remote procedure call like  [BSON](http://bsonspec.org) in the future release.
-
-
 # HTTP, HTTPMU and HTTPU
 
 Round is based on [JSON-RPC over HTTP][json-rpc-http], and Round extends the specification.
@@ -30,43 +17,6 @@ Round is based on [JSON-RPC over HTTP][json-rpc-http], and Round extends the spe
 the specification to support asynchronous [RPC][rpc].
 
 over HTTP, HTTPU and HTTPMU.
-
-[rpc]: http://en.wikipedia.org/wiki/Remote_procedure_call
-[json-rpc]: http://www.jsonrpc.org/specification
-[json-rpc-http]: http://jsonrpc.org/historical/json-rpc-over-http.html
-
-### Asynchronous Request
-
-
-#### HTTP Header
-
-In addition to standard headers of [JSON-RPC over HTTP][json-rpc-http], Round supports the following extra headers.
-
-##### X-Async-Location
-
-
-
-```
-X-Aync-Location = locationURI
-locationURI = protocol "://" host ":" port
-prorocol = "http" | "httpu"
-```
-
-The request over HTTPU or HTTPMU SHOULD has this header to receive the result response. If the header is not included in a request message over HTTPU or HTTPMU, the request is recognized as a notification request even if the request has a 'id' member.
-
-#### Response Code
-
-For the asynchronous request, Round returns the following HTTP status code immediately.
-
-| Code | Status | Description |
-| - | - | - |
-| 202 | Accepted | 'result' member is not inclued |
-| 500 | Internal Server Error | - |
-
-Round doesn't check the request message in more detail. Thus all JSON-RPC errors such as 'Parser Error' are returns into the specified location asynchronously.
-
-The 'result' member is required on success in [JSON-RPC 2.0][json-rpc]. However, Round does't include the result member in the immediate response for asynchronous request because the operation is not executed yet.
-
 
 [rpc]: http://en.wikipedia.org/wiki/Remote_procedure_call
 [json-rpc]: http://www.jsonrpc.org/specification
@@ -82,10 +32,6 @@ The 'result' member is required on success in [JSON-RPC 2.0][json-rpc]. However,
 |-|-|
 | ENDPOINT | /rpc/do |
 | | application/json-rpc |
-
-## JSON-RPC
-
-Round uses [JSON-RPC 2.0](http://www.jsonrpc.org/specification) over HTTP or HTTPMU to execute [RPC](http://en.wikipedia.org/wiki/Remote_procedure_call).
 
 ### System parameters
 

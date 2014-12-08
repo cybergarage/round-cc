@@ -60,10 +60,27 @@ void Round::ScriptManager::setError(Error *error, int detailCode) {
   error->setDetailMessage("");
 }
 
-bool Round::ScriptManager::setScript(const ScriptName &method, const ScriptLang &lang, const ScriptCode &script, Error *error) {
+bool Round::ScriptManager::setScript(const ScriptName &method, const ScriptLang &lang, const ScriptCode &code, Error *error) {
   const ScriptEngine *scriptEngine = this->engines.getEngine(lang);
   if (!scriptEngine) {
     setError(error, ScriptManagerErrorCodeScriptEngineNotFound);
+    return false;
+  }
+  
+  Script *script = new Script(lang, method, code);
+  if (!script) {
+    setError(error, ScriptManagerErrorCodeScriptEngineInternalError);
+    return false;
+  }
+
+  if (!scriptEngine->compile(script)) {
+    setError(error, ScriptManagerErrorCodeCompileError);
+    delete script;
+    return false;
+  }
+  
+  if (!setScript(script)) {
+    setError(error, ScriptManagerErrorCodeScriptEngineInternalError);
     return false;
   }
   
@@ -88,7 +105,7 @@ bool Round::ScriptManager::run(const ScriptName &name, const ScriptParams &param
   
   const ScriptEngine *scriptEngine = this->engines.getEngine(scriptLang);
   if (!scriptEngine) {
-    setError(error, ScriptManagerErrorCodeScriptEngineNotFound);
+    setError(error, ScriptManagerErrorCodeScriptEngineInternalError);
     return false;
   }
   

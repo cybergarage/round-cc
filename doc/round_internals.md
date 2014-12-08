@@ -38,7 +38,8 @@ Round will support other structues .....
 
 Node can communicate to other nodes in the same cluster using [RPC (remote procedure call)][rpc] over HTTP, HTTPU and HTTPMU.
 
-<<<<<<< HEAD
+Check [Round RPC Methods](./round_rpc_methods.md)
+
 ### Protocol
 
 Round is based on [JSON-RPC 2.0][json-rpc], and Round extends the specification for distributed system applications.
@@ -81,6 +82,17 @@ When the request object hasn't the parameter, the remote node does't update the 
 <-- {"jsonrpc": "2.0", "result": 103, "id": 1, ts:2}
 ```
 
+#### Error code
+
+Round added the folloinwg error codes in the  implementation defined range [JSON-RPC][json-rpc]. Round returns the following error code when the specified method couldn't be executed.
+
+| code | message | meaning |
+|-|-|-|
+| -32000 | Internal script engine error | The specified script language is not available.|
+| -32001 | Invalid script language | The specified script language is not available.|
+| -32002 | Invalid script code | The specified script code is invalid |
+| -32003 | Script runtime error  | The specified method with  parameters couldn't be executed normally |
+
 #### Future
 
 For efficient communication for between the nodes, we will support more efficient remote procedure call like  [BSON](http://bsonspec.org) in the future release.
@@ -94,8 +106,6 @@ Round is based on [JSON-RPC over HTTP][json-rpc-http], but Round extends the spe
 In addition to standard headers of [JSON-RPC over HTTP][json-rpc-http], Round supports the following extra headers.
 
 ##### X-Async-Location
-
-
 
 ```
 X-Aync-Location = locationURI
@@ -122,19 +132,6 @@ The 'result' member is required on success in [JSON-RPC 2.0][json-rpc]. However,
 [rpc]: http://en.wikipedia.org/wiki/Remote_procedure_call
 [json-rpc]: http://www.jsonrpc.org/specification
 [json-rpc-http]: http://jsonrpc.org/historical/json-rpc-over-http.html
-
-
-=======
->>>>>>> 18164205b2034aa008207c95898f31a6322fd774
-### Clock
-
-Round supports some logical clock algorithm such as [Lamport clock](http://en.wikipedia.org/wiki/Lamport_timestamps) and [vector clock](http://en.wikipedia.org/wiki/Vector_clock), and developers can select the clock algorithm.
-
-Round updates the logical clock in any node every a messaging, and the parameter is added into the messaging automatically.
-
-### Methods
-
-Check [Round RPC Methods](./round_rpc_methods.md)
 
 ### Staging
 
