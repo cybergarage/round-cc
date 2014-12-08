@@ -2,13 +2,16 @@
 
 # Round Internals
 
-## Open Architecture
+## Simplify
+
+### Open Architecture
 
 Round consists only some open standard network protocols such as [UPnP][upnp] and [JSON-RPC][json-rpc] with standard script engines such as [Java][java] and [JavaScript][v8].
 
 ![round_protocol](./img/round_protocol.svg)
 
 [java]: https://java.com/
+[js]: http://www.ecma-international.org/publications/standards/Ecma-262.htm
 [v8]: https://developers.google.com/v8/
 
 ## Zeroconf
@@ -22,8 +25,6 @@ Using the [Zeroconf](http://www.zeroconf.org/) protocol,
 ## Dynamics
 
 Dynamic Configuration
-
-## Overview
 
 ## Structured Network
 
@@ -39,7 +40,47 @@ Node can communicate to other nodes in the same cluster using [RPC (remote proce
 
 ### Protocol
 
-Round uses [JSON-RPC 2.0][json-rpc] over HTTP to execute [RPC][rpc], but Round extends the specification to support transaction.
+Round is based on [JSON-RPC 2.0][json-rpc], and Round extends the specification for distributed system applications.
+
+#### ts (timestamp)
+
+Round adds a timestamp parameter based on [Lamport timestamps][lamport-timestamps] to know the operation causality.
+
+In Round, the timestamp parameter is added and controlled automatically.
+
+##### Request object
+
+The parameter has a logical timestamp number of the client. If it is not included it is assumed to be a non-casual request, the logical clock of the requested remote node is not updated.
+
+##### Response object
+
+The all response object has the parameter. The parameter has a logical timestamp number of the remote node.
+
+When the request object has the parameter, the remote node updates the local logical timestamp using the request logical timestamp, and the remote node returns the updated logical timestamp in the response object.
+
+When the request object hasn't the parameter, the remote node does't update the local logical timestamp, and the remote node returns the current timestamp in the response object.
+
+[lamport-timestamps]: http://en.wikipedia.org/wiki/Lamport_timestamps
+
+##### Examples
+
+###### RPC call with timestamp
+```
+--> {"jsonrpc": "2.0", "method": "increment_counter", "params": 1, "id": 1, "ts": 1}
+<-- {"jsonrpc": "2.0", "result": 102, "id": 1, ts:3}
+--> {"jsonrpc": "2.0", "method": "increment_counter", "params": 1, "id": 1, "ts": 5}
+<-- {"jsonrpc": "2.0", "result": 103, "id": 1, ts:7}
+```
+
+###### RPC call without timestamp
+```
+--> {"jsonrpc": "2.0", "method": "increment_counter", "params": 1, "id": 1}
+<-- {"jsonrpc": "2.0", "result": 102, "id": 1, ts:2}
+--> {"jsonrpc": "2.0", "method": "increment_counter", "params": 1, "id": 1}
+<-- {"jsonrpc": "2.0", "result": 103, "id": 1, ts:2}
+```
+
+#### Future
 
 For efficient communication for between the nodes, we will support more efficient remote procedure call like  [BSON](http://bsonspec.org) in the future release.
 

@@ -25,11 +25,20 @@ Round uses [JSON-RPC 2.0](http://www.jsonrpc.org/specification) over HTTP or HTT
 | Parameter | M/U | Detail | Default | Constants |
 |-|-|-|-|-|
 | Method | M | Operation Method | - | GET, PUT |
-| Sync | O | URI | Sync | Async,Sync |
+
+### Client parameters
+
+| Parameter | M/U | Detail | Default | Constants |
+|-|-|-|-|-|
 | Destination | O | URI | Random | Random, ConsistentHash |
-| Resouse | O | URI | (NULL) | - |
 | Quarum | O | Operation Method | NONE | NONE, ALL, Number |
 | Target | O | Operation Target | DEST | DEST, ALL, Number |
+
+### Application parameters
+
+| Parameter | M/U | Detail | Default | Constants |
+|-|-|-|-|-|
+| Resouse | O | URI | (NULL) | - |
 | Data | O | Operation data | (NULL) | - |
 
 ## RPC Methods
