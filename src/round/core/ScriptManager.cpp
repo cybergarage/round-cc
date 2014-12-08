@@ -81,6 +81,7 @@ bool Round::ScriptManager::setScript(const ScriptName &method, const ScriptLang 
   
   if (!setScript(script)) {
     setError(error, ScriptManagerErrorCodeScriptEngineInternalError);
+    delete script;
     return false;
   }
   
