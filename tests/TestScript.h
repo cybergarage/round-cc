@@ -32,10 +32,13 @@ const std::string JS_SUM = \
   "  }"
   "  return sum;"\
   "}";
-}
+
+const std::string JS_INVALID_FUNCTION = \
+  "function echo(params) {"\
+  "  return params;";
   
 }
 
-
+}
 
 #endif

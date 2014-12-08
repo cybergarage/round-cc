@@ -41,6 +41,7 @@
 		21B1DF061A32E6590070B65D /* RPCMethodTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B1DF051A32E6590070B65D /* RPCMethodTests.cpp */; };
 		21CD1BC6192DC94E00452ADF /* libuhttp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CD1BBF192DC91D00452ADF /* libuhttp++.a */; };
 		21CD1BC7192DC95000452ADF /* liblibclink++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CD1BB9192DC8F500452ADF /* liblibclink++.a */; };
+		21D9C9111A355961008008B3 /* ScriptManagerTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D9C9101A355961008008B3 /* ScriptManagerTests.cpp */; };
 		21DA08AB1A174A4900D3DCE0 /* ClusterListTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08981A174A4900D3DCE0 /* ClusterListTests.cpp */; };
 		21DA08AC1A174A4900D3DCE0 /* ClusterTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08991A174A4900D3DCE0 /* ClusterTests.cpp */; };
 		21DA08AF1A174A4900D3DCE0 /* LocalNodeConfigTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA089C1A174A4900D3DCE0 /* LocalNodeConfigTests.cpp */; };
@@ -149,6 +150,7 @@
 		21B1DF051A32E6590070B65D /* RPCMethodTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCMethodTests.cpp; sourceTree = "<group>"; };
 		21CD1BB4192DC8F500452ADF /* libclink++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libclink++.xcodeproj"; path = "../../../../clinkcc/lib/macosx/xcode/libclink++.xcodeproj"; sourceTree = "<group>"; };
 		21CD1BBA192DC91D00452ADF /* libuhttp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuhttp.xcodeproj; path = ../../../../uhttp/lib/macosx/xcode/libuhttp.xcodeproj; sourceTree = "<group>"; };
+		21D9C9101A355961008008B3 /* ScriptManagerTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptManagerTests.cpp; sourceTree = "<group>"; };
 		21DA08981A174A4900D3DCE0 /* ClusterListTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClusterListTests.cpp; sourceTree = "<group>"; };
 		21DA08991A174A4900D3DCE0 /* ClusterTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClusterTests.cpp; sourceTree = "<group>"; };
 		21DA089C1A174A4900D3DCE0 /* LocalNodeConfigTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalNodeConfigTests.cpp; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 				21DA08A41A174A4900D3DCE0 /* NodeStatusTests.cpp */,
 				21DA08A71A174A4900D3DCE0 /* NodeTests.cpp */,
 				2184F2011A18E359007F1326 /* RemoteNodeTests.cpp */,
+				21D9C9101A355961008008B3 /* ScriptManagerTests.cpp */,
 				2104C9C21A21BED40049DA92 /* ScriptTests.cpp */,
 				2184F2021A18E359007F1326 /* ServerNodeTests.cpp */,
 				2184F2031A18E359007F1326 /* ServerTests.cpp */,
@@ -413,6 +416,7 @@
 				2184F2051A18E359007F1326 /* NodeFinderTests.cpp in Sources */,
 				21DA08B01A174A4900D3DCE0 /* LocalNodeTests.cpp in Sources */,
 				21DA08AC1A174A4900D3DCE0 /* ClusterTests.cpp in Sources */,
+				21D9C9111A355961008008B3 /* ScriptManagerTests.cpp in Sources */,
 				21AD42AA1A13B7FC00741A08 /* PropertiesTests.cpp in Sources */,
 				2184F2081A18E359007F1326 /* ServerTests.cpp in Sources */,
 				21AD42A31A13B7FC00741A08 /* HashObjectTests.cpp in Sources */,

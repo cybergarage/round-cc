@@ -66,7 +66,9 @@ Round prepares the following default static methods. The methods are implemented
 
 | Name | Perpose | Params |
 |-|-|-|
-| _set_method | Set a script method | {"language" : "js", "method" : (value), "encode": <EncodeType>, "script" : (value)} |
+| _set_method | Set a script method | {"language" : "js", "method" : (value), "encode": (encodeType), "code" : (value)} |
+
+If the code parameter isn't specified, the method is removed.
 
 ### Dynamic Methods
 
