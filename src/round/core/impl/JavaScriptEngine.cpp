@@ -28,7 +28,14 @@ Round::JavaScriptEngine::JavaScriptEngine() : ScriptEngine(LANGUAGE) {
 }
 
 bool Round::JavaScriptEngine::compile(const Script *script) const {
-  return true;
+  if (!script)
+    return false;
+  
+  std::string jsSource = script->getCode();
+  std::string results;
+  Error error;
+  
+  return run(jsSource, &results, &error);
 }
 
 bool Round::JavaScriptEngine::run(const Script *jsScript, const ScriptParams &params, ScriptResults *results, Error *error) const {
@@ -67,7 +74,7 @@ bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *resu
   // Create a new context.
   v8::Local<v8::Context> context = v8::Context::New(this->isolate);
   
-  // Enter the context for compiling and running the hello world script.
+  // Enter the context for compiling and running the the script.
   v8::Context::Scope context_scope(context);
   
   // Create a string containing the JavaScript source code.
