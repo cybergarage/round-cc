@@ -18,7 +18,7 @@
 const std::string Round::LocalNode::SYSTEM_METHOD_SET_METHOD          = "_set_method";
 const std::string Round::LocalNode::SYSTEM_METHOD_SET_METHOD_LANGUAGE = "language";
 const std::string Round::LocalNode::SYSTEM_METHOD_SET_METHOD_NAME     = "name";
-const std::string Round::LocalNode::SYSTEM_METHOD_SET_METHOD_SCRIPT   = "script";
+const std::string Round::LocalNode::SYSTEM_METHOD_SET_METHOD_CODE     = "code";
 
 ////////////////////////////////////////////////
 // Constructor
@@ -209,7 +209,7 @@ bool Round::LocalNode::setMethod(const NodeRequest *nodeReq, NodeResponse *nodeR
     return false;
 
   std::string scriptCode;
-  if (!jsonDict->get(SYSTEM_METHOD_SET_METHOD_SCRIPT, &scriptCode))
+  if (!jsonDict->get(SYSTEM_METHOD_SET_METHOD_CODE, &scriptCode))
     return false;
   if (scriptCode.length() <= 0)
     return false;
@@ -231,10 +231,11 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
       err->setMessage(RPC::JSON::ErrorCodeToString(errCode));
       return false;
     }
+    return true;
   }
   
   ScriptParams params;
-  nodeReq->getMethod(&params);
+  nodeReq->getParams(&params);
   
   ScriptResults result;
   

@@ -111,18 +111,28 @@ const std::string RPC_SET_ECHO = \
 
 BOOST_AUTO_TEST_CASE(LocalNodeScriptManagerTest) {
   TestLocalNode node;
-
-  // Create Node Message
   
   NodeRequestParser reqParser;
-  BOOST_CHECK(reqParser.parse(Test::RPC_SET_ECHO));
-  BOOST_CHECK(reqParser.getObject()->isDictionary());
-  NodeRequest *nodeReq = dynamic_cast<NodeRequest *>(reqParser.getObject());
-  BOOST_CHECK(nodeReq);
   
-  // Post Node Message
-  
+  NodeRequest *nodeReq;
   NodeResponse nodeRes;
   Error error;
+
+  // Post Node Message (Set 'echo' method)
+  
+  BOOST_CHECK(reqParser.parse(Test::RPC_SET_ECHO));
+  BOOST_CHECK(reqParser.getObject()->isDictionary());
+  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getObject());
+  BOOST_CHECK(nodeReq);
+  
+  BOOST_CHECK(node.postMessage(nodeReq, &nodeRes, &error));
+
+  // Post Node Message (Run 'echo' method)
+  
+  BOOST_CHECK(reqParser.parse(Test::RPC_ECHO));
+  BOOST_CHECK(reqParser.getObject()->isDictionary());
+  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getObject());
+  BOOST_CHECK(nodeReq);
+  
   BOOST_CHECK(node.postMessage(nodeReq, &nodeRes, &error));
 }
