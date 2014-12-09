@@ -37,6 +37,7 @@
 		2184F21A1A19B62C007F1326 /* NodeResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2181A19B62C007F1326 /* NodeResponse.cpp */; };
 		2188042B1A22EF690053473E /* JavaScriptEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2188042A1A22EF690053473E /* JavaScriptEngine.cpp */; };
 		21B1DF041A32C4C70070B65D /* LocalNodeWorker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B1DF031A32C4C70070B65D /* LocalNodeWorker.cpp */; };
+		21C108591A36C2A200E22CAD /* LocalNodeScriptManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C108581A36C2A200E22CAD /* LocalNodeScriptManager.cpp */; };
 		21C169791A2CA5970059D95E /* RPC.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C169781A2CA5970059D95E /* RPC.h */; };
 		21C1697B1A2CA60A0059D95E /* RPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C1697A1A2CA60A0059D95E /* RPC.cpp */; };
 		21C1697E1A2CAD960059D95E /* Message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C1697D1A2CAD960059D95E /* Message.cpp */; };
@@ -178,6 +179,7 @@
 		2188042A1A22EF690053473E /* JavaScriptEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JavaScriptEngine.cpp; sourceTree = "<group>"; };
 		21A9FFAA154014F300BDFCDC /* liblibround++.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "liblibround++.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B1DF031A32C4C70070B65D /* LocalNodeWorker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalNodeWorker.cpp; sourceTree = "<group>"; };
+		21C108581A36C2A200E22CAD /* LocalNodeScriptManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalNodeScriptManager.cpp; sourceTree = "<group>"; };
 		21C169781A2CA5970059D95E /* RPC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPC.h; sourceTree = "<group>"; };
 		21C1697A1A2CA60A0059D95E /* RPC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPC.cpp; sourceTree = "<group>"; };
 		21C1697D1A2CAD960059D95E /* Message.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Message.cpp; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				21DA08661A17426500D3DCE0 /* ClusterList.cpp */,
 				21DA08671A17426500D3DCE0 /* LocalNode.cpp */,
 				21DA08681A17426500D3DCE0 /* LocalNodeConfig.cpp */,
+				21C108581A36C2A200E22CAD /* LocalNodeScriptManager.cpp */,
 				21B1DF031A32C4C70070B65D /* LocalNodeWorker.cpp */,
 				21620E511A147A6400690EA8 /* Logger.cpp */,
 				212BFD171A1D0056002549F0 /* Node.cpp */,
@@ -720,6 +723,7 @@
 				21E6AAA61A28BF83004E6762 /* ScriptEngineMap.cpp in Sources */,
 				2104C9BF1A21BC640049DA92 /* Script.cpp in Sources */,
 				21C1697E1A2CAD960059D95E /* Message.cpp in Sources */,
+				21C108591A36C2A200E22CAD /* LocalNodeScriptManager.cpp in Sources */,
 				21DE68921A13B3EA0049227E /* Message.cpp in Sources */,
 				21DE689C1A13B3EA0049227E /* Random.cpp in Sources */,
 				21DE689F1A13B3EA0049227E /* SHA1.cpp in Sources */,

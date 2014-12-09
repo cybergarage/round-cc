@@ -33,6 +33,15 @@ class LocalNodeWorkder : public Thread<LocalNode> {
   void post(const NodeResponse *nodeRes, uHTTP::HTTPRequest *httpReq);
 };
 
+class LocalNodeScriptManager : public ScriptManager {
+ public:
+  LocalNodeScriptManager();
+  ~LocalNodeScriptManager();
+
+ private:
+  void init();
+};
+
 class LocalNode : public Node, public NodeFinderObserver {
  public:
   
@@ -93,13 +102,13 @@ private:
 
 private:
 
-  LocalNodeConfig     nodeConfig;
-  NodeGraph           nodeGraph;
-  NodeStatus          nodeStatus;
+  LocalNodeConfig         nodeConfig;
+  NodeGraph               nodeGraph;
+  NodeStatus              nodeStatus;
   
-  NodeMessageManager  nodeMsgMgr;
-  LocalNodeWorkder    nodeWorker;
-  ScriptManager       scriptMgr;
+  NodeMessageManager      nodeMsgMgr;
+  LocalNodeWorkder        nodeWorker;
+  LocalNodeScriptManager  scriptMgr;
 };
 
 }

@@ -36,7 +36,18 @@ const std::string JS_SUM = \
 const std::string JS_INVALID_FUNCTION = \
   "function echo(params) {"\
   "  return params;";
+
+#define RPC_SET_ECHO_NAME "echo"
+#define RPC_SET_ECHO_LANG "js"
+#define RPC_SET_ECHO_CODE "function echo(params) {return params;}"
   
+const std::string RPC_SET_ECHO = \
+  "{\"jsonrpc\": \"2.0\", \"method\": \"_set_method\", \"params\": {" \
+    "\"language\": \"" RPC_SET_ECHO_LANG "\", " \
+    "\"name\": \"" RPC_SET_ECHO_NAME "\", " \
+    "\"code\": \"" RPC_SET_ECHO_CODE "\", " \
+    "}, \"id\": 1}";
+
 }
 
 }
