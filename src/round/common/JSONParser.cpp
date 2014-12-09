@@ -101,7 +101,12 @@ bool Round::JSONParser::parse(const std::string &jsonString, JSONDictionary *par
         parentDir->set(key, stringObj);
       }
     } else if (valueBeginChar == '{') {
-      valueEndIndex = jsonString.find_first_of("}", (valueBeginIndex + 1));
+      std::size_t innerDirBeginIndex = valueBeginIndex;
+      valueEndIndex = jsonString.find_first_of("}", (innerDirBeginIndex + 1));
+      while (jsonString.find_first_of("{", (innerDirBeginIndex + 1)) < valueEndIndex) {
+        innerDirBeginIndex = valueEndIndex;
+        valueEndIndex = jsonString.find_first_of("}", (innerDirBeginIndex + 1));
+      }
       if (valueEndIndex != std::string::npos) {
         std::string dirValue = std::string(jsonString, (valueBeginIndex + 1), (valueEndIndex - valueBeginIndex - 1));
         JSONDictionary *jsonDict = createJSONDictionary();
