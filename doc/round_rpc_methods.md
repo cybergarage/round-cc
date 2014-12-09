@@ -92,6 +92,7 @@ Round prepares the following default dynamic methods. The methods are implemente
 | _notify_node_added | - | - | - | - |
 | _notify_node_removed | - | - | - | - |
 | _notify_node_suspected | - | - | - | - |
+| _notify_log_occurred | - | - | - | - |
 
 The methods are executed ......
 
