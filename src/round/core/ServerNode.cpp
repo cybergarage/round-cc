@@ -79,7 +79,7 @@ Round::HttpStatusCode Round::ServerNode::httpRpcRequestReceived(uHTTP::HTTPReque
   if (httpContent.length() <= 0)
     return httpRpcRequestRecieved(httpReq, RPC::JSON::ErrorCodeInvalidRequest);
   
-  NodeMessageRequestParser jsonParser;
+  NodeRequestParser jsonParser;
   if (jsonParser.parse(httpContent) == false)
     return httpRpcRequestRecieved(httpReq, RPC::JSON::ErrorCodeParserError);
   

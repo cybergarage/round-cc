@@ -17,7 +17,7 @@
 
 const std::string Round::LocalNode::SYSTEM_METHOD_SET_METHOD          = "_set_method";
 const std::string Round::LocalNode::SYSTEM_METHOD_SET_METHOD_LANGUAGE = "language";
-const std::string Round::LocalNode::SYSTEM_METHOD_SET_METHOD_METHOD   = "method";
+const std::string Round::LocalNode::SYSTEM_METHOD_SET_METHOD_NAME     = "name";
 const std::string Round::LocalNode::SYSTEM_METHOD_SET_METHOD_SCRIPT   = "script";
 
 ////////////////////////////////////////////////
@@ -182,7 +182,7 @@ bool Round::LocalNode::isSetMethod(const std::string &method) {
 
 bool Round::LocalNode::setMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *err) {
   ScriptParams params;
-  nodeReq->getMethod(&params);
+  nodeReq->getParams(&params);
   
   JSONParser jsonParser;
   if (!jsonParser.parse(params))
@@ -203,7 +203,7 @@ bool Round::LocalNode::setMethod(const NodeRequest *nodeReq, NodeResponse *nodeR
     return false;
   
   std::string scriptMethod;
-  if (!jsonDict->get(SYSTEM_METHOD_SET_METHOD_METHOD, &scriptMethod))
+  if (!jsonDict->get(SYSTEM_METHOD_SET_METHOD_NAME, &scriptMethod))
     return false;
   if (scriptMethod.length() <= 0)
     return false;

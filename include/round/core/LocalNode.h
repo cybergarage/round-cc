@@ -47,7 +47,7 @@ class LocalNode : public Node, public NodeFinderObserver {
   
   static const std::string SYSTEM_METHOD_SET_METHOD;
   static const std::string SYSTEM_METHOD_SET_METHOD_LANGUAGE;
-  static const std::string SYSTEM_METHOD_SET_METHOD_METHOD;
+  static const std::string SYSTEM_METHOD_SET_METHOD_NAME;
   static const std::string SYSTEM_METHOD_SET_METHOD_SCRIPT;
   
  public:

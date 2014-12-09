@@ -59,5 +59,7 @@ bool Round::JavaEngine::run(const Script *jsScript, const ScriptParams &params, 
 }
 
 Round::JavaEngine::~JavaEngine() {
-  this->jvm->DestroyJavaVM();
+  if (this->jvm) {
+    this->jvm->DestroyJavaVM();
+  }
 }

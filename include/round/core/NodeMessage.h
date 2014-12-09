@@ -45,11 +45,11 @@ public:
   virtual ~NodeResponse();
 };
   
-class NodeMessageRequestParser : public JSONParser {
+class NodeRequestParser : public JSONParser {
     
   public:
     
-  NodeMessageRequestParser() {
+  NodeRequestParser() {
   }
   
   JSONDictionary *createJSONDictionary() {

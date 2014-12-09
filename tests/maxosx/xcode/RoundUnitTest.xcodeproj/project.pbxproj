@@ -44,7 +44,6 @@
 		21D9C9111A355961008008B3 /* ScriptManagerTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D9C9101A355961008008B3 /* ScriptManagerTests.cpp */; };
 		21DA08AB1A174A4900D3DCE0 /* ClusterListTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08981A174A4900D3DCE0 /* ClusterListTests.cpp */; };
 		21DA08AC1A174A4900D3DCE0 /* ClusterTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08991A174A4900D3DCE0 /* ClusterTests.cpp */; };
-		21DA08AF1A174A4900D3DCE0 /* LocalNodeConfigTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA089C1A174A4900D3DCE0 /* LocalNodeConfigTests.cpp */; };
 		21DA08B01A174A4900D3DCE0 /* LocalNodeTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA089D1A174A4900D3DCE0 /* LocalNodeTests.cpp */; };
 		21DA08B11A174A4900D3DCE0 /* NodeConfigTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA089E1A174A4900D3DCE0 /* NodeConfigTests.cpp */; };
 		21DA08B31A174A4900D3DCE0 /* NodeGraphTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08A01A174A4900D3DCE0 /* NodeGraphTests.cpp */; };
@@ -153,7 +152,6 @@
 		21D9C9101A355961008008B3 /* ScriptManagerTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptManagerTests.cpp; sourceTree = "<group>"; };
 		21DA08981A174A4900D3DCE0 /* ClusterListTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClusterListTests.cpp; sourceTree = "<group>"; };
 		21DA08991A174A4900D3DCE0 /* ClusterTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClusterTests.cpp; sourceTree = "<group>"; };
-		21DA089C1A174A4900D3DCE0 /* LocalNodeConfigTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalNodeConfigTests.cpp; sourceTree = "<group>"; };
 		21DA089D1A174A4900D3DCE0 /* LocalNodeTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalNodeTests.cpp; sourceTree = "<group>"; };
 		21DA089E1A174A4900D3DCE0 /* NodeConfigTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeConfigTests.cpp; sourceTree = "<group>"; };
 		21DA08A01A174A4900D3DCE0 /* NodeGraphTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeGraphTests.cpp; sourceTree = "<group>"; };
@@ -295,7 +293,6 @@
 				21DA08981A174A4900D3DCE0 /* ClusterListTests.cpp */,
 				21DA08991A174A4900D3DCE0 /* ClusterTests.cpp */,
 				2104C9C91A21E77E0049DA92 /* JavaScriptTests.cpp */,
-				21DA089C1A174A4900D3DCE0 /* LocalNodeConfigTests.cpp */,
 				21DA089D1A174A4900D3DCE0 /* LocalNodeTests.cpp */,
 				21DA089E1A174A4900D3DCE0 /* NodeConfigTests.cpp */,
 				2184F2001A18E359007F1326 /* NodeFinderTests.cpp */,
@@ -407,7 +404,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				21AD42AB1A13B7FC00741A08 /* RandomTest.cpp in Sources */,
-				21DA08AF1A174A4900D3DCE0 /* LocalNodeConfigTests.cpp in Sources */,
 				2104C9CA1A21E77E0049DA92 /* JavaScriptTests.cpp in Sources */,
 				21AD429E1A13B7FC00741A08 /* ClockTests.cpp in Sources */,
 				21AD42A51A13B7FC00741A08 /* JSONTests.cpp in Sources */,

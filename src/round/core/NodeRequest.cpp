@@ -23,8 +23,8 @@ Round::NodeRequest::NodeRequest(const std::string &method) {
 }
 
 void Round::NodeRequest::init() {
-  setHttpRequest(NULL);
-  setResponse(NULL);
+  this->httpReq = NULL;
+  this->nodeRes = NULL;
 }
 
 Round::NodeRequest::~NodeRequest() {
