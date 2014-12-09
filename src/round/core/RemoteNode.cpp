@@ -30,6 +30,7 @@ Round::RemoteNode::~RemoteNode() {
 bool Round::RemoteNode::postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
   uHTTP::HTTPRequest httpReq;
   httpReq.setHost(getRequestAddress(), getRequestPort());
+  nodeReq->toHTTPRequest(&httpReq);
   
   uHTTP::HTTPResponse httpRes;
   httpReq.post(getRequestAddress(), getRequestPort(), &httpRes);
@@ -38,6 +39,18 @@ bool Round::RemoteNode::postMessage(const NodeRequest *nodeReq, NodeResponse *no
   
   bool isSuccess = uHTTP::HTTP::IsStatusCodeSuccess(statusCode);
   if (isSuccess) {
+    std::string httpContent = httpRes.getContent();
+    if (httpContent.length() <= 0)
+      return false;
+    JSONParser jsonParser;
+    if (jsonParser.parse(httpContent) == false)
+      return false;
+    if (jsonParser.getObject()->isDictionary() == false)
+      return false;
+    JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(jsonParser.getObject());
+    if (!jsonDict)
+      return false;
+    nodeRes->set(jsonDict);
   }
   else {
     if (error) {
