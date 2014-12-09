@@ -23,7 +23,7 @@ bool Round::RPC::JSON::Request::isValid() {
 
   if (!hasKey(METHOD))
     return false;
-  
+
   int value;
   if (get(METHOD, &value))
     return false;
@@ -42,4 +42,17 @@ bool Round::RPC::JSON::Request::isMethod(const std::string &method) const {
   if (!get(METHOD, &reqMethod))
     return false;
   return (method.compare(reqMethod) == 0) ? true : false;
+}
+
+void Round::RPC::JSON::Request::toHTTPRequest(uHTTP::HTTPRequest *httpReq) const {
+  if (!httpReq)
+    return;
+  
+  httpReq->setMethod(RPC::HTTP::METHOD);
+  httpReq->setURI(RPC::HTTP::ENDPOINT);
+  httpReq->setContentType(RPC::HTTP::CONTENT_TYPE);
+  
+  std::string jsonString;
+  toJSONString(&jsonString);
+  httpReq->setContent(jsonString);
 }

@@ -14,9 +14,6 @@
 #include <round/common/StringTokenizer.h>
 #include <round/core/Log.h>
 
-const std::string Round::ServerNode::HTTP_JSON_RPC_ENTRYPOINT  = "/rpc/do";
-const std::string Round::ServerNode::HTTP_JSON_RPC_CONTENTTYPE = "application/json-rpc";
-
 Round::ServerNode::ServerNode() {
 }
 
@@ -56,11 +53,11 @@ bool Round::ServerNode::isRpcRequest(uHTTP::HTTPRequest *httpReq) {
   std::string uri;
   httpReq->getURI(uri);
   
-  if (method.compare("PUT") == 0) {
-    if (uri.compare(HTTP_JSON_RPC_ENTRYPOINT) == 0)
+  if (method.compare(RPC::HTTP::METHOD) == 0) {
+    if (uri.compare(RPC::HTTP::ENDPOINT) == 0)
       return true;
   }
-  
+
   return false;
 }
 

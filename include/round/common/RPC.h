@@ -20,6 +20,13 @@ namespace Round {
 
 namespace RPC {
 
+namespace HTTP {
+static const std::string ENDPOINT     = "/rpc/do";
+static const std::string CONTENT_TYPE = "application/json-rpc";
+static const std::string METHOD       = "POST";
+static const std::string ACCEPT       = CONTENT_TYPE;
+}
+  
 namespace JSON {
 
 enum {
@@ -109,6 +116,8 @@ class Request : public Message {
 
   bool hasMethod() const {return hasKey(METHOD);}
   bool isMethod(const std::string &method) const;
+  
+  void toHTTPRequest(uHTTP::HTTPRequest *httpReq) const;
 };
 
 class Response : public Message {

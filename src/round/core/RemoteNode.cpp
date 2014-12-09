@@ -28,7 +28,25 @@ Round::RemoteNode::~RemoteNode() {
 }
 
 bool Round::RemoteNode::postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
-  return false;
+  uHTTP::HTTPRequest httpReq;
+  httpReq.setHost(getRequestAddress(), getRequestPort());
+  
+  uHTTP::HTTPResponse httpRes;
+  httpReq.post(getRequestAddress(), getRequestPort(), &httpRes);
+  
+  int statusCode = httpRes.getStatusCode();
+  
+  bool isSuccess = uHTTP::HTTP::IsStatusCodeSuccess(statusCode);
+  if (isSuccess) {
+  }
+  else {
+    if (error) {
+      error->setCode(statusCode);
+      error->setMessage(uHTTP::HTTP::StatusCode2String(statusCode));
+    }
+  }
+  
+  return isSuccess;
 }
 
 Round::Node *Round::RemoteNode::clone() const {

@@ -35,8 +35,6 @@ class Node : public NodeCore, public Cloneable<Node> {
 
  public:
   
-  virtual bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) = 0;
-  
   bool getCluster(Cluster *cluster, Error *error = NULL) const;
   bool getName(std::string *buffer, Error *error = NULL) const;
   bool getVersion(std::string *buffer, Error *error = NULL) const;

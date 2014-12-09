@@ -19,11 +19,7 @@ namespace Round {
       
 typedef uHTTP::HTTP::StatusCode HttpStatusCode;
 
-class ServerNode : public LocalNode {
-public:
-  static const std::string HTTP_JSON_RPC_ENTRYPOINT;
-  static const std::string HTTP_JSON_RPC_CONTENTTYPE;
-  
+class ServerNode : public LocalNode {  
  public:
   ServerNode();
   virtual ~ServerNode();
