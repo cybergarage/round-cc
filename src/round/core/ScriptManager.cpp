@@ -66,6 +66,9 @@ bool Round::ScriptManager::setScript(const ScriptName &method, const ScriptLang 
     setError(error, ScriptManagerErrorCodeScriptEngineNotFound);
     return false;
   }
+
+  if (code.length() <= 0)
+    return removeScript(method, lang, error);
   
   Script *script = new Script(lang, method, code);
   if (!script) {
@@ -86,6 +89,21 @@ bool Round::ScriptManager::setScript(const ScriptName &method, const ScriptLang 
   }
   
   return true;
+}
+
+bool Round::ScriptManager::removeScript(const ScriptName &method, const ScriptLang &lang, Error *error) {
+  const Script *script = this->scripts.getScript(method);
+  if (!script) {
+    setError(error, ScriptManagerErrorCodeMethodNotFound);
+    return false;
+  }
+  
+  if (!script->isLanguage(lang)) {
+    setError(error, ScriptManagerErrorCodeMethodNotFound);
+    return false;
+  }
+  
+  return (this->scripts.erase(method) == 1) ? true : false;
 }
 
 bool Round::ScriptManager::run(const ScriptName &name, const ScriptParams &params, ScriptResults *results, Error *error) {

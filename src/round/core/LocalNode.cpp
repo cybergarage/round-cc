@@ -208,11 +208,10 @@ bool Round::LocalNode::setMethod(const NodeRequest *nodeReq, NodeResponse *nodeR
   if (scriptMethod.length() <= 0)
     return false;
 
+
+  // This method is removed if the code parameter is null.
   std::string scriptCode;
-  if (!jsonDict->get(SYSTEM_METHOD_SET_METHOD_CODE, &scriptCode))
-    return false;
-  if (scriptCode.length() <= 0)
-    return false;
+  jsonDict->get(SYSTEM_METHOD_SET_METHOD_CODE, &scriptCode);
   
   return this->scriptMgr.setScript(scriptMethod, scriptLang, scriptCode, err);
 }

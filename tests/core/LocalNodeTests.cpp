@@ -118,6 +118,16 @@ BOOST_AUTO_TEST_CASE(LocalNodeScriptManagerTest) {
   NodeResponse nodeRes;
   Error error;
 
+  // Post Node Message (Run 'echo' method without method)
+  
+  BOOST_CHECK(reqParser.parse(Test::RPC_RUN_ECHO));
+  BOOST_CHECK(reqParser.getObject()->isDictionary());
+  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getObject());
+  BOOST_CHECK(nodeReq);
+  
+  BOOST_CHECK(!node.postMessage(nodeReq, &nodeRes, &error));
+  BOOST_CHECK_EQUAL(error.getDetailCode(), RPC::JSON::ErrorCodeMethodNotFound);
+  
   // Post Node Message (Set 'echo' method)
   
   BOOST_CHECK(reqParser.parse(Test::RPC_SET_ECHO));
@@ -129,10 +139,38 @@ BOOST_AUTO_TEST_CASE(LocalNodeScriptManagerTest) {
 
   // Post Node Message (Run 'echo' method)
   
-  BOOST_CHECK(reqParser.parse(Test::RPC_ECHO));
+  BOOST_CHECK(reqParser.parse(Test::RPC_RUN_ECHO));
   BOOST_CHECK(reqParser.getObject()->isDictionary());
   nodeReq = dynamic_cast<NodeRequest *>(reqParser.getObject());
   BOOST_CHECK(nodeReq);
   
   BOOST_CHECK(node.postMessage(nodeReq, &nodeRes, &error));
+
+  // Post Node Message (Override 'echo' method)
+  
+  BOOST_CHECK(reqParser.parse(Test::RPC_SET_ECHO));
+  BOOST_CHECK(reqParser.getObject()->isDictionary());
+  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getObject());
+  BOOST_CHECK(nodeReq);
+  
+  BOOST_CHECK(node.postMessage(nodeReq, &nodeRes, &error));
+
+  // Post Node Message (Remove 'echo' method)
+  
+  BOOST_CHECK(reqParser.parse(Test::RPC_REMOVE_ECHO));
+  BOOST_CHECK(reqParser.getObject()->isDictionary());
+  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getObject());
+  BOOST_CHECK(nodeReq);
+  
+  BOOST_CHECK(node.postMessage(nodeReq, &nodeRes, &error));
+  
+  // Post Node Message (Run 'echo' method)
+  
+  BOOST_CHECK(reqParser.parse(Test::RPC_RUN_ECHO));
+  BOOST_CHECK(reqParser.getObject()->isDictionary());
+  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getObject());
+  BOOST_CHECK(nodeReq);
+  
+  BOOST_CHECK(!node.postMessage(nodeReq, &nodeRes, &error));
+  BOOST_CHECK_EQUAL(error.getDetailCode(), RPC::JSON::ErrorCodeMethodNotFound);
 }

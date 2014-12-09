@@ -41,6 +41,11 @@ BOOST_AUTO_TEST_CASE(ScriptManagerSetTest) {
   BOOST_CHECK(scriptMgr.setEngine(new JavaScriptEngine()));
   BOOST_CHECK(!scriptMgr.run(scriptMethod, scriptParams, &scriptResult, &err));
 
+  // No Script
+  
+  BOOST_CHECK(!scriptMgr.run(scriptMethod, scriptParams, &scriptResult, &err));
+  BOOST_CHECK_EQUAL(err.getDetailCode(), ScriptManagerErrorCodeMethodNotFound);
+  
   // Set Script
   
   BOOST_CHECK(!scriptMgr.setScript(scriptMethod, scriptLang, scriptInvalidCode, &err));
@@ -50,4 +55,17 @@ BOOST_AUTO_TEST_CASE(ScriptManagerSetTest) {
 
   BOOST_CHECK(scriptMgr.run(scriptMethod, scriptParams, &scriptResult, &err));
   BOOST_CHECK_EQUAL(scriptParams, scriptResult);
+
+  // Overide Script
+  
+  BOOST_CHECK(scriptMgr.setScript(scriptMethod, scriptLang, scriptCode, &err));
+  BOOST_CHECK(scriptMgr.run(scriptMethod, scriptParams, &scriptResult, &err));
+  BOOST_CHECK_EQUAL(scriptParams, scriptResult);
+
+  // Remove Script
+  
+  BOOST_CHECK(scriptMgr.setScript(scriptMethod, scriptLang, "", &err));
+  
+  BOOST_CHECK(!scriptMgr.run(scriptMethod, scriptParams, &scriptResult, &err));
+  BOOST_CHECK_EQUAL(err.getDetailCode(), ScriptManagerErrorCodeMethodNotFound);
 }
