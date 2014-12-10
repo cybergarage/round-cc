@@ -58,7 +58,7 @@ over HTTP, HTTPU and HTTPMU.
 
 ### System Methods
 
-Method names that begin with the word followed by a underscore character (_) are reserved for Round to implement the internal system methods.
+Method names that begin with the word followed by a underscore character are reserved for Round to implement the internal system methods.
 
 ### Static Methods
 
@@ -76,8 +76,10 @@ Round prepares the following default dynamic methods. The methods are implemente
 
 | Method Name | Perpose | Params | Outputs | Default |
 |-|-|-|-| - |
-| _get_node_info | Get a node name | - | - | - |
-| _get_node_hash | Get a prefix and seed string to generate a hash | - | - | - |
+| _get_node_info | Get a node infomation | (none) | {"name" : (string), "ip" : (address), "port" : (number),  "hash" : (string) } | - |
+| _get_cluster_info | Gat a cluster information which the specified node is belong | - | - | - |
+| _get_cluster_list | Gat a cluster list which the spcecified node knows | - | - | - |
+| _get_node_hash | Set a shared key for HMAC | - | - | - |
 | _get_node_sharedkey | Set a shared key for HMAC | - | - | - |
 | _get_node_msg_digest | Set a shared key for HMAC | - | - | - |
 | _get_log_level | Get the current log level | (none) | "TRACE", "LOG", "WARN", "ERR" "FATAL" | "LOG" |

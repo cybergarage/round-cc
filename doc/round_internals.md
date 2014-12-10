@@ -44,6 +44,11 @@ Check [Round RPC Methods](./round_rpc_methods.md)
 
 Round is based on [JSON-RPC 2.0][json-rpc], and Round extends the specification for distributed system applications.
 
+| Field | Descripton |
+| - | - |
+| ts | - |
+| digest | - |
+
 #### ts (timestamp)
 
 Round adds a timestamp parameter based on [Lamport timestamps][lamport-timestamps] to know the operation causality.
@@ -63,6 +68,10 @@ When the request object has the parameter, the remote node updates the local log
 When the request object hasn't the parameter, the remote node does't update the local logical timestamp, and the remote node returns the current timestamp in the response object.
 
 [lamport-timestamps]: http://en.wikipedia.org/wiki/Lamport_timestamps
+
+#### digest
+
+##### Request object
 
 ##### Examples
 
