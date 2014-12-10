@@ -15,10 +15,14 @@
 #include <round/core/LocalNode.h>
 #include <round/core/RemoteNode.h>
 
-const std::string Round::LocalNode::SYSTEM_METHOD_SET_METHOD          = "_set_method";
-const std::string Round::LocalNode::SYSTEM_METHOD_SET_METHOD_LANGUAGE = "language";
-const std::string Round::LocalNode::SYSTEM_METHOD_SET_METHOD_NAME     = "name";
-const std::string Round::LocalNode::SYSTEM_METHOD_SET_METHOD_CODE     = "code";
+const std::string Round::LocalNode::SYSTEM_STATIC_METHOD_SET_METHOD          = "_set_method";
+const std::string Round::LocalNode::SYSTEM_STATIC_METHOD_SET_METHOD_LANGUAGE = "language";
+const std::string Round::LocalNode::SYSTEM_STATIC_METHOD_SET_METHOD_NAME     = "name";
+const std::string Round::LocalNode::SYSTEM_STATIC_METHOD_SET_METHOD_CODE     = "code";
+
+const std::string Round::LocalNode::SYSTEM_DYNAMIC_METHOD_GET_NODE_INFO      = "_get_node_info";
+const std::string Round::LocalNode::SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_INFO   = "_get_cluster_info";
+const std::string Round::LocalNode::SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_LIST   = "_get_cluster_list";
 
 ////////////////////////////////////////////////
 // Constructor
@@ -176,8 +180,37 @@ bool Round::LocalNode::waitMessage(const NodeRequest **nodeReq) {
 // Execution
 ////////////////////////////////////////////////
 
+bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *err) {
+  if (!nodeRes || !nodeRes || !err)
+    return false;
+  
+  ScriptName name;
+  nodeReq->getMethod(&name);
+  
+  if (isSetMethod(name)) {
+    if (!setMethod(nodeReq, nodeRes, err)) {
+      int errCode = RPC::JSON::ErrorCodeInvalidParams;
+      err->setCode(errCode);
+      err->setMessage(RPC::JSON::ErrorCodeToString(errCode));
+      return false;
+    }
+    return true;
+  }
+  
+  ScriptParams params;
+  nodeReq->getParams(&params);
+  
+  ScriptResults result;
+  
+  return this->scriptMgr.run(name, params, &result, err);
+}
+
+////////////////////////////////////////////////
+// System Static Method
+////////////////////////////////////////////////
+
 bool Round::LocalNode::isSetMethod(const std::string &method) {
-  return (SYSTEM_METHOD_SET_METHOD.compare(method) == 0) ? true : false;
+  return (SYSTEM_STATIC_METHOD_SET_METHOD.compare(method) == 0) ? true : false;
 }
 
 bool Round::LocalNode::setMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *err) {
@@ -196,47 +229,37 @@ bool Round::LocalNode::setMethod(const NodeRequest *nodeReq, NodeResponse *nodeR
   if (!jsonDict)
     return false;
   
-  std::string scriptLang;
-  if (!jsonDict->get(SYSTEM_METHOD_SET_METHOD_LANGUAGE, &scriptLang))
-    return false;
-  if (scriptLang.length() <= 0)
-    return false;
-  
   std::string scriptMethod;
-  if (!jsonDict->get(SYSTEM_METHOD_SET_METHOD_NAME, &scriptMethod))
+  if (!jsonDict->get(SYSTEM_STATIC_METHOD_SET_METHOD_NAME, &scriptMethod))
     return false;
   if (scriptMethod.length() <= 0)
     return false;
 
+  // Couldn't override '_set_method'
+  if (isSetMethod(scriptMethod))
+    return false;
+  
+  std::string scriptLang;
+  if (!jsonDict->get(SYSTEM_STATIC_METHOD_SET_METHOD_LANGUAGE, &scriptLang))
+    return false;
+  if (scriptLang.length() <= 0)
+    return false;
 
   // This method is removed if the code parameter is null.
   std::string scriptCode;
-  jsonDict->get(SYSTEM_METHOD_SET_METHOD_CODE, &scriptCode);
+  jsonDict->get(SYSTEM_STATIC_METHOD_SET_METHOD_CODE, &scriptCode);
   
   return this->scriptMgr.setScript(scriptMethod, scriptLang, scriptCode, err);
 }
 
-bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *err) {
-  if (!nodeRes || !nodeRes || !err)
-    return false;
+////////////////////////////////////////////////
+// System Dynamic Method
+////////////////////////////////////////////////
 
-  ScriptName name;
-  nodeReq->getMethod(&name);
+bool Round::LocalNode::isSystemMethod(const std::string &method) {
+  return (SYSTEM_STATIC_METHOD_SET_METHOD.compare(method) == 0) ? true : false;
+}
 
-  if (isSetMethod(name)) {
-    if (!setMethod(nodeReq, nodeRes, err)) {
-      int errCode = RPC::JSON::ErrorCodeInvalidParams;
-      err->setCode(errCode);
-      err->setMessage(RPC::JSON::ErrorCodeToString(errCode));
-      return false;
-    }
-    return true;
-  }
-  
-  ScriptParams params;
-  nodeReq->getParams(&params);
-  
-  ScriptResults result;
-  
-  return this->scriptMgr.run(name, params, &result, err);
+bool Round::LocalNode::execSystemMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+  return false;
 }

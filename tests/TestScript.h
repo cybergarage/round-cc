@@ -65,6 +65,15 @@ const std::string RPC_RUN_ECHO = \
    "\"params\": " RPC_SET_ECHO_PARAMS "," \
    "\"id\": 1}";
 
+const std::string RPC_SET_SETMETHOD = \
+  "{\"jsonrpc\": \"2.0\"," \
+  "\"method\": \"_set_method\","
+  "\"params\": {" \
+  "\"language\": \"" RPC_SET_ECHO_LANG "\", " \
+  "\"name\": \"_set_method\", " \
+  "\"code\": \"" RPC_SET_ECHO_CODE "\", " \
+  "}, \"id\": 1}";
+
 }
 
 }

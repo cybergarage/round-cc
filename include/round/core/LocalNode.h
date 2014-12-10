@@ -45,10 +45,14 @@ class LocalNodeScriptManager : public ScriptManager {
 class LocalNode : public Node, public NodeFinderObserver {
  public:
   
-  static const std::string SYSTEM_METHOD_SET_METHOD;
-  static const std::string SYSTEM_METHOD_SET_METHOD_LANGUAGE;
-  static const std::string SYSTEM_METHOD_SET_METHOD_NAME;
-  static const std::string SYSTEM_METHOD_SET_METHOD_CODE;
+  static const std::string SYSTEM_STATIC_METHOD_SET_METHOD;
+  static const std::string SYSTEM_STATIC_METHOD_SET_METHOD_LANGUAGE;
+  static const std::string SYSTEM_STATIC_METHOD_SET_METHOD_NAME;
+  static const std::string SYSTEM_STATIC_METHOD_SET_METHOD_CODE;
+  
+  static const std::string SYSTEM_DYNAMIC_METHOD_GET_NODE_INFO;
+  static const std::string SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_INFO;
+  static const std::string SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_LIST;
   
  public:
   LocalNode();
@@ -69,6 +73,9 @@ class LocalNode : public Node, public NodeFinderObserver {
   
   bool isSetMethod(const std::string &method);
   bool setMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  
+  bool isSystemMethod(const std::string &method);
+  bool execSystemMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
   
   virtual bool start(Error *error);
   virtual bool stop(Error *error);

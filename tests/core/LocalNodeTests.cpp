@@ -118,6 +118,15 @@ BOOST_AUTO_TEST_CASE(LocalNodeScriptManagerTest) {
   NodeResponse nodeRes;
   Error error;
 
+  // Post Node Message (Overide '_set_method' method)
+  
+  BOOST_CHECK(reqParser.parse(Test::RPC_SET_SETMETHOD));
+  BOOST_CHECK(reqParser.getObject()->isDictionary());
+  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getObject());
+  BOOST_CHECK(nodeReq);
+  
+  BOOST_CHECK(!node.postMessage(nodeReq, &nodeRes, &error));
+  
   // Post Node Message (Run 'echo' method without method)
   
   BOOST_CHECK(reqParser.parse(Test::RPC_RUN_ECHO));
