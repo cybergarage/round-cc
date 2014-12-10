@@ -29,20 +29,20 @@ over HTTP, HTTPU and HTTPMU.
 ### POST
 
 | Parameter | Value |
-|-|-|
+| --- | --- |
 | ENDPOINT | /rpc/do |
 | | application/json-rpc |
 
 ### System parameters
 
 | Parameter | M/U | Detail | Default | Constants |
-|-|-|-|-|-|
+| --- | --- | --- | --- | --- |
 | Method | M | Operation Method | - | GET, PUT |
 
 ### Client parameters
 
 | Parameter | M/U | Detail | Default | Constants |
-|-|-|-|-|-|
+| --- | --- | --- | --- | --- |
 | Destination | O | URI | Random | Random, ConsistentHash |
 | Quarum | O | Operation Method | NONE | NONE, ALL, Number |
 | Target | O | Operation Target | DEST | DEST, ALL, Number |
@@ -50,7 +50,7 @@ over HTTP, HTTPU and HTTPMU.
 ### Application parameters
 
 | Parameter | M/U | Detail | Default | Constants |
-|-|-|-|-|-|
+| --- | --- | --- | --- | --- |
 | Resouse | O | URI | (NULL) | - |
 | Data | O | Operation data | (NULL) | - |
 
@@ -65,7 +65,7 @@ Method names that begin with the word followed by a underscore character are res
 Round prepares the following default static methods. The methods are implemented using the native programming language as default, and developers can't modify the static methods.
 
 | Name | Perpose | Params |
-|-|-|-|
+| --- | --- | --- |
 | _set_method | Set a script method | {"language" : "js", "name" : (value), "encode": (encodeType), "code" : (value)} |
 
 If the code parameter isn't specified, the method is removed.
@@ -75,7 +75,7 @@ If the code parameter isn't specified, the method is removed.
 Round prepares the following default dynamic methods. The methods are implemented using the native programming language as default, but developers can override the default functions using '_set_method'.
 
 | Method Name | Perpose | Params | Outputs | Default |
-|-|-|-|-| - |
+| --- | --- | --- | --- | --- |
 | _get_node_info | Get a node infomation | (none) | {"name" : (string), "ip" : (address), "port" : (number),  "hash" : (string) } | - |
 | _get_cluster_info | Gat a cluster information which the specified node is belong | - | - | - |
 | _get_cluster_list | Gat a cluster list which the spcecified node knows | - | - | - |
@@ -87,7 +87,7 @@ Round prepares the following default dynamic methods. The methods are implemente
 ### System Notification Methods
 
 | Method Name | Perpose | Params | Outputs | Default |
-|-|-|-|-| - |
+| --- | --- | --- | --- | --- |
 | _notify_method_added | - | - | - | - |
 | _notify_method_removed | - | - | - | - |
 | _notify_method_updated | - | - | - | - |
@@ -122,7 +122,7 @@ In Java, Base64
 Camelcase
 
 | Method | Java Class |
-|-|-|
+| --- | --- |
 | _get_node_name | _GetNodeName |
 
 ```
