@@ -47,8 +47,7 @@ public:
   
 class NodeRequestParser : public JSONParser {
     
-  public:
-    
+ public:
   NodeRequestParser() {
   }
   

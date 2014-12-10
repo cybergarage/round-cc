@@ -42,23 +42,11 @@ class LocalNodeScriptManager : public ScriptManager {
   void init();
 };
 
+/**
+ * LocalNode is a real implementation of Node class.
+ */
 class LocalNode : public Node, public NodeFinderObserver {
  public:
-  
-  static const std::string SYSTEM_METHOD_PREFIX;
-  
-  static const std::string SYSTEM_STATIC_METHOD_SET_METHOD;
-  static const std::string SYSTEM_STATIC_METHOD_SET_METHOD_LANGUAGE;
-  static const std::string SYSTEM_STATIC_METHOD_SET_METHOD_NAME;
-  static const std::string SYSTEM_STATIC_METHOD_SET_METHOD_CODE;
-  
-  static const int SYSTEM_DYNAMIC_METHOD_GET_NODE_INFO;
-  static const int SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_INFO;
-  static const int SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_LIST;
-  
-  static const std::string SYSTEM_DYNAMIC_METHOD_GET_NODE_INFO_NAME;
-  static const std::string SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_INFO_NAME;
-  static const std::string SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_LIST_NAME;
   
  public:
   LocalNode();
@@ -130,6 +118,51 @@ private:
   LocalNodeScriptManager  scriptMgr;
 };
 
+
+/**
+ * SystemMethodResponse uses to create a response message for system methods.
+ */
+
+class SystemMethodRequest {
+ public:
+  static const std::string PREFIX;
+  
+  static const std::string SET_METHOD;
+  static const std::string GET_NODE_INFO;
+  static const std::string GET_CLUSTER_INFO;
+  static const std::string GET_CLUSTER_LIST;
+  
+  static const std::string LANGUAGE;
+  static const std::string NAME;
+  static const std::string CODE;
+  
+ public:
+  SystemMethodRequest(NodeRequest *ndoeReq);
+    
+ private:
+  NodeRequest *nodeReq;
+};
+
+/**
+ * SystemMethodResponse uses to create a response message for system methods.
+ */
+class SystemMethodResponse {
+ public:
+  static const std::string NAME;
+  static const std::string IP;
+  static const std::string PORT;
+  static const std::string HASH;
+  static const std::string VERSION;
+  static const std::string CLUSTER;
+  static const std::string CLUSTERS;
+  
+ public:
+  SystemMethodResponse(NodeResponse *ndoeRes);
+  
+private:
+  NodeResponse *nodeRes;
+};
+  
 }
 
 #endif

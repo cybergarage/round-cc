@@ -15,21 +15,6 @@
 #include <round/core/LocalNode.h>
 #include <round/core/RemoteNode.h>
 
-const std::string Round::LocalNode::SYSTEM_METHOD_PREFIX                    = "_";
-
-const std::string Round::LocalNode::SYSTEM_STATIC_METHOD_SET_METHOD          = "_set_method";
-const std::string Round::LocalNode::SYSTEM_STATIC_METHOD_SET_METHOD_LANGUAGE = "language";
-const std::string Round::LocalNode::SYSTEM_STATIC_METHOD_SET_METHOD_NAME     = "name";
-const std::string Round::LocalNode::SYSTEM_STATIC_METHOD_SET_METHOD_CODE     = "code";
-
-const int Round::LocalNode::SYSTEM_DYNAMIC_METHOD_GET_NODE_INFO      = 1;
-const int Round::LocalNode::SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_INFO   = 2;
-const int Round::LocalNode::SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_LIST   = 3;
-
-const std::string Round::LocalNode::SYSTEM_DYNAMIC_METHOD_GET_NODE_INFO_NAME      = "_get_node_info";
-const std::string Round::LocalNode::SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_INFO_NAME   = "_get_cluster_info";
-const std::string Round::LocalNode::SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_LIST_NAME   = "_get_cluster_list";
-
 ////////////////////////////////////////////////
 // Constructor
 ////////////////////////////////////////////////
@@ -227,7 +212,8 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
 ////////////////////////////////////////////////
 
 bool Round::LocalNode::isSetMethod(const std::string &method) {
-  return (SYSTEM_STATIC_METHOD_SET_METHOD.compare(method) == 0) ? true : false;
+  
+  return (SystemMethodRequest::SET_METHOD.compare(method) == 0) ? true : false;
 }
 
 bool Round::LocalNode::setMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *err) {
@@ -235,36 +221,44 @@ bool Round::LocalNode::setMethod(const NodeRequest *nodeReq, NodeResponse *nodeR
   nodeReq->getParams(&params);
   
   JSONParser jsonParser;
-  if (!jsonParser.parse(params))
+  if (!jsonParser.parse(params)) {
+    RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeInvalidParams, err);
     return false;
+  }
   
   JSONObject *jsonObj = jsonParser.getObject();
-  if (!jsonObj->isDictionary())
+  if (!jsonObj->isDictionary()) {
+    RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeInvalidParams, err);
     return false;
+  }
 
   JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(jsonObj);
-  if (!jsonDict)
+  if (!jsonDict) {
+    RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeInvalidParams, err);
     return false;
+  }
   
   std::string scriptMethod;
-  if (!jsonDict->get(SYSTEM_STATIC_METHOD_SET_METHOD_NAME, &scriptMethod))
+  if (!jsonDict->get(SystemMethodRequest::NAME, &scriptMethod) || (scriptMethod.length() <= 0)) {
+    RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeInvalidParams, err);
     return false;
-  if (scriptMethod.length() <= 0)
-    return false;
+  }
 
   // Couldn't override '_set_method'
-  if (isSetMethod(scriptMethod))
+  if (isSetMethod(scriptMethod)) {
+    RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeInvalidParams, err);
     return false;
-  
+  }
+
   std::string scriptLang;
-  if (!jsonDict->get(SYSTEM_STATIC_METHOD_SET_METHOD_LANGUAGE, &scriptLang))
+  if (!jsonDict->get(SystemMethodRequest::LANGUAGE, &scriptLang) || (scriptLang.length() <= 0)) {
+    RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeInvalidParams, err);
     return false;
-  if (scriptLang.length() <= 0)
-    return false;
+  }
 
   // This method is removed if the code parameter is null.
   std::string scriptCode;
-  jsonDict->get(SYSTEM_STATIC_METHOD_SET_METHOD_CODE, &scriptCode);
+  jsonDict->get(SystemMethodRequest::CODE, &scriptCode);
   
   return this->scriptMgr.setScript(scriptMethod, scriptLang, scriptCode, err);
 }
@@ -274,16 +268,21 @@ bool Round::LocalNode::setMethod(const NodeRequest *nodeReq, NodeResponse *nodeR
 ////////////////////////////////////////////////
 
 bool Round::LocalNode::isSystemMethod(const std::string &method) {
-  return (method.find(SYSTEM_METHOD_PREFIX) == 0) ? true : false;
+  return (method.find(SystemMethodRequest::PREFIX) == 0) ? true : false;
 }
 
 bool Round::LocalNode::execSystemMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
   static std::map<std::string, int> systemMethods;
-
+  enum {
+      SystemGetNodeInfo,
+      SystemGetClusterInfo,
+      SystemGetClusterList,
+  };
+  
   if (systemMethods.size() <= 0) {
-    systemMethods[SYSTEM_DYNAMIC_METHOD_GET_NODE_INFO_NAME] = SYSTEM_DYNAMIC_METHOD_GET_NODE_INFO;
-    systemMethods[SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_INFO_NAME] = SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_INFO;
-    systemMethods[SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_LIST_NAME] = SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_LIST;
+    systemMethods[SystemMethodRequest::GET_NODE_INFO] = SystemGetNodeInfo;
+    systemMethods[SystemMethodRequest::GET_CLUSTER_INFO] = SystemGetClusterInfo;
+    systemMethods[SystemMethodRequest::GET_CLUSTER_LIST] = SystemGetClusterList;
   }
   
   std::string reqMethod;
@@ -296,11 +295,11 @@ bool Round::LocalNode::execSystemMethod(const NodeRequest *nodeReq, NodeResponse
   
   int systemMethodType = systemMethods[reqMethod];
   switch (systemMethodType) {
-  case SYSTEM_DYNAMIC_METHOD_GET_NODE_INFO:
+  case SystemGetNodeInfo:
     return getNodeInfo(nodeReq, nodeRes, error);
-  case SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_INFO:
+  case SystemGetClusterInfo:
     return getClusterInfo(nodeReq, nodeRes, error);
-  case SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_LIST:
+  case SystemGetClusterList:
     return getClusterList(nodeReq, nodeRes, error);
   }
   
