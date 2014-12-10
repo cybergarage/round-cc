@@ -77,12 +77,6 @@ class LocalNode : public Node, public NodeFinderObserver {
   bool waitMessage(const NodeRequest **nodeReq);
   bool execMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
   
-  bool isSetMethod(const std::string &method);
-  bool setMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
-  
-  bool isSystemMethod(const std::string &method);
-  bool execSystemMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
-  
   virtual bool start(Error *error);
   virtual bool stop(Error *error);
   bool restart(Error *error);
@@ -112,6 +106,18 @@ class LocalNode : public Node, public NodeFinderObserver {
 private:
 
   void init();
+
+  bool isSetMethod(const std::string &method);
+  bool setMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  
+  bool hasUserMethod(const std::string &method);
+  
+  bool isSystemMethod(const std::string &method);
+  bool execSystemMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  
+  bool getNodeInfo(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  bool getClusterInfo(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  bool getClusterList(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
 
 private:
 

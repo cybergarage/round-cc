@@ -186,6 +186,10 @@ bool Round::LocalNode::waitMessage(const NodeRequest **nodeReq) {
 // Execution
 ////////////////////////////////////////////////
 
+bool Round::LocalNode::hasUserMethod(const std::string &method) {
+  return this->scriptMgr.hasScript(method);
+}
+
 bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *err) {
   if (!nodeRes || !nodeRes || !err)
     return false;
@@ -202,13 +206,20 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
     }
     return true;
   }
+
+  if (hasUserMethod(name)) {
+    ScriptParams params;
+    nodeReq->getParams(&params);
+    ScriptResults result;
+    return this->scriptMgr.run(name, params, &result, err);
+  }
   
-  ScriptParams params;
-  nodeReq->getParams(&params);
+  if (isSystemMethod(name)) {
+    return execSystemMethod(nodeReq, nodeRes, err);
+  }
   
-  ScriptResults result;
-  
-  return this->scriptMgr.run(name, params, &result, err);
+  RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeMethodNotFound, err);
+  return false;
 }
 
 ////////////////////////////////////////////////
@@ -278,10 +289,34 @@ bool Round::LocalNode::execSystemMethod(const NodeRequest *nodeReq, NodeResponse
   std::string reqMethod;
   nodeReq->getMethod(&reqMethod);
   
-  systemMethods.find("");
   if (systemMethods.find(reqMethod) == systemMethods.end()) {
-    
+    RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeMethodNotFound, error);
+    return false;
   }
   
+  int systemMethodType = systemMethods[reqMethod];
+  switch (systemMethodType) {
+  case SYSTEM_DYNAMIC_METHOD_GET_NODE_INFO:
+    return getNodeInfo(nodeReq, nodeRes, error);
+  case SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_INFO:
+    return getClusterInfo(nodeReq, nodeRes, error);
+  case SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_LIST:
+    return getClusterList(nodeReq, nodeRes, error);
+  }
+  
+  RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeMethodNotFound, error);
+
+  return false;
+}
+
+bool Round::LocalNode::getNodeInfo(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+  return false;
+}
+
+bool Round::LocalNode::getClusterInfo(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+  return false;
+}
+
+bool Round::LocalNode::getClusterList(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
   return false;
 }

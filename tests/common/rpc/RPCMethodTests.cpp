@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE(RpcHttpStatusMethodTest) {
   size_t errorCodeCnt = GetJsonRpcAllErrorCodes(errorCodes);
   
   for (int n=0; n<errorCodeCnt; n++) {
-    int statusCode = RPC::JSON::HTTP::ErrorCodeToHTTPStatus(errorCodes[n]);
+    int statusCode = RPC::JSON::HTTP::ErrorCodeToHTTPStatusCode(errorCodes[n]);
     BOOST_CHECK(0 < statusCode);
   }
 }
