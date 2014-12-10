@@ -17,7 +17,6 @@
 
 #include "RoundTest.h"
 #include "TestNode.h"
-#include "TestScript.h"
 
 using namespace std;
 using namespace Round;
@@ -96,90 +95,8 @@ BOOST_AUTO_TEST_CASE(LocalNodConfigGraphTest) {
   BOOST_CHECK_EQUAL(testErrorLogFilename, retStringValue);
 }
 
-/*
-#define RPC_SET_ECHO_NAME "echo"
-#define RPC_SET_ECHO_LANG "js"
-#define RPC_SET_ECHO_CODE "function echo(params) {return params;}"
-
-const std::string RPC_SET_ECHO = \
-"{\"jsonrpc\": \"2.0\", \"method\": \"_set_method\", \"params\": {" \
-"\"language\": \"" RPC_SET_ECHO_LANG "\", " \
-"\"name\": \"" RPC_SET_ECHO_NAME "\", " \
-"\"code\": \"" RPC_SET_ECHO_CODE "\", " \
-"}, \"id\": 1}";
-*/
-
 BOOST_AUTO_TEST_CASE(LocalNodeScriptManagerTest) {
   TestLocalNode node;
-  
-  NodeRequestParser reqParser;
-  
-  NodeRequest *nodeReq;
-  NodeResponse nodeRes;
-  Error error;
-
-  // Post Node Message (Overide '_set_method' method)
-  
-  BOOST_CHECK(reqParser.parse(Test::RPC_SET_SETMETHOD));
-  BOOST_CHECK(reqParser.getObject()->isDictionary());
-  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getObject());
-  BOOST_CHECK(nodeReq);
-  
-  BOOST_CHECK(!node.postMessage(nodeReq, &nodeRes, &error));
-  
-  // Post Node Message (Run 'echo' method without method)
-  
-  BOOST_CHECK(reqParser.parse(Test::RPC_RUN_ECHO));
-  BOOST_CHECK(reqParser.getObject()->isDictionary());
-  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getObject());
-  BOOST_CHECK(nodeReq);
-  
-  BOOST_CHECK(!node.postMessage(nodeReq, &nodeRes, &error));
-  BOOST_CHECK_EQUAL(error.getDetailCode(), RPC::JSON::ErrorCodeMethodNotFound);
-  
-  // Post Node Message (Set 'echo' method)
-  
-  BOOST_CHECK(reqParser.parse(Test::RPC_SET_ECHO));
-  BOOST_CHECK(reqParser.getObject()->isDictionary());
-  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getObject());
-  BOOST_CHECK(nodeReq);
-  
-  BOOST_CHECK(node.postMessage(nodeReq, &nodeRes, &error));
-
-  // Post Node Message (Run 'echo' method)
-  
-  BOOST_CHECK(reqParser.parse(Test::RPC_RUN_ECHO));
-  BOOST_CHECK(reqParser.getObject()->isDictionary());
-  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getObject());
-  BOOST_CHECK(nodeReq);
-  
-  BOOST_CHECK(node.postMessage(nodeReq, &nodeRes, &error));
-
-  // Post Node Message (Override 'echo' method)
-  
-  BOOST_CHECK(reqParser.parse(Test::RPC_SET_ECHO));
-  BOOST_CHECK(reqParser.getObject()->isDictionary());
-  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getObject());
-  BOOST_CHECK(nodeReq);
-  
-  BOOST_CHECK(node.postMessage(nodeReq, &nodeRes, &error));
-
-  // Post Node Message (Remove 'echo' method)
-  
-  BOOST_CHECK(reqParser.parse(Test::RPC_REMOVE_ECHO));
-  BOOST_CHECK(reqParser.getObject()->isDictionary());
-  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getObject());
-  BOOST_CHECK(nodeReq);
-  
-  BOOST_CHECK(node.postMessage(nodeReq, &nodeRes, &error));
-  
-  // Post Node Message (Run 'echo' method)
-  
-  BOOST_CHECK(reqParser.parse(Test::RPC_RUN_ECHO));
-  BOOST_CHECK(reqParser.getObject()->isDictionary());
-  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getObject());
-  BOOST_CHECK(nodeReq);
-  
-  BOOST_CHECK(!node.postMessage(nodeReq, &nodeRes, &error));
-  BOOST_CHECK_EQUAL(error.getDetailCode(), RPC::JSON::ErrorCodeMethodNotFound);
+  NodeTestController nodeTestController;
+  nodeTestController.runScriptManagerTest(&node);
 }

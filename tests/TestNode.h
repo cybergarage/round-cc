@@ -96,4 +96,12 @@ class TestServerNode : public Round::ServerNode {
   bool stop(Round::Error *error) {return true;}
 };
 
+class NodeTestController {
+public:
+  NodeTestController() {
+  }
+
+  void runScriptManagerTest(Round::Node *node);
+};
+
 #endif

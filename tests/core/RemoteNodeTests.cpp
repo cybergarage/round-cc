@@ -14,6 +14,10 @@
 #include <string.h>
 
 #include <round/core/RemoteNode.h>
+#include <round/Server.h>
+
+#include "TestNode.h"
+#include "TestServer.h"
 
 using namespace std;
 using namespace Round;
@@ -29,4 +33,18 @@ for (int n = 0; n < 200; n+=10) {
   }
 }
 
+BOOST_AUTO_TEST_CASE(RemoteNodeScriptManagerTest) {
+  Error err;
+  
+  TestServer serverNode;
+  BOOST_CHECK(serverNode.start(&err));
 
+  std::string serverIp = serverNode.getRequestAddress();
+  int serverPort = serverNode.getRequestPort();
+  
+  RemoteNode node(serverIp, serverPort);
+  NodeTestController nodeTestController;
+  nodeTestController.runScriptManagerTest(&node);
+
+  BOOST_CHECK(serverNode.stop(&err));
+}

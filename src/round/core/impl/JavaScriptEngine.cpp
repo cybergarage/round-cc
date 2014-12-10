@@ -111,8 +111,10 @@ bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *resu
 
 Round::JavaScriptEngine::~JavaScriptEngine() {
   // Dispose the isolate
-  if (this->isolate)
-    isolate->Dispose();
+  if (this->isolate) {
+    // FIXME
+    // isolate->Dispose();
+  }
   
   v8::V8::Dispose();
 #if defined(ROUND_V8_USE_LIBPLATFORM)
