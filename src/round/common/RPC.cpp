@@ -19,7 +19,7 @@
 
 static std::map<int, std::string> gJsonRpcErrorStrings;
 
-int Round::RPC::JSON::HTTP::ErrorCodeToHTTPStatus(int jsonErrorCode) {
+int Round::RPC::JSON::HTTP::ErrorCodeToHTTPStatusCode(int jsonErrorCode) {
   switch (jsonErrorCode) {
     case RPC::JSON::ErrorCodeParserError :
     case RPC::JSON::ErrorCodeInvalidParams :
@@ -68,4 +68,13 @@ bool Round::RPC::JSON::IsServerErrorCode(int jsonErrorCode) {
     return false;
   
   return true;
+}
+
+void Round::RPC::JSON::ErrorCodeToError(int jsonErrorCode, Error *error) {
+  int httpStatusCode = HTTP::ErrorCodeToHTTPStatusCode(jsonErrorCode);
+  error->setCode(httpStatusCode);
+  error->setMessage(uHTTP::HTTP::StatusCodeToString(httpStatusCode));
+
+  error->setDetailCode(jsonErrorCode);
+  error->setDetailMessage(ErrorCodeToString(jsonErrorCode));
 }

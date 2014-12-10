@@ -15,14 +15,20 @@
 #include <round/core/LocalNode.h>
 #include <round/core/RemoteNode.h>
 
+const std::string Round::LocalNode::SYSTEM_METHOD_PREFIX                    = "_";
+
 const std::string Round::LocalNode::SYSTEM_STATIC_METHOD_SET_METHOD          = "_set_method";
 const std::string Round::LocalNode::SYSTEM_STATIC_METHOD_SET_METHOD_LANGUAGE = "language";
 const std::string Round::LocalNode::SYSTEM_STATIC_METHOD_SET_METHOD_NAME     = "name";
 const std::string Round::LocalNode::SYSTEM_STATIC_METHOD_SET_METHOD_CODE     = "code";
 
-const std::string Round::LocalNode::SYSTEM_DYNAMIC_METHOD_GET_NODE_INFO      = "_get_node_info";
-const std::string Round::LocalNode::SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_INFO   = "_get_cluster_info";
-const std::string Round::LocalNode::SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_LIST   = "_get_cluster_list";
+const int Round::LocalNode::SYSTEM_DYNAMIC_METHOD_GET_NODE_INFO      = 1;
+const int Round::LocalNode::SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_INFO   = 2;
+const int Round::LocalNode::SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_LIST   = 3;
+
+const std::string Round::LocalNode::SYSTEM_DYNAMIC_METHOD_GET_NODE_INFO_NAME      = "_get_node_info";
+const std::string Round::LocalNode::SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_INFO_NAME   = "_get_cluster_info";
+const std::string Round::LocalNode::SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_LIST_NAME   = "_get_cluster_list";
 
 ////////////////////////////////////////////////
 // Constructor
@@ -257,9 +263,25 @@ bool Round::LocalNode::setMethod(const NodeRequest *nodeReq, NodeResponse *nodeR
 ////////////////////////////////////////////////
 
 bool Round::LocalNode::isSystemMethod(const std::string &method) {
-  return (SYSTEM_STATIC_METHOD_SET_METHOD.compare(method) == 0) ? true : false;
+  return (method.find(SYSTEM_METHOD_PREFIX) == 0) ? true : false;
 }
 
 bool Round::LocalNode::execSystemMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+  static std::map<std::string, int> systemMethods;
+
+  if (systemMethods.size() <= 0) {
+    systemMethods[SYSTEM_DYNAMIC_METHOD_GET_NODE_INFO_NAME] = SYSTEM_DYNAMIC_METHOD_GET_NODE_INFO;
+    systemMethods[SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_INFO_NAME] = SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_INFO;
+    systemMethods[SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_LIST_NAME] = SYSTEM_DYNAMIC_METHOD_GET_CLUSTER_LIST;
+  }
+  
+  std::string reqMethod;
+  nodeReq->getMethod(&reqMethod);
+  
+  systemMethods.find("");
+  if (systemMethods.find(reqMethod) == systemMethods.end()) {
+    
+  }
+  
   return false;
 }

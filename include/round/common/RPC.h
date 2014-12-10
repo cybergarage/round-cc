@@ -45,9 +45,11 @@ const std::string &ErrorCodeToString(int jsonErrorCode);
 bool IsServerErrorCode(int jsonErrorCode);
 
 namespace HTTP {
-  int ErrorCodeToHTTPStatus(int jsonErrorCode);
+  int ErrorCodeToHTTPStatusCode(int jsonErrorCode);
 }
 
+void ErrorCodeToError(int jsonErrorCode, Error *error);
+  
 class Message : public ::Round::Message {
  public:
   static const std::string VERSION;

@@ -43,7 +43,7 @@ bool Round::ServerNode::stop(Error *error) {
 
 Round::HttpStatusCode Round::ServerNode::httpRpcRequestRecieved(uHTTP::HTTPRequest *httpReq, int rpcErrorCode) {
   uHTTP::HTTPResponse httpRes;
-  httpRes.setStatusCode(RPC::JSON::HTTP::ErrorCodeToHTTPStatus(rpcErrorCode));
+  httpRes.setStatusCode(RPC::JSON::HTTP::ErrorCodeToHTTPStatusCode(rpcErrorCode));
   return httpReq->post(&httpRes);
 }
 

@@ -159,7 +159,6 @@ class ScriptManager {
   
  private:
 
-  void setError(Error *error, int detailCode);
   bool removeScript(const ScriptName &method, const ScriptLang &lang, Error *error);
   
   ScriptMap       scripts;

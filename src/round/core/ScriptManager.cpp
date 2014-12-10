@@ -54,16 +54,10 @@ bool Round::ScriptManager::setEngine(ScriptEngine *engine) {
   return true;
 }
 
-void Round::ScriptManager::setError(Error *error, int detailCode) {
-  error->setCode(ScriptEngineStatusBadRequest);
-  error->setDetailCode(detailCode);
-  error->setDetailMessage("");
-}
-
 bool Round::ScriptManager::setScript(const ScriptName &method, const ScriptLang &lang, const ScriptCode &code, Error *error) {
   const ScriptEngine *scriptEngine = this->engines.getEngine(lang);
   if (!scriptEngine) {
-    setError(error, ScriptManagerErrorCodeScriptEngineNotFound);
+    RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeScriptEngineNotFound, error);
     return false;
   }
 
@@ -72,18 +66,18 @@ bool Round::ScriptManager::setScript(const ScriptName &method, const ScriptLang 
   
   Script *script = new Script(lang, method, code);
   if (!script) {
-    setError(error, ScriptManagerErrorCodeScriptEngineInternalError);
+    RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeScriptEngineInternalError, error);
     return false;
   }
 
   if (!scriptEngine->compile(script)) {
-    setError(error, ScriptManagerErrorCodeCompileError);
+    RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeCompileError, error);
     delete script;
     return false;
   }
   
   if (!setScript(script)) {
-    setError(error, ScriptManagerErrorCodeScriptEngineInternalError);
+    RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeScriptEngineInternalError, error);
     delete script;
     return false;
   }
@@ -94,12 +88,12 @@ bool Round::ScriptManager::setScript(const ScriptName &method, const ScriptLang 
 bool Round::ScriptManager::removeScript(const ScriptName &method, const ScriptLang &lang, Error *error) {
   const Script *script = this->scripts.getScript(method);
   if (!script) {
-    setError(error, ScriptManagerErrorCodeMethodNotFound);
+    RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeMethodNotFound, error);
     return false;
   }
   
   if (!script->isLanguage(lang)) {
-    setError(error, ScriptManagerErrorCodeMethodNotFound);
+    RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeMethodNotFound, error);
     return false;
   }
   
@@ -112,19 +106,19 @@ bool Round::ScriptManager::run(const ScriptName &name, const ScriptParams &param
   
   const Script *script = this->scripts.getScript(name);
   if (!script) {
-    setError(error, ScriptManagerErrorCodeMethodNotFound);
+    RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeMethodNotFound, error);
     return false;
   }
   
   const ScriptLang &scriptLang = script->getLanguage();
   if (scriptLang.length() <= 0) {
-    setError(error, ScriptManagerErrorCodeScriptEngineNotFound);
+    RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeScriptEngineNotFound, error);
     return false;
   }
   
   const ScriptEngine *scriptEngine = this->engines.getEngine(scriptLang);
   if (!scriptEngine) {
-    setError(error, ScriptManagerErrorCodeScriptEngineInternalError);
+    RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeScriptEngineInternalError, error);
     return false;
   }
   
