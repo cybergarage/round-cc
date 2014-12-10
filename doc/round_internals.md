@@ -2,7 +2,7 @@
 
 # Round Internals
 
-## Simplify
+## Architecture Overview
 
 ### Open Architecture
 
@@ -25,6 +25,10 @@ Using the [Zeroconf](http://www.zeroconf.org/) protocol,
 ## Dynamics
 
 Dynamic Configuration
+
+Basically, Round supports only to define node methods, and developer can build their distributed application to add the application methods.
+
+Some coordinating frameworks for distributed systems such as [ZooKeeper](http://zookeeper.apache.org) are based on notification events using synchronous connection. In Round, even the notification events are implemented as the node methods without the synchronous connection.
 
 ## Structured Network
 

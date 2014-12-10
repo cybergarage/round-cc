@@ -4,22 +4,19 @@
 
 ## What is Round ?
 
-Round is a new consensus service framework to develop distributed applications. The name 'Round' derives from '[Knights of the Round Table](http://en.wikipedia.org/wiki/Round_Table)', every nodes in a cluster has equal roll, the cluster has no master node.
-
-Round is desined based on the following principles.
+Round is a new consensus service framework to create distributed applications for developers and researchers. The name 'Round' derives from '[Knights of the Round Table](http://en.wikipedia.org/wiki/Round_Table)', every nodes in a cluster has equal roll, the cluster has no master node.
 
 ## Design Principles
 
-
 ### Simplify
 
-In Round, the core module is simple and the module functions are implemented using some open standard network protocols.
+In Round, simplify is a most important principle. The core module is simple, and it has only minimum functions. Just like simplify, orthogonality too is a most important principle. Based on the principles, redundant functions aren't implemented to keep the core module simplify.
 
-![round_overview_simplify](img/round_overview_simplify.svg)
+### Clarify
 
-Basically, Round supports only to define node methods, and developer can build their distributed application to add the application methods.
+The core module is implemented using some open standard network protocols.
 
-Some coordinating frameworks for distributed systems such as [ZooKeeper](http://zookeeper.apache.org) are based on notification events using synchronous connection. In Round, even the notification events are implemented as the node methods without the synchronous connection.
+## Design Features
 
 ### Zeroconf
 
