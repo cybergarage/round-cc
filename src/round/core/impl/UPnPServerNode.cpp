@@ -27,7 +27,7 @@ const std::string Round::UPnPServerNode::DEVICE_TYPE = "urn:cybergarage-org:devi
 
 static const std::string FRACTAL_NODESERVER_DESCRIPTION_URI = "description/description.xml";
 static const std::string FRACTAL_NODESERVER_PRESENTATION_URI = "/presentation";
-static const std::string FRACTAL_NODESERVER_SERVICE_NODE_TYPE = "urn:cybergarage-org:service:node:1";
+static const std::string FRACTAL_NODESERVER_SERVICE_NODE_TYPE = "urn:cybergarage-org:service:round:1";
 
 static const std::string FRACTAL_NODESERVER_ACTION_GETSTATUS = "GetStatus";
 static const std::string FRACTAL_NODESERVER_ACTION_GETSTATUS_VERSION = "Version";
@@ -50,7 +50,7 @@ static const std::string FRACTAL_NODESERVER_DEVICE_DESCRIPTION =
 "     <modelURL>http://www.cybergarage.org</modelURL>\n"
 "     <serviceList>\n"
 "       <service>\n"
-"         <serviceType>urn:cybergarage-org:service:node:1</serviceType>\n"
+"         <serviceType>urn:cybergarage-org:service:round:1</serviceType>\n"
 "         <serviceId>urn:cybergarage-org:serviceId:node:1</serviceId>\n"
 "         <SCPDURL>/service/node/description.xml</SCPDURL>\n"
 "         <controlURL>/service/node/control</controlURL>\n"

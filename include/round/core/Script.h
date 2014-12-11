@@ -98,10 +98,11 @@ enum ScriptManagerDetailErrorStatus {
   ScriptManagerErrorCodeMethodNotFound            = RPC::JSON::ErrorCodeMethodNotFound,
   ScriptManagerErrorCodeInvalidParams             = RPC::JSON::ErrorCodeInvalidParams,
   ScriptManagerErrorCodeInternalError             = RPC::JSON::ErrorCodeInternalError,
-  ScriptManagerErrorCodeScriptEngineInternalError = -32000,
-  ScriptManagerErrorCodeScriptEngineNotFound      = -32001,
-  ScriptManagerErrorCodeCompileError              = -32002,
-  ScriptManagerErrorCodeRuntimeError              = -32003,
+  ScriptManagerErrorCodeMovedPermanently          = -32001,
+  ScriptManagerErrorCodeScriptEngineInternalError = -32010,
+  ScriptManagerErrorCodeScriptEngineNotFound      = -32011,
+  ScriptManagerErrorCodeCompileError              = -32012,
+  ScriptManagerErrorCodeRuntimeError              = -32013,
 };
   
 class ScriptEngine {

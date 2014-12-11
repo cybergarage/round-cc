@@ -12,7 +12,7 @@
 
 Round::Client::Client() {
   setFinderEnabled(true);
-  //this->finder.addObserver(this);
+  this->finder.addObserver(this);
 }
 
 Round::Client::~Client() {
