@@ -20,6 +20,8 @@ const std::string Round::RPC::JSON::Message::CODE = "code";
 const std::string Round::RPC::JSON::Message::MESSAGE = "message";
 const std::string Round::RPC::JSON::Message::RESULT = "result";
 
+const std::string Round::RPC::JSON::Message::TIMESTAMP = "ts";
+
 Round::RPC::JSON::Message::Message() {
   set(JSON_RPC, VERSION);
 }

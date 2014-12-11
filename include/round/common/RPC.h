@@ -57,6 +57,7 @@ class Message : public ::Round::Message {
   static const std::string JSON_RPC;
   static const std::string METHOD;
   static const std::string PARAMS;
+  static const std::string TIMESTAMP;
   static const std::string ID;
   static const std::string RESULT;
   static const std::string ERROR;
@@ -106,6 +107,15 @@ class Message : public ::Round::Message {
   bool setError(const Error &error);
   bool getError(Error *error);
 
+  // Round Extention Methods.
+  
+  bool setTimestamp(clock_t value) {
+    return set(TIMESTAMP, value);
+  }
+  
+  bool getTimestamp(clock_t *value) const {
+    return get(TIMESTAMP, value);
+  }
 };
 
 class Request : public Message {
