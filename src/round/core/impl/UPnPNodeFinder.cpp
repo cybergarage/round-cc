@@ -8,10 +8,11 @@
 *
 ******************************************************************/
 
+#include <round/common/Random.h>
 #include <round/core/impl/UPnPNodeFinder.h>
 #include <round/core/impl/UPnPServerNode.h>
 #include <round/core/RemoteNode.h>
-#include <round/common/Random.h>
+#include <round/core/Log.h>
 
 ////////////////////////////////////////////////
 //  UPnPNodeFinder
@@ -72,7 +73,11 @@ bool Round::UPnPNodeFinder::addRemoteNode(const std::string &remoteHost, int rem
 
 bool Round::UPnPNodeFinder::addRemoteNode(CyberLink::SSDPPacket *ssdpPacket) {
   std::string nt;
-  if (!UPnPServerNode::IsRoundDeviceType(ssdpPacket->getNT(nt)))
+  ssdpPacket->getNT(nt);
+  
+  LogTrace("addRemoteNode : %s", nt.c_str());
+
+  if (!UPnPServerNode::IsRoundDeviceType(nt))
     return false;
   
   return addRemoteNode(
