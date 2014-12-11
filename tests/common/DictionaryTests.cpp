@@ -25,7 +25,7 @@ using namespace Round;
 #define FRACTAL_DICTIONARY_BASIC_TEST_COUNT 10
 
 BOOST_AUTO_TEST_CASE(RoundDictionaryStringTest) {
-Dictionary dict;
+  Dictionary dict;
 
   string key = "key";
   string value;
@@ -43,7 +43,7 @@ Dictionary dict;
 }
 
 BOOST_AUTO_TEST_CASE(RoundDictionaryStringSetterTest) {
-Dictionary dict;
+  Dictionary dict;
 
   string key = "key";
   const char *strValue = "value";
@@ -55,15 +55,15 @@ Dictionary dict;
 }
 
 BOOST_AUTO_TEST_CASE(RoundDictionaryIntegerMinMaxTest) {
-Dictionary dict;
+  Dictionary dict;
 
   string key = "key";
   int value;
 
   value = -1;
-  dict.set(key, (int)INT_MIN);
+  dict.set(key, (int)std::numeric_limits<int>::min());
   BOOST_CHECK(dict.get(key, &value));
-  BOOST_CHECK_EQUAL(value, INT_MIN);
+  BOOST_CHECK_EQUAL(value, std::numeric_limits<int>::min());
 
   value = -1;
   dict.set(key, (int)0);
@@ -71,21 +71,21 @@ Dictionary dict;
   BOOST_CHECK_EQUAL(value, 0);
 
   value = -1;
-  dict.set(key, (int)INT_MAX);
+  dict.set(key, (int)std::numeric_limits<int>::max());
   BOOST_CHECK(dict.get(key, &value));
-  BOOST_CHECK_EQUAL(value, INT_MAX);
+  BOOST_CHECK_EQUAL(value, std::numeric_limits<int>::max());
 }
 
 BOOST_AUTO_TEST_CASE(RoundDictionaryLongMinMaxTest) {
-Dictionary dict;
+  Dictionary dict;
 
   const char *key = "key";
   long value;
 
   value = -1;
-  dict.set(key, (long)LONG_MIN);
+  dict.set(key, std::numeric_limits<long>::min());
   BOOST_CHECK(dict.get(key, &value));
-  BOOST_CHECK_EQUAL(value, LONG_MIN);
+  BOOST_CHECK_EQUAL(value, std::numeric_limits<long>::min());
 
   value = -1;
   dict.set(key, (long)0);
@@ -93,13 +93,35 @@ Dictionary dict;
   BOOST_CHECK_EQUAL(value, 0);
 
   value = -1;
-  dict.set(key, (long)LONG_MAX);
+  dict.set(key, (long)std::numeric_limits<long>::max());
   BOOST_CHECK(dict.get(key, &value));
-  BOOST_CHECK_EQUAL(value, LONG_MAX);
+  BOOST_CHECK_EQUAL(value, std::numeric_limits<long>::max());
+}
+
+BOOST_AUTO_TEST_CASE(RoundDictionaryClockMinMaxTest) {
+  Dictionary dict;
+  
+  const char *key = "key";
+  clock_t value;
+  
+  value = -1;
+  dict.set(key, std::numeric_limits<clock_t>::min());
+  BOOST_CHECK(dict.get(key, &value));
+  BOOST_CHECK_EQUAL(value, std::numeric_limits<clock_t>::min());
+  
+  value = -1;
+  dict.set(key, (clock_t)0);
+  BOOST_CHECK(dict.get(key, &value));
+  BOOST_CHECK_EQUAL(value, 0);
+  
+  value = -1;
+  dict.set(key, std::numeric_limits<clock_t>::max());
+  BOOST_CHECK(dict.get(key, &value));
+  BOOST_CHECK_EQUAL(value, std::numeric_limits<clock_t>::max());
 }
 
 BOOST_AUTO_TEST_CASE(RoundDictionaryBooleanTest) {
-Dictionary dict;
+  Dictionary dict;
 
   const char *key = "key";
   bool value;
@@ -118,7 +140,7 @@ Dictionary dict;
 }
 
 BOOST_AUTO_TEST_CASE(RoundDictionaryStringLoopTest) {
-Dictionary dict;
+  Dictionary dict;
 
   BOOST_CHECK_EQUAL(dict.size(), 0);
 
@@ -169,7 +191,7 @@ Dictionary dict;
 }
 
 BOOST_AUTO_TEST_CASE(RoundDictionaryIntegerLoopTest) {
-Dictionary dict;
+  Dictionary dict;
 
   BOOST_CHECK_EQUAL(dict.size(), 0);
 
@@ -203,7 +225,7 @@ Dictionary dict;
 }
 
 BOOST_AUTO_TEST_CASE(RoundDictionarySetLoopTest) {
-Dictionary dict01;
+  Dictionary dict01;
 
   char key[32];
   for (int n = 0; n < FRACTAL_DICTIONARY_BASIC_TEST_COUNT; n++) {
@@ -223,7 +245,7 @@ Dictionary dict01;
 }
 
 BOOST_AUTO_TEST_CASE(RoundDictionaryGetAllKeysTest) {
-Dictionary dict;
+  Dictionary dict;
 
   char key[32];
   for (int n = 0; n < FRACTAL_DICTIONARY_BASIC_TEST_COUNT; n++) {

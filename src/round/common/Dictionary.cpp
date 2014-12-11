@@ -62,18 +62,30 @@ bool Round::Dictionary::hasKey(const std::string &key) const {
 }
 
 bool Round::Dictionary::set(const std::string &key, const char *value) {
-return set(key, (const std::string &)value);
+  return set(key, (const std::string &)value);
 }
 
 bool Round::Dictionary::set(const std::string &key, int value) {
-std::stringstream ss;
+  std::stringstream ss;
   ss << value;
   return set(key, ss.str());
 }
 
 bool Round::Dictionary::set(const std::string &key, bool value) {
-int intValue = value ? 1 : 0;
+  int intValue = value ? 1 : 0;
   return set(key, intValue);
+}
+
+bool Round::Dictionary::set(const std::string &key, long value) {
+  std::stringstream ss;
+  ss << value;
+  return set(key, ss.str());
+}
+
+bool Round::Dictionary::set(const std::string &key, clock_t value) {
+  std::stringstream ss;
+  ss << value;
+  return set(key, ss.str());
 }
 
 bool Round::Dictionary::get(const std::string &key, int *value) const {
@@ -82,8 +94,8 @@ bool Round::Dictionary::get(const std::string &key, int *value) const {
     return false;
   if (stringValue.length() <= 0)
     return false;
-  *value = atoi(stringValue.c_str());
-  return true;
+  std::istringstream ss(stringValue);
+  return (ss >> (*value)) ? true : false;
 }
 
 bool Round::Dictionary::get(const std::string &key, bool *value) const {
@@ -94,24 +106,28 @@ bool Round::Dictionary::get(const std::string &key, bool *value) const {
   return true;
 }
 
-bool Round::Dictionary::set(const std::string &key, long value) {
-std::stringstream ss;
-  ss << value;
-  return set(key, ss.str());
-}
-
 bool Round::Dictionary::get(const std::string &key, long *value) const {
   std::string stringValue;
   if (get(key, &stringValue) == false)
     return false;
   if (stringValue.length() <= 0)
     return false;
-  *value = atol(stringValue.c_str());
-  return true;
+  std::istringstream ss(stringValue);
+  return (ss >> (*value)) ? true : false;
+}
+
+bool Round::Dictionary::get(const std::string &key, clock_t *value) const {
+  std::string stringValue;
+  if (get(key, &stringValue) == false)
+    return false;
+  if (stringValue.length() <= 0)
+    return false;
+  std::istringstream ss(stringValue);
+  return (ss >> (*value)) ? true : false;
 }
 
 bool Round::Dictionary::remove(const std::string &key) {
-Dictionary::iterator dict = find(key);
+  Dictionary::iterator dict = find(key);
   if (dict == end())
     return false;
   erase(dict);
