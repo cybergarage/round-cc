@@ -102,46 +102,46 @@ bool Round::LocalNode::restart(Error *error) {
 // Notification
 ////////////////////////////////////////////////
 
-bool Round::LocalNode::nodeAdded(Round::Node *addedNode)  {
+bool Round::LocalNode::nodeAdded(Round::Node *notifyNode)  {
   Error error;
   
-  Cluster addedNodeCluster;
-  if (!addedNode->getCluster(&addedNodeCluster, &error))
+  Cluster notifyNodeCluster;
+  if (!notifyNode->getCluster(&notifyNodeCluster, &error))
     return false;
   
   Cluster thisNodeCluster;
   if (!getCluster(&thisNodeCluster, &error))
     return false;
   
-  if (!thisNodeCluster.equals(addedNodeCluster))
+  if (!thisNodeCluster.equals(notifyNodeCluster))
     return false;
   
-  if (this->nodeGraph.hasNode(addedNode))
+  if (this->nodeGraph.hasNode(notifyNode))
     return true;
   
-  if (!this->nodeGraph.addNode(addedNode))
+  if (!this->nodeGraph.addNode(notifyNode))
     return true;
   
-  if (equals(addedNode))
+  if (equals(notifyNode))
     return true;
   
   return true;
 }
 
-bool Round::LocalNode::nodeRemoved(Round::Node *removedNode)  {
-  if (!this->nodeGraph.hasNode(removedNode))
+bool Round::LocalNode::nodeRemoved(Round::Node *notifyNode)  {
+  if (!this->nodeGraph.hasNode(notifyNode))
     return true;
   
-  if (equals(removedNode)) {
-    this->nodeGraph.removeNode(removedNode);
+  if (equals(notifyNode)) {
+    this->nodeGraph.removeNode(notifyNode);
     return true;
   }
   
-  ssize_t removedNodeIndex = this->nodeGraph.getNodeIndex(removedNode);
-  if (removedNodeIndex < 0)
+  ssize_t notifyNodeIndex = this->nodeGraph.getNodeIndex(notifyNode);
+  if (notifyNodeIndex < 0)
     return false;
   
-  Node *failedNode = this->nodeGraph.getNode(removedNodeIndex);
+  Node *failedNode = this->nodeGraph.getNode(notifyNodeIndex);
   if (!failedNode)
     return false;
   
