@@ -52,6 +52,7 @@ Round is based on [JSON-RPC 2.0][json-rpc], and Round extends the specification 
 | - | - |
 | ts | - |
 | digest | - |
+| hash | - |
 
 #### ts (timestamp)
 
@@ -72,6 +73,11 @@ When the request object has the parameter, the remote node updates the local log
 When the request object hasn't the parameter, the remote node does't update the local logical timestamp, and the remote node returns the current timestamp in the response object.
 
 [lamport-timestamps]: http://en.wikipedia.org/wiki/Lamport_timestamps
+
+#### hash
+
+##### Request object
+
 
 #### digest
 
@@ -99,12 +105,13 @@ When the request object hasn't the parameter, the remote node does't update the 
 
 Round added the folloinwg error codes in the  implementation defined range [JSON-RPC][json-rpc]. Round returns the following error code when the specified method couldn't be executed.
 
-| code | message | meaning |
+| code | message | data |
 |-|-|-|
-| -32000 | Internal script engine error | The specified script language is not available.|
-| -32001 | Invalid script language | The specified script language is not available.|
-| -32002 | Invalid script code | The specified script code is invalid |
-| -32003 | Script runtime error  | The specified method with  parameters couldn't be executed normally |
+| -32001 | Moved Permanently | { "cluster" : } |
+| -32010 | Internal script engine error | (none) |
+| -32011 | Invalid script language | (none) |
+| -32012 | Invalid script code | (none) |
+| -32013 | Script runtime error  | (none) |
 
 #### Future
 
@@ -135,6 +142,7 @@ For the asynchronous request, Round returns the following HTTP status code immed
 | Code | Status | Description |
 | - | - | - |
 | 202 | Accepted | 'result' member is not inclued |
+| 302 | Moved Permanently | - |
 | 500 | Internal Server Error | - |
 
 Round doesn't check the request message in more detail. Thus all JSON-RPC errors such as 'Parser Error' are returns into the specified location asynchronously.

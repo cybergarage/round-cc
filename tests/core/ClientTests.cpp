@@ -18,7 +18,7 @@ using namespace Round;
 
 static const std::string FRACTAL_CLIENT_TEST_CLUSTER_NAME = "client_test_cluster";
 
-BOOST_AUTO_TEST_CASE(RoundClientFinderTest) {
+BOOST_AUTO_TEST_CASE(RoundClientFindSeverTest) {
   Error error;
   
   TestServer server;
