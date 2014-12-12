@@ -105,8 +105,8 @@ class Message : public ::Round::Message {
   }
 
   // NOTE : RPC error message uses only detail code and message in error object.
-  bool setError(const Error &error);
-  bool getError(Error *error);
+  bool setError(const Error *error);
+  bool getError(Error *error) const;
 
   // Round Extention Methods.
   

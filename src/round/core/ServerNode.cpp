@@ -83,7 +83,7 @@ Round::HttpStatusCode Round::ServerNode::httpRpcRequestReceived(uHTTP::HTTPReque
   if (jsonParser.getObject()->isDictionary() == false)
     return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeInvalidRequest);
 
-  NodeRequest *nodeReq = dynamic_cast<NodeRequest *>(jsonParser.getObject());
+  NodeRequest *nodeReq = dynamic_cast<NodeRequest *>(jsonParser.popObject());
   if (!nodeReq)
     return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeInvalidRequest);
 

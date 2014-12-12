@@ -27,13 +27,9 @@ class NodeRequest : public RPC::JSON::Request {
   bool setHttpRequest(uHTTP::HTTPRequest *httpReq);
   uHTTP::HTTPRequest *getHttpRequest() const {return this->httpReq;}
   
-  void setResponse(NodeResponse *nodeRes) const {this->nodeRes = nodeRes;}
-  NodeResponse *getResponse() const {return this->nodeRes;}
-
  private:
   
   mutable uHTTP::HTTPRequest *httpReq;
-  mutable NodeResponse       *nodeRes;
 
   void init();
   bool close();

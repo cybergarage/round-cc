@@ -29,16 +29,30 @@ Round::RPC::JSON::Message::Message() {
 Round::RPC::JSON::Message::~Message() {
 }
 
-bool Round::RPC::JSON::Message::setError(const Error &error) {
-  JSONDictionary *errorDict = new JSONDictionary();
+bool Round::RPC::JSON::Message::setError(const Error *error) {
+  if (!error)
+    return false;
+  
+  JSONDictionary *errorDict = NULL;
+  JSONObject *errorObj;
+  if (get(ERROR, &errorObj)) {
+    errorDict = dynamic_cast<JSONDictionary *>(errorObj);
+  }
+  
+  if (!errorDict) {
+    errorDict = new JSONDictionary();
+  }
+  
   if (!errorDict)
     return false;
-  errorDict->set(CODE, error.getDetailCode());
-  errorDict->set(MESSAGE, error.getDetailMessage());
+  
+  errorDict->set(CODE, error->getDetailCode());
+  errorDict->set(MESSAGE, error->getDetailMessage());
+  
   return set(ERROR, errorDict);
 }
 
-bool Round::RPC::JSON::Message::getError(Error *error) {
+bool Round::RPC::JSON::Message::getError(Error *error) const {
   if (!error)
     return false;
   

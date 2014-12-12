@@ -33,26 +33,37 @@ JSONDictionary dict;
   BOOST_CHECK(dict.get(key, &strBuf));
   BOOST_CHECK_EQUAL(strValue.compare(strBuf), 0);
 
-  int intValue = INT_MAX;
+  int intValue;
   int intBuf;
+  intValue = INT_MAX;
+  BOOST_CHECK(dict.set(key, intValue));
+  BOOST_CHECK(dict.get(key, &intBuf));
+  BOOST_CHECK_EQUAL(intValue, intBuf);
+  intValue = INT_MIN;
   BOOST_CHECK(dict.set(key, intValue));
   BOOST_CHECK(dict.get(key, &intBuf));
   BOOST_CHECK_EQUAL(intValue, intBuf);
 
-  long longValue = LONG_MAX;
+  long longValue;
   long longBuf;
+  longValue = LONG_MAX;
+  BOOST_CHECK(dict.set(key, longValue));
+  BOOST_CHECK(dict.get(key, &longBuf));
+  BOOST_CHECK_EQUAL(longValue, longBuf);
+  longValue = LONG_MIN;
   BOOST_CHECK(dict.set(key, longValue));
   BOOST_CHECK(dict.get(key, &longBuf));
   BOOST_CHECK_EQUAL(longValue, longBuf);
 
-  size_t sizeValue = LONG_MAX; //SIZE_MAX;
+  size_t sizeValue = LONG_MAX;;
   size_t sizeBuf;
   BOOST_CHECK(dict.set(key, sizeValue));
   BOOST_CHECK(dict.get(key, &sizeBuf));
   BOOST_CHECK_EQUAL(sizeValue, sizeBuf);
 
-  bool boolValue = true;
+  bool boolValue;
   bool boolBuf;
+  boolValue = true;
   BOOST_CHECK(dict.set(key, boolValue));
   BOOST_CHECK(dict.get(key, &boolBuf));
   BOOST_CHECK_EQUAL(boolValue, boolBuf);

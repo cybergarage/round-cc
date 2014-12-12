@@ -49,11 +49,14 @@ bool Round::RemoteNode::postMessage(const NodeRequest *nodeReq, NodeResponse *no
   JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(jsonParser.getObject());
   if (!jsonDict)
     return isSuccess;
+
   nodeRes->set(jsonDict);
 
-  nodeRes->getError(error);
-  error->setCode(statusCode);
-  error->setMessage(uHTTP::HTTP::StatusCodeToString(statusCode));
+  if (!isSuccess) {
+    nodeRes->getError(error);
+    error->setCode(statusCode);
+    error->setMessage(uHTTP::HTTP::StatusCodeToString(statusCode));
+  }
   
   return isSuccess;
 }

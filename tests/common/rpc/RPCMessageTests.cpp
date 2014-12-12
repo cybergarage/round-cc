@@ -148,7 +148,7 @@ BOOST_AUTO_TEST_CASE(RPCErrorMethodTest) {
   Error err;
   
   BOOST_CHECK(!rpcMsg.getError(&err));
-  BOOST_CHECK(rpcMsg.setError(TEST_ERROR));
+  BOOST_CHECK(rpcMsg.setError(&TEST_ERROR));
   
   BOOST_CHECK(rpcMsg.getError(&err));
   BOOST_CHECK_EQUAL(err.getDetailCode(), TEST_ERROR.getDetailCode());

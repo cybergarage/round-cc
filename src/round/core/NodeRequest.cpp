@@ -24,7 +24,6 @@ Round::NodeRequest::NodeRequest(const std::string &method) {
 
 void Round::NodeRequest::init() {
   this->httpReq = NULL;
-  this->nodeRes = NULL;
 }
 
 Round::NodeRequest::~NodeRequest() {

@@ -17,6 +17,20 @@ Round::LocalNodeWorkder::LocalNodeWorkder() {
 Round::LocalNodeWorkder::~LocalNodeWorkder() {
 }
 
+void Round::LocalNodeWorkder::post(uHTTP::HTTPRequest *httpReq, const NodeResponse *nodeRes) {
+  int statusCode = uHTTP::HTTP::OK_REQUEST;
+  Error err;
+  if (nodeRes->getError(&err)) {
+    statusCode = RPC::JSON::HTTP::ErrorCodeToHTTPStatusCode(err.getDetailCode());
+  }
+  
+  uHTTP::HTTPResponse httpRes;
+  httpRes.setStatusCode(statusCode);
+  nodeRes->toHTTPResponse(&httpRes);
+  
+  httpReq->post(&httpRes);
+}
+
 void Round::LocalNodeWorkder::run() {
   LocalNode *node = getObject();
   if (!node)
@@ -34,32 +48,22 @@ void Round::LocalNodeWorkder::run() {
     nodeReq->toJSONString(&reqStr);
     RoundLogTrace(reqStr.c_str());
     
-    NodeResponse nodeResLocal;
-    NodeResponse *nodeRes = nodeReq->getResponse();
-    if (!nodeRes) {
-      nodeRes = &nodeResLocal;
-    }
-    
+    NodeResponse nodeRes;
     Error err;
-    if (!node->execMessage(nodeReq, nodeRes, &err)) {
-      nodeRes->setError(err);
+    
+    if (!node->execMessage(nodeReq, &nodeRes, &err)) {
+      nodeRes.setError(&err);
     }
     
     std::string resStr;
-    nodeRes->toJSONString(&resStr);
+    nodeRes.toJSONString(&resStr);
     RoundLogTrace(resStr.c_str());
 
     uHTTP::HTTPRequest *httpReq = nodeReq->getHttpRequest();
     if (httpReq) {
-      post(httpReq, nodeRes);
+      post(httpReq, &nodeRes);
     }
     
     delete nodeReq;
   }
-}
-
-void Round::LocalNodeWorkder::post(uHTTP::HTTPRequest *httpReq, const NodeResponse *nodeRes) {
-  uHTTP::HTTPResponse httpRes;
-  nodeRes->toHTTPResponse(&httpRes);
-  httpReq->post(&httpRes);
 }
