@@ -52,7 +52,7 @@ protected:
 
 private:
   
-  HttpStatusCode httpRpcRequestRecieved(uHTTP::HTTPRequest *httpReq, int rpcErrorCode);
+  HttpStatusCode postRpcErrorResponse(uHTTP::HTTPRequest *httpReq, int rpcErrorCode);
   HttpStatusCode postRpcRequest(uHTTP::HTTPRequest *httpReq, NodeRequest *nodeReq);
   
   int serverPort;

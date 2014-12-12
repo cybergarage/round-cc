@@ -41,7 +41,7 @@ bool Round::ServerNode::stop(Error *error) {
   return isSuccess;
 }
 
-Round::HttpStatusCode Round::ServerNode::httpRpcRequestRecieved(uHTTP::HTTPRequest *httpReq, int rpcErrorCode) {
+Round::HttpStatusCode Round::ServerNode::postRpcErrorResponse(uHTTP::HTTPRequest *httpReq, int rpcErrorCode) {
   uHTTP::HTTPResponse httpRes;
   httpRes.setStatusCode(RPC::JSON::HTTP::ErrorCodeToHTTPStatusCode(rpcErrorCode));
   return httpReq->post(&httpRes);
@@ -74,23 +74,23 @@ Round::HttpStatusCode Round::ServerNode::httpRpcRequestReceived(uHTTP::HTTPReque
 
   std::string httpContent = httpReq->getContent();
   if (httpContent.length() <= 0)
-    return httpRpcRequestRecieved(httpReq, RPC::JSON::ErrorCodeInvalidRequest);
+    return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeInvalidRequest);
   
   NodeRequestParser jsonParser;
   if (jsonParser.parse(httpContent) == false)
-    return httpRpcRequestRecieved(httpReq, RPC::JSON::ErrorCodeParserError);
+    return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeParserError);
   
   if (jsonParser.getObject()->isDictionary() == false)
-    return httpRpcRequestRecieved(httpReq, RPC::JSON::ErrorCodeInvalidRequest);
+    return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeInvalidRequest);
 
   NodeRequest *nodeReq = dynamic_cast<NodeRequest *>(jsonParser.getObject());
   if (!nodeReq)
-    return httpRpcRequestRecieved(httpReq, RPC::JSON::ErrorCodeInvalidRequest);
+    return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeInvalidRequest);
 
   // Post RPC Request
   
   if (!postRpcRequest(httpReq, nodeReq))
-    return httpRpcRequestRecieved(httpReq, RPC::JSON::ErrorCodeInternalError);
+    return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeInternalError);
   
   return uHTTP::HTTP::PROCESSING;
 }
