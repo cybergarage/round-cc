@@ -33,9 +33,8 @@ bool Round::RPC::JSON::Message::setError(const Error &error) {
   JSONDictionary *errorDict = new JSONDictionary();
   if (!errorDict)
     return false;
-  errorDict->set(CODE, error.getCode());
-  errorDict->set(MESSAGE, error.getMessage());
-  
+  errorDict->set(CODE, error.getDetailCode());
+  errorDict->set(MESSAGE, error.getDetailMessage());
   return set(ERROR, errorDict);
 }
 
@@ -51,14 +50,14 @@ bool Round::RPC::JSON::Message::getError(Error *error) {
     return false;
   
   int errorCode;
-  if (!errorDict->get(CODE, &errorCode))
-    return false;
-  error->setCode(errorCode);
-  
+  if (errorDict->get(CODE, &errorCode)) {
+    error->setDetailCode(errorCode);
+  }
+
   std::string errorMsg;
-  if (!errorDict->get(MESSAGE, &errorMsg))
-    return false;
-  error->setMessage(errorMsg);
+  if (errorDict->get(MESSAGE, &errorMsg)) {
+    error->setDetailMessage(errorMsg);
+  }
   
   return true;
 }

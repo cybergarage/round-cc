@@ -9,6 +9,7 @@
 ******************************************************************/
 
 #include <round/core/LocalNode.h>
+#include <round/core/Log.h>
 
 Round::LocalNodeWorkder::LocalNodeWorkder() {
 }
@@ -29,6 +30,10 @@ void Round::LocalNodeWorkder::run() {
     if (!nodeReq)
       break;
 
+    std::string reqStr;
+    nodeReq->toJSONString(&reqStr);
+    RoundLogTrace(reqStr.c_str());
+    
     NodeResponse nodeResLocal;
     NodeResponse *nodeRes = nodeReq->getResponse();
     if (!nodeRes) {
@@ -36,18 +41,24 @@ void Round::LocalNodeWorkder::run() {
     }
     
     Error err;
-    node->execMessage(nodeReq, nodeRes, &err);
+    if (!node->execMessage(nodeReq, nodeRes, &err)) {
+      nodeRes->setError(err);
+    }
+    
+    std::string resStr;
+    nodeRes->toJSONString(&resStr);
+    RoundLogTrace(resStr.c_str());
 
-    uHTTP::HTTPRequest *httpRes = nodeReq->getHttpRequest();
-    if (httpRes) {
-      post(nodeRes, httpRes);
+    uHTTP::HTTPRequest *httpReq = nodeReq->getHttpRequest();
+    if (httpReq) {
+      post(httpReq, nodeRes);
     }
     
     delete nodeReq;
   }
 }
 
-void Round::LocalNodeWorkder::post(const NodeResponse *nodeRes, uHTTP::HTTPRequest *httpReq) {
+void Round::LocalNodeWorkder::post(uHTTP::HTTPRequest *httpReq, const NodeResponse *nodeRes) {
   uHTTP::HTTPResponse httpRes;
   nodeRes->toHTTPResponse(&httpRes);
   httpReq->post(&httpRes);

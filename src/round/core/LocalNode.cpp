@@ -161,10 +161,12 @@ bool Round::LocalNode::pushMessage(const NodeRequest *nodeReq) {
 }
 
 bool Round::LocalNode::waitMessage(const NodeRequest **nodeReq) {
-  const Message *nodeMsg = dynamic_cast<const Message *>(*nodeReq);
-  if (!nodeMsg)
+  *nodeReq = NULL;
+  const Message *nodeMsg = NULL;
+  if (!this->nodeMsgMgr.waitMessage(&nodeMsg))
     return false;
-  return this->nodeMsgMgr.waitMessage(&nodeMsg);
+  *nodeReq = dynamic_cast<const NodeRequest *>(nodeMsg);
+  return (*nodeReq) ? true : false;
 }
 
 ////////////////////////////////////////////////
@@ -175,8 +177,15 @@ bool Round::LocalNode::hasUserMethod(const std::string &method) {
   return this->scriptMgr.hasScript(method);
 }
 
+bool Round::LocalNode::setError(int rpcErrorCode, Error *err) {
+  if (!err)
+    return false;
+  RPC::JSON::ErrorCodeToError(rpcErrorCode, err);
+  return true;
+}
+
 bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *err) {
-  if (!nodeRes || !nodeRes || !err)
+  if (!nodeReq || !nodeRes || !err)
     return false;
   
   ScriptName name;
@@ -184,9 +193,7 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
   
   if (isSetMethod(name)) {
     if (!setMethod(nodeReq, nodeRes, err)) {
-      int errCode = RPC::JSON::ErrorCodeInvalidParams;
-      err->setCode(errCode);
-      err->setMessage(RPC::JSON::ErrorCodeToString(errCode));
+      setError(RPC::JSON::ErrorCodeInvalidParams, err);
       return false;
     }
     return true;
@@ -203,7 +210,8 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
     return execSystemMethod(nodeReq, nodeRes, err);
   }
   
-  RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeMethodNotFound, err);
+  setError(ScriptManagerErrorCodeMethodNotFound, err);
+  
   return false;
 }
 

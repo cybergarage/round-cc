@@ -30,7 +30,7 @@ class LocalNodeWorkder : public Thread<LocalNode> {
   void run();
   
  private:
-  void post(const NodeResponse *nodeRes, uHTTP::HTTPRequest *httpReq);
+  void post(uHTTP::HTTPRequest *httpReq, const NodeResponse *nodeRes);
 };
 
 class LocalNodeScriptManager : public ScriptManager {
@@ -100,6 +100,8 @@ private:
   
   bool hasUserMethod(const std::string &method);
   
+  bool setError(int rpcErrorCode, Error *err);
+
   bool isSystemMethod(const std::string &method);
   bool execSystemMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
   
