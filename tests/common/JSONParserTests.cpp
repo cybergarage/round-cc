@@ -17,6 +17,40 @@ using namespace std;
 using namespace Round;
 
 ////////////////////////////////////////////////////////////
+// Basic Method
+////////////////////////////////////////////////////////////
+
+BOOST_AUTO_TEST_CASE(JSONParsePopObjectTest) {
+  JSONParser *jsonParser = new JSONParser();
+  
+  BOOST_CHECK(jsonParser->parse("[0, 1, 2]"));
+  BOOST_CHECK(jsonParser->getObject());
+  BOOST_CHECK(jsonParser->getObject()->isArray());
+  
+  JSONArray *jsonArray, *popJsonArray;
+
+  jsonArray = dynamic_cast<JSONArray *>(jsonParser->getObject());
+  BOOST_CHECK(jsonArray);
+  
+  popJsonArray = dynamic_cast<JSONArray *>(jsonParser->popObject());
+  BOOST_CHECK(popJsonArray);
+  
+  jsonArray = dynamic_cast<JSONArray *>(jsonParser->getObject());
+  BOOST_CHECK(!jsonArray);
+  
+  delete jsonParser;
+  
+  BOOST_CHECK_EQUAL(popJsonArray->size(), 3);
+  for (int n=0; n<3; n++) {
+    int value;
+    BOOST_CHECK(popJsonArray->getInteger(n, &value));
+    BOOST_CHECK_EQUAL(value, n);
+  }
+  
+  delete popJsonArray;
+}
+
+////////////////////////////////////////////////////////////
 // For Array
 ////////////////////////////////////////////////////////////
 

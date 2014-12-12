@@ -47,6 +47,12 @@ void Round::JSONParser::clear() {
   }
 }
 
+Round::JSONObject *Round::JSONParser::popObject() {
+  JSONObject *popObject = this->jsonObject;
+  this->jsonObject = NULL;
+  return popObject;
+}
+
 bool Round::JSONParser::parse(const std::string &jsonString, JSONArray *parentArray) {
 if (jsonString.find(JSON_ARRAY_DIR_BIGIN) == 0) {
     std::vector<std::string> dirValues;

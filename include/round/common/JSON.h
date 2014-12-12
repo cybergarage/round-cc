@@ -142,10 +142,12 @@ public:
   bool parse(const std::string &jsonString);
   bool parse(const std::string &jsonString, JSONObject **jsonObject);
 
-  JSONObject *getObject() {
+  JSONObject *getObject() const {
     return this->jsonObject;
   }
 
+  JSONObject *popObject();
+  
   virtual JSONString *createJSONString(const std::string &value) {
     return new JSONString(value);
   }

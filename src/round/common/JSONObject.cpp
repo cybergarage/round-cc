@@ -10,9 +10,11 @@
 
 #include <round/common/JSON.h>
 
-Round::JSONObject::JSONObject() {}
+Round::JSONObject::JSONObject() {
+}
 
-Round::JSONObject::~JSONObject() {}
+Round::JSONObject::~JSONObject() {
+}
 
 bool Round::JSONObject::isString() const {
   return (getType() == STRING) ? true : false;
