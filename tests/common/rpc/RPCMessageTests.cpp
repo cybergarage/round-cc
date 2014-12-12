@@ -51,13 +51,6 @@ BOOST_AUTO_TEST_CASE(RPCMessageMethodTest) {
   BOOST_CHECK(rpcMsg.getParams(&result));
   BOOST_CHECK_EQUAL(result.compare(TEST_RESULT), 0);
   
-  Error TEST_ERROR(12345, "12345");
-  Error err;
-  BOOST_CHECK(!rpcMsg.getError(&err));
-  BOOST_CHECK(rpcMsg.setError(TEST_ERROR));
-  BOOST_CHECK(rpcMsg.getError(&err));
-  BOOST_CHECK(err.equals(TEST_ERROR));
-  
   // Check again not to orverride.
   
   BOOST_CHECK_EQUAL(ver.compare(RPC::JSON::Message::VERSION), 0);
@@ -147,3 +140,17 @@ BOOST_AUTO_TEST_CASE(RPCRequestTest) {
   BOOST_CHECK(!req);
 }
 
+BOOST_AUTO_TEST_CASE(RPCErrorMethodTest) {
+  RPC::JSON::Message rpcMsg;
+
+  const std::string detailMsg = "67890";
+  Error TEST_ERROR(12345, "12345", 67890, detailMsg);
+  Error err;
+  
+  BOOST_CHECK(!rpcMsg.getError(&err));
+  BOOST_CHECK(rpcMsg.setError(TEST_ERROR));
+  
+  BOOST_CHECK(rpcMsg.getError(&err));
+  BOOST_CHECK_EQUAL(err.getDetailCode(), TEST_ERROR.getDetailCode());
+  BOOST_CHECK_EQUAL(detailMsg.compare(err.getDetailMessage()), 0);
+}

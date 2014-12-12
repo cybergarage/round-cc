@@ -103,7 +103,8 @@ class Message : public ::Round::Message {
   bool getId(std::string *value) const {
     return get(ID, value);
   }
-  
+
+  // NOTE : RPC error message uses only detail code and message in error object.
   bool setError(const Error &error);
   bool getError(Error *error);
 

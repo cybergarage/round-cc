@@ -50,6 +50,10 @@ bool Round::RemoteNode::postMessage(const NodeRequest *nodeReq, NodeResponse *no
   if (!jsonDict)
     return isSuccess;
   nodeRes->set(jsonDict);
+
+  nodeRes->getError(error);
+  error->setCode(statusCode);
+  error->setMessage(uHTTP::HTTP::StatusCodeToString(statusCode));
   
   return isSuccess;
 }

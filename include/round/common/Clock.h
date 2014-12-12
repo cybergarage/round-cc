@@ -11,6 +11,9 @@
 #ifndef _ROUNDCC_CLOCK_H_
 #define _ROUNDCC_CLOCK_H_
 
+#include <time.h>
+#include <round/common/Mutex.h>
+
 namespace Round {
 
 typedef enum {
@@ -19,28 +22,26 @@ ClockOrderedDescending = -1,
 ClockOrderedAscending = 1,
 } ClockOrderType;
 
-typedef long ClockValue;
-
 class Clock {
  public:
+  const static clock_t INCREMENT_VALUE;
+  
+ public:
   Clock();
-  Clock(ClockValue value);
+  Clock(clock_t value);
 
   ~Clock();
 
-  void setValue(ClockValue value) {
-    this->value = value;
-  }
-
-  ClockValue getValue() const {
-    return this->value;
-  }
+  void setValue(clock_t value);
+  clock_t getValue() const;
+  clock_t increment();
 
   ClockOrderType compare(const Clock &clock);
 
 private:
 
-  long value;
+  mutable Mutex mutex;
+  clock_t value;
 };
 
 }
