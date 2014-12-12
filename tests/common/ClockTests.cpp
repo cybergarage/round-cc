@@ -10,7 +10,6 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <time.h>
 #include <round/common/Clock.h>
 
 BOOST_AUTO_TEST_CASE(ClockTest) {
@@ -27,8 +26,27 @@ BOOST_AUTO_TEST_CASE(ClockConstructorTest) {
   BOOST_CHECK_EQUAL(clock.getValue(), timeValue);
 }
 
+BOOST_AUTO_TEST_CASE(ClockIncrementTest) {
+  time_t timeValue = time(NULL);
+  
+  Round::Clock clock(timeValue);
+
+  clock_t startClock = clock.getValue();
+  
+  const int incLoopCnt = 10;
+  for (int n=0; n<incLoopCnt; n++) {
+    clock_t prevClock = clock.getValue();
+    clock_t nowClock = clock.increment();
+    BOOST_CHECK(prevClock < nowClock);
+    BOOST_CHECK_EQUAL(nowClock, (prevClock + Round::Clock::INCREMENT_VALUE));
+  }
+  
+  clock_t endClock = clock.getValue();
+  BOOST_CHECK_EQUAL(endClock, (startClock + incLoopCnt));
+}
+
 BOOST_AUTO_TEST_CASE(ClockCompareTest) {
-time_t timeValue = time(NULL);
+  time_t timeValue = time(NULL);
 
   Round::Clock clock01(timeValue);
   Round::Clock clock02(timeValue);
