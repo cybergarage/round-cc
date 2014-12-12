@@ -21,6 +21,7 @@ class Error {
   Error();
   Error(int code);
   Error(int code, const std::string &message);
+  Error(int code, const std::string &message, int detailCode, const std::string &detailMessage);
 
   virtual ~Error();
 

@@ -26,6 +26,14 @@ Round::Error::Error(int code, const std::string &message) {
   this->message = message;
 }
 
+Round::Error::Error(int code, const std::string &message, int detailCode, const std::string &detailMessage) {
+  initialize();
+  this->code = code;
+  this->message = message;
+  this->detailCode = detailCode;
+  this->detailMessage = detailMessage;
+}
+
 void Round::Error::initialize() {
   this->code = 0;
   this->detailCode = 0;
