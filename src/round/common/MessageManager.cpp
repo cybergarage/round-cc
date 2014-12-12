@@ -22,7 +22,7 @@ extern int errno;
 
 Round::MessageManager::MessageManager() {
   this->msgQueue = new MessageQueue();
-  this->msgSem = new Semaphore(1);
+  this->msgSem = new Semaphore(0);
 }
 
 Round::MessageManager::~MessageManager() {
@@ -44,6 +44,7 @@ bool Round::MessageManager::waitMessage(const Message **msg) {
   if (!msg)
     return false;
 
+  *msg = NULL;
   if  (this->msgSem->wait() == false)
     return false;
   

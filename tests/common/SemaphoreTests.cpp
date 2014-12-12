@@ -49,27 +49,28 @@ BOOST_AUTO_TEST_CASE(SemaphoreMaxCountTest) {
   }
 }
 
-static const int SEMAPHORE_THREAD_TEST_LOOP_NUM = 5;
+static const int SEMAPHORE_THREAD_TEST_LOOP_NUM = 10;
 
-class SemaphoreThread : public Thread<Semaphore> {
+class SemaphorePostThread : public Thread<Semaphore> {
  public:
-  SemaphoreThread() {
+  SemaphorePostThread() {
   }
 
   void run() {
     Semaphore *sem = getObject();
     for (int n = 0; n < SEMAPHORE_THREAD_TEST_LOOP_NUM; n++) {
+      sleep(100);
       BOOST_CHECK_EQUAL(sem->post(), true);
     }
   }
 };
 
 BOOST_AUTO_TEST_CASE(SemaphoreThreadTest) {
-  Semaphore *sem = new Semaphore(1);
+  Semaphore *sem = new Semaphore(0);
   
-  SemaphoreThread semThread;
-  semThread.setObject(sem);
-  semThread.start();
+  SemaphorePostThread semPostThread;
+  semPostThread.setObject(sem);
+  BOOST_CHECK(semPostThread.start());
   
   for (int n = 0; n < SEMAPHORE_THREAD_TEST_LOOP_NUM; n++) {
     BOOST_CHECK_EQUAL(sem->wait(), true);

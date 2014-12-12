@@ -62,7 +62,7 @@ class LocalNode : public Node, public NodeFinderObserver {
   bool nodeRemoved(Node *node);
 
   bool pushMessage(const NodeRequest *nodeReq);
-  bool waitMessage(const Message **nodeReq);
+  bool waitMessage(const NodeRequest **nodeReq);
   bool execMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
   
   virtual bool start(Error *error);

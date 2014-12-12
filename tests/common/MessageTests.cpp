@@ -55,11 +55,11 @@ public:
     MessageManager *msgMgr = getObject();
     char key[32], value[32];
     for (int n = 0; n < ROUND_MSGMRG_TEST_COUNT; n++) {
+      sleep(100);
       snprintf(key, sizeof(key), "key%d", n);
       snprintf(value, sizeof(value), "%d", n);
       Message *msg = new Message();
       msg->set(key, value);
-      sleep(1000);
       BOOST_CHECK(msgMgr->pushMessage(msg));
     }
   }
