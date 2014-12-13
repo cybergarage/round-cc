@@ -16,6 +16,8 @@
 using namespace std;
 using namespace Round;
 
+BOOST_AUTO_TEST_SUITE(rpc)
+
 BOOST_AUTO_TEST_CASE(RPCMessageMethodTest) {
   RPC::JSON::Message rpcMsg;
   
@@ -158,3 +160,5 @@ BOOST_AUTO_TEST_CASE(RPCErrorMethodTest) {
   BOOST_CHECK_EQUAL(err.getDetailCode(), TEST_ERROR.getDetailCode());
   BOOST_CHECK_EQUAL(detailMsg.compare(err.getDetailMessage()), 0);
 }
+
+BOOST_AUTO_TEST_SUITE_END()

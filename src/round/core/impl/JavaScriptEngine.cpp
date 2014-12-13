@@ -20,6 +20,7 @@ const Round::ScriptName Round::JavaScriptEngine::LANGUAGE = "js";
 //  Static methods
 ////////////////////////////////////////////////
 
+static bool gIsJavaScriptEngineListInitialized;
 static Round::ScriptEngineList gJavaScriptEngineList;
 
 size_t Round::JavaScriptEngine::GetInstanceCount() {
@@ -31,13 +32,14 @@ size_t Round::JavaScriptEngine::GetInstanceCount() {
 ////////////////////////////////////////////////
 
 Round::JavaScriptEngine::JavaScriptEngine() : ScriptEngine(LANGUAGE) {
-  if (gJavaScriptEngineList.size() == 0) {
+  if (!gIsJavaScriptEngineListInitialized) {
     v8::V8::InitializeICU();
 #if defined(ROUND_V8_USE_LIBPLATFORM)
     this->platform = v8::platform::CreateDefaultPlatform();
     v8::V8::InitializePlatform(this->platform);
 #endif
     v8::V8::Initialize();
+    gIsJavaScriptEngineListInitialized = true;
     gJavaScriptEngineList.add(this);
   }
   
@@ -51,6 +53,7 @@ Round::JavaScriptEngine::~JavaScriptEngine() {
     // isolate->Dispose();
   }
 
+  /* FIXME
   gJavaScriptEngineList.remove(this);
   if (gJavaScriptEngineList.size() == 0) {
     v8::V8::Dispose();
@@ -59,6 +62,7 @@ Round::JavaScriptEngine::~JavaScriptEngine() {
     delete platform;
 #endif
   }
+   */
 }
 
 ////////////////////////////////////////////////

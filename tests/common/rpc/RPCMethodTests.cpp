@@ -28,6 +28,8 @@ static size_t GetJsonRpcAllErrorCodes(std::vector<int> &errorCodes) {
   return errorCodes.size();
 }
 
+BOOST_AUTO_TEST_SUITE(rpc)
+
 BOOST_AUTO_TEST_CASE(RpcErrorCodeStringTest) {
   std::vector<int> errorCodes;
   size_t errorCodeCnt = GetJsonRpcAllErrorCodes(errorCodes);
@@ -59,3 +61,6 @@ BOOST_AUTO_TEST_CASE(RpcHttpServerErrorCodeTest) {
   BOOST_CHECK(!RPC::JSON::IsServerErrorCode(RPC::JSON::ErrorCodeMethodNotFound));
   BOOST_CHECK(!RPC::JSON::IsServerErrorCode(RPC::JSON::ErrorCodeInvalidParams));
 }
+
+BOOST_AUTO_TEST_SUITE_END()
+

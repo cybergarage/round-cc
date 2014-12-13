@@ -97,6 +97,10 @@ BOOST_AUTO_TEST_CASE(LocalNodConfigGraphTest) {
   BOOST_CHECK_EQUAL(testErrorLogFilename, retStringValue);
 }
 
+BOOST_AUTO_TEST_SUITE_END()
+
+BOOST_AUTO_TEST_SUITE(rpc)
+
 BOOST_AUTO_TEST_CASE(LocalNodeScriptManagerTest) {
   TestLocalNode node;
   NodeTestController nodeTestController;

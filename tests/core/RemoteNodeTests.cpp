@@ -34,6 +34,10 @@ for (int n = 0; n < 200; n+=10) {
     BOOST_CHECK_EQUAL(n, remoteNode.getRequestPort());
   }
 }
+  
+BOOST_AUTO_TEST_SUITE_END()
+
+BOOST_AUTO_TEST_SUITE(rpc)
 
 BOOST_AUTO_TEST_CASE(RemoteNodeScriptManagerTest) {
   Error err;
@@ -52,4 +56,3 @@ BOOST_AUTO_TEST_CASE(RemoteNodeScriptManagerTest) {
 }
   
 BOOST_AUTO_TEST_SUITE_END()
-
