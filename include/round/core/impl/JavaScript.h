@@ -25,7 +25,6 @@ class JavaScriptEngine : public ScriptEngine {
  public:
   
   static const ScriptName LANGUAGE;
-  
   static size_t GetInstanceCount();
   
  public:
@@ -42,9 +41,6 @@ class JavaScriptEngine : public ScriptEngine {
 
  private:
   v8::Isolate *isolate;
-#if defined(ROUND_V8_USE_LIBPLATFORM)
-  v8::Platform *platform;
-#endif
 };
   
 }

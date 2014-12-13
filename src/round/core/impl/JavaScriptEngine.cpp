@@ -10,6 +10,7 @@
 
 #include <sstream>
 #include <boost/algorithm/string/replace.hpp>
+#include <stdlib.h>
 
 #include <round/core/Log.h>
 #include <round/core/impl/JavaScript.h>
@@ -20,11 +21,26 @@ const Round::ScriptName Round::JavaScriptEngine::LANGUAGE = "js";
 //  Static methods
 ////////////////////////////////////////////////
 
-static bool gIsJavaScriptEngineListInitialized;
-static Round::ScriptEngineList gJavaScriptEngineList;
+namespace Round {
+
+static bool IsJavaScriptEngineListInitialized;
+static Round::ScriptEngineList JavaScriptEngineList;
+#if defined(ROUND_V8_USE_LIBPLATFORM)
+static v8::Platform *JavaScriptEnginePlatform;
+#endif
+
+static void JavaScriptEngineExit(void) {
+  v8::V8::Dispose();
+#if defined(ROUND_V8_USE_LIBPLATFORM)
+  v8::V8::ShutdownPlatform();
+  delete JavaScriptEnginePlatform;
+#endif
+}
+
+}
 
 size_t Round::JavaScriptEngine::GetInstanceCount() {
-  return gJavaScriptEngineList.size();
+  return JavaScriptEngineList.size();
 }
 
 ////////////////////////////////////////////////
@@ -32,37 +48,15 @@ size_t Round::JavaScriptEngine::GetInstanceCount() {
 ////////////////////////////////////////////////
 
 Round::JavaScriptEngine::JavaScriptEngine() : ScriptEngine(LANGUAGE) {
-  if (!gIsJavaScriptEngineListInitialized) {
-    v8::V8::InitializeICU();
-#if defined(ROUND_V8_USE_LIBPLATFORM)
-    this->platform = v8::platform::CreateDefaultPlatform();
-    v8::V8::InitializePlatform(this->platform);
-#endif
-    v8::V8::Initialize();
-    gIsJavaScriptEngineListInitialized = true;
-    gJavaScriptEngineList.add(this);
-  }
-  
+  init();
   this->isolate = v8::Isolate::New();
 }
 
 Round::JavaScriptEngine::~JavaScriptEngine() {
   // Dispose the isolate
   if (this->isolate) {
-    // FIXME
-    // isolate->Dispose();
+    this->isolate->Dispose();
   }
-
-  /* FIXME
-  gJavaScriptEngineList.remove(this);
-  if (gJavaScriptEngineList.size() == 0) {
-    v8::V8::Dispose();
-#if defined(ROUND_V8_USE_LIBPLATFORM)
-    v8::V8::ShutdownPlatform();
-    delete platform;
-#endif
-  }
-   */
 }
 
 ////////////////////////////////////////////////
@@ -70,7 +64,17 @@ Round::JavaScriptEngine::~JavaScriptEngine() {
 ////////////////////////////////////////////////
 
 void Round::JavaScriptEngine::init() {
-  
+  if (!IsJavaScriptEngineListInitialized) {
+    v8::V8::InitializeICU();
+#if defined(ROUND_V8_USE_LIBPLATFORM)
+    JavaScriptEnginePlatform = v8::platform::CreateDefaultPlatform();
+    v8::V8::InitializePlatform(JavaScriptEnginePlatform);
+#endif
+    v8::V8::Initialize();
+    IsJavaScriptEngineListInitialized = true;
+    JavaScriptEngineList.add(this);
+    atexit(JavaScriptEngineExit);
+  }
 }
 
 bool Round::JavaScriptEngine::compile(const Script *script) const {
