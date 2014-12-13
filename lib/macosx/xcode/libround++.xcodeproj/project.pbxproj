@@ -15,6 +15,7 @@
 		210E57821A29A4A2000B60FC /* Java.h in Headers */ = {isa = PBXBuildFile; fileRef = 210E57811A29A4A2000B60FC /* Java.h */; };
 		210E57861A29A574000B60FC /* JavaEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210E57841A29A574000B60FC /* JavaEngine.cpp */; };
 		211FBA391A14792C00B9B71E /* Round.h in Headers */ = {isa = PBXBuildFile; fileRef = 211FBA381A14792C00B9B71E /* Round.h */; };
+		2120F96F1A3C63E300F8040C /* Vector.h in Headers */ = {isa = PBXBuildFile; fileRef = 2120F96E1A3C63E300F8040C /* Vector.h */; };
 		212BFD161A1D0032002549F0 /* Node.h in Headers */ = {isa = PBXBuildFile; fileRef = 212BFD151A1D0032002549F0 /* Node.h */; };
 		212BFD181A1D0056002549F0 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212BFD171A1D0056002549F0 /* Node.cpp */; };
 		21620E4D1A147A5600690EA8 /* Log.h in Headers */ = {isa = PBXBuildFile; fileRef = 21620E4A1A147A5600690EA8 /* Log.h */; };
@@ -158,6 +159,7 @@
 		210E57811A29A4A2000B60FC /* Java.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Java.h; sourceTree = "<group>"; };
 		210E57841A29A574000B60FC /* JavaEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JavaEngine.cpp; sourceTree = "<group>"; };
 		211FBA381A14792C00B9B71E /* Round.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Round.h; sourceTree = "<group>"; };
+		2120F96E1A3C63E300F8040C /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
 		212BFD151A1D0032002549F0 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
 		212BFD171A1D0056002549F0 /* Node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Node.cpp; sourceTree = "<group>"; };
 		21620E4A1A147A5600690EA8 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
@@ -471,7 +473,6 @@
 		21DE68061A13B3D60049227E /* common */ = {
 			isa = PBXGroup;
 			children = (
-				21C169781A2CA5970059D95E /* RPC.h */,
 				21DE68071A13B3D60049227E /* BitOption.h */,
 				21DE68081A13B3D60049227E /* Clock.h */,
 				21DE68091A13B3D60049227E /* Cloneable.h */,
@@ -486,10 +487,12 @@
 				21DE68121A13B3D60049227E /* Notification.h */,
 				21DE68141A13B3D60049227E /* Properties.h */,
 				21DE68151A13B3D60049227E /* Random.h */,
+				21C169781A2CA5970059D95E /* RPC.h */,
 				21DE68161A13B3D60049227E /* Semaphore.h */,
 				21DE68171A13B3D60049227E /* Settings.h */,
 				21DE68191A13B3D60049227E /* StringTokenizer.h */,
 				21DE681A1A13B3D60049227E /* Thread.h */,
+				2120F96E1A3C63E300F8040C /* Vector.h */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21DA08631A17424A00D3DCE0 /* NodeStatus.h in Headers */,
+				2120F96F1A3C63E300F8040C /* Vector.h in Headers */,
 				2104C9C61A21E6D30049DA92 /* JavaScript.h in Headers */,
 				21DE681B1A13B3D60049227E /* BitOption.h in Headers */,
 				21DA085C1A17424A00D3DCE0 /* Cluster.h in Headers */,

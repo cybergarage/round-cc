@@ -26,9 +26,10 @@ class JavaScriptEngine : public ScriptEngine {
   
   static const ScriptName LANGUAGE;
   
+  static size_t GetInstanceCount();
+  
  public:
   JavaScriptEngine();
-  
   ~JavaScriptEngine();
   
   bool compile(const Script *script) const;
@@ -36,6 +37,7 @@ class JavaScriptEngine : public ScriptEngine {
 
  private:
 
+  void init();
   bool run(const std::string &source, std::string *results, Error *error) const;
 
  private:

@@ -16,15 +16,57 @@
 
 const Round::ScriptName Round::JavaScriptEngine::LANGUAGE = "js";
 
-Round::JavaScriptEngine::JavaScriptEngine() : ScriptEngine(LANGUAGE) {
-  v8::V8::InitializeICU();
-#if defined(ROUND_V8_USE_LIBPLATFORM)
-  this->platform = v8::platform::CreateDefaultPlatform();
-  v8::V8::InitializePlatform(this->platform);
-#endif
-  v8::V8::Initialize();
+////////////////////////////////////////////////
+//  Static methods
+////////////////////////////////////////////////
 
+static Round::ScriptEngineList gJavaScriptEngineList;
+
+size_t Round::JavaScriptEngine::GetInstanceCount() {
+  return gJavaScriptEngineList.size();
+}
+
+////////////////////////////////////////////////
+//  Constructor
+////////////////////////////////////////////////
+
+Round::JavaScriptEngine::JavaScriptEngine() : ScriptEngine(LANGUAGE) {
+  if (gJavaScriptEngineList.size() == 0) {
+    v8::V8::InitializeICU();
+#if defined(ROUND_V8_USE_LIBPLATFORM)
+    this->platform = v8::platform::CreateDefaultPlatform();
+    v8::V8::InitializePlatform(this->platform);
+#endif
+    v8::V8::Initialize();
+    gJavaScriptEngineList.add(this);
+  }
+  
   this->isolate = v8::Isolate::New();
+}
+
+Round::JavaScriptEngine::~JavaScriptEngine() {
+  // Dispose the isolate
+  if (this->isolate) {
+    // FIXME
+    // isolate->Dispose();
+  }
+
+  gJavaScriptEngineList.remove(this);
+  if (gJavaScriptEngineList.size() == 0) {
+    v8::V8::Dispose();
+#if defined(ROUND_V8_USE_LIBPLATFORM)
+    v8::V8::ShutdownPlatform();
+    delete platform;
+#endif
+  }
+}
+
+////////////////////////////////////////////////
+// Methods
+////////////////////////////////////////////////
+
+void Round::JavaScriptEngine::init() {
+  
 }
 
 bool Round::JavaScriptEngine::compile(const Script *script) const {
@@ -107,18 +149,4 @@ bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *resu
   RoundLogTrace("%s", results->c_str());
   
   return true;
-}
-
-Round::JavaScriptEngine::~JavaScriptEngine() {
-  // Dispose the isolate
-  if (this->isolate) {
-    // FIXME
-    // isolate->Dispose();
-  }
-  
-  v8::V8::Dispose();
-#if defined(ROUND_V8_USE_LIBPLATFORM)
-  v8::V8::ShutdownPlatform();
-  delete platform;
-#endif
 }

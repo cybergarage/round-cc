@@ -14,6 +14,7 @@
 #include <string>
 #include <map>
 
+#include <round/common/Vector.h>
 #include <round/common/Error.h>
 #include <round/common/RPC.h>
 
@@ -136,6 +137,15 @@ class ScriptEngineMap : public std::map<ScriptLang, ScriptEngine *> {
   void clear();
 };
 
+class ScriptEngineList : public Vector<ScriptEngine> {
+    
+ public:
+    
+  ScriptEngineList() {
+    setWeekContainer(true);
+  }
+};
+  
 class ScriptManager {
     
  public:
