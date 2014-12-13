@@ -145,7 +145,7 @@ BOOST_AUTO_TEST_CASE(JSONParseNumberDictionaryTest) {
 
 BOOST_AUTO_TEST_CASE(JSONParseStringDictionaryTest) {
   JSONParser jsonParser;
-  BOOST_CHECK(jsonParser.parse("{\"name\": \"John Smith\", \"age\": 33}"));
+  BOOST_CHECK(jsonParser.parse("{\"name\": \"John Smith\", \"age\": 32}"));
   BOOST_CHECK(jsonParser.getObject());
   BOOST_CHECK(jsonParser.getObject()->isDictionary());
   JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(jsonParser.getObject());
@@ -156,13 +156,13 @@ BOOST_AUTO_TEST_CASE(JSONParseStringDictionaryTest) {
   BOOST_CHECK(jsonDict->get("name", &value));
   BOOST_CHECK_EQUAL(value.compare("John Smith"), 0);
   BOOST_CHECK(jsonDict->get("age", &value));
-  BOOST_CHECK_EQUAL(value.compare("33"), 0);
+  BOOST_CHECK_EQUAL(value.compare("32"), 0);
   BOOST_CHECK(jsonDict->get("age", &intValue));
-  BOOST_CHECK_EQUAL(intValue, 33);
+  BOOST_CHECK_EQUAL(intValue, 32);
 }
 
 BOOST_AUTO_TEST_CASE(JSONParseDictionarySerialize) {
-  const char *testString = "{\"age\":\"33\",\"name\":\"John Smith\"}";
+  const char *testString = "{\"age\":\"32\",\"name\":\"John Smith\"}";
   JSONParser jsonParser;
   BOOST_CHECK(jsonParser.parse(testString));
   BOOST_CHECK(jsonParser.getObject());
@@ -174,12 +174,13 @@ BOOST_AUTO_TEST_CASE(JSONParseDictionarySerialize) {
   //cout << value << endl;
   BOOST_CHECK_EQUAL(value.compare(testString), 0);
 }
+
 ////////////////////////////////////////////////////////////
 // For Dictionary in Array
 ////////////////////////////////////////////////////////////
 
 BOOST_AUTO_TEST_CASE(JSONParseDictionaryInArrayTest01) {
-  const char *testString = "[ {\"age\":\"33\",\"name\":\"John Smith\"},{\"age\":\"31\",\"name\":\"John Lennon\"} ]";
+  const char *testString = "[ {\"age\":\"32\",\"name\":\"John Smith\"},{\"age\":\"31\",\"name\":\"John Lennon\"} ]";
   JSONParser jsonParser;
   BOOST_CHECK(jsonParser.parse(testString));
   BOOST_CHECK(jsonParser.getObject());
@@ -198,9 +199,9 @@ BOOST_AUTO_TEST_CASE(JSONParseDictionaryInArrayTest01) {
   BOOST_CHECK(jsonDict->get("name", &strValue));
   BOOST_CHECK_EQUAL(strValue.compare("John Smith"), 0);
   BOOST_CHECK(jsonDict->get("age", &strValue));
-  BOOST_CHECK_EQUAL(strValue.compare("33"), 0);
+  BOOST_CHECK_EQUAL(strValue.compare("32"), 0);
   BOOST_CHECK(jsonDict->get("age", &intValue));
-  BOOST_CHECK_EQUAL(intValue, 33);
+  BOOST_CHECK_EQUAL(intValue, 32);
 
   jsonDict = dynamic_cast<const JSONDictionary *>(jsonArray->getObject(1));
   BOOST_CHECK(jsonDict);
@@ -213,7 +214,7 @@ BOOST_AUTO_TEST_CASE(JSONParseDictionaryInArrayTest01) {
 }
 
 BOOST_AUTO_TEST_CASE(JSONParseDictionaryInArrayTest02) {
-  const char *testString = "[\n{\"age\":\"33\",\"name\":\"John Smith\"},\n{\"age\":\"31\",\"name\":\"John Lennon\"}\n]";
+  const char *testString = "[\n{\"age\":\"32\",\"name\":\"John Smith\"},\n{\"age\":\"31\",\"name\":\"John Lennon\"}\n]";
   JSONParser jsonParser;
   BOOST_CHECK(jsonParser.parse(testString));
   BOOST_CHECK(jsonParser.getObject());
@@ -232,9 +233,9 @@ BOOST_AUTO_TEST_CASE(JSONParseDictionaryInArrayTest02) {
   BOOST_CHECK(jsonDict->get("name", &strValue));
   BOOST_CHECK_EQUAL(strValue.compare("John Smith"), 0);
   BOOST_CHECK(jsonDict->get("age", &strValue));
-  BOOST_CHECK_EQUAL(strValue.compare("33"), 0);
+  BOOST_CHECK_EQUAL(strValue.compare("32"), 0);
   BOOST_CHECK(jsonDict->get("age", &intValue));
-  BOOST_CHECK_EQUAL(intValue, 33);
+  BOOST_CHECK_EQUAL(intValue, 32);
 
   jsonDict = dynamic_cast<const JSONDictionary *>(jsonArray->getObject(1));
   BOOST_CHECK(jsonDict);
@@ -293,4 +294,31 @@ BOOST_AUTO_TEST_CASE(RoundJSONDictionaryParserTest) {
   BOOST_CHECK_EQUAL(jsonString.compare(testJSONValue), 0);
 }
 
+////////////////////////////////////////////////////////////
+// For Dictionary in Directory
+////////////////////////////////////////////////////////////
 
+BOOST_AUTO_TEST_CASE(JSONParseDictionaryInDirectoryTest01) {
+  const char *testString = "{\"id\":\"1\",\"jsonrpc\":\"2.0\",\"method\":\"_set_method\",\"params\":{\"code\":\"function echo(params) {return params;}\",\"language\":\"js\",\"name\":\"echo\"}}";
+  JSONParser jsonParser;
+  BOOST_CHECK(jsonParser.parse(testString));
+  BOOST_CHECK(jsonParser.getObject());
+  BOOST_CHECK(jsonParser.getObject()->isDictionary());
+  
+  JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(jsonParser.getObject());
+  BOOST_CHECK(jsonDict);
+
+  std::string jsonStr;
+  JSONObject *jsonObj;
+  
+  BOOST_CHECK(jsonDict->get("id", &jsonStr));
+  BOOST_CHECK_EQUAL(jsonStr.compare("1"), 0);
+
+  BOOST_CHECK(jsonDict->get("jsonrpc", &jsonStr));
+  BOOST_CHECK_EQUAL(jsonStr.compare("2.0"), 0);
+
+  BOOST_CHECK(jsonDict->get("method", &jsonStr));
+  BOOST_CHECK_EQUAL(jsonStr.compare("_set_method"), 0);
+
+  BOOST_CHECK(jsonDict->get("params", &jsonObj));
+}
