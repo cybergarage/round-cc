@@ -29,6 +29,8 @@ static const std::string ACCEPT       = CONTENT_TYPE;
   
 namespace JSON {
 
+static const std::string VERSION     = "2.0";
+
 enum {
   ErrorCodeUnknown        = 0,
   ErrorCodeParserError    = -32700,
@@ -52,8 +54,6 @@ void ErrorCodeToError(int jsonErrorCode, Error *error);
   
 class Message : public ::Round::Message {
  public:
-  static const std::string VERSION;
-  
   static const std::string JSON_RPC;
   static const std::string METHOD;
   static const std::string PARAMS;
@@ -67,6 +67,10 @@ class Message : public ::Round::Message {
  public:
   Message();
   virtual ~Message();
+
+  bool setVersion(const std::string &value) {
+    return set(JSON_RPC, value);
+  }
 
   bool getVersion(std::string *value) const {
     return get(JSON_RPC, value);

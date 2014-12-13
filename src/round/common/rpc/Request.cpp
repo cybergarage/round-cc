@@ -11,7 +11,6 @@
 #include <round/common/RPC.h>
 
 Round::RPC::JSON::Request::Request() {
-  set(JSON_RPC, VERSION);
 }
 
 Round::RPC::JSON::Request::~Request() {

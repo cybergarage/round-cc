@@ -19,9 +19,12 @@ using namespace Round;
 BOOST_AUTO_TEST_CASE(RPCMessageMethodTest) {
   RPC::JSON::Message rpcMsg;
   
+  const std::string TEST_VER= RPC::JSON::VERSION;
   std::string ver;
+  BOOST_CHECK(!rpcMsg.getVersion(&ver));
+  BOOST_CHECK(rpcMsg.setVersion(TEST_VER));
   BOOST_CHECK(rpcMsg.getVersion(&ver));
-  BOOST_CHECK_EQUAL(ver.compare(RPC::JSON::Message::VERSION), 0);
+  BOOST_CHECK_EQUAL(ver.compare(TEST_VER), 0);
 
   const std::string TEST_METHOD = "hello";
   std::string method;
@@ -53,7 +56,8 @@ BOOST_AUTO_TEST_CASE(RPCMessageMethodTest) {
   
   // Check again not to orverride.
   
-  BOOST_CHECK_EQUAL(ver.compare(RPC::JSON::Message::VERSION), 0);
+  BOOST_CHECK(rpcMsg.getVersion(&ver));
+  BOOST_CHECK_EQUAL(ver.compare(TEST_VER), 0);
   
   BOOST_CHECK(rpcMsg.getMethod(&method));
   BOOST_CHECK_EQUAL(method.compare(TEST_METHOD), 0);
