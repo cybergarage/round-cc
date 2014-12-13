@@ -15,6 +15,8 @@
 using namespace std;
 using namespace Round;
 
+BOOST_AUTO_TEST_SUITE(node)
+
 BOOST_AUTO_TEST_CASE(RoundNodeListBasicTest) {
 const int testNodeCount = 10;
 
@@ -40,3 +42,5 @@ const int testNodeCount = 10;
   
   }
 }
+
+BOOST_AUTO_TEST_SUITE_END()

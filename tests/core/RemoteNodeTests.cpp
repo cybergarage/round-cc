@@ -22,6 +22,8 @@
 using namespace std;
 using namespace Round;
 
+BOOST_AUTO_TEST_SUITE(node)
+
 BOOST_AUTO_TEST_CASE(RoundRemoteNodeTest) {
 for (int n = 0; n < 200; n+=10) {
     stringstream addr;
@@ -48,3 +50,6 @@ BOOST_AUTO_TEST_CASE(RemoteNodeScriptManagerTest) {
 
   BOOST_CHECK(serverNode.stop(&err));
 }
+  
+BOOST_AUTO_TEST_SUITE_END()
+

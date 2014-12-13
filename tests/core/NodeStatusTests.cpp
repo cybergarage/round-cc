@@ -15,6 +15,8 @@
 using namespace std;
 using namespace Round;
 
+BOOST_AUTO_TEST_SUITE(node)
+
 BOOST_AUTO_TEST_CASE(RoundNodStatusDefaultTest) {
   NodeStatus nodeStatus;
   BOOST_CHECK_EQUAL(nodeStatus.getState(), NodeStatus::UNKNOWN);
@@ -42,3 +44,6 @@ BOOST_AUTO_TEST_CASE(RoundNodStatusStringSetterTest) {
   nodeStatus.setState(NodeStatus::GetStateString(NodeStatus::ACTIVE));
   BOOST_CHECK_EQUAL(nodeStatus.getState(), NodeStatus::ACTIVE);
 }
+
+BOOST_AUTO_TEST_SUITE_END()
+

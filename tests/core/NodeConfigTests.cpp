@@ -15,6 +15,8 @@
 using namespace std;
 using namespace Round;
 
+BOOST_AUTO_TEST_SUITE(node)
+
 class TestNodeConfig : public LocalNodeConfig {
  public:
   TestNodeConfig() {
@@ -62,4 +64,7 @@ BOOST_AUTO_TEST_CASE(RoundNodConfigValidTest) {
   BOOST_CHECK(nodeConfig.loadFromString(FRACTAL_CONFIG_SAMPLE, &err));
   BOOST_CHECK(nodeConfig.isValid(&err));
 }
+
+BOOST_AUTO_TEST_SUITE_END()
+
 

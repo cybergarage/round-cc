@@ -15,9 +15,12 @@
 using namespace std;
 using namespace Round;
 
+BOOST_AUTO_TEST_SUITE(node)
+
 BOOST_AUTO_TEST_CASE(NodeResponseNewTest) {
   NodeResponse *res = new NodeResponse();
   BOOST_CHECK(res);
   delete res;
 }
 
+BOOST_AUTO_TEST_SUITE_END()

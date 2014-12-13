@@ -21,6 +21,8 @@
 using namespace std;
 using namespace Round;
 
+BOOST_AUTO_TEST_SUITE(node)
+
 BOOST_AUTO_TEST_CASE(LocalNodeEqualTest) {
   TestLocalNode localNode01("192.168.0.1", 80);
   TestLocalNode localNode02("192.168.0.1", 80);
@@ -100,3 +102,5 @@ BOOST_AUTO_TEST_CASE(LocalNodeScriptManagerTest) {
   NodeTestController nodeTestController;
   nodeTestController.runScriptManagerTest(&node);
 }
+
+BOOST_AUTO_TEST_SUITE_END()

@@ -17,6 +17,8 @@ using namespace Round;
 
 const static size_t FRACTAL_TEST_NODEGRAPH_MAXSIZE = 9;
 
+BOOST_AUTO_TEST_SUITE(node)
+
 class TestOrderdObject : public ConsistentHashObject {
 public:
   std::string id;
@@ -190,3 +192,6 @@ BOOST_AUTO_TEST_CASE(RoundNodGraphSetTest) {
   BOOST_CHECK_EQUAL(nodeGraph2.size(), nodeCount);
   BOOST_CHECK_EQUAL(nodeGraph1.size(), nodeGraph2.size());
 }
+
+BOOST_AUTO_TEST_SUITE_END()
+

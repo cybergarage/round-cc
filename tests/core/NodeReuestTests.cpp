@@ -15,6 +15,8 @@
 using namespace std;
 using namespace Round;
 
+BOOST_AUTO_TEST_SUITE(node)
+
 BOOST_AUTO_TEST_CASE(NodeRequestConstructorTest) {
   const std::string TEST_METHOD = "hello";
   
@@ -34,4 +36,5 @@ BOOST_AUTO_TEST_CASE(NodeRequestParserTest) {
   BOOST_CHECK(nodeReq);
 }
 
+BOOST_AUTO_TEST_SUITE_END()
 

@@ -17,6 +17,8 @@
 using namespace std;
 using namespace Round;
 
+BOOST_AUTO_TEST_SUITE(node)
+
 class BasicTestNode : public LocalNode {
  public:
   BasicTestNode() {
@@ -37,4 +39,6 @@ BOOST_AUTO_TEST_CASE(RoundNodeBasicTest) {
     BOOST_CHECK_EQUAL(node.hasName(), true);
   }
 }
+
+BOOST_AUTO_TEST_SUITE_END()
 
