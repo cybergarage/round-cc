@@ -15,6 +15,8 @@
 using namespace std;
 using namespace Round;
 
+BOOST_AUTO_TEST_SUITE(script)
+
 BOOST_AUTO_TEST_CASE(ScriptConstuctorTest01) {
   const std::string TEST_SCRIPT_LANG = "js";
   
@@ -53,3 +55,6 @@ BOOST_AUTO_TEST_CASE(ScriptConstuctorTest02) {
   BOOST_CHECK(script.hasCode());
   BOOST_CHECK_EQUAL(TEST_SCRIPT_CONTENT.compare(script.getCode()), 0);
 }
+
+BOOST_AUTO_TEST_SUITE_END()
+

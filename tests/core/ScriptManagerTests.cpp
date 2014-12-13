@@ -18,6 +18,8 @@
 using namespace std;
 using namespace Round;
 
+BOOST_AUTO_TEST_SUITE(script)
+
 BOOST_AUTO_TEST_CASE(ScriptManagerSetTest) {
   const std::string scriptLang = JavaScriptEngine::LANGUAGE;
   const std::string scriptMethod = "echo";
@@ -69,3 +71,6 @@ BOOST_AUTO_TEST_CASE(ScriptManagerSetTest) {
   BOOST_CHECK(!scriptMgr.run(scriptMethod, scriptParams, &scriptResult, &err));
   BOOST_CHECK_EQUAL(err.getDetailCode(), ScriptManagerErrorCodeMethodNotFound);
 }
+
+BOOST_AUTO_TEST_SUITE_END()
+

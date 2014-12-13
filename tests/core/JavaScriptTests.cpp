@@ -18,6 +18,8 @@
 using namespace std;
 using namespace Round;
 
+BOOST_AUTO_TEST_SUITE(script)
+
 BOOST_AUTO_TEST_CASE(JavaScriptEngineEchoTest) {
   
   const std::string JS_NAME = "echo";
@@ -115,3 +117,6 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineTest) {
     BOOST_CHECK_EQUAL(result.compare(results[n]), 0);
   }
 }
+
+BOOST_AUTO_TEST_SUITE_END()
+
