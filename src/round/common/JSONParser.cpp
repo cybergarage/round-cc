@@ -27,9 +27,10 @@ static std::string JSON_DIR_ARRAY_BIGIN = "{";
 static std::string JSON_DIR_ARRAY_END = "}";
 
 static std::string JSON_KEY_TRIMS = "\" []:";
-static std::string JSON_VAL_TRIMS = "\" ";
+static std::string JSON_VAL_TRIMS = "\" ,";
 
-static void ExplodeJSONString(const std::string &str, const std::string &start, const std::string &end, std::vector<std::string> *result);
+static void ExplodeJSONStringOf(const std::string &str, const std::string &start, const std::string &end, std::vector<std::string> *result);
+static void ExplodeJSONStringNotOf(const std::string &str, const std::string &start, const std::string &end, std::vector<std::string> *result);
 static void TrimJSONString(const std::string &str, const std::string &trims, std::string *value);
 static void TrimJSONString(const std::string &str, const std::string &start, const std::string &end, const std::string &trims, std::string *value);
 
@@ -65,7 +66,7 @@ Round::JSONObject *Round::JSONParser::popObject() {
 bool Round::JSONParser::parse(const std::string &jsonString, JSONArray *parentArray) {
   if (jsonString.find(JSON_ARRAY_DIR_BIGIN) == 0) {
     std::vector<std::string> dirValues;
-    ExplodeJSONString(jsonString, JSON_ARRAY_DIR_BIGIN, JSON_ARRAY_DIR_END, &dirValues);
+    ExplodeJSONStringOf(jsonString, JSON_ARRAY_DIR_BIGIN, JSON_ARRAY_DIR_END, &dirValues);
     for (std::vector<std::string>::iterator dirVal = dirValues.begin(); dirVal != dirValues.end(); dirVal++) {
       JSONDictionary *jsonDict = createJSONDictionary();
       std::string values;
@@ -77,7 +78,7 @@ bool Round::JSONParser::parse(const std::string &jsonString, JSONArray *parentAr
   }
 
   std::vector<std::string> values;
-  ExplodeJSONString(jsonString, JSON_ARRAY_BEGIN, JSON_ARRAY_END, &values);
+  ExplodeJSONStringNotOf(jsonString, JSON_ARRAY_BEGIN, JSON_ARRAY_END, &values);
   for (std::vector<std::string>::iterator value = values.begin(); value != values.end(); value++) {
     std::string valString;
     TrimJSONString(*value, JSON_VAL_TRIMS, &valString);
@@ -129,12 +130,16 @@ bool Round::JSONParser::parse(const std::string &jsonString, JSONDictionary *par
           parentDir->set(key, jsonDict);
       }
     } else {
-      valueEndIndex = jsonString.find_first_not_of(" \n\t", (valueBeginIndex + 1));
-      if (valueEndIndex != std::string::npos) {
-        std::string stringValue = std::string(jsonString, valueBeginIndex, (valueEndIndex - valueBeginIndex + 1));
-        JSONString *stringObj = createJSONString(stringValue);
-        parentDir->set(key, stringObj);
+      valueEndIndex = jsonString.find_first_of(", \n\t", valueBeginIndex);
+      if (valueEndIndex == std::string::npos) {
+        valueEndIndex = jsonString.length() - 1;
       }
+      else {
+        valueEndIndex--;
+      }
+      std::string value = std::string(jsonString, valueBeginIndex, (valueEndIndex - valueBeginIndex + 1));
+      JSONString *stringObj = createJSONString(value);
+      parentDir->set(key, stringObj);
     }
     if (valueEndIndex == std::string::npos)
       break;
@@ -180,18 +185,42 @@ bool Round::JSONParser::parse(const std::string &jsonString) {
   return parse(jsonString, &this->jsonObject);
 }
 
-static void ExplodeJSONString(const std::string &str, const std::string &start, const std::string &end, std::vector<std::string> *result) {
+
+static void ExplodeJSONStringOf(const std::string &str, const std::string &start, const std::string &end, std::vector<std::string> *result) {
   if(str.length() <= 0)
     return;
 
+  std::size_t beginIndex = str.find_first_of(start);
+  if (beginIndex == std::string::npos)
+    return;
+  
+  std::size_t lastIndex = str.find_first_of(end, (beginIndex + 1));
+  while (lastIndex != std::string::npos) {
+    std::string foundStr = std::string(str, beginIndex, (lastIndex - beginIndex + 1));
+    result->push_back(foundStr);
+
+    beginIndex = str.find_first_of(start, (lastIndex + 1));
+    if (beginIndex == std::string::npos)
+      break;
+    lastIndex = str.find_first_of(end, (beginIndex + 1));
+    if (lastIndex == std::string::npos)
+      lastIndex = str.length() - 1;
+  }
+}
+
+static void ExplodeJSONStringNotOf(const std::string &str, const std::string &start, const std::string &end, std::vector<std::string> *result) {
+  if(str.length() <= 0)
+    return;
+  
   std::size_t beginIndex = str.find_first_not_of(start);
   if (beginIndex == std::string::npos)
     return;
   
   std::size_t lastIndex = str.find_first_of(end, (beginIndex + 1));
   while (lastIndex != std::string::npos) {
-    if (0 < beginIndex)
-      result->push_back(std::string(str, (beginIndex-1), (lastIndex - beginIndex + 1 + 1)));
+    std::string foundStr = std::string(str, beginIndex, (lastIndex - beginIndex + 1));
+    result->push_back(foundStr);
+    
     beginIndex = str.find_first_not_of(start, (lastIndex + 1));
     if (beginIndex == std::string::npos)
       break;

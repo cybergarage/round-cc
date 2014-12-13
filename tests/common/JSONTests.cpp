@@ -22,6 +22,8 @@
 using namespace std;
 using namespace Round;
 
+BOOST_AUTO_TEST_SUITE(json)
+
 BOOST_AUTO_TEST_CASE(RoundJSONDictionarySetterTest) {
 JSONDictionary dict;
 
@@ -166,3 +168,6 @@ const std::string testKey = "testKey";
   BOOST_CHECK(srcDist.copy(&dstDict));
   BOOST_CHECK(srcDist.equals(dstDict));
 }
+
+BOOST_AUTO_TEST_SUITE_END()
+

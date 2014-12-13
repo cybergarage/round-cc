@@ -16,6 +16,8 @@
 using namespace std;
 using namespace Round;
 
+BOOST_AUTO_TEST_SUITE(json)
+
 ////////////////////////////////////////////////////////////
 // Basic Method
 ////////////////////////////////////////////////////////////
@@ -322,3 +324,5 @@ BOOST_AUTO_TEST_CASE(JSONParseDictionaryInDirectoryTest01) {
 
   BOOST_CHECK(jsonDict->get("params", &jsonObj));
 }
+
+BOOST_AUTO_TEST_SUITE_END()
