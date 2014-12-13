@@ -140,8 +140,13 @@ class SystemMethodRequest {
   
  public:
   SystemMethodRequest(NodeRequest *ndoeReq);
-    
+  
+  bool setMethod(const std::string &value) {
+    return nodeReq->setMethod(value);
+  }
+  
  private:
+
   NodeRequest *nodeReq;
 };
 
@@ -160,7 +165,7 @@ class SystemMethodResponse {
   
  public:
   SystemMethodResponse(NodeResponse *ndoeRes);
-  
+
 private:
   NodeResponse *nodeRes;
 };

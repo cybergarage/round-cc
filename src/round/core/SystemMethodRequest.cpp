@@ -26,4 +26,6 @@ const std::string Round::SystemMethodRequest::GET_CLUSTER_LIST  = "_get_cluster_
 
 Round::SystemMethodRequest::SystemMethodRequest(NodeRequest *nodeReq) {
   this->nodeReq = nodeReq;
+
+  this->nodeReq->setVersion(RPC::JSON::VERSION);
 }

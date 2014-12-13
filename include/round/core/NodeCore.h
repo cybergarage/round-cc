@@ -13,7 +13,7 @@
 
 #include <string>
 #include <vector>
-
+  
 #include <round/common/ConsistentHash.h>
 #include <round/core/NodeMessage.h>
 

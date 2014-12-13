@@ -15,6 +15,8 @@
 
 using namespace Round;
 
+BOOST_AUTO_TEST_SUITE(server)
+
 BOOST_AUTO_TEST_CASE(RoundServerNodeTest) {
   Error err;
 
@@ -23,3 +25,5 @@ BOOST_AUTO_TEST_CASE(RoundServerNodeTest) {
   nodeServer->stop(&err);
   delete nodeServer;
 }
+
+BOOST_AUTO_TEST_SUITE_END()

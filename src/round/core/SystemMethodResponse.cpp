@@ -15,4 +15,6 @@
 
 Round::SystemMethodResponse::SystemMethodResponse(NodeResponse *nodeRes) {
   this->nodeRes = nodeRes;
+  
+  this->nodeRes->setVersion(RPC::JSON::VERSION);
 }

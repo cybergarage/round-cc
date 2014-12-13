@@ -16,6 +16,8 @@
 using namespace std;
 using namespace Round;
 
+BOOST_AUTO_TEST_SUITE(server)
+
 BOOST_AUTO_TEST_CASE(RoundRealServerRunTest) {
   Error err;
 
@@ -79,3 +81,6 @@ BOOST_AUTO_TEST_CASE(RoundRealServerFindTest) {
   
   delete[] servers;
 }
+
+BOOST_AUTO_TEST_SUITE_END()
+
