@@ -25,7 +25,6 @@ class JavaScriptEngine : public ScriptEngine {
  public:
   
   static const ScriptName LANGUAGE;
-  static size_t GetInstanceCount();
   
  public:
   JavaScriptEngine();

@@ -24,7 +24,6 @@ const Round::ScriptName Round::JavaScriptEngine::LANGUAGE = "js";
 namespace Round {
 
 static bool IsJavaScriptEngineListInitialized;
-static Round::ScriptEngineList JavaScriptEngineList;
 #if defined(ROUND_V8_USE_LIBPLATFORM)
 static v8::Platform *JavaScriptEnginePlatform;
 #endif
@@ -37,10 +36,6 @@ static void JavaScriptEngineExit(void) {
 #endif
 }
 
-}
-
-size_t Round::JavaScriptEngine::GetInstanceCount() {
-  return JavaScriptEngineList.size();
 }
 
 ////////////////////////////////////////////////
@@ -72,7 +67,6 @@ void Round::JavaScriptEngine::init() {
 #endif
     v8::V8::Initialize();
     IsJavaScriptEngineListInitialized = true;
-    JavaScriptEngineList.add(this);
     atexit(JavaScriptEngineExit);
   }
 }
