@@ -12,9 +12,11 @@
 #include <sstream>
 #include <round/common/Dictionary.h>
 
-Round::Dictionary::Dictionary() {}
+Round::Dictionary::Dictionary() {
+}
 
-Round::Dictionary::~Dictionary() {}
+Round::Dictionary::~Dictionary() {
+}
 
 std::size_t Round::Dictionary::getAllKeys(DictionaryKeyList *keyList) const {
   for (Dictionary::const_iterator dict = begin(); dict != end(); dict++) {
@@ -59,10 +61,6 @@ bool Round::Dictionary::get(const std::string &key, std::string *value) const {
 
 bool Round::Dictionary::hasKey(const std::string &key) const {
   return (find(key) != end()) ? true : false;
-}
-
-bool Round::Dictionary::set(const std::string &key, const char *value) {
-  return set(key, (const std::string &)value);
 }
 
 bool Round::Dictionary::set(const std::string &key, int value) {

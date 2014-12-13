@@ -34,18 +34,17 @@ class Dictionary : public std::map<std::string, std::string> {
   Dictionary();
   virtual ~Dictionary();
 
-  bool set(Dictionary *dict);
-
-  bool set(const std::string &key, const std::string &value);
-  bool get(const std::string &key, std::string *value) const;
   bool hasKey(const std::string &key) const;
   std::size_t getAllKeys(DictionaryKeyList *keyList) const;
-
-  bool set(const std::string &key, const char *value);
+  
+  bool set(Dictionary *dict);
+  bool set(const std::string &key, const std::string &value);
   bool set(const std::string &key, int value);
   bool set(const std::string &key, long value);
   bool set(const std::string &key, bool value);
   bool set(const std::string &key, clock_t value);
+
+  bool get(const std::string &key, std::string *value) const;
   bool get(const std::string &key, int *value) const;
   bool get(const std::string &key, long *value) const;
   bool get(const std::string &key, bool *value) const;
