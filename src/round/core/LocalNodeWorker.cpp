@@ -49,6 +49,8 @@ void Round::LocalNodeWorkder::run() {
     RoundLogTrace(reqStr.c_str());
     
     NodeResponse nodeRes;
+    nodeRes.setVersion(RPC::JSON::VERSION);
+    
     Error err;
     
     if (!node->execMessage(nodeReq, &nodeRes, &err)) {

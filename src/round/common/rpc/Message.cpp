@@ -39,15 +39,16 @@ bool Round::RPC::JSON::Message::setError(const Error *error) {
   
   if (!errorDict) {
     errorDict = new JSONDictionary();
+    if (!set(ERROR, errorDict)) {
+      delete errorDict;
+      return false;
+    }
   }
-  
-  if (!errorDict)
-    return false;
   
   errorDict->set(CODE, error->getDetailCode());
   errorDict->set(MESSAGE, error->getDetailMessage());
   
-  return set(ERROR, errorDict);
+  return true;
 }
 
 bool Round::RPC::JSON::Message::getError(Error *error) const {
