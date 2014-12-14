@@ -78,7 +78,7 @@ Round prepares the following default dynamic methods. The methods are implemente
 | --- | --- | --- | --- | --- |
 | _get_node_info | Get a node infomation | (none) | {"name" : (string), "ip" : (address), "port" : (number),  "hash" : (string) } | - |
 | _get_cluster_info | Gat a cluster information which the specified node is belong | - | - | - |
-| _get_cluster_list | Gat a cluster list which the spcecified node knows | - | - | - |
+| _get_network_info | Gat a cluster list which the spcecified node knows | - | - | - |
 | _get_node_hash | Set a shared key for HMAC | - | - | - |
 | _get_node_sharedkey | Set a shared key for HMAC | - | - | - |
 | _get_node_msg_digest | Set a shared key for HMAC | - | - | - |
