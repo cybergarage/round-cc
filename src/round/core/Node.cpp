@@ -28,25 +28,10 @@ bool Round::Node::getCluster(Cluster *cluster, Error *error) const {
   return true;
 }
 
-bool Round::Node::getName(std::string *buffer, Error *error) const {
-  return true;
-}
-
-bool Round::Node::getVersion(std::string *buffer, Error *error) const {
-  return true;
-}
-
 bool Round::Node::getStatus(NodeStatus *status, Error *error) const {
   return true;
 }
 
 bool Round::Node::getNodeGraph(NodeGraph *nodeGraph, Error *error) {
   return true;
-}
-
-bool Round::Node::hasName() const {
-  std::string nodeName;
-  if (!getName(&nodeName))
-    return false;
-  return (0 < nodeName.length() ? true : false);
 }

@@ -36,14 +36,8 @@ class Node : public NodeCore, public Cloneable<Node> {
  public:
   
   bool getCluster(Cluster *cluster, Error *error = NULL) const;
-  bool getName(std::string *buffer, Error *error = NULL) const;
-  bool getVersion(std::string *buffer, Error *error = NULL) const;
   bool getStatus(NodeStatus *status, Error *error = NULL) const;
   bool getNodeGraph(NodeGraph *nodeGraph, Error *error = NULL);
-
- public:
-
-  bool hasName() const;
 
 public:
   

@@ -36,9 +36,7 @@ class BasicTestNode : public LocalNode {
 BOOST_AUTO_TEST_CASE(RoundNodeBasicTest) {
   for (int n = 0; n < 10; n++) {
     TestLocalNode node;
-    BOOST_CHECK_EQUAL(node.hasName(), true);
   }
 }
 
 BOOST_AUTO_TEST_SUITE_END()
-
