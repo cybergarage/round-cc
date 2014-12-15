@@ -284,13 +284,13 @@ bool Round::LocalNode::execSystemMethod(const NodeRequest *nodeReq, NodeResponse
   enum {
       SystemGetNodeInfo,
       SystemGetClusterInfo,
-      SystemGetClusterList,
+      SystemGetNetworkInfo,
   };
   
   if (systemMethods.size() <= 0) {
     systemMethods[SystemMethodRequest::GET_NODE_INFO] = SystemGetNodeInfo;
     systemMethods[SystemMethodRequest::GET_CLUSTER_INFO] = SystemGetClusterInfo;
-    systemMethods[SystemMethodRequest::GET_CLUSTER_LIST] = SystemGetClusterList;
+    systemMethods[SystemMethodRequest::GET_NETWORK_INFO] = SystemGetNetworkInfo;
   }
   
   std::string reqMethod;
@@ -307,8 +307,8 @@ bool Round::LocalNode::execSystemMethod(const NodeRequest *nodeReq, NodeResponse
     return getNodeInfo(nodeReq, nodeRes, error);
   case SystemGetClusterInfo:
     return getClusterInfo(nodeReq, nodeRes, error);
-  case SystemGetClusterList:
-    return getClusterList(nodeReq, nodeRes, error);
+  case SystemGetNetworkInfo:
+    return getNetworkInfo(nodeReq, nodeRes, error);
   }
   
   RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeMethodNotFound, error);
@@ -324,6 +324,6 @@ bool Round::LocalNode::getClusterInfo(const NodeRequest *nodeReq, NodeResponse *
   return false;
 }
 
-bool Round::LocalNode::getClusterList(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+bool Round::LocalNode::getNetworkInfo(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
   return false;
 }

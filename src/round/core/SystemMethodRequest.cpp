@@ -22,7 +22,7 @@ const std::string Round::SystemMethodRequest::CODE        = "code";
 const std::string Round::SystemMethodRequest::SET_METHOD        = "_set_method";
 const std::string Round::SystemMethodRequest::GET_NODE_INFO     = "_get_node_info";
 const std::string Round::SystemMethodRequest::GET_CLUSTER_INFO  = "_get_cluster_info";
-const std::string Round::SystemMethodRequest::GET_CLUSTER_LIST  = "_get_cluster_list";
+const std::string Round::SystemMethodRequest::GET_NETWORK_INFO  = "_get_network_info";
 
 Round::SystemMethodRequest::SystemMethodRequest(NodeRequest *nodeReq) {
   this->nodeReq = nodeReq;

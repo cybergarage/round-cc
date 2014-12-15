@@ -107,7 +107,7 @@ private:
   
   bool getNodeInfo(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
   bool getClusterInfo(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
-  bool getClusterList(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  bool getNetworkInfo(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
 
 private:
 
@@ -132,7 +132,7 @@ class SystemMethodRequest {
   static const std::string SET_METHOD;
   static const std::string GET_NODE_INFO;
   static const std::string GET_CLUSTER_INFO;
-  static const std::string GET_CLUSTER_LIST;
+  static const std::string GET_NETWORK_INFO;
   
   static const std::string LANGUAGE;
   static const std::string NAME;
