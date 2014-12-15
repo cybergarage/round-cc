@@ -50,6 +50,10 @@ bool Round::LocalNode::isConfigValid(Error *error) {
   return this->nodeConfig.isValid(error);
 }
 
+bool Round::LocalNode::getClusterName(std::string *name, Error *error) const {
+  return this->nodeConfig.getCluster(name, error);
+}
+
 ////////////////////////////////////////////////
 // Thread
 ////////////////////////////////////////////////
@@ -105,15 +109,15 @@ bool Round::LocalNode::restart(Error *error) {
 bool Round::LocalNode::nodeAdded(Round::Node *notifyNode)  {
   Error error;
   
-  Cluster notifyNodeCluster;
-  if (!notifyNode->getCluster(&notifyNodeCluster, &error))
+  std::string notifyNodeCluster;
+  if (!notifyNode->getClusterName(&notifyNodeCluster, &error))
     return false;
   
-  Cluster thisNodeCluster;
-  if (!getCluster(&thisNodeCluster, &error))
+  std::string thisNodeCluster;
+  if (!getClusterName(&thisNodeCluster, &error))
     return false;
   
-  if (!thisNodeCluster.equals(notifyNodeCluster))
+  if (thisNodeCluster.compare(notifyNodeCluster) == 0)
     return false;
   
   if (this->nodeGraph.hasNode(notifyNode))
@@ -317,6 +321,27 @@ bool Round::LocalNode::execSystemMethod(const NodeRequest *nodeReq, NodeResponse
 }
 
 bool Round::LocalNode::getNodeInfo(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+
+  SystemMethodResponse sysRes(nodeRes);
+  
+  std::string nodeAddr;
+  if (getRequestAddress(&nodeAddr, error)) {
+    return false;
+  }
+  int nodePort;
+  if (getRequestPort(&nodePort, error)) {
+    return false;
+  }
+  
+  std::string nodeCluster;
+  if (getClusterName(&nodeCluster, error)) {
+    return false;
+  }
+  
+  sysRes.setIp(nodeAddr);
+  sysRes.setPort(nodePort);
+  sysRes.setCluster(nodeCluster);
+  
   return false;
 }
 

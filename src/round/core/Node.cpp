@@ -24,9 +24,11 @@ Round::Node::Node() {
 Round::Node::~Node() {
 }
 
+/*
 bool Round::Node::getCluster(Cluster *cluster, Error *error) const {
   return true;
 }
+*/
 
 bool Round::Node::getStatus(NodeStatus *status, Error *error) const {
   return true;

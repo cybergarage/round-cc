@@ -52,12 +52,18 @@ class TestLocalNode : public Round::LocalNode {
     this->address = value;
   }
 
-  int getRequestPort() const {
-    return this->port;
+  bool getRequestAddress(std::string *address, Round::Error *error) const {
+    *address = this->address;
+    return true;
   }
-
-  const char *getRequestAddress() const {
-    return this->address.c_str();
+  
+  bool getRequestPort(int *port,  Round::Error *error) const {
+    *port = this->port;
+    return true;
+  }
+  
+  bool getClusterName(std::string *name,  Round::Error *error) const {
+    return true;
   }
 
   Round::NodeGraph *getNodeGraph() {

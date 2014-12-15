@@ -52,6 +52,7 @@ class LocalNode : public Node, public NodeFinderObserver {
   LocalNode();
   virtual ~LocalNode();
 
+  bool getClusterName(std::string *name, Error *error) const;
   bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
   
   bool loadConfigFromString(const std::string &string, Error *error);
@@ -165,6 +166,30 @@ class SystemMethodResponse {
   
  public:
   SystemMethodResponse(NodeResponse *ndoeRes);
+
+  bool setIp(const std::string &value) {
+    return nodeRes->set(IP, value);
+  }
+  
+  bool getIp(std::string *value) const {
+    return nodeRes->get(IP, value);
+  }
+
+  bool setPort(int value) {
+    return nodeRes->set(IP, value);
+  }
+  
+  bool getIp(int *value) const {
+    return nodeRes->get(IP, value);
+  }
+  
+  bool setCluster(const std::string &value) {
+    return nodeRes->set(CLUSTER, value);
+  }
+  
+  bool getCluster(std::string *value) const {
+    return nodeRes->get(CLUSTER, value);
+  }
 
 private:
   NodeResponse *nodeRes;

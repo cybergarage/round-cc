@@ -29,13 +29,8 @@ class ServerNode : public LocalNode {
   bool start(Error *error);
   bool stop(Error *error);
 
-  int getRequestPort() const  {
-    return this->serverPort;
-  }
-  
-  const char *getRequestAddress() const {
-    return this->serverAddress.c_str();
-  }
+  bool getRequestAddress(std::string *address, Error *error) const;
+  bool getRequestPort(int *port, Error *error) const;
   
 protected:
 

@@ -20,6 +20,16 @@ Round::ServerNode::ServerNode() {
 Round::ServerNode::~ServerNode() {
 }
 
+bool Round::ServerNode::getRequestPort(int *port, Error *error) const {
+  *port = this->serverPort;
+  return true;
+}
+
+bool Round::ServerNode::getRequestAddress(std::string *address, Error *error) const {
+  *address = this->serverAddress;
+  return true;
+}
+
 bool Round::ServerNode::getVersion(std::string *buffer, Error *error) const {
   *buffer = VER.c_str();
   return true;

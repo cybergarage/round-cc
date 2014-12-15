@@ -40,10 +40,11 @@ Round::Cluster *Round::ClientCore::getTargetCluster() {
 }
 
 bool Round::ClientCore::addCluster(Round::Node *node) {
-  Cluster nodeCluster;
-  if  (!node->getCluster(&nodeCluster))
+  std::string nodeClusterName;
+  Error err;
+  if  (!node->getClusterName(&nodeClusterName, &err))
     return false;
-  return addCluster(nodeCluster.getName());
+  return addCluster(nodeClusterName);
 }
 
 bool Round::ClientCore::addCluster(const std::string &name) {
@@ -55,11 +56,12 @@ bool Round::ClientCore::addCluster(const std::string &name) {
 }
 
 Round::Cluster *Round::ClientCore::getClusterForNode(Round::Node *node) {
-  Cluster cluster;
-  if (!node->getCluster(&cluster)) {
+  std::string nodeClusterName;
+  Error err;
+  if (!node->getClusterName(&nodeClusterName, &err)) {
     return NULL;
   }
-  return this->clusterList.getCluster(cluster.getName());
+  return this->clusterList.getCluster(nodeClusterName);
 }
 
 Round::Cluster *Round::ClientCore::getCluster(const std::string &name) {
@@ -69,8 +71,7 @@ Round::Cluster *Round::ClientCore::getCluster(const std::string &name) {
 bool Round::ClientCore::nodeAdded(Round::Node *node)  {
 
   bool isNodeAdded = false;
-  
-  this->mutex.lock();
+     this->mutex.lock();
 
   Cluster *targetCluster = getClusterForNode(node);
   if (!targetCluster) {

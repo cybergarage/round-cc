@@ -15,8 +15,9 @@
 #include <uhttp/net/Socket.h>
 
 Round::RemoteNode::RemoteNode(const Round::Node *node) {
-  this->requestAddress = node->getRequestAddress();
-  this->requestPort = node->getRequestPort();
+  Error err;
+  node->getRequestAddress(&this->requestAddress, &err);
+  node->getRequestPort(&this->requestPort, &err);
 }
 
 Round::RemoteNode::RemoteNode(const std::string &address, int port) {
@@ -27,13 +28,32 @@ Round::RemoteNode::RemoteNode(const std::string &address, int port) {
 Round::RemoteNode::~RemoteNode() {
 }
 
+bool Round::RemoteNode::getRequestPort(int *port, Error *error) const {
+  *port = this->requestPort;
+  return true;
+}
+
+bool Round::RemoteNode::getRequestAddress(std::string *address, Error *error) const {
+  *address = this->requestAddress;
+  return true;
+}
+
+bool Round::RemoteNode::getClusterName(std::string *name, Error *error) const {
+  return false;
+}
+
 bool Round::RemoteNode::postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+  std::string requestAddr;
+  int requestPort;
+  if (!getRequestAddress(&requestAddr, error) || !getRequestPort(&requestPort, error))
+    return false;
+
   uHTTP::HTTPRequest httpReq;
-  httpReq.setHost(getRequestAddress(), getRequestPort());
+  httpReq.setHost(requestAddr, requestPort);
   nodeReq->toHTTPRequest(&httpReq);
   
   uHTTP::HTTPResponse httpRes;
-  httpReq.post(getRequestAddress(), getRequestPort(), &httpRes);
+  httpReq.post(requestAddr, requestPort, &httpRes);
   
   int statusCode = httpRes.getStatusCode();
   bool isSuccess = uHTTP::HTTP::IsStatusCodeSuccess(statusCode);

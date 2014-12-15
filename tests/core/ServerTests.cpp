@@ -27,13 +27,16 @@ BOOST_AUTO_TEST_CASE(RoundRealServerRunTest) {
 
   BOOST_MESSAGE("Server is started");
   
-  string httpHost = nodeServer->getRequestAddress();
-  int httpPort = nodeServer->getRequestPort();
+  string httpHost;
+  BOOST_CHECK(nodeServer->getRequestAddress(&httpHost, &err));
+  BOOST_CHECK(0 < httpHost.length());
+
+  int httpPort;
+  BOOST_CHECK(nodeServer->getRequestPort(&httpPort, &err));
+  BOOST_CHECK(0 < httpPort);
   
   BOOST_MESSAGE("Server : " << httpHost << ":" << httpPort);
   
-  BOOST_CHECK(0 < httpHost.length());
-  BOOST_CHECK(0 < httpPort);
 
   RemoteNode remoteNode(httpHost, httpPort);
 
@@ -61,8 +64,8 @@ BOOST_AUTO_TEST_CASE(RoundRealServerFindTest) {
   while (isServerNotFound) {
     isServerNotFound = false;
     for (int n=0; n<TEST_SERVER_COUNT; n++) {
-      Cluster cluster;
-      BOOST_CHECK(servers[n]->getCluster(&cluster, &err));
+      std::string clusterName;
+      BOOST_CHECK(servers[n]->getClusterName(&clusterName, &err));
       NodeGraph *nodeGraph = cluster.getNodeGraph();
       BOOST_CHECK(nodeGraph);
       BOOST_CHECK_EQUAL(nodeGraph->size(), TEST_SERVER_COUNT);

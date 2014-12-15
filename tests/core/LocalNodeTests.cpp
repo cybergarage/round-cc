@@ -41,10 +41,8 @@ BOOST_AUTO_TEST_CASE(LocalNodeBasisMethodTest) {
   TestLocalNode node;
   Error err;
 
-  Cluster cluster;
   std::string clusterName;
-  BOOST_CHECK(node.getCluster(&cluster, &err));
-  clusterName = cluster.getName();
+  BOOST_CHECK(node.getClusterName(&clusterName, &err));
   BOOST_CHECK(0 < clusterName.length());
 }
 

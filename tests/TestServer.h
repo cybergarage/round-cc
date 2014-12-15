@@ -46,5 +46,4 @@ class TestServer : public Round::Server {
   }
 };
 
-
 #endif
