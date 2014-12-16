@@ -20,7 +20,7 @@ namespace Round {
 class RemoteNode : public Node {
  public:
   
-  RemoteNode(const Node *node);
+  RemoteNode(Node *node);
   RemoteNode(const std::string &address, int port);
   virtual ~RemoteNode();
 
@@ -36,7 +36,7 @@ class RemoteNode : public Node {
     return true;
   }
   
-  Node *clone() const;
+  Node *clone();
   
 private:
 

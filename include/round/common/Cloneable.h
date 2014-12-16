@@ -19,7 +19,7 @@ public:
   
   virtual bool isCloneable() const = 0;
 
-  virtual T *clone() const {
+  virtual T *clone() {
     return NULL;
   }
 };

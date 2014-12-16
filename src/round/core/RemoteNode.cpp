@@ -15,10 +15,11 @@
 
 #include <uhttp/net/Socket.h>
 
-Round::RemoteNode::RemoteNode(const Round::Node *node) {
+Round::RemoteNode::RemoteNode(Round::Node *node) {
   Error err;
   node->getRequestAddress(&this->requestAddress, &err);
   node->getRequestPort(&this->requestPort, &err);
+  node->getClusterName(&this->clusterName, &err);
 }
 
 Round::RemoteNode::RemoteNode(const std::string &address, int port) {
@@ -36,22 +37,6 @@ bool Round::RemoteNode::getRequestPort(int *port, Error *error) const {
 
 bool Round::RemoteNode::getRequestAddress(std::string *address, Error *error) const {
   *address = this->requestAddress;
-  return true;
-}
-
-bool Round::RemoteNode::getClusterName(std::string *name, Error *error) {
-  if (this->clusterName.length() <= 0) {
-    SystemGetNodeInfoRequest nodeReq;
-    NodeResponse nodeRes;
-    if (!postMessage(&nodeReq, &nodeRes, error))
-      return false;
-    
-    SystemGetNodeInfoResponse sysRes(&nodeRes);
-    if (!sysRes.getCluster(&this->clusterName))
-      return false;
-  }  
-  
-  *name = this->clusterName;
   return true;
 }
 
@@ -94,6 +79,22 @@ bool Round::RemoteNode::postMessage(const NodeRequest *nodeReq, NodeResponse *no
   return isSuccess;
 }
 
-Round::Node *Round::RemoteNode::clone() const {
+Round::Node *Round::RemoteNode::clone() {
   return new RemoteNode(this);
+}
+
+bool Round::RemoteNode::getClusterName(std::string *name, Error *error) {
+  if (this->clusterName.length() <= 0) {
+    SystemGetNodeInfoRequest nodeReq;
+    NodeResponse nodeRes;
+    if (!postMessage(&nodeReq, &nodeRes, error))
+      return false;
+    
+    SystemGetNodeInfoResponse sysRes(&nodeRes);
+    if (!sysRes.getCluster(&this->clusterName))
+      return false;
+  }
+  
+  *name = this->clusterName;
+  return true;
 }
