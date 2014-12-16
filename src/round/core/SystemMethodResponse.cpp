@@ -22,8 +22,7 @@ const std::string Round::SystemMethodResponse::CLUSTER  = "cluster";
 const std::string Round::SystemMethodResponse::CLUSTERS = "clusters";
 
 Round::SystemMethodResponse::SystemMethodResponse(NodeResponse *nodeRes) {
-  this->nodeRes = nodeRes;
-  
+  this->nodeRes = nodeRes;  
   this->nodeRes->setVersion(RPC::JSON::VERSION);
 }
 
@@ -31,5 +30,16 @@ Round::JSONArray *Round::SystemGetClusterInfoResponse::getResultClusterArray() {
   JSONDictionary *resultDict = this->nodeRes->getResultDict();
   if (!resultDict)
     return NULL;
-  return NULL;
+
+  JSONObject *jsonObj = NULL;
+  resultDict->get(CLUSTERS, &jsonObj);
+  
+  JSONArray *jsonArray = dynamic_cast<JSONArray *>(jsonObj);
+  if (jsonArray)
+    return jsonArray;
+  
+  jsonArray = new JSONArray();
+  resultDict->set(CLUSTERS, jsonArray);
+  
+  return jsonArray;
 }

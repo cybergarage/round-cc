@@ -82,8 +82,12 @@ public:
 
 class SystemNodeInfoDict {
 public:
+  SystemNodeInfoDict() {
+    setJSONDictionary(NULL);
+  }
+  
   SystemNodeInfoDict(JSONDictionary *jsonDict) {
-    this->jsonDict = jsonDict;
+    setJSONDictionary(jsonDict);
   }
 
   void setJSONDictionary(JSONDictionary *jsonDict) {
@@ -91,82 +95,86 @@ public:
   }
   
   bool setIp(const std::string &value) {
-    return this->jsonDict->set(SystemMethodResponse::IP, value);
+    return (this->jsonDict) ? this->jsonDict->set(SystemMethodResponse::IP, value) : false;
   }
   
   bool getIp(std::string *value) const {
-    return this->jsonDict->get(SystemMethodResponse::IP, value);
+    return (this->jsonDict) ? this->jsonDict->get(SystemMethodResponse::IP, value) : false;
   }
   
   bool setPort(int value) {
-    return this->jsonDict->set(SystemMethodResponse::PORT, value);
+    return (this->jsonDict) ? this->jsonDict->set(SystemMethodResponse::PORT, value) : false;
   }
   
   bool getPort(int *value) const {
-    return this->jsonDict->get(SystemMethodResponse::PORT, value);
+    return (this->jsonDict) ? this->jsonDict->get(SystemMethodResponse::PORT, value) : false;
   }
   
   bool setCluster(const std::string &value) {
-    return this->jsonDict->set(SystemMethodResponse::CLUSTER, value);
+    return (this->jsonDict) ? this->jsonDict->set(SystemMethodResponse::CLUSTER, value) : false;
   }
   
   bool getCluster(std::string *value) const {
-    return this->jsonDict->get(SystemMethodResponse::CLUSTER, value);
+    return (this->jsonDict) ? this->jsonDict->get(SystemMethodResponse::CLUSTER, value) : false;
   }
   
   bool setHash(const std::string &value) {
-    return this->jsonDict->set(SystemMethodResponse::HASH, value);
+    return (this->jsonDict) ? this->jsonDict->set(SystemMethodResponse::HASH, value) : false;
   }
   
   bool getHash(std::string *value) const {
-    return this->jsonDict->get(SystemMethodResponse::HASH, value);
+    return (this->jsonDict) ? this->jsonDict->get(SystemMethodResponse::HASH, value) : false;
   }
   
 private:
   JSONDictionary *jsonDict;
 };
-  getResultDict
+
 class SystemGetNodeInfoResponse : public SystemMethodResponse {
  public:
   SystemGetNodeInfoResponse(NodeResponse *nodeRes) : SystemMethodResponse(nodeRes) {
   }
 
   bool setIp(const std::string &value) {
-    Node
-    return this->jsonDict->set(SystemMethodResponse::IP, value);
+    return getNodeInfoDict()->setIp(value);
   }
   
   bool getIp(std::string *value) const {
-    return this->jsonDict->get(SystemMethodResponse::IP, value);
+    return getNodeInfoDict()->getIp(value);
   }
   
   bool setPort(int value) {
-    return this->jsonDict->set(SystemMethodResponse::PORT, value);
+    return getNodeInfoDict()->setPort(value);
   }
   
   bool getPort(int *value) const {
-    return this->jsonDict->get(SystemMethodResponse::PORT, value);
+    return getNodeInfoDict()->getPort(value);
   }
   
   bool setCluster(const std::string &value) {
-    return this->jsonDict->set(SystemMethodResponse::CLUSTER, value);
+    return getNodeInfoDict()->setCluster(value);
   }
   
   bool getCluster(std::string *value) const {
-    return this->jsonDict->get(SystemMethodResponse::CLUSTER, value);
+    return getNodeInfoDict()->getCluster(value);
   }
   
   bool setHash(const std::string &value) {
-    return this->jsonDict->set(SystemMethodResponse::HASH, value);
+    return getNodeInfoDict()->setHash(value);
   }
   
   bool getHash(std::string *value) const {
-    return this->jsonDict->get(SystemMethodResponse::HASH, value);
+    return getNodeInfoDict()->getHash(value);
   }
 
 private:
   
-  SystemNodeInfoDict
+  SystemNodeInfoDict *getNodeInfoDict() const {
+    this->nodeInfoDict.setJSONDictionary(nodeRes->getResultDict());
+    return &this->nodeInfoDict;
+  }
+  
+  mutable SystemNodeInfoDict nodeInfoDict;
 };
 
 class SystemGetClusterInfoResponse : public SystemMethodResponse {
@@ -174,7 +182,6 @@ class SystemGetClusterInfoResponse : public SystemMethodResponse {
   SystemGetClusterInfoResponse(NodeResponse *nodeRes) : SystemMethodResponse(nodeRes) {
   }
     
- private:
   JSONArray *getResultClusterArray();
 };
 

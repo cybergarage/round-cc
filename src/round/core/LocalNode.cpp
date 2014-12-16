@@ -352,6 +352,43 @@ bool Round::LocalNode::getNodeInfo(const NodeRequest *nodeReq, NodeResponse *nod
 }
 
 bool Round::LocalNode::getClusterInfo(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+  SystemGetClusterInfoResponse sysRes(nodeRes);
+  
+  JSONArray *clusterArray = sysRes.getResultClusterArray();
+
+  Error nodeErr;
+  std::string nodeIp;
+  std::string nodeCluster;
+  std::string nodeHash;
+  int nodePort;
+  
+  size_t nodeCnt = this->nodeGraph.size();
+  for (size_t n=0; n<nodeCnt; n++) {
+    Node *node = this->nodeGraph.getNode(n);
+    
+    if (!node->getRequestAddress(&nodeIp, &nodeErr))
+      continue;
+    
+    if (!node->getRequestPort(&nodePort, &nodeErr))
+      continue;
+    
+    if (!node->getClusterName(&nodeCluster, &nodeErr))
+      continue;
+    
+    if (!node->getHashCode(&nodeHash))
+      continue;
+    
+    JSONDictionary *jsonDict = new JSONDictionary();
+    
+    SystemNodeInfoDict nodeInfo(jsonDict);
+    nodeInfo.setIp(nodeIp);
+    nodeInfo.setPort(nodePort);
+    nodeInfo.setCluster(nodeCluster);
+    nodeInfo.setHash(nodeHash);
+    
+    clusterArray->add(jsonDict);
+  }
+  
   return false;
 }
 
