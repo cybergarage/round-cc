@@ -101,4 +101,10 @@ BOOST_AUTO_TEST_CASE(LocalNodeScriptManagerTest) {
   nodeTestController.runScriptManagerTest(&node);
 }
 
+BOOST_AUTO_TEST_CASE(LocalNodeSystemMethodTest) {
+  TestLocalNode node;
+  NodeTestController nodeTestController;
+  nodeTestController.runSystemMethodTest(&node);
+}
+
 BOOST_AUTO_TEST_SUITE_END()

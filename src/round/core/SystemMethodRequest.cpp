@@ -24,8 +24,6 @@ const std::string Round::SystemMethodRequest::GET_NODE_INFO     = "_get_node_inf
 const std::string Round::SystemMethodRequest::GET_CLUSTER_INFO  = "_get_cluster_info";
 const std::string Round::SystemMethodRequest::GET_NETWORK_INFO  = "_get_network_info";
 
-Round::SystemMethodRequest::SystemMethodRequest(NodeRequest *nodeReq) {
-  this->nodeReq = nodeReq;
-
-  this->nodeReq->setVersion(RPC::JSON::VERSION);
+Round::SystemMethodRequest::SystemMethodRequest() {
+  setVersion(RPC::JSON::VERSION);
 }

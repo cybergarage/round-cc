@@ -126,7 +126,7 @@ private:
  * SystemMethodResponse uses to create a response message for system methods.
  */
 
-class SystemMethodRequest {
+class SystemMethodRequest : public NodeRequest {
  public:
   static const std::string PREFIX;
   
@@ -140,32 +140,57 @@ class SystemMethodRequest {
   static const std::string CODE;
   
  public:
-  SystemMethodRequest(NodeRequest *ndoeReq);
-  
-  bool setMethod(const std::string &value) {
-    return nodeReq->setMethod(value);
-  }
-  
- private:
+  SystemMethodRequest();
 
-  NodeRequest *nodeReq;
+ private:
 };
 
+class SystemGetNodeInfoRequest : public SystemMethodRequest {
+ public:
+  SystemGetNodeInfoRequest() {
+    setMethod(GET_NODE_INFO);
+  }
+};
+
+class SystemGetClusterInfoRequest : public SystemMethodRequest {
+ public:
+  SystemGetClusterInfoRequest() {
+      setMethod(GET_CLUSTER_INFO);
+  }
+};
+
+class SystemGetNetworkInfoRequest : public SystemMethodRequest {
+ public:
+  SystemGetNetworkInfoRequest() {
+    setMethod(GET_NETWORK_INFO);
+  }
+};
+  
 /**
  * SystemMethodResponse uses to create a response message for system methods.
  */
+
 class SystemMethodResponse {
- public:
-  static const std::string NAME;
-  static const std::string IP;
-  static const std::string PORT;
-  static const std::string HASH;
-  static const std::string VERSION;
-  static const std::string CLUSTER;
-  static const std::string CLUSTERS;
+  public:
+    static const std::string NAME;
+    static const std::string IP;
+    static const std::string PORT;
+    static const std::string HASH;
+    static const std::string VERSION;
+    static const std::string CLUSTER;
+    static const std::string CLUSTERS;
+    
+public:
+    SystemMethodResponse(NodeResponse *nodeRes);
+    
+protected:
+    NodeResponse *nodeRes;
+};
   
+class SystemGetNodeInfoResponse : public SystemMethodResponse {
  public:
-  SystemMethodResponse(NodeResponse *ndoeRes);
+  SystemGetNodeInfoResponse(NodeResponse *nodeRes) : SystemMethodResponse(nodeRes) {
+  }
 
   bool setIp(const std::string &value) {
     return nodeRes->set(IP, value);
@@ -179,7 +204,7 @@ class SystemMethodResponse {
     return nodeRes->set(IP, value);
   }
   
-  bool getIp(int *value) const {
+  bool getPort(int *value) const {
     return nodeRes->get(IP, value);
   }
   
@@ -191,10 +216,16 @@ class SystemMethodResponse {
     return nodeRes->get(CLUSTER, value);
   }
 
-private:
-  NodeResponse *nodeRes;
-};
+  bool setHash(const std::string &value) {
+    return nodeRes->set(HASH, value);
+  }
   
+  bool getHash(std::string *value) const {
+    return nodeRes->get(HASH, value);
+  }
+};
+
+
 }
 
 #endif

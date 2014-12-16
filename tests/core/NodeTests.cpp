@@ -23,14 +23,6 @@ class BasicTestNode : public LocalNode {
  public:
   BasicTestNode() {
   }
-
-  int getRequestPort() {
-    return 0;
-  }
-
-  const char *getRequestAddress() {
-    return "";
-  }
 };
 
 BOOST_AUTO_TEST_CASE(RoundNodeBasicTest) {

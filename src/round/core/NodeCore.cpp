@@ -20,8 +20,17 @@ Round::NodeCore::~NodeCore() {
 }
 
 const char *Round::NodeCore::getHashSeed(std::string *seedString) const {
+  Error err;
+  
+  std::string nodeIp;
+  getRequestAddress(&nodeIp, &err);
+
+  int nodePort;
+  getRequestPort(&nodePort, &err);
+  
   std::stringstream seedBuf;
-  seedBuf << getRequestAddress() << getRequestPort();
+  seedBuf << nodeIp << nodePort;
+  
   *seedString = seedBuf.str();
   return seedString->c_str();
 }

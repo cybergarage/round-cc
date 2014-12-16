@@ -322,27 +322,33 @@ bool Round::LocalNode::execSystemMethod(const NodeRequest *nodeReq, NodeResponse
 
 bool Round::LocalNode::getNodeInfo(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
 
-  SystemMethodResponse sysRes(nodeRes);
+  SystemGetNodeInfoResponse sysRes(nodeRes);
   
   std::string nodeAddr;
-  if (getRequestAddress(&nodeAddr, error)) {
+  if (!getRequestAddress(&nodeAddr, error)) {
     return false;
   }
   int nodePort;
-  if (getRequestPort(&nodePort, error)) {
+  if (!getRequestPort(&nodePort, error)) {
     return false;
   }
   
   std::string nodeCluster;
-  if (getClusterName(&nodeCluster, error)) {
+  if (!getClusterName(&nodeCluster, error)) {
+    return false;
+  }
+  
+  std::string nodeHash;
+  if (!getHashCode(&nodeHash)) {
     return false;
   }
   
   sysRes.setIp(nodeAddr);
   sysRes.setPort(nodePort);
   sysRes.setCluster(nodeCluster);
+  sysRes.setHash(nodeHash);
   
-  return false;
+  return true;
 }
 
 bool Round::LocalNode::getClusterInfo(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {

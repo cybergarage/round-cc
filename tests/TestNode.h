@@ -89,25 +89,22 @@ class TestServerNode : public Round::ServerNode {
   TestServerNode() {
   }
 
-  int getRequestPort() const {
-    return 0;
-  }
-
-  const char *getRequestAddress() const {
-    return "";
-  }
-
   bool start(Round::Error *error) {return true;}
   bool isRunning() {return true;}
   bool stop(Round::Error *error) {return true;}
 };
 
 class NodeTestController {
-public:
+ public:
+  
   NodeTestController() {
   }
 
   void runScriptManagerTest(Round::Node *node);
+  void runSystemMethodTest(Round::Node *node);
+
+ private:
+  void runSystemGetNodeInfoTest(Round::Node *node);
 };
 
 #endif
