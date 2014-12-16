@@ -26,3 +26,10 @@ Round::SystemMethodResponse::SystemMethodResponse(NodeResponse *nodeRes) {
   
   this->nodeRes->setVersion(RPC::JSON::VERSION);
 }
+
+Round::JSONArray *Round::SystemGetClusterInfoResponse::getResultClusterArray() {
+  JSONDictionary *resultDict = this->nodeRes->getResultDict();
+  if (!resultDict)
+    return NULL;
+  return NULL;
+}
