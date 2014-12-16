@@ -85,19 +85,20 @@ class TestOrderdNodeGraph : public NodeGraph {
 
 BOOST_AUTO_TEST_CASE(RoundNodGraphAddTest) {
   const size_t nodeCount = FRACTAL_TEST_NODEGRAPH_MAXSIZE;
-  TestOrderdNodeGraph nodeGraph;
+  TestOrderdNodeGraph *nodeGraph = new TestOrderdNodeGraph();
   TestOrderdNode *nodes[nodeCount];
 
   for (size_t n = 0; n < nodeCount; n++) {
     nodes[n] = new TestOrderdNode(n+1);
+    nodes[n]->setWeakFlag(true);
     BOOST_CHECK(nodes[n]);
   }
 
   for (size_t n = 0; n < nodeCount; n++) {
     Node *thisNode = nodes[n];
-    BOOST_CHECK(nodeGraph.addNode(thisNode));
-    Node *prevNode = nodeGraph.getPrevNode(nodes[n]);
-    Node *nextNode = nodeGraph.getNextNode(nodes[n]);
+    BOOST_CHECK(nodeGraph->addNode(thisNode));
+    Node *prevNode = nodeGraph->getPrevNode(nodes[n]);
+    Node *nextNode = nodeGraph->getNextNode(nodes[n]);
     if (n == 0) {
       BOOST_CHECK_EQUAL(thisNode, prevNode);
       BOOST_CHECK_EQUAL(thisNode, nextNode);
@@ -105,35 +106,40 @@ BOOST_AUTO_TEST_CASE(RoundNodGraphAddTest) {
     else {
       size_t prevNodeIdx = n-1;
       BOOST_CHECK_EQUAL(nodes[prevNodeIdx], prevNode);
-      size_t nextNodeIdx = (n+1) % nodeGraph.size();
+      size_t nextNodeIdx = (n+1) % nodeGraph->size();
       BOOST_CHECK_EQUAL(nodes[nextNodeIdx], nextNode);
     }
   }
-  BOOST_CHECK_EQUAL(nodeGraph.size(), nodeCount);
+  BOOST_CHECK_EQUAL(nodeGraph->size(), nodeCount);
 
+  delete nodeGraph;
+  
   for (size_t n = 0; n < nodeCount; n++)
-    delete nodes[n];
+    delete nodes[n];  
 }
 
 BOOST_AUTO_TEST_CASE(RoundNodGraphReAddTest) {
   const size_t nodeCount = FRACTAL_TEST_NODEGRAPH_MAXSIZE;
-  TestOrderdNodeGraph nodeGraph;
+  TestOrderdNodeGraph *nodeGraph = new TestOrderdNodeGraph();
   TestOrderdNode *nodes[nodeCount];
 
   for (size_t n = 0; n < nodeCount; n++) {
     nodes[n] = new TestOrderdNode(n+1);
+    nodes[n]->setWeakFlag(true);
     BOOST_CHECK(nodes[n]);
   }
 
   for (size_t n = 0; n < nodeCount; n++) {
-    BOOST_CHECK(nodeGraph.addNode(nodes[n]));
+    BOOST_CHECK(nodeGraph->addNode(nodes[n]));
   }
-  BOOST_CHECK_EQUAL(nodeGraph.size(), nodeCount);
+  BOOST_CHECK_EQUAL(nodeGraph->size(), nodeCount);
 
   for (size_t n = 0; n < nodeCount; n++)
-    nodeGraph.addNode(nodes[n]);
-  BOOST_CHECK_EQUAL(nodeGraph.size(), nodeCount);
+    nodeGraph->addNode(nodes[n]);
+  BOOST_CHECK_EQUAL(nodeGraph->size(), nodeCount);
 
+  delete nodeGraph;
+  
   for (size_t n = 0; n < nodeCount; n++)
     delete nodes[n];
 }
@@ -145,14 +151,12 @@ BOOST_AUTO_TEST_CASE(RoundNodGraphReplicaTest) {
 
   for (size_t n = 0; n < nodeCount; n++) {
     nodes[n] = new TestOrderdNode(n+1);
+    nodes[n]->setWeakFlag(false);
     BOOST_CHECK(nodes[n]);
     BOOST_CHECK(nodeGraph.addNode(nodes[n]));
     //std::cout << "[" << n << "] = " << nodes[n] << std::endl; 
   }
   BOOST_CHECK_EQUAL(nodeGraph.size(), nodeCount);
-
-  for (size_t n = 0; n < nodeCount; n++)
-    delete nodes[n];
 }
 
 BOOST_AUTO_TEST_CASE(RoundNodGraphReplicaMinTest) {
@@ -163,7 +167,7 @@ BOOST_AUTO_TEST_CASE(RoundNodGraphReplicaMinTest) {
   for (size_t n = 0; n < nodeCount; n++) {
     nodes[n] = new TestOrderdNode(n+1);
     BOOST_CHECK(nodes[n]);
-    nodes[n]->setWeakFlag(true);
+    nodes[n]->setWeakFlag(false);
     BOOST_CHECK(nodeGraph.addNode(nodes[n]));
 
     NodeList nodeList;
