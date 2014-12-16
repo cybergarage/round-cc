@@ -28,7 +28,7 @@ class RemoteNode : public Node {
   
   bool getRequestPort(int *port, Error *error) const;
   bool getRequestAddress(std::string *address, Error *error) const;
-  bool getClusterName(std::string *name, Error *error) const;
+  bool getClusterName(std::string *name, Error *error);
 
   bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
 

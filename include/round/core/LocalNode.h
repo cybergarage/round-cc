@@ -52,7 +52,7 @@ class LocalNode : public Node, public NodeFinderObserver {
   LocalNode();
   virtual ~LocalNode();
 
-  bool getClusterName(std::string *name, Error *error) const;
+  bool getClusterName(std::string *name, Error *error);
   bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
   
   bool loadConfigFromString(const std::string &string, Error *error);
@@ -193,35 +193,35 @@ class SystemGetNodeInfoResponse : public SystemMethodResponse {
   }
 
   bool setIp(const std::string &value) {
-    return nodeRes->set(IP, value);
+    return nodeRes->setResult(IP, value);
   }
   
   bool getIp(std::string *value) const {
-    return nodeRes->get(IP, value);
+    return nodeRes->getResult(IP, value);
   }
 
   bool setPort(int value) {
-    return nodeRes->set(IP, value);
+    return nodeRes->setResult(PORT, value);
   }
   
   bool getPort(int *value) const {
-    return nodeRes->get(IP, value);
+    return nodeRes->getResult(PORT, value);
   }
   
   bool setCluster(const std::string &value) {
-    return nodeRes->set(CLUSTER, value);
+    return nodeRes->setResult(CLUSTER, value);
   }
   
   bool getCluster(std::string *value) const {
-    return nodeRes->get(CLUSTER, value);
+    return nodeRes->getResult(CLUSTER, value);
   }
 
   bool setHash(const std::string &value) {
-    return nodeRes->set(HASH, value);
+    return nodeRes->setResult(HASH, value);
   }
   
   bool getHash(std::string *value) const {
-    return nodeRes->get(HASH, value);
+    return nodeRes->getResult(HASH, value);
   }
 };
 

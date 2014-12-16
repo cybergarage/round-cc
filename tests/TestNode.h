@@ -62,7 +62,7 @@ class TestLocalNode : public Round::LocalNode {
     return true;
   }
   
-  bool getClusterName(std::string *name,  Round::Error *error) const {
+  bool getClusterName(std::string *name,  Round::Error *error) {
     return true;
   }
 

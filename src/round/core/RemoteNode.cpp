@@ -11,6 +11,7 @@
 #include <round/core/Log.h>
 #include <round/core/RemoteNode.h>
 #include <round/core/NodeGraph.h>
+#include <round/core/LocalNode.h>
 
 #include <uhttp/net/Socket.h>
 
@@ -38,8 +39,13 @@ bool Round::RemoteNode::getRequestAddress(std::string *address, Error *error) co
   return true;
 }
 
-bool Round::RemoteNode::getClusterName(std::string *name, Error *error) const {
-  return false;
+bool Round::RemoteNode::getClusterName(std::string *name, Error *error) {
+  SystemGetNodeInfoRequest nodeReq;
+  NodeResponse nodeRes;
+  if (!postMessage(&nodeReq, &nodeRes, error))
+    return false;
+  SystemGetNodeInfoResponse sysRes(&nodeRes);
+  return sysRes.getCluster(name);
 }
 
 bool Round::RemoteNode::postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {

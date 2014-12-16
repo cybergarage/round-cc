@@ -50,7 +50,7 @@ bool Round::LocalNode::isConfigValid(Error *error) {
   return this->nodeConfig.isValid(error);
 }
 
-bool Round::LocalNode::getClusterName(std::string *name, Error *error) const {
+bool Round::LocalNode::getClusterName(std::string *name, Error *error) {
   return this->nodeConfig.getCluster(name, error);
 }
 

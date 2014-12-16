@@ -66,4 +66,23 @@ BOOST_AUTO_TEST_CASE(RemoteNodeScriptManagerTest) {
   BOOST_CHECK(serverNode.stop(&err));
 }
   
+BOOST_AUTO_TEST_CASE(RemoteNodeSystemMethodTest) {
+  Error err;
+  
+  TestServer serverNode;
+  BOOST_CHECK(serverNode.start(&err));
+  
+  std::string serverIp;
+  BOOST_CHECK(serverNode.getRequestAddress(&serverIp, &err));
+  
+  int serverPort;
+  BOOST_CHECK(serverNode.getRequestPort(&serverPort, &err));
+  
+  RemoteNode node(serverIp, serverPort);
+  NodeTestController nodeTestController;
+  nodeTestController.runSystemMethodTest(&node);
+  
+  BOOST_CHECK(serverNode.stop(&err));
+}
+
 BOOST_AUTO_TEST_SUITE_END()

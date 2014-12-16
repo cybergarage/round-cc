@@ -64,7 +64,7 @@ class TestOrderdNode : public LocalNode {
     return true;
   }
 
-  bool getClusterName(std::string *name, Error *error) const {
+  bool getClusterName(std::string *name, Error *error) {
     return true;
   }
 
