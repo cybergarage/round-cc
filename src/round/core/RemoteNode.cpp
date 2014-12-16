@@ -19,7 +19,9 @@ Round::RemoteNode::RemoteNode(Round::Node *node) {
   Error err;
   node->getRequestAddress(&this->requestAddress, &err);
   node->getRequestPort(&this->requestPort, &err);
-  node->getClusterName(&this->clusterName, &err);
+  if (hasClusterName()) {
+    node->getClusterName(&this->clusterName, &err);
+  }
 }
 
 Round::RemoteNode::RemoteNode(const std::string &address, int port) {
