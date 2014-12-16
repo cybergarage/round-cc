@@ -37,16 +37,6 @@ BOOST_AUTO_TEST_CASE(LocalNodeEqualTest) {
   BOOST_CHECK(!localNode01.equals(&localNode05));
 }
 
-BOOST_AUTO_TEST_CASE(LocalNodeBasisMethodTest) {
-  TestLocalNode node;
-  Error err;
-
-  std::string clusterName;
-  BOOST_CHECK(node.getClusterName(&clusterName, &err));
-  BOOST_CHECK(0 < clusterName.length());
-}
-
-
 BOOST_AUTO_TEST_CASE(LocalNodConfigGraphTest) {
   LocalNodeConfig nodeConfig;
   Error error;
