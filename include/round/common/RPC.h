@@ -76,30 +76,6 @@ class Message : public ::Round::Message {
     return get(JSON_RPC, value);
   }
 
-  bool setMethod(const std::string &value) {
-    return set(METHOD, value);
-  }
-  
-  bool getMethod(std::string *value) const {
-    return get(METHOD, value);
-  }
-
-  bool setParams(const std::string &value) {
-    return set(PARAMS, value);
-  }
-  
-  bool getParams(std::string *value) const {
-    return get(PARAMS, value);
-  }
-
-  bool setResult(const std::string &value) {
-    return set(RESULT, value);
-  }
-  
-  bool getResult(std::string *value) const {
-    return get(RESULT, value);
-  }
-  
   bool setId(const std::string &value) {
     return set(ID, value);
   }
@@ -107,11 +83,7 @@ class Message : public ::Round::Message {
   bool getId(std::string *value) const {
     return get(ID, value);
   }
-
-  // NOTE : RPC error message uses only detail code and message in error object.
-  bool setError(const Error *error);
-  bool getError(Error *error) const;
-
+  
   // Round Extention Methods.
   
   bool setTimestamp(clock_t value) {
@@ -131,8 +103,24 @@ class Request : public Message {
   bool isValid();
   bool isNotify();
 
+  bool setMethod(const std::string &value) {
+    return set(METHOD, value);
+  }
+  
+  bool getMethod(std::string *value) const {
+    return get(METHOD, value);
+  }
+  
   bool hasMethod() const {return hasKey(METHOD);}
   bool isMethod(const std::string &method) const;
+  
+  bool setParams(const std::string &value) {
+    return set(PARAMS, value);
+  }
+  
+  bool getParams(std::string *value) const {
+    return get(PARAMS, value);
+  }
   
   void toHTTPRequest(uHTTP::HTTPRequest *httpReq) const;
 };
@@ -143,6 +131,25 @@ class Response : public Message {
   virtual ~Response();
     
   bool isValid();
+  
+  bool setResult(const std::string &value) {
+    return set(RESULT, value);
+  }
+  
+  bool getResult(std::string *value) const {
+    return get(RESULT, value);
+  }
+  
+  JSONDictionary *getResultDict();
+  
+  bool setResult(const std::string &key, const std::string &value);
+  bool getResult(const std::string &key, std::string *value);
+  bool setResult(const std::string &key, int value);
+  bool getResult(const std::string &key, int *value);
+  
+  // NOTE : RPC error message uses only detail code and message in error object.
+  bool setError(const Error *error);
+  bool getError(Error *error) const;
   
   void toHTTPResponse(uHTTP::HTTPResponse *httpRes) const;
 };

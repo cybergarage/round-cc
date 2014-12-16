@@ -183,7 +183,7 @@ class SystemMethodResponse {
 public:
     SystemMethodResponse(NodeResponse *nodeRes);
     
-protected:
+ protected:
     NodeResponse *nodeRes;
 };
   

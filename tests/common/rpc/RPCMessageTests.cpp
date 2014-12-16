@@ -28,20 +28,6 @@ BOOST_AUTO_TEST_CASE(RPCMessageMethodTest) {
   BOOST_CHECK(rpcMsg.getVersion(&ver));
   BOOST_CHECK_EQUAL(ver.compare(TEST_VER), 0);
 
-  const std::string TEST_METHOD = "hello";
-  std::string method;
-  BOOST_CHECK(!rpcMsg.getMethod(&method));
-  BOOST_CHECK(rpcMsg.setMethod(TEST_METHOD));
-  BOOST_CHECK(rpcMsg.getMethod(&method));
-  BOOST_CHECK_EQUAL(method.compare(TEST_METHOD), 0);
-
-  const std::string TEST_PARAMS = "{\"value\":1}";
-  std::string params;
-  BOOST_CHECK(!rpcMsg.getParams(&params));
-  BOOST_CHECK(rpcMsg.setParams(TEST_PARAMS));
-  BOOST_CHECK(rpcMsg.getParams(&params));
-  BOOST_CHECK_EQUAL(params.compare(TEST_PARAMS), 0);
-
   const std::string TEST_ID = "12345";
   std::string id;
   BOOST_CHECK(!rpcMsg.getId(&id));
@@ -49,12 +35,45 @@ BOOST_AUTO_TEST_CASE(RPCMessageMethodTest) {
   BOOST_CHECK(rpcMsg.getId(&id));
   BOOST_CHECK_EQUAL(id.compare(TEST_ID), 0);
 
-  const std::string TEST_RESULT = "{\"value\":1}";
-  std::string result;
-  BOOST_CHECK(!rpcMsg.getResult(&params));
-  BOOST_CHECK(rpcMsg.setResult(TEST_RESULT));
-  BOOST_CHECK(rpcMsg.getParams(&result));
-  BOOST_CHECK_EQUAL(result.compare(TEST_RESULT), 0);
+  // Check again not to orverride.
+  
+  BOOST_CHECK(rpcMsg.getVersion(&ver));
+  BOOST_CHECK_EQUAL(ver.compare(TEST_VER), 0);
+  
+  BOOST_CHECK(rpcMsg.getId(&id));
+  BOOST_CHECK_EQUAL(id.compare(TEST_ID), 0);
+}
+
+BOOST_AUTO_TEST_CASE(RPCRequestMethodTest) {
+  RPC::JSON::Request rpcMsg;
+  
+  const std::string TEST_VER= RPC::JSON::VERSION;
+  std::string ver;
+  BOOST_CHECK(!rpcMsg.getVersion(&ver));
+  BOOST_CHECK(rpcMsg.setVersion(TEST_VER));
+  BOOST_CHECK(rpcMsg.getVersion(&ver));
+  BOOST_CHECK_EQUAL(ver.compare(TEST_VER), 0);
+  
+  const std::string TEST_METHOD = "hello";
+  std::string method;
+  BOOST_CHECK(!rpcMsg.getMethod(&method));
+  BOOST_CHECK(rpcMsg.setMethod(TEST_METHOD));
+  BOOST_CHECK(rpcMsg.getMethod(&method));
+  BOOST_CHECK_EQUAL(method.compare(TEST_METHOD), 0);
+  
+  const std::string TEST_PARAMS = "{\"value\":1}";
+  std::string params;
+  BOOST_CHECK(!rpcMsg.getParams(&params));
+  BOOST_CHECK(rpcMsg.setParams(TEST_PARAMS));
+  BOOST_CHECK(rpcMsg.getParams(&params));
+  BOOST_CHECK_EQUAL(params.compare(TEST_PARAMS), 0);
+  
+  const std::string TEST_ID = "12345";
+  std::string id;
+  BOOST_CHECK(!rpcMsg.getId(&id));
+  BOOST_CHECK(rpcMsg.setId(TEST_ID));
+  BOOST_CHECK(rpcMsg.getId(&id));
+  BOOST_CHECK_EQUAL(id.compare(TEST_ID), 0);
   
   // Check again not to orverride.
   
@@ -69,13 +88,50 @@ BOOST_AUTO_TEST_CASE(RPCMessageMethodTest) {
   
   BOOST_CHECK(rpcMsg.getId(&id));
   BOOST_CHECK_EQUAL(id.compare(TEST_ID), 0);
-  
-  BOOST_CHECK(rpcMsg.getParams(&result));
-  BOOST_CHECK_EQUAL(result.compare(TEST_RESULT), 0);
-  
-  BOOST_CHECK(rpcMsg.getParams(&result));
-  BOOST_CHECK_EQUAL(result.compare(TEST_RESULT), 0);
+}
 
+BOOST_AUTO_TEST_CASE(RPCResponseMethodTest) {
+  RPC::JSON::Response rpcMsg;
+  
+  const std::string TEST_VER= RPC::JSON::VERSION;
+  std::string ver;
+  BOOST_CHECK(!rpcMsg.getVersion(&ver));
+  BOOST_CHECK(rpcMsg.setVersion(TEST_VER));
+  BOOST_CHECK(rpcMsg.getVersion(&ver));
+  BOOST_CHECK_EQUAL(ver.compare(TEST_VER), 0);
+  
+  const std::string TEST_ID = "12345";
+  std::string id;
+  BOOST_CHECK(!rpcMsg.getId(&id));
+  BOOST_CHECK(rpcMsg.setId(TEST_ID));
+  BOOST_CHECK(rpcMsg.getId(&id));
+  BOOST_CHECK_EQUAL(id.compare(TEST_ID), 0);
+  
+  const std::string TEST_RESULT = "{\"value\":1}";
+  std::string result;
+  BOOST_CHECK(!rpcMsg.getResult(&result));
+  BOOST_CHECK(rpcMsg.setResult(TEST_RESULT));
+  BOOST_CHECK(rpcMsg.getResult(&result));
+  BOOST_CHECK_EQUAL(result.compare(TEST_RESULT), 0);
+  
+  const std::string TEST_RESULT_DIR_KEY = "key01";
+  const std::string TEST_RESULT_DIR_VALUE = "value01";
+  std::string dirResult;
+  BOOST_CHECK(!rpcMsg.getResult(TEST_RESULT_DIR_KEY, &dirResult));
+  BOOST_CHECK(rpcMsg.setResult(TEST_RESULT_DIR_KEY, TEST_RESULT_DIR_VALUE));
+  BOOST_CHECK(rpcMsg.getResult(TEST_RESULT_DIR_KEY, &dirResult));
+  BOOST_CHECK_EQUAL(dirResult.compare(TEST_RESULT_DIR_VALUE), 0);
+  
+  // Check again not to orverride.
+  
+  BOOST_CHECK(rpcMsg.getVersion(&ver));
+  BOOST_CHECK_EQUAL(ver.compare(TEST_VER), 0);
+  
+  BOOST_CHECK(rpcMsg.getId(&id));
+  BOOST_CHECK_EQUAL(id.compare(TEST_ID), 0);
+  
+  BOOST_CHECK(rpcMsg.getResult(TEST_RESULT_DIR_KEY, &dirResult));
+  BOOST_CHECK_EQUAL(dirResult.compare(TEST_RESULT_DIR_VALUE), 0);
 }
 
 class TestMessageParser : public JSONParser {
@@ -147,7 +203,7 @@ BOOST_AUTO_TEST_CASE(RPCRequestTest) {
 }
 
 BOOST_AUTO_TEST_CASE(RPCErrorMethodTest) {
-  RPC::JSON::Message rpcMsg;
+  RPC::JSON::Response rpcMsg;
 
   const std::string detailMsg = "67890";
   Error TEST_ERROR(12345, "12345", 67890, detailMsg);
