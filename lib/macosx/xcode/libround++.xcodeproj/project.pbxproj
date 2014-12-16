@@ -39,6 +39,7 @@
 		2184F2191A19B62C007F1326 /* NodeRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2171A19B62C007F1326 /* NodeRequest.cpp */; };
 		2184F21A1A19B62C007F1326 /* NodeResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2181A19B62C007F1326 /* NodeResponse.cpp */; };
 		2188042B1A22EF690053473E /* JavaScriptEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2188042A1A22EF690053473E /* JavaScriptEngine.cpp */; };
+		21A99DFA1A405DD700663A47 /* SystemMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = 21A99DF91A405DD700663A47 /* SystemMethod.h */; };
 		21B1DF041A32C4C70070B65D /* LocalNodeWorker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B1DF031A32C4C70070B65D /* LocalNodeWorker.cpp */; };
 		21C108591A36C2A200E22CAD /* LocalNodeScriptManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C108581A36C2A200E22CAD /* LocalNodeScriptManager.cpp */; };
 		21C169791A2CA5970059D95E /* RPC.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C169781A2CA5970059D95E /* RPC.h */; };
@@ -183,6 +184,7 @@
 		2184F2171A19B62C007F1326 /* NodeRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeRequest.cpp; sourceTree = "<group>"; };
 		2184F2181A19B62C007F1326 /* NodeResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeResponse.cpp; sourceTree = "<group>"; };
 		2188042A1A22EF690053473E /* JavaScriptEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JavaScriptEngine.cpp; sourceTree = "<group>"; };
+		21A99DF91A405DD700663A47 /* SystemMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemMethod.h; sourceTree = "<group>"; };
 		21A9FFAA154014F300BDFCDC /* liblibround++.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "liblibround++.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B1DF031A32C4C70070B65D /* LocalNodeWorker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalNodeWorker.cpp; sourceTree = "<group>"; };
 		21C108581A36C2A200E22CAD /* LocalNodeScriptManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalNodeScriptManager.cpp; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 				21DA085B1A17424A00D3DCE0 /* RemoteNode.h */,
 				2104C9BC1A21BBEA0049DA92 /* Script.h */,
 				21DA08D01A175F1000D3DCE0 /* ServerNode.h */,
+				21A99DF91A405DD700663A47 /* SystemMethod.h */,
 				21DA08C61A175E7500D3DCE0 /* impl */,
 			);
 			path = core;
@@ -562,6 +565,7 @@
 			files = (
 				21DA08631A17424A00D3DCE0 /* NodeStatus.h in Headers */,
 				2120F96F1A3C63E300F8040C /* Vector.h in Headers */,
+				21A99DFA1A405DD700663A47 /* SystemMethod.h in Headers */,
 				2104C9C61A21E6D30049DA92 /* JavaScript.h in Headers */,
 				21DE681B1A13B3D60049227E /* BitOption.h in Headers */,
 				21DA085C1A17424A00D3DCE0 /* Cluster.h in Headers */,

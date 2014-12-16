@@ -11,7 +11,7 @@
 #include <round/core/Log.h>
 #include <round/core/RemoteNode.h>
 #include <round/core/NodeGraph.h>
-#include <round/core/LocalNode.h>
+#include <round/core/SystemMethod.h>
 
 #include <uhttp/net/Socket.h>
 
