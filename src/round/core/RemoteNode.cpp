@@ -40,12 +40,19 @@ bool Round::RemoteNode::getRequestAddress(std::string *address, Error *error) co
 }
 
 bool Round::RemoteNode::getClusterName(std::string *name, Error *error) {
-  SystemGetNodeInfoRequest nodeReq;
-  NodeResponse nodeRes;
-  if (!postMessage(&nodeReq, &nodeRes, error))
-    return false;
-  SystemGetNodeInfoResponse sysRes(&nodeRes);
-  return sysRes.getCluster(name);
+  if (this->clusterName.length() <= 0) {
+    SystemGetNodeInfoRequest nodeReq;
+    NodeResponse nodeRes;
+    if (!postMessage(&nodeReq, &nodeRes, error))
+      return false;
+    
+    SystemGetNodeInfoResponse sysRes(&nodeRes);
+    if (!sysRes.getCluster(&this->clusterName))
+      return false;
+  }  
+  
+  *name = this->clusterName;
+  return true;
 }
 
 bool Round::RemoteNode::postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {

@@ -42,6 +42,7 @@ private:
 
   std::string requestAddress;
   int requestPort;
+  std::string clusterName;
 
 };
 
