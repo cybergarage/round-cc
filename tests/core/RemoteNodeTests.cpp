@@ -30,8 +30,16 @@ for (int n = 0; n < 200; n+=10) {
     addr << n << "." << n << "." << n << "." << n;
     RemoteNode testNode(addr.str(), n);
     RemoteNode remoteNode(&testNode);
-    BOOST_CHECK_EQUAL(addr.str().compare(remoteNode.getRequestAddress()), 0);
-    BOOST_CHECK_EQUAL(n, remoteNode.getRequestPort());
+  
+    Error error;
+    std::string remoteAddr;
+  
+    BOOST_CHECK(remoteNode.getRequestAddress(&remoteAddr, &error));
+    BOOST_CHECK_EQUAL(addr.str().compare(remoteAddr), 0);
+  
+    int remotePort;
+    BOOST_CHECK(remoteNode.getRequestPort(&remotePort, &error));
+    BOOST_CHECK_EQUAL(n, remotePort);
   }
 }
   
@@ -45,8 +53,11 @@ BOOST_AUTO_TEST_CASE(RemoteNodeScriptManagerTest) {
   TestServer serverNode;
   BOOST_CHECK(serverNode.start(&err));
 
-  std::string serverIp = serverNode.getRequestAddress();
-  int serverPort = serverNode.getRequestPort();
+  std::string serverIp;
+  BOOST_CHECK(serverNode.getRequestAddress(&serverIp, &err));
+
+  int serverPort;
+  BOOST_CHECK(serverNode.getRequestPort(&serverPort, &err));
   
   RemoteNode node(serverIp, serverPort);
   NodeTestController nodeTestController;

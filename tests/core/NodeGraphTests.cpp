@@ -57,12 +57,15 @@ class TestOrderdNode : public LocalNode {
     return true;
   }
 
-  int getRequestPort() const {
-    return 0;
+  bool getRequestAddress(std::string *address, Error *error) const {
+    return true;
+  }
+  bool getRequestPort(int *port, Error *error) const {
+    return true;
   }
 
-  const char *getRequestAddress() const {
-    return "";
+  bool getClusterName(std::string *name, Error *error) const {
+    return true;
   }
 
   void setWeakFlag(bool flag) {

@@ -27,7 +27,12 @@ BOOST_AUTO_TEST_CASE(RoundClientFindSeverTest) {
   BOOST_CHECK(serverConfig->setCluster(FRACTAL_CLIENT_TEST_CLUSTER_NAME));
   BOOST_CHECK(server.start(&error));
 
-  BOOST_MESSAGE("Server (" << server.getRequestAddress() << ":" << server.getRequestPort() << ") is started");
+  std::string serverAddr;
+  int serverPort;
+  BOOST_CHECK(server.getRequestAddress(&serverAddr, &error));
+  BOOST_CHECK(server.getRequestPort(&serverPort, &error));
+  
+  BOOST_MESSAGE("Server (" << serverAddr << ":" << serverPort << ") is started");
   
   TestClient client;
   BOOST_CHECK(!client.setTargetCluster(FRACTAL_CLIENT_TEST_CLUSTER_NAME));
@@ -38,7 +43,7 @@ BOOST_AUTO_TEST_CASE(RoundClientFindSeverTest) {
     BOOST_MESSAGE("Cluster " << FRACTAL_CLIENT_TEST_CLUSTER_NAME << " isn't found");
     
     BOOST_CHECK(server.announce());
-    BOOST_MESSAGE("Server (" << server.getRequestAddress() << ":" << server.getRequestPort() << ") is announced");
+    BOOST_MESSAGE("Server (" << serverAddr << ":" << serverPort << ") is announced");
     Round::Test::Sleep();
     
     BOOST_MESSAGE("Searing " << FRACTAL_CLIENT_TEST_CLUSTER_NAME << " ....");

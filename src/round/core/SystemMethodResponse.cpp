@@ -13,6 +13,14 @@
 
 #include <round/core/LocalNode.h>
 
+const std::string Round::SystemMethodResponse::NAME     = "name";
+const std::string Round::SystemMethodResponse::IP       = "id";
+const std::string Round::SystemMethodResponse::PORT     = "port";
+const std::string Round::SystemMethodResponse::HASH     = "hash";
+const std::string Round::SystemMethodResponse::VERSION  = "version";
+const std::string Round::SystemMethodResponse::CLUSTER  = "cluster";
+const std::string Round::SystemMethodResponse::CLUSTERS = "clusters";
+
 Round::SystemMethodResponse::SystemMethodResponse(NodeResponse *nodeRes) {
   this->nodeRes = nodeRes;
   

@@ -35,8 +35,9 @@ class Node : public NodeCore, public Cloneable<Node> {
 
  public:
   
-  bool getStatus(NodeStatus *status, Error *error = NULL) const;
-  bool getNodeGraph(NodeGraph *nodeGraph, Error *error = NULL);
+  bool getStatus(NodeStatus *status, Error *error) const;
+  bool getCluster(Cluster *cluster, Error *error) const;
+  bool getClusterList(ClusterList *clusterList, Error *error) const;
 
 public:
   

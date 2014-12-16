@@ -24,16 +24,14 @@ Round::Node::Node() {
 Round::Node::~Node() {
 }
 
-/*
-bool Round::Node::getCluster(Cluster *cluster, Error *error) const {
-  return true;
-}
-*/
-
 bool Round::Node::getStatus(NodeStatus *status, Error *error) const {
   return true;
 }
 
-bool Round::Node::getNodeGraph(NodeGraph *nodeGraph, Error *error) {
+bool Round::Node::getCluster(Cluster *cluster, Error *error) const {
+  return true;
+}
+
+bool Round::Node::getClusterList(ClusterList *clusterList, Error *error) const {
   return true;
 }

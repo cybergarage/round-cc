@@ -64,8 +64,8 @@ BOOST_AUTO_TEST_CASE(RoundRealServerFindTest) {
   while (isServerNotFound) {
     isServerNotFound = false;
     for (int n=0; n<TEST_SERVER_COUNT; n++) {
-      std::string clusterName;
-      BOOST_CHECK(servers[n]->getClusterName(&clusterName, &err));
+      Cluster cluster;
+      BOOST_CHECK(servers[n]->getCluster(&cluster, &err));
       NodeGraph *nodeGraph = cluster.getNodeGraph();
       BOOST_CHECK(nodeGraph);
       BOOST_CHECK_EQUAL(nodeGraph->size(), TEST_SERVER_COUNT);
