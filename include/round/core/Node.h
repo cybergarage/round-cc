@@ -35,20 +35,18 @@ class Node : public NodeCore, public Cloneable<Node> {
 
  public:
   
-  bool getStatus(NodeStatus *status, Error *error) const;
-  bool getCluster(Cluster *cluster, Error *error) const;
-  bool getClusterList(ClusterList *clusterList, Error *error) const;
+  bool getStatus(NodeStatus *status, Error *error);
+  bool getCluster(Cluster *cluster, Error *error);
+  bool getClusterList(ClusterList *clusterList, Error *error);
 
 public:
   
-  bool isWeak() const {
-    return this->weakFlag;
-  }
-  
-protected:
-  
   void setWeakFlag(bool flag) {
     this->weakFlag = flag;
+  }
+  
+  bool isWeak() const {
+    return this->weakFlag;
   }
   
 private:

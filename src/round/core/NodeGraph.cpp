@@ -40,8 +40,10 @@ bool Round::NodeGraph::set(const NodeGraph &otherNodeGraph) {
 
 bool Round::NodeGraph::addNode(Round::Node *node) {
   Node *newNode = node;
-  if (node->isCloneable())
+  if (node->isCloneable()) {
     newNode = node->clone();
+    newNode->setWeakFlag(false);
+  }
   bool isAdded = ConsistentHashGraph::addNode(newNode);
   if (!isAdded) {
     if (node->isCloneable())
@@ -75,8 +77,6 @@ Round::Node *Round::NodeGraph::getPrevNode(const Node *node) const {
 }
 
 void Round::NodeGraph::clear() {
-  // FIXME
-  /*
   for (NodeGraph::iterator content = begin(); content != end(); content++) {
     Node *node = static_cast<Node *>(*content);
     if (!node)
@@ -85,7 +85,6 @@ void Round::NodeGraph::clear() {
       continue;
     delete node;
   }
-  */
   ConsistentHashGraph::clear();
 }
 
