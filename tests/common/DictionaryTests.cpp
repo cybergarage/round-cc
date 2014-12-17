@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE(RoundDictionaryStringSetterTest) {
   Dictionary dict;
 
   string key = "key";
-  const char *strValue = "value";
+  std::string strValue = "value";
 
   string strBuf;
   BOOST_CHECK(dict.set(key, strValue));
