@@ -109,14 +109,14 @@ public:
 
   bool set(const std::string &key, const std::string &value);
   bool set(const std::string &key, const char *value);
-  bool set(const std::string &key, std::size_t value);
+  bool set(const std::string &key, size_t value);
   bool set(const std::string &key, int value);
   bool set(const std::string &key, long value);
   bool set(const std::string &key, bool value);
 
   bool get(const std::string &key, std::string *value) const;
 
-  bool get(const std::string &key, std::size_t *value) const;
+  bool get(const std::string &key, size_t *value) const;
   bool get(const std::string &key, int *value) const;
   bool get(const std::string &key, long *value) const;
   bool get(const std::string &key, bool *value) const;
