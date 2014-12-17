@@ -68,7 +68,7 @@ bool Round::JSONDictionary::set(const std::string &key, const char *value) {
   return set(key, (const std::string &)value);
 }
 
-bool Round::JSONDictionary::set(const std::string &key, std::size_t value) {
+bool Round::JSONDictionary::set(const std::string &key, size_t value) {
   std::stringstream ss;
   ss << value;
   return set(key, ss.str());

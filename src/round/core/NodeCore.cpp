@@ -8,6 +8,7 @@
 *
 ******************************************************************/
 
+#include <algorithm>
 #include <sstream>
 
 #include <round/Round.h>
@@ -19,8 +20,17 @@ Round::NodeCore::NodeCore() {
 Round::NodeCore::~NodeCore() {
 }
 
-clock_t Round::NodeCore::getClock() const {
+clock_t Round::NodeCore::getLocalClock() const {
   return this->clock.getValue();
+}
+
+clock_t Round::NodeCore::incrementLocalClock() {
+  return this->clock.increment();
+}
+
+clock_t Round::NodeCore::setRemoteClock(clock_t value) {
+  this->clock.setValue(std::max(value, this->clock.getValue()));
+  return this->clock.increment();
 }
 
 const char *Round::NodeCore::getHashSeed(std::string *seedString) const {

@@ -156,7 +156,15 @@ bool Round::LocalNode::nodeRemoved(Round::Node *notifyNode)  {
 // Message
 ////////////////////////////////////////////////
 
-bool Round::LocalNode::postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+bool Round::LocalNode::postMessage(NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+  // Set id and ts parameter
+  
+  clock_t localTs = getLocalClock();
+  nodeReq->setId(localTs);
+  nodeReq->setTimestamp(localTs);
+  
+  // Post RPC message
+  
   return execMessage(nodeReq, nodeRes, error);
 }
 
@@ -191,6 +199,26 @@ bool Round::LocalNode::setError(int rpcErrorCode, Error *err) {
 bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *err) {
   if (!nodeReq || !nodeRes || !err)
     return false;
+  
+  // Update local clock
+  
+  clock_t remoteTs;
+  if (nodeRes->getTimestamp(&remoteTs)) {
+    setRemoteClock(remoteTs);
+  }
+  else {
+    incrementLocalClock();
+  }
+  
+  // Set id and ts parameter
+  
+  size_t msgId;
+  if (nodeReq->getId(&msgId)) {
+    nodeRes->setId(msgId);
+  }
+  nodeRes->setTimestamp(getLocalClock());
+
+  // Exec Message
   
   ScriptName name;
   nodeReq->getMethod(&name);
