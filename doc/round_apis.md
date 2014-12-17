@@ -2,7 +2,17 @@
 
 # Round Client Libraries
 
+The client libraries
+
+- id
+- ts (Lamport Timestamp)
+- Cluster update
+
 ## C++
+
+### Client
+
+### Node::postMessage()
 
 ## Java
 
