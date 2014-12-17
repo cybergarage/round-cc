@@ -15,6 +15,7 @@
 #include <vector>
   
 #include <round/common/ConsistentHash.h>
+#include <round/common/Clock.h>
 #include <round/core/NodeMessage.h>
 
 namespace Round {
@@ -35,7 +36,12 @@ class NodeCore : public ConsistentHashNode {
 
  public:
 
+  clock_t getClock() const;
+
   const char *getHashSeed(std::string *seedString) const;
+
+ private:
+  Clock clock;
 };
 
 }

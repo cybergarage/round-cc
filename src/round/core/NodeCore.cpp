@@ -19,6 +19,10 @@ Round::NodeCore::NodeCore() {
 Round::NodeCore::~NodeCore() {
 }
 
+clock_t Round::NodeCore::getClock() const {
+  return this->clock.getValue();
+}
+
 const char *Round::NodeCore::getHashSeed(std::string *seedString) const {
   Error err;
   
