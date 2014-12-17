@@ -2,6 +2,8 @@
 
 # Applications
 
+## DNS Server
+
 ## Time Server
 
 ## Counter
