@@ -14,9 +14,13 @@
 
 using namespace Round;
 
+BOOST_AUTO_TEST_SUITE(common)
+
 BOOST_AUTO_TEST_CASE(MutexTests) {
-Mutex *mutex = new Mutex();
+  Mutex *mutex = new Mutex();
   BOOST_CHECK_EQUAL(mutex->lock(), true);
   BOOST_CHECK_EQUAL(mutex->unlock(), true);
   delete mutex;
 }
+
+BOOST_AUTO_TEST_SUITE_END()

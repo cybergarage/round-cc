@@ -20,8 +20,10 @@ using namespace Round;
 
 #define FRACTAL_DICTIONARY_BASIC_TEST_COUNT 100
 
+BOOST_AUTO_TEST_SUITE(common)
+
 BOOST_AUTO_TEST_CASE(RoundPropertiesBasicTest) {
-Properties dict;
+  Properties dict;
 
   BOOST_CHECK_EQUAL(dict.size(), 0);
 
@@ -48,3 +50,6 @@ Properties dict;
     BOOST_CHECK_EQUAL(retValue.compare(propValue), 0);
   }
 }
+
+BOOST_AUTO_TEST_SUITE_END()
+

@@ -31,6 +31,8 @@ class TestThread : public Thread<int> {
   }
 };
 
+BOOST_AUTO_TEST_SUITE(common)
+
 BOOST_AUTO_TEST_CASE(ThreadTests) {
   TestThread *thread = new TestThread();
   BOOST_CHECK_EQUAL (thread->start(), true);
@@ -56,3 +58,5 @@ BOOST_AUTO_TEST_CASE(ThreadManagerTests) {
 
   threadMgr.stop();
 }
+
+BOOST_AUTO_TEST_SUITE_END()

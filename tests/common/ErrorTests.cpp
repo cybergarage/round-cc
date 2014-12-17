@@ -15,6 +15,8 @@
 
 using namespace Round;
 
+BOOST_AUTO_TEST_SUITE(common)
+
 BOOST_AUTO_TEST_CASE(ErroSetterTest01) {
   Error err01(1);
   BOOST_CHECK_EQUAL(err01.getCode(), 1);
@@ -59,3 +61,5 @@ BOOST_AUTO_TEST_CASE(ErroCopyTest) {
 
   BOOST_CHECK(err01.equals(err02));
 }
+
+BOOST_AUTO_TEST_SUITE_END()

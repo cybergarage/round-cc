@@ -41,6 +41,8 @@ class BasicTestNotificationObserver : public NotificationObserver {
   }
 };
 
+BOOST_AUTO_TEST_SUITE(common)
+
 BOOST_AUTO_TEST_CASE(RoundNotificationBasicTest) {
   NotificationCenter notificationCenter;
   NotificationObserver *notificationObserver[FRACTAL_NOTIFICATION_BASIC_TEST_COUNT];
@@ -95,3 +97,5 @@ BOOST_AUTO_TEST_CASE(RoundNotificationBasicTest) {
   for (int n = 0; n < FRACTAL_NOTIFICATION_BASIC_TEST_COUNT; n++)
     delete notificationObserver[n];
 }
+
+BOOST_AUTO_TEST_SUITE_END()

@@ -41,6 +41,8 @@ private:
   
 };
 
+BOOST_AUTO_TEST_SUITE(common)
+
 BOOST_AUTO_TEST_CASE(HashObjectTests) {
   size_t hashCodeLength = HashObject::getHashCodeLength();
   BOOST_CHECK(0 < hashCodeLength);
@@ -122,3 +124,5 @@ BOOST_AUTO_TEST_CASE(HashObjectEqualsTests) {
   BOOST_CHECK(testHashF.getHashCode(&testHashCodeF));
   BOOST_CHECK_EQUAL(testHashF.equals(testHashCodeF), true);
 }
+
+BOOST_AUTO_TEST_SUITE_END()

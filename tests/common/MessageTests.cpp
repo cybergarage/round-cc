@@ -21,6 +21,8 @@ using namespace Round;
 
 #define ROUND_MSGMRG_TEST_COUNT 10
 
+BOOST_AUTO_TEST_SUITE(common)
+
 BOOST_AUTO_TEST_CASE(RoundMessageManagerTest) {
   MessageManager msgMgr;
 
@@ -86,3 +88,5 @@ BOOST_AUTO_TEST_CASE(RoundMessageManagerThreadTest) {
 
   BOOST_CHECK(msgPushThread.stop());
 }
+
+BOOST_AUTO_TEST_SUITE_END()

@@ -12,6 +12,8 @@
 
 #include <round/common/Clock.h>
 
+BOOST_AUTO_TEST_SUITE(common)
+
 BOOST_AUTO_TEST_CASE(ClockTest) {
   Round::Clock clock;
   
@@ -58,3 +60,6 @@ BOOST_AUTO_TEST_CASE(ClockCompareTest) {
   BOOST_CHECK_EQUAL(clock01.compare(clock03), Round::ClockOrderedAscending);
   BOOST_CHECK_EQUAL(clock01.compare(clock04), Round::ClockOrderedDescending);
 }
+
+BOOST_AUTO_TEST_SUITE_END()
+

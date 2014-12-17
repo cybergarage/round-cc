@@ -16,8 +16,10 @@
 using namespace std;
 using namespace Round;
 
+BOOST_AUTO_TEST_SUITE(common)
+
 BOOST_AUTO_TEST_CASE(RoundBitOptionTest) {
-BitOption bitOpt;
+  BitOption bitOpt;
 
   int testOption = 0x01;
 
@@ -42,3 +44,4 @@ BitOption bitOpt;
   BOOST_CHECK_EQUAL(bitOpt.getOption(testOption), true);
 }
 
+BOOST_AUTO_TEST_SUITE_END()

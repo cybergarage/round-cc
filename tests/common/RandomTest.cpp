@@ -16,6 +16,8 @@
 
 using namespace Round;
 
+BOOST_AUTO_TEST_SUITE(common)
+
 BOOST_AUTO_TEST_CASE(RandomTest01) {
   Random rand;
 
@@ -74,3 +76,6 @@ BOOST_AUTO_TEST_CASE(RandomTest05) {
   BOOST_CHECK(randRange1.rand() != randRange1.rand());
   BOOST_CHECK(randRange2.rand() != randRange2.rand());
 }
+
+BOOST_AUTO_TEST_SUITE_END()
+

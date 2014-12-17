@@ -71,6 +71,8 @@ class TestConsistentHashGraph : public ConsistentHashGraph {
   }
 };
 
+BOOST_AUTO_TEST_SUITE(common)
+
 BOOST_AUTO_TEST_CASE(RoundConsistentHashGraphAddSameNodeTest) {
   TestConsistentHashGraph coHashGraph;
   BOOST_CHECK_EQUAL(coHashGraph.size(), 0);
@@ -770,3 +772,6 @@ BOOST_AUTO_TEST_CASE(RoundConsistentHashGraphMinDistanceTest) {
     delete cosNodes[n];
   }
 }
+
+BOOST_AUTO_TEST_SUITE_END()
+

@@ -16,6 +16,8 @@
 using namespace std;
 using namespace Round;
 
+BOOST_AUTO_TEST_SUITE(common)
+
 BOOST_AUTO_TEST_CASE(SemaphoreBasicTest) {
   Semaphore *sem = new Semaphore(1);
 
@@ -78,3 +80,5 @@ BOOST_AUTO_TEST_CASE(SemaphoreThreadTest) {
   
   delete sem;
 }
+
+BOOST_AUTO_TEST_SUITE_END()

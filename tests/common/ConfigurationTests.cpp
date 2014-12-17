@@ -61,6 +61,8 @@ const std::string FRACTAL_CONFIGURATION_SAMPLE01= \
 "level = info\n" \
 "\n";
 
+BOOST_AUTO_TEST_SUITE(common)
+
 BOOST_AUTO_TEST_CASE(RoundConfigurationSample01Test) {
 Configuration config;
 
@@ -139,4 +141,6 @@ Configuration config;
   BOOST_CHECK(copyConfig.getStringByPath("/log/level", &value));
   BOOST_CHECK_EQUAL(value.compare("info"), 0);
 }
+
+BOOST_AUTO_TEST_SUITE_END()
 
