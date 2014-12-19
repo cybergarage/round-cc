@@ -42,11 +42,19 @@ bool Round::RemoteNode::getRequestAddress(std::string *address, Error *error) co
   return true;
 }
 
-bool Round::RemoteNode::postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+bool Round::RemoteNode::postMessage(NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
   std::string requestAddr;
   int requestPort;
   if (!getRequestAddress(&requestAddr, error) || !getRequestPort(&requestPort, error))
     return false;
+
+  // Set id and ts parameter
+  
+  clock_t localTs = incrementLocalClock();
+  nodeReq->setId(localTs);
+  nodeReq->setTimestamp(localTs);
+  
+  // HTTP Request
 
   uHTTP::HTTPRequest httpReq;
   httpReq.setHost(requestAddr, requestPort);
@@ -72,6 +80,15 @@ bool Round::RemoteNode::postMessage(const NodeRequest *nodeReq, NodeResponse *no
 
   nodeRes->set(jsonDict);
 
+  // Update local clock
+  
+  clock_t remoteTs;
+  if (nodeRes->getTimestamp(&remoteTs)) {
+    setRemoteClock(remoteTs);
+  }
+
+  // Set error code and message
+  
   if (!isSuccess) {
     nodeRes->getError(error);
     error->setCode(statusCode);

@@ -71,7 +71,7 @@ Round::Cluster *Round::ClientCore::getCluster(const std::string &name) {
 bool Round::ClientCore::nodeAdded(Round::Node *node)  {
 
   bool isNodeAdded = false;
-     this->mutex.lock();
+  this->mutex.lock();
 
   Cluster *targetCluster = getClusterForNode(node);
   if (!targetCluster) {

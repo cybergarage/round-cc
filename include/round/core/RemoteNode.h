@@ -34,7 +34,7 @@ class RemoteNode : public Node {
     return (0 < this->clusterName.length()) ? true : false;
   }
 
-  bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  bool postMessage(NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
 
   bool isCloneable() const {
     return true;

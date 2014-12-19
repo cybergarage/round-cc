@@ -29,7 +29,8 @@ void NodeTestController::runScriptManagerTest(Node *node) {
   NodeRequest *nodeReq;
   NodeResponse nodeRes;
   Error error;
-
+  clock_t prevClock, postClock;
+  
   // Post Node Message (Overide '_set_method' method)
   
   BOOST_CHECK(reqParser.parse(Test::RPC_SET_SETMETHOD));
@@ -37,7 +38,10 @@ void NodeTestController::runScriptManagerTest(Node *node) {
   nodeReq = dynamic_cast<NodeRequest *>(reqParser.getObject());
   BOOST_CHECK(nodeReq);
   
+  prevClock = node->getLocalClock();
   BOOST_CHECK(!node->postMessage(nodeReq, &nodeRes, &error));
+  postClock = node->getLocalClock();
+  BOOST_CHECK(prevClock < postClock);
   
   // Post Node Message (Run 'echo' method without method)
   
@@ -46,8 +50,11 @@ void NodeTestController::runScriptManagerTest(Node *node) {
   nodeReq = dynamic_cast<NodeRequest *>(reqParser.getObject());
   BOOST_CHECK(nodeReq);
   
+  prevClock = node->getLocalClock();
   BOOST_CHECK(!node->postMessage(nodeReq, &nodeRes, &error));
   BOOST_CHECK_EQUAL(error.getDetailCode(), RPC::JSON::ErrorCodeMethodNotFound);
+  postClock = node->getLocalClock();
+  BOOST_CHECK(prevClock < postClock);
   
   // Post Node Message (Set 'echo' method)
   
@@ -56,7 +63,10 @@ void NodeTestController::runScriptManagerTest(Node *node) {
   nodeReq = dynamic_cast<NodeRequest *>(reqParser.getObject());
   BOOST_CHECK(nodeReq);
   
+  prevClock = node->getLocalClock();
   BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &error));
+  postClock = node->getLocalClock();
+  BOOST_CHECK(prevClock < postClock);
 
   // Post Node Message (Run 'echo' method)
   
@@ -65,7 +75,10 @@ void NodeTestController::runScriptManagerTest(Node *node) {
   nodeReq = dynamic_cast<NodeRequest *>(reqParser.getObject());
   BOOST_CHECK(nodeReq);
   
+  prevClock = node->getLocalClock();
   BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &error));
+  postClock = node->getLocalClock();
+  BOOST_CHECK(prevClock < postClock);
 
   // Post Node Message (Override 'echo' method)
   
@@ -74,7 +87,10 @@ void NodeTestController::runScriptManagerTest(Node *node) {
   nodeReq = dynamic_cast<NodeRequest *>(reqParser.getObject());
   BOOST_CHECK(nodeReq);
   
+  prevClock = node->getLocalClock();
   BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &error));
+  postClock = node->getLocalClock();
+  BOOST_CHECK(prevClock < postClock);
 
   // Post Node Message (Remove 'echo' method)
   
@@ -83,7 +99,10 @@ void NodeTestController::runScriptManagerTest(Node *node) {
   nodeReq = dynamic_cast<NodeRequest *>(reqParser.getObject());
   BOOST_CHECK(nodeReq);
   
+  prevClock = node->getLocalClock();
   BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &error));
+  postClock = node->getLocalClock();
+  BOOST_CHECK(prevClock < postClock);
   
   // Post Node Message (Run 'echo' method)
   
@@ -91,9 +110,12 @@ void NodeTestController::runScriptManagerTest(Node *node) {
   BOOST_CHECK(reqParser.getObject()->isDictionary());
   nodeReq = dynamic_cast<NodeRequest *>(reqParser.getObject());
   BOOST_CHECK(nodeReq);
-  
+
+  prevClock = node->getLocalClock();
   BOOST_CHECK(!node->postMessage(nodeReq, &nodeRes, &error));
   BOOST_CHECK_EQUAL(error.getDetailCode(), RPC::JSON::ErrorCodeMethodNotFound);
+  postClock = node->getLocalClock();
+  BOOST_CHECK(prevClock < postClock);
 }
 
 void NodeTestController::runSystemGetNodeInfoTest(Round::Node *node) {

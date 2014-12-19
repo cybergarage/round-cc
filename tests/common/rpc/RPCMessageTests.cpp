@@ -28,12 +28,12 @@ BOOST_AUTO_TEST_CASE(RPCMessageMethodTest) {
   BOOST_CHECK(rpcMsg.getVersion(&ver));
   BOOST_CHECK_EQUAL(ver.compare(TEST_VER), 0);
 
-  const std::string TEST_ID = "12345";
-  std::string id;
+  const size_t TEST_ID = 12345;
+  size_t id;
   BOOST_CHECK(!rpcMsg.getId(&id));
   BOOST_CHECK(rpcMsg.setId(TEST_ID));
   BOOST_CHECK(rpcMsg.getId(&id));
-  BOOST_CHECK_EQUAL(id.compare(TEST_ID), 0);
+  BOOST_CHECK_EQUAL(id, TEST_ID);
 
   // Check again not to orverride.
   
@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE(RPCMessageMethodTest) {
   BOOST_CHECK_EQUAL(ver.compare(TEST_VER), 0);
   
   BOOST_CHECK(rpcMsg.getId(&id));
-  BOOST_CHECK_EQUAL(id.compare(TEST_ID), 0);
+  BOOST_CHECK_EQUAL(id, TEST_ID);
 }
 
 BOOST_AUTO_TEST_CASE(RPCRequestMethodTest) {
@@ -68,12 +68,12 @@ BOOST_AUTO_TEST_CASE(RPCRequestMethodTest) {
   BOOST_CHECK(rpcMsg.getParams(&params));
   BOOST_CHECK_EQUAL(params.compare(TEST_PARAMS), 0);
   
-  const std::string TEST_ID = "12345";
-  std::string id;
+  const size_t TEST_ID = 12345;
+  size_t id;
   BOOST_CHECK(!rpcMsg.getId(&id));
   BOOST_CHECK(rpcMsg.setId(TEST_ID));
   BOOST_CHECK(rpcMsg.getId(&id));
-  BOOST_CHECK_EQUAL(id.compare(TEST_ID), 0);
+  BOOST_CHECK_EQUAL(id, TEST_ID);
   
   // Check again not to orverride.
   
@@ -87,7 +87,7 @@ BOOST_AUTO_TEST_CASE(RPCRequestMethodTest) {
   BOOST_CHECK_EQUAL(params.compare(TEST_PARAMS), 0);
   
   BOOST_CHECK(rpcMsg.getId(&id));
-  BOOST_CHECK_EQUAL(id.compare(TEST_ID), 0);
+  BOOST_CHECK_EQUAL(id, TEST_ID);
 }
 
 BOOST_AUTO_TEST_CASE(RPCResponseMethodTest) {
@@ -100,12 +100,12 @@ BOOST_AUTO_TEST_CASE(RPCResponseMethodTest) {
   BOOST_CHECK(rpcMsg.getVersion(&ver));
   BOOST_CHECK_EQUAL(ver.compare(TEST_VER), 0);
   
-  const std::string TEST_ID = "12345";
-  std::string id;
+  const size_t TEST_ID = 12345;
+  size_t id;
   BOOST_CHECK(!rpcMsg.getId(&id));
   BOOST_CHECK(rpcMsg.setId(TEST_ID));
   BOOST_CHECK(rpcMsg.getId(&id));
-  BOOST_CHECK_EQUAL(id.compare(TEST_ID), 0);
+  BOOST_CHECK_EQUAL(id, TEST_ID);
   
   const std::string TEST_RESULT = "{\"value\":1}";
   std::string result;
@@ -128,7 +128,7 @@ BOOST_AUTO_TEST_CASE(RPCResponseMethodTest) {
   BOOST_CHECK_EQUAL(ver.compare(TEST_VER), 0);
   
   BOOST_CHECK(rpcMsg.getId(&id));
-  BOOST_CHECK_EQUAL(id.compare(TEST_ID), 0);
+  BOOST_CHECK_EQUAL(id, TEST_ID);
   
   BOOST_CHECK(rpcMsg.getResult(TEST_RESULT_DIR_KEY, &dirResult));
   BOOST_CHECK_EQUAL(dirResult.compare(TEST_RESULT_DIR_VALUE), 0);

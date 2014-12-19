@@ -76,11 +76,11 @@ class Message : public ::Round::Message {
     return get(JSON_RPC, value);
   }
 
-  bool setId(const std::string &value) {
+  bool setId(size_t value) {
     return set(ID, value);
   }
   
-  bool getId(std::string *value) const {
+  bool getId(size_t *value) const {
     return get(ID, value);
   }
   
