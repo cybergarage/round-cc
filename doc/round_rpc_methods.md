@@ -86,19 +86,31 @@ Round prepares the following default dynamic methods. The methods are implemente
 
 ### System Notification Methods
 
+#### Local Notification Methods
+
 | Method Name | Perpose | Params | Outputs | Default |
 | --- | --- | --- | --- | --- |
+| _notify_pre_activated | - | - | - | - |
+| _notify_post_activated | - | - | - | - |
+| _notify_pre_closed | - | - | - | - |
+| _notify_post_closed | - | - | - | - |
+| _notify_method_added | - | - | - | - |
 | _notify_method_added | - | - | - | - |
 | _notify_method_removed | - | - | - | - |
 | _notify_method_updated | - | - | - | - |
-| _notify_node_added | - | - | - | - |
-| _notify_node_removed | - | - | - | - |
-| _notify_node_suspected | - | - | - | - |
 | _notify_log_occurred | - | - | - | - |
 
 The methods are executed ......
 
-#### Static Methods
+### Remote Notification Methods
+
+| Method Name | Perpose | Params | Outputs | Default |
+| --- | --- | --- | --- | --- |
+| _notify_node_added | - | - | - | - |
+| _notify_node_removed | - | - | - | - |
+| _notify_node_suspected | - | - | - | - |
+
+### Static Methods
 
 The following methods is defined in Round using the native programming language statically. Developers can't override the static methods.
 
