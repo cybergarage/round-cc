@@ -2,6 +2,8 @@
 
 # Applications
 
+## Dynamic DNS
+
 ## DNS Server
 
 ## Time Server
@@ -11,6 +13,8 @@
 ## CDN (Contents Delivery Network)
 
 ## Map Reduce
+
+## Search Engine
 
 ## In-Memory Database
 
