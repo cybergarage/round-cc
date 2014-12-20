@@ -94,10 +94,8 @@ bool Round::LocalNode::stop(Error *error) {
   }
   
   NodeGraph *nodeGraph = getNodeGraph();
-  if (nodeGraph->hasNode(this) == true) {
-    if (nodeGraph->removeNode(this) == false) {
-      areAllOperationSucess = false;
-    }
+  if (!nodeGraph->clear()) {
+    areAllOperationSucess = false;
   }
   
   if (areAllOperationSucess == true) {
