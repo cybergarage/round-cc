@@ -18,6 +18,7 @@
 #include <round/common/Dictionary.h>
 
 //#define USE_ROUND_JSON_PARSER_JANSSON 1
+#define USE_ROUND_JSON_PARSER_ROUND 1
 
 namespace Round {
 
@@ -192,10 +193,6 @@ public:
 
   JSONObject *popRootObject();
   
-  virtual JSONString *createJSONString(const std::string &value) {
-    return new JSONString(value);
-  }
-
   virtual JSONArray *createJSONArray() {
     return new JSONArray();
   }

@@ -13,9 +13,7 @@
 
 #include <round/common/JSON.h>
 
-#define USE_JSON_PARSER_ROUND 1
-
-#if defined(USE_JSON_PARSER_ROUND)
+#if defined(USE_ROUND_JSON_PARSER_ROUND)
 
 static std::string JSON_ARRAY_TRIMS = ", \n\t";
 static std::string JSON_ARRAY_BEGIN = "\", ";
@@ -67,7 +65,7 @@ static bool RoundJSONParse(Round::JSONParser *jsonParser, const std::string &jso
   for (std::vector<std::string>::iterator value = values.begin(); value != values.end(); value++) {
     std::string valString;
     TrimJSONString(*value, JSON_VAL_TRIMS, &valString);
-    Round::JSONString *jsonString = jsonParser->createJSONString(valString);
+    Round::JSONString *jsonString = new Round::JSONString(valString);
     parentArray->push_back(jsonString);
   }
 
@@ -98,7 +96,7 @@ static bool RoundJSONParse(Round::JSONParser *jsonParser, const std::string &jso
       valueEndIndex = jsonString.find_first_of("\"", (valueBeginIndex + 1));
       if (valueEndIndex != std::string::npos) {
         std::string stringValue = std::string(jsonString, (valueBeginIndex + 1), (valueEndIndex - valueBeginIndex - 1));
-        Round::JSONString *stringObj = jsonParser->createJSONString(stringValue);
+        Round::JSONString *stringObj = new Round::JSONString(stringValue);
         parentDir->set(key, stringObj);
       }
     } else if (valueBeginChar == '{') {
@@ -123,7 +121,7 @@ static bool RoundJSONParse(Round::JSONParser *jsonParser, const std::string &jso
         valueEndIndex--;
       }
       std::string value = std::string(jsonString, valueBeginIndex, (valueEndIndex - valueBeginIndex + 1));
-      Round::JSONString *stringObj = jsonParser->createJSONString(value);
+      Round::JSONString *stringObj = new Round::JSONString(value);
       parentDir->set(key, stringObj);
     }
     if (valueEndIndex == std::string::npos)
