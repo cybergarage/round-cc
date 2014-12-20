@@ -88,7 +88,10 @@ bool Round::JSONDictionary::get(const std::string &key, std::string *value) cons
   JSONObject *jsonObj = NULL;
   if (get(key, &jsonObj) == false)
     return false;
-  jsonObj->toJSONString(value);
+  JSONString *jsonStr = dynamic_cast<JSONString *>(jsonObj);
+  if (!jsonStr)
+    return false;
+  *value = *jsonStr;
   return true;
 }
 
@@ -175,15 +178,13 @@ const char *Round::JSONDictionary::toJSONString(std::string *stringBuf) const {
   for (JSONDictionary::const_iterator obj = begin(); obj != end(); obj++) {
     if (obj != begin())
       ss << ",";
+    
+    ss << "\"" << obj->first << "\":";
+    
     JSONObject *jsonObj = obj->second;
     std::string jsonObjString;
     jsonObj->toJSONString(&jsonObjString);
-    ss << "\"" << obj->first << "\":";
-    if (jsonObj->isString())
-      ss << "\"";
     ss << jsonObjString;
-    if (jsonObj->isString())
-      ss << "\"";
   }
   ss << "}";
   *stringBuf = ss.str();

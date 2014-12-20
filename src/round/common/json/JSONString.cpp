@@ -141,6 +141,8 @@ bool Round::JSONString::copy(JSONObject **newObj) const {
 }
 
 const char *Round::JSONString::toJSONString(std::string *stringBuf) const {
-  *stringBuf = this->c_str();
+  *stringBuf = "\"";
+  stringBuf->append(*this);
+  stringBuf->append("\"");
   return stringBuf->c_str();
 }

@@ -60,7 +60,7 @@ const char *Round::JSONArray::toJSONString(std::string *stringBuf) const {
     if (obj != begin())
       ss << ",";
     std::string value;
-    ss << "\"" << (*obj)->toJSONString(&value) << "\"";
+    ss << (*obj)->toJSONString(&value);
   }
   ss << "]";
   *stringBuf = ss.str();
