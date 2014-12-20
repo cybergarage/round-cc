@@ -51,7 +51,7 @@ bool Round::Node::getCluster(Cluster *cluster, Error *error) {
       continue;
     }
     
-    cluster->getNodeGraph()->addNode(node);
+    cluster->addNode(node);
   }
   return true;
 }

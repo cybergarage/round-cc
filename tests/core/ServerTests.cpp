@@ -66,10 +66,8 @@ BOOST_AUTO_TEST_CASE(RoundRealServerFindTest) {
     for (int n=0; n<TEST_SERVER_COUNT; n++) {
       Cluster cluster;
       BOOST_CHECK(servers[n]->getCluster(&cluster, &err));
-      NodeGraph *nodeGraph = cluster.getNodeGraph();
-      BOOST_CHECK(nodeGraph);
-      BOOST_CHECK_EQUAL(nodeGraph->size(), TEST_SERVER_COUNT);
-      if (nodeGraph->size() != TEST_SERVER_COUNT) {
+      BOOST_CHECK_EQUAL(cluster.size(), TEST_SERVER_COUNT);
+      if (cluster.size() != TEST_SERVER_COUNT) {
         isServerNotFound = true;
         break;
       }
@@ -86,4 +84,3 @@ BOOST_AUTO_TEST_CASE(RoundRealServerFindTest) {
 }
 
 BOOST_AUTO_TEST_SUITE_END()
-

@@ -207,8 +207,7 @@ void NodeTestController::runSystemGetClusterInfoTest(Round::Node *node) {
   Cluster cluster;
   BOOST_CHECK(sysRes.getCluster(&cluster));
 
-  NodeGraph *nodeGraph = cluster.getNodeGraph();
-  //BOOST_CHECK(nodeGraph->hasNode(node));
+  BOOST_CHECK(cluster.hasNode(node));
 }
 
 void NodeTestController::runSystemMethodTest(Round::Node *node) {

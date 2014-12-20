@@ -81,7 +81,7 @@ bool Round::ClientCore::nodeAdded(Round::Node *node)  {
   }
 
   if (targetCluster) {
-    if (targetCluster->getNodeGraph()->addNode(node)) {
+    if (targetCluster->addNode(node)) {
       isNodeAdded = true;
     }
   }
@@ -98,7 +98,7 @@ bool Round::ClientCore::nodeRemoved(Round::Node *node)  {
 
   Cluster *targetCluster = getClusterForNode(node);
   if (targetCluster) {
-    if (targetCluster->getNodeGraph()->removeNode(node)) {
+    if (targetCluster->removeNode(node)) {
       isNodeRemoved = true;
     }
   }

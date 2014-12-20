@@ -18,7 +18,7 @@
 
 namespace Round {
 
-class Cluster  {
+class Cluster : public NodeGraph {
 
  public:
   Cluster();
@@ -45,14 +45,9 @@ class Cluster  {
     return equals(&otherCluster);
   }
   
-  NodeGraph *getNodeGraph() {
-    return &this->nodeGraph;
-  }
-
 private:
 
   std::string name;
-  NodeGraph nodeGraph;
 };
 
 class ClusterList : public std::vector<Cluster *> {

@@ -85,7 +85,7 @@ bool Round::SystemGetClusterInfoResponse::getCluster(Cluster *cluster) {
       continue;
     }
     
-    cluster->getNodeGraph()->addNode(node);
+    cluster->addNode(node);
   }
   
   return true;
