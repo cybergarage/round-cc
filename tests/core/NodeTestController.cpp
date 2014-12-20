@@ -175,20 +175,6 @@ void NodeTestController::runSystemGetClusterInfoTest(Round::Node *node) {
   Error err;
   std::string jsonString;
   
-  // Node information
-  
-  std::string nodeIp;
-  BOOST_CHECK(node->getRequestAddress(&nodeIp, &err));
-  
-  int nodePort;
-  BOOST_CHECK(node->getRequestPort(&nodePort, &err));
-  
-  std::string nodeCluster;
-  BOOST_CHECK(node->getClusterName(&nodeCluster, &err));
-  
-  std::string nodeHash;
-  BOOST_CHECK(node->getHashCode(&nodeHash));
-  
   // Response information
   
   SystemGetClusterInfoRequest nodeReq;
@@ -206,7 +192,6 @@ void NodeTestController::runSystemGetClusterInfoTest(Round::Node *node) {
   
   Cluster cluster;
   BOOST_CHECK(sysRes.getCluster(&cluster));
-
   BOOST_CHECK(cluster.hasNode(node));
 }
 

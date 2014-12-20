@@ -61,11 +61,22 @@ bool Round::LocalNode::getClusterName(std::string *name, Error *error) {
 bool Round::LocalNode::start(Error *error) {
   stop(error);
   
+  bool areAllOperationSucess = true;
+  
   setState(NodeStatus::ACTIVATING);
 
   nodeWorker.setObject(this);
-  if (!nodeWorker.start()) {
-    setState(NodeStatus::STOP);
+  if (nodeWorker.start()) {
+    if (!this->nodeGraph.addNode(this)) {
+      areAllOperationSucess = false;
+    }
+  }
+  else {
+    areAllOperationSucess = false;
+  }
+
+  if (!areAllOperationSucess) {
+    stop(error);
     return false;
   }
   
@@ -252,7 +263,6 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
 ////////////////////////////////////////////////
 
 bool Round::LocalNode::isSetMethod(const std::string &method) {
-  
   return (SystemMethodRequest::SET_METHOD.compare(method) == 0) ? true : false;
 }
 

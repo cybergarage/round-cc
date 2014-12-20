@@ -32,28 +32,9 @@ bool Round::Node::getCluster(Cluster *cluster, Error *error) {
   SystemGetClusterInfoRequest nodeReq;
   NodeResponse nodeRes;
   if (!postMessage(&nodeReq, &nodeRes, error))
-    return false;
-  
+    return false;  
   SystemGetClusterInfoResponse sysRes(&nodeRes);
-  JSONArray *clusterArray = sysRes.getResultClusterArray();
-  size_t clusterCnt = clusterArray->size();
-  for (size_t n=0; n<clusterCnt; n++) {
-    JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(clusterArray->getObject(n));
-    if (!jsonDict)
-      continue;
-    
-    RemoteNode *node = new RemoteNode();
-    node->setWeakFlag(false);
-    
-    SystemNodeInfoDict nodeInfoDict(jsonDict);
-    if (!nodeInfoDict.getNode(node)) {
-      delete node;
-      continue;
-    }
-    
-    cluster->addNode(node);
-  }
-  return true;
+  return sysRes.getCluster(cluster);
 }
 
 bool Round::Node::getClusterList(ClusterList *clusterList, Error *error) {

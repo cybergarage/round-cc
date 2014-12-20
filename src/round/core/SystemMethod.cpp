@@ -15,10 +15,12 @@
 
 bool Round::SystemNodeInfoDict::setNode(Node *node) {
   Error error;
+  
   std::string nodeAddr;
   if (!node->getRequestAddress(&nodeAddr, &error)) {
     return false;
   }
+  
   int nodePort;
   if (!node->getRequestPort(&nodePort, &error)) {
     return false;
@@ -44,7 +46,7 @@ bool Round::SystemNodeInfoDict::setNode(Node *node) {
 
 bool Round::SystemNodeInfoDict::getNode(RemoteNode *node) {
   std::string nodeAddr;
-  if (getIp(&nodeAddr)) {
+  if (!getIp(&nodeAddr)) {
     return false;
   }
   int nodePort;

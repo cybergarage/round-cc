@@ -92,9 +92,15 @@ BOOST_AUTO_TEST_CASE(LocalNodeScriptManagerTest) {
 }
 
 BOOST_AUTO_TEST_CASE(LocalNodeSystemMethodTest) {
+  Error err;
   TestLocalNode node;
+  
+  BOOST_CHECK(node.start(&err));
+  
   NodeTestController nodeTestController;
   nodeTestController.runSystemMethodTest(&node);
+
+  BOOST_CHECK(node.stop(&err));
 }
 
 BOOST_AUTO_TEST_SUITE_END()
