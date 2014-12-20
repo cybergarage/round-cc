@@ -92,10 +92,15 @@ Round::HttpStatusCode Round::ServerNode::httpRpcRequestReceived(uHTTP::HTTPReque
   if (jsonParser.parse(httpContent) == false)
     return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeParserError);
   
-  if (jsonParser.getObject()->isDictionary() == false)
+  JSONObject *rootObject = jsonParser.getRootObject();
+  if (!rootObject) {
+    return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeParserError);
+  }
+  
+  if (rootObject->isDictionary() == false)
     return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeInvalidRequest);
 
-  NodeRequest *nodeReq = dynamic_cast<NodeRequest *>(jsonParser.popObject());
+  NodeRequest *nodeReq = dynamic_cast<NodeRequest *>(jsonParser.popRootObject());
   if (!nodeReq)
     return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeInvalidRequest);
 
