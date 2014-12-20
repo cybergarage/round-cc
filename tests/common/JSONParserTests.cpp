@@ -296,33 +296,4 @@ BOOST_AUTO_TEST_CASE(RoundJSONDictionaryParserTest) {
   BOOST_CHECK_EQUAL(jsonString.compare(testJSONValue), 0);
 }
 
-////////////////////////////////////////////////////////////
-// For Dictionary in Directory
-////////////////////////////////////////////////////////////
-
-BOOST_AUTO_TEST_CASE(JSONParseDictionaryInDirectoryTest01) {
-  const char *testString = "{\"id\":\"1\",\"jsonrpc\":\"2.0\",\"method\":\"_set_method\",\"params\":{\"code\":\"function echo(params) {return params;}\",\"language\":\"js\",\"name\":\"echo\"}}";
-  JSONParser jsonParser;
-  BOOST_CHECK(jsonParser.parse(testString));
-  BOOST_CHECK(jsonParser.getObject());
-  BOOST_CHECK(jsonParser.getObject()->isDictionary());
-  
-  JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(jsonParser.getObject());
-  BOOST_CHECK(jsonDict);
-
-  std::string jsonStr;
-  JSONObject *jsonObj;
-  
-  BOOST_CHECK(jsonDict->get("id", &jsonStr));
-  BOOST_CHECK_EQUAL(jsonStr.compare("1"), 0);
-
-  BOOST_CHECK(jsonDict->get("jsonrpc", &jsonStr));
-  BOOST_CHECK_EQUAL(jsonStr.compare("2.0"), 0);
-
-  BOOST_CHECK(jsonDict->get("method", &jsonStr));
-  BOOST_CHECK_EQUAL(jsonStr.compare("_set_method"), 0);
-
-  BOOST_CHECK(jsonDict->get("params", &jsonObj));
-}
-
 BOOST_AUTO_TEST_SUITE_END()

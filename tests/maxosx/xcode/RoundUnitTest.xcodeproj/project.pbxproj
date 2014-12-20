@@ -10,6 +10,7 @@
 		2104C9C31A21BED40049DA92 /* ScriptTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2104C9C21A21BED40049DA92 /* ScriptTests.cpp */; };
 		2104C9CA1A21E77E0049DA92 /* JavaScriptTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2104C9C91A21E77E0049DA92 /* JavaScriptTests.cpp */; };
 		210E578C1A29A73E000B60FC /* JavaVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 210E578A1A29A73E000B60FC /* JavaVM.framework */; };
+		213862DC1A45711100311FAE /* JSONRPCParserTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213862DB1A45711100311FAE /* JSONRPCParserTests.cpp */; };
 		215C20BB1A13B6C000CE71E2 /* RoundTestMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215C20BA1A13B6C000CE71E2 /* RoundTestMain.cpp */; };
 		21688A541A38C87E00908890 /* NodeTestController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21688A531A38C87E00908890 /* NodeTestController.cpp */; };
 		217727821A2CE5E4001B4CE0 /* RPCMessageTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217727811A2CE5E4001B4CE0 /* RPCMessageTests.cpp */; };
@@ -114,6 +115,7 @@
 		2104C9C21A21BED40049DA92 /* ScriptTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptTests.cpp; sourceTree = "<group>"; };
 		2104C9C91A21E77E0049DA92 /* JavaScriptTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JavaScriptTests.cpp; sourceTree = "<group>"; };
 		210E578A1A29A73E000B60FC /* JavaVM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaVM.framework; path = System/Library/Frameworks/JavaVM.framework; sourceTree = SDKROOT; };
+		213862DB1A45711100311FAE /* JSONRPCParserTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONRPCParserTests.cpp; sourceTree = "<group>"; };
 		2143143C15401BEE009CC3FA /* RoundUnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RoundUnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		215C20B21A13B6A000CE71E2 /* libround++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libround++.xcodeproj"; path = "../../../lib/macosx/xcode/libround++.xcodeproj"; sourceTree = "<group>"; };
 		215C20B91A13B6C000CE71E2 /* RoundTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoundTest.h; path = ../../RoundTest.h; sourceTree = "<group>"; };
@@ -248,7 +250,6 @@
 		21AD42771A13B7FC00741A08 /* common */ = {
 			isa = PBXGroup;
 			children = (
-				217727801A2CE5E4001B4CE0 /* rpc */,
 				21AD428B1A13B7FC00741A08 /* BitOptionTests.cpp */,
 				21AD428C1A13B7FC00741A08 /* ClockTests.cpp */,
 				21AD428D1A13B7FC00741A08 /* ConfigurationTests.cpp */,
@@ -257,6 +258,7 @@
 				21AD42901A13B7FC00741A08 /* ErrorTests.cpp */,
 				21AD42911A13B7FC00741A08 /* HashObjectTests.cpp */,
 				21AD42921A13B7FC00741A08 /* JSONParserTests.cpp */,
+				213862DB1A45711100311FAE /* JSONRPCParserTests.cpp */,
 				21AD42931A13B7FC00741A08 /* JSONTests.cpp */,
 				21AD42941A13B7FC00741A08 /* MessageTests.cpp */,
 				21AD42951A13B7FC00741A08 /* MutexTests.cpp */,
@@ -266,6 +268,7 @@
 				21AD429A1A13B7FC00741A08 /* SemaphoreTests.cpp */,
 				21AD429B1A13B7FC00741A08 /* StringTokenizerTests.cpp */,
 				21AD429C1A13B7FC00741A08 /* ThreadTests.cpp */,
+				217727801A2CE5E4001B4CE0 /* rpc */,
 			);
 			name = common;
 			path = ../../common;
@@ -427,6 +430,7 @@
 				2184F2061A18E359007F1326 /* RemoteNodeTests.cpp in Sources */,
 				2184F2121A1993B4007F1326 /* ClientCoreTests.cpp in Sources */,
 				21AD42A41A13B7FC00741A08 /* JSONParserTests.cpp in Sources */,
+				213862DC1A45711100311FAE /* JSONRPCParserTests.cpp in Sources */,
 				21AD429D1A13B7FC00741A08 /* BitOptionTests.cpp in Sources */,
 				21AD42A21A13B7FC00741A08 /* ErrorTests.cpp in Sources */,
 				21DA08B71A174A4900D3DCE0 /* NodeStatusTests.cpp in Sources */,
