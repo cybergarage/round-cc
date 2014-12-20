@@ -55,6 +55,11 @@ bool Round::JSONString::set(size_t value) {
   return JSONString::set(strValue);
 }
 
+bool Round::JSONString::set(double value) {
+  std::string strValue = boost::lexical_cast<std::string>(value);
+  return JSONString::set(strValue);
+}
+
 bool Round::JSONString::get(std::string *value) const {
   *value = *this;
   return true;
@@ -108,6 +113,19 @@ bool Round::JSONString::get(size_t *value) const {
     return false;
   
   *value = boost::lexical_cast<size_t>(strValue);
+  
+  return true;
+}
+
+bool Round::JSONString::get(double *value) const {
+  std::string strValue;
+  if (get(&strValue) == false)
+    return false;
+  
+  if (strValue.length() <= 0)
+    return false;
+  
+  *value = boost::lexical_cast<double>(strValue);
   
   return true;
 }

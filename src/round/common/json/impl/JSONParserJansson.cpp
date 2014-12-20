@@ -16,14 +16,33 @@
 
 #if defined(USE_ROUND_JSON_PARSER_JANSSON)
 
-static Round::JSONObject *RoundToJSONObject(Round::JSONParser *jsonParser, json_t *jsonObj) {
-  switch (json_typeof(jsonObj)) {
+static Round::JSONObject *RoundToJSONObject(Round::JSONParser *jsonParser, json_t *jsonTObj) {
+  switch (json_typeof(jsonTObj)) {
   case JSON_OBJECT:
     return jsonParser->createJSONDictionary();
   case JSON_ARRAY:
     return jsonParser->createJSONArray();
+  case JSON_NULL:
+      return new Round::JSONNull();
   case JSON_STRING:
-    return jsonParser->createJSONArray();
+    {
+      Round::JSONString *jsonObj = new Round::JSONString();
+      jsonObj->set(json_string_value(jsonTObj));
+      return jsonObj;
+    }
+  case JSON_INTEGER:
+    {
+      Round::JSONInteger *jsonObj = new Round::JSONInteger();
+      jsonObj->set((int)json_integer_value(jsonTObj));
+      return jsonObj;
+    }
+  case JSON_TRUE:
+  case JSON_FALSE:
+    {
+      Round::JSONBoolean *jsonObj = new Round::JSONBoolean();
+      jsonObj->set((int)json_integer_value(jsonTObj));
+      return jsonObj;
+    }
   }
   return new Round::JSONNull();
 }

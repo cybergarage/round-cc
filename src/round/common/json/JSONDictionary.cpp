@@ -8,9 +8,7 @@
 *
 ******************************************************************/
 
-#include <sstream>
-#include <stdlib.h>
-
+#include <boost/lexical_cast.hpp>
 #include <round/common/JSON.h>
 
 Round::JSONDictionary::JSONDictionary() {
@@ -21,7 +19,7 @@ Round::JSONDictionary::~JSONDictionary() {
 }
 
 bool Round::JSONDictionary::set(const std::string &key, JSONObject *value) {
-if (key.length() <= 0)
+  if (key.length() <= 0)
     return false;
   JSONDictionary::iterator map = find(key);
   if (map == end()) {
@@ -42,7 +40,9 @@ bool Round::JSONDictionary::get(const std::string &key, JSONObject **value) cons
   JSONDictionary::const_iterator dict = find(key);
   if (dict == end())
     return false;
+  
   *value = dict->second;
+  
   return true;
 }
 
@@ -60,26 +60,28 @@ bool Round::JSONDictionary::set(const std::string &key, const char *value) {
 }
 
 bool Round::JSONDictionary::set(const std::string &key, size_t value) {
-  std::stringstream ss;
-  ss << value;
-  return set(key, ss.str());
+  std::string strValue = boost::lexical_cast<std::string>(value);
+  return set(key, strValue);
 }
 
 bool Round::JSONDictionary::set(const std::string &key, int value) {
-  std::stringstream ss;
-  ss << value;
-  return set(key, ss.str());
+  std::string strValue = boost::lexical_cast<std::string>(value);
+  return set(key, strValue);
 }
 
 bool Round::JSONDictionary::set(const std::string &key, long value) {
-  std::stringstream ss;
-  ss << value;
-  return set(key, ss.str());
+  std::string strValue = boost::lexical_cast<std::string>(value);
+  return set(key, strValue);
 }
 
 bool Round::JSONDictionary::set(const std::string &key, bool value) {
   int intValue = value ? 1 : 0;
   return set(key, intValue);
+}
+
+bool Round::JSONDictionary::set(const std::string &key, double value) {
+  std::string strValue = boost::lexical_cast<std::string>(value);
+  return set(key, strValue);
 }
 
 bool Round::JSONDictionary::get(const std::string &key, std::string *value) const {
@@ -120,6 +122,13 @@ bool Round::JSONDictionary::get(const std::string &key, long *value) const {
 }
 
 bool Round::JSONDictionary::get(const std::string &key, bool *value) const {
+  JSONString *jsonObj;
+  if (!get(key, &jsonObj))
+    return false;
+  return jsonObj->get(value);
+}
+
+bool Round::JSONDictionary::get(const std::string &key, double *value) const {
   JSONString *jsonObj;
   if (!get(key, &jsonObj))
     return false;

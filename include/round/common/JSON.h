@@ -28,6 +28,7 @@ class JSONObject {
     NIL = 0,
     STRING,
     INTEGER,
+    REAL,
     BOOLEAN,
     ARRAY,
     DICTIONARY,
@@ -44,6 +45,7 @@ class JSONObject {
   bool isNull() const;
   bool isString() const;
   bool isInteger() const;
+  bool isReal() const;
   bool isBoolean() const;
   bool isArray() const;
   bool isDictionary() const;
@@ -66,12 +68,14 @@ public:
   bool set(bool value);
   bool set(long value);
   bool set(size_t value);
+  bool set(double value);
   
   bool get(std::string *value) const;
   bool get(int *value) const;
   bool get(bool *value) const;
   bool get(long *value) const;
   bool get(size_t *value) const;
+  bool get(double *value) const;
   
   virtual ~JSONString();
   int getType() const {return STRING;}
@@ -89,7 +93,6 @@ class JSONNull : public JSONString {
   int getType() const {return NIL;}
 };
   
-  
 class JSONInteger : public JSONString {
  public:
   JSONInteger();
@@ -98,6 +101,14 @@ class JSONInteger : public JSONString {
   int getType() const {return INTEGER;}
 };
 
+class JSONReal : public JSONString {
+ public:
+  JSONReal();
+  JSONReal(double value);
+    
+  int getType() const {return REAL;}
+};
+  
 class JSONBoolean : public JSONString {
   public:
     JSONBoolean();
@@ -158,6 +169,7 @@ public:
   bool set(const std::string &key, bool value);
   bool set(const std::string &key, long value);
   bool set(const std::string &key, size_t value);
+  bool set(const std::string &key, double value);
 
   bool get(const std::string &key, JSONString **value) const;
   bool get(const std::string &key, std::string *value) const;
@@ -165,6 +177,7 @@ public:
   bool get(const std::string &key, bool *value) const;
   bool get(const std::string &key, long *value) const;
   bool get(const std::string &key, size_t *value) const;
+  bool get(const std::string &key, double *value) const;
 
   const char *get(const std::string &key, std::string *value, const std::string &defaultValue) const;
   std::size_t get(const std::string &key, std::size_t defaultValue) const;

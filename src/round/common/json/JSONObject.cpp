@@ -23,13 +23,17 @@ bool Round::JSONObject::isNull() const {
 bool Round::JSONObject::isString() const {
   if (getType() == STRING)
     return true;
-  if (isInteger() || isBoolean())
+  if (isInteger() || isBoolean() || isReal())
     return true;
-  return false;
+  return (dynamic_cast<const JSONString *>(this)) ? true : false;
 }
 
 bool Round::JSONObject::isInteger() const {
   return (getType() == INTEGER) ? true : false;
+}
+
+bool Round::JSONObject::isReal() const {
+  return (getType() == REAL) ? true : false;
 }
 
 bool Round::JSONObject::isBoolean() const {

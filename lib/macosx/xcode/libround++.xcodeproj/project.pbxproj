@@ -138,6 +138,7 @@
 		21FF09EE1A45952300547B6B /* JSONString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FF09E61A45952300547B6B /* JSONString.cpp */; };
 		21FF09F11A4596FF00547B6B /* JSONBoolean.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FF09EF1A4596FF00547B6B /* JSONBoolean.cpp */; };
 		21FF09F21A4596FF00547B6B /* JSONNull.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FF09F01A4596FF00547B6B /* JSONNull.cpp */; };
+		21FF09F41A45BAFB00547B6B /* JSONReal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FF09F31A45BAFB00547B6B /* JSONReal.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -290,6 +291,7 @@
 		21FF09E61A45952300547B6B /* JSONString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONString.cpp; sourceTree = "<group>"; };
 		21FF09EF1A4596FF00547B6B /* JSONBoolean.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONBoolean.cpp; sourceTree = "<group>"; };
 		21FF09F01A4596FF00547B6B /* JSONNull.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONNull.cpp; sourceTree = "<group>"; };
+		21FF09F31A45BAFB00547B6B /* JSONReal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONReal.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -575,6 +577,7 @@
 				21FF09F01A4596FF00547B6B /* JSONNull.cpp */,
 				21FF09E41A45952300547B6B /* JSONObject.cpp */,
 				21FF09E51A45952300547B6B /* JSONParser.cpp */,
+				21FF09F31A45BAFB00547B6B /* JSONReal.cpp */,
 				21FF09E61A45952300547B6B /* JSONString.cpp */,
 				21FF09DE1A45952300547B6B /* impl */,
 			);
@@ -735,6 +738,7 @@
 				21DE68A31A13B3EA0049227E /* ThreadCore.cpp in Sources */,
 				21DE68A51A13B3EA0049227E /* ThreadManager.cpp in Sources */,
 				21FF09E81A45952300547B6B /* JSONParserParse.cpp in Sources */,
+				21FF09F41A45BAFB00547B6B /* JSONReal.cpp in Sources */,
 				21CCABCA1A145AC900FE57DF /* ConsoleClient.cpp in Sources */,
 				21FF09EB1A45952300547B6B /* JSONInterger.cpp in Sources */,
 				216E5FCB1A13CBEE0043C28B /* Server.cpp in Sources */,

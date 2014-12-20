@@ -52,9 +52,55 @@ BOOST_AUTO_TEST_CASE(RoundJSONIntegerTypeTest) {
 
 BOOST_AUTO_TEST_CASE(RoundJSONIntergerSetterTest) {
   JSONInteger jsonObj;
+
+  int value, retValue;
   
-  int value = 123456;
-  int retValue;
+  value = std::numeric_limits<int>::min();
+  BOOST_CHECK(jsonObj.set(value));
+  BOOST_CHECK(jsonObj.get(&retValue));
+  BOOST_CHECK_EQUAL(value, retValue);
+
+  value = 0;
+  BOOST_CHECK(jsonObj.set(value));
+  BOOST_CHECK(jsonObj.get(&retValue));
+  BOOST_CHECK_EQUAL(value, retValue);
+  
+  value = std::numeric_limits<int>::max();
+  BOOST_CHECK(jsonObj.set(value));
+  BOOST_CHECK(jsonObj.get(&retValue));
+  BOOST_CHECK_EQUAL(value, retValue);
+}
+
+////////////////////////////////////////////////////////////
+// JSONReal
+////////////////////////////////////////////////////////////
+
+BOOST_AUTO_TEST_CASE(RoundJSONRealTypeTest) {
+  JSONReal jsonObj;
+  
+  BOOST_CHECK(jsonObj.isString());
+  BOOST_CHECK(dynamic_cast<JSONString *>(&jsonObj));
+  
+  BOOST_CHECK(jsonObj.isReal());
+  BOOST_CHECK(dynamic_cast<JSONReal *>(&jsonObj));
+}
+
+BOOST_AUTO_TEST_CASE(RoundJSONRealSetterTest) {
+  JSONReal jsonObj;
+  
+  double value, retValue;
+  
+  value = std::numeric_limits<double>::min();
+  BOOST_CHECK(jsonObj.set(value));
+  BOOST_CHECK(jsonObj.get(&retValue));
+  BOOST_CHECK_EQUAL(value, retValue);
+  
+  value = 0;
+  BOOST_CHECK(jsonObj.set(value));
+  BOOST_CHECK(jsonObj.get(&retValue));
+  BOOST_CHECK_EQUAL(value, retValue);
+  
+  value = std::numeric_limits<double>::max();
   BOOST_CHECK(jsonObj.set(value));
   BOOST_CHECK(jsonObj.get(&retValue));
   BOOST_CHECK_EQUAL(value, retValue);
@@ -178,6 +224,10 @@ BOOST_AUTO_TEST_CASE(RoundJSONDictionarySetterTest) {
   BOOST_CHECK(dict.set(key, intValue));
   BOOST_CHECK(dict.get(key, &intBuf));
   BOOST_CHECK_EQUAL(intValue, intBuf);
+  intValue = 0;
+  BOOST_CHECK(dict.set(key, intValue));
+  BOOST_CHECK(dict.get(key, &intBuf));
+  BOOST_CHECK_EQUAL(intValue, intBuf);
   intValue = std::numeric_limits<int>::min();
   BOOST_CHECK(dict.set(key, intValue));
   BOOST_CHECK(dict.get(key, &intBuf));
@@ -186,6 +236,10 @@ BOOST_AUTO_TEST_CASE(RoundJSONDictionarySetterTest) {
   long longValue;
   long longBuf;
   longValue = std::numeric_limits<long>::max();
+  BOOST_CHECK(dict.set(key, longValue));
+  BOOST_CHECK(dict.get(key, &longBuf));
+  BOOST_CHECK_EQUAL(longValue, longBuf);
+  longValue = 0;
   BOOST_CHECK(dict.set(key, longValue));
   BOOST_CHECK(dict.get(key, &longBuf));
   BOOST_CHECK_EQUAL(longValue, longBuf);
@@ -200,11 +254,30 @@ BOOST_AUTO_TEST_CASE(RoundJSONDictionarySetterTest) {
   BOOST_CHECK(dict.set(key, sizeValue));
   BOOST_CHECK(dict.get(key, &sizeBuf));
   BOOST_CHECK_EQUAL(sizeValue, sizeBuf);
+  sizeValue = 0;
+  BOOST_CHECK(dict.set(key, sizeValue));
+  BOOST_CHECK(dict.get(key, &sizeBuf));
+  BOOST_CHECK_EQUAL(sizeValue, sizeBuf);
   sizeValue = std::numeric_limits<size_t>::min();
   BOOST_CHECK(dict.set(key, sizeValue));
   BOOST_CHECK(dict.get(key, &sizeBuf));
   BOOST_CHECK_EQUAL(sizeValue, sizeBuf);
 
+  double realBuf;
+  double realValue;
+  realValue = std::numeric_limits<double>::max();
+  BOOST_CHECK(dict.set(key, realValue));
+  BOOST_CHECK(dict.get(key, &realBuf));
+  BOOST_CHECK_EQUAL(realValue, realBuf);
+  realValue = 0;
+  BOOST_CHECK(dict.set(key, realValue));
+  BOOST_CHECK(dict.get(key, &realBuf));
+  BOOST_CHECK_EQUAL(realValue, realBuf);
+  realValue = std::numeric_limits<double>::min();
+  BOOST_CHECK(dict.set(key, realValue));
+  BOOST_CHECK(dict.get(key, &realBuf));
+  BOOST_CHECK_EQUAL(realValue, realBuf);
+  
   bool boolValue;
   bool boolBuf;
   boolValue = true;
