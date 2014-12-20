@@ -15,6 +15,12 @@
 
 #include <uhttp/net/Socket.h>
 
+Round::RemoteNode::RemoteNode() {
+  setRequestAddress("");
+  setRequestPort(-1);
+  setClusterName("");
+}
+
 Round::RemoteNode::RemoteNode(Round::Node *node) {
   Error err;
   node->getRequestAddress(&this->requestAddress, &err);
@@ -25,20 +31,56 @@ Round::RemoteNode::RemoteNode(Round::Node *node) {
 }
 
 Round::RemoteNode::RemoteNode(const std::string &address, int port) {
-  this->requestAddress = address;
-  this->requestPort = port;
+  setRequestAddress(address);
+  setRequestPort(port);
+  setClusterName("");
 }
 
 Round::RemoteNode::~RemoteNode() {
 }
 
-bool Round::RemoteNode::getRequestPort(int *port, Error *error) const {
-  *port = this->requestPort;
+bool Round::RemoteNode::setRequestAddress(const std::string &address) {
+  this->requestAddress = address;
+  return true;
+}
+
+bool Round::RemoteNode::setRequestPort(int port) {
+  this->requestPort = port;
+  return true;
+}
+
+bool Round::RemoteNode::setClusterName(const std::string &name) {
+  this->clusterName = name;
   return true;
 }
 
 bool Round::RemoteNode::getRequestAddress(std::string *address, Error *error) const {
+  if (this->requestAddress.length() <= 0)
+    return false;
   *address = this->requestAddress;
+  return true;
+}
+
+bool Round::RemoteNode::getRequestPort(int *port, Error *error) const {
+  if (this->requestPort < 0)
+    return false;
+  *port = this->requestPort;
+  return true;
+}
+
+bool Round::RemoteNode::getClusterName(std::string *name, Error *error) {
+  if (this->clusterName.length() <= 0) {
+    SystemGetNodeInfoRequest nodeReq;
+    NodeResponse nodeRes;
+    if (!postMessage(&nodeReq, &nodeRes, error))
+      return false;
+    
+    SystemGetNodeInfoResponse sysRes(&nodeRes);
+    if (!sysRes.getCluster(&this->clusterName))
+      return false;
+  }
+  
+  *name = this->clusterName;
   return true;
 }
 
@@ -100,20 +142,4 @@ bool Round::RemoteNode::postMessage(NodeRequest *nodeReq, NodeResponse *nodeRes,
 
 Round::Node *Round::RemoteNode::clone() {
   return new RemoteNode(this);
-}
-
-bool Round::RemoteNode::getClusterName(std::string *name, Error *error) {
-  if (this->clusterName.length() <= 0) {
-    SystemGetNodeInfoRequest nodeReq;
-    NodeResponse nodeRes;
-    if (!postMessage(&nodeReq, &nodeRes, error))
-      return false;
-    
-    SystemGetNodeInfoResponse sysRes(&nodeRes);
-    if (!sysRes.getCluster(&this->clusterName))
-      return false;
-  }
-  
-  *name = this->clusterName;
-  return true;
 }

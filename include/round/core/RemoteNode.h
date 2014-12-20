@@ -20,15 +20,20 @@ namespace Round {
 class RemoteNode : public Node {
  public:
   
+  RemoteNode();
   RemoteNode(Node *node);
   RemoteNode(const std::string &address, int port);
   virtual ~RemoteNode();
 
  public:
   
-  bool getRequestPort(int *port, Error *error) const;
   bool getRequestAddress(std::string *address, Error *error) const;
+  bool getRequestPort(int *port, Error *error) const;
   bool getClusterName(std::string *name, Error *error);
+  
+  bool setRequestAddress(const std::string &address);
+  bool setRequestPort(int port);
+  bool setClusterName(const std::string &name);
   
   bool hasClusterName() {
     return (0 < this->clusterName.length()) ? true : false;
