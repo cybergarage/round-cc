@@ -80,9 +80,9 @@ public:
   void add(JSONObject *value);
   void add(const std::string &value);
 
-  const JSONObject *getObject(int n) const ;
-  bool getString(int n, std::string *value) const ;
-  bool getInteger(int n, int *value) const ;
+  const JSONObject *getObject(size_t n) const ;
+  bool getString(size_t n, std::string *value) const ;
+  bool getInteger(size_t n, int *value) const ;
 
   void clear();
 };

@@ -12,26 +12,27 @@
 #include <sstream>
 #include <round/common/JSON.h>
 
-Round::JSONArray::JSONArray() {}
+Round::JSONArray::JSONArray() {
+}
 
 Round::JSONArray::~JSONArray() {
-clear();
+  clear();
 }
 
 void Round::JSONArray::add(JSONObject *value) {
-push_back(value);
+  push_back(value);
 }
 
 void Round::JSONArray::add(const std::string &value) {
-JSONString *jsonString = new JSONString(value);
+  JSONString *jsonString = new JSONString(value);
   add(jsonString);
 }
 
-const Round::JSONObject *Round::JSONArray::getObject(int n) const  {
+const Round::JSONObject *Round::JSONArray::getObject(size_t n) const  {
   return at(n);
 }
 
-bool Round::JSONArray::getString(int n, std::string *value) const {
+bool Round::JSONArray::getString(size_t n, std::string *value) const {
   const JSONObject *jsonObj = getObject(n);
   if (!jsonObj)
     return false;
@@ -42,7 +43,7 @@ bool Round::JSONArray::getString(int n, std::string *value) const {
   return true;
 }
 
-bool Round::JSONArray::getInteger(int n, int *value) const {
+bool Round::JSONArray::getInteger(size_t n, int *value) const {
   std::string stringValue;
   if (getString(n, &stringValue) == false)
     return false;
@@ -67,7 +68,7 @@ const char *Round::JSONArray::toJSONString(std::string *stringBuf) const {
 }
 
 bool Round::JSONArray::set(const JSONArray *srcArray) {
-for (JSONArray::const_iterator obj = srcArray->begin(); obj != srcArray->end(); obj++) {
+  for (JSONArray::const_iterator obj = srcArray->begin(); obj != srcArray->end(); obj++) {
     JSONObject *copyObj = NULL;
     if (!(*obj)->copy(&copyObj))
       continue;
@@ -87,7 +88,7 @@ bool Round::JSONArray::copy(JSONObject **newObj) const {
 }
 
 void Round::JSONArray::clear() {
-for (JSONArray::iterator obj = begin(); obj != end(); obj++)
+  for (JSONArray::iterator obj = begin(); obj != end(); obj++)
     delete *obj;
   std::vector<JSONObject *>::clear();
 }
