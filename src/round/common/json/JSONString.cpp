@@ -30,6 +30,11 @@ bool Round::JSONString::set(const std::string &value) {
   return true;
 }
 
+bool Round::JSONString::get(std::string *value) const {
+  *value = *this;
+  return true;
+}
+
 bool Round::JSONString::copy(JSONObject **newObj) const {
   JSONString *dstString = new JSONString();
   if (dstString->set(this)) {

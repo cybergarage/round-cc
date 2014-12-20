@@ -13,15 +13,6 @@
 
 #include <round/common/JSON.h>
 
-inline bool isNumeric(const std::string &strValue) {
-  size_t strLen = strValue.length();
-  for (size_t n=0; n<strLen; n++) {
-    if (!isnumber(strValue[n]) && (strValue[n] != '-'))
-      return false;
-  }
-  return true;
-}
-
 Round::JSONDictionary::JSONDictionary() {
 }
 
@@ -107,7 +98,7 @@ bool Round::JSONDictionary::get(const std::string &key, std::size_t *value) cons
   if (strValue.length() <= 0)
     return false;
   
-  if (!isNumeric(strValue))
+  if (!JSON::IsNumeric(strValue))
     return false;
 
   *value = atol(strValue.c_str());
@@ -123,7 +114,7 @@ bool Round::JSONDictionary::get(const std::string &key, int *value) const {
   if (strValue.length() <= 0)
     return false;
   
-  if (!isNumeric(strValue))
+  if (!JSON::IsNumeric(strValue))
     return false;
 
   *value = atoi(strValue.c_str());
@@ -139,7 +130,7 @@ bool Round::JSONDictionary::get(const std::string &key, long *value) const {
   if (strValue.length() <= 0)
     return false;
   
-  if (!isNumeric(strValue))
+  if (!JSON::IsNumeric(strValue))
     return false;
   
   *value = atol(strValue.c_str());

@@ -21,10 +21,17 @@
 
 namespace Round {
 
+namespace JSON {
+  bool IsNumeric(const std::string &strValue);
+}
+  
 class JSONObject {
  public:
   enum {
-    STRING = 0,
+    NIL = 0,
+    STRING,
+    INTEGER,
+    BOOLEAN,
     ARRAY,
     DICTIONARY,
   };
@@ -37,7 +44,10 @@ class JSONObject {
   virtual bool copy(JSONObject **newObj) const = 0;
   virtual const char *toJSONString(std::string *stringBuf) const = 0;
   
+  bool isNull() const;
   bool isString() const;
+  bool isInteger() const;
+  bool isBoolean() const;
   bool isArray() const;
   bool isDictionary() const;
 
@@ -53,6 +63,7 @@ public:
 
   bool set(const JSONString *jsonObj);
   bool set(const std::string &value);
+  bool get(std::string *value) const;
 
   virtual ~JSONString();
   int getType() const {return STRING;}
@@ -62,6 +73,35 @@ public:
     return copy((JSONObject **)newObj);
   }
   const char *toJSONString(std::string *stringBuf) const;
+};
+
+class JSONNull : public JSONString {
+ public:
+  JSONNull();
+  int getType() const {return NIL;}
+};
+  
+  
+class JSONInteger : public JSONString {
+ public:
+  JSONInteger();
+  JSONInteger(int value);
+
+  bool set(int value);
+  bool get(int *value) const;
+  
+  int getType() const {return INTEGER;}
+};
+
+class JSONBoolean : public JSONString {
+  public:
+    JSONBoolean();
+    JSONBoolean(bool value);
+
+  int getType() const {return BOOLEAN;}
+
+  bool set(bool value);
+  bool get(bool *value) const;
 };
 
 class JSONArray : public JSONObject, public std::vector<JSONObject *> {

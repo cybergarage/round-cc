@@ -16,6 +16,16 @@
 
 #if defined(USE_ROUND_JSON_PARSER_JANSSON)
 
+static Round::JSONObject *RoundToJSONObject(Round::JSONParser *jsonParser, json_t jsonObj) {
+  switch (json_typeof(jsonObj)) {
+  case JSON_OBJECT:
+    return jsonParser->createJSONArray();
+  case JSON_ARRAY:
+    return jsonParser->createJSONArray();
+  }
+  return NULL;
+}
+
 bool Round::JSONParser::parse(const std::string &jsonString, JSONObject **jsonRetObject, Error *error) {
   clear();
 
@@ -27,7 +37,7 @@ bool Round::JSONParser::parse(const std::string &jsonString, JSONObject **jsonRe
   if (!jsonResult) {
     return false;
   }
-  
+
   json_decref(jsonResult);
   
   return true;

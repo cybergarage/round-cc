@@ -16,8 +16,24 @@ Round::JSONObject::JSONObject() {
 Round::JSONObject::~JSONObject() {
 }
 
+bool Round::JSONObject::isNull() const {
+  return (getType() == NIL) ? true : false;
+}
+
 bool Round::JSONObject::isString() const {
-  return (getType() == STRING) ? true : false;
+  if (getType() == STRING)
+    return true;
+  if (isInteger() || isBoolean())
+    return true;
+  return false;
+}
+
+bool Round::JSONObject::isInteger() const {
+  return (getType() == INTEGER) ? true : false;
+}
+
+bool Round::JSONObject::isBoolean() const {
+  return (getType() == BOOLEAN) ? true : false;
 }
 
 bool Round::JSONObject::isArray() const {

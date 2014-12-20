@@ -19,7 +19,6 @@
 		212BFD161A1D0032002549F0 /* Node.h in Headers */ = {isa = PBXBuildFile; fileRef = 212BFD151A1D0032002549F0 /* Node.h */; };
 		212BFD181A1D0056002549F0 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212BFD171A1D0056002549F0 /* Node.cpp */; };
 		213862D71A44F38E00311FAE /* SystemMethod.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213862D61A44F38E00311FAE /* SystemMethod.cpp */; };
-		213862DA1A456E7300311FAE /* JSONParserParse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213862D91A456E7300311FAE /* JSONParserParse.cpp */; };
 		21620E4D1A147A5600690EA8 /* Log.h in Headers */ = {isa = PBXBuildFile; fileRef = 21620E4A1A147A5600690EA8 /* Log.h */; };
 		21620E4E1A147A5600690EA8 /* Logger.h in Headers */ = {isa = PBXBuildFile; fileRef = 21620E4B1A147A5600690EA8 /* Logger.h */; };
 		21620E4F1A147A5600690EA8 /* LoggerTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = 21620E4C1A147A5600690EA8 /* LoggerTarget.h */; };
@@ -109,11 +108,6 @@
 		21DE68881A13B3EA0049227E /* DictionaryKeyList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68631A13B3EA0049227E /* DictionaryKeyList.cpp */; };
 		21DE68891A13B3EA0049227E /* Error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68641A13B3EA0049227E /* Error.cpp */; };
 		21DE688A1A13B3EA0049227E /* HashObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68651A13B3EA0049227E /* HashObject.cpp */; };
-		21DE688B1A13B3EA0049227E /* JSONArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68661A13B3EA0049227E /* JSONArray.cpp */; };
-		21DE688C1A13B3EA0049227E /* JSONDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68671A13B3EA0049227E /* JSONDictionary.cpp */; };
-		21DE688D1A13B3EA0049227E /* JSONObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68681A13B3EA0049227E /* JSONObject.cpp */; };
-		21DE688E1A13B3EA0049227E /* JSONParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68691A13B3EA0049227E /* JSONParser.cpp */; };
-		21DE688F1A13B3EA0049227E /* JSONString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE686A1A13B3EA0049227E /* JSONString.cpp */; };
 		21DE68901A13B3EA0049227E /* MD5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE686B1A13B3EA0049227E /* MD5.cpp */; };
 		21DE68911A13B3EA0049227E /* MD5.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DE686C1A13B3EA0049227E /* MD5.h */; };
 		21DE68921A13B3EA0049227E /* Message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE686D1A13B3EA0049227E /* Message.cpp */; };
@@ -134,7 +128,16 @@
 		21DE68A51A13B3EA0049227E /* ThreadManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68801A13B3EA0049227E /* ThreadManager.cpp */; };
 		21E6AAA61A28BF83004E6762 /* ScriptEngineMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E6AAA51A28BF83004E6762 /* ScriptEngineMap.cpp */; };
 		21E6AAA81A28CCFA004E6762 /* ScriptManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E6AAA71A28CCFA004E6762 /* ScriptManager.cpp */; };
-		21FF09DC1A457FA800547B6B /* JSONParserJansson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FF09DB1A457FA800547B6B /* JSONParserJansson.cpp */; };
+		21FF09E71A45952300547B6B /* JSONParserJansson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FF09DF1A45952300547B6B /* JSONParserJansson.cpp */; };
+		21FF09E81A45952300547B6B /* JSONParserParse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FF09E01A45952300547B6B /* JSONParserParse.cpp */; };
+		21FF09E91A45952300547B6B /* JSONArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FF09E11A45952300547B6B /* JSONArray.cpp */; };
+		21FF09EA1A45952300547B6B /* JSONDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FF09E21A45952300547B6B /* JSONDictionary.cpp */; };
+		21FF09EB1A45952300547B6B /* JSONInterger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FF09E31A45952300547B6B /* JSONInterger.cpp */; };
+		21FF09EC1A45952300547B6B /* JSONObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FF09E41A45952300547B6B /* JSONObject.cpp */; };
+		21FF09ED1A45952300547B6B /* JSONParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FF09E51A45952300547B6B /* JSONParser.cpp */; };
+		21FF09EE1A45952300547B6B /* JSONString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FF09E61A45952300547B6B /* JSONString.cpp */; };
+		21FF09F11A4596FF00547B6B /* JSONBoolean.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FF09EF1A4596FF00547B6B /* JSONBoolean.cpp */; };
+		21FF09F21A4596FF00547B6B /* JSONNull.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FF09F01A4596FF00547B6B /* JSONNull.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,7 +170,6 @@
 		212BFD151A1D0032002549F0 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
 		212BFD171A1D0056002549F0 /* Node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Node.cpp; sourceTree = "<group>"; };
 		213862D61A44F38E00311FAE /* SystemMethod.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemMethod.cpp; sourceTree = "<group>"; };
-		213862D91A456E7300311FAE /* JSONParserParse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONParserParse.cpp; sourceTree = "<group>"; };
 		21620E4A1A147A5600690EA8 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		21620E4B1A147A5600690EA8 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		21620E4C1A147A5600690EA8 /* LoggerTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerTarget.h; sourceTree = "<group>"; };
@@ -258,11 +260,6 @@
 		21DE68631A13B3EA0049227E /* DictionaryKeyList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DictionaryKeyList.cpp; sourceTree = "<group>"; };
 		21DE68641A13B3EA0049227E /* Error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Error.cpp; sourceTree = "<group>"; };
 		21DE68651A13B3EA0049227E /* HashObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HashObject.cpp; sourceTree = "<group>"; };
-		21DE68661A13B3EA0049227E /* JSONArray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONArray.cpp; sourceTree = "<group>"; };
-		21DE68671A13B3EA0049227E /* JSONDictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONDictionary.cpp; sourceTree = "<group>"; };
-		21DE68681A13B3EA0049227E /* JSONObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONObject.cpp; sourceTree = "<group>"; };
-		21DE68691A13B3EA0049227E /* JSONParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONParser.cpp; sourceTree = "<group>"; };
-		21DE686A1A13B3EA0049227E /* JSONString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONString.cpp; sourceTree = "<group>"; };
 		21DE686B1A13B3EA0049227E /* MD5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MD5.cpp; sourceTree = "<group>"; };
 		21DE686C1A13B3EA0049227E /* MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5.h; sourceTree = "<group>"; };
 		21DE686D1A13B3EA0049227E /* Message.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Message.cpp; sourceTree = "<group>"; };
@@ -283,7 +280,16 @@
 		21DE68801A13B3EA0049227E /* ThreadManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadManager.cpp; sourceTree = "<group>"; };
 		21E6AAA51A28BF83004E6762 /* ScriptEngineMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptEngineMap.cpp; sourceTree = "<group>"; };
 		21E6AAA71A28CCFA004E6762 /* ScriptManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptManager.cpp; sourceTree = "<group>"; };
-		21FF09DB1A457FA800547B6B /* JSONParserJansson.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONParserJansson.cpp; sourceTree = "<group>"; };
+		21FF09DF1A45952300547B6B /* JSONParserJansson.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONParserJansson.cpp; sourceTree = "<group>"; };
+		21FF09E01A45952300547B6B /* JSONParserParse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONParserParse.cpp; sourceTree = "<group>"; };
+		21FF09E11A45952300547B6B /* JSONArray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONArray.cpp; sourceTree = "<group>"; };
+		21FF09E21A45952300547B6B /* JSONDictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONDictionary.cpp; sourceTree = "<group>"; };
+		21FF09E31A45952300547B6B /* JSONInterger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONInterger.cpp; sourceTree = "<group>"; };
+		21FF09E41A45952300547B6B /* JSONObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONObject.cpp; sourceTree = "<group>"; };
+		21FF09E51A45952300547B6B /* JSONParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONParser.cpp; sourceTree = "<group>"; };
+		21FF09E61A45952300547B6B /* JSONString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONString.cpp; sourceTree = "<group>"; };
+		21FF09EF1A4596FF00547B6B /* JSONBoolean.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONBoolean.cpp; sourceTree = "<group>"; };
+		21FF09F01A4596FF00547B6B /* JSONNull.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONNull.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,15 +304,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		213862D81A456E7300311FAE /* impl */ = {
-			isa = PBXGroup;
-			children = (
-				21FF09DB1A457FA800547B6B /* JSONParserJansson.cpp */,
-				213862D91A456E7300311FAE /* JSONParserParse.cpp */,
-			);
-			path = impl;
-			sourceTree = "<group>";
-		};
 		21620E491A147A5600690EA8 /* core */ = {
 			isa = PBXGroup;
 			children = (
@@ -533,7 +530,7 @@
 		21DE68371A13B3EA0049227E /* common */ = {
 			isa = PBXGroup;
 			children = (
-				213862D81A456E7300311FAE /* impl */,
+				21FF09DD1A45952300547B6B /* json */,
 				21C1697C1A2CAD960059D95E /* rpc */,
 				21C1697A1A2CA60A0059D95E /* RPC.cpp */,
 				21DE685C1A13B3EA0049227E /* BitOption.cpp */,
@@ -546,11 +543,6 @@
 				21DE68631A13B3EA0049227E /* DictionaryKeyList.cpp */,
 				21DE68641A13B3EA0049227E /* Error.cpp */,
 				21DE68651A13B3EA0049227E /* HashObject.cpp */,
-				21DE68661A13B3EA0049227E /* JSONArray.cpp */,
-				21DE68671A13B3EA0049227E /* JSONDictionary.cpp */,
-				21DE68681A13B3EA0049227E /* JSONObject.cpp */,
-				21DE68691A13B3EA0049227E /* JSONParser.cpp */,
-				21DE686A1A13B3EA0049227E /* JSONString.cpp */,
 				21DE686B1A13B3EA0049227E /* MD5.cpp */,
 				21DE686C1A13B3EA0049227E /* MD5.h */,
 				21DE686D1A13B3EA0049227E /* Message.cpp */,
@@ -571,6 +563,31 @@
 				21DE68801A13B3EA0049227E /* ThreadManager.cpp */,
 			);
 			path = common;
+			sourceTree = "<group>";
+		};
+		21FF09DD1A45952300547B6B /* json */ = {
+			isa = PBXGroup;
+			children = (
+				21FF09E11A45952300547B6B /* JSONArray.cpp */,
+				21FF09EF1A4596FF00547B6B /* JSONBoolean.cpp */,
+				21FF09E21A45952300547B6B /* JSONDictionary.cpp */,
+				21FF09E31A45952300547B6B /* JSONInterger.cpp */,
+				21FF09F01A4596FF00547B6B /* JSONNull.cpp */,
+				21FF09E41A45952300547B6B /* JSONObject.cpp */,
+				21FF09E51A45952300547B6B /* JSONParser.cpp */,
+				21FF09E61A45952300547B6B /* JSONString.cpp */,
+				21FF09DE1A45952300547B6B /* impl */,
+			);
+			path = json;
+			sourceTree = "<group>";
+		};
+		21FF09DE1A45952300547B6B /* impl */ = {
+			isa = PBXGroup;
+			children = (
+				21FF09DF1A45952300547B6B /* JSONParserJansson.cpp */,
+				21FF09E01A45952300547B6B /* JSONParserParse.cpp */,
+			);
+			path = impl;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -703,6 +720,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21DA08781A17426500D3DCE0 /* NodeFinderNotification.cpp in Sources */,
+				21FF09ED1A45952300547B6B /* JSONParser.cpp in Sources */,
 				21DE68841A13B3EA0049227E /* ConsistentHashGraph.cpp in Sources */,
 				2184F21A1A19B62C007F1326 /* NodeResponse.cpp in Sources */,
 				21DE68881A13B3EA0049227E /* DictionaryKeyList.cpp in Sources */,
@@ -712,17 +730,18 @@
 				21DE68891A13B3EA0049227E /* Error.cpp in Sources */,
 				21E6AAA81A28CCFA004E6762 /* ScriptManager.cpp in Sources */,
 				21DA08751A17426500D3DCE0 /* LocalNodeConfig.cpp in Sources */,
-				213862DA1A456E7300311FAE /* JSONParserParse.cpp in Sources */,
 				21DE68961A13B3EA0049227E /* NotificationCenter.cpp in Sources */,
 				21DE68821A13B3EA0049227E /* Clock.cpp in Sources */,
 				21DE68A31A13B3EA0049227E /* ThreadCore.cpp in Sources */,
 				21DE68A51A13B3EA0049227E /* ThreadManager.cpp in Sources */,
+				21FF09E81A45952300547B6B /* JSONParserParse.cpp in Sources */,
 				21CCABCA1A145AC900FE57DF /* ConsoleClient.cpp in Sources */,
+				21FF09EB1A45952300547B6B /* JSONInterger.cpp in Sources */,
 				216E5FCB1A13CBEE0043C28B /* Server.cpp in Sources */,
-				21FF09DC1A457FA800547B6B /* JSONParserJansson.cpp in Sources */,
 				21DE68931A13B3EA0049227E /* MessageManager.cpp in Sources */,
+				21FF09EE1A45952300547B6B /* JSONString.cpp in Sources */,
 				21DE689B1A13B3EA0049227E /* Properties.cpp in Sources */,
-				21DE688D1A13B3EA0049227E /* JSONObject.cpp in Sources */,
+				21FF09EA1A45952300547B6B /* JSONDictionary.cpp in Sources */,
 				21DE68A41A13B3EA0049227E /* ThreadList.cpp in Sources */,
 				2173D4FB1A3822340098CA35 /* SystemMethodRequest.cpp in Sources */,
 				21DA08761A17426500D3DCE0 /* NodeCore.cpp in Sources */,
@@ -734,6 +753,7 @@
 				21DA08D31A175F3100D3DCE0 /* ServerNode.cpp in Sources */,
 				21DA08791A17426500D3DCE0 /* NodeFinderObserver.cpp in Sources */,
 				216E5FCA1A13CBEE0043C28B /* Finder.cpp in Sources */,
+				21FF09E71A45952300547B6B /* JSONParserJansson.cpp in Sources */,
 				21DE68851A13B3EA0049227E /* ConsistentHashNode.cpp in Sources */,
 				21DE68971A13B3EA0049227E /* NotificationObserver.cpp in Sources */,
 				212BFD181A1D0056002549F0 /* Node.cpp in Sources */,
@@ -741,17 +761,16 @@
 				21CCABCB1A145AC900FE57DF /* ConsoleError.cpp in Sources */,
 				21DE689D1A13B3EA0049227E /* Semaphore.cpp in Sources */,
 				2188042B1A22EF690053473E /* JavaScriptEngine.cpp in Sources */,
-				21DE688F1A13B3EA0049227E /* JSONString.cpp in Sources */,
-				21DE688C1A13B3EA0049227E /* JSONDictionary.cpp in Sources */,
+				21FF09EC1A45952300547B6B /* JSONObject.cpp in Sources */,
 				21DA08CF1A175E8200D3DCE0 /* UPnPServerNode.cpp in Sources */,
 				21DE68861A13B3EA0049227E /* ConsistentHashObject.cpp in Sources */,
 				210E57861A29A574000B60FC /* JavaEngine.cpp in Sources */,
-				21DE688E1A13B3EA0049227E /* JSONParser.cpp in Sources */,
 				21DA08C21A174EAB00D3DCE0 /* NodeStatus.cpp in Sources */,
 				21DE68A21A13B3EA0049227E /* StringTokenizer.cpp in Sources */,
 				213862D71A44F38E00311FAE /* SystemMethod.cpp in Sources */,
 				216E5FC91A13CBEE0043C28B /* Client.cpp in Sources */,
 				21DA08721A17426500D3DCE0 /* Cluster.cpp in Sources */,
+				21FF09F11A4596FF00547B6B /* JSONBoolean.cpp in Sources */,
 				21620E561A14809D00690EA8 /* NodeConfig.cpp in Sources */,
 				21DA087B1A17426500D3DCE0 /* NodeList.cpp in Sources */,
 				21620E521A147A6400690EA8 /* Logger.cpp in Sources */,
@@ -763,7 +782,6 @@
 				21DE68921A13B3EA0049227E /* Message.cpp in Sources */,
 				21DE689C1A13B3EA0049227E /* Random.cpp in Sources */,
 				21DE689F1A13B3EA0049227E /* SHA1.cpp in Sources */,
-				21DE688B1A13B3EA0049227E /* JSONArray.cpp in Sources */,
 				21DA08741A17426500D3DCE0 /* LocalNode.cpp in Sources */,
 				21DE688A1A13B3EA0049227E /* HashObject.cpp in Sources */,
 				2184F2191A19B62C007F1326 /* NodeRequest.cpp in Sources */,
@@ -775,7 +793,9 @@
 				21DE68941A13B3EA0049227E /* MessageQueue.cpp in Sources */,
 				21DA08C31A174EAB00D3DCE0 /* RemoteNode.cpp in Sources */,
 				2184F2101A1993A3007F1326 /* ClientCore.cpp in Sources */,
+				21FF09F21A4596FF00547B6B /* JSONNull.cpp in Sources */,
 				210E577C1A235BFD000B60FC /* ScriptEngine.cpp in Sources */,
+				21FF09E91A45952300547B6B /* JSONArray.cpp in Sources */,
 				21B1DF041A32C4C70070B65D /* LocalNodeWorker.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

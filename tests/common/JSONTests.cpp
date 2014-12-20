@@ -24,8 +24,98 @@ using namespace Round;
 
 BOOST_AUTO_TEST_SUITE(json)
 
+////////////////////////////////////////////////////////////
+// JSONNull
+////////////////////////////////////////////////////////////
+
+BOOST_AUTO_TEST_CASE(RoundJSONNullTypeTest) {
+  JSONNull jsonObj;
+  
+  BOOST_CHECK(jsonObj.isNull());
+  BOOST_CHECK(dynamic_cast<JSONString *>(&jsonObj));
+}
+
+////////////////////////////////////////////////////////////
+// JSONString
+////////////////////////////////////////////////////////////
+
+BOOST_AUTO_TEST_CASE(RoundJSONStringTypeTest) {
+  JSONString jsonObj;
+  
+  BOOST_CHECK(jsonObj.isString());
+  BOOST_CHECK(dynamic_cast<JSONString *>(&jsonObj));
+}
+
+BOOST_AUTO_TEST_CASE(RoundJSONStringSetterTest) {
+  JSONString jsonObj;
+  
+  string value = "value";
+  string retValue;
+  BOOST_CHECK(jsonObj.set(value));
+  BOOST_CHECK(jsonObj.get(&retValue));
+  BOOST_CHECK_EQUAL(value.compare(retValue), 0);
+}
+
+////////////////////////////////////////////////////////////
+// JSONInteger
+////////////////////////////////////////////////////////////
+
+BOOST_AUTO_TEST_CASE(RoundJSONIntegerTypeTest) {
+  JSONInteger jsonObj;
+  
+  BOOST_CHECK(jsonObj.isString());
+  BOOST_CHECK(dynamic_cast<JSONString *>(&jsonObj));
+
+  BOOST_CHECK(jsonObj.isInteger());
+  BOOST_CHECK(dynamic_cast<JSONInteger *>(&jsonObj));
+}
+
+BOOST_AUTO_TEST_CASE(RoundJSONIntergerSetterTest) {
+  JSONInteger jsonObj;
+  
+  int value = 123456;
+  int retValue;
+  BOOST_CHECK(jsonObj.set(value));
+  BOOST_CHECK(jsonObj.get(&retValue));
+  BOOST_CHECK_EQUAL(value, retValue);
+}
+
+////////////////////////////////////////////////////////////
+// JSONInteger
+////////////////////////////////////////////////////////////
+
+BOOST_AUTO_TEST_CASE(RoundJSONBooleanTypeTest) {
+  JSONBoolean jsonObj;
+  
+  BOOST_CHECK(jsonObj.isString());
+  BOOST_CHECK(dynamic_cast<JSONString *>(&jsonObj));
+  
+  BOOST_CHECK(jsonObj.isBoolean());
+  BOOST_CHECK(dynamic_cast<JSONBoolean *>(&jsonObj));
+}
+
+BOOST_AUTO_TEST_CASE(RoundJSONBooleanSetterTest) {
+  JSONBoolean jsonObj;
+  
+  bool value, retValue;
+  
+  value = true;
+  BOOST_CHECK(jsonObj.set(value));
+  BOOST_CHECK(jsonObj.get(&retValue));
+  BOOST_CHECK_EQUAL(value, retValue);
+
+  value = false;
+  BOOST_CHECK(jsonObj.set(value));
+  BOOST_CHECK(jsonObj.get(&retValue));
+  BOOST_CHECK_EQUAL(value, retValue);
+}
+
+////////////////////////////////////////////////////////////
+// JSONDictionary
+////////////////////////////////////////////////////////////
+
 BOOST_AUTO_TEST_CASE(RoundJSONDictionarySetterTest) {
-JSONDictionary dict;
+  JSONDictionary dict;
 
   string key = "key";
 
@@ -76,7 +166,7 @@ JSONDictionary dict;
 }
 
 BOOST_AUTO_TEST_CASE(RoundJSONDictionaryGetterDefaultTest) {
-JSONDictionary dict;
+  JSONDictionary dict;
 
   string key = "key";
 
@@ -119,7 +209,7 @@ JSONDictionary dict;
 }
 
 BOOST_AUTO_TEST_CASE(RoundJSONDictionaryStringSetterTest) {
-JSONDictionary dict;
+  JSONDictionary dict;
 
   string key = "key";
   const char *strValue = "value";
@@ -131,7 +221,7 @@ JSONDictionary dict;
 }
 
 BOOST_AUTO_TEST_CASE(RoundJSONStringCopyTest) {
-const std::string testValue = "testValue";
+  const std::string testValue = "testValue";
   JSONString srcString;
   srcString.set(testValue);
 
@@ -141,7 +231,7 @@ const std::string testValue = "testValue";
 }
 
 BOOST_AUTO_TEST_CASE(RoundJSONArrayCopyTest) {
-const int testValueCnt = 3;
+  const int testValueCnt = 3;
 
   JSONArray srcArray;
   for (int n = 0; n < testValueCnt; n++) {
@@ -158,7 +248,7 @@ const int testValueCnt = 3;
 }
 
 BOOST_AUTO_TEST_CASE(RoundJSONDictionaryCopyTest) {
-const std::string testKey = "testKey";
+  const std::string testKey = "testKey";
   const std::string testValue = "testValue";
 
   JSONDictionary srcDist;
@@ -170,4 +260,3 @@ const std::string testKey = "testKey";
 }
 
 BOOST_AUTO_TEST_SUITE_END()
-
