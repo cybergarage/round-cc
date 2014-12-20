@@ -134,6 +134,7 @@
 		21DE68A51A13B3EA0049227E /* ThreadManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE68801A13B3EA0049227E /* ThreadManager.cpp */; };
 		21E6AAA61A28BF83004E6762 /* ScriptEngineMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E6AAA51A28BF83004E6762 /* ScriptEngineMap.cpp */; };
 		21E6AAA81A28CCFA004E6762 /* ScriptManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E6AAA71A28CCFA004E6762 /* ScriptManager.cpp */; };
+		21FF09DC1A457FA800547B6B /* JSONParserJansson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FF09DB1A457FA800547B6B /* JSONParserJansson.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -282,6 +283,7 @@
 		21DE68801A13B3EA0049227E /* ThreadManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadManager.cpp; sourceTree = "<group>"; };
 		21E6AAA51A28BF83004E6762 /* ScriptEngineMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptEngineMap.cpp; sourceTree = "<group>"; };
 		21E6AAA71A28CCFA004E6762 /* ScriptManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptManager.cpp; sourceTree = "<group>"; };
+		21FF09DB1A457FA800547B6B /* JSONParserJansson.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONParserJansson.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -299,6 +301,7 @@
 		213862D81A456E7300311FAE /* impl */ = {
 			isa = PBXGroup;
 			children = (
+				21FF09DB1A457FA800547B6B /* JSONParserJansson.cpp */,
 				213862D91A456E7300311FAE /* JSONParserParse.cpp */,
 			);
 			path = impl;
@@ -716,6 +719,7 @@
 				21DE68A51A13B3EA0049227E /* ThreadManager.cpp in Sources */,
 				21CCABCA1A145AC900FE57DF /* ConsoleClient.cpp in Sources */,
 				216E5FCB1A13CBEE0043C28B /* Server.cpp in Sources */,
+				21FF09DC1A457FA800547B6B /* JSONParserJansson.cpp in Sources */,
 				21DE68931A13B3EA0049227E /* MessageManager.cpp in Sources */,
 				21DE689B1A13B3EA0049227E /* Properties.cpp in Sources */,
 				21DE688D1A13B3EA0049227E /* JSONObject.cpp in Sources */,

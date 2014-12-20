@@ -13,6 +13,10 @@
 
 #include <round/common/JSON.h>
 
+#define USE_JSON_PARSER_ROUND 1
+
+#if defined(USE_JSON_PARSER_ROUND)
+
 static std::string JSON_ARRAY_TRIMS = ", \n\t";
 static std::string JSON_ARRAY_BEGIN = "\", ";
 static std::string JSON_ARRAY_END = "\",";
@@ -29,6 +33,8 @@ static std::string JSON_DIR_ARRAY_END = "}";
 static std::string JSON_KEY_TRIMS = "\" []:";
 static std::string JSON_VAL_TRIMS = "\" ,";
 
+static bool RoundJSONParse(Round::JSONParser *jsonParser, const std::string &jsonString, Round::JSONArray *parentArray);
+static bool RoundJSONParse(Round::JSONParser *jsonParser, const std::string &jsonString, Round::JSONDictionary *parentDir);
 static void ExplodeJSONStringOf(const std::string &str, const std::string &start, const std::string &end, std::vector<std::string> *result);
 static void ExplodeJSONStringNotOf(const std::string &str, const std::string &start, const std::string &end, std::vector<std::string> *result);
 static void TrimJSONString(const std::string &str, const std::string &trims, std::string *value);
@@ -42,15 +48,15 @@ inline void TrimJSONDictionaryString(const std::string &str, std::string *value)
   TrimJSONString(str, "{", "}", JSON_DIR_TRIMS, value);
 }
 
-bool Round::JSONParser::parse(const std::string &jsonString, JSONArray *parentArray) {
+static bool RoundJSONParse(Round::JSONParser *jsonParser, const std::string &jsonString, Round::JSONArray *parentArray) {
   if (jsonString.find(JSON_ARRAY_DIR_BIGIN) == 0) {
     std::vector<std::string> dirValues;
     ExplodeJSONStringOf(jsonString, JSON_ARRAY_DIR_BIGIN, JSON_ARRAY_DIR_END, &dirValues);
     for (std::vector<std::string>::iterator dirVal = dirValues.begin(); dirVal != dirValues.end(); dirVal++) {
-      JSONDictionary *jsonDict = createJSONDictionary();
+      Round::JSONDictionary *jsonDict = jsonParser->createJSONDictionary();
       std::string values;
       TrimJSONDictionaryString(*dirVal, &values);
-      parse(values, jsonDict);
+      RoundJSONParse(jsonParser, values, jsonDict);
       parentArray->push_back(jsonDict);
     }
     return true;
@@ -61,14 +67,14 @@ bool Round::JSONParser::parse(const std::string &jsonString, JSONArray *parentAr
   for (std::vector<std::string>::iterator value = values.begin(); value != values.end(); value++) {
     std::string valString;
     TrimJSONString(*value, JSON_VAL_TRIMS, &valString);
-    JSONString *jsonString = createJSONString(valString);
+    Round::JSONString *jsonString = jsonParser->createJSONString(valString);
     parentArray->push_back(jsonString);
   }
 
   return true;
 }
 
-bool Round::JSONParser::parse(const std::string &jsonString, JSONDictionary *parentDir) {
+static bool RoundJSONParse(Round::JSONParser *jsonParser, const std::string &jsonString, Round::JSONDictionary *parentDir) {
   std::size_t dirBeginIndex = 0;
   std::size_t dirColonIndex = jsonString.find_first_of(":", dirBeginIndex);
   while (dirColonIndex != std::string::npos) {
@@ -84,15 +90,15 @@ bool Round::JSONParser::parse(const std::string &jsonString, JSONDictionary *par
       valueEndIndex = jsonString.find_first_of("]", (valueBeginIndex + 1));
       if (valueEndIndex != std::string::npos) {
         std::string arrayValue = std::string(jsonString, (valueBeginIndex + 1), (valueEndIndex - valueBeginIndex - 1));
-        JSONArray *jsonArray = createJSONArray();
-        if (parse(arrayValue, jsonArray))
+        Round::JSONArray *jsonArray = jsonParser->createJSONArray();
+        if (RoundJSONParse(jsonParser, arrayValue, jsonArray))
           parentDir->set(key, jsonArray);
       }
     } else if (valueBeginChar == '\"') {
       valueEndIndex = jsonString.find_first_of("\"", (valueBeginIndex + 1));
       if (valueEndIndex != std::string::npos) {
         std::string stringValue = std::string(jsonString, (valueBeginIndex + 1), (valueEndIndex - valueBeginIndex - 1));
-        JSONString *stringObj = createJSONString(stringValue);
+        Round::JSONString *stringObj = jsonParser->createJSONString(stringValue);
         parentDir->set(key, stringObj);
       }
     } else if (valueBeginChar == '{') {
@@ -104,8 +110,8 @@ bool Round::JSONParser::parse(const std::string &jsonString, JSONDictionary *par
       }
       if (valueEndIndex != std::string::npos) {
         std::string dirValue = std::string(jsonString, (valueBeginIndex + 1), (valueEndIndex - valueBeginIndex - 1));
-        JSONDictionary *jsonDict = createJSONDictionary();
-        if (parse(dirValue, jsonDict))
+        Round::JSONDictionary *jsonDict = jsonParser->createJSONDictionary();
+        if (RoundJSONParse(jsonParser, dirValue, jsonDict))
           parentDir->set(key, jsonDict);
       }
     } else {
@@ -117,7 +123,7 @@ bool Round::JSONParser::parse(const std::string &jsonString, JSONDictionary *par
         valueEndIndex--;
       }
       std::string value = std::string(jsonString, valueBeginIndex, (valueEndIndex - valueBeginIndex + 1));
-      JSONString *stringObj = createJSONString(value);
+      Round::JSONString *stringObj = jsonParser->createJSONString(value);
       parentDir->set(key, stringObj);
     }
     if (valueEndIndex == std::string::npos)
@@ -131,7 +137,7 @@ bool Round::JSONParser::parse(const std::string &jsonString, JSONDictionary *par
   return true;
 }
 
-bool Round::JSONParser::parse(const std::string &jsonString, JSONObject **jsonRetObject) {
+bool Round::JSONParser::parse(const std::string &jsonString, JSONObject **jsonRetObject, Error *error) {
   clear();
 
   if (jsonString.size() <= 0)
@@ -142,7 +148,7 @@ bool Round::JSONParser::parse(const std::string &jsonString, JSONObject **jsonRe
     JSONArray *jsonArray = createJSONArray();
     std::string values;
     TrimJSONArrayString(jsonString, &values);
-    parse(values, jsonArray);
+    RoundJSONParse(this, values, jsonArray);
     *jsonRetObject = jsonArray;
     return true;
   }
@@ -152,7 +158,7 @@ bool Round::JSONParser::parse(const std::string &jsonString, JSONObject **jsonRe
     JSONDictionary *jsonDict = createJSONDictionary();
     std::string values;
     TrimJSONDictionaryString(jsonString, &values);
-    parse(values, jsonDict);
+    RoundJSONParse(this, values, jsonDict);
     *jsonRetObject = jsonDict;
     return true;
   }
@@ -250,3 +256,5 @@ static void TrimJSONString(const std::string &str, const std::string &start, con
 
   *value = std::string(str, beginIndex, lastIndex - beginIndex + 1);
 }
+
+#endif

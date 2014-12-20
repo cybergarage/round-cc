@@ -31,6 +31,7 @@ Round is an open source project, distributed under a [BSD-style license](../LICE
 | [Chrome V8](https://developers.google.com/v8/) | 3.25.30 or later |
 | [OpenSSL](https://www.openssl.org) | 1.0.1 or later |
 | libxml2 | ??? |
+| [Jansson](http://www.digip.org/jansson/) | 2.6 or later |
 | [CyberLink for C++](http://www.cybergarage.org/do/view/Main/CyberLinkForCC) | ??? |
 | [µHTTP for C++](http://www.cybergarage.org/do/view/Main/HttpEngineForCC) | ??? |
 

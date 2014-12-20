@@ -25,8 +25,9 @@ BOOST_AUTO_TEST_SUITE(json)
 BOOST_AUTO_TEST_CASE(JSONParseRpcBasicMessageTest01) {
   const char *testString = "{\"id\":\"1\",\"jsonrpc\":\"2.0\",\"method\":\"_set_method\",\"params\":{\"code\":\"function echo(params) {return params;}\",\"language\":\"js\",\"name\":\"echo\"}}";
   
+  Error error;
   JSONParser jsonParser;
-  BOOST_CHECK(jsonParser.parse(testString));
+  BOOST_CHECK(jsonParser.parse(testString, &error));
   
   JSONObject *rootObj = jsonParser.getRootObject();
   BOOST_CHECK(rootObj);
@@ -57,8 +58,9 @@ BOOST_AUTO_TEST_CASE(JSONParseRpcBasicMessageTest01) {
 BOOST_AUTO_TEST_CASE(JSONRPCGetClusterTest) {
   const std::string testString = " {\"id\":\"6\",\"jsonrpc\":\"2.0\",\"result\":{\"cluster\":{\"nodes\":[\"{\"cluster\":\"round\",\"hash\":\"D0F02577D7855CA1C3EE6E3A6DC64D2A26648B81\",\"ip\":\"172.20.10.2\",\"port\":\"12072\"}\"]}},\"ts\":\"4\"}";
 
+  Error error;
   JSONParser jsonParser;
-  BOOST_CHECK(jsonParser.parse(testString));
+  BOOST_CHECK(jsonParser.parse(testString, &error));
   
   JSONObject *rootObj = jsonParser.getRootObject();
   BOOST_CHECK(rootObj);

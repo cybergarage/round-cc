@@ -14,14 +14,11 @@ AM_INIT_AUTOMAKE
 # Constants
 ##############################
 
-UHTTP_VERSION=0.6
-CLINKCC_VERSION=2.0
 EXPAT_VERSION=1.95
 LIBXML2_VERSION=2.6.20
-SQLITE3_VERSION=3.6.0
-LEVELDB_VERSION=1.6.0
-LIBXML2_VERSION=2.6.20
-LIBANTLR3C_VERSION=3.4
+JANSSON_VERSION=2.6
+UHTTP_VERSION=0.6
+CLINKCC_VERSION=2.0
 
 ##############################
 # Checks for programs.
@@ -48,6 +45,22 @@ AC_ARG_WITH(libtool,
 		       [],
 		       [with_libtool=yes])
 AM_CONDITIONAL(HAVE_LIBTOOL, test $with_libtool = yes)
+
+##############################
+# Checks for BOOST 
+##############################
+
+AC_CHECK_LIB([boost_system-mt],[main],,[AC_MSG_ERROR(Round for C++ needs boost::system-mt)])
+AC_CHECK_LIB([boost_filesystem-mt],[main],,[AC_MSG_ERROR(Round for C++ needs boost::filesystem-mt)])
+AC_CHECK_LIB([boost_thread-mt],[main],,[AC_MSG_ERROR(Round for C++ needs boost::thread-mt)])
+
+##############################
+# Checks for Basic Libraries
+##############################
+
+AC_CHECK_LIB([pthread],[main],,[AC_MSG_ERROR(Round for C++ needs POSIX thread library)]) 
+AC_CHECK_LIB([crypto],[main],,[AC_MSG_ERROR(Round for C++ needs OpenSSL)])
+AC_CHECK_LIB([edit],[main],,[AC_MSG_ERROR(Round for C++ needs libedit)])
 
 ##############################
 # Checks for Expat libraries.
@@ -124,37 +137,13 @@ fi
 fi
 
 ##############################
-# Checks for Database Libraries
+# Checks for Other Libraries
 ##############################
 
-AC_CHECK_LIB([sqlite3],[main],,[AC_MSG_ERROR(Round for C++ needs SQLite3 $SQLITE3_VERSION later)])
-AC_CHECK_LIB([leveldb],[main],,[AC_MSG_ERROR(Round for C++ needs LevelDB $LEVELDB_VERSION later)])
+AC_CHECK_LIB([jansson],[main],,[AC_MSG_ERROR(Round for C++ needs Jansson $JANSSON_VERSION later)])
 
 ##############################
-# Checks for BOOST 
-##############################
-
-AC_CHECK_LIB([boost_system-mt],[main],,[AC_MSG_ERROR(Round for C++ needs boost::system-mt)])
-AC_CHECK_LIB([boost_filesystem-mt],[main],,[AC_MSG_ERROR(Round for C++ needs boost::filesystem-mt)])
-AC_CHECK_LIB([boost_thread-mt],[main],,[AC_MSG_ERROR(Round for C++ needs boost::thread-mt)])
-
-##############################
-# Checks for uSQL for C++
-##############################
-
-AC_CHECK_LIB([antlr3c],[antlr3StringStreamNew],,[AC_MSG_ERROR(Round for C++ needs ANTLR3C >= $LIBANTLR3C_VERSION)])
-AC_CHECK_LIB([usql++],[main],,[AC_MSG_ERROR(Round for C++ needs libusql++)])
-
-##############################
-# Checks for Basic Libraries
-##############################
-
-AC_CHECK_LIB([pthread],[main],,[AC_MSG_ERROR(Round for C++ needs POSIX thread library)]) 
-AC_CHECK_LIB([crypto],[main],,[AC_MSG_ERROR(Round for C++ needs OpenSSL)])
-AC_CHECK_LIB([edit],[main],,[AC_MSG_ERROR(Round for C++ needs libedit)])
-
-##############################
-# Checks for CyberLink for C++
+# Checks for Cyber Garage Libraries
 ##############################
 
 AC_CHECK_LIB([uhttp++],[main],,[AC_MSG_ERROR(Round for C++ needs libuhttp++ $UHTTP_VERSION later)])

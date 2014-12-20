@@ -34,6 +34,6 @@ Round::JSONObject *Round::JSONParser::popRootObject() {
   return popObject;
 }
 
-bool Round::JSONParser::parse(const std::string &jsonString) {
-  return parse(jsonString, &this->rootObject);
+bool Round::JSONParser::parse(const std::string &jsonString, Error *error) {
+  return parse(jsonString, &this->rootObject, error);
 }

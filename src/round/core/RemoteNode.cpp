@@ -111,8 +111,9 @@ bool Round::RemoteNode::postMessage(NodeRequest *nodeReq, NodeResponse *nodeRes,
   std::string httpContent = httpRes.getContent();
   if (httpContent.length() <= 0)
     return isSuccess;
+  
   JSONParser jsonParser;
-  if (jsonParser.parse(httpContent) == false)
+  if (jsonParser.parse(httpContent, error) == false)
     return isSuccess;
   JSONObject *rootObj = jsonParser.getRootObject();
   if (!rootObj)

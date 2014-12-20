@@ -269,7 +269,7 @@ bool Round::LocalNode::setMethod(const NodeRequest *nodeReq, NodeResponse *nodeR
   nodeReq->getParams(&params);
   
   JSONParser jsonParser;
-  if (!jsonParser.parse(params)) {
+  if (!jsonParser.parse(params, err)) {
     RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeInvalidParams, err);
     return false;
   }

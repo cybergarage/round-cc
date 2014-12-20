@@ -88,8 +88,9 @@ Round::HttpStatusCode Round::ServerNode::httpRpcRequestReceived(uHTTP::HTTPReque
   
   RoundLogTrace(httpContent.c_str());
   
+  Error error;
   NodeRequestParser jsonParser;
-  if (jsonParser.parse(httpContent) == false)
+  if (jsonParser.parse(httpContent, &error) == false)
     return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeParserError);
   
   JSONObject *rootObject = jsonParser.getRootObject();

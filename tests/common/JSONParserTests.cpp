@@ -23,9 +23,10 @@ BOOST_AUTO_TEST_SUITE(json)
 ////////////////////////////////////////////////////////////
 
 BOOST_AUTO_TEST_CASE(JSONParsePopRootObjectTest) {
+  Error error;
   JSONParser *jsonParser = new JSONParser();
   
-  BOOST_CHECK(jsonParser->parse("[0, 1, 2]"));
+  BOOST_CHECK(jsonParser->parse("[0, 1, 2]", &error));
   BOOST_CHECK(jsonParser->getRootObject());
   BOOST_CHECK(jsonParser->getRootObject()->isArray());
   
@@ -57,8 +58,9 @@ BOOST_AUTO_TEST_CASE(JSONParsePopRootObjectTest) {
 ////////////////////////////////////////////////////////////
 
 BOOST_AUTO_TEST_CASE(JSONParseNumberArrayTest) {
+  Error error;
   JSONParser jsonParser;
-  BOOST_CHECK(jsonParser.parse("[0, 1, 2]"));
+  BOOST_CHECK(jsonParser.parse("[0, 1, 2]", &error));
   BOOST_CHECK(jsonParser.getRootObject());
   BOOST_CHECK(jsonParser.getRootObject()->isArray());
   JSONArray *jsonArray = dynamic_cast<JSONArray *>(jsonParser.getRootObject());
@@ -73,8 +75,9 @@ BOOST_AUTO_TEST_CASE(JSONParseNumberArrayTest) {
 }
 
 BOOST_AUTO_TEST_CASE(JSONParseStringArrayTest) {
+  Error error;
   JSONParser jsonParser;
-  BOOST_CHECK(jsonParser.parse("[\"milk\", \"bread\", \"eggs\"]"));
+  BOOST_CHECK(jsonParser.parse("[\"milk\", \"bread\", \"eggs\"]", &error));
   BOOST_CHECK(jsonParser.getRootObject());
   BOOST_CHECK(jsonParser.getRootObject()->isArray());
   JSONArray *jsonArray = dynamic_cast<JSONArray *>(jsonParser.getRootObject());
@@ -94,8 +97,9 @@ BOOST_AUTO_TEST_CASE(JSONParseStringArrayTest) {
 }
 
 BOOST_AUTO_TEST_CASE(JSONParseAStringWithSpaceArrayTest) {
+  Error error;
   JSONParser jsonParser;
-  BOOST_CHECK(jsonParser.parse("[\"name\", \"John Smith\"]"));
+  BOOST_CHECK(jsonParser.parse("[\"name\", \"John Smith\"]", &error));
   BOOST_CHECK(jsonParser.getRootObject());
   BOOST_CHECK(jsonParser.getRootObject()->isArray());
   JSONArray *jsonArray = dynamic_cast<JSONArray *>(jsonParser.getRootObject());
@@ -113,8 +117,9 @@ BOOST_AUTO_TEST_CASE(JSONParseAStringWithSpaceArrayTest) {
 
 BOOST_AUTO_TEST_CASE(JSONParseArraySerialize) {
   const char *testString = "[\"milk\",\"bread\",\"eggs\"]";
+  Error error;
   JSONParser jsonParser;
-  BOOST_CHECK(jsonParser.parse(testString));
+  BOOST_CHECK(jsonParser.parse(testString, &error));
   BOOST_CHECK(jsonParser.getRootObject());
   BOOST_CHECK(jsonParser.getRootObject()->isArray());
   JSONArray *jsonArray = dynamic_cast<JSONArray *>(jsonParser.getRootObject());
@@ -130,8 +135,9 @@ BOOST_AUTO_TEST_CASE(JSONParseArraySerialize) {
 ////////////////////////////////////////////////////////////
 
 BOOST_AUTO_TEST_CASE(JSONParseNumberDictionaryTest) {
+  Error error;
   JSONParser jsonParser;
-  BOOST_CHECK(jsonParser.parse("{\"a\": 1, \"b\": 2}"));
+  BOOST_CHECK(jsonParser.parse("{\"a\": 1, \"b\": 2}", &error));
   BOOST_CHECK(jsonParser.getRootObject());
   BOOST_CHECK(jsonParser.getRootObject()->isDictionary());
   JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(jsonParser.getRootObject());
@@ -146,8 +152,9 @@ BOOST_AUTO_TEST_CASE(JSONParseNumberDictionaryTest) {
 }
 
 BOOST_AUTO_TEST_CASE(JSONParseStringDictionaryTest) {
+  Error error;
   JSONParser jsonParser;
-  BOOST_CHECK(jsonParser.parse("{\"name\": \"John Smith\", \"age\": 32}"));
+  BOOST_CHECK(jsonParser.parse("{\"name\": \"John Smith\", \"age\": 32}", &error));
   BOOST_CHECK(jsonParser.getRootObject());
   BOOST_CHECK(jsonParser.getRootObject()->isDictionary());
   JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(jsonParser.getRootObject());
@@ -164,9 +171,10 @@ BOOST_AUTO_TEST_CASE(JSONParseStringDictionaryTest) {
 }
 
 BOOST_AUTO_TEST_CASE(JSONParseDictionarySerialize) {
+  Error error;
   const char *testString = "{\"age\":\"32\",\"name\":\"John Smith\"}";
   JSONParser jsonParser;
-  BOOST_CHECK(jsonParser.parse(testString));
+  BOOST_CHECK(jsonParser.parse(testString, &error));
   BOOST_CHECK(jsonParser.getRootObject());
   BOOST_CHECK(jsonParser.getRootObject()->isDictionary());
   JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(jsonParser.getRootObject());
@@ -183,8 +191,10 @@ BOOST_AUTO_TEST_CASE(JSONParseDictionarySerialize) {
 
 BOOST_AUTO_TEST_CASE(JSONParseDictionaryInArrayTest01) {
   const char *testString = "[ {\"age\":\"32\",\"name\":\"John Smith\"},{\"age\":\"31\",\"name\":\"John Lennon\"} ]";
+  
+  Error error;
   JSONParser jsonParser;
-  BOOST_CHECK(jsonParser.parse(testString));
+  BOOST_CHECK(jsonParser.parse(testString, &error));
   BOOST_CHECK(jsonParser.getRootObject());
   BOOST_CHECK(jsonParser.getRootObject()->isArray());
 
@@ -217,8 +227,10 @@ BOOST_AUTO_TEST_CASE(JSONParseDictionaryInArrayTest01) {
 
 BOOST_AUTO_TEST_CASE(JSONParseDictionaryInArrayTest02) {
   const char *testString = "[\n{\"age\":\"32\",\"name\":\"John Smith\"},\n{\"age\":\"31\",\"name\":\"John Lennon\"}\n]";
+  
+  Error error;
   JSONParser jsonParser;
-  BOOST_CHECK(jsonParser.parse(testString));
+  BOOST_CHECK(jsonParser.parse(testString, &error));
   BOOST_CHECK(jsonParser.getRootObject());
   BOOST_CHECK(jsonParser.getRootObject()->isArray());
 
@@ -251,8 +263,10 @@ BOOST_AUTO_TEST_CASE(JSONParseDictionaryInArrayTest02) {
 
 BOOST_AUTO_TEST_CASE(JSONParseArrayInDictionaryTest01) {
   const char *testString = "{\"phoneNumber\": [\"212 555-1234\", \"646 555-4567\"]}";
+  
+  Error error;
   JSONParser jsonParser;
-  BOOST_CHECK(jsonParser.parse(testString));
+  BOOST_CHECK(jsonParser.parse(testString, &error));
 
   string jsonString;
 
@@ -283,8 +297,9 @@ BOOST_AUTO_TEST_CASE(JSONParseArrayInDictionaryTest01) {
 BOOST_AUTO_TEST_CASE(RoundJSONDictionaryParserTest) {
   string testJSONValue = "{\"key\":\"value\"}";
 
+  Error error;
   JSONParser jsonParser;
-  BOOST_CHECK(jsonParser.parse(testJSONValue));
+  BOOST_CHECK(jsonParser.parse(testJSONValue, &error));
 
   JSONObject *jsonValueObject = jsonParser.getRootObject();
   BOOST_CHECK(jsonValueObject);

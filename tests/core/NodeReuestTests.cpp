@@ -28,8 +28,9 @@ BOOST_AUTO_TEST_CASE(NodeRequestConstructorTest) {
 }
 
 BOOST_AUTO_TEST_CASE(NodeRequestParserTest) {
+  Error error;
   NodeRequestParser jsonParser;
-  BOOST_CHECK(jsonParser.parse("{\"name\": \"John Smith\", \"age\": 33}"));
+  BOOST_CHECK(jsonParser.parse("{\"name\": \"John Smith\", \"age\": 33}", &error));
   BOOST_CHECK(jsonParser.getRootObject());
   BOOST_CHECK(jsonParser.getRootObject()->isDictionary());
   NodeRequest *nodeReq = static_cast<NodeRequest *>(jsonParser.getRootObject());

@@ -14,10 +14,13 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <round/common/Error.h>
 #include <round/common/Dictionary.h>
 
+//#define USE_ROUND_JSON_PARSER_JANSSON 1
+
 namespace Round {
-  
+
 class JSONObject {
  public:
   enum {
@@ -139,8 +142,8 @@ public:
   JSONParser();
   virtual ~JSONParser();
 
-  bool parse(const std::string &jsonString);
-  bool parse(const std::string &jsonString, JSONObject **jsonObject);
+  bool parse(const std::string &jsonString, Error *error);
+  bool parse(const std::string &jsonString, JSONObject **jsonObject, Error *error);
 
   JSONObject *getRootObject() const {
     return this->rootObject;
@@ -159,11 +162,6 @@ public:
   virtual JSONDictionary *createJSONDictionary() {
     return new JSONDictionary();
   }
-
-private:
-
-  bool parse(const std::string &jsonString, JSONArray *parentArray);
-  bool parse(const std::string &jsonString, JSONDictionary *parentDir);
 
   void clear();
 
