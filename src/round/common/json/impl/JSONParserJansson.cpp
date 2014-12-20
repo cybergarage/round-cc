@@ -19,11 +19,13 @@
 static Round::JSONObject *RoundToJSONObject(Round::JSONParser *jsonParser, json_t jsonObj) {
   switch (json_typeof(jsonObj)) {
   case JSON_OBJECT:
-    return jsonParser->createJSONArray();
+    return jsonParser->createJSONDictionay();
   case JSON_ARRAY:
     return jsonParser->createJSONArray();
+  case JSON_STRING:
+    return jsonParser->createJSONArray();
   }
-  return NULL;
+  return new JSONNull();
 }
 
 bool Round::JSONParser::parse(const std::string &jsonString, JSONObject **jsonRetObject, Error *error) {

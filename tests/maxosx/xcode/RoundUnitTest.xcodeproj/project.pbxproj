@@ -515,13 +515,12 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
-					"-lleveldb",
-					"-lsqlite3",
-					"-lxml2",
 					"-lboost_unit_test_framework",
 					"-lboost_filesystem",
 					"-lboost_system",
 					"-lboost_thread-mt",
+					"-lxml2",
+					"-ljansson",
 					"-lv8",
 				);
 				SDKROOT = macosx;
@@ -564,13 +563,12 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
-					"-lleveldb",
-					"-lsqlite3",
-					"-lxml2",
 					"-lboost_unit_test_framework",
 					"-lboost_filesystem",
 					"-lboost_system",
 					"-lboost_thread-mt",
+					"-lxml2",
+					"-ljansson",
 					"-lv8",
 				);
 				SDKROOT = macosx;

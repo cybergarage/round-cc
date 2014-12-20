@@ -14,6 +14,7 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <limits>
 
 #include <stdio.h>
 
@@ -33,27 +34,6 @@ BOOST_AUTO_TEST_CASE(RoundJSONNullTypeTest) {
   
   BOOST_CHECK(jsonObj.isNull());
   BOOST_CHECK(dynamic_cast<JSONString *>(&jsonObj));
-}
-
-////////////////////////////////////////////////////////////
-// JSONString
-////////////////////////////////////////////////////////////
-
-BOOST_AUTO_TEST_CASE(RoundJSONStringTypeTest) {
-  JSONString jsonObj;
-  
-  BOOST_CHECK(jsonObj.isString());
-  BOOST_CHECK(dynamic_cast<JSONString *>(&jsonObj));
-}
-
-BOOST_AUTO_TEST_CASE(RoundJSONStringSetterTest) {
-  JSONString jsonObj;
-  
-  string value = "value";
-  string retValue;
-  BOOST_CHECK(jsonObj.set(value));
-  BOOST_CHECK(jsonObj.get(&retValue));
-  BOOST_CHECK_EQUAL(value.compare(retValue), 0);
 }
 
 ////////////////////////////////////////////////////////////
@@ -81,7 +61,7 @@ BOOST_AUTO_TEST_CASE(RoundJSONIntergerSetterTest) {
 }
 
 ////////////////////////////////////////////////////////////
-// JSONInteger
+// JSONBoolean
 ////////////////////////////////////////////////////////////
 
 BOOST_AUTO_TEST_CASE(RoundJSONBooleanTypeTest) {
@@ -111,6 +91,73 @@ BOOST_AUTO_TEST_CASE(RoundJSONBooleanSetterTest) {
 }
 
 ////////////////////////////////////////////////////////////
+// JSONString
+////////////////////////////////////////////////////////////
+
+BOOST_AUTO_TEST_CASE(RoundJSONStringTypeTest) {
+  JSONString jsonObj;
+  
+  BOOST_CHECK(jsonObj.isString());
+  BOOST_CHECK(dynamic_cast<JSONString *>(&jsonObj));
+}
+
+BOOST_AUTO_TEST_CASE(RoundJSONStringSetterTest) {
+  JSONString jsonObj;
+  
+  string key = "key";
+  
+  string strValue = "value";
+  string strBuf;
+  BOOST_CHECK(jsonObj.set(strValue));
+  BOOST_CHECK(jsonObj.get(&strBuf));
+  BOOST_CHECK_EQUAL(strValue.compare(strBuf), 0);
+  
+  int intValue;
+  int intBuf;
+  intValue = std::numeric_limits<int>::max();
+  BOOST_CHECK(jsonObj.set(intValue));
+  BOOST_CHECK(jsonObj.get(&intBuf));
+  BOOST_CHECK_EQUAL(intValue, intBuf);
+  intValue = std::numeric_limits<int>::min();
+  BOOST_CHECK(jsonObj.set(intValue));
+  BOOST_CHECK(jsonObj.get(&intBuf));
+  BOOST_CHECK_EQUAL(intValue, intBuf);
+  
+  long longValue;
+  long longBuf;
+  longValue = std::numeric_limits<long>::max();
+  BOOST_CHECK(jsonObj.set(longValue));
+  BOOST_CHECK(jsonObj.get(&longBuf));
+  BOOST_CHECK_EQUAL(longValue, longBuf);
+  longValue = std::numeric_limits<long>::min();
+  BOOST_CHECK(jsonObj.set(longValue));
+  BOOST_CHECK(jsonObj.get(&longBuf));
+  BOOST_CHECK_EQUAL(longValue, longBuf);
+  
+  size_t sizeBuf;
+  size_t sizeValue;
+  sizeValue = std::numeric_limits<size_t>::max();
+  BOOST_CHECK(jsonObj.set(sizeValue));
+  BOOST_CHECK(jsonObj.get(&sizeBuf));
+  BOOST_CHECK_EQUAL(sizeValue, sizeBuf);
+  sizeValue = std::numeric_limits<size_t>::min();
+  BOOST_CHECK(jsonObj.set(sizeValue));
+  BOOST_CHECK(jsonObj.get(&sizeBuf));
+  BOOST_CHECK_EQUAL(sizeValue, sizeBuf);
+  
+  bool boolValue;
+  bool boolBuf;
+  boolValue = true;
+  BOOST_CHECK(jsonObj.set(boolValue));
+  BOOST_CHECK(jsonObj.get(&boolBuf));
+  BOOST_CHECK_EQUAL(boolValue, boolBuf);
+  boolValue = false;
+  BOOST_CHECK(jsonObj.set(boolValue));
+  BOOST_CHECK(jsonObj.get(&boolBuf));
+  BOOST_CHECK_EQUAL(boolValue, boolBuf);
+}
+
+////////////////////////////////////////////////////////////
 // JSONDictionary
 ////////////////////////////////////////////////////////////
 
@@ -127,28 +174,33 @@ BOOST_AUTO_TEST_CASE(RoundJSONDictionarySetterTest) {
 
   int intValue;
   int intBuf;
-  intValue = INT_MAX;
+  intValue = std::numeric_limits<int>::max();
   BOOST_CHECK(dict.set(key, intValue));
   BOOST_CHECK(dict.get(key, &intBuf));
   BOOST_CHECK_EQUAL(intValue, intBuf);
-  intValue = INT_MIN;
+  intValue = std::numeric_limits<int>::min();
   BOOST_CHECK(dict.set(key, intValue));
   BOOST_CHECK(dict.get(key, &intBuf));
   BOOST_CHECK_EQUAL(intValue, intBuf);
 
   long longValue;
   long longBuf;
-  longValue = LONG_MAX;
+  longValue = std::numeric_limits<long>::max();
   BOOST_CHECK(dict.set(key, longValue));
   BOOST_CHECK(dict.get(key, &longBuf));
   BOOST_CHECK_EQUAL(longValue, longBuf);
-  longValue = LONG_MIN;
+  longValue = std::numeric_limits<long>::min();
   BOOST_CHECK(dict.set(key, longValue));
   BOOST_CHECK(dict.get(key, &longBuf));
   BOOST_CHECK_EQUAL(longValue, longBuf);
 
-  size_t sizeValue = LONG_MAX;;
   size_t sizeBuf;
+  size_t sizeValue;
+  sizeValue = std::numeric_limits<size_t>::max();
+  BOOST_CHECK(dict.set(key, sizeValue));
+  BOOST_CHECK(dict.get(key, &sizeBuf));
+  BOOST_CHECK_EQUAL(sizeValue, sizeBuf);
+  sizeValue = std::numeric_limits<size_t>::min();
   BOOST_CHECK(dict.set(key, sizeValue));
   BOOST_CHECK(dict.get(key, &sizeBuf));
   BOOST_CHECK_EQUAL(sizeValue, sizeBuf);

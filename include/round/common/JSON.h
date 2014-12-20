@@ -62,9 +62,20 @@ public:
   JSONString(const std::string &value);
 
   bool set(const JSONString *jsonObj);
-  bool set(const std::string &value);
-  bool get(std::string *value) const;
 
+  bool set(const std::string &value);
+  bool set(const char *value);
+  bool set(int value);
+  bool set(bool value);
+  bool set(long value);
+  bool set(size_t value);
+  
+  bool get(std::string *value) const;
+  bool get(int *value) const;
+  bool get(bool *value) const;
+  bool get(long *value) const;
+  bool get(size_t *value) const;
+  
   virtual ~JSONString();
   int getType() const {return STRING;}
 
@@ -87,9 +98,6 @@ class JSONInteger : public JSONString {
   JSONInteger();
   JSONInteger(int value);
 
-  bool set(int value);
-  bool get(int *value) const;
-  
   int getType() const {return INTEGER;}
 };
 
@@ -99,9 +107,6 @@ class JSONBoolean : public JSONString {
     JSONBoolean(bool value);
 
   int getType() const {return BOOLEAN;}
-
-  bool set(bool value);
-  bool get(bool *value) const;
 };
 
 class JSONArray : public JSONObject, public std::vector<JSONObject *> {
@@ -152,17 +157,17 @@ public:
 
   bool set(const std::string &key, const std::string &value);
   bool set(const std::string &key, const char *value);
-  bool set(const std::string &key, size_t value);
   bool set(const std::string &key, int value);
-  bool set(const std::string &key, long value);
   bool set(const std::string &key, bool value);
+  bool set(const std::string &key, long value);
+  bool set(const std::string &key, size_t value);
 
+  bool get(const std::string &key, JSONString **value) const;
   bool get(const std::string &key, std::string *value) const;
-
-  bool get(const std::string &key, size_t *value) const;
   bool get(const std::string &key, int *value) const;
-  bool get(const std::string &key, long *value) const;
   bool get(const std::string &key, bool *value) const;
+  bool get(const std::string &key, long *value) const;
+  bool get(const std::string &key, size_t *value) const;
 
   const char *get(const std::string &key, std::string *value, const std::string &defaultValue) const;
   std::size_t get(const std::string &key, std::size_t defaultValue) const;

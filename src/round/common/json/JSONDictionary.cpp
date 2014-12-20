@@ -90,60 +90,40 @@ bool Round::JSONDictionary::get(const std::string &key, std::string *value) cons
   return true;
 }
 
-bool Round::JSONDictionary::get(const std::string &key, std::size_t *value) const {
-  std::string strValue;
-  if (get(key, &strValue) == false)
+bool Round::JSONDictionary::get(const std::string &key, JSONString **value) const {
+  JSONObject *jsonObj;
+  if (!get(key, &jsonObj))
     return false;
-  
-  if (strValue.length() <= 0)
-    return false;
-  
-  if (!JSON::IsNumeric(strValue))
-    return false;
+  *value = dynamic_cast<JSONString *>(jsonObj);
+  return (*value) ? true : false;
+}
 
-  *value = atol(strValue.c_str());
-  
-  return true;
+bool Round::JSONDictionary::get(const std::string &key, std::size_t *value) const {
+  JSONString *jsonObj;
+  if (!get(key, &jsonObj))
+    return false;
+  return jsonObj->get(value);
 }
 
 bool Round::JSONDictionary::get(const std::string &key, int *value) const {
-  std::string strValue;
-  if (get(key, &strValue) == false)
+  JSONString *jsonObj;
+  if (!get(key, &jsonObj))
     return false;
-  
-  if (strValue.length() <= 0)
-    return false;
-  
-  if (!JSON::IsNumeric(strValue))
-    return false;
-
-  *value = atoi(strValue.c_str());
-  
-  return true;
+  return jsonObj->get(value);
 }
 
 bool Round::JSONDictionary::get(const std::string &key, long *value) const {
-  std::string strValue;
-  if (get(key, &strValue) == false)
+  JSONString *jsonObj;
+  if (!get(key, &jsonObj))
     return false;
-  
-  if (strValue.length() <= 0)
-    return false;
-  
-  if (!JSON::IsNumeric(strValue))
-    return false;
-  
-  *value = atol(strValue.c_str());
-  
-  return true;
+  return jsonObj->get(value);
 }
 
 bool Round::JSONDictionary::get(const std::string &key, bool *value) const {
-  int intValue;
-  if (get(key, &intValue) == false)
+  JSONString *jsonObj;
+  if (!get(key, &jsonObj))
     return false;
-  *value = (intValue == 0) ? false : true;
-  return true;
+  return jsonObj->get(value);
 }
 
 const char *Round::JSONDictionary::get(const std::string &key, std::string *value, const std::string &defaultValue) const {
