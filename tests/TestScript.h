@@ -48,7 +48,7 @@ const std::string RPC_SET_ECHO = \
    "\"params\": {" \
        "\"language\": \"" RPC_SET_ECHO_LANG "\", " \
        "\"name\": \"" RPC_SET_ECHO_NAME "\", " \
-       "\"code\": \"" RPC_SET_ECHO_CODE "\", " \
+       "\"code\": \"" RPC_SET_ECHO_CODE "\"" \
    "}, \"id\": 1}";
 
 const std::string RPC_REMOVE_ECHO = \
@@ -56,7 +56,7 @@ const std::string RPC_REMOVE_ECHO = \
   "\"method\": \"_set_method\","
   "\"params\": {" \
   "\"language\": \"" RPC_SET_ECHO_LANG "\", " \
-  "\"name\": \"" RPC_SET_ECHO_NAME "\", " \
+  "\"name\": \"" RPC_SET_ECHO_NAME "\"" \
   "}, \"id\": 1}";
   
 const std::string RPC_RUN_ECHO = \
@@ -71,7 +71,7 @@ const std::string RPC_SET_SETMETHOD = \
   "\"params\": {" \
   "\"language\": \"" RPC_SET_ECHO_LANG "\", " \
   "\"name\": \"_set_method\", " \
-  "\"code\": \"" RPC_SET_ECHO_CODE "\", " \
+  "\"code\": \"" RPC_SET_ECHO_CODE "\"" \
   "}, \"id\": 1}";
 
 }
