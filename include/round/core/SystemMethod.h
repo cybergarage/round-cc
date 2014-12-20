@@ -74,6 +74,7 @@ class SystemMethodResponse {
     static const std::string HASH;
     static const std::string VERSION;
     static const std::string CLUSTER;
+    static const std::string NODES;
     static const std::string CLUSTERS;
     
 public:
@@ -195,7 +196,8 @@ class SystemGetClusterInfoResponse : public SystemMethodResponse {
   bool setCluster(LocalNode *node);
   bool getCluster(Cluster *cluster);
   
-  JSONArray *getResultClusterArray();
+  JSONDictionary *getResultClusterDict();
+  JSONArray *getResultClusterNodeArray();
 };
 
 

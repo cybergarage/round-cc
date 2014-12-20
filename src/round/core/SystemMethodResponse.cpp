@@ -19,6 +19,7 @@ const std::string Round::SystemMethodResponse::PORT     = "port";
 const std::string Round::SystemMethodResponse::HASH     = "hash";
 const std::string Round::SystemMethodResponse::VERSION  = "version";
 const std::string Round::SystemMethodResponse::CLUSTER  = "cluster";
+const std::string Round::SystemMethodResponse::NODES  = "nodes";
 const std::string Round::SystemMethodResponse::CLUSTERS = "clusters";
 
 Round::SystemMethodResponse::SystemMethodResponse(NodeResponse *nodeRes) {
@@ -26,20 +27,43 @@ Round::SystemMethodResponse::SystemMethodResponse(NodeResponse *nodeRes) {
   this->nodeRes->setVersion(RPC::JSON::VERSION);
 }
 
-Round::JSONArray *Round::SystemGetClusterInfoResponse::getResultClusterArray() {
+/*
+JSONDictionary *getResultClusterDict();
+JSONArray *getResultClusterNodeArray();
+*/
+
+Round::JSONDictionary *Round::SystemGetClusterInfoResponse::getResultClusterDict() {
   JSONDictionary *resultDict = this->nodeRes->getResultDict();
   if (!resultDict)
     return NULL;
+  
+  JSONObject *jsonObj = NULL;
+  resultDict->get(CLUSTER, &jsonObj);
+  
+  JSONDictionary *clusterDict = dynamic_cast<JSONDictionary *>(jsonObj);
+  if (clusterDict)
+    return clusterDict;
+  
+  clusterDict = new JSONDictionary();
+  resultDict->set(CLUSTER, clusterDict);
+  
+  return clusterDict;
+}
+
+Round::JSONArray *Round::SystemGetClusterInfoResponse::getResultClusterNodeArray() {
+  JSONDictionary *clusterDict = getResultClusterDict();
+  if (!clusterDict)
+    return NULL;
 
   JSONObject *jsonObj = NULL;
-  resultDict->get(CLUSTERS, &jsonObj);
+  clusterDict->get(NODES, &jsonObj);
   
   JSONArray *jsonArray = dynamic_cast<JSONArray *>(jsonObj);
   if (jsonArray)
     return jsonArray;
   
   jsonArray = new JSONArray();
-  resultDict->set(CLUSTERS, jsonArray);
+  clusterDict->set(NODES, jsonArray);
   
   return jsonArray;
 }
@@ -47,7 +71,7 @@ Round::JSONArray *Round::SystemGetClusterInfoResponse::getResultClusterArray() {
 bool Round::SystemGetClusterInfoResponse::setCluster(LocalNode *node) {
   SystemGetClusterInfoResponse sysRes(nodeRes);
   
-  JSONArray *clusterArray = sysRes.getResultClusterArray();
+  JSONArray *clusterArray = sysRes.getResultClusterNodeArray();
   
   const NodeGraph *nodeGraph = node->getNodeGraph();
   size_t nodeCnt = nodeGraph->size();
@@ -68,7 +92,7 @@ bool Round::SystemGetClusterInfoResponse::setCluster(LocalNode *node) {
 }
 
 bool Round::SystemGetClusterInfoResponse::getCluster(Cluster *cluster) {
-  JSONArray *clusterArray = getResultClusterArray();
+  JSONArray *clusterArray = getResultClusterNodeArray();
   
   size_t clusterCnt = clusterArray->size();
   for (size_t n=0; n<clusterCnt; n++) {
