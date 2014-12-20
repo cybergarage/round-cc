@@ -21,10 +21,6 @@
 
 namespace Round {
 
-namespace JSON {
-  bool IsNumeric(const std::string &strValue);
-}
-  
 class JSONObject {
  public:
   enum {

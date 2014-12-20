@@ -64,10 +64,8 @@ bool Round::JSONString::get(int *value) const {
   std::string strValue;
   if (JSONString::get(&strValue) == false)
     return false;
+
   if (strValue.length() <= 0)
-    return false;
-  
-  if (!JSON::IsNumeric(strValue))
     return false;
   
   *value = boost::lexical_cast<int>(strValue);
@@ -79,10 +77,8 @@ bool Round::JSONString::get(bool *value) const {
   std::string strValue;
   if (JSONString::get(&strValue) == false)
     return false;
-  if (strValue.length() <= 0)
-    return false;
   
-  if (!JSON::IsNumeric(strValue))
+  if (strValue.length() <= 0)
     return false;
   
   *value = boost::lexical_cast<bool>(strValue);
@@ -98,9 +94,6 @@ bool Round::JSONString::get(long *value) const {
   if (strValue.length() <= 0)
     return false;
   
-  if (!JSON::IsNumeric(strValue))
-    return false;
-  
   *value = boost::lexical_cast<long>(strValue);
   
   return true;
@@ -112,9 +105,6 @@ bool Round::JSONString::get(size_t *value) const {
     return false;
   
   if (strValue.length() <= 0)
-    return false;
-  
-  if (!JSON::IsNumeric(strValue))
     return false;
   
   *value = boost::lexical_cast<size_t>(strValue);

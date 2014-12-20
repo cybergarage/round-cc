@@ -10,15 +10,6 @@
 
 #include <round/common/JSON.h>
 
-bool Round::JSON::IsNumeric(const std::string &strValue) {
-  size_t strLen = strValue.length();
-  for (size_t n=0; n<strLen; n++) {
-    if (!isnumber(strValue[n]) && (strValue[n] != '-'))
-      return false;
-  }
-  return true;
-}
-
 Round::JSONInteger::JSONInteger() {
 }
 
