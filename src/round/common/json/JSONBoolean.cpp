@@ -16,3 +16,8 @@ Round::JSONBoolean::JSONBoolean() {
 Round::JSONBoolean::JSONBoolean(bool value) {
   set(value);
 }
+
+const char *Round::JSONBoolean::toJSONString(std::string *stringBuf) const {
+  *stringBuf = this->c_str();
+  return stringBuf->c_str();
+}

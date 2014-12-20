@@ -16,3 +16,8 @@ Round::JSONReal::JSONReal() {
 Round::JSONReal::JSONReal(double value) {
   set(value);
 }
+
+const char *Round::JSONReal::toJSONString(std::string *stringBuf) const {
+  *stringBuf = this->c_str();
+  return stringBuf->c_str();
+}

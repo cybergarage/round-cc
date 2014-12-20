@@ -16,6 +16,9 @@
 
 #if defined(USE_ROUND_JSON_PARSER_JANSSON)
 
+static void RoundToJSONObject(Round::JSONParser *jsonParser, Round::JSONDictionary *parentDict, json_t *jsonTDict);
+static void RoundToJSONObject(Round::JSONParser *jsonParser, Round::JSONArray *parentArray, json_t *jsonTArray);
+
 static Round::JSONObject *RoundToJSONObject(Round::JSONParser *jsonParser, json_t *jsonTObj) {
   switch (json_typeof(jsonTObj)) {
   case JSON_OBJECT:
@@ -36,6 +39,12 @@ static Round::JSONObject *RoundToJSONObject(Round::JSONParser *jsonParser, json_
       jsonObj->set((int)json_integer_value(jsonTObj));
       return jsonObj;
     }
+  case JSON_REAL:
+    {
+      Round::JSONReal *jsonObj = new Round::JSONReal();
+      jsonObj->set(json_real_value(jsonTObj));
+      return jsonObj;
+    }
   case JSON_TRUE:
   case JSON_FALSE:
     {
@@ -47,6 +56,44 @@ static Round::JSONObject *RoundToJSONObject(Round::JSONParser *jsonParser, json_
   return new Round::JSONNull();
 }
 
+static void RoundToJSONObject(Round::JSONParser *jsonParser, Round::JSONDictionary *parentDict, json_t *jsonTDict) {
+  if (!jsonParser || !parentDict)
+    return;
+
+  const char *jsonKey;
+  json_t *jsonTObj;
+  Round::JSONObject *childObject;
+  
+  json_object_foreach(jsonTDict, jsonKey, jsonTObj) {
+    childObject = RoundToJSONObject(jsonParser, jsonTObj);
+    parentDict->set(jsonKey, childObject);
+    if (json_is_object(jsonTObj)) {
+      RoundToJSONObject(jsonParser, dynamic_cast<Round::JSONDictionary *>(childObject), jsonTObj);
+    } else if (json_is_array(jsonTObj)) {
+      RoundToJSONObject(jsonParser, dynamic_cast<Round::JSONArray *>(childObject), jsonTObj);
+    }
+  }
+}
+
+static void RoundToJSONObject(Round::JSONParser *jsonParser, Round::JSONArray *parentArray, json_t *jsonTArray) {
+  if (!jsonParser || !parentArray)
+    return;
+  
+  size_t jsonIdx;
+  json_t *jsonTObj;
+  Round::JSONObject *childObject;
+  
+  json_array_foreach(jsonTArray, jsonIdx, jsonTObj) {
+    childObject = RoundToJSONObject(jsonParser, jsonTObj);
+    parentArray->add(childObject);
+    if (json_is_object(jsonTObj)) {
+      RoundToJSONObject(jsonParser, dynamic_cast<Round::JSONDictionary *>(childObject), jsonTObj);
+    } else if (json_is_array(jsonTObj)) {
+      RoundToJSONObject(jsonParser, dynamic_cast<Round::JSONArray *>(childObject), jsonTObj);
+    }
+  }
+}
+
 bool Round::JSONParser::parse(const std::string &jsonString, JSONObject **jsonRetObject, Error *error) {
   clear();
 
@@ -56,9 +103,20 @@ bool Round::JSONParser::parse(const std::string &jsonString, JSONObject **jsonRe
   json_error_t jsonError;
   json_t *jsonResult = json_loads(jsonString.c_str(), 0, &jsonError);
   if (!jsonResult) {
+    error->setCode(jsonError.line);
+    std::ostringstream ss;
+    ss << "Error : Line " << jsonError.line << " , Pos " << jsonError.position << ", " << jsonError.text;
+    error->setMessage(ss.str());
     return false;
   }
 
+  this->rootObject = RoundToJSONObject(this, jsonResult);
+  if (json_is_object(jsonResult)) {
+    RoundToJSONObject(this, dynamic_cast<JSONDictionary *>(this->rootObject), jsonResult);
+  } else if (json_is_array(jsonResult)) {
+    RoundToJSONObject(this, dynamic_cast<JSONArray *>(this->rootObject), jsonResult);
+  }
+  
   json_decref(jsonResult);
   
   return true;

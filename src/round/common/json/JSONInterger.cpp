@@ -16,3 +16,8 @@ Round::JSONInteger::JSONInteger() {
 Round::JSONInteger::JSONInteger(int value) {
   set(value);
 }
+
+const char *Round::JSONInteger::toJSONString(std::string *stringBuf) const {
+  *stringBuf = this->c_str();
+  return stringBuf->c_str();
+}

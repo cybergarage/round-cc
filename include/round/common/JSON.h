@@ -17,8 +17,7 @@
 #include <round/common/Error.h>
 #include <round/common/Dictionary.h>
 
-//#define USE_ROUND_JSON_PARSER_JANSSON 1
-#define USE_ROUND_JSON_PARSER_ROUND 1
+#define USE_ROUND_JSON_PARSER_JANSSON 1
 
 namespace Round {
 
@@ -84,7 +83,7 @@ public:
   bool copy(JSONString **newObj) const {
     return copy((JSONObject **)newObj);
   }
-  const char *toJSONString(std::string *stringBuf) const;
+  virtual const char *toJSONString(std::string *stringBuf) const;
 };
 
 class JSONNull : public JSONString {
@@ -99,6 +98,7 @@ class JSONInteger : public JSONString {
   JSONInteger(int value);
 
   int getType() const {return INTEGER;}
+  const char *toJSONString(std::string *stringBuf) const;
 };
 
 class JSONReal : public JSONString {
@@ -107,6 +107,7 @@ class JSONReal : public JSONString {
   JSONReal(double value);
     
   int getType() const {return REAL;}
+  const char *toJSONString(std::string *stringBuf) const;
 };
   
 class JSONBoolean : public JSONString {
@@ -115,6 +116,7 @@ class JSONBoolean : public JSONString {
     JSONBoolean(bool value);
 
   int getType() const {return BOOLEAN;}
+  const char *toJSONString(std::string *stringBuf) const;
 };
 
 class JSONArray : public JSONObject, public std::vector<JSONObject *> {
