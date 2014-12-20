@@ -76,7 +76,7 @@ Round::Node *Round::NodeGraph::getPrevNode(const Node *node) const {
   return static_cast<Node *>(ConsistentHashGraph::getPrevNode(node));
 }
 
-void Round::NodeGraph::clear() {
+bool Round::NodeGraph::clear() {
   for (NodeGraph::iterator content = begin(); content != end(); content++) {
     Node *node = static_cast<Node *>(*content);
     if (!node)
@@ -86,6 +86,7 @@ void Round::NodeGraph::clear() {
     delete node;
   }
   ConsistentHashGraph::clear();
+  return true;
 }
 
 std::size_t Round::NodeGraph::size() const {

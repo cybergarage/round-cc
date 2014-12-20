@@ -35,7 +35,7 @@ class NodeGraph : public ConsistentHashGraph {
   Node *getNextNode(const Node *node) const;
   Node *getPrevNode(const Node *node) const;
 
-  void clear();
+  bool clear();
 };
 
 }
