@@ -43,3 +43,50 @@ Round::JSONArray *Round::SystemGetClusterInfoResponse::getResultClusterArray() {
   
   return jsonArray;
 }
+
+bool Round::SystemGetClusterInfoResponse::setCluster(LocalNode *node) {
+  SystemGetClusterInfoResponse sysRes(nodeRes);
+  
+  JSONArray *clusterArray = sysRes.getResultClusterArray();
+  
+  const NodeGraph *nodeGraph = node->getNodeGraph();
+  size_t nodeCnt = nodeGraph->size();
+  for (size_t n=0; n<nodeCnt; n++) {
+    
+    Node *node = nodeGraph->getNode(n);
+    if (!node)
+      continue;
+    
+    JSONDictionary *jsonDict = new JSONDictionary();
+    SystemNodeInfoDict nodeInfo(jsonDict);
+    nodeInfo.setNode(node);
+    
+    clusterArray->add(jsonDict);
+  }
+  
+  return true;
+}
+
+bool Round::SystemGetClusterInfoResponse::getCluster(Cluster *cluster) {
+  JSONArray *clusterArray = getResultClusterArray();
+  
+  size_t clusterCnt = clusterArray->size();
+  for (size_t n=0; n<clusterCnt; n++) {
+    JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(clusterArray->getObject(n));
+    if (!jsonDict)
+      continue;
+    
+    RemoteNode *node = new RemoteNode();
+    node->setWeakFlag(false);
+    
+    SystemNodeInfoDict nodeInfoDict(jsonDict);
+    if (!nodeInfoDict.getNode(node)) {
+      delete node;
+      continue;
+    }
+    
+    cluster->getNodeGraph()->addNode(node);
+  }
+  
+  return true;
+}

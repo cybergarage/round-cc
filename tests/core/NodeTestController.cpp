@@ -171,7 +171,50 @@ void NodeTestController::runSystemGetNodeInfoTest(Round::Node *node) {
   BOOST_CHECK_EQUAL(nodeHash.compare(resHash), 0);
 }
 
+void NodeTestController::runSystemGetClusterInfoTest(Round::Node *node) {
+  Error err;
+  std::string jsonString;
+  
+  // Node information
+  
+  std::string nodeIp;
+  BOOST_CHECK(node->getRequestAddress(&nodeIp, &err));
+  
+  int nodePort;
+  BOOST_CHECK(node->getRequestPort(&nodePort, &err));
+  
+  std::string nodeCluster;
+  BOOST_CHECK(node->getClusterName(&nodeCluster, &err));
+  
+  std::string nodeHash;
+  BOOST_CHECK(node->getHashCode(&nodeHash));
+  
+  // Response information
+  
+  SystemGetClusterInfoRequest nodeReq;
+  NodeResponse nodeRes;
+  
+  nodeReq.toJSONString(&jsonString);
+  RoundLogTrace(jsonString.c_str());
+  
+  BOOST_CHECK(node->postMessage(&nodeReq, &nodeRes, &err));
+  
+  nodeRes.toJSONString(&jsonString);
+  RoundLogTrace(jsonString.c_str());
+  
+  SystemGetClusterInfoResponse sysRes(&nodeRes);
+  
+  Cluster cluster;
+  BOOST_CHECK(sysRes.getCluster(&cluster));
+
+  NodeGraph *nodeGraph = cluster.getNodeGraph();
+  //BOOST_CHECK(nodeGraph->hasNode(node));
+}
+
 void NodeTestController::runSystemMethodTest(Round::Node *node) {
   // _get_node_info
   runSystemGetNodeInfoTest(node);
+  
+  // _get_cluster_info
+  runSystemGetClusterInfoTest(node);
 }

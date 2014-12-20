@@ -18,6 +18,7 @@
 		2120F96F1A3C63E300F8040C /* Vector.h in Headers */ = {isa = PBXBuildFile; fileRef = 2120F96E1A3C63E300F8040C /* Vector.h */; };
 		212BFD161A1D0032002549F0 /* Node.h in Headers */ = {isa = PBXBuildFile; fileRef = 212BFD151A1D0032002549F0 /* Node.h */; };
 		212BFD181A1D0056002549F0 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212BFD171A1D0056002549F0 /* Node.cpp */; };
+		213862D71A44F38E00311FAE /* SystemMethod.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213862D61A44F38E00311FAE /* SystemMethod.cpp */; };
 		21620E4D1A147A5600690EA8 /* Log.h in Headers */ = {isa = PBXBuildFile; fileRef = 21620E4A1A147A5600690EA8 /* Log.h */; };
 		21620E4E1A147A5600690EA8 /* Logger.h in Headers */ = {isa = PBXBuildFile; fileRef = 21620E4B1A147A5600690EA8 /* Logger.h */; };
 		21620E4F1A147A5600690EA8 /* LoggerTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = 21620E4C1A147A5600690EA8 /* LoggerTarget.h */; };
@@ -163,6 +164,7 @@
 		2120F96E1A3C63E300F8040C /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
 		212BFD151A1D0032002549F0 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
 		212BFD171A1D0056002549F0 /* Node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Node.cpp; sourceTree = "<group>"; };
+		213862D61A44F38E00311FAE /* SystemMethod.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemMethod.cpp; sourceTree = "<group>"; };
 		21620E4A1A147A5600690EA8 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		21620E4B1A147A5600690EA8 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		21620E4C1A147A5600690EA8 /* LoggerTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerTarget.h; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				21E6AAA71A28CCFA004E6762 /* ScriptManager.cpp */,
 				210E577D1A235D49000B60FC /* ScriptMap.cpp */,
 				21DA08D21A175F3100D3DCE0 /* ServerNode.cpp */,
+				213862D61A44F38E00311FAE /* SystemMethod.cpp */,
 				2173D4F91A3822340098CA35 /* SystemMethodRequest.cpp */,
 				2173D4FA1A3822340098CA35 /* SystemMethodResponse.cpp */,
 				21DA08CB1A175E8200D3DCE0 /* impl */,
@@ -730,6 +733,7 @@
 				21DE688E1A13B3EA0049227E /* JSONParser.cpp in Sources */,
 				21DA08C21A174EAB00D3DCE0 /* NodeStatus.cpp in Sources */,
 				21DE68A21A13B3EA0049227E /* StringTokenizer.cpp in Sources */,
+				213862D71A44F38E00311FAE /* SystemMethod.cpp in Sources */,
 				216E5FC91A13CBEE0043C28B /* Client.cpp in Sources */,
 				21DA08721A17426500D3DCE0 /* Cluster.cpp in Sources */,
 				21620E561A14809D00690EA8 /* NodeConfig.cpp in Sources */,

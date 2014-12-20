@@ -349,75 +349,13 @@ bool Round::LocalNode::execSystemMethod(const NodeRequest *nodeReq, NodeResponse
 }
 
 bool Round::LocalNode::getNodeInfo(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
-
   SystemGetNodeInfoResponse sysRes(nodeRes);
-  
-  std::string nodeAddr;
-  if (!getRequestAddress(&nodeAddr, error)) {
-    return false;
-  }
-  int nodePort;
-  if (!getRequestPort(&nodePort, error)) {
-    return false;
-  }
-  
-  std::string nodeCluster;
-  if (!getClusterName(&nodeCluster, error)) {
-    return false;
-  }
-  
-  std::string nodeHash;
-  if (!getHashCode(&nodeHash)) {
-    return false;
-  }
-  
-  sysRes.setIp(nodeAddr);
-  sysRes.setPort(nodePort);
-  sysRes.setCluster(nodeCluster);
-  sysRes.setHash(nodeHash);
-  
-  return true;
+  return sysRes.setNode(this);
 }
 
 bool Round::LocalNode::getClusterInfo(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
   SystemGetClusterInfoResponse sysRes(nodeRes);
-  
-  JSONArray *clusterArray = sysRes.getResultClusterArray();
-
-  Error nodeErr;
-  std::string nodeIp;
-  std::string nodeCluster;
-  std::string nodeHash;
-  int nodePort;
-  
-  size_t nodeCnt = this->nodeGraph.size();
-  for (size_t n=0; n<nodeCnt; n++) {
-    Node *node = this->nodeGraph.getNode(n);
-    
-    if (!node->getRequestAddress(&nodeIp, &nodeErr))
-      continue;
-    
-    if (!node->getRequestPort(&nodePort, &nodeErr))
-      continue;
-    
-    if (!node->getClusterName(&nodeCluster, &nodeErr))
-      continue;
-    
-    if (!node->getHashCode(&nodeHash))
-      continue;
-    
-    JSONDictionary *jsonDict = new JSONDictionary();
-    
-    SystemNodeInfoDict nodeInfo(jsonDict);
-    nodeInfo.setIp(nodeIp);
-    nodeInfo.setPort(nodePort);
-    nodeInfo.setCluster(nodeCluster);
-    nodeInfo.setHash(nodeHash);
-    
-    clusterArray->add(jsonDict);
-  }
-  
-  return false;
+  return sysRes.setCluster(this);
 }
 
 bool Round::LocalNode::getNetworkInfo(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {

@@ -38,7 +38,20 @@ bool Round::Node::getCluster(Cluster *cluster, Error *error) {
   JSONArray *clusterArray = sysRes.getResultClusterArray();
   size_t clusterCnt = clusterArray->size();
   for (size_t n=0; n<clusterCnt; n++) {
+    JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(clusterArray->getObject(n));
+    if (!jsonDict)
+      continue;
     
+    RemoteNode *node = new RemoteNode();
+    node->setWeakFlag(false);
+    
+    SystemNodeInfoDict nodeInfoDict(jsonDict);
+    if (!nodeInfoDict.getNode(node)) {
+      delete node;
+      continue;
+    }
+    
+    cluster->getNodeGraph()->addNode(node);
   }
   return true;
 }

@@ -28,7 +28,7 @@ void Round::JSONArray::add(const std::string &value) {
   add(jsonString);
 }
 
-const Round::JSONObject *Round::JSONArray::getObject(size_t n) const  {
+Round::JSONObject *Round::JSONArray::getObject(size_t n) const  {
   return at(n);
 }
 

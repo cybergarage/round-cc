@@ -11,7 +11,10 @@
 #ifndef _ROUNDCC_SYSTEMMETHOD_H_
 #define _ROUNDCC_SYSTEMMETHOD_H_
 
+#include <round/core/Node.h>
 #include <round/core/NodeMessage.h>
+#include <round/core/LocalNode.h>
+#include <round/core/RemoteNode.h>
 
 namespace Round {
 
@@ -94,6 +97,9 @@ public:
     this->jsonDict = jsonDict;
   }
   
+  bool setNode(Node *node);
+  bool getNode(RemoteNode *node);
+  
   bool setIp(const std::string &value) {
     return (this->jsonDict) ? this->jsonDict->set(SystemMethodResponse::IP, value) : false;
   }
@@ -135,6 +141,10 @@ class SystemGetNodeInfoResponse : public SystemMethodResponse {
   SystemGetNodeInfoResponse(NodeResponse *nodeRes) : SystemMethodResponse(nodeRes) {
   }
 
+  bool setNode(Node *node) {
+    return getNodeInfoDict()->setNode(node);
+  }
+  
   bool setIp(const std::string &value) {
     return getNodeInfoDict()->setIp(value);
   }
@@ -181,7 +191,10 @@ class SystemGetClusterInfoResponse : public SystemMethodResponse {
  public:
   SystemGetClusterInfoResponse(NodeResponse *nodeRes) : SystemMethodResponse(nodeRes) {
   }
-    
+
+  bool setCluster(LocalNode *node);
+  bool getCluster(Cluster *cluster);
+  
   JSONArray *getResultClusterArray();
 };
 

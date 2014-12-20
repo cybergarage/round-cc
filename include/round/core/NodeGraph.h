@@ -18,9 +18,7 @@ class Node;
 class NodeList;
 
 class NodeGraph : public ConsistentHashGraph {
-public:
-  
-public:
+ public:
   NodeGraph();
   ~NodeGraph();
 
