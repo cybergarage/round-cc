@@ -155,7 +155,7 @@ BOOST_AUTO_TEST_CASE(RPCRequestTest) {
 /* FIXME Return false
   inputStr = "{\"jsonrpc\": \"2.0\", \"method\": \"subtract\", \"params\": [42, 23], \"id\": 1}";
   BOOST_CHECK(jsonParser.parse(inputStr));
-  req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getObject());
+  req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getRootObject());
   BOOST_CHECK(req->isValid());
   BOOST_CHECK(!req->isNotify());
 */  
@@ -163,7 +163,7 @@ BOOST_AUTO_TEST_CASE(RPCRequestTest) {
 
   inputStr = "{\"jsonrpc\": \"2.0\", \"method\": \"subtract\", \"params\": {\"subtrahend\": 23, \"minuend\": 42}, \"id\": 3}";
   BOOST_CHECK(jsonParser.parse(inputStr));
-  req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getObject());
+  req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getRootObject());
   BOOST_CHECK(req->isValid());
   BOOST_CHECK(!req->isNotify());
   
@@ -171,7 +171,7 @@ BOOST_AUTO_TEST_CASE(RPCRequestTest) {
 
   inputStr = "{\"jsonrpc\": \"2.0\", \"method\": \"update\", \"params\": [1,2,3,4,5]}";
   BOOST_CHECK(jsonParser.parse(inputStr));
-  req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getObject());
+  req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getRootObject());
   BOOST_CHECK(req->isValid());
   BOOST_CHECK(req->isNotify());
 
@@ -184,21 +184,21 @@ BOOST_AUTO_TEST_CASE(RPCRequestTest) {
   
   inputStr = "{\"jsonrpc\": \"2.0\", \"method\": 1, \"params\": \"bar\"}";
   BOOST_CHECK(jsonParser.parse(inputStr));
-  req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getObject());
+  req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getRootObject());
   BOOST_CHECK(!req->isValid());
   
   //rpc call with an empty Array:
   
   inputStr = "[]";
   BOOST_CHECK(jsonParser.parse(inputStr));
-  req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getObject());
+  req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getRootObject());
   BOOST_CHECK(!req);
   
   // rpc call with an invalid Batch (but not empty):
 
   inputStr = "[1]";
   BOOST_CHECK(jsonParser.parse(inputStr));
-  req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getObject());
+  req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getRootObject());
   BOOST_CHECK(!req);
 }
 

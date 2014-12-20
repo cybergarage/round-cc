@@ -27,10 +27,12 @@ BOOST_AUTO_TEST_CASE(JSONParseRpcBasicMessageTest01) {
   
   JSONParser jsonParser;
   BOOST_CHECK(jsonParser.parse(testString));
-  BOOST_CHECK(jsonParser.getObject());
-  BOOST_CHECK(jsonParser.getObject()->isDictionary());
   
-  JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(jsonParser.getObject());
+  JSONObject *rootObj = jsonParser.getRootObject();
+  BOOST_CHECK(rootObj);
+  BOOST_CHECK(rootObj->isDictionary());
+  
+  JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(rootObj);
   BOOST_CHECK(jsonDict);
   
   std::string jsonStr;
@@ -58,7 +60,7 @@ BOOST_AUTO_TEST_CASE(JSONRPCGetClusterTest) {
   JSONParser jsonParser;
   BOOST_CHECK(jsonParser.parse(testString));
   
-  JSONObject *rootObj = jsonParser.getObject();
+  JSONObject *rootObj = jsonParser.getRootObject();
   BOOST_CHECK(rootObj);
   
   JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(rootObj);
@@ -74,8 +76,9 @@ BOOST_AUTO_TEST_CASE(JSONRPCGetClusterTest) {
   BOOST_CHECK_EQUAL(jsonStr.compare("2.0"), 0);
   
   BOOST_CHECK(jsonDict->get("result", &jsonObj));
-  JSONObject *resultObj;
   
+  JSONDictionary *resultDir = dynamic_cast<JSONDictionary *>(jsonObj);
+  BOOST_CHECK(resultDir);
   
 }
 

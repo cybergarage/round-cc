@@ -142,11 +142,11 @@ public:
   bool parse(const std::string &jsonString);
   bool parse(const std::string &jsonString, JSONObject **jsonObject);
 
-  JSONObject *getObject() const {
-    return this->jsonObject;
+  JSONObject *getRootObject() const {
+    return this->rootObject;
   }
 
-  JSONObject *popObject();
+  JSONObject *popRootObject();
   
   virtual JSONString *createJSONString(const std::string &value) {
     return new JSONString(value);
@@ -169,7 +169,7 @@ private:
 
 private:
 
-  JSONObject *jsonObject;
+  JSONObject *rootObject;
 };
 
 }

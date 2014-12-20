@@ -274,7 +274,7 @@ bool Round::LocalNode::setMethod(const NodeRequest *nodeReq, NodeResponse *nodeR
     return false;
   }
   
-  JSONObject *jsonObj = jsonParser.getObject();
+  JSONObject *jsonObj = jsonParser.getRootObject();
   if (!jsonObj->isDictionary()) {
     RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeInvalidParams, err);
     return false;

@@ -114,9 +114,12 @@ bool Round::RemoteNode::postMessage(NodeRequest *nodeReq, NodeResponse *nodeRes,
   JSONParser jsonParser;
   if (jsonParser.parse(httpContent) == false)
     return isSuccess;
-  if (jsonParser.getObject()->isDictionary() == false)
+  JSONObject *rootObj = jsonParser.getRootObject();
+  if (!rootObj)
     return isSuccess;
-  JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(jsonParser.getObject());
+  if (rootObj->isDictionary() == false)
+    return isSuccess;
+  JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(rootObj);
   if (!jsonDict)
     return isSuccess;
 

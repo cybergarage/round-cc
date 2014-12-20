@@ -14,7 +14,7 @@
 #include <round/common/JSON.h>
 
 Round::JSONParser::JSONParser() {
-  this->jsonObject = NULL;
+  this->rootObject = NULL;
 }
 
 Round::JSONParser::~JSONParser() {
@@ -22,18 +22,18 @@ Round::JSONParser::~JSONParser() {
 }
 
 void Round::JSONParser::clear() {
-  if (this->jsonObject) {
-    delete this->jsonObject;
-    this->jsonObject = NULL;
+  if (this->rootObject) {
+    delete this->rootObject;
+    this->rootObject = NULL;
   }
 }
 
-Round::JSONObject *Round::JSONParser::popObject() {
-  JSONObject *popObject = this->jsonObject;
-  this->jsonObject = NULL;
+Round::JSONObject *Round::JSONParser::popRootObject() {
+  JSONObject *popObject = this->rootObject;
+  this->rootObject = NULL;
   return popObject;
 }
 
 bool Round::JSONParser::parse(const std::string &jsonString) {
-  return parse(jsonString, &this->jsonObject);
+  return parse(jsonString, &this->rootObject);
 }
