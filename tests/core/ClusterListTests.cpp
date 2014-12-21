@@ -15,6 +15,8 @@
 using namespace std;
 using namespace Round;
 
+BOOST_AUTO_TEST_SUITE(core)
+
 BOOST_AUTO_TEST_CASE(RoundClusterAddTest) {
   const size_t clusterCount = 10;
 
@@ -100,3 +102,5 @@ BOOST_AUTO_TEST_CASE(RoundClusterRemoveByNameTest) {
   }
   BOOST_CHECK_EQUAL(0, clusterList.size());
 }
+    
+BOOST_AUTO_TEST_SUITE_END()

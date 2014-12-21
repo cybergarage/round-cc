@@ -17,6 +17,8 @@ const std::string TEST_CLUSTER_NAME = "testCluster";
 const std::string TEST_CLUSTER_NAME_1 = "testCluster1";
 const std::string TEST_CLUSTER_NAME_2 = "testCluster2";
 
+BOOST_AUTO_TEST_SUITE(core)
+
 BOOST_AUTO_TEST_CASE(ClusterNameTest) {
   Round::Cluster cluster(TEST_CLUSTER_NAME);
 
@@ -46,3 +48,5 @@ BOOST_AUTO_TEST_CASE(ClusterEqualTest) {
   BOOST_CHECK(cluster1.equals(&cluster3));
   BOOST_CHECK(cluster3.equals(&cluster1));
 }
+
+BOOST_AUTO_TEST_SUITE_END()
