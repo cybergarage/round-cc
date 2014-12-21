@@ -22,10 +22,18 @@ const std::string Round::SystemMethodResponse::CLUSTER  = "cluster";
 const std::string Round::SystemMethodResponse::NODES  = "nodes";
 const std::string Round::SystemMethodResponse::CLUSTERS = "clusters";
 
+////////////////////////////////////////
+// SystemMethodResponse
+////////////////////////////////////////
+
 Round::SystemMethodResponse::SystemMethodResponse(NodeResponse *nodeRes) {
   this->nodeRes = nodeRes;  
   this->nodeRes->setVersion(RPC::JSON::VERSION);
 }
+
+////////////////////////////////////////
+// SystemGetClusterInfoResponse
+////////////////////////////////////////
 
 Round::JSONDictionary *Round::SystemGetClusterInfoResponse::getResultClusterDict() {
   JSONDictionary *resultDict = this->nodeRes->getResultDict();
@@ -64,20 +72,64 @@ Round::JSONArray *Round::SystemGetClusterInfoResponse::getResultClusterNodeArray
 }
 
 bool Round::SystemGetClusterInfoResponse::setCluster(LocalNode *node) {
-  Error error;
   SystemGetClusterInfoResponse sysRes(nodeRes);
-  
-  // Cluster Name
-  
   JSONDictionary *clusterDict = sysRes.getResultClusterDict();
-  std::string clusterName;
-  if (node->getClusterName(&clusterName, &error)) {
-    clusterDict->set(NAME, clusterName);
-  }
+  SystemClusterInfoDict clusterInfoDict(clusterDict);
+  return clusterInfoDict.setCluster(node);
+}
+
+bool Round::SystemGetClusterInfoResponse::getCluster(Cluster *cluster) {
+  JSONDictionary *clusterDict = getResultClusterDict();
+  SystemClusterInfoDict clusterInfoDict(clusterDict);
+  return clusterInfoDict.getCluster(cluster);
+  return true;
+}
+
+////////////////////////////////////////
+// SystemGetNetworkInfoResponse
+////////////////////////////////////////
+
+Round::JSONDictionary *Round::SystemGetNetworkInfoResponse::getResultClustersDict() {
+  JSONDictionary *resultDict = this->nodeRes->getResultDict();
+  if (!resultDict)
+    return NULL;
+  
+  JSONObject *jsonObj = NULL;
+  resultDict->get(CLUSTERS, &jsonObj);
+  
+  JSONDictionary *clusterDict = dynamic_cast<JSONDictionary *>(jsonObj);
+  if (clusterDict)
+    return clusterDict;
+  
+  clusterDict = new JSONDictionary();
+  resultDict->set(CLUSTERS, clusterDict);
+  
+  return clusterDict;
+}
+
+Round::JSONArray *Round::SystemGetNetworkInfoResponse::getResultClustersArray() {
+  JSONDictionary *clustersDict = getResultClustersDict();
+  if (!clustersDict)
+    return NULL;
+  
+  JSONObject *jsonObj = NULL;
+  clustersDict->get(NODES, &jsonObj);
+  
+  JSONArray *jsonArray = dynamic_cast<JSONArray *>(jsonObj);
+  if (jsonArray)
+    return jsonArray;
+  
+  jsonArray = new JSONArray();
+  clustersDict->set(NODES, jsonArray);
+  
+  return jsonArray;
+}
+
+bool Round::SystemGetNetworkInfoResponse::setClusters(LocalNode *node) {
 
   // Cluseter Nodes
   
-  JSONArray *clusterNodeArray = sysRes.getResultClusterNodeArray();
+  JSONArray *clusterArray = getResultClustersArray();
   
   const NodeGraph *nodeGraph = node->getNodeGraph();
   size_t nodeCnt = nodeGraph->size();
@@ -91,43 +143,12 @@ bool Round::SystemGetClusterInfoResponse::setCluster(LocalNode *node) {
     SystemNodeInfoDict nodeInfo(jsonDict);
     nodeInfo.setNode(node);
     
-    clusterNodeArray->add(jsonDict);
+    clusterArray->add(jsonDict);
   }
   
   return true;
 }
 
-bool Round::SystemGetClusterInfoResponse::getCluster(Cluster *cluster) {
-  
-  // Cluster Name
-  
-  JSONDictionary *clusterDict = getResultClusterDict();
-  std::string clusterName;
-  if (clusterDict->get(NAME, &clusterName)) {
-    cluster->setName(clusterName);
-  }
-  
-  // Cluseter Nodes
-  
-  JSONArray *clusterNodeArray = getResultClusterNodeArray();
-  
-  size_t clusterCnt = clusterNodeArray->size();
-  for (size_t n=0; n<clusterCnt; n++) {
-    JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(clusterNodeArray->getObject(n));
-    if (!jsonDict)
-      continue;
-    
-    RemoteNode *node = new RemoteNode();
-    node->setWeakFlag(false);
-    
-    SystemNodeInfoDict nodeInfoDict(jsonDict);
-    if (!nodeInfoDict.getNode(node)) {
-      delete node;
-      continue;
-    }
-    
-    cluster->addNode(node);
-  }
-  
-  return true;
+bool Round::SystemGetNetworkInfoResponse::getClusters(ClusterList *clusterList) {
+  return false;
 }

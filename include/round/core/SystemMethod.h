@@ -137,6 +137,29 @@ private:
   JSONDictionary *jsonDict;
 };
 
+class SystemClusterInfoDict {
+ public:
+  SystemClusterInfoDict() {
+    setJSONDictionary(NULL);
+  }
+    
+  SystemClusterInfoDict(JSONDictionary *jsonDict) {
+    setJSONDictionary(jsonDict);
+  }
+    
+  void setJSONDictionary(JSONDictionary *jsonDict) {
+    this->jsonDict = jsonDict;
+  }
+    
+  JSONArray *getNodeArray();
+  
+  bool setCluster(LocalNode *node);
+  bool getCluster(Cluster *cluster);
+  
+  private:
+    JSONDictionary *jsonDict;
+};
+  
 class SystemGetNodeInfoResponse : public SystemMethodResponse {
  public:
   SystemGetNodeInfoResponse(NodeResponse *nodeRes) : SystemMethodResponse(nodeRes) {
@@ -200,7 +223,18 @@ class SystemGetClusterInfoResponse : public SystemMethodResponse {
   JSONArray *getResultClusterNodeArray();
 };
 
-
+class SystemGetNetworkInfoResponse : public SystemMethodResponse {
+ public:
+  SystemGetNetworkInfoResponse(NodeResponse *nodeRes) : SystemMethodResponse(nodeRes) {
+  }
+    
+  bool setClusters(LocalNode *node);
+  bool getClusters(ClusterList *clusterList);
+    
+  JSONDictionary *getResultClustersDict();
+  JSONArray *getResultClustersArray();
+};
+  
 }
 
 #endif

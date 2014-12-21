@@ -106,6 +106,7 @@ class NodeTestController {
  private:
   void runSystemGetNodeInfoTest(Round::Node *node);
   void runSystemGetClusterInfoTest(Round::Node *node);
+  void runSystemGetNetworkInfoTest(Round::Node *node);
 };
 
 #endif

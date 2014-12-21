@@ -203,10 +203,16 @@ void NodeTestController::runSystemGetClusterInfoTest(Round::Node *node) {
   BOOST_CHECK_EQUAL(nodeClusterName.compare(cluster.getName()), 0);
 }
 
+void NodeTestController::runSystemGetNetworkInfoTest(Round::Node *node) {
+}
+
 void NodeTestController::runSystemMethodTest(Round::Node *node) {
   // _get_node_info
   runSystemGetNodeInfoTest(node);
   
   // _get_cluster_info
   runSystemGetClusterInfoTest(node);
+
+  // _get_network_info
+  runSystemGetNetworkInfoTest(node);
 }
