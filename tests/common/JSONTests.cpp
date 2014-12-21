@@ -378,4 +378,38 @@ BOOST_AUTO_TEST_CASE(RoundJSONDictionaryCopyTest) {
   BOOST_CHECK(srcDist.equals(dstDict));
 }
 
+BOOST_AUTO_TEST_CASE(RoundJSONDictionaryGetDirectoryTest) {
+  string key = "key";
+  
+  JSONDictionary jsonDict;
+  JSONObject *jsonObj;
+  
+  BOOST_CHECK(!jsonDict.get(key, &jsonObj));
+  
+  jsonObj = jsonDict.getJSONDictionary(key);
+  BOOST_CHECK(jsonObj);
+  BOOST_CHECK(dynamic_cast<JSONDictionary *>(jsonObj));
+
+  BOOST_CHECK(jsonDict.get(key, &jsonObj));
+  BOOST_CHECK(jsonObj);
+  BOOST_CHECK(dynamic_cast<JSONDictionary *>(jsonObj));
+}
+
+BOOST_AUTO_TEST_CASE(RoundJSONDictionaryGetArrayTest) {
+  string key = "key";
+  
+  JSONDictionary jsonDict;
+  JSONObject *jsonObj;
+  
+  BOOST_CHECK(!jsonDict.get(key, &jsonObj));
+  
+  jsonObj = jsonDict.getJSONArray(key);
+  BOOST_CHECK(jsonObj);
+  BOOST_CHECK(dynamic_cast<JSONArray *>(jsonObj));
+  
+  BOOST_CHECK(jsonDict.get(key, &jsonObj));
+  BOOST_CHECK(jsonObj);
+  BOOST_CHECK(dynamic_cast<JSONArray *>(jsonObj));
+}
+
 BOOST_AUTO_TEST_SUITE_END()

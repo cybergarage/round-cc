@@ -187,6 +187,9 @@ public:
   long get(const std::string &key, long defaultValue) const;
   bool get(const std::string &key, bool defaultValue) const;
 
+  JSONDictionary *getJSONDictionary(const std::string &key);
+  JSONArray *getJSONArray(const std::string &key);
+  
   bool remove(const std::string &key);
 
   void clear();

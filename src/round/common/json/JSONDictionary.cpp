@@ -213,6 +213,34 @@ bool Round::JSONDictionary::set(const JSONDictionary *srcDict) {
   return true;
 }
 
+Round::JSONDictionary *Round::JSONDictionary::getJSONDictionary(const std::string &key) {
+  JSONObject *jsonObj = NULL;
+  get(key, &jsonObj);
+  
+  JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(jsonObj);
+  if (jsonDict)
+    return jsonDict;
+  
+  jsonDict = new JSONDictionary();
+  set(key, jsonDict);
+  
+  return jsonDict;
+}
+
+Round::JSONArray *Round::JSONDictionary::getJSONArray(const std::string &key) {
+  JSONObject *jsonObj = NULL;
+  get(key, &jsonObj);
+  
+  JSONArray *jsonArray = dynamic_cast<JSONArray *>(jsonObj);
+  if (jsonArray)
+    return jsonArray;
+  
+  jsonArray = new JSONArray();
+  set(key, jsonArray);
+  
+  return jsonArray;
+}
+
 bool Round::JSONDictionary::copy(JSONObject **newObj) const {
   JSONDictionary *dstDict = new JSONDictionary();
   if (dstDict->set(this)) {
