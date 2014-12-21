@@ -88,10 +88,15 @@ bool Round::JSONDictionary::get(const std::string &key, std::string *value) cons
   JSONObject *jsonObj = NULL;
   if (get(key, &jsonObj) == false)
     return false;
+  
   JSONString *jsonStr = dynamic_cast<JSONString *>(jsonObj);
-  if (!jsonStr)
-    return false;
-  *value = *jsonStr;
+  if (jsonStr) {
+    *value = *jsonStr;
+    return true;
+  }
+  
+  jsonObj->toJSONString(value);
+  
   return true;
 }
 
