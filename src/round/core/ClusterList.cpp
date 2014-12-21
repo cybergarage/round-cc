@@ -16,6 +16,7 @@ Round::ClusterList::ClusterList() {
 }
 
 Round::ClusterList::~ClusterList() {
+  clear();
 }
 
 bool Round::ClusterList::addCluster(Cluster *cluster) {
@@ -73,6 +74,14 @@ bool Round::ClusterList::removeCluster(const std::string &name) {
     return false;
 
   return removeCluster(foundCluster);
+}
+
+bool Round::ClusterList::clear() {
+  for (ClusterList::iterator cluster = begin(); cluster != end(); cluster++) {
+    delete *cluster;
+  }
+  std::vector<Cluster *>::clear();
+  return true;
 }
 
 

@@ -76,6 +76,8 @@ class ClusterList : public std::vector<Cluster *> {
 
   bool removeCluster(Cluster *cluster);
   bool removeCluster(const std::string &name);
+
+  bool clear();
 };
 
 }
