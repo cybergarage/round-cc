@@ -204,6 +204,38 @@ void NodeTestController::runSystemGetClusterInfoTest(Round::Node *node) {
 }
 
 void NodeTestController::runSystemGetNetworkInfoTest(Round::Node *node) {
+  Error err;
+  std::string jsonString;
+  
+  // Node information
+  
+  std::string nodeClusterName;
+  BOOST_CHECK(node->getClusterName(&nodeClusterName, &err));
+  
+  // Response information
+  
+  SystemGetNetworkInfoRequest nodeReq;
+  NodeResponse nodeRes;
+  
+  nodeReq.toJSONString(&jsonString);
+  RoundLogTrace(jsonString.c_str());
+  
+  BOOST_CHECK(node->postMessage(&nodeReq, &nodeRes, &err));
+  
+  nodeRes.toJSONString(&jsonString);
+  RoundLogTrace(jsonString.c_str());
+  
+  // Check Response
+  
+  SystemGetNetworkInfoResponse sysRes(&nodeRes);
+  
+  ClusterList clusterList;
+  BOOST_CHECK(sysRes.getClusters(&clusterList));
+  BOOST_CHECK(clusterList.hasCluster(nodeClusterName));
+  
+  Cluster *cluster = clusterList.getCluster(nodeClusterName);
+  BOOST_CHECK(cluster);
+  BOOST_CHECK(cluster->hasNode(node));
 }
 
 void NodeTestController::runSystemMethodTest(Round::Node *node) {

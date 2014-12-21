@@ -40,7 +40,7 @@ class Node : public NodeCore, public Cloneable<Node> {
   bool getClusterList(ClusterList *clusterList, Error *error);
 
 public:
-  
+
   void setWeakFlag(bool flag) {
     this->weakFlag = flag;
   }

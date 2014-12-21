@@ -367,5 +367,6 @@ bool Round::LocalNode::_get_cluster_info(const NodeRequest *nodeReq, NodeRespons
 }
 
 bool Round::LocalNode::_get_network_info(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
-  return false;
+  SystemGetNetworkInfoResponse sysRes(nodeRes);
+  return sysRes.setClusters(this);
 }

@@ -231,8 +231,7 @@ class SystemGetNetworkInfoResponse : public SystemMethodResponse {
   bool setClusters(LocalNode *node);
   bool getClusters(ClusterList *clusterList);
     
-  JSONDictionary *getResultClustersDict();
-  JSONArray *getResultClustersArray();
+  JSONArray *getResultClusterArray();
 };
   
 }
