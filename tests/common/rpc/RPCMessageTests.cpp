@@ -153,13 +153,13 @@ BOOST_AUTO_TEST_CASE(RPCRequestTest) {
   std::string inputStr, jsonStr;
   
   // rpc call with positional parameters:
-/* FIXME Return false
+  
   inputStr = "{\"jsonrpc\": \"2.0\", \"method\": \"subtract\", \"params\": [42, 23], \"id\": 1}";
-  BOOST_CHECK(jsonParser.parse(inputStr));
+  BOOST_CHECK(jsonParser.parse(inputStr, &error));
   req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getRootObject());
   BOOST_CHECK(req->isValid());
   BOOST_CHECK(!req->isNotify());
-*/  
+  
   // rpc call with named parameters:
 
   inputStr = "{\"jsonrpc\": \"2.0\", \"method\": \"subtract\", \"params\": {\"subtrahend\": 23, \"minuend\": 42}, \"id\": 3}";

@@ -23,10 +23,13 @@ bool Round::RPC::JSON::Request::isValid() {
   if (!hasKey(METHOD))
     return false;
 
-  int value;
-  if (get(METHOD, &value))
+  JSONObject *methodObj;
+  if (!get(METHOD, &methodObj))
     return false;
-
+  
+  if (!methodObj->isString())
+    return false;
+  
   return true;
 }
 
