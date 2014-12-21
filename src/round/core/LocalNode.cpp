@@ -126,7 +126,7 @@ bool Round::LocalNode::nodeAdded(Round::Node *notifyNode)  {
   if (!getClusterName(&thisNodeCluster, &error))
     return false;
   
-  if (thisNodeCluster.compare(notifyNodeCluster) == 0)
+  if (thisNodeCluster.compare(notifyNodeCluster) != 0)
     return false;
   
   if (this->nodeGraph.hasNode(notifyNode))
