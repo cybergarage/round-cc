@@ -16,6 +16,8 @@
 using namespace std;
 using namespace Round;
 
+BOOST_AUTO_TEST_SUITE(node)
+
 BOOST_AUTO_TEST_CASE(RoundNodeFinderStartAndStopTest) {
   Error error;
   NodeFinder *nodeFinder = new TestNodeFinder();
@@ -39,3 +41,6 @@ BOOST_AUTO_TEST_CASE(RoundNodeFinderNotificationTest) {
   
   delete nodeFinder;
 }
+
+BOOST_AUTO_TEST_SUITE_END()
+
