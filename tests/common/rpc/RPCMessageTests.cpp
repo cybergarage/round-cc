@@ -188,7 +188,12 @@ BOOST_AUTO_TEST_CASE(RPCRequestTest) {
   req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getRootObject());
   BOOST_CHECK(!req->isValid());
   
-  //rpc call with an empty Array:
+  // rpc call Batch, invalid JSON:
+  
+  inputStr = "[{\"jsonrpc\": \"2.0\", \"method\": \"sum\", \"params\": [1,2,4], \"id\": \"1\"},{\"jsonrpc\": \"2.0\", \"method\"]";
+  BOOST_CHECK(!jsonParser.parse(inputStr, &error));
+  
+  // rpc call with an empty Array:
   
   inputStr = "[]";
   BOOST_CHECK(jsonParser.parse(inputStr, &error));
