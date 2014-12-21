@@ -106,9 +106,9 @@ private:
   bool isSystemMethod(const std::string &method);
   bool execSystemMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
   
-  bool getNodeInfo(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
-  bool getClusterInfo(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
-  bool getNetworkInfo(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  virtual bool _get_node_info(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  virtual bool _get_cluster_info(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  virtual bool _get_network_info(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
 
 private:
 

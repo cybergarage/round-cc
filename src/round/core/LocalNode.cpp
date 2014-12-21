@@ -344,11 +344,11 @@ bool Round::LocalNode::execSystemMethod(const NodeRequest *nodeReq, NodeResponse
   int systemMethodType = systemMethods[reqMethod];
   switch (systemMethodType) {
   case SystemGetNodeInfo:
-    return getNodeInfo(nodeReq, nodeRes, error);
+    return _get_node_info(nodeReq, nodeRes, error);
   case SystemGetClusterInfo:
-    return getClusterInfo(nodeReq, nodeRes, error);
+    return _get_cluster_info(nodeReq, nodeRes, error);
   case SystemGetNetworkInfo:
-    return getNetworkInfo(nodeReq, nodeRes, error);
+    return _get_network_info(nodeReq, nodeRes, error);
   }
   
   RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeMethodNotFound, error);
@@ -356,16 +356,16 @@ bool Round::LocalNode::execSystemMethod(const NodeRequest *nodeReq, NodeResponse
   return false;
 }
 
-bool Round::LocalNode::getNodeInfo(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+bool Round::LocalNode::_get_node_info(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
   SystemGetNodeInfoResponse sysRes(nodeRes);
   return sysRes.setNode(this);
 }
 
-bool Round::LocalNode::getClusterInfo(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+bool Round::LocalNode::_get_cluster_info(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
   SystemGetClusterInfoResponse sysRes(nodeRes);
   return sysRes.setCluster(this);
 }
 
-bool Round::LocalNode::getNetworkInfo(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+bool Round::LocalNode::_get_network_info(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
   return false;
 }
