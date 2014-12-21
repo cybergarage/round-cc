@@ -27,11 +27,6 @@ Round::SystemMethodResponse::SystemMethodResponse(NodeResponse *nodeRes) {
   this->nodeRes->setVersion(RPC::JSON::VERSION);
 }
 
-/*
-JSONDictionary *getResultClusterDict();
-JSONArray *getResultClusterNodeArray();
-*/
-
 Round::JSONDictionary *Round::SystemGetClusterInfoResponse::getResultClusterDict() {
   JSONDictionary *resultDict = this->nodeRes->getResultDict();
   if (!resultDict)
@@ -69,9 +64,20 @@ Round::JSONArray *Round::SystemGetClusterInfoResponse::getResultClusterNodeArray
 }
 
 bool Round::SystemGetClusterInfoResponse::setCluster(LocalNode *node) {
+  Error error;
   SystemGetClusterInfoResponse sysRes(nodeRes);
   
-  JSONArray *clusterArray = sysRes.getResultClusterNodeArray();
+  // Cluster Name
+  
+  JSONDictionary *clusterDict = sysRes.getResultClusterDict();
+  std::string clusterName;
+  if (node->getClusterName(&clusterName, &error)) {
+    clusterDict->set(NAME, clusterName);
+  }
+
+  // Cluseter Nodes
+  
+  JSONArray *clusterNodeArray = sysRes.getResultClusterNodeArray();
   
   const NodeGraph *nodeGraph = node->getNodeGraph();
   size_t nodeCnt = nodeGraph->size();
@@ -85,18 +91,29 @@ bool Round::SystemGetClusterInfoResponse::setCluster(LocalNode *node) {
     SystemNodeInfoDict nodeInfo(jsonDict);
     nodeInfo.setNode(node);
     
-    clusterArray->add(jsonDict);
+    clusterNodeArray->add(jsonDict);
   }
   
   return true;
 }
 
 bool Round::SystemGetClusterInfoResponse::getCluster(Cluster *cluster) {
-  JSONArray *clusterArray = getResultClusterNodeArray();
   
-  size_t clusterCnt = clusterArray->size();
+  // Cluster Name
+  
+  JSONDictionary *clusterDict = getResultClusterDict();
+  std::string clusterName;
+  if (clusterDict->get(NAME, &clusterName)) {
+    cluster->setName(clusterName);
+  }
+  
+  // Cluseter Nodes
+  
+  JSONArray *clusterNodeArray = getResultClusterNodeArray();
+  
+  size_t clusterCnt = clusterNodeArray->size();
   for (size_t n=0; n<clusterCnt; n++) {
-    JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(clusterArray->getObject(n));
+    JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(clusterNodeArray->getObject(n));
     if (!jsonDict)
       continue;
     

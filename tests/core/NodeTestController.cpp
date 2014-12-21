@@ -175,6 +175,11 @@ void NodeTestController::runSystemGetClusterInfoTest(Round::Node *node) {
   Error err;
   std::string jsonString;
   
+  // Node information
+  
+  std::string nodeClusterName;
+  BOOST_CHECK(node->getClusterName(&nodeClusterName, &err));
+  
   // Response information
   
   SystemGetClusterInfoRequest nodeReq;
@@ -188,11 +193,14 @@ void NodeTestController::runSystemGetClusterInfoTest(Round::Node *node) {
   nodeRes.toJSONString(&jsonString);
   RoundLogTrace(jsonString.c_str());
   
+  // Check Response
+  
   SystemGetClusterInfoResponse sysRes(&nodeRes);
   
   Cluster cluster;
   BOOST_CHECK(sysRes.getCluster(&cluster));
   BOOST_CHECK(cluster.hasNode(node));
+  BOOST_CHECK_EQUAL(nodeClusterName.compare(cluster.getName()), 0);
 }
 
 void NodeTestController::runSystemMethodTest(Round::Node *node) {
