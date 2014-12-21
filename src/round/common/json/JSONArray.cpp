@@ -36,9 +36,9 @@ bool Round::JSONArray::getString(size_t n, std::string *value) const {
   const JSONObject *jsonObj = getObject(n);
   if (!jsonObj)
     return false;
-  if (!jsonObj->isString())
-    return false;
   const JSONString *jsonString = static_cast<const JSONString *>(jsonObj);
+  if (!jsonString)
+    return false;
   *value = jsonString->c_str();
   return true;
 }

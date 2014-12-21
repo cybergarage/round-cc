@@ -43,11 +43,9 @@ BOOST_AUTO_TEST_CASE(RoundJSONNullTypeTest) {
 BOOST_AUTO_TEST_CASE(RoundJSONIntegerTypeTest) {
   JSONInteger jsonObj;
   
-  BOOST_CHECK(jsonObj.isString());
-  BOOST_CHECK(dynamic_cast<JSONString *>(&jsonObj));
-
   BOOST_CHECK(jsonObj.isInteger());
   BOOST_CHECK(dynamic_cast<JSONInteger *>(&jsonObj));
+  BOOST_CHECK(dynamic_cast<JSONString *>(&jsonObj));
 }
 
 BOOST_AUTO_TEST_CASE(RoundJSONIntergerSetterTest) {
@@ -78,11 +76,9 @@ BOOST_AUTO_TEST_CASE(RoundJSONIntergerSetterTest) {
 BOOST_AUTO_TEST_CASE(RoundJSONRealTypeTest) {
   JSONReal jsonObj;
   
-  BOOST_CHECK(jsonObj.isString());
-  BOOST_CHECK(dynamic_cast<JSONString *>(&jsonObj));
-  
   BOOST_CHECK(jsonObj.isReal());
   BOOST_CHECK(dynamic_cast<JSONReal *>(&jsonObj));
+  BOOST_CHECK(dynamic_cast<JSONString *>(&jsonObj));
 }
 
 BOOST_AUTO_TEST_CASE(RoundJSONRealSetterTest) {
@@ -113,11 +109,9 @@ BOOST_AUTO_TEST_CASE(RoundJSONRealSetterTest) {
 BOOST_AUTO_TEST_CASE(RoundJSONBooleanTypeTest) {
   JSONBoolean jsonObj;
   
-  BOOST_CHECK(jsonObj.isString());
-  BOOST_CHECK(dynamic_cast<JSONString *>(&jsonObj));
-  
   BOOST_CHECK(jsonObj.isBoolean());
   BOOST_CHECK(dynamic_cast<JSONBoolean *>(&jsonObj));
+  BOOST_CHECK(dynamic_cast<JSONString *>(&jsonObj));
 }
 
 BOOST_AUTO_TEST_CASE(RoundJSONBooleanSetterTest) {
