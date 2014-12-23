@@ -72,6 +72,12 @@ BOOST_AUTO_TEST_CASE(RoundRealServerFindTest) {
         break;
       }
     }
+    if (isServerNotFound) {
+      for (int n=0; n<TEST_SERVER_COUNT; n++) {
+        BOOST_CHECK(servers[n]->announce());
+        Round::Test::Sleep();
+      }
+    }
     Round::Test::Sleep();
   }
   
