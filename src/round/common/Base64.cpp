@@ -63,9 +63,9 @@ ssize_t Round::Base64::Decode(const std::string &encodedStr, char **decordedByte
   
   BIO *b64 = BIO_new(BIO_f_base64());
   BIO_set_flags(b64, BIO_FLAGS_BASE64_NO_NL);
-  BIO *bmem = BIO_new_mem_buf(decordedBytes, decordedSize);
+  BIO *bmem = BIO_new_mem_buf((void *)encodedStr.c_str(), (int)encodedStrSize);
   b64 = BIO_push(b64, bmem);
-  size_t readLen = BIO_read(b64, (char *)encodedStr.c_str(), encodedStrSize);
+  size_t readLen = BIO_read(b64, *decordedBytes, decordedSize);
   (*decordedBytes)[readLen] = '\0';
   BIO_free_all(b64);
   
