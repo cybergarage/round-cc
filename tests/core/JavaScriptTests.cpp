@@ -21,14 +21,14 @@ using namespace Round;
 BOOST_AUTO_TEST_SUITE(script)
 
 BOOST_AUTO_TEST_CASE(JavaScriptEngineEchoTest) {
-  
+  Error err;
   ScriptManager scriptMgr;
 
-  BOOST_CHECK(scriptMgr.setScript(new Script(JavaScriptEngine::LANGUAGE, Test::SCRIPT_ECHO_NAME, Round::Test::JS_ECHO_CODE)));
-  BOOST_CHECK(scriptMgr.hasScript(Test::SCRIPT_ECHO_NAME));
-  
   BOOST_CHECK(scriptMgr.setEngine(new JavaScriptEngine()));
   BOOST_CHECK(scriptMgr.hasEngine(JavaScriptEngine::LANGUAGE));
+  
+  BOOST_CHECK(scriptMgr.setScript(Test::SCRIPT_ECHO_NAME, JavaScriptEngine::LANGUAGE, Round::Test::JS_ECHO_CODE, &err));
+  BOOST_CHECK(scriptMgr.hasScript(Test::SCRIPT_ECHO_NAME));
   
   Test::ScriptTestController scriptTestController;
   scriptTestController.runEchoMethodTest(Test::SCRIPT_ECHO_NAME, &scriptMgr);

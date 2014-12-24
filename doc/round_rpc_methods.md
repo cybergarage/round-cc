@@ -131,15 +131,13 @@ In JavaScript JSON encode
 
 In Java, Base64
 
-Camelcase
-
 | Method | Java Class |
 | --- | --- |
-| _get_node_name | _GetNodeName |
+| _get_node_name | _get_node_name |
 
 ```
-public class _GetNodeName {
-  public _GetNodeName() {
+public class _get_node_name {
+  public _get_node_name() {
   }
   public String run(String params) {
     .....

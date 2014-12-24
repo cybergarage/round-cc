@@ -24,7 +24,7 @@ bool Round::ScriptManager::setScript(Script *script) {
   if (name.length() <= 0) {
     return false;
   }
-  
+
   const Script *currentScript = this->scripts.getScript(name);
   if (currentScript) {
     delete currentScript;

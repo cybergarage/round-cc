@@ -11,8 +11,11 @@
 #include <sstream>
 #include <boost/algorithm/string/replace.hpp>
 
+#include <round/common/Base64.h>
 #include <round/core/Log.h>
 #include <round/core/impl/Java.h>
+
+#define ROUND_UES_JVMOPTIONS 1
 
 const Round::ScriptName Round::JavaEngine::LANGUAGE = "java";
 
@@ -35,21 +38,53 @@ Round::JavaEngine::JavaEngine() : ScriptEngine(LANGUAGE) {
 }
 
 bool Round::JavaEngine::compile(const Script *script) const {
-  return true;
+  if (!this->jniEnv)
+    return false;
+
+  jclass loaderClass = this->jniEnv->FindClass("java/lang/ClassLoader");
+  if(!loaderClass)
+    return false;
+  
+  jmethodID sysLoaderMethod = this->jniEnv->GetStaticMethodID(loaderClass, "getSystemClassLoader", "()Ljava/lang/ClassLoader;");
+  if(!sysLoaderMethod)
+    return false;
+  
+  jobject loader = this->jniEnv->CallStaticObjectMethod(loaderClass, sysLoaderMethod);
+  jobject globalLoader = this->jniEnv->NewGlobalRef(loader);
+  
+  std::string scriptName = script->getName();
+  std::string scriptCode = script->getCode();
+  
+  char *classBytes;
+  ssize_t classByteLen = Base64::Decode(scriptCode, &classBytes);
+  if (classByteLen <= 0)
+    return false;
+  
+  jclass clazz = this->jniEnv->DefineClass(scriptName.c_str(), globalLoader, (jbyte *)classBytes, (jsize)classByteLen);
+  this->jniEnv->DeleteGlobalRef(globalLoader);
+  
+  free(classBytes);
+  
+  return clazz ? true : false;
 }
 
-bool Round::JavaEngine::run(const Script *jsScript, const ScriptParams &params, ScriptResults *results, Error *error) const {
-  jclass clazz = this->jniEnv->FindClass("Script");
+bool Round::JavaEngine::run(const Script *script, const ScriptParams &params, ScriptResults *results, Error *error) const {
+  if (!this->jniEnv)
+    return false;
+  
+  std::string scriptName = script->getName();
+  jclass clazz = this->jniEnv->FindClass(scriptName.c_str());
+  if (!clazz)
+    return false;
   
   jmethodID initMethodID	= this->jniEnv->GetMethodID(clazz, "<init>",	"()V");
-  jmethodID methodId      = this->jniEnv->GetMethodID(clazz, "run",	"(Ljava/lang/String;)V");
+  jmethodID runMethodId      = this->jniEnv->GetMethodID(clazz, "run",	"(Ljava/lang/String;)V");
+  if (!initMethodID || !runMethodId)
+    return false;
   
   jobject scriptObject = this->jniEnv->NewObject(clazz, initMethodID);
-  
   jstring jstringParams = this->jniEnv->NewStringUTF(params.c_str());
-  
-  jstring jstringResults = (jstring)this->jniEnv->CallObjectMethod(scriptObject, methodId, jstringParams);
-  
+  jstring jstringResults = (jstring)this->jniEnv->CallObjectMethod(scriptObject, runMethodId, jstringParams);
   
   const char* stringResults = this->jniEnv->GetStringUTFChars(jstringResults, NULL);
   *results = stringResults;
