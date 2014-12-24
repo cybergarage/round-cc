@@ -72,15 +72,28 @@ BOOST_AUTO_TEST_CASE(RoundRealServerClientFindTest) {
 
   Round::Test::Sleep();
   
-  size_t clietnClusterCnt = 0;
-  while (clietnClusterCnt != TEST_SERVER_COUNT) {
+  size_t clusterNodeCnt = 0;
+  while (clusterNodeCnt != TEST_SERVER_COUNT) {
     Cluster *foundCluster = client.getCluster(clusterName);
     BOOST_WARN_MESSAGE(foundCluster, "Cluster (" << clusterName << ") is not found !!");
     if (foundCluster) {
-      clietnClusterCnt = foundCluster->size();
+      clusterNodeCnt = foundCluster->size();
     }
-    if (clietnClusterCnt != TEST_SERVER_COUNT) {
-      BOOST_WARN_MESSAGE((clietnClusterCnt == TEST_SERVER_COUNT), "Cluster size (" << clietnClusterCnt << ") is not equal " << TEST_SERVER_COUNT << " !!");
+    if (clusterNodeCnt == TEST_SERVER_COUNT) {
+      for (size_t n=0; n<clusterNodeCnt; n++) {
+        Node *clusterNode = foundCluster->getNode(n);
+        bool isServerFound = false;
+        for (int n=0; n<TEST_SERVER_COUNT; n++) {
+          if (clusterNode->equals(servers[n])) {
+            isServerFound = true;
+            break;
+          }
+        }
+        BOOST_CHECK(isServerFound);
+      }
+    }
+    else {
+      BOOST_WARN_MESSAGE((clusterNodeCnt == TEST_SERVER_COUNT), "Cluster size (" << clusterNodeCnt << ") is not equal " << TEST_SERVER_COUNT << " !!");
       client.search(&err);
       Round::Test::Sleep();
     }
