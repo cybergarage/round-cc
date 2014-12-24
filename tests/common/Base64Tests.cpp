@@ -1,0 +1,40 @@
+/******************************************************************
+ *
+ * Round for C++
+ *
+ * Copyright (C) Satoshi Konno 2014
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
+
+#include <boost/test/unit_test.hpp>
+
+#include <round/common/Base64.h>
+
+using namespace Round;
+
+BOOST_AUTO_TEST_SUITE(common)
+
+BOOST_AUTO_TEST_CASE(Base64Test) {
+  std::vector<std::string> testStrings;
+  
+  testStrings.push_back("abcdefghijklmnopqrstuvwxyz");
+  testStrings.push_back("0123456789");
+  testStrings.push_back("\b\t\r\n");
+  
+  for (std::vector<std::string>::iterator testString = testStrings.begin(); testString != testStrings.end(); testString++) {
+    std::string encodedStr;
+    BOOST_CHECK(0 < Base64::Encode((*testString).c_str(), &encodedStr));
+    
+    char *decordedBytes;
+    BOOST_CHECK(0 < Base64::Decode(encodedStr, &decordedBytes));
+    
+    std::string decordedString = decordedBytes;
+    BOOST_CHECK_EQUAL((*testString).compare(decordedString), 0);
+
+    free(decordedBytes);
+  }
+}
+
+BOOST_AUTO_TEST_SUITE_END()

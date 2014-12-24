@@ -11,6 +11,7 @@
 		2104C9CA1A21E77E0049DA92 /* JavaScriptTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2104C9C91A21E77E0049DA92 /* JavaScriptTests.cpp */; };
 		210E578C1A29A73E000B60FC /* JavaVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 210E578A1A29A73E000B60FC /* JavaVM.framework */; };
 		213862DC1A45711100311FAE /* JSONRPCParserTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213862DB1A45711100311FAE /* JSONRPCParserTests.cpp */; };
+		213E910B1A4AA707001C2ED9 /* Base64Tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213E910A1A4AA707001C2ED9 /* Base64Tests.cpp */; };
 		215C20BB1A13B6C000CE71E2 /* RoundTestMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215C20BA1A13B6C000CE71E2 /* RoundTestMain.cpp */; };
 		21688A541A38C87E00908890 /* NodeTestController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21688A531A38C87E00908890 /* NodeTestController.cpp */; };
 		217727821A2CE5E4001B4CE0 /* RPCMessageTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217727811A2CE5E4001B4CE0 /* RPCMessageTests.cpp */; };
@@ -116,6 +117,8 @@
 		2104C9C91A21E77E0049DA92 /* JavaScriptTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JavaScriptTests.cpp; sourceTree = "<group>"; };
 		210E578A1A29A73E000B60FC /* JavaVM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaVM.framework; path = System/Library/Frameworks/JavaVM.framework; sourceTree = SDKROOT; };
 		213862DB1A45711100311FAE /* JSONRPCParserTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONRPCParserTests.cpp; sourceTree = "<group>"; };
+		213E910A1A4AA707001C2ED9 /* Base64Tests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Base64Tests.cpp; sourceTree = "<group>"; };
+		213E910C1A4AAAB7001C2ED9 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
 		2143143C15401BEE009CC3FA /* RoundUnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RoundUnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		215C20B21A13B6A000CE71E2 /* libround++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libround++.xcodeproj"; path = "../../../lib/macosx/xcode/libround++.xcodeproj"; sourceTree = "<group>"; };
 		215C20B91A13B6C000CE71E2 /* RoundTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoundTest.h; path = ../../RoundTest.h; sourceTree = "<group>"; };
@@ -213,6 +216,7 @@
 		215C7EF31540266E00762EEC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				213E910C1A4AAAB7001C2ED9 /* SecurityFoundation.framework */,
 				210E578A1A29A73E000B60FC /* JavaVM.framework */,
 				21DE0ECF155B9EBA00A08E1F /* Security.framework */,
 				215C20B21A13B6A000CE71E2 /* libround++.xcodeproj */,
@@ -250,6 +254,7 @@
 		21AD42771A13B7FC00741A08 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				213E910A1A4AA707001C2ED9 /* Base64Tests.cpp */,
 				21AD428B1A13B7FC00741A08 /* BitOptionTests.cpp */,
 				21AD428C1A13B7FC00741A08 /* ClockTests.cpp */,
 				21AD428D1A13B7FC00741A08 /* ConfigurationTests.cpp */,
@@ -413,6 +418,7 @@
 				2104C9CA1A21E77E0049DA92 /* JavaScriptTests.cpp in Sources */,
 				21AD429E1A13B7FC00741A08 /* ClockTests.cpp in Sources */,
 				21AD42A51A13B7FC00741A08 /* JSONTests.cpp in Sources */,
+				213E910B1A4AA707001C2ED9 /* Base64Tests.cpp in Sources */,
 				21AD42A01A13B7FC00741A08 /* ConsistentHashTests.cpp in Sources */,
 				2184F2071A18E359007F1326 /* ServerNodeTests.cpp in Sources */,
 				2184F2051A18E359007F1326 /* NodeFinderTests.cpp in Sources */,
@@ -522,6 +528,8 @@
 					"-lxml2",
 					"-ljansson",
 					"-lv8",
+					"-lssl",
+					"-lcrypto",
 				);
 				SDKROOT = macosx;
 				VALID_ARCHS = "i386 x86_64";
@@ -570,6 +578,8 @@
 					"-lxml2",
 					"-ljansson",
 					"-lv8",
+					"-lssl",
+					"-lcrypto",
 				);
 				SDKROOT = macosx;
 				VALID_ARCHS = "i386 x86_64";
@@ -599,6 +609,8 @@
 					"-lxml2",
 					"-ljansson",
 					"-lv8",
+					"-lssl",
+					"-lcrypto",
 				);
 				PRODUCT_NAME = RoundUnitTest;
 				SDKROOT = macosx;
@@ -628,6 +640,8 @@
 					"-lxml2",
 					"-ljansson",
 					"-lv8",
+					"-lssl",
+					"-lcrypto",
 				);
 				PRODUCT_NAME = RoundUnitTest;
 				SDKROOT = macosx;
