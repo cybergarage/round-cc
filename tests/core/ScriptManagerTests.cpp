@@ -23,7 +23,7 @@ BOOST_AUTO_TEST_SUITE(script)
 BOOST_AUTO_TEST_CASE(ScriptManagerSetTest) {
   const std::string scriptLang = JavaScriptEngine::LANGUAGE;
   const std::string scriptMethod = "echo";
-  const std::string scriptCode = Test::JS_ECHO;
+  const std::string scriptCode = Test::JS_ECHO_CODE;
   const std::string scriptInvalidCode = Test::JS_INVALID_FUNCTION;
   const std::string scriptParams = "\"hello\"";
 
