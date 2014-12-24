@@ -28,24 +28,21 @@
 
 ssize_t Round::Base64::Encode(const char *rawBytes, std::string *encodedStr) {
   size_t rawByteSize = strlen(rawBytes);
-
-  size_t encodedSize = 4.0 * ceil((double)(rawByteSize)/3.0);
-  char *outChars = (char *)malloc(encodedSize + 1);
-  if (!outChars)
-    return -1;
   
   BIO *b64 = BIO_new(BIO_f_base64());
   BIO_set_flags(b64, BIO_FLAGS_BASE64_NO_NL);
-  BIO *bio = BIO_new_mem_buf(outChars, encodedSize);
-  BIO_push(b64, bio);
+  BIO *bmem = BIO_new(BIO_s_mem());
+  b64 = BIO_push(b64, bmem);
   BIO_write(b64, rawBytes, rawByteSize);
   BIO_flush(b64);
+  
+  BUF_MEM *bufMem;
+  BIO_get_mem_ptr(b64, &bufMem);
+  size_t encodedSize = bufMem->length;
+  *encodedStr = std::string(bufMem->data, encodedSize);
+  
   BIO_free_all(b64);
   
-  outChars[encodedSize] = '\0';
-  *encodedStr = outChars;
-  free(outChars);
-
   return encodedSize;
 }
 
@@ -66,8 +63,8 @@ ssize_t Round::Base64::Decode(const std::string &encodedStr, char **decordedByte
   
   BIO *b64 = BIO_new(BIO_f_base64());
   BIO_set_flags(b64, BIO_FLAGS_BASE64_NO_NL);
-  BIO *bio = BIO_new_mem_buf(decordedBytes, decordedSize);
-  bio = BIO_push(b64, bio);
+  BIO *bmem = BIO_new_mem_buf(decordedBytes, decordedSize);
+  b64 = BIO_push(b64, bmem);
   size_t readLen = BIO_read(b64, (char *)encodedStr.c_str(), encodedStrSize);
   (*decordedBytes)[readLen] = '\0';
   BIO_free_all(b64);
