@@ -35,13 +35,13 @@ class Cluster : public NodeGraph {
     return this->name.c_str();
   }
 
-  bool isName(const std::string &value) {
+  bool isName(const std::string &value) const {
     return (this->name.compare(value) == 0) ? true : false;
   }
 
-  bool equals(const Cluster *otherCluster);
+  bool equals(const Cluster *otherCluster) const ;
 
-  bool equals(const Cluster otherCluster) {
+  bool equals(const Cluster otherCluster) const {
     return equals(&otherCluster);
   }
   

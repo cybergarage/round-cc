@@ -24,7 +24,7 @@ Round::Cluster::Cluster(const Cluster *cluster) {
 Round::Cluster::~Cluster() {
 }
 
-bool Round::Cluster::equals(const Cluster *otherCluster) {
+bool Round::Cluster::equals(const Cluster *otherCluster) const {
   if (this->name.compare(otherCluster->getName()) == 0) {
     return true;
   }
