@@ -26,14 +26,14 @@ bool Round::ClientCore::setTargetCluster(const std::string &clusterName) {
   return true;
 }
 
-bool Round::ClientCore::hasTargetCluster(const std::string &clusterName) {
+bool Round::ClientCore::hasTargetCluster(const std::string &clusterName) const {
   Round::Cluster *targetCluster = getCluster(clusterName);
   if (!targetCluster)
     return false;
   return true;
 }
 
-Round::Cluster *Round::ClientCore::getTargetCluster() {
+Round::Cluster *Round::ClientCore::getTargetCluster() const {
   if (this->targetCluster)
     return targetCluster;
   return this->clusterList.getFirstCluster();
@@ -55,7 +55,7 @@ bool Round::ClientCore::addCluster(const std::string &name) {
   return this->clusterList.addCluster(cluster);
 }
 
-Round::Cluster *Round::ClientCore::getClusterForNode(Round::Node *node) {
+Round::Cluster *Round::ClientCore::getClusterForNode(Round::Node *node) const {
   std::string nodeClusterName;
   Error err;
   if (!node->getClusterName(&nodeClusterName, &err)) {
@@ -64,7 +64,7 @@ Round::Cluster *Round::ClientCore::getClusterForNode(Round::Node *node) {
   return this->clusterList.getCluster(nodeClusterName);
 }
 
-Round::Cluster *Round::ClientCore::getCluster(const std::string &name) {
+Round::Cluster *Round::ClientCore::getCluster(const std::string &name) const {
   return this->clusterList.getCluster(name);
 }
 

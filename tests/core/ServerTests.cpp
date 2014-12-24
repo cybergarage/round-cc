@@ -10,6 +10,8 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include <round/Client.h>
+
 #include "RoundTest.h"
 #include "TestServer.h"
 
@@ -45,10 +47,12 @@ BOOST_AUTO_TEST_CASE(RoundRealServerRunTest) {
   delete nodeServer;
 }
 
-BOOST_AUTO_TEST_CASE(RoundRealServerFindTest) {
+BOOST_AUTO_TEST_CASE(RoundRealServerClientFindTest) {
   Error err;
-
+  
   static const int TEST_SERVER_COUNT = 2;
+  
+  // Start Server
   
   TestServer **servers = new TestServer*[TEST_SERVER_COUNT];
   
@@ -58,7 +62,38 @@ BOOST_AUTO_TEST_CASE(RoundRealServerFindTest) {
     Round::Test::Sleep();
   }
   
-  Round::Test::Sleep(1000 * 5);
+  // Client
+  
+  Client client;
+  BOOST_CHECK(client.start(&err));
+  BOOST_CHECK(client.stop(&err));
+  
+  // Stop Server
+  
+  for (int n=0; n<TEST_SERVER_COUNT; n++) {
+    BOOST_CHECK(servers[n]->stop(&err));
+    delete servers[n];
+  }
+  
+  delete[] servers;
+}
+
+BOOST_AUTO_TEST_CASE(RoundRealServerEachFindTest) {
+  Error err;
+
+  static const int TEST_SERVER_COUNT = 2;
+  
+  // Start Server
+  
+  TestServer **servers = new TestServer*[TEST_SERVER_COUNT];
+  
+  for (int n=0; n<TEST_SERVER_COUNT; n++) {
+    servers[n] = new TestServer();
+    BOOST_CHECK(servers[n]->start(&err));
+    Round::Test::Sleep();
+  }
+  
+  // Find each servers
 
   bool isServerNotFound = true;
   while (isServerNotFound) {
@@ -80,6 +115,14 @@ BOOST_AUTO_TEST_CASE(RoundRealServerFindTest) {
     }
     Round::Test::Sleep();
   }
+
+  // Client
+  
+  Client client;
+  BOOST_CHECK(client.start(&err));
+  BOOST_CHECK(client.stop(&err));
+  
+  // Stop Server
   
   for (int n=0; n<TEST_SERVER_COUNT; n++) {
     BOOST_CHECK(servers[n]->stop(&err));

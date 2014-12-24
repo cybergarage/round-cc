@@ -27,8 +27,8 @@ bool Round::ClusterList::addCluster(Cluster *cluster) {
   return true;
 }
 
-bool Round::ClusterList::hasCluster(Cluster *otherCluster) {
-  for (ClusterList::iterator cluster = begin(); cluster != end(); cluster++) {
+bool Round::ClusterList::hasCluster(Cluster *otherCluster) const {
+  for (ClusterList::const_iterator cluster = begin(); cluster != end(); cluster++) {
     if ((*cluster)->equals(otherCluster)) {
       return true;
     }
@@ -36,8 +36,8 @@ bool Round::ClusterList::hasCluster(Cluster *otherCluster) {
   return false;
 }
 
-bool Round::ClusterList::hasCluster(const std::string &name) {
-  for (ClusterList::iterator cluster = begin(); cluster != end(); cluster++) {
+bool Round::ClusterList::hasCluster(const std::string &name) const {
+  for (ClusterList::const_iterator cluster = begin(); cluster != end(); cluster++) {
     if ((*cluster)->isName(name)) {
       return true;
     }
@@ -45,8 +45,8 @@ bool Round::ClusterList::hasCluster(const std::string &name) {
   return false;
 }
 
-Round::Cluster *Round::ClusterList::getCluster(const std::string &name) {
-  for (ClusterList::iterator cluster = begin(); cluster != end(); cluster++) {
+Round::Cluster *Round::ClusterList::getCluster(const std::string &name) const {
+  for (ClusterList::const_iterator cluster = begin(); cluster != end(); cluster++) {
     if ((*cluster)->isName(name)) {
       return (*cluster);
     }

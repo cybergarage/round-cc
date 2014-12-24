@@ -27,18 +27,19 @@ public:
   
  public:
 
-  Cluster *getTargetCluster();
+  Cluster *getTargetCluster() const ;
 
-  ClusterList *getClusters() {
+  const ClusterList *getClusters() const {
     return &clusterList;
   }
   
-  size_t getClusterCount() {
+  size_t getClusterCount() const {
     return clusterList.size();
   }
   
+  bool hasTargetCluster(const std::string &clusterName) const;
+  
   bool setTargetCluster(const std::string &clusterName);
-  bool hasTargetCluster(const std::string &clusterName);
   bool addCluster(const std::string &name);
   
 protected:
@@ -51,8 +52,8 @@ protected:
   bool nodeAdded(Node *node);
   bool nodeRemoved(Node *node);
 
-  Cluster *getClusterForNode(Node *node);
-  Cluster *getCluster(const std::string &name);
+  Cluster *getClusterForNode(Node *node) const;
+  Cluster *getCluster(const std::string &name) const;
 
 private:
 

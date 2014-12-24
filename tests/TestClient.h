@@ -20,11 +20,11 @@ public:
   TestClient() {
   }
 
-  Round::ClusterList *getClusters() {
+  const Round::ClusterList *getClusters() const {
     return Round::Client::getClusters();
   }
   
-  size_t getClusterCount() {
+  size_t getClusterCount() const {
     return Round::Client::getClusterCount();
   }
   

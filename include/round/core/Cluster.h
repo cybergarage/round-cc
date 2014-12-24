@@ -69,10 +69,10 @@ class ClusterList : public std::vector<Cluster *> {
     return at(0);
   }
   
-  Cluster *getCluster(const std::string &name);
+  Cluster *getCluster(const std::string &name) const;
 
-  bool hasCluster(Cluster *cluster);
-  bool hasCluster(const std::string &name);
+  bool hasCluster(Cluster *cluster) const;
+  bool hasCluster(const std::string &name) const;
 
   bool removeCluster(Cluster *cluster);
   bool removeCluster(const std::string &name);
