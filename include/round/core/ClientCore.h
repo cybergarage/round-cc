@@ -33,6 +33,10 @@ public:
     return &clusterList;
   }
   
+  Cluster *getClusterForNode(Node *node) const;
+  
+  Cluster *getCluster(const std::string &name) const;
+  
   size_t getClusterCount() const {
     return clusterList.size();
   }
@@ -51,9 +55,6 @@ protected:
   bool addCluster(Node *node);
   bool nodeAdded(Node *node);
   bool nodeRemoved(Node *node);
-
-  Cluster *getClusterForNode(Node *node) const;
-  Cluster *getCluster(const std::string &name) const;
 
 private:
 

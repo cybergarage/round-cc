@@ -51,6 +51,7 @@ BOOST_AUTO_TEST_CASE(RoundRealServerClientFindTest) {
   Error err;
   
   static const int TEST_SERVER_COUNT = 2;
+  std::string clusterName;
   
   // Start Server
   
@@ -62,10 +63,29 @@ BOOST_AUTO_TEST_CASE(RoundRealServerClientFindTest) {
     Round::Test::Sleep();
   }
   
+  BOOST_CHECK(servers[0]->getClusterName(&clusterName, &err));
+  
   // Client
   
   Client client;
   BOOST_CHECK(client.start(&err));
+
+  Round::Test::Sleep();
+  
+  size_t clietnClusterCnt = 0;
+  while (clietnClusterCnt != TEST_SERVER_COUNT) {
+    Cluster *foundCluster = client.getCluster(clusterName);
+    BOOST_WARN_MESSAGE(foundCluster, "Cluster (" << clusterName << ") is not found !!");
+    if (foundCluster) {
+      clietnClusterCnt = foundCluster->size();
+    }
+    if (clietnClusterCnt != TEST_SERVER_COUNT) {
+      BOOST_WARN_MESSAGE((clietnClusterCnt == TEST_SERVER_COUNT), "Cluster size (" << clietnClusterCnt << ") is not equal " << TEST_SERVER_COUNT << " !!");
+      client.search(&err);
+      Round::Test::Sleep();
+    }
+  }
+    
   BOOST_CHECK(client.stop(&err));
   
   // Stop Server
