@@ -8,11 +8,11 @@
 *
 ******************************************************************/
 
-#include <round/core/Script.h>
+#ifndef _ROUNDCC_TYPES_H_
+#define _ROUNDCC_TYPES_H_
 
-Round::ScriptEngine::ScriptEngine(const std::string &language) {
-  this->language = language;
-}
+#if !defined(byte)
+typedef unsigned char byte;
+#endif
 
-Round::ScriptEngine::~ScriptEngine() {
-}
+#endif

@@ -26,14 +26,12 @@
 #define MD5FUNC MD5
 #endif
 
-ssize_t Round::Base64::Encode(const char *rawBytes, std::string *encodedStr) {
-  size_t rawByteSize = strlen(rawBytes);
-  
+ssize_t Round::Base64::Encode(const byte *rawBytes, size_t rawByteLen, std::string *encodedStr) {
   BIO *b64 = BIO_new(BIO_f_base64());
   BIO_set_flags(b64, BIO_FLAGS_BASE64_NO_NL);
   BIO *bmem = BIO_new(BIO_s_mem());
   b64 = BIO_push(b64, bmem);
-  BIO_write(b64, rawBytes, rawByteSize);
+  BIO_write(b64, rawBytes, rawByteLen);
   BIO_flush(b64);
   
   BUF_MEM *bufMem;
@@ -46,7 +44,7 @@ ssize_t Round::Base64::Encode(const char *rawBytes, std::string *encodedStr) {
   return encodedSize;
 }
 
-ssize_t Round::Base64::Decode(const std::string &encodedStr, char **decordedBytes) {
+ssize_t Round::Base64::Decode(const std::string &encodedStr, byte **decordedBytes) {
   size_t encodedStrSize = encodedStr.length();
   
   size_t decordedSize = (double)(encodedStrSize) * (3.0/4.0);
@@ -57,7 +55,7 @@ ssize_t Round::Base64::Decode(const std::string &encodedStr, char **decordedByte
     }
   }
   
-  *decordedBytes = (char *)malloc(decordedSize + 1);
+  *decordedBytes = (byte *)malloc(decordedSize + 1);
   if (!*decordedBytes)
     return -1;
   

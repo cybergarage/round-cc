@@ -20,7 +20,7 @@ bool Round::ScriptManager::setScript(Script *script) {
   if (!script)
     return false;
   
-  const ScriptName &name = script->getName();
+  const std::string &name = script->getName();
   if (name.length() <= 0) {
     return false;
   }
@@ -39,7 +39,7 @@ bool Round::ScriptManager::setEngine(ScriptEngine *engine) {
   if (!engine)
     return false;
   
-  const ScriptLang &engineLang = engine->getLanguage();
+  const std::string &engineLang = engine->getLanguage();
   if (engineLang.length() <= 0) {
     return false;
   }
@@ -54,7 +54,7 @@ bool Round::ScriptManager::setEngine(ScriptEngine *engine) {
   return true;
 }
 
-bool Round::ScriptManager::setScript(const ScriptName &method, const ScriptLang &lang, const ScriptCode &code, Error *error) {
+bool Round::ScriptManager::setScript(const std::string &method, const std::string &lang, const std::string &code, Error *error) {
   const ScriptEngine *scriptEngine = this->engines.getEngine(lang);
   if (!scriptEngine) {
     RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeScriptEngineNotFound, error);
@@ -85,7 +85,7 @@ bool Round::ScriptManager::setScript(const ScriptName &method, const ScriptLang 
   return true;
 }
 
-bool Round::ScriptManager::removeScript(const ScriptName &method, const ScriptLang &lang, Error *error) {
+bool Round::ScriptManager::removeScript(const std::string &method, const std::string &lang, Error *error) {
   const Script *script = this->scripts.getScript(method);
   if (!script) {
     RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeMethodNotFound, error);
@@ -100,7 +100,7 @@ bool Round::ScriptManager::removeScript(const ScriptName &method, const ScriptLa
   return (this->scripts.erase(method) == 1) ? true : false;
 }
 
-bool Round::ScriptManager::run(const ScriptName &name, const ScriptParams &params, ScriptResults *results, Error *error) {
+bool Round::ScriptManager::run(const std::string &name, const std::string &params, std::string *results, Error *error) {
   error->setCode(ScriptEngineStatusOk);
   error->setDetailCode(ScriptManagerErrorCodeOk);
   
@@ -110,7 +110,7 @@ bool Round::ScriptManager::run(const ScriptName &name, const ScriptParams &param
     return false;
   }
   
-  const ScriptLang &scriptLang = script->getLanguage();
+  const std::string &scriptLang = script->getLanguage();
   if (scriptLang.length() <= 0) {
     RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeScriptEngineNotFound, error);
     return false;
@@ -124,4 +124,3 @@ bool Round::ScriptManager::run(const ScriptName &name, const ScriptParams &param
   
   return scriptEngine->run(script, params, results, error);
 }
-

@@ -17,11 +17,11 @@ Round::ScriptEngineMap::~ScriptEngineMap() {
   clear();
 }
 
-bool Round::ScriptEngineMap::hasEngine(const ScriptLang &lang) const {
+bool Round::ScriptEngineMap::hasEngine(const std::string &lang) const {
   return (find(lang) != end()) ? true : false;
 }
 
-const Round::ScriptEngine *Round::ScriptEngineMap::getEngine(const ScriptLang &lang) const {
+const Round::ScriptEngine *Round::ScriptEngineMap::getEngine(const std::string &lang) const {
   ScriptEngineMap::const_iterator engineIt = find(lang);
   if (engineIt == end())
     return NULL;

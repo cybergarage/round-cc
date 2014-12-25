@@ -30,13 +30,16 @@ BOOST_AUTO_TEST_CASE(Base64Test) {
   testStrings.push_back("~`!@#$%^&*()_+{}[]|\\:;\"'<>,.?/");
   
   for (std::vector<std::string>::iterator testString = testStrings.begin(); testString != testStrings.end(); testString++) {
+    byte *encordBytes = (byte *)(*testString).c_str();
+    size_t ecordByteLen = (*testString).length();
     std::string encodedStr;
-    BOOST_CHECK(0 <= Base64::Encode((*testString).c_str(), &encodedStr));
+    BOOST_CHECK(0 <= Base64::Encode(encordBytes, ecordByteLen, &encodedStr));
     
-    char *decordedBytes;
-    BOOST_CHECK(0 <= Base64::Decode(encodedStr, &decordedBytes));
+    byte *decordedBytes;
+    size_t decordedByteLen = Base64::Decode(encodedStr, &decordedBytes);
+    BOOST_CHECK(0 <= decordedByteLen);
     
-    std::string decordedString = decordedBytes;
+    std::string decordedString((const char *)decordedBytes, decordedByteLen);
     BOOST_CHECK_EQUAL((*testString).compare(decordedString), 0);
 
     free(decordedBytes);

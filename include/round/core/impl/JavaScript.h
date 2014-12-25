@@ -24,14 +24,14 @@ class JavaScriptEngine : public ScriptEngine {
   
  public:
   
-  static const ScriptName LANGUAGE;
+  static const std::string LANGUAGE;
   
  public:
   JavaScriptEngine();
   ~JavaScriptEngine();
   
   bool compile(const Script *script) const;
-  bool run(const Script *script, const ScriptParams &params, ScriptResults *results, Error *error) const;
+  bool run(const Script *script, const std::string &params, std::string *results, Error *error) const;
 
  private:
 

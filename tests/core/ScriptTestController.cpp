@@ -22,7 +22,7 @@
 using namespace std;
 using namespace Round;
 
-void Round::Test::ScriptTestController::runEchoMethodTest(const std::string &scriptName, Round::ScriptManager *scriptMgr) {
+void Round::Test::ScriptTestController::runEchoMethodTest(const std::string &scriptMethod, Round::ScriptManager *scriptMgr) {
   std::vector<std::string> params;
   
   params.push_back("");
@@ -50,16 +50,16 @@ void Round::Test::ScriptTestController::runEchoMethodTest(const std::string &scr
   params.push_back("{\"key0\":\"value0\",\"key1\":\"value1\"}");
   params.push_back("{\"key0\":\"value0\",\"key1\":\"value1\",\"key2\":\"value2\"}");
   
-  ScriptResults results;
+  std::string results;
   Error error;
   for (std::vector<std::string>::iterator echoParamIt = params.begin(); echoParamIt != params.end(); echoParamIt++) {
     std::string &echoParam = *echoParamIt;
-    BOOST_CHECK(scriptMgr->run(scriptName, echoParam, &results, &error));
+    BOOST_CHECK(scriptMgr->run(scriptMethod, echoParam, &results, &error));
     BOOST_CHECK_EQUAL(echoParam.compare(results), 0);
   }
 }
 
-void Round::Test::ScriptTestController::runSumMethodTest(const std::string &scriptName, Round::ScriptManager *scriptMgr) {
+void Round::Test::ScriptTestController::runSumMethodTest(const std::string &scriptMethod, Round::ScriptManager *scriptMgr) {
   std::vector<std::string> params;
   std::vector<std::string> results;
   
@@ -89,9 +89,9 @@ void Round::Test::ScriptTestController::runSumMethodTest(const std::string &scri
   
   size_t nParams = params.size();
   for (size_t n = 0; n < nParams; n++) {
-    ScriptResults result;
+    std::string result;
     Error error;
-    BOOST_CHECK(scriptMgr->run(scriptName, params[n], &result, &error));
+    BOOST_CHECK(scriptMgr->run(scriptMethod, params[n], &result, &error));
     BOOST_CHECK_EQUAL(result.compare(results[n]), 0);
   }
 }

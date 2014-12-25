@@ -15,7 +15,7 @@
 #include <round/core/Log.h>
 #include <round/core/impl/JavaScript.h>
 
-const Round::ScriptName Round::JavaScriptEngine::LANGUAGE = "js";
+const std::string Round::JavaScriptEngine::LANGUAGE = "js";
 
 ////////////////////////////////////////////////
 //  Static methods
@@ -75,14 +75,14 @@ bool Round::JavaScriptEngine::compile(const Script *script) const {
   if (!script)
     return false;
   
-  std::string jsSource = script->getCode();
+  std::string jsSource = script->getStringCode();
   std::string results;
   Error error;
   
   return run(jsSource, &results, &error);
 }
 
-bool Round::JavaScriptEngine::run(const Script *jsScript, const ScriptParams &params, ScriptResults *results, Error *error) const {
+bool Round::JavaScriptEngine::run(const Script *jsScript, const std::string &params, std::string *results, Error *error) const {
   std::stringstream jsSource;
   
   jsSource << jsScript->getCode() << std::endl;

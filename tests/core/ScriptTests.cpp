@@ -27,7 +27,8 @@ BOOST_AUTO_TEST_CASE(ScriptConstuctorTest01) {
   BOOST_CHECK(!script.hasName());
   BOOST_CHECK(!script.hasCode());
   BOOST_CHECK_EQUAL(script.getName().length(), 0);
-  BOOST_CHECK_EQUAL(script.getCode().length(), 0);
+  BOOST_CHECK_EQUAL(script.getCodeLength(), 0);
+  BOOST_CHECK(!script.isEncoded());
   
   const std::string TEST_SCRIPT_NAME = "test_script_name";
   BOOST_CHECK(script.setName(TEST_SCRIPT_NAME));
@@ -37,7 +38,7 @@ BOOST_AUTO_TEST_CASE(ScriptConstuctorTest01) {
   const std::string TEST_SCRIPT_CONTENT = "test_script_content";
   BOOST_CHECK(script.setCode(TEST_SCRIPT_CONTENT));
   BOOST_CHECK(script.hasCode());
-  BOOST_CHECK_EQUAL(TEST_SCRIPT_CONTENT.compare(script.getCode()), 0);
+  BOOST_CHECK_EQUAL(TEST_SCRIPT_CONTENT.compare(script.getStringCode()), 0);
 }
 
 BOOST_AUTO_TEST_CASE(ScriptConstuctorTest02) {
@@ -53,7 +54,7 @@ BOOST_AUTO_TEST_CASE(ScriptConstuctorTest02) {
   BOOST_CHECK_EQUAL(TEST_SCRIPT_NAME.compare(script.getName()), 0);
   
   BOOST_CHECK(script.hasCode());
-  BOOST_CHECK_EQUAL(TEST_SCRIPT_CONTENT.compare(script.getCode()), 0);
+  BOOST_CHECK_EQUAL(TEST_SCRIPT_CONTENT.compare(script.getStringCode()), 0);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

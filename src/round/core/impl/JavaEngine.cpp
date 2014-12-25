@@ -17,15 +17,16 @@
 
 #define ROUND_UES_JVMOPTIONS 1
 
-const Round::ScriptName Round::JavaEngine::LANGUAGE = "java";
+const std::string Round::JavaEngine::LANGUAGE = "java";
 
 Round::JavaEngine::JavaEngine() : ScriptEngine(LANGUAGE) {
   JavaVMInitArgs vm_args;
   vm_args.ignoreUnrecognized = false;
-  vm_args.nOptions = 0  ;
+  vm_args.nOptions = 1;
   
 #if defined(ROUND_UES_JVMOPTIONS)
-  JavaVMOption* options = new JavaVMOption[1];
+  JavaVMOption* options = new JavaVMOption[vm_args.nOptions];
+  options[0].optionString = const_cast<char*>("-verbose:jni");
   vm_args.version = JNI_VERSION_1_6;
   vm_args.options = options;
 #endif
@@ -53,22 +54,33 @@ bool Round::JavaEngine::compile(const Script *script) const {
   jobject globalLoader = this->jniEnv->NewGlobalRef(loader);
   
   std::string scriptName = script->getName();
-  std::string scriptCode = script->getCode();
   
-  char *classBytes;
-  ssize_t classByteLen = Base64::Decode(scriptCode, &classBytes);
-  if (classByteLen <= 0)
-    return false;
+  const byte *scriptBytes = NULL;
+  size_t scriptByteLen = 0;
+  byte *decordedScriptBytes = NULL;
   
-  jclass clazz = this->jniEnv->DefineClass(scriptName.c_str(), globalLoader, (jbyte *)classBytes, (jsize)classByteLen);
+  if (!script->isEncoded()) {
+    scriptBytes = script->getCode();
+    scriptByteLen = script->getCodeLength();
+  } else if (script->isBase64Encoded()) {
+    std::string scriptCode = script->getStringCode();
+    scriptByteLen = Base64::Decode(scriptCode, &decordedScriptBytes);
+    if (scriptByteLen <= 0)
+      return false;
+    scriptBytes = decordedScriptBytes;
+  }
+  
+  jclass clazz = this->jniEnv->DefineClass(scriptName.c_str(), globalLoader, (jbyte *)scriptBytes, (jsize)scriptByteLen);
+  
   this->jniEnv->DeleteGlobalRef(globalLoader);
   
-  free(classBytes);
+  if (decordedScriptBytes)
+    free(decordedScriptBytes);
   
   return clazz ? true : false;
 }
 
-bool Round::JavaEngine::run(const Script *script, const ScriptParams &params, ScriptResults *results, Error *error) const {
+bool Round::JavaEngine::run(const Script *script, const std::string &params, std::string *results, Error *error) const {
   if (!this->jniEnv)
     return false;
   

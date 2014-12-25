@@ -229,7 +229,7 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
 
   // Exec Message
   
-  ScriptName name;
+  std::string name;
   nodeReq->getMethod(&name);
   
   if (isSetMethod(name)) {
@@ -241,9 +241,9 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
   }
 
   if (hasUserMethod(name)) {
-    ScriptParams params;
+    std::string params;
     nodeReq->getParams(&params);
-    ScriptResults result;
+    std::string result;
     return this->scriptMgr.run(name, params, &result, err);
   }
   
@@ -265,7 +265,7 @@ bool Round::LocalNode::isSetMethod(const std::string &method) {
 }
 
 bool Round::LocalNode::setMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *err) {
-  ScriptParams params;
+  std::string params;
   nodeReq->getParams(&params);
   
   JSONParser jsonParser;

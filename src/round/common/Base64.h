@@ -12,13 +12,14 @@
 #define _ROUND_BASE64_H_
 
 #include <string>
+#include <round/common/types.h>
 
 namespace Round {
 
 class Base64 {
  public:
-  static ssize_t Encode(const char *inBytes, std::string *encodedStr);
-  static ssize_t Decode(const std::string &encodedStr, char **decordedBytes);
+  static ssize_t Encode(const byte *inBytes, size_t rawByteLen, std::string *encodedStr);
+  static ssize_t Decode(const std::string &encodedStr, byte **decordedBytes);
 };
 
 }

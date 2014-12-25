@@ -25,10 +25,10 @@ BOOST_AUTO_TEST_CASE(ScriptManagerSetTest) {
   const std::string scriptMethod = "echo";
   const std::string scriptCode = Test::JS_ECHO_CODE;
   const std::string scriptInvalidCode = Test::JS_INVALID_FUNCTION;
-  const std::string scriptParams = "\"hello\"";
+  const std::string scriptParam = "\"hello\"";
 
   ScriptManager scriptMgr;
-  ScriptResults scriptResult;
+  std::string scriptResult;
   Error err;
   
   // No Script Engine
@@ -36,16 +36,16 @@ BOOST_AUTO_TEST_CASE(ScriptManagerSetTest) {
   BOOST_CHECK(!scriptMgr.setScript(scriptMethod, scriptLang, scriptCode, &err));
   BOOST_CHECK_EQUAL(err.getDetailCode(), ScriptManagerErrorCodeScriptEngineNotFound);
 
-  BOOST_CHECK(!scriptMgr.run(scriptMethod, scriptParams, &scriptResult, &err));
+  BOOST_CHECK(!scriptMgr.run(scriptMethod, scriptParam, &scriptResult, &err));
   
   // Set Script Engine
   
   BOOST_CHECK(scriptMgr.setEngine(new JavaScriptEngine()));
-  BOOST_CHECK(!scriptMgr.run(scriptMethod, scriptParams, &scriptResult, &err));
+  BOOST_CHECK(!scriptMgr.run(scriptMethod, scriptParam, &scriptResult, &err));
 
   // No Script
   
-  BOOST_CHECK(!scriptMgr.run(scriptMethod, scriptParams, &scriptResult, &err));
+  BOOST_CHECK(!scriptMgr.run(scriptMethod, scriptParam, &scriptResult, &err));
   BOOST_CHECK_EQUAL(err.getDetailCode(), ScriptManagerErrorCodeMethodNotFound);
   
   // Set Script
@@ -55,20 +55,20 @@ BOOST_AUTO_TEST_CASE(ScriptManagerSetTest) {
   
   BOOST_CHECK(scriptMgr.setScript(scriptMethod, scriptLang, scriptCode, &err));
 
-  BOOST_CHECK(scriptMgr.run(scriptMethod, scriptParams, &scriptResult, &err));
-  BOOST_CHECK_EQUAL(scriptParams, scriptResult);
+  BOOST_CHECK(scriptMgr.run(scriptMethod, scriptParam, &scriptResult, &err));
+  BOOST_CHECK_EQUAL(scriptParam, scriptResult);
 
   // Overide Script
   
   BOOST_CHECK(scriptMgr.setScript(scriptMethod, scriptLang, scriptCode, &err));
-  BOOST_CHECK(scriptMgr.run(scriptMethod, scriptParams, &scriptResult, &err));
-  BOOST_CHECK_EQUAL(scriptParams, scriptResult);
+  BOOST_CHECK(scriptMgr.run(scriptMethod, scriptParam, &scriptResult, &err));
+  BOOST_CHECK_EQUAL(scriptParam, scriptResult);
 
   // Remove Script
   
   BOOST_CHECK(scriptMgr.setScript(scriptMethod, scriptLang, "", &err));
   
-  BOOST_CHECK(!scriptMgr.run(scriptMethod, scriptParams, &scriptResult, &err));
+  BOOST_CHECK(!scriptMgr.run(scriptMethod, scriptParam, &scriptResult, &err));
   BOOST_CHECK_EQUAL(err.getDetailCode(), ScriptManagerErrorCodeMethodNotFound);
 }
 
