@@ -8,6 +8,7 @@
 *
 ******************************************************************/
 
+#include <boost/lexical_cast.hpp>
 #include <stdlib.h>
 #include <sstream>
 #include <round/common/Dictionary.h>
@@ -64,9 +65,8 @@ bool Round::Dictionary::hasKey(const std::string &key) const {
 }
 
 bool Round::Dictionary::set(const std::string &key, int value) {
-  std::stringstream ss;
-  ss << value;
-  return set(key, ss.str());
+  std::string strValue = boost::lexical_cast<std::string>(value);
+  return set(key, strValue);
 }
 
 bool Round::Dictionary::set(const std::string &key, bool value) {
@@ -75,25 +75,28 @@ bool Round::Dictionary::set(const std::string &key, bool value) {
 }
 
 bool Round::Dictionary::set(const std::string &key, long value) {
-  std::stringstream ss;
-  ss << value;
-  return set(key, ss.str());
+  std::string strValue = boost::lexical_cast<std::string>(value);
+  return set(key, strValue);
 }
 
-bool Round::Dictionary::set(const std::string &key, clock_t value) {
-  std::stringstream ss;
-  ss << value;
-  return set(key, ss.str());
+bool Round::Dictionary::set(const std::string &key, size_t value) {
+  std::string strValue = boost::lexical_cast<std::string>(value);
+  return set(key, strValue);
+}
+
+bool Round::Dictionary::set(const std::string &key, double value) {
+  std::string strValue = boost::lexical_cast<std::string>(value);
+  return set(key, strValue);
 }
 
 bool Round::Dictionary::get(const std::string &key, int *value) const {
-  std::string stringValue;
-  if (get(key, &stringValue) == false)
+  std::string strValue;
+  if (get(key, &strValue) == false)
     return false;
-  if (stringValue.length() <= 0)
+  if (strValue.length() <= 0)
     return false;
-  std::istringstream ss(stringValue);
-  return (ss >> (*value)) ? true : false;
+  *value = boost::lexical_cast<int>(strValue);
+  return true;
 }
 
 bool Round::Dictionary::get(const std::string &key, bool *value) const {
@@ -105,23 +108,33 @@ bool Round::Dictionary::get(const std::string &key, bool *value) const {
 }
 
 bool Round::Dictionary::get(const std::string &key, long *value) const {
-  std::string stringValue;
-  if (get(key, &stringValue) == false)
+  std::string strValue;
+  if (get(key, &strValue) == false)
     return false;
-  if (stringValue.length() <= 0)
+  if (strValue.length() <= 0)
     return false;
-  std::istringstream ss(stringValue);
-  return (ss >> (*value)) ? true : false;
+  *value = boost::lexical_cast<long>(strValue);
+  return true;
 }
 
-bool Round::Dictionary::get(const std::string &key, clock_t *value) const {
-  std::string stringValue;
-  if (get(key, &stringValue) == false)
+bool Round::Dictionary::get(const std::string &key, size_t *value) const {
+  std::string strValue;
+  if (get(key, &strValue) == false)
     return false;
-  if (stringValue.length() <= 0)
+  if (strValue.length() <= 0)
     return false;
-  std::istringstream ss(stringValue);
-  return (ss >> (*value)) ? true : false;
+  *value = boost::lexical_cast<size_t>(strValue);
+  return true;
+}
+
+bool Round::Dictionary::get(const std::string &key, double *value) const {
+  std::string strValue;
+  if (get(key, &strValue) == false)
+    return false;
+  if (strValue.length() <= 0)
+    return false;
+  *value = boost::lexical_cast<double>(strValue);
+  return true;
 }
 
 bool Round::Dictionary::remove(const std::string &key) {

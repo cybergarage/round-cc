@@ -100,26 +100,48 @@ BOOST_AUTO_TEST_CASE(RoundDictionaryLongMinMaxTest) {
   BOOST_CHECK_EQUAL(value, std::numeric_limits<long>::max());
 }
 
-BOOST_AUTO_TEST_CASE(RoundDictionaryClockMinMaxTest) {
+BOOST_AUTO_TEST_CASE(RoundDictionarySizetMinMaxTest) {
   Dictionary dict;
   
   const char *key = "key";
-  clock_t value;
+  size_t value;
   
   value = -1;
-  dict.set(key, std::numeric_limits<clock_t>::min());
+  dict.set(key, std::numeric_limits<size_t>::min());
   BOOST_CHECK(dict.get(key, &value));
-  BOOST_CHECK_EQUAL(value, std::numeric_limits<clock_t>::min());
+  BOOST_CHECK_EQUAL(value, std::numeric_limits<size_t>::min());
   
   value = -1;
-  dict.set(key, (clock_t)0);
+  dict.set(key, (size_t)0);
   BOOST_CHECK(dict.get(key, &value));
   BOOST_CHECK_EQUAL(value, 0);
   
   value = -1;
-  dict.set(key, std::numeric_limits<clock_t>::max());
+  dict.set(key, std::numeric_limits<size_t>::max());
   BOOST_CHECK(dict.get(key, &value));
-  BOOST_CHECK_EQUAL(value, std::numeric_limits<clock_t>::max());
+  BOOST_CHECK_EQUAL(value, std::numeric_limits<size_t>::max());
+}
+
+BOOST_AUTO_TEST_CASE(RoundDictionaryDoubleMinMaxTest) {
+  Dictionary dict;
+  
+  const char *key = "key";
+  double value;
+  
+  value = -1;
+  dict.set(key, std::numeric_limits<long>::min());
+  BOOST_CHECK(dict.get(key, &value));
+  BOOST_CHECK_EQUAL(value, std::numeric_limits<long>::min());
+  
+  value = -1;
+  dict.set(key, (long)0);
+  BOOST_CHECK(dict.get(key, &value));
+  BOOST_CHECK_EQUAL(value, 0);
+  
+  value = -1;
+  dict.set(key, std::numeric_limits<long>::max());
+  BOOST_CHECK(dict.get(key, &value));
+  BOOST_CHECK_EQUAL(value, std::numeric_limits<long>::max());
 }
 
 BOOST_AUTO_TEST_CASE(RoundDictionaryBooleanTest) {

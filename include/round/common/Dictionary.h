@@ -42,13 +42,15 @@ class Dictionary : public std::map<std::string, std::string> {
   bool set(const std::string &key, int value);
   bool set(const std::string &key, long value);
   bool set(const std::string &key, bool value);
-  bool set(const std::string &key, clock_t value);
+  bool set(const std::string &key, size_t value);
+  bool set(const std::string &key, double value);
 
   bool get(const std::string &key, std::string *value) const;
   bool get(const std::string &key, int *value) const;
   bool get(const std::string &key, long *value) const;
   bool get(const std::string &key, bool *value) const;
-  bool get(const std::string &key, clock_t *value) const;
+  bool get(const std::string &key, size_t *value) const;
+  bool get(const std::string &key, double *value) const;
 
   bool remove(const std::string &key);
 };
