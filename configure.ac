@@ -17,6 +17,8 @@ AM_INIT_AUTOMAKE
 EXPAT_VERSION=1.95
 LIBXML2_VERSION=2.6.20
 JANSSON_VERSION=2.6
+JNI_VERSION=1.7.0
+V8_VERSION=3.14
 UHTTP_VERSION=0.6
 CLINKCC_VERSION=2.0
 
@@ -50,9 +52,9 @@ AM_CONDITIONAL(HAVE_LIBTOOL, test $with_libtool = yes)
 # Checks for BOOST 
 ##############################
 
-AC_CHECK_LIB([boost_system-mt],[main],,[AC_MSG_ERROR(Round for C++ needs boost::system-mt)])
-AC_CHECK_LIB([boost_filesystem-mt],[main],,[AC_MSG_ERROR(Round for C++ needs boost::filesystem-mt)])
-AC_CHECK_LIB([boost_thread-mt],[main],,[AC_MSG_ERROR(Round for C++ needs boost::thread-mt)])
+#AC_CHECK_LIB([boost_system-mt],[main],,[AC_MSG_ERROR(Round for C++ needs boost::system-mt)])
+#AC_CHECK_LIB([boost_filesystem-mt],[main],,[AC_MSG_ERROR(Round for C++ needs boost::filesystem-mt)])
+#AC_CHECK_LIB([boost_thread-mt],[main],,[AC_MSG_ERROR(Round for C++ needs boost::thread-mt)])
 
 ##############################
 # Checks for Basic Libraries
@@ -141,6 +143,8 @@ fi
 ##############################
 
 AC_CHECK_LIB([jansson],[main],,[AC_MSG_ERROR(Round for C++ needs Jansson $JANSSON_VERSION later)])
+#AC_CHECK_LIB([jni],[main],,[AC_MSG_ERROR(Round for C++ needs JNI $JNI_VERSION later)])
+AC_CHECK_LIB([v8],[main],,[AC_MSG_ERROR(Round for C++ needs V8 $V8_VERSION later)])
 
 ##############################
 # Checks for Cyber Garage Libraries

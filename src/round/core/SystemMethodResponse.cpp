@@ -17,9 +17,9 @@ const std::string Round::SystemMethodResponse::NAME     = "name";
 const std::string Round::SystemMethodResponse::IP       = "ip";
 const std::string Round::SystemMethodResponse::PORT     = "port";
 const std::string Round::SystemMethodResponse::HASH     = "hash";
-const std::string Round::SystemMethodResponse::VERSION  = "version";
+const std::string Round::SystemMethodResponse::VER      = "version";
 const std::string Round::SystemMethodResponse::CLUSTER  = "cluster";
-const std::string Round::SystemMethodResponse::NODES  = "nodes";
+const std::string Round::SystemMethodResponse::NODES    = "nodes";
 const std::string Round::SystemMethodResponse::CLUSTERS = "clusters";
 
 ////////////////////////////////////////
@@ -28,7 +28,7 @@ const std::string Round::SystemMethodResponse::CLUSTERS = "clusters";
 
 Round::SystemMethodResponse::SystemMethodResponse(NodeResponse *nodeRes) {
   this->nodeRes = nodeRes;  
-  this->nodeRes->setVersion(RPC::JSON::VERSION);
+  this->nodeRes->setVersion(RPC::JSON::VER);
 }
 
 ////////////////////////////////////////

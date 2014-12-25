@@ -72,7 +72,7 @@ class SystemMethodResponse {
     static const std::string IP;
     static const std::string PORT;
     static const std::string HASH;
-    static const std::string VERSION;
+    static const std::string VER;
     static const std::string CLUSTER;
     static const std::string NODES;
     static const std::string CLUSTERS;

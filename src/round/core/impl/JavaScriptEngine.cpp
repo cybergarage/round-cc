@@ -60,7 +60,7 @@ Round::JavaScriptEngine::~JavaScriptEngine() {
 
 void Round::JavaScriptEngine::init() {
   if (!IsJavaScriptEngineListInitialized) {
-    v8::V8::InitializeICU();
+    v8::V8::Initialize();
 #if defined(ROUND_V8_USE_LIBPLATFORM)
     JavaScriptEnginePlatform = v8::platform::CreateDefaultPlatform();
     v8::V8::InitializePlatform(JavaScriptEnginePlatform);
