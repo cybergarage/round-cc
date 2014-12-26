@@ -51,8 +51,9 @@ Round is based on [JSON-RPC 2.0][json-rpc], and Round extends the specification 
 | Field | Descripton |
 | - | - |
 | ts | - |
-| digest | - |
+| dest | one, all, quorum |
 | hash | - |
+| digest | - |
 
 #### ts (timestamp)
 
