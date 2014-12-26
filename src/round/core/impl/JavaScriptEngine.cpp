@@ -23,7 +23,7 @@ const std::string Round::JavaScriptEngine::LANGUAGE = "js";
 
 namespace Round {
 
-static bool IsJavaScriptEngineListInitialized;
+static bool IsJavaScriptEngineListInitialized = false;
 #if defined(ROUND_V8_USE_LIBPLATFORM)
 static v8::Platform *JavaScriptEnginePlatform;
 #endif

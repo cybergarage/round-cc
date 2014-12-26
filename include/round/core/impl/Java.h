@@ -13,12 +13,6 @@
 
 #include <round/core/Script.h>
 
-#if defined(__APPLE__)
-#include <JavaVM/jni.h>
-#else
-#include <jni.h>
-#endif
-
 namespace Round {
 
 class JavaEngine : public ScriptEngine {
@@ -34,10 +28,6 @@ class JavaEngine : public ScriptEngine {
   
   bool compile(const Script *script) const;
   bool run(const Script *script, const std::string &params, std::string *results, Error *error) const;
-
- private:
-  JavaVM *jvm;
-  JNIEnv *jniEnv;
 };
   
 }

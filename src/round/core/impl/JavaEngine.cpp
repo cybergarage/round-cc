@@ -17,41 +17,85 @@
 
 #define ROUND_UES_JVMOPTIONS 1
 
-const std::string Round::JavaEngine::LANGUAGE = "java";
+#if defined(__APPLE__)
+#include <JavaVM/jni.h>
+#else
+#include <jni.h>
+#endif
 
-Round::JavaEngine::JavaEngine() : ScriptEngine(LANGUAGE) {
-  JavaVMInitArgs vm_args;
-  vm_args.ignoreUnrecognized = false;
-  vm_args.nOptions = 1;
+////////////////////////////////////////////////
+// Static methods
+////////////////////////////////////////////////
+
+namespace Round {
   
-#if defined(ROUND_UES_JVMOPTIONS)
-  JavaVMOption* options = new JavaVMOption[vm_args.nOptions];
-  options[0].optionString = const_cast<char*>("-verbose:jni");
-  vm_args.version = JNI_VERSION_1_6;
-  vm_args.options = options;
-#endif
+static bool IsJavaVMInitialized = false;
   
-  JNI_CreateJavaVM(&this->jvm, (void**)&this->jniEnv, &vm_args);
+static JavaVM *gJavaVM = NULL;
+static JNIEnv *gJNIEnv = NULL;
+
+static void JavaEngineExit(void) {
+  if (gJavaVM) {
+    gJavaVM->DestroyJavaVM();
+  }
+}
   
-#if defined(ROUND_UES_JVMOPTIONS)
-  delete options;
-#endif
 }
 
+const std::string Round::JavaEngine::LANGUAGE = "java";
+
+////////////////////////////////////////////////
+// Constructor
+////////////////////////////////////////////////
+
+Round::JavaEngine::JavaEngine() : ScriptEngine(LANGUAGE) {
+  if (!IsJavaVMInitialized) {
+    JavaVMInitArgs vm_args;
+    vm_args.ignoreUnrecognized = false;
+    vm_args.nOptions = 1;
+  
+#if defined(ROUND_UES_JVMOPTIONS)
+    JavaVMOption* options = new JavaVMOption[vm_args.nOptions];
+    options[0].optionString = const_cast<char*>("-verbose:jni");
+    vm_args.version = JNI_VERSION_1_6;
+    vm_args.options = options;
+#endif
+  
+    JNI_CreateJavaVM(&gJavaVM, (void**)&gJNIEnv, &vm_args);
+  
+#if defined(ROUND_UES_JVMOPTIONS)
+    delete options;
+#endif
+    IsJavaVMInitialized = true;
+    atexit(JavaEngineExit);
+  }
+}
+
+////////////////////////////////////////////////
+// Destructor
+////////////////////////////////////////////////
+
+Round::JavaEngine::~JavaEngine() {
+}
+
+////////////////////////////////////////////////
+// compile
+////////////////////////////////////////////////
+
 bool Round::JavaEngine::compile(const Script *script) const {
-  if (!this->jniEnv)
+  if (!gJNIEnv)
     return false;
 
-  jclass loaderClass = this->jniEnv->FindClass("java/lang/ClassLoader");
+  jclass loaderClass = gJNIEnv->FindClass("java/lang/ClassLoader");
   if(!loaderClass)
     return false;
   
-  jmethodID sysLoaderMethod = this->jniEnv->GetStaticMethodID(loaderClass, "getSystemClassLoader", "()Ljava/lang/ClassLoader;");
+  jmethodID sysLoaderMethod = gJNIEnv->GetStaticMethodID(loaderClass, "getSystemClassLoader", "()Ljava/lang/ClassLoader;");
   if(!sysLoaderMethod)
     return false;
   
-  jobject loader = this->jniEnv->CallStaticObjectMethod(loaderClass, sysLoaderMethod);
-  jobject globalLoader = this->jniEnv->NewGlobalRef(loader);
+  jobject loader = gJNIEnv->CallStaticObjectMethod(loaderClass, sysLoaderMethod);
+  jobject globalLoader = gJNIEnv->NewGlobalRef(loader);
   
   std::string scriptName = script->getName();
   
@@ -70,9 +114,9 @@ bool Round::JavaEngine::compile(const Script *script) const {
     scriptBytes = decordedScriptBytes;
   }
   
-  jclass clazz = this->jniEnv->DefineClass(scriptName.c_str(), globalLoader, (jbyte *)scriptBytes, (jsize)scriptByteLen);
+  jclass clazz = gJNIEnv->DefineClass(scriptName.c_str(), globalLoader, (jbyte *)scriptBytes, (jsize)scriptByteLen);
   
-  this->jniEnv->DeleteGlobalRef(globalLoader);
+  gJNIEnv->DeleteGlobalRef(globalLoader);
   
   if (decordedScriptBytes)
     free(decordedScriptBytes);
@@ -80,33 +124,31 @@ bool Round::JavaEngine::compile(const Script *script) const {
   return clazz ? true : false;
 }
 
+////////////////////////////////////////////////
+// run
+////////////////////////////////////////////////
+
 bool Round::JavaEngine::run(const Script *script, const std::string &params, std::string *results, Error *error) const {
-  if (!this->jniEnv)
+  if (!gJNIEnv)
     return false;
   
   std::string scriptName = script->getName();
-  jclass clazz = this->jniEnv->FindClass(scriptName.c_str());
+  jclass clazz = gJNIEnv->FindClass(scriptName.c_str());
   if (!clazz)
     return false;
   
-  jmethodID initMethodID	= this->jniEnv->GetMethodID(clazz, "<init>",	"()V");
-  jmethodID runMethodId      = this->jniEnv->GetMethodID(clazz, "run",	"(Ljava/lang/String;)V");
+  jmethodID initMethodID	= gJNIEnv->GetMethodID(clazz, "<init>",	"()V");
+  jmethodID runMethodId      = gJNIEnv->GetMethodID(clazz, "run",	"(Ljava/lang/String;)V");
   if (!initMethodID || !runMethodId)
     return false;
   
-  jobject scriptObject = this->jniEnv->NewObject(clazz, initMethodID);
-  jstring jstringParams = this->jniEnv->NewStringUTF(params.c_str());
-  jstring jstringResults = (jstring)this->jniEnv->CallObjectMethod(scriptObject, runMethodId, jstringParams);
+  jobject scriptObject = gJNIEnv->NewObject(clazz, initMethodID);
+  jstring jstringParams = gJNIEnv->NewStringUTF(params.c_str());
+  jstring jstringResults = (jstring)gJNIEnv->CallObjectMethod(scriptObject, runMethodId, jstringParams);
   
-  const char* stringResults = this->jniEnv->GetStringUTFChars(jstringResults, NULL);
+  const char* stringResults = gJNIEnv->GetStringUTFChars(jstringResults, NULL);
   *results = stringResults;
-  this->jniEnv->ReleaseStringUTFChars(jstringResults, stringResults);
+  gJNIEnv->ReleaseStringUTFChars(jstringResults, stringResults);
   
   return true;
-}
-
-Round::JavaEngine::~JavaEngine() {
-  if (this->jvm) {
-    this->jvm->DestroyJavaVM();
-  }
 }
