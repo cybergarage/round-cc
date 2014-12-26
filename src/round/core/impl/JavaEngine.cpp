@@ -145,10 +145,11 @@ bool Round::JavaEngine::run(const Script *script, const std::string &params, std
   jobject scriptObject = gJNIEnv->NewObject(clazz, initMethodID);
   jstring jstringParams = gJNIEnv->NewStringUTF(params.c_str());
   jstring jstringResults = (jstring)gJNIEnv->CallObjectMethod(scriptObject, runMethodId, jstringParams);
-  
-  const char* stringResults = gJNIEnv->GetStringUTFChars(jstringResults, NULL);
-  *results = stringResults;
-  gJNIEnv->ReleaseStringUTFChars(jstringResults, stringResults);
+  if (jstringResults) {
+    const char* stringResults = gJNIEnv->GetStringUTFChars(jstringResults, NULL);
+    *results = stringResults;
+    gJNIEnv->ReleaseStringUTFChars(jstringResults, stringResults);
+  }
   
   return true;
 }
