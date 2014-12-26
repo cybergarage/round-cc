@@ -43,6 +43,8 @@
 		2184F21A1A19B62C007F1326 /* NodeResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2181A19B62C007F1326 /* NodeResponse.cpp */; };
 		2188042B1A22EF690053473E /* JavaScriptEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2188042A1A22EF690053473E /* JavaScriptEngine.cpp */; };
 		2192F13A1A4C244E00F72945 /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = 2192F1391A4C244E00F72945 /* types.h */; };
+		21A7CB231A4D800E000288B5 /* HTTPUServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A7CB211A4D800E000288B5 /* HTTPUServer.cpp */; };
+		21A7CB241A4D800E000288B5 /* HTTPUServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 21A7CB221A4D800E000288B5 /* HTTPUServer.h */; };
 		21A99DFA1A405DD700663A47 /* SystemMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = 21A99DF91A405DD700663A47 /* SystemMethod.h */; };
 		21B1DF041A32C4C70070B65D /* LocalNodeWorker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B1DF031A32C4C70070B65D /* LocalNodeWorker.cpp */; };
 		21C108591A36C2A200E22CAD /* LocalNodeScriptManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C108581A36C2A200E22CAD /* LocalNodeScriptManager.cpp */; };
@@ -198,6 +200,8 @@
 		2184F2181A19B62C007F1326 /* NodeResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeResponse.cpp; sourceTree = "<group>"; };
 		2188042A1A22EF690053473E /* JavaScriptEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JavaScriptEngine.cpp; sourceTree = "<group>"; };
 		2192F1391A4C244E00F72945 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+		21A7CB211A4D800E000288B5 /* HTTPUServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTTPUServer.cpp; sourceTree = "<group>"; };
+		21A7CB221A4D800E000288B5 /* HTTPUServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPUServer.h; sourceTree = "<group>"; };
 		21A99DF91A405DD700663A47 /* SystemMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemMethod.h; sourceTree = "<group>"; };
 		21A9FFAA154014F300BDFCDC /* liblibround++.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "liblibround++.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B1DF031A32C4C70070B65D /* LocalNodeWorker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalNodeWorker.cpp; sourceTree = "<group>"; };
@@ -471,6 +475,8 @@
 		21DA08CB1A175E8200D3DCE0 /* impl */ = {
 			isa = PBXGroup;
 			children = (
+				21A7CB211A4D800E000288B5 /* HTTPUServer.cpp */,
+				21A7CB221A4D800E000288B5 /* HTTPUServer.h */,
 				2188042A1A22EF690053473E /* JavaScriptEngine.cpp */,
 				210E57841A29A574000B60FC /* JavaEngine.cpp */,
 				21DA08CC1A175E8200D3DCE0 /* UPnPNodeFinder.cpp */,
@@ -640,6 +646,7 @@
 				21DE68911A13B3EA0049227E /* MD5.h in Headers */,
 				21DE681D1A13B3D60049227E /* Cloneable.h in Headers */,
 				21DE68291A13B3D60049227E /* Random.h in Headers */,
+				21A7CB241A4D800E000288B5 /* HTTPUServer.h in Headers */,
 				21DA085F1A17424A00D3DCE0 /* NodeCore.h in Headers */,
 				214FC0ED1A4AEA3200456552 /* Base64.h in Headers */,
 				21DE68221A13B3D60049227E /* HashObject.h in Headers */,
@@ -761,6 +768,7 @@
 				2173D4FB1A3822340098CA35 /* SystemMethodRequest.cpp in Sources */,
 				21DA08761A17426500D3DCE0 /* NodeCore.cpp in Sources */,
 				2177278B1A2F85F4001B4CE0 /* Response.cpp in Sources */,
+				21A7CB231A4D800E000288B5 /* HTTPUServer.cpp in Sources */,
 				21DA08771A17426500D3DCE0 /* NodeFinder.cpp in Sources */,
 				21DE68831A13B3EA0049227E /* Configuration.cpp in Sources */,
 				21DA08731A17426500D3DCE0 /* ClusterList.cpp in Sources */,
