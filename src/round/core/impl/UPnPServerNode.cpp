@@ -149,9 +149,19 @@ bool Round::UPnPServerNode::start(Error *error) {
   if (Device::start() == false)
     return false;
 
+  int httpPort = Device::getHTTPPort();
   setRequestAddress(localAddress);
-  setRequestPort(Device::getHTTPPort());
+  setRequestPort(httpPort);
 
+  // HTTPU Server
+  
+  if (!httpuServer.open(httpPort, localAddress))
+    return false;
+  
+  if (!httpuServer.start())
+    return false;
+  
+  // State
   setState(NodeStatus::ACTIVE);
 
   return true;
@@ -169,6 +179,9 @@ bool Round::UPnPServerNode::stop(Error *error) {
   if (this->nodeFinder.stop(error) == false)
     isSuccess = false;
 
+  if (!httpuServer.stop())
+    isSuccess = false;
+  
   if (isSuccess == true)
     setState(NodeStatus::STOP);
 

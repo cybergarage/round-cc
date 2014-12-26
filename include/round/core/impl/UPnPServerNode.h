@@ -16,8 +16,9 @@
 #include <cybergarage/upnp/Device.h>
 #include <cybergarage/upnp/ControlPoint.h>
 
-#include <round/core/ServerNode.h>
 #include <round/Finder.h>
+#include <round/core/ServerNode.h>
+#include <round/core/impl/HTTPUServer.h>
 
 namespace Round {
 
@@ -58,6 +59,7 @@ private:
   bool initialized;
 
   Finder nodeFinder;
+  HTTPUServer httpuServer;
 };
 
 }
