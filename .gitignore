@@ -32,6 +32,9 @@
 project.xcworkspace/
 xcuserdata/
 
+# Java
+*.class
+
 # Automake
 .deps/
 *.Po
