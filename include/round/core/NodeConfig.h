@@ -11,6 +11,7 @@
 #ifndef _ROUNDCC_NODECOMFIG_H_
 #define _ROUNDCC_NODECOMFIG_H_
 
+#include <stdlib.h>
 #include <round/common/Configuration.h>
 #include <round/core/ErrorNo.h>
 

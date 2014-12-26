@@ -27,7 +27,7 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineEchoTest) {
   BOOST_CHECK(scriptMgr.setEngine(new JavaScriptEngine()));
   BOOST_CHECK(scriptMgr.hasEngine(JavaScriptEngine::LANGUAGE));
   
-  BOOST_CHECK(scriptMgr.setScript(Test::SCRIPT_ECHO_NAME, JavaScriptEngine::LANGUAGE, Round::Test::JS_ECHO_CODE, &err));
+  BOOST_CHECK(scriptMgr.setScript(Test::SCRIPT_ECHO_NAME, JavaScriptEngine::LANGUAGE, Round::Test::JS_ECHO_CODE, Script::ENCODING_NONE, &err));
   BOOST_CHECK(scriptMgr.hasScript(Test::SCRIPT_ECHO_NAME));
   
   Test::ScriptTestController scriptTestController;

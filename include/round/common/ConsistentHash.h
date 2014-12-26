@@ -11,6 +11,7 @@
 #ifndef _ROUNDCC_CONSISTENTHASH_H_
 #define _ROUNDCC_CONSISTENTHASH_H_
 
+#include <stdlib.h>
 #include <vector>
 #include <string>
 

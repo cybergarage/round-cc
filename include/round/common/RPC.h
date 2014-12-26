@@ -29,7 +29,7 @@ static const std::string ACCEPT       = CONTENT_TYPE;
   
 namespace JSON {
 
-static const std::string VERSION     = "2.0";
+static const std::string VER = "2.0";
 
 enum {
   ErrorCodeUnknown        = 0,

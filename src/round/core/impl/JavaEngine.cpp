@@ -137,8 +137,8 @@ bool Round::JavaEngine::run(const Script *script, const std::string &params, std
   if (!clazz)
     return false;
   
-  jmethodID initMethodID	= gJNIEnv->GetMethodID(clazz, "<init>",	"()V");
-  jmethodID runMethodId      = gJNIEnv->GetMethodID(clazz, "run",	"(Ljava/lang/String;)V");
+  jmethodID initMethodID = gJNIEnv->GetMethodID(clazz, "<init>",	"()V");
+  jmethodID runMethodId  = gJNIEnv->GetMethodID(clazz, "run",	"(Ljava/lang/String;)Ljava/lang/String;");
   if (!initMethodID || !runMethodId)
     return false;
   

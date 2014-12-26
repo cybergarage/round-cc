@@ -1,0 +1,2 @@
+#!/bin/bash
+./configure CPPFLAGS="-I/usr/lib/jvm/java-1.7.0-openjdk-i386/include/" LDFLAGS="-L/opt/local/lib -L/usr/local/lib" $@

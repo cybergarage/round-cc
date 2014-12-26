@@ -308,7 +308,16 @@ bool Round::LocalNode::setMethod(const NodeRequest *nodeReq, NodeResponse *nodeR
   std::string scriptCode;
   jsonDict->get(SystemMethodRequest::CODE, &scriptCode);
   
-  return this->scriptMgr.setScript(scriptMethod, scriptLang, scriptCode, err);
+  // Encode
+  int encodeType = Script::ENCODING_NONE;
+  std::string encodeTypeStr;
+  if (jsonDict->get(SystemMethodRequest::ENCODE, &encodeTypeStr)) {
+    if (encodeTypeStr.compare(SystemMethodRequest::ENCODE_BASE64)) {
+      encodeType = Script::ENCODING_BASE64;
+    }
+  }
+  
+  return this->scriptMgr.setScript(scriptMethod, scriptLang, scriptCode, encodeType, err);
 }
 
 ////////////////////////////////////////////////

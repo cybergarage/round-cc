@@ -181,7 +181,7 @@ class ScriptManager {
   ScriptManager();
   virtual ~ScriptManager();
     
-  bool setScript(const std::string &method, const std::string &lang, const std::string &script, Error *error);
+  bool setScript(const std::string &method, const std::string &lang, const std::string &script, int encodingType, Error *error);
   bool setScript(Script *script);
   
   bool hasScript(const std::string &name) const {

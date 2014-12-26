@@ -21,7 +21,7 @@ BOOST_AUTO_TEST_SUITE(rpc)
 BOOST_AUTO_TEST_CASE(RPCMessageMethodTest) {
   RPC::JSON::Message rpcMsg;
   
-  const std::string TEST_VER= RPC::JSON::VERSION;
+  const std::string TEST_VER= RPC::JSON::VER;
   std::string ver;
   BOOST_CHECK(!rpcMsg.getVersion(&ver));
   BOOST_CHECK(rpcMsg.setVersion(TEST_VER));
@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE(RPCMessageMethodTest) {
 BOOST_AUTO_TEST_CASE(RPCRequestMethodTest) {
   RPC::JSON::Request rpcMsg;
   
-  const std::string TEST_VER= RPC::JSON::VERSION;
+  const std::string TEST_VER= RPC::JSON::VER;
   std::string ver;
   BOOST_CHECK(!rpcMsg.getVersion(&ver));
   BOOST_CHECK(rpcMsg.setVersion(TEST_VER));
@@ -93,7 +93,7 @@ BOOST_AUTO_TEST_CASE(RPCRequestMethodTest) {
 BOOST_AUTO_TEST_CASE(RPCResponseMethodTest) {
   RPC::JSON::Response rpcMsg;
   
-  const std::string TEST_VER= RPC::JSON::VERSION;
+  const std::string TEST_VER= RPC::JSON::VER;
   std::string ver;
   BOOST_CHECK(!rpcMsg.getVersion(&ver));
   BOOST_CHECK(rpcMsg.setVersion(TEST_VER));
