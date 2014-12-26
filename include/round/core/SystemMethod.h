@@ -34,6 +34,8 @@ class SystemMethodRequest : public NodeRequest {
   static const std::string LANGUAGE;
   static const std::string NAME;
   static const std::string CODE;
+  static const std::string ENCODE;
+  static const std::string ENCODE_BASE64;
   
  public:
   SystemMethodRequest();

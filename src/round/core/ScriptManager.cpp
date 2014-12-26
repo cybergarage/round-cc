@@ -54,7 +54,7 @@ bool Round::ScriptManager::setEngine(ScriptEngine *engine) {
   return true;
 }
 
-bool Round::ScriptManager::setScript(const std::string &method, const std::string &lang, const std::string &code, Error *error) {
+bool Round::ScriptManager::setScript(const std::string &method, const std::string &lang, const std::string &code, int encodingType, Error *error) {
   const ScriptEngine *scriptEngine = this->engines.getEngine(lang);
   if (!scriptEngine) {
     RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeScriptEngineNotFound, error);
@@ -69,7 +69,8 @@ bool Round::ScriptManager::setScript(const std::string &method, const std::strin
     RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeScriptEngineInternalError, error);
     return false;
   }
-
+  script->setEncording(encodingType);
+  
   if (!scriptEngine->compile(script)) {
     RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeCompileError, error);
     delete script;
