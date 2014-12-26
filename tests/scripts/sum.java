@@ -6,7 +6,7 @@ public class sum extends Object {
   public String run(String params) {
     String []param = new String[0];
     try {
-    	param = params.split("[], ");
+    	param = params.split("[^0-9]");
     } catch (Exception e) {}
     int sum = 0;
     for (int n=0; n<param.length; n++) {

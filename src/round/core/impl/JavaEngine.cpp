@@ -15,7 +15,7 @@
 #include <round/core/Log.h>
 #include <round/core/impl/Java.h>
 
-#define ROUND_UES_JVMOPTIONS 1
+#undef ROUND_USE_JVMOPTIONS_VERBOSE
 
 #if defined(__APPLE__)
 #include <JavaVM/jni.h>
@@ -51,21 +51,24 @@ const std::string Round::JavaEngine::LANGUAGE = "java";
 Round::JavaEngine::JavaEngine() : ScriptEngine(LANGUAGE) {
   if (!IsJavaVMInitialized) {
     JavaVMInitArgs vm_args;
-    vm_args.ignoreUnrecognized = false;
-    vm_args.nOptions = 1;
+    JNI_GetDefaultJavaVMInitArgs(&vm_args);
+    vm_args.ignoreUnrecognized = false;;
+    vm_args.nOptions = 0;
+#if defined(ROUND_USE_JVMOPTIONS_VERBOSE)
+    vm_args.nOptions++;
+#endif
   
-#if defined(ROUND_UES_JVMOPTIONS)
     JavaVMOption* options = new JavaVMOption[vm_args.nOptions];
-    options[0].optionString = const_cast<char*>("-verbose:jni");
+#if defined(ROUND_USE_JVMOPTIONS_VERBOSE)
+    options[0].optionString = const_cast<char*>("-verbose:class");
+#endif
     vm_args.version = JNI_VERSION_1_6;
     vm_args.options = options;
-#endif
   
     JNI_CreateJavaVM(&gJavaVM, (void**)&gJNIEnv, &vm_args);
   
-#if defined(ROUND_UES_JVMOPTIONS)
     delete options;
-#endif
+    
     IsJavaVMInitialized = true;
     atexit(JavaEngineExit);
   }
