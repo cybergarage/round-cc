@@ -16,7 +16,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="overview_design_zeroconf.svg">
+   sodipodi:docname="round_overview_zeroconf.svg">
   <defs
      id="defs4">
     <inkscape:perspective
@@ -186,7 +186,7 @@
      showgrid="true"
      showguides="false"
      inkscape:window-width="1316"
-     inkscape:window-height="990"
+     inkscape:window-height="723"
      inkscape:window-x="24"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
@@ -213,7 +213,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>

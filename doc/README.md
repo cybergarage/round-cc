@@ -6,12 +6,11 @@ Round is an open source, consensus service framework for developing distributed 
 
 Round is architected for:
 
+- Simplify
 - ZeronConf
 - Decentralized
-- Simplify
 - Autonomous
 - Dynamics
-- Immutable
 
 # Lean More About Round
 
