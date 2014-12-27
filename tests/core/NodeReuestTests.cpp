@@ -37,5 +37,28 @@ BOOST_AUTO_TEST_CASE(NodeRequestParserTest) {
   BOOST_CHECK(nodeReq);
 }
 
+BOOST_AUTO_TEST_CASE(NodeRequestOptionTest) {
+  NodeRequestOption nodeReqOpt;
+  
+  BOOST_CHECK_EQUAL(nodeReqOpt.isSync(), true);
+  BOOST_CHECK_EQUAL(nodeReqOpt.isAsync(), false);
+
+  BOOST_CHECK(nodeReqOpt.setSync(false));
+  BOOST_CHECK_EQUAL(nodeReqOpt.isSync(), false);
+  BOOST_CHECK_EQUAL(nodeReqOpt.isAsync(), true);
+
+  BOOST_CHECK(nodeReqOpt.setSync(true));
+  BOOST_CHECK_EQUAL(nodeReqOpt.isSync(), true);
+  BOOST_CHECK_EQUAL(nodeReqOpt.isAsync(), false);
+
+  BOOST_CHECK(nodeReqOpt.setAsync(true));
+  BOOST_CHECK_EQUAL(nodeReqOpt.isSync(), false);
+  BOOST_CHECK_EQUAL(nodeReqOpt.isAsync(), true);
+  
+  BOOST_CHECK(nodeReqOpt.setAsync(false));
+  BOOST_CHECK_EQUAL(nodeReqOpt.isSync(), true);
+  BOOST_CHECK_EQUAL(nodeReqOpt.isAsync(), false);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 

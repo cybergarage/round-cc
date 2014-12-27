@@ -43,6 +43,7 @@
 		2184F21A1A19B62C007F1326 /* NodeResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2181A19B62C007F1326 /* NodeResponse.cpp */; };
 		2188042B1A22EF690053473E /* JavaScriptEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2188042A1A22EF690053473E /* JavaScriptEngine.cpp */; };
 		2192F13A1A4C244E00F72945 /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = 2192F1391A4C244E00F72945 /* types.h */; };
+		219428801A4E538A00F3EC33 /* NodeRequestOption.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2194287F1A4E538A00F3EC33 /* NodeRequestOption.cpp */; };
 		21A7CB231A4D800E000288B5 /* HTTPUServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A7CB211A4D800E000288B5 /* HTTPUServer.cpp */; };
 		21A7CB261A4D8353000288B5 /* HTTPUServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 21A7CB251A4D8353000288B5 /* HTTPUServer.h */; };
 		21A99DFA1A405DD700663A47 /* SystemMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = 21A99DF91A405DD700663A47 /* SystemMethod.h */; };
@@ -200,6 +201,7 @@
 		2184F2181A19B62C007F1326 /* NodeResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeResponse.cpp; sourceTree = "<group>"; };
 		2188042A1A22EF690053473E /* JavaScriptEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JavaScriptEngine.cpp; sourceTree = "<group>"; };
 		2192F1391A4C244E00F72945 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+		2194287F1A4E538A00F3EC33 /* NodeRequestOption.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeRequestOption.cpp; sourceTree = "<group>"; };
 		21A7CB211A4D800E000288B5 /* HTTPUServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTTPUServer.cpp; sourceTree = "<group>"; };
 		21A7CB251A4D8353000288B5 /* HTTPUServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPUServer.h; sourceTree = "<group>"; };
 		21A99DF91A405DD700663A47 /* SystemMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemMethod.h; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 				21DA086D1A17426500D3DCE0 /* NodeGraph.cpp */,
 				21DA086E1A17426500D3DCE0 /* NodeList.cpp */,
 				2184F2171A19B62C007F1326 /* NodeRequest.cpp */,
+				2194287F1A4E538A00F3EC33 /* NodeRequestOption.cpp */,
 				2184F2181A19B62C007F1326 /* NodeResponse.cpp */,
 				21DA08BF1A174EAB00D3DCE0 /* NodeStatus.cpp */,
 				21DA08C01A174EAB00D3DCE0 /* RemoteNode.cpp */,
@@ -810,6 +813,7 @@
 				21DE688A1A13B3EA0049227E /* HashObject.cpp in Sources */,
 				2184F2191A19B62C007F1326 /* NodeRequest.cpp in Sources */,
 				210E577E1A235D49000B60FC /* ScriptMap.cpp in Sources */,
+				219428801A4E538A00F3EC33 /* NodeRequestOption.cpp in Sources */,
 				21DE68901A13B3EA0049227E /* MD5.cpp in Sources */,
 				21DE68811A13B3EA0049227E /* BitOption.cpp in Sources */,
 				21DA08CE1A175E8200D3DCE0 /* UPnPNodeFinder.cpp in Sources */,
