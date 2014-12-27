@@ -8,7 +8,7 @@
 
 Round consists only some open standard network protocols such as [UPnP][upnp] and [JSON-RPC][json-rpc] with standard script engines such as [Java][java] and [JavaScript][v8].
 
-![round_protocol](./img/round_protocol.svg)
+![round_protocol](./img/round_protocol.png)
 
 [java]: https://java.com/
 [js]: http://www.ecma-international.org/publications/standards/Ecma-262.htm
