@@ -1,4 +1,4 @@
-![round_logo](img/round_logo.png)
+![round_logo](doc/img/round_logo.png)
 
 [English](README.md) Japanese
 
@@ -7,18 +7,20 @@ Roundは「[円卓の騎士](http://ja.wikipedia.org/wiki/円卓の騎士)」が
 
 Round is architected for:
 
+- Simplify
+- Clarify
 - ZeronConf
 - Decentralized
-- Simplify
 - Autonomous
 - Dynamics
-- Immutable
 
 # Lean More About Round
 
-- [Overview](round_overview.md)
-- [Install](round_installation.md)
-- [Configutaion](round_installation.md)
-- [Internal](round_internals.md)
-- [API](round_apis.md)
-- [RPC](round_rpc_methods.md)
+- [Overview](doc/round_overview.md)
+- [Install](doc/round_installation.md)
+- [Configutaion](doc/round_installation.md)
+- [Internal](doc/round_internals.md)
+- [API](doc/round_apis.md)
+- [RPC](doc/round_rpc_methods.md)
+- [Application](doc/round_applications.md)
+- [Coversion](doc/round_conversions.md)
