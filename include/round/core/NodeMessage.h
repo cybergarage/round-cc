@@ -18,12 +18,29 @@ namespace Round {
 class NodeResponse;
   
 class NodeRequest : public RPC::JSON::Request {
+  static const std::string SYNC;
  public:
   
   NodeRequest();
   NodeRequest(const std::string &method);
   virtual ~NodeRequest();
    
+  bool setSync(bool value) {
+    return set(SYNC, value);
+  }
+  
+  bool isSync() const {
+    return get(SYNC, true);
+  }
+  
+  bool setAsync(bool value) {
+    return setSync(!value);
+  }
+  
+  bool isAsync() const {
+    return !isSync();
+  }
+  
   bool setHttpRequest(uHTTP::HTTPRequest *httpReq);
   uHTTP::HTTPRequest *getHttpRequest() const {return this->httpReq;}
   
@@ -33,29 +50,6 @@ class NodeRequest : public RPC::JSON::Request {
 
   void init();
   bool close();
-};
-
-class NodeRequestOption : public JSONDictionary {
- public:
-  static const std::string SYNC;
- public:
-  NodeRequestOption();
-  
-  bool setSync(bool value) {
-    return set(SYNC, value);
-  }
-  
-  bool isSync() const {
-    return get(SYNC, true);
-  }
-
-  bool setAsync(bool value) {
-    return setSync(!value);
-  }
-  
-  bool isAsync() const {
-    return !isSync();
-  }
 };
 
 class NodeResponse : public RPC::JSON::Response {
