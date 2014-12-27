@@ -44,6 +44,7 @@
 		21AD42AE1A13B7FC00741A08 /* ThreadTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD429C1A13B7FC00741A08 /* ThreadTests.cpp */; };
 		21AD42AF1A13B88C00741A08 /* liblibround++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 215C20B81A13B6A000CE71E2 /* liblibround++.a */; };
 		21B1DF061A32E6590070B65D /* RPCMethodTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B1DF051A32E6590070B65D /* RPCMethodTests.cpp */; };
+		21B51EC91A4E38C0003BBA3C /* VectorTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B51EC81A4E38C0003BBA3C /* VectorTests.cpp */; };
 		21CD1BC6192DC94E00452ADF /* libuhttp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CD1BBF192DC91D00452ADF /* libuhttp++.a */; };
 		21CD1BC7192DC95000452ADF /* liblibclink++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CD1BB9192DC8F500452ADF /* liblibclink++.a */; };
 		21D9C9111A355961008008B3 /* ScriptManagerTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D9C9101A355961008008B3 /* ScriptManagerTests.cpp */; };
@@ -158,6 +159,7 @@
 		21AD429B1A13B7FC00741A08 /* StringTokenizerTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringTokenizerTests.cpp; sourceTree = "<group>"; };
 		21AD429C1A13B7FC00741A08 /* ThreadTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadTests.cpp; sourceTree = "<group>"; };
 		21B1DF051A32E6590070B65D /* RPCMethodTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCMethodTests.cpp; sourceTree = "<group>"; };
+		21B51EC81A4E38C0003BBA3C /* VectorTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VectorTests.cpp; sourceTree = "<group>"; };
 		21CD1BB4192DC8F500452ADF /* libclink++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libclink++.xcodeproj"; path = "../../../../clinkcc/lib/macosx/xcode/libclink++.xcodeproj"; sourceTree = "<group>"; };
 		21CD1BBA192DC91D00452ADF /* libuhttp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuhttp.xcodeproj; path = ../../../../uhttp/lib/macosx/xcode/libuhttp.xcodeproj; sourceTree = "<group>"; };
 		21D9C9101A355961008008B3 /* ScriptManagerTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptManagerTests.cpp; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 		21AD42771A13B7FC00741A08 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				21B51EC81A4E38C0003BBA3C /* VectorTests.cpp */,
 				213E910A1A4AA707001C2ED9 /* Base64Tests.cpp */,
 				21AD428B1A13B7FC00741A08 /* BitOptionTests.cpp */,
 				21AD428C1A13B7FC00741A08 /* ClockTests.cpp */,
@@ -426,6 +429,7 @@
 				21AD42A51A13B7FC00741A08 /* JSONTests.cpp in Sources */,
 				213E910B1A4AA707001C2ED9 /* Base64Tests.cpp in Sources */,
 				21AD42A01A13B7FC00741A08 /* ConsistentHashTests.cpp in Sources */,
+				21B51EC91A4E38C0003BBA3C /* VectorTests.cpp in Sources */,
 				2184F2071A18E359007F1326 /* ServerNodeTests.cpp in Sources */,
 				2184F2051A18E359007F1326 /* NodeFinderTests.cpp in Sources */,
 				21DA08B01A174A4900D3DCE0 /* LocalNodeTests.cpp in Sources */,
