@@ -21,7 +21,10 @@
 #define MD5FUNC MD5
 #endif
 
-const char *Round::MD5::hash(const std::string &string, std::string *buf) {
+const int Round::MD5::DIGEST_LENGTH = MD5_DIGEST_LENGTH;
+const int Round::MD5::DIGEST_STRING_LENGTH = MD5_DIGEST_LENGTH * 2;
+
+const char *Round::MD5::Hash(const std::string &string, std::string *buf) {
   unsigned char md5Digest[MD5_DIGEST_LENGTH];
   char md5DigestString[(MD5_DIGEST_LENGTH*2) + 1];
 

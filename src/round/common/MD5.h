@@ -16,7 +16,9 @@
 namespace Round {
 class MD5 {
  public:
-  static const char *hash(const std::string &string, std::string *buf);
+  static const int DIGEST_LENGTH;
+  static const int DIGEST_STRING_LENGTH;
+  static const char *Hash(const std::string &string, std::string *buf);
 
 };
 
