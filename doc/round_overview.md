@@ -16,6 +16,8 @@ In Round, simplify is a most important principle. The core module is simple, and
 
 The core module is implemented using some open standard network protocols.
 
+![round_protocol](./img/round_protocol.png)
+
 ## Design Features
 
 ### Zeroconf

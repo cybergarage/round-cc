@@ -13,6 +13,8 @@
 
 #include <round/core/NodeMessage.h>
 
+const std::string Round::NodeRequest::SYNC = "sync";
+
 Round::NodeRequest::NodeRequest() {
   init();
 }
