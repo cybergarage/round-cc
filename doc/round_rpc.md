@@ -4,11 +4,9 @@
 
 Round is based on [JSON-RPC 2.0][json-rpc], and Round extends the specification to develop distributed system applications as the following.
 
-## Extentions
+## Object Field Extentions
 
-### Request objects
-
-Round adds the following original fields
+Round adds the following original fields to [JSON-RPC 2.0][json-rpc] specification.
 
 | Field | Descripton | Default | Detail |
 | - | - | - | - |
@@ -18,22 +16,29 @@ Round adds the following original fields
 | type | accept | (none) | - |
 | digest | - | (none) | - |
 
-#### hash
+### hash
 
-The hash code specifies a destination node of the message. If the hash field is not specified, the message is executed by the received node.
+#### Request object
+
+The hash code specifies a destination node of the message. In the current version, the hash code must be genarated using [SHA-256](http://en.wikipedia.org/wiki/SHA-2). If the hash field is not specified, the message is executed by the received node.
+
+```
+--> {"jsonrpc": "2.0", "method": "increment_counter", "params": 1, "hash": "xxxxxxxxxxxxxxxx", ....}
+```
+
+#### Response object
 
 The message is executed if the specified hash code is handled by the received node, otherwise the node doen't executed the message and returns a error object including the detail error code, -32002, as the following.
 
 ```
---> {"jsonrpc": "2.0", "method": "increment_counter", "params": 1, "hash": "xxxxxxxxxxxxxxxx", ....}
 <-- {"jsonrpc": "2.0", "error": {"code": -32002, "message": "Moved Permanently"}, ....}
 ```
 
 If the node returns the error object, the cluster might be updated because of adding or removing nodes. To update the current cluster information, Use '[_get_cluster_info](./round_rpc_methods.md)' method for the node to get the latest cluster information.
 
-#### dest (destination) + hash
+### dest (destination) + hash
 
-#### ts (timestamp)
+### ts (timestamp)
 
 Round adds a timestamp parameter based on [Lamport timestamps][lamport-timestamps] to know the operation causality.
 

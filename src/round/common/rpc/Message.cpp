@@ -20,6 +20,7 @@ const std::string Round::RPC::JSON::Message::MESSAGE = "message";
 const std::string Round::RPC::JSON::Message::RESULT = "result";
 
 const std::string Round::RPC::JSON::Message::TIMESTAMP = "ts";
+const std::string Round::RPC::JSON::Message::HASH = "hash";
 
 Round::RPC::JSON::Message::Message() {
 }

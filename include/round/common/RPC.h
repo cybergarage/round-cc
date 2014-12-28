@@ -58,6 +58,7 @@ class Message : public ::Round::Message {
   static const std::string METHOD;
   static const std::string PARAMS;
   static const std::string TIMESTAMP;
+  static const std::string HASH;
   static const std::string ID;
   static const std::string RESULT;
   static const std::string ERROR;
@@ -85,6 +86,8 @@ class Message : public ::Round::Message {
   }
   
   // Round Extention Methods.
+
+  // timestamp
   
   bool setTimestamp(clock_t value) {
     return set(TIMESTAMP, value);
@@ -92,6 +95,24 @@ class Message : public ::Round::Message {
   
   bool getTimestamp(clock_t *value) const {
     return get(TIMESTAMP, value);
+  }
+
+  bool hasTimestamp() const {
+    return hasKey(TIMESTAMP);
+  }
+  
+  // hash
+  
+  bool setHash(const std::string &value) {
+    return set(HASH, value);
+  }
+  
+  bool getHash(std::string *value) const {
+    return get(HASH, value);
+  }
+  
+  bool hasHash() const {
+    return hasKey(HASH);
   }
 };
 

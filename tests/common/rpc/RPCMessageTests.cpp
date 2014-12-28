@@ -134,6 +134,41 @@ BOOST_AUTO_TEST_CASE(RPCResponseMethodTest) {
   BOOST_CHECK_EQUAL(dirResult.compare(TEST_RESULT_DIR_VALUE), 0);
 }
 
+BOOST_AUTO_TEST_CASE(RPCRequestExtentionMethodTest) {
+  RPC::JSON::Message rpcMsg;
+  
+  // timestamp
+  
+  clock_t ts;
+  
+  BOOST_CHECK(!rpcMsg.hasTimestamp());
+  BOOST_CHECK(!rpcMsg.getTimestamp(&ts));
+  
+  rpcMsg.setTimestamp(std::numeric_limits<clock_t>::min());
+  BOOST_CHECK(rpcMsg.hasTimestamp());
+  BOOST_CHECK(rpcMsg.getTimestamp(&ts));
+  BOOST_CHECK_EQUAL(ts, std::numeric_limits<clock_t>::min());
+  
+  rpcMsg.setTimestamp(std::numeric_limits<clock_t>::max());
+  BOOST_CHECK(rpcMsg.hasTimestamp());
+  BOOST_CHECK(rpcMsg.getTimestamp(&ts));
+  BOOST_CHECK_EQUAL(ts, std::numeric_limits<clock_t>::max());
+
+  // hash
+  
+  const std::string TEST_HASH = "0123456789";
+  std::string hash;
+  
+  BOOST_CHECK(!rpcMsg.hasHash());
+  BOOST_CHECK(!rpcMsg.getHash(&hash));
+  
+  rpcMsg.setHash(TEST_HASH);
+  BOOST_CHECK(rpcMsg.hasHash());
+  BOOST_CHECK(rpcMsg.getHash(&hash));
+  BOOST_CHECK_EQUAL(TEST_HASH.compare(hash), 0);
+}
+
+
 class TestMessageParser : public JSONParser {
   
 public:
