@@ -11,10 +11,10 @@
 #include <string>
 #include <sstream>
 #include <round/common/HashObject.h>
-#include <round/common/SHA1.h>
+#include <round/common/SHA.h>
 
 size_t Round::HashObject::getHashCodeLength() {
-  return SHA1::DIGEST_LENGTH * 2;
+  return SHA256::DIGEST_LENGTH * 2;
 }
 
 bool Round::HashObject::getStartHashCode(std::string *hashCode) {
@@ -52,7 +52,7 @@ bool Round::HashObject::getHashCode(std::string *hashCode) const {
     return false;
   }
 
-  SHA1::hash(seedString, hashCode);
+  SHA256::Hash(seedString, hashCode);
 
   return true;
 }

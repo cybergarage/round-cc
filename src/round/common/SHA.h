@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _FRACTAL_SHA1_H_
-#define _FRACTAL_SHA1_H_
+#ifndef _FRACTAL_SHA_H_
+#define _FRACTAL_SHA_H_
 
 #include <string>
 
@@ -18,8 +18,15 @@ namespace Round {
 class SHA1 {
  public:
   static const int DIGEST_LENGTH;
-  static const char *hash(const std::string &string, std::string *buf);
+  static const int DIGEST_STRING_LENGTH;
+  static const char *Hash(const std::string &string, std::string *buf);
+};
 
+class SHA256 {
+ public:
+  static const int DIGEST_LENGTH;
+  static const int DIGEST_STRING_LENGTH;
+  static const char *Hash(const std::string &string, std::string *buf);
 };
 
 }

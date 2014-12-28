@@ -30,13 +30,14 @@ Basically, Round supports only to define node methods, and developer can build t
 
 Some coordinating frameworks for distributed systems such as [ZooKeeper](http://zookeeper.apache.org) are based on notification events using synchronous connection. In Round, even the notification events are implemented as the node methods without the synchronous connection.
 
-## Structured Network
+## Network Topology
 
-Round is based on Chord, and Chord is based on [consistent hasing](http://en.wikipedia.org/wiki/Consistent_hashing).
+Round is based on [consistent hasing](http://en.wikipedia.org/wiki/Consistent_hashing), and each node has a hash code. The hash code is generated based on a ip address and a port of the node using [SHA-256](http://en.wikipedia.org/wiki/SHA-2) algorithm statically. In current version, Round supports only a simple ring network topology based on the hash code as the following.
 
-Developers can change the algorithm
+![round_logo](./img/round_consistenthashing.png)
 
-Round will support other structues .....
+
+In the current verion, Round supports only the simple network topology, but we will supports other structured network topology. Then, the hash code is generated statically, but we will add the customize methods for the hash seed and algorithm too.
 
 ## Messaging
 
@@ -48,12 +49,26 @@ Check [Round RPC Methods](./round_rpc_methods.md)
 
 Round is based on [JSON-RPC 2.0][json-rpc], and Round extends the specification for distributed system applications.
 
-| Field | Descripton |
+| Field | Descripton | Default |
 | - | - |
-| ts | - |
-| dest | one, all, quorum |
-| hash | - |
-| digest | - |
+| hash | - | (node) |
+| dest | one, all, quorum | one |
+| ts | - | - |
+| type | accept | (none) |
+| digest | - | (none) |
+
+#### hash
+
+The hash code specifies a destination node of the message. If the hash field is not specified, the message is executed by the received node.
+
+The message is executed if the specified hash code is handled by the received node, otherwise the node doen't executed the message and returns a error object including the detail error code, -32002, as the following.
+
+```
+--> {"jsonrpc": "2.0", "method": "increment_counter", "params": 1, "hash": "xxxxxxxxxxxxxxxx", ....}
+<-- {"jsonrpc": "2.0", "error": {"code": -32002, "message": "Moved Permanently"}, ....}
+```
+
+#### dest (destination) + hash
 
 #### ts (timestamp)
 
@@ -108,7 +123,7 @@ Round added the folloinwg error codes in the  implementation defined range [JSON
 
 | code | message | data |
 |-|-|-|
-| -32001 | Moved Permanently | { "cluster" : } |
+| -32002 | Moved Permanently | { "cluster" : } |
 | -32010 | Internal script engine error | (none) |
 | -32011 | Invalid script language | (none) |
 | -32012 | Invalid script code | (none) |

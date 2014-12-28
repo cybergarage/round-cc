@@ -12,7 +12,7 @@
 #include <sstream>
 #include <string.h>
 
-#include <round/common/SHA1.h>
+#include <round/common/SHA.h>
 #include <round/common/HashObject.h>
 
 using namespace std;
@@ -30,7 +30,7 @@ public:
   
   bool getHashCode(std::string *hashCode) const {
     std::stringstream hashStrerm;
-    for (int n=0; n<SHA1::DIGEST_LENGTH; n++)
+    for (int n=0; n<SHA256::DIGEST_LENGTH; n++)
       hashStrerm << this->value;
     *hashCode = hashStrerm.str();
     return true;

@@ -56,6 +56,7 @@
 		21DA08B71A174A4900D3DCE0 /* NodeStatusTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08A41A174A4900D3DCE0 /* NodeStatusTests.cpp */; };
 		21DA08B91A174A4900D3DCE0 /* NodeTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08A71A174A4900D3DCE0 /* NodeTests.cpp */; };
 		21DA08BC1A174BB700D3DCE0 /* NodeListTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08BB1A174BB700D3DCE0 /* NodeListTests.cpp */; };
+		21EBA0891A50205F0077A79A /* HashTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EBA0881A50205F0077A79A /* HashTests.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,6 +174,7 @@
 		21DA08BB1A174BB700D3DCE0 /* NodeListTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeListTests.cpp; sourceTree = "<group>"; };
 		21DA08BD1A174C1300D3DCE0 /* TestNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestNode.h; path = ../../TestNode.h; sourceTree = "<group>"; };
 		21DE0ECF155B9EBA00A08E1F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		21EBA0881A50205F0077A79A /* HashTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HashTests.cpp; sourceTree = "<group>"; };
 		21EC22FE1A33E5C00074289E /* TestScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestScript.h; path = ../../TestScript.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -260,7 +262,6 @@
 		21AD42771A13B7FC00741A08 /* common */ = {
 			isa = PBXGroup;
 			children = (
-				21B51EC81A4E38C0003BBA3C /* VectorTests.cpp */,
 				213E910A1A4AA707001C2ED9 /* Base64Tests.cpp */,
 				21AD428B1A13B7FC00741A08 /* BitOptionTests.cpp */,
 				21AD428C1A13B7FC00741A08 /* ClockTests.cpp */,
@@ -269,6 +270,7 @@
 				21AD428F1A13B7FC00741A08 /* DictionaryTests.cpp */,
 				21AD42901A13B7FC00741A08 /* ErrorTests.cpp */,
 				21AD42911A13B7FC00741A08 /* HashObjectTests.cpp */,
+				21EBA0881A50205F0077A79A /* HashTests.cpp */,
 				21AD42921A13B7FC00741A08 /* JSONParserTests.cpp */,
 				213862DB1A45711100311FAE /* JSONRPCParserTests.cpp */,
 				21AD42931A13B7FC00741A08 /* JSONTests.cpp */,
@@ -280,6 +282,7 @@
 				21AD429A1A13B7FC00741A08 /* SemaphoreTests.cpp */,
 				21AD429B1A13B7FC00741A08 /* StringTokenizerTests.cpp */,
 				21AD429C1A13B7FC00741A08 /* ThreadTests.cpp */,
+				21B51EC81A4E38C0003BBA3C /* VectorTests.cpp */,
 				217727801A2CE5E4001B4CE0 /* rpc */,
 			);
 			name = common;
@@ -460,6 +463,7 @@
 				21DA08B11A174A4900D3DCE0 /* NodeConfigTests.cpp in Sources */,
 				21AD42A61A13B7FC00741A08 /* MessageTests.cpp in Sources */,
 				21AD429F1A13B7FC00741A08 /* ConfigurationTests.cpp in Sources */,
+				21EBA0891A50205F0077A79A /* HashTests.cpp in Sources */,
 				21DA08B91A174A4900D3DCE0 /* NodeTests.cpp in Sources */,
 				21AD42A71A13B7FC00741A08 /* MutexTests.cpp in Sources */,
 				215C20BB1A13B6C000CE71E2 /* RoundTestMain.cpp in Sources */,
