@@ -14,9 +14,9 @@ In Round, simplify is a most important principle. The core module is simple, and
 
 ### Clarify
 
-The core module is implemented using some open standard network protocols.
+Technical specifications of the core module are defined clarify and released free for developers. Basically, The specifications are defined based on some open standard network protocols as the following.
 
-![round_protocol](./img/round_protocol.png)
+We are implementing the preview version of Round using C++, but the core module can be implemented using other programming languages such as Java and Go.
 
 ## Design Features
 
@@ -30,11 +30,9 @@ In Round, some noficication events are defined for the node statues. When a node
 
 ### Decentralized
 
-Round is a decentralized and distributed system, every nodes in a cluster has equal roll, the cluster has no master node. In typical distributed systems are centric, they has a master node. Round manages all nodes in the cluster using a structured networking base on based on [distributed hash table](http://en.wikipedia.org/wiki/Distributed_hash_table) as default.
+Round is a decentralized and distributed system, every nodes in a cluster has equal roll, the cluster has no master node. In typical distributed systems are centric, they has a master node.
 
 ![round_overview_zeroconf](img/round_overview_decentralized.png)
-
-However, Round can support other networking structure too because every nodes can manage networking structure of the cluster in accordance with a specified strategy. To manage the networking structure in Round, see the related section in [Round Internals](./round_internals.md).
 
 ### Autonomous
 
