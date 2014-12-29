@@ -32,15 +32,24 @@ namespace JSON {
 static const std::string VER = "2.0";
 
 enum {
-  ErrorCodeUnknown        = 0,
-  ErrorCodeParserError    = -32700,
-  ErrorCodeInvalidRequest = -32600,
-  ErrorCodeMethodNotFound = -32601,
-  ErrorCodeInvalidParams  = -32602,
-  ErrorCodeInternalError  = -32603,
-  ErrorCodeServerErrorMax = -32000,
-  ErrorCodeServerErrorMin = -32099,
-  ErrorCodeServerError    = ErrorCodeServerErrorMax,
+  ErrorCodeUnknown                   = 0,
+  ErrorCodeParserError               = -32700,
+  ErrorCodeInvalidRequest            = -32600,
+  ErrorCodeMethodNotFound            = -32601,
+  ErrorCodeInvalidParams             = -32602,
+  ErrorCodeInternalError             = -32603,
+  
+  ErrorCodeBadHashCode               = -32000,
+  ErrorCodeMovedPermanently          = -32001,
+  
+  ErrorCodeScriptEngineInternalError = -32010,
+  ErrorCodeScriptEngineNotFound      = -32011,
+  ErrorCodeScriptCompileError        = -32012,
+  ErrorCodeScriptRuntimeError        = -32013,
+  
+  ErrorCodeServerErrorMax            = -32000,
+  ErrorCodeServerErrorMin            = -32099,
+  ErrorCodeServerError               = ErrorCodeServerErrorMax,
 };
 
 const std::string &ErrorCodeToString(int jsonErrorCode);

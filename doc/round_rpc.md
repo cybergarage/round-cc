@@ -28,7 +28,7 @@ The hash code specifies a destination node of the message. In the current versio
 
 #### Response object
 
-The message is executed if the specified hash code is handled by the received node, otherwise the node doen't executed the message and returns a error object including the detail error code, -32002, as the following.
+The message is executed if the specified hash code is handled by the received node, otherwise the node doen't executed the message and returns a error object including the detail error code as the following.
 
 ```
 <-- {"jsonrpc": "2.0", "error": {"code": -32002, "message": "Moved Permanently"}, ....}

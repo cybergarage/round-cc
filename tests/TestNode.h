@@ -102,11 +102,14 @@ class NodeTestController {
 
   void runScriptManagerTest(Round::Node *node);
   void runSystemMethodTest(Round::Node *node);
+  void runRpcTest(Round::Node **nodes, size_t nodeCnt);
 
  private:
   void runSystemGetNodeInfoTest(Round::Node *node);
   void runSystemGetClusterInfoTest(Round::Node *node);
   void runSystemGetNetworkInfoTest(Round::Node *node);
+
+  void runRpcHashTest(Round::Node **nodes, size_t nodeCnt);
 };
 
 #endif

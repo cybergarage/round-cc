@@ -212,7 +212,18 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
   // Check hash code
   
   if (nodeReq->hasHash()) {
-    
+    std::string hashCode;
+    if (getHashCode(&hashCode)) {
+      if (hashCode.length() != HashObject::GetHashCodeLength()) {
+        setError(RPC::JSON::ErrorCodeBadHashCode, err);
+        return false;
+      }
+      NodeGraph *nodeGraph = getNodeGraph();
+      if (!nodeGraph->isHandleNode(this, hashCode)) {
+        setError(RPC::JSON::ErrorCodeMovedPermanently, err);
+        return false;
+      }
+    }
   }
   
   // Update local clock
@@ -257,7 +268,7 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
     return execSystemMethod(nodeReq, nodeRes, err);
   }
   
-  setError(ScriptManagerErrorCodeMethodNotFound, err);
+  setError(RPC::JSON::ErrorCodeMethodNotFound, err);
   
   return false;
 }
@@ -276,37 +287,37 @@ bool Round::LocalNode::setMethod(const NodeRequest *nodeReq, NodeResponse *nodeR
   
   JSONParser jsonParser;
   if (!jsonParser.parse(params, err)) {
-    RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeInvalidParams, err);
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
     return false;
   }
   
   JSONObject *jsonObj = jsonParser.getRootObject();
   if (!jsonObj->isDictionary()) {
-    RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeInvalidParams, err);
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
     return false;
   }
 
   JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(jsonObj);
   if (!jsonDict) {
-    RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeInvalidParams, err);
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
     return false;
   }
   
   std::string scriptMethod;
   if (!jsonDict->get(SystemMethodRequest::NAME, &scriptMethod) || (scriptMethod.length() <= 0)) {
-    RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeInvalidParams, err);
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
     return false;
   }
 
   // Couldn't override '_set_method'
   if (isSetMethod(scriptMethod)) {
-    RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeInvalidParams, err);
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
     return false;
   }
 
   std::string scriptLang;
   if (!jsonDict->get(SystemMethodRequest::LANGUAGE, &scriptLang) || (scriptLang.length() <= 0)) {
-    RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeInvalidParams, err);
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
     return false;
   }
 
@@ -352,7 +363,7 @@ bool Round::LocalNode::execSystemMethod(const NodeRequest *nodeReq, NodeResponse
   nodeReq->getMethod(&reqMethod);
   
   if (systemMethods.find(reqMethod) == systemMethods.end()) {
-    RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeMethodNotFound, error);
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeMethodNotFound, error);
     return false;
   }
   
@@ -366,7 +377,7 @@ bool Round::LocalNode::execSystemMethod(const NodeRequest *nodeReq, NodeResponse
     return _get_network_info(nodeReq, nodeRes, error);
   }
   
-  RPC::JSON::ErrorCodeToError(ScriptManagerErrorCodeMethodNotFound, error);
+  RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeMethodNotFound, error);
 
   return false;
 }

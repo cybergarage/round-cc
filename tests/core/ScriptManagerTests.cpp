@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE(ScriptManagerSetTest) {
   // No Script Engine
   
   BOOST_CHECK(!scriptMgr.setScript(scriptMethod, scriptLang, scriptCode, Script::ENCODING_NONE, &err));
-  BOOST_CHECK_EQUAL(err.getDetailCode(), ScriptManagerErrorCodeScriptEngineNotFound);
+  BOOST_CHECK_EQUAL(err.getDetailCode(), RPC::JSON::ErrorCodeScriptEngineNotFound);
 
   BOOST_CHECK(!scriptMgr.run(scriptMethod, scriptParam, &scriptResult, &err));
   
@@ -46,12 +46,12 @@ BOOST_AUTO_TEST_CASE(ScriptManagerSetTest) {
   // No Script
   
   BOOST_CHECK(!scriptMgr.run(scriptMethod, scriptParam, &scriptResult, &err));
-  BOOST_CHECK_EQUAL(err.getDetailCode(), ScriptManagerErrorCodeMethodNotFound);
+  BOOST_CHECK_EQUAL(err.getDetailCode(), RPC::JSON::ErrorCodeMethodNotFound);
   
   // Set Script
   
   BOOST_CHECK(!scriptMgr.setScript(scriptMethod, scriptLang, scriptInvalidCode, Script::ENCODING_NONE, &err));
-  BOOST_CHECK_EQUAL(err.getDetailCode(), ScriptManagerErrorCodeCompileError);
+  BOOST_CHECK_EQUAL(err.getDetailCode(), RPC::JSON::ErrorCodeScriptCompileError);
   
   BOOST_CHECK(scriptMgr.setScript(scriptMethod, scriptLang, scriptCode, Script::ENCODING_NONE, &err));
 
@@ -69,7 +69,7 @@ BOOST_AUTO_TEST_CASE(ScriptManagerSetTest) {
   BOOST_CHECK(scriptMgr.setScript(scriptMethod, scriptLang, "", Script::ENCODING_NONE, &err));
   
   BOOST_CHECK(!scriptMgr.run(scriptMethod, scriptParam, &scriptResult, &err));
-  BOOST_CHECK_EQUAL(err.getDetailCode(), ScriptManagerErrorCodeMethodNotFound);
+  BOOST_CHECK_EQUAL(err.getDetailCode(), RPC::JSON::ErrorCodeMethodNotFound);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

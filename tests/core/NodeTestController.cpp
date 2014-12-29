@@ -248,3 +248,17 @@ void NodeTestController::runSystemMethodTest(Round::Node *node) {
   // _get_network_info
   runSystemGetNetworkInfoTest(node);
 }
+
+void NodeTestController::runRpcHashTest(Round::Node **nodes, size_t nodeCnt) {
+  std::vector<std::string> nodeHashes;
+  for (size_t n=0; n<nodeCnt; n++) {
+    std::string nodeHash;
+    BOOST_CHECK(nodes[n]->getHashCode(&nodeHash));
+    nodeHashes.push_back(nodeHash);
+  }
+}
+
+void NodeTestController::runRpcTest(Round::Node **nodes, size_t nodeCnt) {
+  runRpcHashTest(nodes, nodeCnt);
+}
+

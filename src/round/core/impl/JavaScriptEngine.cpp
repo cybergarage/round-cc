@@ -105,7 +105,7 @@ bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *resu
   
   if (!this->isolate) {
     error->setCode(ScriptEngineStatusBadRequest);
-    error->setDetailCode(ScriptManagerErrorCodeInternalError);
+    error->setDetailCode(RPC::JSON::ErrorCodeInternalError);
     return false;
   }
   
@@ -125,7 +125,7 @@ bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *resu
   v8::Local<v8::String> source = v8::String::NewFromUtf8(isolate, jsSource.c_str());
   if (source->Length() <= 0) {
     error->setCode(ScriptEngineStatusBadRequest);
-    error->setDetailCode(ScriptManagerErrorCodeCompileError);
+    error->setDetailCode(RPC::JSON::ErrorCodeScriptCompileError);
     return false;
   }
 
@@ -133,7 +133,7 @@ bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *resu
   v8::Local<v8::Script> script = v8::Script::Compile(source);
   if (script.IsEmpty()) {
     error->setCode(ScriptEngineStatusBadRequest);
-    error->setDetailCode(ScriptManagerErrorCodeCompileError);
+    error->setDetailCode(RPC::JSON::ErrorCodeScriptCompileError);
     return false;
   }
   

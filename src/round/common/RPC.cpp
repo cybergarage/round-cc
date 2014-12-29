@@ -37,6 +37,26 @@ int Round::RPC::JSON::HTTP::ErrorCodeToHTTPStatusCode(int jsonErrorCode) {
   
   return uHTTP::HTTP::INTERNAL_SERVER_ERROR;
 }
+enum {
+  ErrorCodeUnknown        = 0,
+  ErrorCodeParserError    = -32700,
+  ErrorCodeInvalidRequest = -32600,
+  ErrorCodeMethodNotFound = -32601,
+  ErrorCodeInvalidParams  = -32602,
+  ErrorCodeInternalError  = -32603,
+  
+  ErrorCodeBadHashCode               = -32000,
+  ErrorCodeMovedPermanently          = -32001,
+  
+  ErrorCodeScriptEngineInternalError = -32010,
+  ErrorCodeScriptEngineNotFound      = -32011,
+  ErrorCodeScriptCompileError        = -32012,
+  ErrorCodeScriptRuntimeError        = -32013,
+  
+  ErrorCodeServerErrorMax = -32000,
+  ErrorCodeServerErrorMin = -32099,
+  ErrorCodeServerError    = ErrorCodeServerErrorMax,
+};
 
 const std::string &Round::RPC::JSON::ErrorCodeToString(int jsonErrorCode) {
   
@@ -47,6 +67,15 @@ const std::string &Round::RPC::JSON::ErrorCodeToString(int jsonErrorCode) {
     gJsonRpcErrorStrings[ErrorCodeMethodNotFound] = "Method not found";
     gJsonRpcErrorStrings[ErrorCodeInvalidParams]  = "Invalid params";
     gJsonRpcErrorStrings[ErrorCodeInternalError]  = "Internal error";
+    
+    gJsonRpcErrorStrings[ErrorCodeBadHashCode]      = "Bad Hash Length";
+    gJsonRpcErrorStrings[ErrorCodeMovedPermanently] = "Moved Permanently";
+    
+    gJsonRpcErrorStrings[ErrorCodeScriptEngineInternalError]  = "Script Engine Internal Error";
+    gJsonRpcErrorStrings[ErrorCodeScriptEngineNotFound]       = "Script Engine Not Found";
+    gJsonRpcErrorStrings[ErrorCodeScriptCompileError]         = "Script Compile Error";
+    gJsonRpcErrorStrings[ErrorCodeScriptRuntimeError]         = "Script Runtime Error";
+    
     gJsonRpcErrorStrings[ErrorCodeServerError]    = "Server error";
   }
 

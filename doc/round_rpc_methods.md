@@ -83,6 +83,7 @@ Round prepares the following default dynamic methods. The methods are implemente
 | _get_node_sharedkey | Set a shared key for HMAC | - | - | - |
 | _get_node_msg_digest | Set a shared key for HMAC | - | - | - |
 | _get_log_level | Get the current log level | (none) | "TRACE", "LOG", "WARN", "ERR" "FATAL" | "LOG" |
+| _echo | System Echo | - | - | - |
 
 ### System Notification Methods
 

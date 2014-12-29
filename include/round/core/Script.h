@@ -119,20 +119,6 @@ enum ScriptEngineStatus {
   ScriptEngineStatusOk          = 200,
   ScriptEngineStatusBadRequest  = 400,
 };
-
-enum ScriptManagerDetailErrorStatus {
-  ScriptManagerErrorCodeOk                        = 0,
-  ScriptManagerErrorCodeParserError               = RPC::JSON::ErrorCodeParserError,
-  ScriptManagerErrorCodeInvalidRequest            = RPC::JSON::ErrorCodeInvalidRequest,
-  ScriptManagerErrorCodeMethodNotFound            = RPC::JSON::ErrorCodeMethodNotFound,
-  ScriptManagerErrorCodeInvalidParams             = RPC::JSON::ErrorCodeInvalidParams,
-  ScriptManagerErrorCodeInternalError             = RPC::JSON::ErrorCodeInternalError,
-  ScriptManagerErrorCodeMovedPermanently          = -32002,
-  ScriptManagerErrorCodeScriptEngineInternalError = -32010,
-  ScriptManagerErrorCodeScriptEngineNotFound      = -32011,
-  ScriptManagerErrorCodeCompileError              = -32012,
-  ScriptManagerErrorCodeRuntimeError              = -32013,
-};
   
 class ScriptEngine {
     
