@@ -13,11 +13,6 @@
 
 #include <round/core/Script.h>
 
-#include <v8.h>
-#if defined(ROUND_V8_USE_LIBPLATFORM)
-#include "libplatform/libplatform.h"
-#endif
-
 namespace Round {
 
 class JavaScriptEngine : public ScriptEngine {
@@ -37,9 +32,6 @@ class JavaScriptEngine : public ScriptEngine {
 
   void init();
   bool run(const std::string &source, std::string *results, Error *error) const;
-
- private:
-  v8::Isolate *isolate;
 };
   
 }

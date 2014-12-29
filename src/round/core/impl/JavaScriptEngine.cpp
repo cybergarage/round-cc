@@ -12,6 +12,11 @@
 #include <boost/algorithm/string/replace.hpp>
 #include <stdlib.h>
 
+#include <v8.h>
+#if defined(ROUND_V8_USE_LIBPLATFORM)
+#include "libplatform/libplatform.h"
+#endif
+
 #include <round/core/Log.h>
 #include <round/core/impl/JavaScript.h>
 
@@ -44,14 +49,9 @@ static void JavaScriptEngineExit(void) {
 
 Round::JavaScriptEngine::JavaScriptEngine() : ScriptEngine(LANGUAGE) {
   init();
-  this->isolate = v8::Isolate::New();
 }
 
 Round::JavaScriptEngine::~JavaScriptEngine() {
-  // Dispose the isolate
-  if (this->isolate) {
-    this->isolate->Dispose();
-  }
 }
 
 ////////////////////////////////////////////////
@@ -103,50 +103,58 @@ bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *resu
 
   RoundLogTrace("%s", jsSource.c_str());
   
-  if (!this->isolate) {
+  // Create a new Isolate and make it the current one.
+  v8::Isolate *isolate = v8::Isolate::New();
+  if (!isolate) {
     error->setCode(ScriptEngineStatusBadRequest);
     error->setDetailCode(RPC::JSON::ErrorCodeInternalError);
     return false;
   }
+
+  // Create new scope
+  {
+    // Make this isolate the current one.
+    v8::Isolate::Scope isolate_scope(isolate);
   
-  // Make this isolate the current one.
-  v8::Isolate::Scope isolate_scope(this->isolate);
+    // Create a stack-allocated handle scope.
+    v8::HandleScope handle_scope(isolate);
   
-  // Create a stack-allocated handle scope.
-  v8::HandleScope handle_scope(this->isolate);
+    // Create a new context.
+    v8::Local<v8::Context> context = v8::Context::New(isolate);
   
-  // Create a new context.
-  v8::Local<v8::Context> context = v8::Context::New(this->isolate);
+    // Enter the context for compiling and running the the script.
+    v8::Context::Scope context_scope(context);
   
-  // Enter the context for compiling and running the the script.
-  v8::Context::Scope context_scope(context);
+    // Create a string containing the JavaScript source code.
+    v8::Local<v8::String> source = v8::String::NewFromUtf8(isolate, jsSource.c_str());
+    if (source->Length() <= 0) {
+      error->setCode(ScriptEngineStatusBadRequest);
+      error->setDetailCode(RPC::JSON::ErrorCodeScriptCompileError);
+      return false;
+    }
+
+    // Compile the source code.
+    v8::Local<v8::Script> script = v8::Script::Compile(source);
+    if (script.IsEmpty()) {
+      error->setCode(ScriptEngineStatusBadRequest);
+      error->setDetailCode(RPC::JSON::ErrorCodeScriptCompileError);
+      return false;
+    }
   
-  // Create a string containing the JavaScript source code.
-  v8::Local<v8::String> source = v8::String::NewFromUtf8(isolate, jsSource.c_str());
-  if (source->Length() <= 0) {
-    error->setCode(ScriptEngineStatusBadRequest);
-    error->setDetailCode(RPC::JSON::ErrorCodeScriptCompileError);
-    return false;
+    // Run the script to get the result.
+    v8::Local<v8::Value> result = script->Run();
+    if (!result.IsEmpty()) {
+      // Convert the result to an UTF8 string
+      v8::String::Utf8Value utf8(result);
+      *results = *utf8;
+    }
+    else {
+      *results = "";
+    }
   }
 
-  // Compile the source code.
-  v8::Local<v8::Script> script = v8::Script::Compile(source);
-  if (script.IsEmpty()) {
-    error->setCode(ScriptEngineStatusBadRequest);
-    error->setDetailCode(RPC::JSON::ErrorCodeScriptCompileError);
-    return false;
-  }
-  
-  // Run the script to get the result.
-  v8::Local<v8::Value> result = script->Run();
-  if (!result.IsEmpty()) {
-    // Convert the result to an UTF8 string
-    v8::String::Utf8Value utf8(result);
-    *results = *utf8;
-  }
-  else {
-    *results = "";
-  }
+  // Dispose the isolate
+  isolate->Dispose();
 
   RoundLogTrace("%s", results->c_str());
   
