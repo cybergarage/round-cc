@@ -27,6 +27,7 @@ class SystemMethodRequest : public NodeRequest {
   static const std::string PREFIX;
   
   static const std::string SET_METHOD;
+  static const std::string ECHO;
   static const std::string GET_NODE_INFO;
   static const std::string GET_CLUSTER_INFO;
   static const std::string GET_NETWORK_INFO;
@@ -41,6 +42,13 @@ class SystemMethodRequest : public NodeRequest {
   SystemMethodRequest();
 
  private:
+};
+
+class SystemEchoRequest : public SystemMethodRequest {
+ public:
+  SystemEchoRequest() {
+      setMethod(ECHO);
+  }
 };
 
 class SystemGetNodeInfoRequest : public SystemMethodRequest {

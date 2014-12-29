@@ -35,7 +35,6 @@ class LocalNodeWorkder : public Thread<LocalNode> {
 
 class LocalNodeScriptManager : public ScriptManager {
  public:
-  static const std::string SYSTEM_ECHO_METHOD_NAME;
   static const std::string SYSTEM_ECHO_METHOD_CODE;
   static const std::string SYSTEM_ECHO_METHOD_LANGUAGE;
   

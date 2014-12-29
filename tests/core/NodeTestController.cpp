@@ -118,6 +118,11 @@ void NodeTestController::runScriptManagerTest(Node *node) {
   BOOST_CHECK(prevClock < postClock);
 }
 
+void NodeTestController::runSystemEchoTest(Round::Node *node) {
+  Error err;
+  BOOST_CHECK(node->isAlive(&err));
+}
+
 void NodeTestController::runSystemGetNodeInfoTest(Round::Node *node) {
   Error err;
   std::string jsonString;
@@ -239,6 +244,9 @@ void NodeTestController::runSystemGetNetworkInfoTest(Round::Node *node) {
 }
 
 void NodeTestController::runSystemMethodTest(Round::Node *node) {
+  // _echo
+  runSystemEchoTest(node);
+  
   // _get_node_info
   runSystemGetNodeInfoTest(node);
   

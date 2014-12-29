@@ -105,6 +105,7 @@ class NodeTestController {
   void runRpcTest(Round::Node **nodes, size_t nodeCnt);
 
  private:
+  void runSystemEchoTest(Round::Node *node);
   void runSystemGetNodeInfoTest(Round::Node *node);
   void runSystemGetClusterInfoTest(Round::Node *node);
   void runSystemGetNetworkInfoTest(Round::Node *node);

@@ -35,6 +35,7 @@ class Node : public NodeCore, public Cloneable<Node> {
 
  public:
   
+  bool isAlive(Error *error);
   bool getStatus(NodeStatus *status, Error *error);
   bool getCluster(Cluster *cluster, Error *error);
   bool getClusterList(ClusterList *clusterList, Error *error);
