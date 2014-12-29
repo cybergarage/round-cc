@@ -176,10 +176,6 @@ Round::ConsistentHashNode *Round::ConsistentHashGraph::getHandleNode(const Round
   return hadleNode;
 }
 
-Round::ConsistentHashNode *Round::ConsistentHashGraph::getHandleNode(const Round::ConsistentHashObject &hashObject) const {
-  return getHandleNode(&hashObject);
-}
-
 Round::ConsistentHashNode *Round::ConsistentHashGraph::getOffsetNode(const ConsistentHashNode *node, off_t offset) const {
   ssize_t nodeIndex = getNodeIndex(node);
   if (nodeIndex < 0)

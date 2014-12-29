@@ -67,7 +67,7 @@ class TestConsistentHashGraph : public ConsistentHashGraph {
 
   ConsistentHashNode *getHandleNode(int idValue) {
     TestConsistentHashObject hashObject(idValue);
-    return ConsistentHashGraph::getHandleNode(hashObject);
+    return ConsistentHashGraph::getHandleNode(&hashObject);
   }
 };
 

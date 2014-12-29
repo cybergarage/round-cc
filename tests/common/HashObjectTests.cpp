@@ -46,6 +46,7 @@ BOOST_AUTO_TEST_SUITE(common)
 BOOST_AUTO_TEST_CASE(HashObjectTests) {
   size_t hashCodeLength = HashObject::getHashCodeLength();
   BOOST_CHECK(0 < hashCodeLength);
+  BOOST_CHECK(0 < SHA256::DIGEST_STRING_LENGTH);
 
   stringstream startKeyStrBuf;
   for (int n = 0; n < hashCodeLength; n++)

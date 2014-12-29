@@ -14,7 +14,7 @@
 #include <round/common/SHA.h>
 
 size_t Round::HashObject::getHashCodeLength() {
-  return SHA256::DIGEST_LENGTH * 2;
+  return SHA256::DIGEST_STRING_LENGTH;
 }
 
 bool Round::HashObject::getStartHashCode(std::string *hashCode) {

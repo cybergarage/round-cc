@@ -209,6 +209,12 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
   if (!nodeReq || !nodeRes || !err)
     return false;
   
+  // Check hash code
+  
+  if (nodeReq->hasHash()) {
+    
+  }
+  
   // Update local clock
   
   clock_t remoteTs;
