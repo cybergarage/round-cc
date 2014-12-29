@@ -17,9 +17,9 @@ namespace Round {
 
 class HashObject {
  public:
-  static size_t getHashCodeLength();
-  static bool getStartHashCode(std::string *hashCode);
-  static bool getEndHashCode(std::string *hashCode);
+  static size_t GetHashCodeLength();
+  static bool GetStartHashCode(std::string *hashCode);
+  static bool GetEndHashCode(std::string *hashCode);
 
  public:
   HashObject();

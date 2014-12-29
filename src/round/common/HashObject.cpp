@@ -13,13 +13,13 @@
 #include <round/common/HashObject.h>
 #include <round/common/SHA.h>
 
-size_t Round::HashObject::getHashCodeLength() {
+size_t Round::HashObject::GetHashCodeLength() {
   return SHA256::DIGEST_STRING_LENGTH;
 }
 
-bool Round::HashObject::getStartHashCode(std::string *hashCode) {
+bool Round::HashObject::GetStartHashCode(std::string *hashCode) {
 std::stringstream keyStrBuf;
-  size_t hashCodeLength = getHashCodeLength();
+  size_t hashCodeLength = GetHashCodeLength();
   for (int n = 0; n < hashCodeLength; n++)
     keyStrBuf << "0";
   *hashCode = keyStrBuf.str();
@@ -27,9 +27,9 @@ std::stringstream keyStrBuf;
   return true;
 }
 
-bool Round::HashObject::getEndHashCode(std::string *hashCode) {
+bool Round::HashObject::GetEndHashCode(std::string *hashCode) {
   std::stringstream keyStrBuf;
-  size_t hashCodeLength = getHashCodeLength();
+  size_t hashCodeLength = GetHashCodeLength();
   for (int n = 0; n < hashCodeLength; n++)
     keyStrBuf << "F";
   *hashCode = keyStrBuf.str();

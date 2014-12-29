@@ -44,7 +44,7 @@ private:
 BOOST_AUTO_TEST_SUITE(common)
 
 BOOST_AUTO_TEST_CASE(HashObjectTests) {
-  size_t hashCodeLength = HashObject::getHashCodeLength();
+  size_t hashCodeLength = HashObject::GetHashCodeLength();
   BOOST_CHECK(0 < hashCodeLength);
   BOOST_CHECK(0 < SHA256::DIGEST_STRING_LENGTH);
 
@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE(HashObjectTests) {
     startKeyStrBuf << "0";
   string startKey = startKeyStrBuf.str();
   string startHashKey;
-  BOOST_CHECK(HashObject::getStartHashCode(&startHashKey));
+  BOOST_CHECK(HashObject::GetStartHashCode(&startHashKey));
   BOOST_CHECK_EQUAL(startKey.compare(startHashKey), 0);
   BOOST_CHECK_EQUAL(startKey.length(), hashCodeLength);
 
@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE(HashObjectTests) {
     endKeyStrBuf << "F";
   string endtKey = endKeyStrBuf.str();
   string endHashKey;
-  BOOST_CHECK(HashObject::getEndHashCode(&endHashKey));
+  BOOST_CHECK(HashObject::GetEndHashCode(&endHashKey));
   BOOST_CHECK_EQUAL(endtKey.compare(endHashKey), 0);
   BOOST_CHECK_EQUAL(endtKey.length(), hashCodeLength);
 }

@@ -91,11 +91,12 @@ Round added the folloinwg error codes in the  implementation defined range [JSON
 
 | code | message | data |
 |-|-|-|
-| -32002 | Moved Permanently | { "cluster" : } |
-| -32010 | Internal script engine error | (none) |
-| -32011 | Invalid script language | (none) |
-| -32012 | Invalid script code | (none) |
-| -32013 | Script runtime error  | (none) |
+| -32000 | Bad Hash Length | { "cluster" : } |
+| -32001 | Moved Permanently | { "cluster" : } |
+| -32010 | Internal Script Engine Error | (none) |
+| -32011 | Invalid Script Language | (none) |
+| -32012 | Invalid Script Code | (none) |
+| -32013 | Script Runtime Error  | (none) |
 
 #### Future
 

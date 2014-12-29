@@ -177,7 +177,7 @@ BOOST_AUTO_TEST_CASE(RoundConsistentHashGraphHandleTest) {
   BOOST_CHECK_EQUAL(coHashGraph.getNodeIndex(coHashGraph.getHandleNode(6)), coHashGraph.getNodeIndex(cosNode6));
   BOOST_CHECK_EQUAL(coHashGraph.getNodeIndex(coHashGraph.getHandleNode(7)), coHashGraph.getNodeIndex(cosNode6));
   BOOST_CHECK_EQUAL(coHashGraph.getNodeIndex(coHashGraph.getHandleNode(8)), coHashGraph.getNodeIndex(cosNode8));
-
+  
   // 4-6-8
   coHashGraph.removeNode(cosNode2);
   BOOST_CHECK_EQUAL(coHashGraph.getNodeIndex(coHashGraph.getHandleNode(0)), coHashGraph.getNodeIndex(cosNode8));
@@ -768,6 +768,29 @@ BOOST_AUTO_TEST_CASE(RoundConsistentHashGraphMinDistanceTest) {
   BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(cosNodes[8], cosNodes[7]), -1);
   BOOST_CHECK_EQUAL(coHashGraph.getMinNodeDistance(cosNodes[8], cosNodes[8]),  0);
   
+  for (int n = 0; n < conNodeCount; n++) {
+    delete cosNodes[n];
+  }
+}
+
+BOOST_AUTO_TEST_CASE(RoundConsistentHashGraphIsHandleNodeTest) {
+  const int conNodeCount = 9;
+  TestConsistentHashGraph coHashGraph;
+  TestConsistentHashNode *cosNodes[conNodeCount];
+  
+  for (int n = 0; n < conNodeCount; n++) {
+    cosNodes[n] = new TestConsistentHashNode(n+1);
+    coHashGraph.addNode(cosNodes[n]);
+  }
+  
+  for (int i = 0; i < conNodeCount; i++) {
+    for (int j = 0; j < conNodeCount; j++) {
+      std::string hashCode;
+      BOOST_CHECK(cosNodes[j]->getHashCode(&hashCode));
+      BOOST_CHECK_EQUAL(coHashGraph.isHandleNode(cosNodes[i], hashCode), (i == j));
+    }
+  }
+
   for (int n = 0; n < conNodeCount; n++) {
     delete cosNodes[n];
   }

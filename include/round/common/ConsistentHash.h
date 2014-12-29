@@ -50,8 +50,12 @@ class ConsistentHashGraph : public std::vector<ConsistentHashNode *> {
   off_t getBackwardNodeDistance(const ConsistentHashNode *firstNode, const ConsistentHashNode *lastNode) const;
   off_t getMinNodeDistance(const ConsistentHashNode *firstNode, const ConsistentHashNode *lastNode) const;
   
+  ConsistentHashNode *getHandleNode(const std::string &hashCode) const;
   ConsistentHashNode *getHandleNode(const ConsistentHashObject *hashObject) const;
 
+  bool isHandleNode(const ConsistentHashNode *hashNode, const std::string &hashCode) const;
+  bool isHandleNode(const ConsistentHashNode *hashNode, const ConsistentHashObject *hashObject) const;
+  
   ConsistentHashNode *getOffsetNode(const ConsistentHashNode *node, off_t offset) const;
   ConsistentHashNode *getNextNode(const ConsistentHashNode *node) const;
   ConsistentHashNode *getPrevNode(const ConsistentHashNode *node) const;

@@ -143,15 +143,11 @@ off_t Round::ConsistentHashGraph::getMinNodeDistance(const ConsistentHashNode *f
   return (std::abs(clockwiseOffset) < std::abs(counterClockwiseOffset)) ? clockwiseOffset : counterClockwiseOffset;
 }
 
-Round::ConsistentHashNode *Round::ConsistentHashGraph::getHandleNode(const Round::ConsistentHashObject *hashObject) const {
-  std::string hashCode;
-  if (!hashObject->getHashCode(&hashCode))
-    return NULL;  
-  
+Round::ConsistentHashNode *Round::ConsistentHashGraph::getHandleNode(const std::string &hashCode) const {
   ConsistentHashNode *hadleNode = NULL;
-
+  
   lock();
-
+  
   for (Round::ConsistentHashGraph::const_iterator node = begin(); node != end(); node++) {
     Round::ConsistentHashGraph::const_iterator nextNode = node + 1;
     if (nextNode == end())
@@ -167,13 +163,28 @@ Round::ConsistentHashNode *Round::ConsistentHashGraph::getHandleNode(const Round
       break;
     }
   }
-
+  
   if (!hadleNode && (0 < size()))
     hadleNode = at(size()-1);
-
+  
   unlock();
-
+  
   return hadleNode;
+}
+
+Round::ConsistentHashNode *Round::ConsistentHashGraph::getHandleNode(const Round::ConsistentHashObject *hashObject) const {
+  std::string hashCode;
+  if (!hashObject->getHashCode(&hashCode))
+    return NULL;  
+  return getHandleNode(hashCode);
+}
+
+bool Round::ConsistentHashGraph::isHandleNode(const ConsistentHashNode *hashNode, const std::string &hashCode) const {
+  return (hashNode == getHandleNode(hashCode)) ? true : false;
+}
+
+bool Round::ConsistentHashGraph::isHandleNode(const ConsistentHashNode *hashNode, const ConsistentHashObject *hashObject) const {
+  return (hashNode == getHandleNode(hashObject)) ? true : false;
 }
 
 Round::ConsistentHashNode *Round::ConsistentHashGraph::getOffsetNode(const ConsistentHashNode *node, off_t offset) const {
