@@ -247,7 +247,10 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
   // Exec Message
   
   std::string name;
-  nodeReq->getMethod(&name);
+  if (!nodeReq->getMethod(&name) || (name.length() <= 0)) {
+    setError(RPC::JSON::ErrorCodeMethodNotFound, err);
+    return false;
+  }
   
   if (isSetMethod(name)) {
     if (!setMethod(nodeReq, nodeRes, err)) {
@@ -261,7 +264,14 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
     std::string params;
     nodeReq->getParams(&params);
     std::string result;
-    return this->scriptMgr.run(name, params, &result, err);
+    bool isSuccess = this->scriptMgr.run(name, params, &result, err);
+    if (isSuccess) {
+      nodeRes->setResult(result);
+    }
+    else {
+      nodeRes->setError(err);
+    }
+    return isSuccess;
   }
   
   if (isSystemMethod(name)) {
