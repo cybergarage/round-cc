@@ -258,11 +258,29 @@ void NodeTestController::runSystemMethodTest(Round::Node *node) {
 }
 
 void NodeTestController::runRpcHashTest(Round::Node **nodes, size_t nodeCnt) {
+  Error err;
+  
   std::vector<std::string> nodeHashes;
   for (size_t n=0; n<nodeCnt; n++) {
     std::string nodeHash;
     BOOST_CHECK(nodes[n]->getHashCode(&nodeHash));
     nodeHashes.push_back(nodeHash);
+  }
+  
+  for (size_t i=0; i<nodeCnt; i++) {
+    size_t successCnt = 0;
+    for (size_t j=0; j<nodeCnt; j++) {
+      SystemEchoRequest nodeReq;
+      nodeReq.setHash(nodeHashes.at(j));
+      NodeResponse nodeRes;
+      if (nodes[i]->postMessage(&nodeReq, &nodeRes, &err)) {
+        successCnt++;
+      }
+      else {
+        BOOST_CHECK_EQUAL(err.getDetailCode(), RPC::JSON::ErrorCodeMovedPermanently);
+      }
+    }
+    BOOST_CHECK_EQUAL(successCnt, 1);
   }
 }
 

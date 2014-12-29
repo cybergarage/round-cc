@@ -103,4 +103,38 @@ BOOST_AUTO_TEST_CASE(LocalNodeSystemMethodTest) {
   BOOST_CHECK(node.stop(&err));
 }
 
+BOOST_AUTO_TEST_CASE(LocalNodeHashRequestTest) {
+  const size_t TEST_NODE_COUNT = 10;
+  
+  Error err;
+  
+  // Setup Nodes
+  TestLocalNode **nodes = new TestLocalNode*[TEST_NODE_COUNT];
+  for (int n = 0; n < TEST_NODE_COUNT; n++) {
+    nodes[n] = new TestLocalNode(n);
+    nodes[n]->setWeakFlag(true);
+    BOOST_CHECK(nodes[n]->start(&err));
+  }
+  
+  // Setup NodeGraph
+  for (int i = 0; i < TEST_NODE_COUNT; i++) {
+    for (int j= 0; j < TEST_NODE_COUNT; j++) {
+      if (i == j)
+        break;
+      BOOST_CHECK(nodes[i]->nodeAdded(nodes[j]));
+    }
+  }
+  
+  // Test Hash Parameter
+  NodeTestController nodeTestController;
+  nodeTestController.runRpcTest((Round::Node **)nodes, TEST_NODE_COUNT);
+  
+  // Clenup
+  for (int n = 0; n < TEST_NODE_COUNT; n++) {
+    BOOST_CHECK(nodes[n]->stop(&err));
+    delete nodes[n];
+  }
+  delete []nodes;
+}
+
 BOOST_AUTO_TEST_SUITE_END()
