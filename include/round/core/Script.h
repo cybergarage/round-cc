@@ -18,6 +18,7 @@
 #include <round/common/Vector.h>
 #include <round/common/Error.h>
 #include <round/common/RPC.h>
+#include <round/common/Mutex.h>
 
 namespace Round {
 
@@ -133,9 +134,18 @@ public:
   virtual bool compile(const Script *script) const = 0;
   virtual bool run(const Script *script, const std::string &params, std::string *results, Error *error) const = 0;
 
+  void lock() const {
+    mutex.lock();
+  }
+  
+  void unlock() const {
+    mutex.unlock();
+  }
+  
 private:
   
   std::string  language;
+  mutable Mutex mutex;
 };
 
 class ScriptEngineMap : public std::map<std::string, ScriptEngine *> {
