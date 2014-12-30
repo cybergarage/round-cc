@@ -19,7 +19,33 @@
 
 static std::map<int, std::string> gJsonRpcErrorStrings;
 
+enum {
+  ErrorCodeUnknown                   = 0,
+  
+  // Standard Response Error Codes
+  ErrorCodeParserError               = -32700,
+  ErrorCodeInvalidRequest            = -32600,
+  ErrorCodeMethodNotFound            = -32601,
+  ErrorCodeInvalidParams             = -32602,
+  ErrorCodeInternalError             = -32603,
+  
+  ErrorCodeServerErrorMax            = -32000,
+  ErrorCodeServerErrorMin            = -32099,
+  ErrorCodeServerError               = ErrorCodeServerErrorMax,
+  
+  // Extend Parameter Error Codes
+  ErrorCodeBadHashCode               = -32000,
+  ErrorCodeMovedPermanently          = -32001,
+  
+  // Extended Script Engine Error Codes
+  ErrorCodeScriptEngineInternalError = -32010,
+  ErrorCodeScriptEngineNotFound      = -32011,
+  ErrorCodeScriptCompileError        = -32012,
+  ErrorCodeScriptRuntimeError        = -32013,
+};
+
 int Round::RPC::JSON::HTTP::ErrorCodeToHTTPStatusCode(int jsonErrorCode) {
+  // Standard Response Error Codes
   switch (jsonErrorCode) {
     case RPC::JSON::ErrorCodeParserError :
     case RPC::JSON::ErrorCodeInvalidParams :
@@ -31,32 +57,30 @@ int Round::RPC::JSON::HTTP::ErrorCodeToHTTPStatusCode(int jsonErrorCode) {
       return uHTTP::HTTP::NOT_FOUND;
   }
   
+  // Extended Parameter Error Codes
+  switch (jsonErrorCode) {
+    case RPC::JSON::ErrorCodeBadHashCode :
+      return uHTTP::HTTP::BAD_REQUEST;
+    case RPC::JSON::ErrorCodeMovedPermanently :
+      return uHTTP::HTTP::MOVED_PERMANENTLY;
+  }
+  
+  // Extended Script Engine Error Codes
+  switch (jsonErrorCode) {
+    case RPC::JSON::ErrorCodeScriptEngineInternalError :
+    case RPC::JSON::ErrorCodeScriptCompileError :
+    case RPC::JSON::ErrorCodeScriptRuntimeError :
+      return uHTTP::HTTP::INTERNAL_SERVER_ERROR;
+    case RPC::JSON::ErrorCodeScriptEngineNotFound :
+      return uHTTP::HTTP::BAD_REQUEST;
+  }
+  
   if (IsServerErrorCode(jsonErrorCode)) {
     return uHTTP::HTTP::INTERNAL_SERVER_ERROR;
   }
   
   return uHTTP::HTTP::INTERNAL_SERVER_ERROR;
 }
-enum {
-  ErrorCodeUnknown        = 0,
-  ErrorCodeParserError    = -32700,
-  ErrorCodeInvalidRequest = -32600,
-  ErrorCodeMethodNotFound = -32601,
-  ErrorCodeInvalidParams  = -32602,
-  ErrorCodeInternalError  = -32603,
-  
-  ErrorCodeBadHashCode               = -32000,
-  ErrorCodeMovedPermanently          = -32001,
-  
-  ErrorCodeScriptEngineInternalError = -32010,
-  ErrorCodeScriptEngineNotFound      = -32011,
-  ErrorCodeScriptCompileError        = -32012,
-  ErrorCodeScriptRuntimeError        = -32013,
-  
-  ErrorCodeServerErrorMax = -32000,
-  ErrorCodeServerErrorMin = -32099,
-  ErrorCodeServerError    = ErrorCodeServerErrorMax,
-};
 
 const std::string &Round::RPC::JSON::ErrorCodeToString(int jsonErrorCode) {
   
@@ -79,11 +103,13 @@ const std::string &Round::RPC::JSON::ErrorCodeToString(int jsonErrorCode) {
     gJsonRpcErrorStrings[ErrorCodeServerError]    = "Server error";
   }
 
-  if (IsServerErrorCode(jsonErrorCode)) {
-    jsonErrorCode = ErrorCodeServerError;
-  }
-  else if (gJsonRpcErrorStrings.find(jsonErrorCode) == gJsonRpcErrorStrings.end()) {
-    jsonErrorCode = ErrorCodeUnknown;
+  if (gJsonRpcErrorStrings.find(jsonErrorCode) == gJsonRpcErrorStrings.end()) {
+    if (IsServerErrorCode(jsonErrorCode)) {
+      jsonErrorCode = ErrorCodeServerError;
+    }
+    else {
+      jsonErrorCode = ErrorCodeUnknown;
+    }
   }
 
   return gJsonRpcErrorStrings[jsonErrorCode];
