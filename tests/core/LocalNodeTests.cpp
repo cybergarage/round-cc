@@ -118,11 +118,11 @@ BOOST_AUTO_TEST_CASE(LocalNodeHashRequestTest) {
   
   // Setup NodeGraph
   for (int i = 0; i < TEST_NODE_COUNT; i++) {
-    for (int j= 0; j < TEST_NODE_COUNT; j++) {
-      if (i == j)
-        break;
+    for (int j = 0; j < TEST_NODE_COUNT; j++) {
       BOOST_CHECK(nodes[i]->nodeAdded(nodes[j]));
     }
+    NodeGraph *nodeGraph = nodes[i]->getNodeGraph();
+    BOOST_CHECK_EQUAL(nodeGraph->size(), TEST_NODE_COUNT);
   }
   
   // Test Hash Parameter
