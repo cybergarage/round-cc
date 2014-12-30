@@ -213,7 +213,7 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
   
   if (nodeReq->hasHash()) {
     std::string hashCode;
-    if (getHashCode(&hashCode)) {
+    if (nodeReq->getHash(&hashCode)) {
       if (hashCode.length() != HashObject::GetHashCodeLength()) {
         setError(RPC::JSON::ErrorCodeBadHashCode, err);
         return false;
