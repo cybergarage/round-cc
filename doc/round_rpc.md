@@ -18,11 +18,11 @@ Round adds the following original fields to [JSON-RPC 2.0][json-rpc] specificati
 
 ### hash
 
-The hash field specifies a target node of the request object. The node which is received the request object checks the hash code whether the node should execute the request object.  
+The hash field specifies a destination node of the request object. The node which is received the request object checks the hash code whether the node should execute the request object.  
 
 #### Request object
 
-The hash code specifies a destination node of the message. In the current version, the hash code must be genarated using [SHA-256](http://en.wikipedia.org/wiki/SHA-2). If the hash field is not specified, the message is executed by the received node.
+The hash field specifies a destination node of the message. In the current version, the hash code must be genarated using [SHA-256](http://en.wikipedia.org/wiki/SHA-2). If the hash field is not specified, the message is executed by the received node.
 
 ```
 --> {"jsonrpc": "2.0", "method": "increment_counter", "params": 1, "hash": "xxxxxxxxxxxxxxxx", ....}
@@ -38,7 +38,24 @@ The message is executed if the specified hash code is handled by the received no
 
 If the node returns the error object, the cluster might be updated because of adding or removing nodes. To update the current cluster information, Use '[_get_cluster_info](./round_rpc_methods.md)' method for the node to get the latest cluster information.
 
-### dest (destination) + hash
+### dest
+
+The dest, destination, field specifies target nodes of the request object message.
+
+#### Request object
+
+#### Response object
+
+If the target nodes are two or more nodes, the response object has an array containing the corresponding response objects of each target nodes like batch response of JSON-RPC specification.
+```
+[
+{"jsonrpc": "2.0", "result": 7, "id": "1", "hash": "xxxxxxxxxxxxxxxx", .....},
+{"jsonrpc": "2.0", "result": 8, "id": "1", "hash": "xxxxxxxxxxxxxxxx", .....},
+{"jsonrpc": "2.0", "result": 6, "id": "1", "hash": "xxxxxxxxxxxxxxxx", .....},
+{"jsonrpc": "2.0", "result": 9, "id": "1", "hash": "xxxxxxxxxxxxxxxx", .....},
+{"jsonrpc": "2.0", "result": 2, "id": "1", "hash": "xxxxxxxxxxxxxxxx", .....},
+]
+```
 
 ### ts (timestamp)
 
