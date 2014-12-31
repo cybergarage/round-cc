@@ -166,6 +166,30 @@ BOOST_AUTO_TEST_CASE(RPCRequestExtentionMethodTest) {
   BOOST_CHECK(rpcMsg.hasHash());
   BOOST_CHECK(rpcMsg.getHash(&hash));
   BOOST_CHECK_EQUAL(TEST_HASH.compare(hash), 0);
+
+  // dest
+  
+  const size_t TEST_QUORUM = 123456789;
+  size_t destQuorum;
+  
+  BOOST_CHECK(!rpcMsg.hasDest());
+
+  BOOST_CHECK(rpcMsg.setDest(RPC::JSON::Message::DEST_ONE));
+  BOOST_CHECK(rpcMsg.isDestOne());
+  BOOST_CHECK(!rpcMsg.isDestAll());
+  BOOST_CHECK(!rpcMsg.isDestQuorum());
+  
+  BOOST_CHECK(rpcMsg.setDest(RPC::JSON::Message::DEST_ALL));
+  BOOST_CHECK(rpcMsg.isDestAll());
+  BOOST_CHECK(!rpcMsg.isDestOne());
+  BOOST_CHECK(!rpcMsg.isDestQuorum());
+
+  BOOST_CHECK(rpcMsg.setDest(TEST_QUORUM));
+  BOOST_CHECK(rpcMsg.isDestQuorum());
+  BOOST_CHECK(rpcMsg.getQuorum(&destQuorum));
+  BOOST_CHECK_EQUAL(destQuorum, TEST_QUORUM);
+  BOOST_CHECK(!rpcMsg.isDestAll());
+  BOOST_CHECK(!rpcMsg.isDestOne());
 }
 
 

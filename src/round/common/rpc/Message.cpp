@@ -22,8 +22,49 @@ const std::string Round::RPC::JSON::Message::RESULT = "result";
 const std::string Round::RPC::JSON::Message::TIMESTAMP = "ts";
 const std::string Round::RPC::JSON::Message::HASH = "hash";
 
+const std::string Round::RPC::JSON::Message::DEST = "dest";
+const std::string Round::RPC::JSON::Message::DEST_ONE = "one";
+const std::string Round::RPC::JSON::Message::DEST_ALL = "all";
+
 Round::RPC::JSON::Message::Message() {
 }
 
 Round::RPC::JSON::Message::~Message() {
+}
+
+bool Round::RPC::JSON::Message::isDestOne() const {
+  if (!hasDest())
+    return false;
+  std::string dest;
+  if (!getDest(&dest))
+    return false;
+  return (dest.compare(DEST_ONE) == 0) ? true : false;
+}
+
+bool Round::RPC::JSON::Message::isDestAll() const {
+  if (!hasDest())
+    return false;
+  std::string dest;
+  if (!getDest(&dest))
+    return false;
+  return (dest.compare(DEST_ALL) == 0) ? true : false;
+}
+
+bool Round::RPC::JSON::Message::isDestQuorum() const {
+  if (!hasDest())
+    return false;
+  std::string dest;
+  if (!getDest(&dest))
+    return false;
+  if (dest.compare(DEST_ONE) == 0)
+    return false;
+  if (dest.compare(DEST_ALL) == 0)
+    return false;
+  return true;
+}
+
+bool Round::RPC::JSON::Message::getQuorum(size_t *value) const {
+  if (!isDestQuorum())
+    return false;
+  return get(DEST, value);
 }
