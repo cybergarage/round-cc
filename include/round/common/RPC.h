@@ -66,13 +66,17 @@ class Message : public ::Round::Message {
   static const std::string JSON_RPC;
   static const std::string METHOD;
   static const std::string PARAMS;
-  static const std::string TIMESTAMP;
-  static const std::string HASH;
   static const std::string ID;
   static const std::string RESULT;
   static const std::string ERROR;
   static const std::string CODE;
   static const std::string MESSAGE;
+  
+  static const std::string TIMESTAMP;
+  static const std::string HASH;
+  static const std::string DEST;
+  static const std::string DEST_ONE;
+  static const std::string DEST_ALL;
   
  public:
   Message();
@@ -166,6 +170,10 @@ class Response : public Message {
     return set(RESULT, value);
   }
   
+  bool setResult(JSONObject *value) {
+    return set(RESULT, value);
+  }
+
   bool getResult(std::string *value) const {
     return get(RESULT, value);
   }
