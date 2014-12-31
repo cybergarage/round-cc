@@ -29,6 +29,27 @@ bool Round::RPC::JSON::Response::isValid() {
   return false;
 }
 
+bool Round::RPC::JSON::Response::isBatchResult() {
+  JSONObject *jsonObj = NULL;
+  if (!get(RESULT, &jsonObj))
+    return false;
+  return jsonObj->isArray();
+}
+
+Round::JSONArray *Round::RPC::JSON::Response::getResultArray() {
+  JSONObject *jsonObj = NULL;
+  get(RESULT, &jsonObj);
+  
+  JSONArray *jsonArray = dynamic_cast<JSONArray *>(jsonObj);
+  if (jsonArray)
+    return jsonArray;
+  
+  jsonArray = new JSONArray();
+  set(RESULT, jsonArray);
+  
+  return jsonArray;
+}
+
 Round::JSONDictionary *Round::RPC::JSON::Response::getResultDict() {
   JSONObject *jsonObj = NULL;
   get(RESULT, &jsonObj);

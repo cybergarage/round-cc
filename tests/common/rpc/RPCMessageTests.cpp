@@ -258,4 +258,17 @@ BOOST_AUTO_TEST_CASE(RPCErrorMethodTest) {
   BOOST_CHECK_EQUAL(detailMsg.compare(err.getDetailMessage()), 0);
 }
 
+BOOST_AUTO_TEST_CASE(RPCBatchModeTest) {
+  RPC::JSON::Response rpcMsg;
+  
+  const std::string detailMsg = "67890";
+  Error TEST_ERROR(12345, "12345", 67890, detailMsg);
+  Error err;
+  
+  BOOST_CHECK(!rpcMsg.isBatchResult());
+  
+  BOOST_CHECK(rpcMsg.setResult(new JSONArray()));
+  BOOST_CHECK(rpcMsg.isBatchResult());
+}
+
 BOOST_AUTO_TEST_SUITE_END()

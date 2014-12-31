@@ -177,9 +177,11 @@ class Response : public Message {
   bool getResult(std::string *value) const {
     return get(RESULT, value);
   }
-  
+
+  bool isBatchResult();
+  JSONArray *getResultArray();
   JSONDictionary *getResultDict();
-  
+
   bool setResult(const std::string &key, const std::string &value);
   bool getResult(const std::string &key, std::string *value);
   bool setResult(const std::string &key, int value);
