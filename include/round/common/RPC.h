@@ -68,6 +68,7 @@ class Message : public ::Round::Message {
   static const std::string PARAMS;
   static const std::string ID;
   static const std::string RESULT;
+
   static const std::string ERROR;
   static const std::string CODE;
   static const std::string MESSAGE;
@@ -127,6 +128,30 @@ class Message : public ::Round::Message {
   bool hasHash() const {
     return hasKey(HASH);
   }
+
+  // dest
+  
+  bool setDest(const std::string &value) {
+    return set(DEST, value);
+  }
+  
+  bool setDest(size_t value) {
+    return set(DEST, value);
+  }
+
+  bool getDest(std::string *value) const {
+    return get(DEST, value);
+  }
+  
+  bool hasDest() const {
+    return hasKey(DEST);
+  }
+
+  bool isDestOne() const;
+  bool isDestAll() const;
+  bool isDestQuorum() const;
+
+  bool getQuorum(size_t *value) const;
 };
 
 class Request : public Message {
