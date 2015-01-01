@@ -73,7 +73,11 @@ bool Round::JSONString::get(int *value) const {
   if (strValue.length() <= 0)
     return false;
   
-  *value = boost::lexical_cast<int>(strValue);
+  try {
+    *value = boost::lexical_cast<int>(strValue);
+  } catch(boost::bad_lexical_cast &) {
+    return false;
+  }
   
   return true;
 }
@@ -86,7 +90,11 @@ bool Round::JSONString::get(bool *value) const {
   if (strValue.length() <= 0)
     return false;
   
-  *value = boost::lexical_cast<bool>(strValue);
+  try {
+    *value = boost::lexical_cast<bool>(strValue);
+  } catch(boost::bad_lexical_cast &) {
+    return false;
+  }
   
   return true;
 }
@@ -99,7 +107,11 @@ bool Round::JSONString::get(long *value) const {
   if (strValue.length() <= 0)
     return false;
   
-  *value = boost::lexical_cast<long>(strValue);
+  try {
+    *value = boost::lexical_cast<long>(strValue);
+  } catch(boost::bad_lexical_cast &) {
+    return false;
+  }
   
   return true;
 }
@@ -112,7 +124,11 @@ bool Round::JSONString::get(size_t *value) const {
   if (strValue.length() <= 0)
     return false;
   
-  *value = boost::lexical_cast<size_t>(strValue);
+  try {
+    *value = boost::lexical_cast<size_t>(strValue);
+  } catch(boost::bad_lexical_cast &) {
+    return false;
+  }
   
   return true;
 }
@@ -125,7 +141,11 @@ bool Round::JSONString::get(double *value) const {
   if (strValue.length() <= 0)
     return false;
   
-  *value = boost::lexical_cast<double>(strValue);
+  try {
+    *value = boost::lexical_cast<double>(strValue);
+  } catch(boost::bad_lexical_cast &) {
+    return false;
+  }
   
   return true;
 }
