@@ -247,9 +247,31 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
     incrementLocalClock();
   }
   
-  // Exec Method
+  // Exec Method (One node)
   
-  return execMethod(nodeReq, nodeRes, error);
+  if (isDestOne) {
+    return execMethod(nodeReq, nodeRes, error);
+  }
+  
+  // Exec Method (Multi node)
+
+  JSONArray *batchArray = new JSONArray();
+  nodeRes->setResult(batchArray);
+  
+  Error thisNodeError;
+  NodeResponse *thisNodeRes = new NodeResponse();
+  execMethod(nodeReq, thisNodeRes, &thisNodeError);
+  batchArray->add(thisNodeRes);
+  
+  NodeList otherNodes;
+  for (NodeList::iterator node = otherNodes.begin(); node != otherNodes.end(); node++) {
+    Error otherNodeError;
+    NodeResponse *otherNodeRes = new NodeResponse();
+    (*node)->postMessage(nodeReq, otherNodeRes, &otherNodeError);
+    batchArray->add(thisNodeRes);
+  }
+
+  return true;
 }
 
 ////////////////////////////////////////////////
