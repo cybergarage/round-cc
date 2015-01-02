@@ -92,9 +92,8 @@ bool Round::RemoteNode::postMessage(const NodeRequest *nodeReq, NodeResponse *no
 
   // Set id and ts parameter
   
-  clock_t localTs = incrementLocalClock();
-  (const_cast<NodeRequest *>(nodeReq))->setId(localTs);
-  (const_cast<NodeRequest *>(nodeReq))->setTimestamp(localTs);
+  incrementLocalClock();
+  (const_cast<NodeRequest *>(nodeReq))->setSourceNodeParameters(this);
   
   // HTTP Request
 

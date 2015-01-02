@@ -12,6 +12,7 @@
 #include <sstream>
 
 #include <round/core/NodeMessage.h>
+#include <round/core/Node.h>
 
 const std::string Round::NodeRequest::SYNC = "sync";
 
@@ -40,6 +41,12 @@ bool Round::NodeRequest::close() {
   this->httpReq = NULL;
 
   return true;
+}
+
+void Round::NodeRequest::setSourceNodeParameters(const Node *node) {
+  clock_t localTs = node->getLocalClock();
+  setId(localTs);
+  setTimestamp(localTs);
 }
 
 bool Round::NodeRequest::setHttpRequest(uHTTP::HTTPRequest *httpReq) {

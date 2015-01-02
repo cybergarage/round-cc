@@ -15,6 +15,7 @@
 
 namespace Round {
 
+class Node;
 class NodeResponse;
   
 class NodeRequest : public RPC::JSON::Request {
@@ -25,6 +26,8 @@ class NodeRequest : public RPC::JSON::Request {
   NodeRequest(const std::string &method);
   virtual ~NodeRequest();
    
+  void setSourceNodeParameters(const Node *node);
+  
   bool setSync(bool value) {
     return set(SYNC, value);
   }
