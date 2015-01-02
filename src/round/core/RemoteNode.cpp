@@ -84,7 +84,7 @@ bool Round::RemoteNode::getClusterName(std::string *name, Error *error) {
   return true;
 }
 
-bool Round::RemoteNode::postMessage(NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+bool Round::RemoteNode::postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
   std::string requestAddr;
   int requestPort;
   if (!getRequestAddress(&requestAddr, error) || !getRequestPort(&requestPort, error))
@@ -93,8 +93,8 @@ bool Round::RemoteNode::postMessage(NodeRequest *nodeReq, NodeResponse *nodeRes,
   // Set id and ts parameter
   
   clock_t localTs = incrementLocalClock();
-  nodeReq->setId(localTs);
-  nodeReq->setTimestamp(localTs);
+  (const_cast<NodeRequest *>(nodeReq))->setId(localTs);
+  (const_cast<NodeRequest *>(nodeReq))->setTimestamp(localTs);
   
   // HTTP Request
 

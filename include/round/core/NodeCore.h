@@ -32,7 +32,7 @@ class NodeCore : public ConsistentHashNode {
   virtual bool getRequestPort(int *port, Error *error) const = 0;
   virtual bool getClusterName(std::string *name, Error *error) = 0;
   
-  virtual bool postMessage(NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) = 0;
+  virtual bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) = 0;
 
  public:
 

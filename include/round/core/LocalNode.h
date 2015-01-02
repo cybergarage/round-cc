@@ -57,7 +57,7 @@ class LocalNode : public Node, public NodeFinderObserver {
   virtual ~LocalNode();
 
   bool getClusterName(std::string *name, Error *error);
-  bool postMessage(NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
   
   bool loadConfigFromString(const std::string &string, Error *error);
   bool loadConfigFromFile(const std::string &filename, Error *error);

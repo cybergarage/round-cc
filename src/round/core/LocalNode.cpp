@@ -165,12 +165,12 @@ bool Round::LocalNode::nodeRemoved(Round::Node *notifyNode)  {
 // Message
 ////////////////////////////////////////////////
 
-bool Round::LocalNode::postMessage(NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+bool Round::LocalNode::postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
   // Set id and ts parameter
   
   clock_t localTs = getLocalClock();
-  nodeReq->setId(localTs);
-  nodeReq->setTimestamp(localTs);
+  (const_cast<NodeRequest *>(nodeReq))->setId(localTs);
+  (const_cast<NodeRequest *>(nodeReq))->setTimestamp(localTs);
   
   // Post RPC message
   
