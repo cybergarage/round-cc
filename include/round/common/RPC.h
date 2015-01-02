@@ -147,6 +147,8 @@ class Message : public ::Round::Message {
     return hasKey(DEST);
   }
 
+  bool isDestValid() const;
+  
   bool isDestOne() const;
   bool isDestAll() const;
   bool isDestQuorum() const;

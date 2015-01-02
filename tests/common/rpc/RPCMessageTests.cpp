@@ -170,26 +170,36 @@ BOOST_AUTO_TEST_CASE(RPCRequestExtentionMethodTest) {
   // dest
   
   const size_t TEST_QUORUM = 123456789;
+  const std::string TEST_BAD_QUORUM = "a";
   size_t destQuorum;
   
   BOOST_CHECK(!rpcMsg.hasDest());
 
   BOOST_CHECK(rpcMsg.setDest(RPC::JSON::Message::DEST_ONE));
+  BOOST_CHECK(rpcMsg.isDestValid());
   BOOST_CHECK(rpcMsg.isDestOne());
   BOOST_CHECK(!rpcMsg.isDestAll());
   BOOST_CHECK(!rpcMsg.isDestQuorum());
   
   BOOST_CHECK(rpcMsg.setDest(RPC::JSON::Message::DEST_ALL));
+  BOOST_CHECK(rpcMsg.isDestValid());
   BOOST_CHECK(rpcMsg.isDestAll());
   BOOST_CHECK(!rpcMsg.isDestOne());
   BOOST_CHECK(!rpcMsg.isDestQuorum());
 
   BOOST_CHECK(rpcMsg.setDest(TEST_QUORUM));
+  BOOST_CHECK(rpcMsg.isDestValid());
   BOOST_CHECK(rpcMsg.isDestQuorum());
   BOOST_CHECK(rpcMsg.getQuorum(&destQuorum));
   BOOST_CHECK_EQUAL(destQuorum, TEST_QUORUM);
   BOOST_CHECK(!rpcMsg.isDestAll());
   BOOST_CHECK(!rpcMsg.isDestOne());
+
+  BOOST_CHECK(rpcMsg.setDest(TEST_BAD_QUORUM));
+  BOOST_CHECK(!rpcMsg.isDestValid());
+  BOOST_CHECK(!rpcMsg.isDestAll());
+  BOOST_CHECK(!rpcMsg.isDestOne());
+  BOOST_CHECK(!rpcMsg.isDestQuorum());
 }
 
 

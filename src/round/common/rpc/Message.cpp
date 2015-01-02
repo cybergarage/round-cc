@@ -32,6 +32,18 @@ Round::RPC::JSON::Message::Message() {
 Round::RPC::JSON::Message::~Message() {
 }
 
+bool Round::RPC::JSON::Message::isDestValid() const {
+  if (!hasDest())
+    return true;
+  if (isDestOne())
+    return true;
+  if (isDestAll())
+    return true;
+  if (isDestQuorum())
+    return true;
+  return false;
+}
+
 bool Round::RPC::JSON::Message::isDestOne() const {
   if (!hasDest())
     return false;
@@ -53,14 +65,10 @@ bool Round::RPC::JSON::Message::isDestAll() const {
 bool Round::RPC::JSON::Message::isDestQuorum() const {
   if (!hasDest())
     return false;
-  std::string dest;
-  if (!getDest(&dest))
+  size_t quorum;
+  if (!get(DEST, &quorum))
     return false;
-  if (dest.compare(DEST_ONE) == 0)
-    return false;
-  if (dest.compare(DEST_ALL) == 0)
-    return false;
-  return true;
+  return (0 < quorum) ? true : false;
 }
 
 bool Round::RPC::JSON::Message::getQuorum(size_t *value) const {
