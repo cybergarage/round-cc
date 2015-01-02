@@ -15,7 +15,6 @@
 
 namespace Round {
 class Node;
-class NodeList;
 
 class NodeGraph : public ConsistentHashGraph {
  public:
