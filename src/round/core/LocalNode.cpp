@@ -205,8 +205,8 @@ bool Round::LocalNode::setError(int rpcErrorCode, Error *err) {
   return true;
 }
 
-bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *err) {
-  if (!nodeReq || !nodeRes || !err)
+bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+  if (!nodeReq || !nodeRes || !error)
     return false;
   
   // Check hash code
@@ -215,14 +215,25 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
     std::string hashCode;
     if (nodeReq->getHash(&hashCode)) {
       if (hashCode.length() != HashObject::GetHashCodeLength()) {
-        setError(RPC::JSON::ErrorCodeBadHashCode, err);
+        setError(RPC::JSON::ErrorCodeBadHashCode, error);
         return false;
       }
       NodeGraph *nodeGraph = getNodeGraph();
       if (!nodeGraph->isHandleNode(this, hashCode)) {
-        setError(RPC::JSON::ErrorCodeMovedPermanently, err);
+        setError(RPC::JSON::ErrorCodeMovedPermanently, error);
         return false;
       }
+    }
+  }
+  
+  // Check dest
+  
+  bool isDestOne = true;
+  if (nodeReq->hasDest()) {
+    isDestOne = nodeReq->isDestOne();
+    if (!isDestOne && !nodeReq->isDestValid()) {
+      setError(RPC::JSON::ErrorCodeInvalidParams, error);
+      return false;
     }
   }
   
@@ -236,6 +247,16 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
     incrementLocalClock();
   }
   
+  // Exec Method
+  
+  return execMethod(nodeReq, nodeRes, error);
+}
+
+////////////////////////////////////////////////
+// Exce Method
+////////////////////////////////////////////////
+
+bool Round::LocalNode::execMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
   // Set id and ts parameter
   
   size_t msgId;
@@ -243,42 +264,40 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
     nodeRes->setId(msgId);
   }
   nodeRes->setTimestamp(getLocalClock());
-
+  
   // Exec Message
   
   std::string name;
   if (!nodeReq->getMethod(&name) || (name.length() <= 0)) {
-    setError(RPC::JSON::ErrorCodeMethodNotFound, err);
+    setError(RPC::JSON::ErrorCodeMethodNotFound, error);
     return false;
   }
   
   if (isSetMethod(name)) {
-    if (!setMethod(nodeReq, nodeRes, err)) {
-      setError(RPC::JSON::ErrorCodeInvalidParams, err);
+    if (!setMethod(nodeReq, nodeRes, error)) {
+      setError(RPC::JSON::ErrorCodeInvalidParams, error);
       return false;
     }
     return true;
   }
-
+  
   if (hasUserMethod(name)) {
     std::string params;
     nodeReq->getParams(&params);
     std::string result;
-    bool isSuccess = this->scriptMgr.run(name, params, &result, err);
+    bool isSuccess = this->scriptMgr.run(name, params, &result, error);
     if (isSuccess) {
       nodeRes->setResult(result);
     }
     else {
-      nodeRes->setError(err);
+      nodeRes->setError(error);
     }
     return isSuccess;
   }
   
   if (isSystemMethod(name)) {
-    return execSystemMethod(nodeReq, nodeRes, err);
+    return execSystemMethod(nodeReq, nodeRes, error);
   }
-  
-  setError(RPC::JSON::ErrorCodeMethodNotFound, err);
   
   return false;
 }

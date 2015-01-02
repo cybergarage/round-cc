@@ -108,6 +108,7 @@ private:
   bool setError(int rpcErrorCode, Error *err);
 
   bool isSystemMethod(const std::string &method);
+  bool execMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
   bool execSystemMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
   
   virtual bool _get_node_info(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
