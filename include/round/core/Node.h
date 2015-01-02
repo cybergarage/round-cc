@@ -71,6 +71,8 @@ public:
   Node *getNode(size_t index) const {
     return at(index);
   }
+
+  void clear();
 };
 
 }
