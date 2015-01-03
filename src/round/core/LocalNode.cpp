@@ -319,6 +319,8 @@ bool Round::LocalNode::execMethod(const NodeRequest *nodeReq, NodeResponse *node
     return execSystemMethod(nodeReq, nodeRes, error);
   }
   
+  setError(RPC::JSON::ErrorCodeMethodNotFound, error);
+  
   return false;
 }
 
