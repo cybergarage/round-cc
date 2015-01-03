@@ -44,6 +44,13 @@ bool Round::RPC::JSON::Message::isDestValid() const {
   return false;
 }
 
+bool Round::RPC::JSON::Message::setHash(HashObject *hashObj) {
+  std::string hashCode;
+  if (!hashObj->getHashCode(&hashCode))
+    return false;
+  return setHash(hashCode);
+}
+
 bool Round::RPC::JSON::Message::isDestOne() const {
   if (!hasDest())
     return false;

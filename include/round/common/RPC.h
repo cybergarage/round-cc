@@ -13,6 +13,7 @@
 
 #include <round/common/Error.h>
 #include <round/common/Message.h>
+#include <round/common/HashObject.h>
 
 #include <uhttp/HTTP.h>
 
@@ -120,6 +121,8 @@ class Message : public ::Round::Message {
   bool setHash(const std::string &value) {
     return set(HASH, value);
   }
+  
+  bool setHash(HashObject *hashObj);
   
   bool getHash(std::string *value) const {
     return get(HASH, value);

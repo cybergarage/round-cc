@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <round/common/RPC.h>
+#include "TestNode.h"
 
 using namespace std;
 using namespace Round;
@@ -154,7 +155,7 @@ BOOST_AUTO_TEST_CASE(RPCRequestExtentionMethodTest) {
   BOOST_CHECK(rpcMsg.getTimestamp(&ts));
   BOOST_CHECK_EQUAL(ts, std::numeric_limits<clock_t>::max());
 
-  // hash
+  // hash (string)
   
   const std::string TEST_HASH = "0123456789";
   std::string hash;
@@ -162,11 +163,21 @@ BOOST_AUTO_TEST_CASE(RPCRequestExtentionMethodTest) {
   BOOST_CHECK(!rpcMsg.hasHash());
   BOOST_CHECK(!rpcMsg.getHash(&hash));
   
-  rpcMsg.setHash(TEST_HASH);
+  BOOST_CHECK(rpcMsg.setHash(TEST_HASH));
   BOOST_CHECK(rpcMsg.hasHash());
   BOOST_CHECK(rpcMsg.getHash(&hash));
   BOOST_CHECK_EQUAL(TEST_HASH.compare(hash), 0);
 
+  // hash (node)
+  
+  TestLocalNode node;
+  std::string nodeHash;
+  BOOST_CHECK(rpcMsg.setHash(&node));
+  BOOST_CHECK(rpcMsg.hasHash());
+  BOOST_CHECK(rpcMsg.getHash(&hash));
+  BOOST_CHECK(node.getHashCode(&nodeHash));
+  BOOST_CHECK_EQUAL(nodeHash.compare(hash), 0);
+  
   // dest
   
   const size_t TEST_QUORUM = 123456789;
@@ -201,7 +212,6 @@ BOOST_AUTO_TEST_CASE(RPCRequestExtentionMethodTest) {
   BOOST_CHECK(!rpcMsg.isDestOne());
   BOOST_CHECK(!rpcMsg.isDestQuorum());
 }
-
 
 class TestMessageParser : public JSONParser {
   
