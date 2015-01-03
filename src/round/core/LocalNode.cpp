@@ -304,14 +304,25 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
   Error thisNodeError;
   NodeResponse *thisNodeRes = new NodeResponse();
   execMethod(nodeReq, thisNodeRes, &thisNodeError);
+  thisNodeRes->setHash(this);
   batchArray->add(thisNodeRes);
   
   NodeList otherNodes;
+  if (nodeReq->isDestAll()) {
+    getAllOtherNodes(&otherNodes);
+  }
+  else if (nodeReq->isDestQuorum()) {
+    size_t quorum;
+    if (nodeReq->getQuorum(&quorum)) {
+      getQuorumNodes(&otherNodes, quorum);
+    }
+  }
   for (NodeList::iterator node = otherNodes.begin(); node != otherNodes.end(); node++) {
     Error otherNodeError;
     NodeResponse *otherNodeRes = new NodeResponse();
     (*node)->postMessage(nodeReq, otherNodeRes, &otherNodeError);
-    batchArray->add(thisNodeRes);
+    otherNodeRes->setHash((*node));
+    batchArray->add(otherNodeRes);
   }
 
   return true;

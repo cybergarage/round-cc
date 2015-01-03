@@ -161,9 +161,6 @@ BOOST_AUTO_TEST_CASE(LocalNodeGetAllOtherNodesTest) {
   // Setup Nodes
   TestLocalNode **nodes = Round::LocalNodeTestCreateNodes(TEST_NODE_COUNT);
   
-  //bool getQuorumNodes(NodeList *nodes, size_t quorum);
-  //bool getAllOtherNodes(NodeList *nodes);
-
   // Setup NodeGraph
   for (size_t n = 0; n<TEST_NODE_COUNT; n++) {
     NodeList nodeList;
