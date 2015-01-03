@@ -85,8 +85,13 @@ class LocalNode : public Node, public NodeFinderObserver {
   bool isCloneable() const {
     return false;
   }
+
+public:
   
- protected:
+  bool getQuorumNodes(NodeList *nodes, size_t quorum);
+  bool getAllOtherNodes(NodeList *nodes);
+
+protected:
 
   void setState(NodeStatus::State value) {
     this->nodeStatus.setState(value);

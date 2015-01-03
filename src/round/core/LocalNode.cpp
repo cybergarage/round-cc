@@ -13,6 +13,7 @@
 
 #include <round/Round.h>
 #include <round/core/LocalNode.h>
+#include <round/core/RemoteNode.h>
 #include <round/core/SystemMethod.h>
 
 ////////////////////////////////////////////////
@@ -167,11 +168,9 @@ bool Round::LocalNode::nodeRemoved(Round::Node *notifyNode)  {
 
 bool Round::LocalNode::postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
   // Set id and ts parameter
-  
   (const_cast<NodeRequest *>(nodeReq))->setSourceNodeParameters(this);
   
   // Post RPC message
-  
   return execMessage(nodeReq, nodeRes, error);
 }
 
@@ -186,6 +185,52 @@ bool Round::LocalNode::waitMessage(const NodeRequest **nodeReq) {
     return false;
   *nodeReq = dynamic_cast<const NodeRequest *>(nodeMsg);
   return (*nodeReq) ? true : false;
+}
+
+////////////////////////////////////////////////
+// get*Nodes
+////////////////////////////////////////////////
+
+bool Round::LocalNode::getQuorumNodes(NodeList *nodes, size_t quorum) {
+  NodeGraph *nodeGraph = getNodeGraph();
+  if (!nodeGraph)
+    return false;
+  
+  for (size_t n=1; n<=quorum; n++) {
+    Node *node = nodeGraph->getOffsetNode(this, n);
+    if (!node)
+      continue;
+    if (node->equals(this))
+      continue;
+    RemoteNode *remoteNode = new RemoteNode(node);
+    remoteNode->setWeakFlag(false);
+    nodes->addNode(remoteNode);
+  }
+  
+  return true;
+}
+
+bool Round::LocalNode::getAllOtherNodes(NodeList *nodes) {
+  NodeGraph *nodeGraph = getNodeGraph();
+  if (!nodeGraph)
+    return false;
+  
+  nodeGraph->lock();
+  
+  for (NodeGraph::iterator nodeIt = nodeGraph->begin(); nodeIt != nodeGraph->end(); nodeIt++) {
+    Node *node = dynamic_cast<Node *>(*nodeIt);
+    if (!node)
+      continue;
+    if (node->equals(this))
+      continue;
+    RemoteNode *remoteNode = new RemoteNode(node);
+    remoteNode->setWeakFlag(false);
+    nodes->addNode(remoteNode);
+  }
+  
+  nodeGraph->unlock();
+
+  return true;
 }
 
 ////////////////////////////////////////////////

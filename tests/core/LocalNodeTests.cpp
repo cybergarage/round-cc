@@ -103,38 +103,95 @@ BOOST_AUTO_TEST_CASE(LocalNodeSystemMethodTest) {
   BOOST_CHECK(node.stop(&err));
 }
 
-BOOST_AUTO_TEST_CASE(LocalNodeHashRequestTest) {
-  const size_t TEST_NODE_COUNT = 10;
-  
+namespace Round {
+
+static TestLocalNode **LocalNodeTestCreateNodes(size_t nodeCnt) {
   Error err;
   
   // Setup Nodes
-  TestLocalNode **nodes = new TestLocalNode*[TEST_NODE_COUNT];
-  for (int n = 0; n < TEST_NODE_COUNT; n++) {
+  TestLocalNode **nodes = new TestLocalNode*[nodeCnt];
+  for (int n = 0; n < nodeCnt; n++) {
     nodes[n] = new TestLocalNode(n);
     nodes[n]->setWeakFlag(true);
     BOOST_CHECK(nodes[n]->start(&err));
   }
   
   // Setup NodeGraph
-  for (int i = 0; i < TEST_NODE_COUNT; i++) {
-    for (int j = 0; j < TEST_NODE_COUNT; j++) {
+  for (int i = 0; i < nodeCnt; i++) {
+    for (int j = 0; j < nodeCnt; j++) {
       BOOST_CHECK(nodes[i]->nodeAdded(nodes[j]));
     }
     NodeGraph *nodeGraph = nodes[i]->getNodeGraph();
-    BOOST_CHECK_EQUAL(nodeGraph->size(), TEST_NODE_COUNT);
+    BOOST_CHECK_EQUAL(nodeGraph->size(), nodeCnt);
   }
   
-  // Test Hash Parameter
-  NodeTestController nodeTestController;
-  nodeTestController.runRpcTest((Round::Node **)nodes, TEST_NODE_COUNT);
-  
+  return nodes;
+}
+
+static void LocalNodeTestDeleteNodes(TestLocalNode **nodes, size_t nodeCnt) {
+  Error err;
+
   // Clenup
-  for (int n = 0; n < TEST_NODE_COUNT; n++) {
+  for (int n = 0; n < nodeCnt; n++) {
     BOOST_CHECK(nodes[n]->stop(&err));
     delete nodes[n];
   }
   delete []nodes;
+}
+
+}
+
+BOOST_AUTO_TEST_CASE(LocalNodeHashRequestTest) {
+  const size_t TEST_NODE_COUNT = 10;
+  
+  // Setup Nodes
+  TestLocalNode **nodes = Round::LocalNodeTestCreateNodes(TEST_NODE_COUNT);
+  
+  // Test Hash Parameter
+  NodeTestController nodeTestController;
+  nodeTestController.runRpcTest((Node **)nodes, TEST_NODE_COUNT);
+  
+  // Clenup
+  Round::LocalNodeTestDeleteNodes(nodes, TEST_NODE_COUNT);
+}
+
+BOOST_AUTO_TEST_CASE(LocalNodeGetAllOtherNodesTest) {
+  const size_t TEST_NODE_COUNT = 10;
+  
+  // Setup Nodes
+  TestLocalNode **nodes = Round::LocalNodeTestCreateNodes(TEST_NODE_COUNT);
+  
+  //bool getQuorumNodes(NodeList *nodes, size_t quorum);
+  //bool getAllOtherNodes(NodeList *nodes);
+
+  // Setup NodeGraph
+  for (size_t n = 0; n<TEST_NODE_COUNT; n++) {
+    NodeList nodeList;
+    BOOST_CHECK(nodes[n]->getAllOtherNodes(&nodeList));
+    BOOST_CHECK_EQUAL(nodeList.size(), (TEST_NODE_COUNT-1));
+  }
+  
+  // Clenup
+  Round::LocalNodeTestDeleteNodes(nodes, TEST_NODE_COUNT);
+}
+
+BOOST_AUTO_TEST_CASE(LocalNodeGetQuorumNodesTest) {
+  const size_t TEST_NODE_COUNT = 10;
+  
+  // Setup Nodes
+  TestLocalNode **nodes = Round::LocalNodeTestCreateNodes(TEST_NODE_COUNT);
+  
+  // Setup NodeGraph
+  for (size_t n = 0; n< TEST_NODE_COUNT; n++) {
+    for (size_t i = 0; i<TEST_NODE_COUNT; i++) {
+      NodeList nodeList;
+      BOOST_CHECK(nodes[n]->getQuorumNodes(&nodeList, i));
+      BOOST_CHECK_EQUAL(nodeList.size(), i);
+    }
+  }
+  
+  // Clenup
+  Round::LocalNodeTestDeleteNodes(nodes, TEST_NODE_COUNT);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
