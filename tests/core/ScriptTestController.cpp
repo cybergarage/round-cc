@@ -109,7 +109,7 @@ void Round::Test::ScriptTestController::runCounterMethodTest(Round::ScriptManage
   BOOST_MESSAGE(Test::SCRIPT_SETCOUNTER_NAME << " = " << result);
 
   BOOST_CHECK(scriptMgr->run(Test::SCRIPT_GETCOUNTER_NAME, "", &result, &error));
-  BOOST_CHECK_EQUAL(result.compare(""), 0);
+  BOOST_CHECK_EQUAL(result.compare("0"), 0);
   BOOST_MESSAGE(Test::SCRIPT_GETCOUNTER_NAME << " = " << result);
 }
 
