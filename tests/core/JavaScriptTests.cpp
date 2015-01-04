@@ -31,10 +31,10 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineEchoTest) {
   BOOST_CHECK(scriptMgr.hasScript(Test::SCRIPT_ECHO_NAME));
   
   Test::ScriptTestController scriptTestController;
-  scriptTestController.runEchoMethodTest(Test::SCRIPT_ECHO_NAME, &scriptMgr);
+  scriptTestController.runEchoMethodTest(&scriptMgr);
 }
 
-BOOST_AUTO_TEST_CASE(JavaScriptEngineTest) {
+BOOST_AUTO_TEST_CASE(JavaScriptEngineSumTest) {
   
   ScriptManager scriptMgr;
   
@@ -45,7 +45,27 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineTest) {
   BOOST_CHECK(scriptMgr.hasEngine(JavaScriptEngine::LANGUAGE));
   
   Test::ScriptTestController scriptTestController;
-  scriptTestController.runSumMethodTest(Test::SCRIPT_SUM_NAME, &scriptMgr);
+  scriptTestController.runSumMethodTest(&scriptMgr);
+}
+
+BOOST_AUTO_TEST_CASE(JavaScriptEngineCounterTest) {
+  Error err;
+  ScriptManager scriptMgr;
+  
+  BOOST_CHECK(scriptMgr.setEngine(new JavaScriptEngine()));
+  BOOST_CHECK(scriptMgr.hasEngine(JavaScriptEngine::LANGUAGE));
+  
+  BOOST_CHECK(scriptMgr.setScript(Test::SCRIPT_GETCOUNTER_NAME, JavaScriptEngine::LANGUAGE, Round::Test::JS_GETCOUNTER_CODE, Script::ENCODING_NONE, &err));
+  BOOST_CHECK(scriptMgr.hasScript(Test::SCRIPT_GETCOUNTER_NAME));
+  
+  BOOST_CHECK(scriptMgr.setScript(Test::SCRIPT_SETCOUNTER_NAME, JavaScriptEngine::LANGUAGE, Round::Test::JS_SETCOUNTER_CODE, Script::ENCODING_NONE, &err));
+  BOOST_CHECK(scriptMgr.hasScript(Test::SCRIPT_SETCOUNTER_NAME));
+  
+  BOOST_CHECK(scriptMgr.setScript(Test::SCRIPT_INCREMENTCOUNTER_NAME, JavaScriptEngine::LANGUAGE, Round::Test::JS_INCREMENTCOUNTER_CODE, Script::ENCODING_NONE, &err));
+  BOOST_CHECK(scriptMgr.hasScript(Test::SCRIPT_INCREMENTCOUNTER_NAME));
+  
+  Test::ScriptTestController scriptTestController;
+  scriptTestController.runCounterMethodTest(&scriptMgr);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

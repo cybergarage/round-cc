@@ -70,7 +70,7 @@ BOOST_AUTO_TEST_CASE(JavaEngineEchoTest) {
   BOOST_CHECK(scriptMgr.hasScript(Test::SCRIPT_ECHO_NAME));
   
   Test::ScriptTestController scriptTestController;
-  scriptTestController.runEchoMethodTest(Test::SCRIPT_ECHO_NAME, &scriptMgr);
+  scriptTestController.runEchoMethodTest(&scriptMgr);
 }
 
 BOOST_AUTO_TEST_CASE(JavaEngineSumTest) {
@@ -84,7 +84,7 @@ BOOST_AUTO_TEST_CASE(JavaEngineSumTest) {
   BOOST_CHECK(scriptMgr.hasScript(Test::SCRIPT_SUM_NAME));
   
   Test::ScriptTestController scriptTestController;
-  scriptTestController.runSumMethodTest(Test::SCRIPT_SUM_NAME, &scriptMgr);
+  scriptTestController.runSumMethodTest(&scriptMgr);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

@@ -22,7 +22,7 @@
 using namespace std;
 using namespace Round;
 
-void Round::Test::ScriptTestController::runEchoMethodTest(const std::string &scriptMethod, Round::ScriptManager *scriptMgr) {
+void Round::Test::ScriptTestController::runEchoMethodTest(Round::ScriptManager *scriptMgr) {
   std::vector<std::string> params;
   
   params.push_back("");
@@ -54,12 +54,12 @@ void Round::Test::ScriptTestController::runEchoMethodTest(const std::string &scr
   Error error;
   for (std::vector<std::string>::iterator echoParamIt = params.begin(); echoParamIt != params.end(); echoParamIt++) {
     std::string &echoParam = *echoParamIt;
-    BOOST_CHECK(scriptMgr->run(scriptMethod, echoParam, &results, &error));
+    BOOST_CHECK(scriptMgr->run(Test::SCRIPT_ECHO_NAME, echoParam, &results, &error));
     BOOST_CHECK_EQUAL(echoParam.compare(results), 0);
   }
 }
 
-void Round::Test::ScriptTestController::runSumMethodTest(const std::string &scriptMethod, Round::ScriptManager *scriptMgr) {
+void Round::Test::ScriptTestController::runSumMethodTest(Round::ScriptManager *scriptMgr) {
   std::vector<std::string> params;
   std::vector<std::string> results;
   
@@ -91,7 +91,25 @@ void Round::Test::ScriptTestController::runSumMethodTest(const std::string &scri
   for (size_t n = 0; n < nParams; n++) {
     std::string result;
     Error error;
-    BOOST_CHECK(scriptMgr->run(scriptMethod, params[n], &result, &error));
+    BOOST_CHECK(scriptMgr->run(Test::SCRIPT_SUM_NAME, params[n], &result, &error));
     BOOST_CHECK_EQUAL(result.compare(results[n]), 0);
   }
 }
+
+void Round::Test::ScriptTestController::runCounterMethodTest(Round::ScriptManager *scriptMgr) {
+  std::string result;
+  Error error;
+  
+  BOOST_CHECK(scriptMgr->run(Test::SCRIPT_GETCOUNTER_NAME, "", &result, &error));
+  BOOST_CHECK_EQUAL(result.compare(""), 0);
+  BOOST_MESSAGE(Test::SCRIPT_GETCOUNTER_NAME << " = " << result);
+
+  BOOST_CHECK(scriptMgr->run(Test::SCRIPT_SETCOUNTER_NAME, "0", &result, &error));
+  BOOST_CHECK_EQUAL(result.compare("0"), 0);
+  BOOST_MESSAGE(Test::SCRIPT_SETCOUNTER_NAME << " = " << result);
+
+  BOOST_CHECK(scriptMgr->run(Test::SCRIPT_GETCOUNTER_NAME, "", &result, &error));
+  BOOST_CHECK_EQUAL(result.compare(""), 0);
+  BOOST_MESSAGE(Test::SCRIPT_GETCOUNTER_NAME << " = " << result);
+}
+

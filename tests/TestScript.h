@@ -21,7 +21,10 @@ namespace Test {
 
 const std::string SCRIPT_ECHO_NAME = "echo";
 const std::string SCRIPT_SUM_NAME = "sum";
-  
+const std::string SCRIPT_SETCOUNTER_NAME = "set_counter";
+const std::string SCRIPT_INCREMENTCOUNTER_NAME = "increment_counter";
+const std::string SCRIPT_GETCOUNTER_NAME = "get_counter";
+
 const std::string JS_ECHO_CODE = \
   "function echo(params) {"\
   "  return params;"\
@@ -36,6 +39,26 @@ const std::string JS_SUM_CODE = \
   "  return sum;"\
   "}";
 
+const std::string JS_SETCOUNTER_CODE = \
+  "var global = new Function(\"return this\")();"\
+  "function set_counter(params) {"\
+  "  global.counter = params;"\
+  "  return global.counter;"\
+  "}";
+  
+const std::string JS_INCREMENTCOUNTER_CODE = \
+  "var global = new Function(\"return this\")();"\
+  "function increment_counter(params) {"\
+  "  global.counter++;"\
+  "  return global.counter;"\
+  "}";
+  
+const std::string JS_GETCOUNTER_CODE = \
+  "var global = new Function(\"return this\")();"\
+  "function get_counter(params) {"\
+  "  return global.counter;"\
+  "}";
+  
 const std::string JAVA_ECHO_SOURCE = "round/tests/scripts/echo.java";
 const std::string JAVA_ECHO_CODE = "yv66vgAAADIADwoAAwAMBwANBwAOAQAGPGluaXQ+AQADKClWAQAEQ29kZQEAD0xpbmVOdW1iZXJUYWJsZQEAA3J1bgEAJihMamF2YS9sYW5nL1N0cmluZzspTGphdmEvbGFuZy9TdHJpbmc7AQAKU291cmNlRmlsZQEACWVjaG8uamF2YQwABAAFAQAEZWNobwEAEGphdmEvbGFuZy9PYmplY3QAIQACAAMAAAAAAAIAAQAEAAUAAQAGAAAAIQABAAEAAAAFKrcAAbEAAAABAAcAAAAKAAIAAAACAAQAAwABAAgACQABAAYAAAAaAAEAAgAAAAIrsAAAAAEABwAAAAYAAQAAAAUAAQAKAAAAAgAL";
 
@@ -89,8 +112,9 @@ class ScriptTestController {
   ScriptTestController() {
   }
     
-  void runEchoMethodTest(const std::string &scriptName, Round::ScriptManager *scriptMgr);
-  void runSumMethodTest(const std::string &scriptName, Round::ScriptManager *scriptMgr);
+  void runEchoMethodTest(Round::ScriptManager *scriptMgr);
+  void runSumMethodTest(Round::ScriptManager *scriptMgr);
+  void runCounterMethodTest(Round::ScriptManager *scriptMgr);
 };
 
 }
