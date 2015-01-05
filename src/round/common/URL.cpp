@@ -11,8 +11,6 @@
 #include <sstream>
 #include <iomanip>
 
-#include <boost/lexical_cast.hpp>
-
 #include <round/common/URL.h>
 
 bool Round::URL::Encode(const std::string &sourceStr, std::string *encodedStr) {
@@ -35,14 +33,12 @@ bool Round::URL::Decode(const std::string &encodedStr, std::string *decordedStr)
   for (size_t n = 0; n<encodedStrLen; n++) {
     if (encodedStr[n] == '%') {
       if ((n + 3) <= encodedStrLen) {
-        try {
-          std::string hexValue = "0x" + encodedStr.substr(n + 1, 2);
-          int value = boost::lexical_cast<int>(hexValue);
-          *decordedStr += static_cast<char>(value);
-          n += 2;
-        } catch(boost::bad_lexical_cast &) {
-          return false;
-        }
+        unsigned int value;
+        std::stringstream ss;
+        ss << std::hex << encodedStr.substr(n + 1, 2);
+        ss >> value;
+        *decordedStr += static_cast<char>(value);
+        n += 2;
       } else {
         return false;
       }

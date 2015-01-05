@@ -10,6 +10,7 @@
 		2104C9C31A21BED40049DA92 /* ScriptTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2104C9C21A21BED40049DA92 /* ScriptTests.cpp */; };
 		2104C9CA1A21E77E0049DA92 /* JavaScriptTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2104C9C91A21E77E0049DA92 /* JavaScriptTests.cpp */; };
 		210E578C1A29A73E000B60FC /* JavaVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 210E578A1A29A73E000B60FC /* JavaVM.framework */; };
+		2111D83A1A5AC2F0007DCF40 /* URLTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2111D8391A5AC2F0007DCF40 /* URLTests.cpp */; };
 		213862DC1A45711100311FAE /* JSONRPCParserTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213862DB1A45711100311FAE /* JSONRPCParserTests.cpp */; };
 		213E910B1A4AA707001C2ED9 /* Base64Tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213E910A1A4AA707001C2ED9 /* Base64Tests.cpp */; };
 		214FC0EF1A4AEED700456552 /* JavaTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214FC0EE1A4AEED700456552 /* JavaTests.cpp */; };
@@ -120,6 +121,7 @@
 		2104C9C21A21BED40049DA92 /* ScriptTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptTests.cpp; sourceTree = "<group>"; };
 		2104C9C91A21E77E0049DA92 /* JavaScriptTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JavaScriptTests.cpp; sourceTree = "<group>"; };
 		210E578A1A29A73E000B60FC /* JavaVM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaVM.framework; path = System/Library/Frameworks/JavaVM.framework; sourceTree = SDKROOT; };
+		2111D8391A5AC2F0007DCF40 /* URLTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = URLTests.cpp; sourceTree = "<group>"; };
 		213862DB1A45711100311FAE /* JSONRPCParserTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONRPCParserTests.cpp; sourceTree = "<group>"; };
 		213E910A1A4AA707001C2ED9 /* Base64Tests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Base64Tests.cpp; sourceTree = "<group>"; };
 		213E910C1A4AAAB7001C2ED9 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
@@ -262,6 +264,7 @@
 		21AD42771A13B7FC00741A08 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				2111D8391A5AC2F0007DCF40 /* URLTests.cpp */,
 				213E910A1A4AA707001C2ED9 /* Base64Tests.cpp */,
 				21AD428B1A13B7FC00741A08 /* BitOptionTests.cpp */,
 				21AD428C1A13B7FC00741A08 /* ClockTests.cpp */,
@@ -428,6 +431,7 @@
 			files = (
 				21AD42AB1A13B7FC00741A08 /* RandomTest.cpp in Sources */,
 				2104C9CA1A21E77E0049DA92 /* JavaScriptTests.cpp in Sources */,
+				2111D83A1A5AC2F0007DCF40 /* URLTests.cpp in Sources */,
 				21AD429E1A13B7FC00741A08 /* ClockTests.cpp in Sources */,
 				21AD42A51A13B7FC00741A08 /* JSONTests.cpp in Sources */,
 				213E910B1A4AA707001C2ED9 /* Base64Tests.cpp in Sources */,
