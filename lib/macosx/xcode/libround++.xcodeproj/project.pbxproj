@@ -21,6 +21,8 @@
 		213862D71A44F38E00311FAE /* SystemMethod.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213862D61A44F38E00311FAE /* SystemMethod.cpp */; };
 		213E91091A4A912A001C2ED9 /* Base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213E91081A4A912A001C2ED9 /* Base64.cpp */; };
 		214FC0ED1A4AEA3200456552 /* Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 214FC0EC1A4AEA3200456552 /* Base64.h */; };
+		2158DCC91A5AA8A2000C35EC /* URL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2158DCC71A5AA8A2000C35EC /* URL.cpp */; };
+		2158DCCA1A5AA8A2000C35EC /* URL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2158DCC81A5AA8A2000C35EC /* URL.h */; };
 		21620E4D1A147A5600690EA8 /* Log.h in Headers */ = {isa = PBXBuildFile; fileRef = 21620E4A1A147A5600690EA8 /* Log.h */; };
 		21620E4E1A147A5600690EA8 /* Logger.h in Headers */ = {isa = PBXBuildFile; fileRef = 21620E4B1A147A5600690EA8 /* Logger.h */; };
 		21620E4F1A147A5600690EA8 /* LoggerTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = 21620E4C1A147A5600690EA8 /* LoggerTarget.h */; };
@@ -178,6 +180,8 @@
 		213862D61A44F38E00311FAE /* SystemMethod.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemMethod.cpp; sourceTree = "<group>"; };
 		213E91081A4A912A001C2ED9 /* Base64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Base64.cpp; sourceTree = "<group>"; };
 		214FC0EC1A4AEA3200456552 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		2158DCC71A5AA8A2000C35EC /* URL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = URL.cpp; sourceTree = "<group>"; };
+		2158DCC81A5AA8A2000C35EC /* URL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URL.h; sourceTree = "<group>"; };
 		21620E4A1A147A5600690EA8 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		21620E4B1A147A5600690EA8 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		21620E4C1A147A5600690EA8 /* LoggerTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerTarget.h; sourceTree = "<group>"; };
@@ -545,9 +549,8 @@
 		21DE68371A13B3EA0049227E /* common */ = {
 			isa = PBXGroup;
 			children = (
-				21EBA0841A501D460077A79A /* SHA.cpp */,
-				21EBA0851A501D460077A79A /* SHA.h */,
 				213E91081A4A912A001C2ED9 /* Base64.cpp */,
+				214FC0EC1A4AEA3200456552 /* Base64.h */,
 				21DE685C1A13B3EA0049227E /* BitOption.cpp */,
 				21DE685D1A13B3EA0049227E /* Clock.cpp */,
 				21DE685E1A13B3EA0049227E /* Configuration.cpp */,
@@ -558,7 +561,9 @@
 				21DE68631A13B3EA0049227E /* DictionaryKeyList.cpp */,
 				21DE68641A13B3EA0049227E /* Error.cpp */,
 				21DE68651A13B3EA0049227E /* HashObject.cpp */,
+				21FF09DD1A45952300547B6B /* json */,
 				21DE686B1A13B3EA0049227E /* MD5.cpp */,
+				21DE686C1A13B3EA0049227E /* MD5.h */,
 				21DE686D1A13B3EA0049227E /* Message.cpp */,
 				21DE686E1A13B3EA0049227E /* MessageManager.cpp */,
 				21DE686F1A13B3EA0049227E /* MessageQueue.cpp */,
@@ -567,17 +572,18 @@
 				21DE68721A13B3EA0049227E /* NotificationObserver.cpp */,
 				21DE68761A13B3EA0049227E /* Properties.cpp */,
 				21DE68771A13B3EA0049227E /* Random.cpp */,
+				21C1697C1A2CAD960059D95E /* rpc */,
 				21C1697A1A2CA60A0059D95E /* RPC.cpp */,
 				21DE68781A13B3EA0049227E /* Semaphore.cpp */,
 				21DE68791A13B3EA0049227E /* Settings.cpp */,
+				21EBA0841A501D460077A79A /* SHA.cpp */,
+				21EBA0851A501D460077A79A /* SHA.h */,
 				21DE687D1A13B3EA0049227E /* StringTokenizer.cpp */,
 				21DE687E1A13B3EA0049227E /* ThreadCore.cpp */,
 				21DE687F1A13B3EA0049227E /* ThreadList.cpp */,
 				21DE68801A13B3EA0049227E /* ThreadManager.cpp */,
-				214FC0EC1A4AEA3200456552 /* Base64.h */,
-				21DE686C1A13B3EA0049227E /* MD5.h */,
-				21FF09DD1A45952300547B6B /* json */,
-				21C1697C1A2CAD960059D95E /* rpc */,
+				2158DCC71A5AA8A2000C35EC /* URL.cpp */,
+				2158DCC81A5AA8A2000C35EC /* URL.h */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -621,6 +627,7 @@
 				21A99DFA1A405DD700663A47 /* SystemMethod.h in Headers */,
 				2104C9C61A21E6D30049DA92 /* JavaScript.h in Headers */,
 				21DE681B1A13B3D60049227E /* BitOption.h in Headers */,
+				2158DCCA1A5AA8A2000C35EC /* URL.h in Headers */,
 				21DA085C1A17424A00D3DCE0 /* Cluster.h in Headers */,
 				2192F13A1A4C244E00F72945 /* types.h in Headers */,
 				21CCABC61A145AAF00FE57DF /* ConsoleError.h in Headers */,
@@ -793,6 +800,7 @@
 				21DE68A21A13B3EA0049227E /* StringTokenizer.cpp in Sources */,
 				213862D71A44F38E00311FAE /* SystemMethod.cpp in Sources */,
 				216E5FC91A13CBEE0043C28B /* Client.cpp in Sources */,
+				2158DCC91A5AA8A2000C35EC /* URL.cpp in Sources */,
 				21DA08721A17426500D3DCE0 /* Cluster.cpp in Sources */,
 				21FF09F11A4596FF00547B6B /* JSONBoolean.cpp in Sources */,
 				21620E561A14809D00690EA8 /* NodeConfig.cpp in Sources */,
