@@ -95,7 +95,13 @@ bool Round::Dictionary::get(const std::string &key, int *value) const {
     return false;
   if (strValue.length() <= 0)
     return false;
-  *value = boost::lexical_cast<int>(strValue);
+
+  try {
+    *value = boost::lexical_cast<int>(strValue);
+  } catch(boost::bad_lexical_cast &) {
+    return false;
+  }
+  
   return true;
 }
 
@@ -103,7 +109,13 @@ bool Round::Dictionary::get(const std::string &key, bool *value) const {
   int intValue;
   if (get(key, &intValue) == false)
     return false;
-  *value = (intValue == 0) ? false : true;
+  
+  try {
+    *value = (intValue == 0) ? false : true;
+  } catch(boost::bad_lexical_cast &) {
+    return false;
+  }
+  
   return true;
 }
 
@@ -113,7 +125,13 @@ bool Round::Dictionary::get(const std::string &key, long *value) const {
     return false;
   if (strValue.length() <= 0)
     return false;
-  *value = boost::lexical_cast<long>(strValue);
+  
+  try {
+    *value = boost::lexical_cast<long>(strValue);
+  } catch(boost::bad_lexical_cast &) {
+    return false;
+  }
+
   return true;
 }
 
@@ -123,7 +141,13 @@ bool Round::Dictionary::get(const std::string &key, size_t *value) const {
     return false;
   if (strValue.length() <= 0)
     return false;
-  *value = boost::lexical_cast<size_t>(strValue);
+  
+  try {
+    *value = boost::lexical_cast<size_t>(strValue);
+  } catch(boost::bad_lexical_cast &) {
+    return false;
+  }
+  
   return true;
 }
 
@@ -133,7 +157,13 @@ bool Round::Dictionary::get(const std::string &key, double *value) const {
     return false;
   if (strValue.length() <= 0)
     return false;
-  *value = boost::lexical_cast<double>(strValue);
+  
+  try {
+    *value = boost::lexical_cast<double>(strValue);
+  } catch(boost::bad_lexical_cast &) {
+    return false;
+  }
+  
   return true;
 }
 
