@@ -34,6 +34,12 @@ Round is a decentralized and distributed system, every nodes in a cluster has eq
 
 ![round_overview_zeroconf](img/round_overview_decentralized.png)
 
+### Dynamics
+
+The behaviors of node are defined using a dynamic programming language script, so the distributed strategies and algorithms are configurable dynamically. To send a script, developers can change the strategy and algorithm of all nodes in the cluster dynamically.
+
+![round_overview_dynamics](img/round_overview_dynamics.png)
+
 ### Autonomous
 
 Each node run as an autonomous agent in the cluster, a node communicate to other nodes based on the specified behaviors using the message protocol synchronously or asynchronously.
@@ -42,15 +48,9 @@ Each node run as an autonomous agent in the cluster, a node communicate to other
 
 The some basic behaviors are defined as default, and developers can override the default behaviors or add new behaviors using some programming languages such as JavaScript or Java.
 
-### Dynamics
-
-The behaviors of node are defined using a dynamic programming language script, so the distributed strategies and algorithms are configurable dynamically. To send a script, developers can change the strategy and algorithm of all nodes in the cluster dynamically.
-
-![round_overview_dynamics](img/round_overview_dynamics.png)
-
 ## Support Functions
 
-Round supports the following functions for distrubted systems.
+Round supports the following functions to develop distrubted applications or systems.
 
 ### Auto Configuration
 
