@@ -27,7 +27,7 @@ BOOST_AUTO_TEST_CASE(Base64Test) {
   testStrings.push_back("0123456789");
   testStrings.push_back("abcdefghijklmnopqrstuvwxyz");
   testStrings.push_back("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-  testStrings.push_back("~`!@#$%^&*()_+{}[]|\\:;\"'<>,.?/");
+  testStrings.push_back("+-=~`!@#$%^&*()_+{}[]|\\:;\"'<>,.?/");
   
   for (std::vector<std::string>::iterator testString = testStrings.begin(); testString != testStrings.end(); testString++) {
     byte *encordBytes = (byte *)(*testString).c_str();
