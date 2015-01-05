@@ -9,6 +9,7 @@
  ******************************************************************/
 
 #include <boost/test/unit_test.hpp>
+#include <boost/lexical_cast.hpp>
 
 #include <sstream>
 #include <string.h>
@@ -100,16 +101,20 @@ void Round::Test::ScriptTestController::runCounterMethodTest(Round::ScriptManage
   std::string result;
   Error error;
   
-  BOOST_CHECK(scriptMgr->run(Test::SCRIPT_GETCOUNTER_NAME, "", &result, &error));
-  BOOST_CHECK_EQUAL(result.compare(""), 0);
-  BOOST_MESSAGE(Test::SCRIPT_GETCOUNTER_NAME << " = " << result);
+  const size_t TEST_LOOP_COUNT = 10;
 
-  BOOST_CHECK(scriptMgr->run(Test::SCRIPT_SETCOUNTER_NAME, "0", &result, &error));
-  BOOST_CHECK_EQUAL(result.compare("0"), 0);
-  BOOST_MESSAGE(Test::SCRIPT_SETCOUNTER_NAME << " = " << result);
+  // set_counter, get_counter
+  for (size_t n=0; n<=TEST_LOOP_COUNT; n++) {
+    BOOST_CHECK(scriptMgr->run(Test::SCRIPT_SETCOUNTER_NAME, boost::lexical_cast<std::string>(n), &result, &error));
+    BOOST_CHECK(scriptMgr->run(Test::SCRIPT_GETCOUNTER_NAME, "", &result, &error));
+    BOOST_CHECK_EQUAL(boost::lexical_cast<int>(result), n);
+  }
 
-  BOOST_CHECK(scriptMgr->run(Test::SCRIPT_GETCOUNTER_NAME, "", &result, &error));
-  BOOST_CHECK_EQUAL(result.compare("0"), 0);
-  BOOST_MESSAGE(Test::SCRIPT_GETCOUNTER_NAME << " = " << result);
+  // set_counter, inc_counter, get_counter
+  for (size_t n=0; n<=TEST_LOOP_COUNT; n++) {
+    BOOST_CHECK(scriptMgr->run(Test::SCRIPT_INCCOUNTER_NAME, "", &result, &error));
+    BOOST_CHECK(scriptMgr->run(Test::SCRIPT_GETCOUNTER_NAME, "", &result, &error));
+    BOOST_CHECK_EQUAL(boost::lexical_cast<int>(result), (n + TEST_LOOP_COUNT + 1));
+  }
 }
 

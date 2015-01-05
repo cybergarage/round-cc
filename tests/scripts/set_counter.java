@@ -8,9 +8,9 @@ public class set_counter extends Object {
   public String run(String params) {
     try {
       int value = Integer.parseInt(params);
-      Counter.SetValue(value);
+      Counter.value = value;
     } catch (Exception e) {}
 
-    return String.valueOf(Counter.GetValue());
+    return String.valueOf(Counter.value);
   }
 }

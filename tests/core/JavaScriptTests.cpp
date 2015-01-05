@@ -61,8 +61,8 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineCounterTest) {
   BOOST_CHECK(scriptMgr.setScript(Test::SCRIPT_SETCOUNTER_NAME, JavaScriptEngine::LANGUAGE, Round::Test::JS_SETCOUNTER_CODE, Script::ENCODING_NONE, &err));
   BOOST_CHECK(scriptMgr.hasScript(Test::SCRIPT_SETCOUNTER_NAME));
   
-  BOOST_CHECK(scriptMgr.setScript(Test::SCRIPT_INCREMENTCOUNTER_NAME, JavaScriptEngine::LANGUAGE, Round::Test::JS_INCREMENTCOUNTER_CODE, Script::ENCODING_NONE, &err));
-  BOOST_CHECK(scriptMgr.hasScript(Test::SCRIPT_INCREMENTCOUNTER_NAME));
+  BOOST_CHECK(scriptMgr.setScript(Test::SCRIPT_INCCOUNTER_NAME, JavaScriptEngine::LANGUAGE, Round::Test::JS_INCREMENTCOUNTER_CODE, Script::ENCODING_NONE, &err));
+  BOOST_CHECK(scriptMgr.hasScript(Test::SCRIPT_INCCOUNTER_NAME));
   
   Test::ScriptTestController scriptTestController;
   scriptTestController.runCounterMethodTest(&scriptMgr);

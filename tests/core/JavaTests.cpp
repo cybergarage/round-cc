@@ -87,4 +87,27 @@ BOOST_AUTO_TEST_CASE(JavaEngineSumTest) {
   scriptTestController.runSumMethodTest(&scriptMgr);
 }
 
+BOOST_AUTO_TEST_CASE(JavaEngineCounterTest) {
+  Error err;
+  ScriptManager scriptMgr;
+  
+  BOOST_CHECK(scriptMgr.setEngine(new JavaEngine()));
+  BOOST_CHECK(scriptMgr.hasEngine(JavaEngine::LANGUAGE));
+  
+  BOOST_CHECK(scriptMgr.setScript(Test::SCRIPT_COUNTER_NAME, JavaEngine::LANGUAGE, Round::Test::JAVA_COUNTER_CODE, Script::ENCODING_BASE64, &err));
+  BOOST_CHECK(scriptMgr.hasScript(Test::SCRIPT_COUNTER_NAME));
+  
+  BOOST_CHECK(scriptMgr.setScript(Test::SCRIPT_SETCOUNTER_NAME, JavaEngine::LANGUAGE, Round::Test::JAVA_SETCOUNTER_CODE, Script::ENCODING_BASE64, &err));
+  BOOST_CHECK(scriptMgr.hasScript(Test::SCRIPT_SETCOUNTER_NAME));
+  
+  BOOST_CHECK(scriptMgr.setScript(Test::SCRIPT_GETCOUNTER_NAME, JavaEngine::LANGUAGE, Round::Test::JAVA_GETCOUNTER_CODE, Script::ENCODING_BASE64, &err));
+  BOOST_CHECK(scriptMgr.hasScript(Test::SCRIPT_GETCOUNTER_NAME));
+  
+  BOOST_CHECK(scriptMgr.setScript(Test::SCRIPT_INCCOUNTER_NAME, JavaEngine::LANGUAGE, Round::Test::JAVA_INCCOUNTER_CODE, Script::ENCODING_BASE64, &err));
+  BOOST_CHECK(scriptMgr.hasScript(Test::SCRIPT_INCCOUNTER_NAME));
+  
+  Test::ScriptTestController scriptTestController;
+  scriptTestController.runCounterMethodTest(&scriptMgr);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
