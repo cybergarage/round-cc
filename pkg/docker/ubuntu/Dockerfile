@@ -35,4 +35,5 @@ WORKDIR /tmp
 RUN rm -rf round
 
 # JNI 
-ENV LD_LIBRARY_PATH /usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64:/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64/server
+ENV JAVA_HOME `update-java-alternatives -l | head -n 1 | awk '{print $3}'`
+ENV LD_LIBRARY_PATH $JAVA_HOME/jre/lib/amd64:$JAVA_HOME/jre/lib/amd64/server
