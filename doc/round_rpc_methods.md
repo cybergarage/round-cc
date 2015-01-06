@@ -70,7 +70,34 @@ Round prepares the following default static methods. The methods are implemented
 | _set_route | Create a route | {"name" : (value), "src" : (timer or method name), "dest" : (method name), "params": (xxxx), "type" : (pipe or event)} |
 | _set_timer | Create a timer | {"name" : (value), "start_time" : (value), "stop_time" : (value), "cycle_interval": (value), "loop" : (value)} |
 
+#### _set_method
+
+```
+_set_method := "{" language,  "}"
+```
+
 If the code parameter isn't specified, the method is removed.
+
+#### _set_route
+
+```
+_set_route := "{" name source destnation [params] [type] [cond]"}"
+
+name = "name" ":" TOKEN
+source = "src" ":" (timer-name | method-name)
+destnation = "dest" ":" method-name
+params = "{" *(param) "}"
+type = "type" ":" ("pipe" | "event")
+cond = "cond" ":" SCRIPT
+
+param = (src-out-param-name | src-param-script) ":" in-param-name
+
+src-out-param-name = TOKEN
+src-out-param-script = SCRIPT
+int-param-name = TOKEN
+timer-name = TOKEN
+method-name = TOKEN
+```
 
 ### Dynamic Methods
 
