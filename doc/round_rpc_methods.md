@@ -99,6 +99,18 @@ timer-name = TOKEN
 method-name = TOKEN
 ```
 
+#### _set_timer
+
+```
+_set_timer := "{" name [start_time] [stop_time] [cycle_interval] [loop] "}"
+
+name = "name" ":" TOKEN
+start_time = "start_time" ":" INTEGER
+stop_time = "stop_time" ":" INTEGER
+cycle_interval = "cycle_interval" ":" INTEGER
+loop = "loop" ":" BOOL
+```
+
 ### Dynamic Methods
 
 Round prepares the following default dynamic methods. The methods are implemented using the native programming language as default, but developers can override the default functions using '_set_method'.
