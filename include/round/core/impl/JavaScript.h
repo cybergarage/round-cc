@@ -14,8 +14,11 @@
 #include <round/core/Script.h>
 
 #if !defined(ROUND_USE_JS_V8) && !defined(ROUND_USE_JS_SPIDERMONKEY)
-//#define ROUND_USE_JS_SPIDERMONKEY 1
-//#define ROUND_USE_JS_V8 1
+#define ROUND_USE_JS_SPIDERMONKEY 1
+#endif
+
+#if defined(ROUND_USE_JS_SPIDERMONKEY)
+#include <js/jsapi.h>
 #endif
 
 namespace Round {
@@ -36,8 +39,16 @@ class JavaScriptEngine : public ScriptEngine {
  private:
 
   void init();
+  void finalize();
   bool getSourceCode(const Script *script, const std::string &params, std::string *sourceCode) const;
   bool run(const std::string &source, std::string *results, Error *error) const;
+
+#if defined(ROUND_USE_JS_SPIDERMONKEY)
+  JSRuntime *rt;
+  JSContext *cx;
+  JSObject  *glob;
+#endif
+  
 };
   
 }

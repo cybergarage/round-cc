@@ -12,59 +12,63 @@
 
 #if defined(ROUND_USE_JS_SPIDERMONKEY)
 
-#include <js/jsapi.h>
-
-static JSRuntime *rt;
-static JSContext *cx;
-static JSObject  *glob;
-
 ////////////////////////////////////////////////
-//  Static methods
+// Static
 ////////////////////////////////////////////////
 
-namespace Round {
-  
-static bool IsJavaScriptEngineListInitialized = false;
-
-static void JavaScriptEngineExit(void) {
-  JS_DestroyContext(cx);
-  JS_DestroyRuntime(rt);
-  JS_ShutDown();
+static void RoundJSReportError(JSContext *cx, const char *message, JSErrorReport *report)
+{
+  fprintf(stderr, "%s:%u:%s\n",
+          report->filename ? report->filename : "<no filename>",
+          (unsigned int) report->lineno,
+          message);
 }
 
-static JSClass global_class = {
-    "JSDGlobal",
-    JSCLASS_GLOBAL_FLAGS,
-    JS_PropertyStub,
-    JS_PropertyStub,
-    JS_PropertyStub,
-    JS_StrictPropertyStub,
-    JS_EnumerateStub,
-    JS_ResolveStub,
-    JS_ConvertStub,
-    JS_FinalizeStub,
-    JSCLASS_NO_OPTIONAL_MEMBERS
-  };
-}
+JSClass RoundJSGlobalClass = {
+  "global",
+  JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS | JSCLASS_HAS_PRIVATE,
+  JS_PropertyStub,
+  JS_PropertyStub,
+  JS_PropertyStub,
+  JS_StrictPropertyStub,
+  JS_EnumerateStub,
+  JS_ResolveStub,
+  JS_ConvertStub,
+  JS_FinalizeStub,
+  JSCLASS_NO_OPTIONAL_MEMBERS
+};
 
 ////////////////////////////////////////////////
 // init
 ////////////////////////////////////////////////
 
 void Round::JavaScriptEngine::init() {
-  if (!IsJavaScriptEngineListInitialized) {
-    rt = JS_NewRuntime(8L * 1024L * 1024L);
-    if (!rt)
-      return;
-    cx = JS_NewContext(rt, 8192);
-    if (!cx)
-      return;
-    glob = JS_NewGlobalObject(cx, &global_class);
-    if (!glob)
-      return;
-    JS_InitStandardClasses(cx, glob);
-    atexit(JavaScriptEngineExit);
-  }
+  rt = JS_NewRuntime(8L * 1024L * 1024L);
+  if (!rt)
+    return;
+  
+  cx = JS_NewContext(rt, 8192);
+  if (!cx)
+    return;
+  
+  JS_SetErrorReporter(cx, RoundJSReportError);
+  
+  // Obsolete since JSAPI 16
+  glob = JS_NewCompartmentAndGlobalObject(cx, &RoundJSGlobalClass, NULL);
+  if (!glob)
+    return;
+    
+  JS_InitStandardClasses(cx, glob);
+}
+
+////////////////////////////////////////////////
+// finalize
+////////////////////////////////////////////////
+
+void Round::JavaScriptEngine::finalize() {
+  JS_DestroyContext(cx);
+  JS_DestroyRuntime(rt);
+  JS_ShutDown();
 }
 
 ////////////////////////////////////////////////
