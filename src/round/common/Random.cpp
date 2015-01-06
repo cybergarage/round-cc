@@ -14,9 +14,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
 
 #include <algorithm>
+#include <ctime>
+#include <climits>
 #include <boost/random.hpp>
 
 #include <round/common/Random.h>
@@ -44,7 +45,7 @@ void Round::Random::initialize(unsigned int min, unsigned int max) {
   this->maxRange = max;
   
   if (!gRandEngine) {
-    uint32_t seed = std::time(0) % UINT32_MAX;
+    uint32_t seed = std::time(0) % std::numeric_limits<uint32_t>::max();
 #if defined(HAVE_BOOST_RANDOM)
     gRandEngine = new boost::random::mt19937(seed);
 #else

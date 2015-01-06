@@ -14,7 +14,8 @@
 #include <round/core/Script.h>
 
 #if !defined(ROUND_USE_JS_V8) && !defined(ROUND_USE_JS_SPIDERMONKEY)
-#define ROUND_USE_JS_SPIDERMONKEY 1
+//#define ROUND_USE_JS_SPIDERMONKEY 1
+//#define ROUND_USE_JS_V8 1
 #endif
 
 namespace Round {
