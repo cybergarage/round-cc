@@ -67,6 +67,7 @@ Round prepares the following default static methods. The methods are implemented
 | Name | Perpose | Params |
 | --- | --- | --- |
 | _set_method | Set a script method | {"language" : "js", "name" : (value), "encode": (encodeType), "code" : (value)} |
+| _set_timer | Create a timer | {"name" : (value), "start_time" : (value), "stop_time" : (value), "cycle_interval": (value), "loop" : (value)} |
 
 If the code parameter isn't specified, the method is removed.
 
