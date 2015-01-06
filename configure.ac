@@ -14,10 +14,11 @@ AM_INIT_AUTOMAKE
 # Constants
 ##############################
 
+BOOST_VERSION=1.46
 EXPAT_VERSION=1.95
 LIBXML2_VERSION=2.6.20
-JANSSON_VERSION=2.6
-JNI_VERSION=1.7.0
+JANSSON_VERSION=2.2.1
+JNI_VERSION=1.6.0
 V8_VERSION=3.14
 UHTTP_VERSION=0.6
 CLINKCC_VERSION=2.0
@@ -52,9 +53,9 @@ AM_CONDITIONAL(HAVE_LIBTOOL, test $with_libtool = yes)
 # Checks for BOOST 
 ##############################
 
-#AC_CHECK_LIB([boost_system-mt],[main],,[AC_MSG_ERROR(Round for C++ needs boost::system-mt)])
-#AC_CHECK_LIB([boost_filesystem-mt],[main],,[AC_MSG_ERROR(Round for C++ needs boost::filesystem-mt)])
-#AC_CHECK_LIB([boost_thread-mt],[main],,[AC_MSG_ERROR(Round for C++ needs boost::thread-mt)])
+AC_CHECK_LIB([boost_system-mt],[main],,[AC_MSG_ERROR(Round for C++ needs boost::system-mt)])
+AC_CHECK_LIB([boost_filesystem-mt],[main],,[AC_MSG_ERROR(Round for C++ needs boost::filesystem-mt)])
+AC_CHECK_LIB([boost_thread-mt],[main],,[AC_MSG_ERROR(Round for C++ needs boost::thread-mt)])
 
 ##############################
 # Checks for Basic Libraries
@@ -143,18 +144,12 @@ fi
 ##############################
 
 AC_CHECK_LIB([jansson],[main],,[AC_MSG_ERROR(Round for C++ needs Jansson $JANSSON_VERSION later)])
-#AC_CHECK_LIB([jni],[main],,[AC_MSG_ERROR(Round for C++ needs JNI $JNI_VERSION later)])
+AC_CHECK_HEADERS([jni.h],,[AC_MSG_ERROR(Round for C++ needs JNI $JNI_VERSION later)])
+AC_CHECK_LIB([jvm],[main],,[AC_MSG_ERROR(Round for C++ needs JNI $JNI_VERSION later)])
 AC_CHECK_LIB([v8],[main],,[AC_MSG_ERROR(Round for C++ needs V8 $V8_VERSION later)])
 
 ##############################
-# Checks for Cyber Garage Libraries
-##############################
-
-AC_CHECK_LIB([uhttp++],[main],,[AC_MSG_ERROR(Round for C++ needs libuhttp++ $UHTTP_VERSION later)])
-AC_CHECK_LIB([clink++],[main],,[AC_MSG_ERROR(Round for C++ needs libclink++ $CLINKCC_VERSION later)])
-
-##############################
-# Checks for other functions.
+# Checks for compile
 ##############################
 
 ### boost::random ####
@@ -183,6 +178,13 @@ AM_CONDITIONAL(UNITTESTS,test "$build_tests" = yes)
 if [ test "$build_tests" = yes ]; then
 	AC_CHECK_LIB([boost_unit_test_framework-mt],[main],,[AC_MSG_ERROR(Round unittests need boost::unit_test_framework-mt)])
 fi
+
+##############################
+# Checks for Cyber Garage Libraries
+##############################
+
+AC_CHECK_LIB([uhttp++],[main],,[AC_MSG_ERROR(Round for C++ needs libuhttp++ $UHTTP_VERSION later)])
+AC_CHECK_LIB([clink++],[main],,[AC_MSG_ERROR(Round for C++ needs libclink++ $CLINKCC_VERSION later)])
 
 ##############################
 # Makefiles

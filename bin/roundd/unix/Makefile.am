@@ -14,4 +14,6 @@ roundd_SOURCES = \
 
 roundd_LDADD = \
 	../../../lib/unix/libround++.a \
+	-lclink++ \
+	-luhttp++ \
 	@XML_LIBS@

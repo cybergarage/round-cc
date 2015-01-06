@@ -70,3 +70,18 @@ bool Round::JavaScriptEngine::run(const Script *jsScript, const std::string &par
   
   return run(jsSource, results, error);
 }
+
+////////////////////////////////////////////////
+// Methods (Stub)
+////////////////////////////////////////////////
+
+#if !defined(ROUND_USE_JS_V8) && !defined(ROUND_USE_JS_SPIDERMONKEY)
+
+void Round::JavaScriptEngine::init() {
+}
+
+bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *results, Error *error) const {
+}
+
+#endif
+

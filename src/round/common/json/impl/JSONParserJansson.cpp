@@ -64,7 +64,11 @@ static void RoundToJSONObject(Round::JSONParser *jsonParser, Round::JSONDictiona
   json_t *jsonTObj;
   Round::JSONObject *childObject;
   
-  json_object_foreach(jsonTDict, jsonKey, jsonTObj) {
+  // New in version 2.3
+  // json_object_foreach(jsonTDict, jsonKey, jsonTObj) {
+  for (void *it = json_object_iter(jsonTDict); it; it = json_object_iter_next(jsonTDict, it)) {
+    jsonKey = json_object_iter_key(it);
+    jsonTObj = json_object_iter_value(it);
     childObject = RoundToJSONObject(jsonParser, jsonTObj);
     parentDict->set(jsonKey, childObject);
     if (json_is_object(jsonTObj)) {
@@ -82,8 +86,12 @@ static void RoundToJSONObject(Round::JSONParser *jsonParser, Round::JSONArray *p
   size_t jsonIdx;
   json_t *jsonTObj;
   Round::JSONObject *childObject;
-  
-  json_array_foreach(jsonTArray, jsonIdx, jsonTObj) {
+
+  // New in version 2.5.
+  // json_array_foreach(jsonTArray, jsonIdx, jsonTObj) {
+  size_t jsonTObjCnt = json_array_size(jsonTArray);
+  for (jsonIdx =0; jsonIdx < jsonTObjCnt; jsonIdx++) {
+    jsonTObj = json_array_get(jsonTArray, jsonIdx);
     childObject = RoundToJSONObject(jsonParser, jsonTObj);
     parentArray->add(childObject);
     if (json_is_object(jsonTObj)) {
