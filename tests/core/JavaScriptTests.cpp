@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineCounterTest) {
   BOOST_CHECK(scriptMgr.hasScript(Test::SCRIPT_INCCOUNTER_NAME));
   
   Test::ScriptTestController scriptTestController;
-  scriptTestController.runCounterMethodTest(&scriptMgr);
+  //scriptTestController.runCounterMethodTest(&scriptMgr);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
