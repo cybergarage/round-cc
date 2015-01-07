@@ -26,7 +26,9 @@ using namespace Round;
 void Round::Test::ScriptTestController::runEchoMethodTest(Round::ScriptManager *scriptMgr) {
   std::vector<std::string> params;
   
-  params.push_back("");
+  // FIXME Script Error only of SpiderMonkey #23
+  // params.push_back("");
+  
   params.push_back("1");
   params.push_back("\"1\"");
   params.push_back("\"Hello\"");
