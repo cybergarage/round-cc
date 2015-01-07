@@ -20,6 +20,7 @@ LIBXML2_VERSION=2.6.20
 JANSSON_VERSION=2.2.1
 JNI_VERSION=1.6.0
 V8_VERSION=3.14
+JS_VERSION=1.8.5
 UHTTP_VERSION=0.6
 CLINKCC_VERSION=2.0
 
@@ -146,7 +147,8 @@ fi
 AC_CHECK_LIB([jansson],[main],,[AC_MSG_ERROR(Round for C++ needs Jansson $JANSSON_VERSION later)])
 AC_CHECK_HEADERS([jni.h],,[AC_MSG_ERROR(Round for C++ needs JNI $JNI_VERSION later)])
 AC_CHECK_LIB([jvm],[main],,[AC_MSG_ERROR(Round for C++ needs JNI $JNI_VERSION later)])
-AC_CHECK_LIB([v8],[main],,[AC_MSG_ERROR(Round for C++ needs V8 $V8_VERSION later)])
+AC_CHECK_LIB([mozjs185],[main],,[AC_MSG_ERROR(Round for C++ needs V8 $JS_VERSION later)])
+#AC_CHECK_LIB([v8],[main],,[AC_MSG_ERROR(Round for C++ needs V8 $V8_VERSION later)])
 
 ##############################
 # Checks for compile
