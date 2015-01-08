@@ -1,0 +1,3 @@
+#!/bin/bash
+export JVM_FWDIR=/System/Library/Frameworks/JavaVM.framework
+./configure CPPFLAGS="-I$JVM_FWDIR/Headers" LDFLAGS="-L$JVM_FWDIR/Libraries -framework JavaVM" $@
