@@ -71,7 +71,7 @@ bool Round::UPnPNodeFinder::addRemoteNode(const std::string &remoteHost, int rem
   return postNodeAdded(&remoteNode);
 }
 
-bool Round::UPnPNodeFinder::addRemoteNode(CyberLink::SSDPPacket *ssdpPacket) {
+bool Round::UPnPNodeFinder::addRemoteNode(mUPnP::SSDPPacket *ssdpPacket) {
   std::string nt;
   ssdpPacket->getNT(nt);
   
@@ -93,7 +93,7 @@ bool Round::UPnPNodeFinder::removeRemoteNode(const std::string &remoteHost, int 
   return postNodeRemoved(&remoteNode);
 }
 
-bool Round::UPnPNodeFinder::deviceAdded(CyberLink::Device * dev) {
+bool Round::UPnPNodeFinder::deviceAdded(mUPnP::Device * dev) {
   std::string devType = dev->getDeviceType();
   if (!UPnPServerNode::IsRoundDeviceType(devType))
     return false;
@@ -108,7 +108,7 @@ bool Round::UPnPNodeFinder::deviceAdded(CyberLink::Device * dev) {
                 devURL.getPort());
 }
 
-bool Round::UPnPNodeFinder::deviceRemoved(CyberLink::Device * dev) {
+bool Round::UPnPNodeFinder::deviceRemoved(mUPnP::Device * dev) {
   if (!UPnPServerNode::IsRoundDeviceType(dev->getDeviceType()))
     return false;
   
@@ -123,10 +123,10 @@ bool Round::UPnPNodeFinder::deviceRemoved(CyberLink::Device * dev) {
 
 }
 
-bool Round::UPnPNodeFinder::deviceNotifyReceived(CyberLink::SSDPPacket *ssdpPacket) {
+bool Round::UPnPNodeFinder::deviceNotifyReceived(mUPnP::SSDPPacket *ssdpPacket) {
   return addRemoteNode(ssdpPacket);
 }
 
-bool Round::UPnPNodeFinder::deviceSearchResponseReceived(CyberLink::SSDPPacket *ssdpPacket) {
+bool Round::UPnPNodeFinder::deviceSearchResponseReceived(mUPnP::SSDPPacket *ssdpPacket) {
   return addRemoteNode(ssdpPacket);
 }

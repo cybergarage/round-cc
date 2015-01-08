@@ -12,13 +12,13 @@
 #define _ROUNDCC_HTTPUSERVER_H_
 
 #include <uhttp/util/Thread.h>
-#include <cybergarage/upnp/ssdp/HTTPUSocket.h>
-#include <cybergarage/upnp/ssdp/SSDPSearchResponse.h>
-#include <cybergarage/upnp/ssdp/SSDPSearchRequest.h>
+#include <mupnp/ssdp/HTTPUSocket.h>
+#include <mupnp/ssdp/SSDPSearchResponse.h>
+#include <mupnp/ssdp/SSDPSearchRequest.h>
 
 namespace Round {
 
-class HTTPUServer : public CyberLink::HTTPUSocket, public uHTTP::Thread {
+class HTTPUServer : public mUPnP::HTTPUSocket, public uHTTP::Thread {
 
  public:
 

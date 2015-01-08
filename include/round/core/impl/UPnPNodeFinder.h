@@ -12,11 +12,11 @@
 #define _ROUNDCC_NODEUPNPFINDER_H_
 
 #include <round/core/NodeFinder.h>
-#include <cybergarage/upnp/ControlPoint.h>
+#include <mupnp/ControlPoint.h>
 
 namespace Round {
 
-class UPnPNodeFinder : public NodeFinder, public CyberLink::NotifyListener, public CyberLink::SearchResponseListener, public CyberLink::DeviceChangeListener {
+class UPnPNodeFinder : public NodeFinder, public mUPnP::NotifyListener, public mUPnP::SearchResponseListener, public mUPnP::DeviceChangeListener {
 
 public:
   
@@ -31,10 +31,10 @@ public:
   bool stop(Error *error);
   bool search(Error *error);
   
-  bool deviceAdded(CyberLink::Device * dev);
-  bool deviceRemoved(CyberLink::Device * dev);
-  bool deviceNotifyReceived(CyberLink::SSDPPacket *ssdpPacket);
-  bool deviceSearchResponseReceived(CyberLink::SSDPPacket *ssdpPacket);
+  bool deviceAdded(mUPnP::Device * dev);
+  bool deviceRemoved(mUPnP::Device * dev);
+  bool deviceNotifyReceived(mUPnP::SSDPPacket *ssdpPacket);
+  bool deviceSearchResponseReceived(mUPnP::SSDPPacket *ssdpPacket);
 
   void setEnabled(bool flag) {
     this->enabled = flag;
@@ -47,12 +47,12 @@ public:
 private:
   
   bool addRemoteNode(const std::string &remoteHost, int remotePort);
-  bool addRemoteNode(CyberLink::SSDPPacket *ssdpPacket);
+  bool addRemoteNode(mUPnP::SSDPPacket *ssdpPacket);
   bool removeRemoteNode(const std::string &remoteHost, int remotePort);
 
 private:
   
-  CyberLink::ControlPoint upnpControlPoint;
+  mUPnP::ControlPoint upnpControlPoint;
   bool enabled;
 };
 

@@ -22,7 +22,7 @@ JNI_VERSION=1.6.0
 V8_VERSION=3.14
 JS_VERSION=1.8.5
 UHTTP_VERSION=0.6
-CLINKCC_VERSION=2.0
+MUPNPCC_VERSION=2.0
 
 ##############################
 # Checks for programs.
@@ -186,7 +186,7 @@ fi
 ##############################
 
 AC_CHECK_LIB([uhttp++],[main],,[AC_MSG_ERROR(Round for C++ needs libuhttp++ $UHTTP_VERSION later)])
-AC_CHECK_LIB([clink++],[main],,[AC_MSG_ERROR(Round for C++ needs libclink++ $CLINKCC_VERSION later)])
+AC_CHECK_LIB([mupnp++],[main],,[AC_MSG_ERROR(Round for C++ needs libclink++ $MUPNPCC_VERSION later)])
 
 ##############################
 # Makefiles

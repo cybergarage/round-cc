@@ -20,7 +20,7 @@ Round::HTTPUServer::~HTTPUServer() {
 
 void Round::HTTPUServer::run() {
   while (isRunnable() == true) {
-    CyberLink::SSDPPacket ssdpPacket;
+    mUPnP::SSDPPacket ssdpPacket;
     if (!receive(&ssdpPacket))
       break;
   }
