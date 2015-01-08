@@ -16,17 +16,17 @@ RUN ./bootstrap && ./configure && make && make install
 WORKDIR /tmp
 RUN rm -rf uhttp
 
-# CyberLink for C++
+# mUPnP for C++
 RUN apt-get install -y libxml2-dev
 WORKDIR /tmp
-RUN git clone https://github.com/cybergarage/CyberLink4CC.git clinkcc
-WORKDIR clinkcc
+RUN git clone https://github.com/cybergarage/mUPnPCC.git mupnp
+WORKDIR mupnp
 RUN ./bootstrap && ./configure && make && make install
 WORKDIR /tmp
-RUN rm -rf clinkcc
+RUN rm -rf mupnp
 
 # Round
-RUN apt-get install -y libboost-all-dev libssl-dev libjansson-dev libv8-dev openjdk-6-jdk
+RUN apt-get install -y libboost-all-dev libssl-dev libjansson-dev openjdk-6-jdk libmozjs185-dev libv8-dev
 WORKDIR /tmp
 RUN git clone https://github.com/cybergarage/Round.git round
 WORKDIR round
