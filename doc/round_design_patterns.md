@@ -2,6 +2,8 @@
 
 # Design Patterns
 
+## Pipeline
+
 ## Execution
 
 ### Client Centric Consistency
