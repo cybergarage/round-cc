@@ -13,8 +13,8 @@
 
 #include <string>
 
-#include <cybergarage/upnp/Device.h>
-#include <cybergarage/upnp/ControlPoint.h>
+#include <mupnp/Device.h>
+#include <mupnp/ControlPoint.h>
 
 #include <round/Finder.h>
 #include <round/core/ServerNode.h>
@@ -22,7 +22,7 @@
 
 namespace Round {
 
-class UPnPServerNode : public ServerNode, public CyberLink::Device {
+class UPnPServerNode : public ServerNode, public mUPnP::Device {
  public:
   static const std::string DEVICE_TYPE;
 
@@ -39,17 +39,17 @@ class UPnPServerNode : public ServerNode, public CyberLink::Device {
   bool start(Error *error);
   bool stop(Error *error);
 
-  void deviceAdded(CyberLink::Device * dev);
-  void deviceRemoved(CyberLink::Device * dev);
-  void deviceNotifyReceived(CyberLink::SSDPPacket *ssdpPacket);
-  void deviceSearchResponseReceived(CyberLink::SSDPPacket *ssdpPacket);
+  void deviceAdded(mUPnP::Device * dev);
+  void deviceRemoved(mUPnP::Device * dev);
+  void deviceNotifyReceived(mUPnP::SSDPPacket *ssdpPacket);
+  void deviceSearchResponseReceived(mUPnP::SSDPPacket *ssdpPacket);
 
 private:
 
-  CyberLink::Service *getNodeService();
+  mUPnP::Service *getNodeService();
 
-  bool actionControlReceived(CyberLink::Action *action);
-  bool queryControlReceived(CyberLink::StateVariable *stateVar);
+  bool actionControlReceived(mUPnP::Action *action);
+  bool queryControlReceived(mUPnP::StateVariable *stateVar);
   uHTTP::HTTP::StatusCode httpRequestRecieved(uHTTP::HTTPRequest *httpReq);
 
   bool initDevice();

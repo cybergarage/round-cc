@@ -24,6 +24,7 @@ Round::JavaScriptEngine::JavaScriptEngine() : ScriptEngine(LANGUAGE) {
 }
 
 Round::JavaScriptEngine::~JavaScriptEngine() {
+  finalize();
 }
 
 ////////////////////////////////////////////////
@@ -38,7 +39,7 @@ bool Round::JavaScriptEngine::getSourceCode(const Script *jsScript, const std::s
   std::string jsonParams = boost::algorithm::replace_all_copy(params, "\"", "\\\"");
   
   jsSource << "var jsonParams = \"" << jsonParams << "\";" << std::endl;
-  jsSource << "var params = JSON.parse(jsonParams);" << std::endl;
+  jsSource << "var params = (0 < jsonParams.length) ? JSON.parse(jsonParams) : jsonParams;" << std::endl;
   
   jsSource << "var results = " << jsScript->getName() << "(params);" << std::endl;
   jsSource << "var jsonResults = JSON.stringify(results);" << std::endl;

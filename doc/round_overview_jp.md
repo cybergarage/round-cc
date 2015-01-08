@@ -1,28 +1,28 @@
 ![round_logo](img/round_logo.png)
 
-# Overview
+# 概要
 
-## What is Round ?
+## Roundとは ?
 
-Round is a new open source framework for distributed system developers and researchers. Round supports to develop distributed applications for the users.
+Roundは分散システム開発者や研究者向けの新しいオープンソースのフレームワークです。 Roundは、利用者が簡潔に分散アプリケーションを開発するのを支援します。
 
-The name 'Round' derives from '[Knights of the Round Table](http://en.wikipedia.org/wiki/Round_Table)', every nodes in a cluster has equal roll, the cluster has no master node.
+Roundの名前は「[円卓の騎士](http://ja.wikipedia.org/wiki/円卓の騎士)」に由来しており、クラスターの全てのノードが等しい役割を持ち、マスターノードが存在していないことを意味しています。
 
-## Design Principles
+## 設計原則
 
-Round is designed based on the following principles.
+Roundは以下の原則に基づいて設計されています。
 
-### Simplify
+### 簡潔性
 
-Simplify is a most important principle. The core module of Round is very simple, and only minimum functions are implemented.
+簡潔性は重要な原則の一つです。Roundのコアモジュールは極めてシンプルであり最低限の機能のみ実装されています。
 
-Just like simplify, orthogonality too is a most important principle. Based on the principles, redundant functions aren't implemented to keep the core module simplify.
+簡潔さに関連する直交性も重要な原則です。これらの原則により、コアモジュールを簡潔に保つために、冗長な機能は実装されません。
 
-### Clarify
+### 明確性
 
-Technical specifications of the core module are defined clarify and released free for users. Basically, The specifications are defined to extend some open de facto standard specifications.
+コアモジュールの技術仕様については明確に定義されており利用者に公開されています。技術仕様は業界標準のネットワークプロトコルを拡張して定義されています。
 
-The preview version of Round is implemented using C++, but the core module can be implemented based on the public specifications of Round using other programming languages such as Java and Go.
+Roundの初期バージョンはC++で実装されていますが、公開されているRoundの技術仕様から、JavaやGoなどの他のプログラミング言語でコアモジュールを実装することも可能です。
 
 ## Design Features
 

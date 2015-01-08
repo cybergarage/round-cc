@@ -14,6 +14,7 @@
 		210E577E1A235D49000B60FC /* ScriptMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210E577D1A235D49000B60FC /* ScriptMap.cpp */; };
 		210E57821A29A4A2000B60FC /* Java.h in Headers */ = {isa = PBXBuildFile; fileRef = 210E57811A29A4A2000B60FC /* Java.h */; };
 		210E57861A29A574000B60FC /* JavaEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210E57841A29A574000B60FC /* JavaEngine.cpp */; };
+		210E5FE21A5EDFDA005667CB /* libmupnp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 210E5FDF1A5EDFC9005667CB /* libmupnp++.a */; };
 		211FBA391A14792C00B9B71E /* Round.h in Headers */ = {isa = PBXBuildFile; fileRef = 211FBA381A14792C00B9B71E /* Round.h */; };
 		2120F96F1A3C63E300F8040C /* Vector.h in Headers */ = {isa = PBXBuildFile; fileRef = 2120F96E1A3C63E300F8040C /* Vector.h */; };
 		212BFD161A1D0032002549F0 /* Node.h in Headers */ = {isa = PBXBuildFile; fileRef = 212BFD151A1D0032002549F0 /* Node.h */; };
@@ -56,7 +57,6 @@
 		21CCABC61A145AAF00FE57DF /* ConsoleError.h in Headers */ = {isa = PBXBuildFile; fileRef = 21CCABC41A145AAF00FE57DF /* ConsoleError.h */; };
 		21CCABCA1A145AC900FE57DF /* ConsoleClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21CCABC81A145AC900FE57DF /* ConsoleClient.cpp */; };
 		21CCABCB1A145AC900FE57DF /* ConsoleError.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21CCABC91A145AC900FE57DF /* ConsoleError.cpp */; };
-		21CD1BA6192DC84B00452ADF /* liblibclink++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CD1BA1192DC83400452ADF /* liblibclink++.a */; };
 		21DA085C1A17424A00D3DCE0 /* Cluster.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DA08531A17424A00D3DCE0 /* Cluster.h */; };
 		21DA085D1A17424A00D3DCE0 /* LocalNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DA08541A17424A00D3DCE0 /* LocalNode.h */; };
 		21DA085E1A17424A00D3DCE0 /* LocalNodeConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DA08551A17424A00D3DCE0 /* LocalNodeConfig.h */; };
@@ -151,19 +151,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		21CD1BA0192DC83400452ADF /* PBXContainerItemProxy */ = {
+		210E5FDE1A5EDFC9005667CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 21CD1B9C192DC83300452ADF /* libclink++.xcodeproj */;
+			containerPortal = 210E5FDA1A5EDFC9005667CB /* libmupnp++.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 219C21ED155C7877003ABA46;
-			remoteInfo = "libclink++";
+			remoteInfo = "libmupnp++";
 		};
-		21CD1BA2192DC84400452ADF /* PBXContainerItemProxy */ = {
+		210E5FE01A5EDFD5005667CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 21CD1B9C192DC83300452ADF /* libclink++.xcodeproj */;
+			containerPortal = 210E5FDA1A5EDFC9005667CB /* libmupnp++.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 219C21EC155C7877003ABA46;
-			remoteInfo = "libclink++";
+			remoteInfo = "libmupnp++";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -175,6 +175,7 @@
 		210E577D1A235D49000B60FC /* ScriptMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptMap.cpp; sourceTree = "<group>"; };
 		210E57811A29A4A2000B60FC /* Java.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Java.h; sourceTree = "<group>"; };
 		210E57841A29A574000B60FC /* JavaEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JavaEngine.cpp; sourceTree = "<group>"; };
+		210E5FDA1A5EDFC9005667CB /* libmupnp++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libmupnp++.xcodeproj"; path = "../../../../mupnp/lib/macosx/xcode/libmupnp++.xcodeproj"; sourceTree = "<group>"; };
 		211FBA381A14792C00B9B71E /* Round.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Round.h; sourceTree = "<group>"; };
 		2120F96E1A3C63E300F8040C /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
 		212BFD151A1D0032002549F0 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
@@ -218,7 +219,6 @@
 		21CCABC41A145AAF00FE57DF /* ConsoleError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleError.h; sourceTree = "<group>"; };
 		21CCABC81A145AC900FE57DF /* ConsoleClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleClient.cpp; sourceTree = "<group>"; };
 		21CCABC91A145AC900FE57DF /* ConsoleError.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleError.cpp; sourceTree = "<group>"; };
-		21CD1B9C192DC83300452ADF /* libclink++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libclink++.xcodeproj"; path = "../../../../clinkcc/lib/macosx/xcode/libclink++.xcodeproj"; sourceTree = "<group>"; };
 		21DA08531A17424A00D3DCE0 /* Cluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cluster.h; sourceTree = "<group>"; };
 		21DA08541A17424A00D3DCE0 /* LocalNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNode.h; sourceTree = "<group>"; };
 		21DA08551A17424A00D3DCE0 /* LocalNodeConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNodeConfig.h; sourceTree = "<group>"; };
@@ -317,13 +317,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21CD1BA6192DC84B00452ADF /* liblibclink++.a in Frameworks */,
+				210E5FE21A5EDFDA005667CB /* libmupnp++.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		210E5FDB1A5EDFC9005667CB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				210E5FDF1A5EDFC9005667CB /* libmupnp++.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		21620E491A147A5600690EA8 /* core */ = {
 			isa = PBXGroup;
 			children = (
@@ -456,17 +464,9 @@
 		21CD1B95192DC7E000452ADF /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				21CD1B9C192DC83300452ADF /* libclink++.xcodeproj */,
+				210E5FDA1A5EDFC9005667CB /* libmupnp++.xcodeproj */,
 			);
 			name = Libraries;
-			sourceTree = "<group>";
-		};
-		21CD1B9D192DC83300452ADF /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				21CD1BA1192DC83400452ADF /* liblibclink++.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		21DA08C61A175E7500D3DCE0 /* impl */ = {
@@ -700,7 +700,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				21CD1BA3192DC84400452ADF /* PBXTargetDependency */,
+				210E5FE11A5EDFD5005667CB /* PBXTargetDependency */,
 			);
 			name = "libround++";
 			productName = libfractal;
@@ -727,8 +727,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 21CD1B9D192DC83300452ADF /* Products */;
-					ProjectRef = 21CD1B9C192DC83300452ADF /* libclink++.xcodeproj */;
+					ProductGroup = 210E5FDB1A5EDFC9005667CB /* Products */;
+					ProjectRef = 210E5FDA1A5EDFC9005667CB /* libmupnp++.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -739,11 +739,12 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		21CD1BA1192DC83400452ADF /* liblibclink++.a */ = {
+		210E5FDF1A5EDFC9005667CB /* libmupnp++.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "liblibclink++.a";
-			remoteRef = 21CD1BA0192DC83400452ADF /* PBXContainerItemProxy */;
+			name = "libmupnp++.a";
+			path = "liblibmupnp++.a";
+			remoteRef = 210E5FDE1A5EDFC9005667CB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -843,10 +844,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		21CD1BA3192DC84400452ADF /* PBXTargetDependency */ = {
+		210E5FE11A5EDFD5005667CB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "libclink++";
-			targetProxy = 21CD1BA2192DC84400452ADF /* PBXContainerItemProxy */;
+			name = "libmupnp++";
+			targetProxy = 210E5FE01A5EDFD5005667CB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

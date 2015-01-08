@@ -104,7 +104,7 @@ bool Round::UPnPServerNode::initDevice() {
   if (loadDescription(FRACTAL_NODESERVER_DEVICE_DESCRIPTION) == false)
     return false;
 
-  CyberLink::Service *nodeService = getNodeService();
+  mUPnP::Service *nodeService = getNodeService();
   if (!nodeService)
     return false;
   
@@ -116,7 +116,7 @@ bool Round::UPnPServerNode::initDevice() {
   return true;
 }
 
-CyberLink::Service *Round::UPnPServerNode::getNodeService() {
+mUPnP::Service *Round::UPnPServerNode::getNodeService() {
   return getService(FRACTAL_NODESERVER_SERVICE_NODE_TYPE);
 }
 
@@ -188,7 +188,7 @@ bool Round::UPnPServerNode::stop(Error *error) {
   return isSuccess;
 }
 
-bool Round::UPnPServerNode::actionControlReceived(CyberLink::Action *action) {
+bool Round::UPnPServerNode::actionControlReceived(mUPnP::Action *action) {
   const std::string actionName = action->getName();
 
   if (boost::iequals(actionName, FRACTAL_NODESERVER_ACTION_GETSTATUS)) {
@@ -203,7 +203,7 @@ bool Round::UPnPServerNode::actionControlReceived(CyberLink::Action *action) {
   return false;
 }
 
-bool Round::UPnPServerNode::queryControlReceived(CyberLink::StateVariable *stateVar) {
+bool Round::UPnPServerNode::queryControlReceived(mUPnP::StateVariable *stateVar) {
   return false;
 }
 
