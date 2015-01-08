@@ -154,7 +154,6 @@ AC_CHECK_LIB([mozjs185],[main],,[AC_MSG_ERROR(Round for C++ needs V8 $JS_VERSION
 # Checks for compile
 ##############################
 
-### boost::random ####
 AC_MSG_CHECKING(for boost::random)
 AC_TRY_COMPILE([
 #include <algorithm>
@@ -168,6 +167,21 @@ void func()
 [],
 [AC_MSG_RESULT(yes)
 AC_DEFINE([HAVE_BOOST_RANDOM],1,[BOOST_RANDOM])],
+[AC_MSG_RESULT(no)]
+)
+
+AC_MSG_CHECKING(for boost::unit_test::log_level)
+AC_TRY_COMPILE([
+#include <boost/test/unit_test.hpp>
+#include <boost/test/detail/unit_test_parameters.hpp>
+void func()
+{
+  boost::unit_test::log_level logLevel = boost::unit_test::runtime_config::log_level();
+}
+],
+[],
+[AC_MSG_RESULT(yes)
+AC_DEFINE([HAVE_BOOST_UNITTEST_LOGLEVEL],1,[HAVE_BOOST_UNITTEST_LOGLEVEL])],
 [AC_MSG_RESULT(no)]
 )
 
