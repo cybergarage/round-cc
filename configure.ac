@@ -55,9 +55,14 @@ AM_CONDITIONAL(HAVE_LIBTOOL, test $with_libtool = yes)
 # Checks for BOOST 
 ##############################
 
-AC_CHECK_LIB([boost_system-mt],[main],,[AC_MSG_ERROR(Round for C++ needs boost::system-mt)])
-AC_CHECK_LIB([boost_filesystem-mt],[main],,[AC_MSG_ERROR(Round for C++ needs boost::filesystem-mt)])
-AC_CHECK_LIB([boost_thread-mt],[main],,[AC_MSG_ERROR(Round for C++ needs boost::thread-mt)])
+AC_CHECK_LIB([boost_system-mt],[main],,
+	[AC_CHECK_LIB([boost_system],[main],,[AC_MSG_ERROR(Round for C++ needs boost::system-mt)])])
+
+AC_CHECK_LIB([boost_filesystem-mt],[main],,
+	[AC_CHECK_LIB([boost_filesystem],[main],,[AC_MSG_ERROR(Round for C++ needs boost::filesystem-mt)])])
+
+AC_CHECK_LIB([boost_thread-mt],[main],,
+	[AC_CHECK_LIB([boost_thread],[main],,[AC_MSG_ERROR(Round for C++ needs boost::thread-mt)])])
 
 ##############################
 # Checks for Basic Libraries
