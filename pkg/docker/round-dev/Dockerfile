@@ -7,6 +7,10 @@ RUN apt-get update && apt-get upgrade -y
 # Install base packages
 RUN apt-get install -y git g++ make automake autoconf
 
+# Git configuration
+RUN git config --global user.email "skonno@cybergarage.org"
+RUN git config --global user.name "Satoshi Konno"
+
 # uHTTP for C++
 RUN apt-get install -y libedit-dev
 WORKDIR /tmp
@@ -27,4 +31,6 @@ WORKDIR /tmp
 #RUN git clone https://github.com/cybergarage/Round.git round
 RUN git clone http://192.168.100.10/git/round round
 WORKDIR round
-RUN ./bootstrap && ./configure_ubuntu && make && make install
+#RUN ./bootstrap && ./configure_ubuntu && make && make install
+
+WORKDIR ~
