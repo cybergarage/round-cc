@@ -10,7 +10,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <round/common/Base64.h>
+#include <round/common/encoding/Base64.h>
 
 using namespace Round;
 

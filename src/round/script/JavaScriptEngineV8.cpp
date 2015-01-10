@@ -8,7 +8,7 @@
 *
 ******************************************************************/
 
-#include <round/core/impl/JavaScript.h>
+#include <round/script/JavaScript.h>
 
 #if defined(ROUND_USE_JS_V8)
 

@@ -11,7 +11,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include <vector>
-#include <round/core/impl/Java.h>
+#include <round/script/Java.h>
 
 #include "TestScript.h"
 

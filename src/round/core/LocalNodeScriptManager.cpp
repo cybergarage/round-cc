@@ -9,8 +9,8 @@
 ******************************************************************/
 
 #include <round/core/LocalNode.h>
-#include <round/core/impl/Java.h>
-#include <round/core/impl/JavaScript.h>
+#include <round/script/Java.h>
+#include <round/script/JavaScript.h>
 #include <round/core/SystemMethod.h>
 
 const std::string Round::LocalNodeScriptManager::SYSTEM_ECHO_METHOD_CODE = "function _echo(params) {return params;}";

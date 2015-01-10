@@ -11,7 +11,7 @@
 #include <sstream>
 #include <boost/algorithm/string/replace.hpp>
 
-#include <round/core/impl/JavaScript.h>
+#include <round/script/JavaScript.h>
 
 const std::string Round::JavaScriptEngine::LANGUAGE = "js";
 

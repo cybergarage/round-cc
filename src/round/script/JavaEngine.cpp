@@ -11,9 +11,9 @@
 #include <sstream>
 #include <boost/algorithm/string/replace.hpp>
 
-#include <round/common/Base64.h>
+#include <round/common/encoding/Base64.h>
 #include <round/core/Log.h>
-#include <round/core/impl/Java.h>
+#include <round/script/Java.h>
 
 #undef ROUND_USE_JVMOPTIONS_VERBOSE
 

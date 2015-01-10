@@ -11,7 +11,7 @@
 #include <string>
 #include <sstream>
 #include <round/common/HashObject.h>
-#include <round/common/SHA.h>
+#include <round/common/digest/SHA.h>
 
 size_t Round::HashObject::GetHashCodeLength() {
   return SHA256::DIGEST_STRING_LENGTH;
