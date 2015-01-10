@@ -143,7 +143,7 @@ bool Round::JavaEngine::run(const Script *script, const std::string &params, std
     return false;
   
   jmethodID initMethodID = gJNIEnv->GetMethodID(clazz, "<init>",	"()V");
-  jmethodID runMethodId  = gJNIEnv->GetMethodID(clazz, "run",	"(Ljava/lang/String;)Ljava/lang/String;");
+  jmethodID runMethodId  = gJNIEnv->GetMethodID(clazz, "processMessage",	"(Ljava/lang/String;)Ljava/lang/String;");
   if (!initMethodID || !runMethodId)
     return false;
   

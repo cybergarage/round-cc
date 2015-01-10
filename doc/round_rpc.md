@@ -13,7 +13,6 @@ Round adds the following original fields to [JSON-RPC 2.0][json-rpc] specificati
 | hash | - | (node) | |
 | dest | one, all, quorum | one | |
 | ts | - | - | The field is handled automatically by Round |
-| type | accept | (none) | - |
 | digest | - | (none) | - |
 
 ### hash

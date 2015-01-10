@@ -1,7 +1,7 @@
 public class echo extends Object {
  public echo() {
  }
- public String run(String params) {
+ public String processMessage(String params) {
   return params;
  }
 }

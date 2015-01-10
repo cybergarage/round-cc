@@ -181,7 +181,7 @@ In Java, Base64
 public class _get_node_name {
   public _get_node_name() {
   }
-  public String run(String params) {
+  public String processEvent(String params) {
     .....
     return results;
   }
