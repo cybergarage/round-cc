@@ -15,4 +15,8 @@
 #  include "config.h"
 #endif
 
+#if defined(__APPLE__)
+#define HAVE_JNI_H 1
+#endif
+
 #endif

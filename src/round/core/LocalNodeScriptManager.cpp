@@ -9,9 +9,14 @@
 ******************************************************************/
 
 #include <round/core/LocalNode.h>
-#include <round/script/Java.h>
-#include <round/script/JavaScript.h>
+#include <round/common/platform.h>
+
 #include <round/core/SystemMethod.h>
+
+#include <round/script/JavaScript.h>
+#if defined(HAVE_JNI_H)
+#include <round/script/Java.h>
+#endif
 
 const std::string Round::LocalNodeScriptManager::SYSTEM_ECHO_METHOD_CODE = "function _echo(params) {return params;}";
 const std::string Round::LocalNodeScriptManager::SYSTEM_ECHO_METHOD_LANGUAGE = JavaScriptEngine::LANGUAGE;
@@ -27,8 +32,10 @@ void Round::LocalNodeScriptManager::init() {
   Error error;
   
   // Default Script Engine
-  setEngine(new JavaEngine());
   setEngine(new JavaScriptEngine());
+#if defined(HAVE_JNI_H)
+  setEngine(new JavaEngine());
+#endif
 
   // Default Dynamic System Method
   setScript(Round::SystemMethodRequest::ECHO, SYSTEM_ECHO_METHOD_LANGUAGE, SYSTEM_ECHO_METHOD_CODE, Script::ENCODING_NONE, &error);

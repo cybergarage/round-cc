@@ -15,6 +15,8 @@
 #include <round/core/Log.h>
 #include <round/script/Java.h>
 
+#if defined(HAVE_JNI_H)
+
 #undef ROUND_USE_JVMOPTIONS_VERBOSE
 
 #if defined(__APPLE__)
@@ -156,3 +158,5 @@ bool Round::JavaEngine::run(const Script *script, const std::string &params, std
   
   return true;
 }
+
+#endif

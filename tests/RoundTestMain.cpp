@@ -19,7 +19,6 @@
 #include <boost/thread.hpp>
 
 #include <round/core/Log.h>
-//#include <round/common/platform.h>
 
 #include "RoundTest.h"
 

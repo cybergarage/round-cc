@@ -15,6 +15,8 @@
 
 #include "TestScript.h"
 
+#if defined(HAVE_JNI_H)
+
 using namespace std;
 using namespace Round;
 
@@ -111,3 +113,6 @@ BOOST_AUTO_TEST_CASE(JavaEngineCounterTest) {
 }
 
 BOOST_AUTO_TEST_SUITE_END()
+
+#endif
+

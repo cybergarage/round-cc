@@ -75,16 +75,16 @@ AC_ARG_ENABLE(expat,
         [  --enable-expat       enable Expat support [default=no]],
         [
                 if test $enableval = yes; then
-                        USE_EXPAT=yes
+                        ROUND_USE_EXPAT=yes
                 else
-                        USE_EXPAT=no
+                        ROUND_USE_EXPAT=no
                 fi
         ],[
-                USE_EXPAT=no
+                ROUND_USE_EXPAT=no
         ]
 )
 
-if [ test $USE_EXPAT = yes ]; then
+if [ test $ROUND_USE_EXPAT = yes ]; then
         AC_CHECK_HEADERS([expat.h],,[AC_MSG_ERROR(CyberLink needs Expat $EXPAT_VERSION later)])
         AC_CHECK_LIB([expat],[main])
         AC_DEFINE([USE_XMLPARSER_EXPAT],1,[EXPAT])
@@ -98,16 +98,16 @@ AC_ARG_ENABLE(libxml2,
 	[  --enable-libxml2	enable Libxml2 support [default=no]],
 	[
 		if test $enableval = yes; then
-			USE_LIBXML2=yes
+			ROUND_USE_LIBXML2=yes
 		else
-			USE_LIBXML2=no
+			ROUND_USE_LIBXML2=no
 		fi
 	],[
-		USE_LIBXML2=no
+		ROUND_USE_LIBXML2=no
 	]
 )
 
-if [ test $USE_LIBXML2 = yes ]; then
+if [ test $ROUND_USE_LIBXML2 = yes ]; then
 	AC_CHECK_PROG(XML2_CONFIG, xml2-config, yes, no)
 	if [ test $XML2_CONFIG = yes ]; then
 		AC_DEFINE([USE_XMLPARSER_LIBXML2],1,[LIBXML2])
@@ -124,8 +124,8 @@ fi
 # Checks for default XML parser
 ##############################
 
-if [ test $USE_LIBXML2 != yes ]; then
-if [ test $USE_EXPAT != yes ]; then
+if [ test $ROUND_USE_LIBXML2 != yes ]; then
+if [ test $ROUND_USE_EXPAT != yes ]; then
 	AC_CHECK_PROG(XML2_CONFIG, xml2-config, yes, no)
 	if [ test $XML2_CONFIG = yes ]; then
 		AC_DEFINE([USE_XMLPARSER_LIBXML2],1,[LIBXML2])
@@ -146,8 +146,6 @@ fi
 ##############################
 
 AC_CHECK_LIB([jansson],[main],,[AC_MSG_ERROR(Round for C++ needs Jansson $JANSSON_VERSION later)])
-AC_CHECK_HEADERS([jni.h],,[AC_MSG_ERROR(Round for C++ needs JNI $JNI_VERSION later)])
-AC_CHECK_LIB([jvm],[main],,[AC_MSG_ERROR(Round for C++ needs JNI $JNI_VERSION later)])
 AC_CHECK_LIB([mozjs185],[main],,[AC_MSG_ERROR(Round for C++ needs V8 $JS_VERSION later)])
 #AC_CHECK_LIB([v8],[main],,[AC_MSG_ERROR(Round for C++ needs V8 $V8_VERSION later)])
 AC_CHECK_LIB([tcl],[main],,[AC_MSG_ERROR(Round for C++ needs V8 $TCL_VERSION later)])
@@ -188,7 +186,36 @@ AC_DEFINE([HAVE_BOOST_UNITTEST_LOGLEVEL],1,[HAVE_BOOST_UNITTEST_LOGLEVEL])],
 )
 
 ##############################
+# Checks for Cyber Garage Libraries
+##############################
+
+AC_CHECK_LIB([uhttp++],[main],,[AC_MSG_ERROR(Round for C++ needs libuhttp++ $UHTTP_VERSION later)])
+AC_CHECK_LIB([mupnp++],[main],,[AC_MSG_ERROR(Round for C++ needs libclink++ $MUPNPCC_VERSION later)])
+
+##############################
 # Checks for enable options.
+##############################
+
+AC_ARG_ENABLE(
+	[script-java],
+	[  --enable-script-java    enable Java support [default=yes]],
+	[
+		if test $enableval = yes; then
+			ROUND_SUPPORT_JAVA=yes
+		else
+			ROUND_SUPPORT_JAVA=no
+		fi
+	],[
+		ROUND_SUPPORT_JAVA=yes
+	]
+)
+if [ test $ROUND_SUPPORT_JAVA = yes ]; then
+	AC_CHECK_HEADERS([jni.h],,[AC_MSG_ERROR(Round for C++ needs JNI $JNI_VERSION later)])
+	AC_CHECK_LIB([jvm],[main],,[AC_MSG_ERROR(Round for C++ needs JNI $JNI_VERSION later)])
+fi
+
+##############################
+# Checks for test options.
 ##############################
 
 AC_ARG_ENABLE([tests], AC_HELP_STRING([--enable-tests], [ build tests (default = no) ]), [build_tests="yes"], [])
@@ -196,13 +223,6 @@ AM_CONDITIONAL(UNITTESTS,test "$build_tests" = yes)
 if [ test "$build_tests" = yes ]; then
 	AC_CHECK_LIB([boost_unit_test_framework-mt],[main],,[AC_MSG_ERROR(Round unittests need boost::unit_test_framework-mt)])
 fi
-
-##############################
-# Checks for Cyber Garage Libraries
-##############################
-
-AC_CHECK_LIB([uhttp++],[main],,[AC_MSG_ERROR(Round for C++ needs libuhttp++ $UHTTP_VERSION later)])
-AC_CHECK_LIB([mupnp++],[main],,[AC_MSG_ERROR(Round for C++ needs libclink++ $MUPNPCC_VERSION later)])
 
 ##############################
 # Makefiles
