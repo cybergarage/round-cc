@@ -36,6 +36,8 @@ print<<FOTTER;
 
 roundtest_LDADD = \\
         ../../lib/unix/libround++.a \\
+	-lmupnp++ \\
+	-luhttp++ \\
         \@XML_LIBS\@
 FOTTER
 
