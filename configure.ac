@@ -153,8 +153,8 @@ fi
 # JavaScript
 
 AC_ARG_ENABLE(
-	[script-js],
-	[  --enable-script-sm    enable Java support (SpiderMonkey) [default=yes]],
+	[script-js-sm],
+	[  --enable-script-js-sm    enable JavaScript support (SpiderMonkey) [default=yes]],
 	[
 		if test $enableval = yes; then
 			ROUND_SUPPORT_JS_SM=yes
@@ -168,7 +168,7 @@ AC_ARG_ENABLE(
 )
 AC_ARG_ENABLE(
 	[script-js-v8],
-	[  --enable-script-js-v8    enable Java support (V8) [default=yes]],
+	[  --enable-script-js-v8    enable JavaScript support (V8) [default=yes]],
 	[
 		if test $enableval = yes; then
 			ROUND_SUPPORT_JS_V8=yes

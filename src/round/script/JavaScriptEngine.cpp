@@ -81,6 +81,9 @@ bool Round::JavaScriptEngine::run(const Script *jsScript, const std::string &par
 void Round::JavaScriptEngine::init() {
 }
 
+void Round::JavaScriptEngine::finalize() {
+}
+
 bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *results, Error *error) const {
 }
 
