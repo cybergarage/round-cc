@@ -8,26 +8,33 @@
 *
 ******************************************************************/
 
-#ifndef _ROUNDCC_SCRIPT_JAVA_H_
-#define _ROUNDCC_SCRIPT_JAVA_H_
+#ifndef _ROUNDCC_SCRIPT_TCL_H_
+#define _ROUNDCC_SCRIPT_TCL_H_
 
 #include <round/core/Script.h>
+#include <tcl.h>
 
 namespace Round {
 
-class JavaEngine : public ScriptEngine {
+class TclEngine : public ScriptEngine {
     
  public:
   
   static const std::string LANGUAGE;
   
  public:
-  JavaEngine();
+  TclEngine();
   
-  ~JavaEngine();
+  ~TclEngine();
   
   bool compile(const Script *script) const;
   bool run(const Script *script, const std::string &params, std::string *results, Error *error) const;
+
+private:
+  bool run(const std::string &source, std::string *results, Error *error) const;
+
+private:
+  struct Tcl_Interp *interp;
 };
   
 }

@@ -23,6 +23,7 @@ V8_VERSION=3.14
 JS_VERSION=1.8.5
 UHTTP_VERSION=0.6
 MUPNPCC_VERSION=2.0
+TCL_VERSION=8.5.0
 
 ##############################
 # Checks for programs.
@@ -149,6 +150,7 @@ AC_CHECK_HEADERS([jni.h],,[AC_MSG_ERROR(Round for C++ needs JNI $JNI_VERSION lat
 AC_CHECK_LIB([jvm],[main],,[AC_MSG_ERROR(Round for C++ needs JNI $JNI_VERSION later)])
 AC_CHECK_LIB([mozjs185],[main],,[AC_MSG_ERROR(Round for C++ needs V8 $JS_VERSION later)])
 #AC_CHECK_LIB([v8],[main],,[AC_MSG_ERROR(Round for C++ needs V8 $V8_VERSION later)])
+AC_CHECK_LIB([tcl],[main],,[AC_MSG_ERROR(Round for C++ needs V8 $TCL_VERSION later)])
 
 ##############################
 # Checks for compile
