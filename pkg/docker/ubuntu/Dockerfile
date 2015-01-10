@@ -26,7 +26,7 @@ WORKDIR /tmp
 RUN rm -rf mupnp
 
 # Round
-RUN apt-get install -y libboost-all-dev libssl-dev libjansson-dev openjdk-6-jdk libmozjs185-dev libv8-dev
+RUN apt-get install -y libboost-all-dev libssl-dev libjansson-dev openjdk-6-jdk libmozjs185-dev libv8-dev tcl-dev
 WORKDIR /tmp
 RUN git clone https://github.com/cybergarage/Round.git round
 WORKDIR round

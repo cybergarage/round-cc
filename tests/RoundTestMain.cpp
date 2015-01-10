@@ -19,6 +19,7 @@
 #include <boost/thread.hpp>
 
 #include <round/core/Log.h>
+//#include <round/common/platform.h>
 
 #include "RoundTest.h"
 
@@ -40,14 +41,16 @@ BOOST_GLOBAL_FIXTURE(RoundFixture);
 
 void Round::Test::Setup() {
   // Setup Log Level
-  boost::unit_test::log_level logLevel = boost::unit_test::runtime_config::log_level();
   
   int loggerLevel = LoggerLevel::WARN;
+#if defined(HAVE_BOOST_UNITTEST_LOGLEVEL)
+  boost::unit_test::log_level logLevel = boost::unit_test::runtime_config::log_level();
   if (logLevel <= boost::unit_test::log_level::log_messages) {
     loggerLevel = LoggerLevel::INFO;
     if (logLevel < boost::unit_test::log_level::log_messages)
       loggerLevel = LoggerLevel::TRACE;
   }
+#endif
   
   Logger *sharedLogger = Logger::GetSharedInstance();
   sharedLogger->setLevel(loggerLevel);

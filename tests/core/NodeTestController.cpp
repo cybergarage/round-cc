@@ -52,7 +52,7 @@ void NodeTestController::runScriptManagerTest(Node *node) {
   
   prevClock = node->getLocalClock();
   BOOST_CHECK(!node->postMessage(nodeReq, &nodeRes, &error));
-  BOOST_CHECK_EQUAL(error.getDetailCode(), RPC::JSON::ErrorCodeMethodNotFound);
+  BOOST_CHECK(error.getDetailCode() == RPC::JSON::ErrorCodeMethodNotFound);
   postClock = node->getLocalClock();
   BOOST_CHECK(prevClock < postClock);
   
@@ -113,7 +113,7 @@ void NodeTestController::runScriptManagerTest(Node *node) {
 
   prevClock = node->getLocalClock();
   BOOST_CHECK(!node->postMessage(nodeReq, &nodeRes, &error));
-  BOOST_CHECK_EQUAL(error.getDetailCode(), RPC::JSON::ErrorCodeMethodNotFound);
+  BOOST_CHECK(error.getDetailCode() == RPC::JSON::ErrorCodeMethodNotFound);
   postClock = node->getLocalClock();
   BOOST_CHECK(prevClock < postClock);
 }
@@ -277,7 +277,7 @@ void NodeTestController::runRpcHashTest(Round::Node **nodes, size_t nodeCnt) {
         successCnt++;
       }
       else {
-        BOOST_CHECK_EQUAL(err.getDetailCode(), RPC::JSON::ErrorCodeMovedPermanently);
+        BOOST_CHECK(err.getDetailCode() == RPC::JSON::ErrorCodeMovedPermanently);
       }
     }
     BOOST_CHECK_EQUAL(successCnt, 1);
