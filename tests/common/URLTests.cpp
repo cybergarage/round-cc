@@ -10,7 +10,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <round/common/URL.h>
+#include <round/common/encoding/URL.h>
 
 using namespace Round;
 

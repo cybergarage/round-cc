@@ -12,7 +12,7 @@
 #include <sstream>
 #include <string.h>
 
-#include <round/common/SHA.h>
+#include <round/common/digest/SHA.h>
 #include <round/common/HashObject.h>
 
 using namespace std;

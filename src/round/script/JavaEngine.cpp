@@ -11,9 +11,11 @@
 #include <sstream>
 #include <boost/algorithm/string/replace.hpp>
 
-#include <round/common/Base64.h>
+#include <round/common/encoding/Base64.h>
 #include <round/core/Log.h>
-#include <round/core/impl/Java.h>
+#include <round/script/Java.h>
+
+#if defined(ROUND_SUPPORT_JAVA_JNI)
 
 #undef ROUND_USE_JVMOPTIONS_VERBOSE
 
@@ -141,7 +143,7 @@ bool Round::JavaEngine::run(const Script *script, const std::string &params, std
     return false;
   
   jmethodID initMethodID = gJNIEnv->GetMethodID(clazz, "<init>",	"()V");
-  jmethodID runMethodId  = gJNIEnv->GetMethodID(clazz, "run",	"(Ljava/lang/String;)Ljava/lang/String;");
+  jmethodID runMethodId  = gJNIEnv->GetMethodID(clazz, "processMessage",	"(Ljava/lang/String;)Ljava/lang/String;");
   if (!initMethodID || !runMethodId)
     return false;
   
@@ -156,3 +158,5 @@ bool Round::JavaEngine::run(const Script *script, const std::string &params, std
   
   return true;
 }
+
+#endif

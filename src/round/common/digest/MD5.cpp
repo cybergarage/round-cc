@@ -10,7 +10,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <round/common/MD5.h>
+#include <round/common/digest/MD5.h>
 
 #if defined(__APPLE__)
 #define COMMON_DIGEST_FOR_OPENSSL

@@ -11,7 +11,7 @@
 #include <sstream>
 #include <iomanip>
 
-#include <round/common/URL.h>
+#include <round/common/encoding/URL.h>
 
 bool Round::URL::Encode(const std::string &sourceStr, std::string *encodedStr) {
   std::ostringstream encodedBuf;

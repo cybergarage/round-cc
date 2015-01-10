@@ -12,8 +12,8 @@
 
 #include <iostream>
 #include <round/common/RPC.h>
-#include <round/common/Base64.h>
-#include <round/common/URL.h>
+#include <round/common/encoding/Base64.h>
+#include <round/common/encoding/URL.h>
 #include "TestNode.h"
 
 using namespace std;

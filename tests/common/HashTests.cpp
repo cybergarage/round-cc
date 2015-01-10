@@ -10,8 +10,8 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <round/common/MD5.h>
-#include <round/common/SHA.h>
+#include <round/common/digest/MD5.h>
+#include <round/common/digest/SHA.h>
 
 using namespace Round;
 

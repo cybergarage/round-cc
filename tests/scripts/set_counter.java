@@ -5,7 +5,7 @@ public class set_counter extends Object {
   public set_counter() {
   }
 
-  public String run(String params) {
+  public String processMessage(String params) {
     try {
       int value = Integer.parseInt(params);
       Counter.value = value;

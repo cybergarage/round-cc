@@ -15,6 +15,7 @@
 #include <map>
 
 #include <round/common/types.h>
+#include <round/common/platform.h>
 #include <round/common/Vector.h>
 #include <round/common/Error.h>
 #include <round/common/RPC.h>

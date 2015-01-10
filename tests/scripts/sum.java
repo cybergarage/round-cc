@@ -3,7 +3,7 @@ import java.lang.Integer;
 public class sum extends Object {
   public sum() {
   }
-  public String run(String params) {
+  public String processMessage(String params) {
     String []param = new String[0];
     try {
     	param = params.split("[^0-9]");

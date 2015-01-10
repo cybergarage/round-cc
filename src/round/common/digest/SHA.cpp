@@ -22,7 +22,7 @@
 #define SHA256FUNC SHA256
 #endif
 
-#include <round/common/SHA.h>
+#include <round/common/digest/SHA.h>
 
 ////////////////////////////////////////
 // SHA1

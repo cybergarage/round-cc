@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-#include <round/common/Base64.h>
+#include <round/common/encoding/Base64.h>
 
 #include <openssl/bio.h>
 #include <openssl/evp.h>

@@ -11,7 +11,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include <round/core/Script.h>
-#include <round/core/impl/JavaScript.h>
+#include <round/script/JavaScript.h>
 
 #include "TestScript.h"
 

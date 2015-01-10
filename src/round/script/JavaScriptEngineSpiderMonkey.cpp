@@ -8,9 +8,9 @@
 *
 ******************************************************************/
 
-#include <round/core/impl/JavaScript.h>
+#include <round/script/JavaScript.h>
 
-#if defined(ROUND_USE_JS_SPIDERMONKEY)
+#if defined(ROUND_SUPPORT_JS_SM)
 
 ////////////////////////////////////////////////
 // Static
