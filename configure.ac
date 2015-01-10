@@ -146,9 +146,13 @@ fi
 ##############################
 
 AC_CHECK_LIB([jansson],[main],,[AC_MSG_ERROR(Round for C++ needs Jansson $JANSSON_VERSION later)])
+
 AC_CHECK_LIB([mozjs185],[main],,[AC_MSG_ERROR(Round for C++ needs V8 $JS_VERSION later)])
 #AC_CHECK_LIB([v8],[main],,[AC_MSG_ERROR(Round for C++ needs V8 $V8_VERSION later)])
-AC_CHECK_LIB([tcl],[main],,[AC_MSG_ERROR(Round for C++ needs V8 $TCL_VERSION later)])
+
+AC_CHECK_HEADERS([tcl.h],,
+	[AC_CHECK_HEADERS([tcl/tcl.h],,[AC_MSG_ERROR(Round for C++ needs TCL $TCL_VERSION later)])])
+AC_CHECK_LIB([tcl],[main],,[AC_MSG_ERROR(Round for C++ needs TCL $TCL_VERSION later)])
 
 ##############################
 # Checks for compile

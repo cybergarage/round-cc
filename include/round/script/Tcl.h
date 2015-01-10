@@ -12,7 +12,12 @@
 #define _ROUNDCC_SCRIPT_TCL_H_
 
 #include <round/core/Script.h>
+
+#if defined(HAVE_TCL_TCL_H)
+#include <tcl/tcl.h>
+#else
 #include <tcl.h>
+#endif
 
 namespace Round {
 
