@@ -1,28 +1,30 @@
 ![round_logo](img/round_logo.png)
 
+English [Japanese](round_overview_jp.md)
+
 # Overview
 
 ## What is Round ?
 
-Round is a new open source framework for distributed system developers and researchers. Round supports to develop distributed applications for the users.
+Round is a new open source framework developed for distributed system developers and researchers to build distributed applications concisely.
 
-The name 'Round' derives from '[Knights of the Round Table](http://en.wikipedia.org/wiki/Round_Table)', every nodes in a cluster has equal roll, the cluster has no master node.
+The name "Round" derives from "[Knights of the Round Table](http://en.wikipedia.org/wiki/Round_Table)", meaning that every node in a cluster has an equal role and the cluster has no mater node.
 
 ## Design Principles
 
-Round is designed based on the following principles.
+Round is designed on the basis of the following principles.
 
-### Simplify
+### Simplicity
 
-Simplify is a most important principle. The core module of Round is very simple, and only minimum functions are implemented.
+Simplicity is the most valued principle. The core module of Round is very simple, and has only minimum functions are implemented.
 
-Just like simplify, orthogonality too is a most important principle. Based on the principles, redundant functions aren't implemented to keep the core module simplify.
+Orthogonality is another important one as well as simplicity. Considering those principles, no redundancy functions are implemented to keep the core module simple.
 
-### Clarify
+### Clarity
 
-Technical specifications of the core module are defined clarify and released free for users. Basically, The specifications are defined to extend some open de facto standard specifications.
+The technical specifications of the core module are clearly defined and released free for users. Basically, the specifications are defined to extend some de facto standard specifications.
 
-The preview version of Round is implemented using C++, but the core module can be implemented based on the public specifications of Round using other programming languages such as Java and Go.
+The initial version is implemented with C++, whereas the core module can be done with other programming languages such as Java and Go based on the public specifications.
 
 ## Design Features
 
