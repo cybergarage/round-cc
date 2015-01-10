@@ -42,7 +42,7 @@ void Round::Test::Setup() {
   // Setup Log Level
   
   int loggerLevel = LoggerLevel::WARN;
-#if defined(HAVE_BOOST_UNITTEST_LOGLEVEL)
+#if defined(ROUND_HAVE_BOOST_UNITTEST_LOGLEVEL)
   boost::unit_test::log_level logLevel = boost::unit_test::runtime_config::log_level();
   if (logLevel <= boost::unit_test::log_level::log_messages) {
     loggerLevel = LoggerLevel::INFO;
@@ -58,7 +58,7 @@ void Round::Test::Setup() {
 }
 
 int Round::Test::GetRandomRepeatCount(int min, int max) {
-#if defined(HAVE_BOOST_RANDOM)
+#if defined(ROUND_HAVE_BOOST_RANDOM)
   boost::random::mt19937 rndEngine;
   boost::random::uniform_int_distribution<> randDist(min, max);
 #else

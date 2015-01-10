@@ -4,7 +4,7 @@
 #
 ############################################################################
 
-AC_INIT([roundcc], [0.1])
+AC_INIT([round++], [0.1])
 AM_CONFIG_HEADER(config.h)
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_SRCDIR([include/round/Round.h])
@@ -87,7 +87,7 @@ AC_ARG_ENABLE(expat,
 if [ test $ROUND_USE_EXPAT = yes ]; then
         AC_CHECK_HEADERS([expat.h],,[AC_MSG_ERROR(CyberLink needs Expat $EXPAT_VERSION later)])
         AC_CHECK_LIB([expat],[main])
-        AC_DEFINE([USE_XMLPARSER_EXPAT],1,[EXPAT])
+        AC_DEFINE([USE_XMLPARSER_EXPAT],1,[Expat])
 fi
 
 ##############################
@@ -110,7 +110,7 @@ AC_ARG_ENABLE(libxml2,
 if [ test $ROUND_USE_LIBXML2 = yes ]; then
 	AC_CHECK_PROG(XML2_CONFIG, xml2-config, yes, no)
 	if [ test $XML2_CONFIG = yes ]; then
-		AC_DEFINE([USE_XMLPARSER_LIBXML2],1,[LIBXML2])
+		AC_DEFINE([USE_XMLPARSER_LIBXML2],1,[libxml2])
 		XML_CFLAGS=`xml2-config --cflags`
 		XML_LIBS=`xml2-config --libs`
 		AC_SUBST(XML_CFLAGS)
@@ -128,7 +128,7 @@ if [ test $ROUND_USE_LIBXML2 != yes ]; then
 if [ test $ROUND_USE_EXPAT != yes ]; then
 	AC_CHECK_PROG(XML2_CONFIG, xml2-config, yes, no)
 	if [ test $XML2_CONFIG = yes ]; then
-		AC_DEFINE([USE_XMLPARSER_LIBXML2],1,[LIBXML2])
+		AC_DEFINE([ROUND_USE_XMLPARSER_LIBXML2],1,[libxml2])
 		XML_CFLAGS=`xml2-config --cflags`
 		XML_LIBS=`xml2-config --libs`
 		AC_SUBST(XML_CFLAGS)
@@ -136,69 +136,52 @@ if [ test $ROUND_USE_EXPAT != yes ]; then
 	else
 		AC_CHECK_HEADERS([expat.h],,[AC_MSG_ERROR(CyberLink needs Expat $EXPAT_VERSION later)])
 		AC_CHECK_LIB([expat],[main])
-		AC_DEFINE([USE_XMLPARSER_EXPAT],1,[EXPAT])
+		AC_DEFINE([ROUND_USE_XMLPARSER_EXPAT],1,[Expat])
 	fi
 fi
 fi
 
 ##############################
-# Checks for Other Libraries
+# Checks for script options.
 ##############################
 
-AC_CHECK_LIB([jansson],[main],,[AC_MSG_ERROR(Round for C++ needs Jansson $JANSSON_VERSION later)])
+# JavaScript
 
-AC_CHECK_LIB([mozjs185],[main],,[AC_MSG_ERROR(Round for C++ needs V8 $JS_VERSION later)])
-#AC_CHECK_LIB([v8],[main],,[AC_MSG_ERROR(Round for C++ needs V8 $V8_VERSION later)])
-
-AC_CHECK_HEADERS([tcl.h],,
-	[AC_CHECK_HEADERS([tcl/tcl.h],,[AC_MSG_ERROR(Round for C++ needs TCL $TCL_VERSION later)])])
-AC_CHECK_LIB([tcl],[main],,[AC_MSG_ERROR(Round for C++ needs TCL $TCL_VERSION later)])
-
-##############################
-# Checks for compile
-##############################
-
-AC_MSG_CHECKING(for boost::random)
-AC_TRY_COMPILE([
-#include <algorithm>
-#include <boost/random.hpp>
-void func()
-{
-  boost::random::mt19937 rndEngine;
-  boost::random::uniform_int_distribution<> rndDist(1, 10);
-}
-],
-[],
-[AC_MSG_RESULT(yes)
-AC_DEFINE([HAVE_BOOST_RANDOM],1,[BOOST_RANDOM])],
-[AC_MSG_RESULT(no)]
+AC_ARG_ENABLE(
+	[script-js],
+	[  --enable-script-sm    enable Java support (SpiderMonkey) [default=yes]],
+	[
+		if test $enableval = yes; then
+			ROUND_SUPPORT_JS_SM=yes
+		else
+			ROUND_SUPPORT_JS_SM=no
+		fi
+	],[
+		ROUND_SUPPORT_JS_SM=yes
+		ROUND_SUPPORT_JS_V8=no
+	]
 )
-
-AC_MSG_CHECKING(for boost::unit_test::log_level)
-AC_TRY_COMPILE([
-#include <boost/test/unit_test.hpp>
-#include <boost/test/detail/unit_test_parameters.hpp>
-void func()
-{
-  boost::unit_test::log_level logLevel = boost::unit_test::runtime_config::log_level();
-}
-],
-[],
-[AC_MSG_RESULT(yes)
-AC_DEFINE([HAVE_BOOST_UNITTEST_LOGLEVEL],1,[HAVE_BOOST_UNITTEST_LOGLEVEL])],
-[AC_MSG_RESULT(no)]
+AC_ARG_ENABLE(
+	[script-js-v8],
+	[  --enable-script-js-v8    enable Java support (V8) [default=yes]],
+	[
+		if test $enableval = yes; then
+			ROUND_SUPPORT_JS_V8=yes
+		else
+			ROUND_SUPPORT_JS_V8=no
+		fi
+	],[]
 )
+if [ test $ROUND_SUPPORT_JS_SM = yes ]; then
+	AC_CHECK_LIB([mozjs185],[main],,[AC_MSG_ERROR(Round for C++ needs V8 $JS_VERSION later)])
+	AC_DEFINE([ROUND_SUPPORT_JS_SM],1,[SpiderMonkey])
+fi
+if [ test $ROUND_SUPPORT_JS_V8 = yes ]; then
+	AC_CHECK_LIB([v8],[main],,[AC_MSG_ERROR(Round for C++ needs V8 $V8_VERSION later)])
+	AC_DEFINE([ROUND_SUPPORT_JS_V8],1,[V8])]
+fi
 
-##############################
-# Checks for Cyber Garage Libraries
-##############################
-
-AC_CHECK_LIB([uhttp++],[main],,[AC_MSG_ERROR(Round for C++ needs libuhttp++ $UHTTP_VERSION later)])
-AC_CHECK_LIB([mupnp++],[main],,[AC_MSG_ERROR(Round for C++ needs libclink++ $MUPNPCC_VERSION later)])
-
-##############################
-# Checks for enable options.
-##############################
+# Java
 
 AC_ARG_ENABLE(
 	[script-java],
@@ -216,7 +199,93 @@ AC_ARG_ENABLE(
 if [ test $ROUND_SUPPORT_JAVA = yes ]; then
 	AC_CHECK_HEADERS([jni.h],,[AC_MSG_ERROR(Round for C++ needs JNI $JNI_VERSION later)])
 	AC_CHECK_LIB([jvm],[main],,[AC_MSG_ERROR(Round for C++ needs JNI $JNI_VERSION later)])
+	AC_DEFINE([ROUND_SUPPORT_JAVA_JNI],1,[JNI])
 fi
+
+# TCL
+
+AC_ARG_ENABLE(
+	[script-tcl],
+	[  --enable-script-tcl    enable Tcl support [default=yes]],
+	[
+		if test $enableval = yes; then
+			ROUND_SUPPORT_TCL=yes
+		else
+			ROUND_SUPPORT_TCL=no
+		fi
+	],[
+		ROUND_SUPPORT_TCL=yes
+	]
+)
+if [ test $ROUND_SUPPORT_TCL = yes ]; then
+AC_CHECK_HEADERS([tcl.h],,
+	[AC_CHECK_HEADERS([tcl/tcl.h],,[AC_MSG_ERROR(Round for C++ needs TCL $TCL_VERSION later)])])
+	AC_CHECK_LIB([tcl],[main],,[AC_MSG_ERROR(Round for C++ needs TCL $TCL_VERSION later)])
+	AC_DEFINE([ROUND_SUPPORT_TCL],1,[Tcl])
+fi
+
+##############################
+# Checks for JSON Libraries
+##############################
+
+AC_ARG_ENABLE(
+	[jansson-tcl],
+	[  --enable-jansson    enable Jansson for JSON library [default=yes]],
+	[
+		if test $enableval = yes; then
+			ROUND_USE_JSON_JANSSON=yes
+		else
+			ROUND_USE_JSON_JANSSON=no
+		fi
+	],[
+		ROUND_USE_JSON_JANSSON=yes
+	]
+)
+if [ test $ROUND_USE_JSON_JANSSON = yes ]; then
+	AC_CHECK_LIB([jansson],[main],,[AC_MSG_ERROR(Round for C++ needs Jansson $JANSSON_VERSION later)])
+fi
+
+##############################
+# Checks for compile
+##############################
+
+AC_MSG_CHECKING(for boost::random)
+AC_TRY_COMPILE([
+#include <algorithm>
+#include <boost/random.hpp>
+void func()
+{
+  boost::random::mt19937 rndEngine;
+  boost::random::uniform_int_distribution<> rndDist(1, 10);
+}
+],
+[],
+[AC_MSG_RESULT(yes)
+AC_DEFINE([ROUND_HAVE_BOOST_RANDOM],1,[boost::random])],
+[AC_MSG_RESULT(no)]
+)
+
+AC_MSG_CHECKING(for boost::unit_test::log_level)
+AC_TRY_COMPILE([
+#include <boost/test/unit_test.hpp>
+#include <boost/test/detail/unit_test_parameters.hpp>
+void func()
+{
+  boost::unit_test::log_level logLevel = boost::unit_test::runtime_config::log_level();
+}
+],
+[],
+[AC_MSG_RESULT(yes)
+AC_DEFINE([HAVE_BOOST_UNITTEST_LOGLEVEL],1,[boost::unit_test])],
+[AC_MSG_RESULT(no)]
+)
+
+##############################
+# Checks for Cyber Garage Libraries
+##############################
+
+AC_CHECK_LIB([uhttp++],[main],,[AC_MSG_ERROR(Round for C++ needs libuhttp++ $UHTTP_VERSION later)])
+AC_CHECK_LIB([mupnp++],[main],,[AC_MSG_ERROR(Round for C++ needs libclink++ $MUPNPCC_VERSION later)])
 
 ##############################
 # Checks for test options.

@@ -15,6 +15,8 @@
 #include <round/core/Log.h>
 #include <round/script/Tcl.h>
 
+#if defined(ROUND_SUPPORT_TCL)
+
 const std::string Round::TclEngine::LANGUAGE = "tcl";
 
 ////////////////////////////////////////////////
@@ -74,3 +76,5 @@ bool Round::TclEngine::run(const std::string &jsSource, std::string *results, Er
    */
   return true;
 }
+
+#endif

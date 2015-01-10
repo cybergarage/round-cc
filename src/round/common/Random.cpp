@@ -22,7 +22,7 @@
 
 #include <round/common/Random.h>
 
-#if defined(HAVE_BOOST_RANDOM)
+#if defined(ROUND_HAVE_BOOST_RANDOM)
 static boost::random::mt19937 *gRandEngine = NULL;
 #else
 static boost::mt19937 *gRandEngine = NULL;
@@ -46,7 +46,7 @@ void Round::Random::initialize(unsigned int min, unsigned int max) {
   
   if (!gRandEngine) {
     uint32_t seed = std::time(0) % std::numeric_limits<uint32_t>::max();
-#if defined(HAVE_BOOST_RANDOM)
+#if defined(ROUND_HAVE_BOOST_RANDOM)
     gRandEngine = new boost::random::mt19937(seed);
 #else
     gRandEngine = new boost::mt19937(seed);
@@ -55,7 +55,7 @@ void Round::Random::initialize(unsigned int min, unsigned int max) {
 }
 
 unsigned int Round::Random::rand() {
-#if defined(HAVE_BOOST_RANDOM)
+#if defined(ROUND_HAVE_BOOST_RANDOM)
   boost::random::uniform_int_distribution<> randDist(this->minRange, this->maxRange);
 #else
   boost::uniform_smallint<> randDist(this->minRange, this->maxRange);

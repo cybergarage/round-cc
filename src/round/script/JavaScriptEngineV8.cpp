@@ -10,7 +10,7 @@
 
 #include <round/script/JavaScript.h>
 
-#if defined(ROUND_USE_JS_V8)
+#if defined(ROUND_SUPPORT_JS_V8)
 
 #include <stdlib.h>
 

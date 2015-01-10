@@ -2,9 +2,17 @@
 
 # Design Patterns
 
-## Pipeline
+## Default
+
+### Default Parameters
+
+### Configuration
 
 ## Execution
+
+### Pipeline
+
+### Transaction
 
 ### Client Centric Consistency
 

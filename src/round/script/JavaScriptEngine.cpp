@@ -76,7 +76,7 @@ bool Round::JavaScriptEngine::run(const Script *jsScript, const std::string &par
 // Methods (Stub)
 ////////////////////////////////////////////////
 
-#if !defined(ROUND_USE_JS_V8) && !defined(ROUND_USE_JS_SPIDERMONKEY)
+#if !defined(ROUND_SUPPORT_JS_V8) && !defined(ROUND_SUPPORT_JS_SM)
 
 void Round::JavaScriptEngine::init() {
 }

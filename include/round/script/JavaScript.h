@@ -13,11 +13,7 @@
 
 #include <round/core/Script.h>
 
-#if !defined(ROUND_USE_JS_V8) && !defined(ROUND_USE_JS_SPIDERMONKEY)
-#define ROUND_USE_JS_SPIDERMONKEY 1
-#endif
-
-#if defined(ROUND_USE_JS_SPIDERMONKEY)
+#if defined(ROUND_SUPPORT_JS_SM)
 #include <js/jsapi.h>
 #endif
 
@@ -43,7 +39,7 @@ class JavaScriptEngine : public ScriptEngine {
   bool getSourceCode(const Script *script, const std::string &params, std::string *sourceCode) const;
   bool run(const std::string &source, std::string *results, Error *error) const;
 
-#if defined(ROUND_USE_JS_SPIDERMONKEY)
+#if defined(ROUND_SUPPORT_JS_SM)
   JSRuntime *rt;
   JSContext *cx;
   JSObject  *glob;

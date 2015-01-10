@@ -15,7 +15,7 @@
 
 #include "TestScript.h"
 
-#if defined(HAVE_JNI_H)
+#if defined(ROUND_SUPPORT_JAVA_JNI)
 
 using namespace std;
 using namespace Round;

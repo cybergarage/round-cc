@@ -13,6 +13,8 @@
 
 #include <round/core/Script.h>
 
+#if defined(ROUND_SUPPORT_TCL)
+
 #if defined(HAVE_TCL_TCL_H)
 #include <tcl/tcl.h>
 #else
@@ -43,5 +45,7 @@ private:
 };
   
 }
+
+#endif
 
 #endif

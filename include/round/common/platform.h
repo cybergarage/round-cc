@@ -16,7 +16,9 @@
 #endif
 
 #if defined(__APPLE__)
-#define HAVE_JNI_H 1
+#define ROUND_SUPPORT_JAVA_JNI 1
+#define ROUND_SUPPORT_JS_SM 1
+#define ROUND_SUPPORT_TCL 1
 #endif
 
 #endif

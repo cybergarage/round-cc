@@ -15,7 +15,7 @@
 #include <round/core/Log.h>
 #include <round/script/Java.h>
 
-#if defined(HAVE_JNI_H)
+#if defined(ROUND_SUPPORT_JAVA_JNI)
 
 #undef ROUND_USE_JVMOPTIONS_VERBOSE
 
