@@ -6,22 +6,14 @@ Round is a new open source framework developed for distributed system developers
 
 The name "Round" derives from "[Knights of the Round Table](http://en.wikipedia.org/wiki/Round_Table)", meaning that every node in a cluster has an equal role and the cluster has no mater node.
 
-Round is architected for:
-
-- Simplify
-- Clarify
-- ZeronConf
-- Decentralized
-- Autonomous
-- Dynamics
-
 # Lean More About Round
 
 - [Overview](doc/round_overview.md)
-- [Install](doc/round_installation.md)
-- [Configutaion](doc/round_installation.md)
+- [Getting Started](doc/round_installation.md)
+- [Programming Model](doc/round_programming_model.md)
+- [Design Patterns](doc/round_design_patterns)
 - [Internal](doc/round_internals.md)
 - [API](doc/round_apis.md)
 - [RPC](doc/round_rpc_methods.md)
-- [Application](doc/round_applications.md)
+- [Examples](doc/round_applications.md)
 - [Coversion](doc/round_conversions.md)
