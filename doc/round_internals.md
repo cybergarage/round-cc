@@ -61,9 +61,6 @@ Some coordinating frameworks for distributed systems such as [ZooKeeper](http://
 
 Round is based on [consistent hasing](http://en.wikipedia.org/wiki/Consistent_hashing), and each node has a hash code. The hash code is generated based on a ip address and a port of the node using [SHA-256](http://en.wikipedia.org/wiki/SHA-2) algorithm statically. In current version, Round supports only a simple ring network topology based on the hash code as the following.
 
-![round_logo](./img/round_consistenthashing.png)
-
-
 In the current verion, Round supports only the simple network topology, but we will supports other structured network topology. Then, the hash code is generated statically, but we will add the customize methods for the hash seed and algorithm too.
 
 ## Programming Model

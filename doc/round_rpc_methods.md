@@ -72,6 +72,16 @@ Round prepares the following default static methods. The methods are implemented
 
 #### _set_method
 
+```
+_set_method := "{" name language code encoding "}"
+
+name     = "name" ":" TOKEN
+language = "language" ":" supported-language
+code     = "code" ":" TOKEN
+encoding = "code" ":" ("none" | "base64")
+
+supported-language = ("js" | "java" | "tcl")
+```
 
 If the code parameter isn't specified, the method is removed.
 

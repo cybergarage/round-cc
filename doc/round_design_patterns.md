@@ -12,6 +12,10 @@
 
 ### Pipeline
 
+### Quorum
+
+![Quorum  Pattern](img/round_dp_quorum.png)
+
 ### Transaction
 
 ### Client Centric Consistency
