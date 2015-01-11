@@ -31,6 +31,6 @@ WORKDIR /tmp
 #RUN git clone https://github.com/cybergarage/Round.git round
 RUN git clone http://192.168.100.10/git/round round
 WORKDIR round
-#RUN ./bootstrap && ./configure_ubuntu && make && make install
+RUN ./bootstrap && ./configure_ubuntu --enable-script-java=no && make && make install
 
 WORKDIR ~
