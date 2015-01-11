@@ -10,9 +10,8 @@ The name "Round" derives from "[Knights of the Round Table](http://en.wikipedia.
 
 - [Overview](doc/round_overview.md)
 - [Getting Started](doc/round_installation.md)
-- [Programming Model](doc/round_programming_model.md)
-- [Design Patterns](doc/round_design_patterns)
 - [Internal](doc/round_internals.md)
+- [Design Patterns](doc/round_design_patterns)
 - [API](doc/round_apis.md)
 - [RPC](doc/round_rpc_methods.md)
 - [Examples](doc/round_applications.md)
