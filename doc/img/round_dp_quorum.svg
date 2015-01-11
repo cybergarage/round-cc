@@ -16,10 +16,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="round_dg_quorumsvg.svg"
-   inkscape:export-filename="/Users/skonno/Src/round/doc/img/round_programming_model.png"
-   inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90">
+   sodipodi:docname="round_dp_quorum.svg"
+   inkscape:export-filename="/Users/skonno/Src/round/doc/img/round_dp_quorum.png"
+   inkscape:export-xdpi="119.94187"
+   inkscape:export-ydpi="119.94187">
   <defs
      id="defs4">
     <marker
@@ -244,7 +244,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>

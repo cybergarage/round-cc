@@ -16,6 +16,19 @@
 
 ![Quorum  Pattern](img/round_dp_quorum.png)
 
+```
+{
+  methods : [
+    {jsonrpc : "2.0", "method":"exec_method", ....}
+    {jsonrpc : "2.0", "method":"filter_method", ....}
+  ]
+
+  routes : [
+    {src : "exec_method", dest : "filter_method"}
+  ]
+}
+```
+
 ### Transaction
 
 ### Client Centric Consistency
