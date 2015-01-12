@@ -98,12 +98,17 @@ private:
 class RouteList : public Vector<Route> {
     
  public:
-    
-  RouteList() {
-  }
+  
+  RouteList();
+  ~RouteList();
+  
+  bool addRoute(const std::string &name, const std::string &srcObject, const std::string *destObject);
+
+  Route *getRouteByName(const std::string &name);
+  Route *getRouteBySouceObject(const std::string &srcObject);
 };
 
-class RouteEngine {
+class RouteEngine : public RouteList {
     
 public:
     
