@@ -14,20 +14,81 @@
 #include <string>
 #include <map>
 
-#include <round/common/types.h>
-#include <round/common/platform.h>
 #include <round/common/Vector.h>
-#include <round/common/Error.h>
-#include <round/common/RPC.h>
-#include <round/common/Mutex.h>
 
 namespace Round {
 
+typedef std::map<int, std::string> RouteObjects;
+  
 class Route {
 
+private:
+  
+  static const std::string OBJECT_SEP;
+  static const int OBJECT_NUM;
+
+public:
+  
+  static const int METHOD;
+  static const int NODE;
+  static const int CLUSTER;
+  
+  static const std::string NODE_DEFALUT;
+  static const std::string NODE_LOCAL;
+  static const std::string NODE_ALL;
+  
+  static const std::string CLUSTER_DEFALUT;
+  static const std::string CLUSTER_LOCAL;
+  
 public:
   Route();
   virtual ~Route();
+
+  bool isValid();
+  
+  bool setSource(const std::string &value);
+  bool setDestination(const std::string &value);
+  
+  bool getSourceMethod(std::string *value) {
+    return getSourceObject(METHOD, value);
+  }
+  bool getSourceNode(std::string *value) {
+    return getSourceObject(NODE, value);
+  }
+
+  bool getSourceCluster(std::string *value) {
+    return getSourceObject(CLUSTER, value);
+  }
+
+  bool getDestinationMethod(std::string *value) {
+    return getDestinationObject(METHOD, value);
+  }
+  bool getDestinationNode(std::string *value) {
+    return getDestinationObject(NODE, value);
+  }
+  
+  bool getDestinationCluster(std::string *value) {
+    return getDestinationObject(CLUSTER, value);
+  }
+  
+private:
+  
+  bool parseObject(const std::string &value, RouteObjects &objects);
+  
+  bool getObject(RouteObjects &objects, int objIdx, std::string *value);
+  
+  bool getSourceObject(int objIdx, std::string *value) {
+    return getObject(this->srcObjects, objIdx, value);
+  }
+  
+  bool getDestinationObject(int objIdx, std::string *value) {
+    return getObject(this->destObjects, objIdx, value);
+  }
+  
+private:
+  
+  RouteObjects srcObjects;
+  RouteObjects destObjects;
 };
 
 class RouteList : public Vector<Route> {
