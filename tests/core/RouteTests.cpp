@@ -17,6 +17,75 @@ using namespace Round;
 
 BOOST_AUTO_TEST_SUITE(route)
 
+BOOST_AUTO_TEST_CASE(RouteObjectsParseTest) {
+  const std::string TEST_METHOD = "method";
+  const std::string TEST_NODE = "node";
+  const std::string TEST_CLUSTER = "cluster";
+  
+  RouteObjects routeObjs;
+  std::string name, object;
+  
+  // initialize node
+  
+  BOOST_CHECK_EQUAL(routeObjs.isValid(), false);
+  BOOST_CHECK_EQUAL(routeObjs.getCluster(&object), false);
+  BOOST_CHECK_EQUAL(routeObjs.getNode(&object), false);
+  BOOST_CHECK_EQUAL(routeObjs.getMethod(&object), false);
+  
+  // "method" (Src)
+  
+  BOOST_CHECK_EQUAL(routeObjs.parse(TEST_METHOD), true);
+  BOOST_CHECK_EQUAL(routeObjs.isValid(), true);
+  BOOST_CHECK_EQUAL(routeObjs.getCluster(&object), true);
+  BOOST_CHECK_EQUAL(object.compare(Route::CLUSTER_DEFALUT), 0);
+  BOOST_CHECK_EQUAL(routeObjs.getNode(&object), true);
+  BOOST_CHECK_EQUAL(object.compare(Route::NODE_DEFALUT), 0);
+  BOOST_CHECK_EQUAL(routeObjs.getMethod(&object), true);
+  BOOST_CHECK_EQUAL(object.compare(TEST_METHOD), 0);
+  
+  // "node.method" (Src)
+  
+  BOOST_CHECK_EQUAL(routeObjs.parse(TEST_NODE + "." + TEST_METHOD), true);
+  BOOST_CHECK_EQUAL(routeObjs.isValid(), true);
+  BOOST_CHECK_EQUAL(routeObjs.getCluster(&object), true);
+  BOOST_CHECK_EQUAL(object.compare(Route::CLUSTER_DEFALUT), 0);
+  BOOST_CHECK_EQUAL(routeObjs.getNode(&object), true);
+  BOOST_CHECK_EQUAL(object.compare(TEST_NODE), 0);
+  BOOST_CHECK_EQUAL(routeObjs.getMethod(&object), true);
+  BOOST_CHECK_EQUAL(object.compare(TEST_METHOD), 0);
+  
+  // "cluster.node.method" (Src)
+  
+  BOOST_CHECK_EQUAL(routeObjs.parse(TEST_CLUSTER + "." + TEST_NODE + "." + TEST_METHOD), true);
+  BOOST_CHECK_EQUAL(routeObjs.isValid(), true);
+  BOOST_CHECK_EQUAL(routeObjs.getCluster(&object), true);
+  BOOST_CHECK_EQUAL(object.compare(TEST_CLUSTER), 0);
+  BOOST_CHECK_EQUAL(routeObjs.getNode(&object), true);
+  BOOST_CHECK_EQUAL(object.compare(TEST_NODE), 0);
+  BOOST_CHECK_EQUAL(routeObjs.getMethod(&object), true);
+  BOOST_CHECK_EQUAL(object.compare(TEST_METHOD), 0);
+}
+
+BOOST_AUTO_TEST_CASE(RouteObjectsConstructorTest) {
+  const std::string TEST_METHOD = "method";
+  const std::string TEST_NODE = "node";
+  const std::string TEST_CLUSTER = "cluster";
+  
+  
+  // "cluster.node.method"
+  
+  RoundObjects routeObjs(TEST_CLUSTER + "." + TEST_NODE + "." + TEST_METHOD);
+  std::string name, object;
+  
+  BOOST_CHECK_EQUAL(routeObjs.isValid(), true);
+  BOOST_CHECK_EQUAL(routeObjs.getCluster(&object), true);
+  BOOST_CHECK_EQUAL(object.compare(TEST_CLUSTER), 0);
+  BOOST_CHECK_EQUAL(routeObjs.getNode(&object), true);
+  BOOST_CHECK_EQUAL(object.compare(TEST_NODE), 0);
+  BOOST_CHECK_EQUAL(routeObjs.getMethod(&object), true);
+  BOOST_CHECK_EQUAL(object.compare(TEST_METHOD), 0);
+}
+
 BOOST_AUTO_TEST_CASE(RouteTest) {
   const std::string TEST_NAME = "rname";
   const std::string TEST_SRC_METHOD = "smethod";

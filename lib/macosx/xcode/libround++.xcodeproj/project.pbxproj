@@ -156,6 +156,7 @@
 		21F4CE6D1A63F0BA00E7F0CC /* ScriptEngineMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4CE641A63F0BA00E7F0CC /* ScriptEngineMap.cpp */; };
 		21F4CE6E1A63F0BA00E7F0CC /* ScriptManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4CE651A63F0BA00E7F0CC /* ScriptManager.cpp */; };
 		21F4CE6F1A63F0BA00E7F0CC /* ScriptMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4CE661A63F0BA00E7F0CC /* ScriptMap.cpp */; };
+		21F4CE711A63F45500E7F0CC /* RouteObjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4CE701A63F45500E7F0CC /* RouteObjects.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -335,6 +336,7 @@
 		21F4CE641A63F0BA00E7F0CC /* ScriptEngineMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptEngineMap.cpp; sourceTree = "<group>"; };
 		21F4CE651A63F0BA00E7F0CC /* ScriptManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptManager.cpp; sourceTree = "<group>"; };
 		21F4CE661A63F0BA00E7F0CC /* ScriptMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptMap.cpp; sourceTree = "<group>"; };
+		21F4CE701A63F45500E7F0CC /* RouteObjects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RouteObjects.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -702,6 +704,7 @@
 				21F4CE5E1A63F0BA00E7F0CC /* RouteEngine.cpp */,
 				21F4CE5F1A63F0BA00E7F0CC /* RouteList.cpp */,
 				21F4CE601A63F0BA00E7F0CC /* RouteManager.cpp */,
+				21F4CE701A63F45500E7F0CC /* RouteObjects.cpp */,
 			);
 			path = route;
 			sourceTree = "<group>";
@@ -906,6 +909,7 @@
 				21D8E2F41A60E1E200E8A63F /* NodeStatus.cpp in Sources */,
 				21D8E2DB1A60E1E200E8A63F /* StringTokenizer.cpp in Sources */,
 				21D8E2EB1A60E1E200E8A63F /* NodeConfig.cpp in Sources */,
+				21F4CE711A63F45500E7F0CC /* RouteObjects.cpp in Sources */,
 				21D8E2B61A60E1E200E8A63F /* Dictionary.cpp in Sources */,
 				21D8E2C31A60E1E200E8A63F /* JSONParserParse.cpp in Sources */,
 				21F4CE691A63F0BA00E7F0CC /* RouteList.cpp in Sources */,
