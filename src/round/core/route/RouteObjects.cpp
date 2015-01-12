@@ -33,7 +33,7 @@ Round::RouteObjects::RouteObjects(const std::string &value) {
 Round::RouteObjects::~RouteObjects() {
 }
 
-bool Round::RouteObjects::isValid() {
+bool Round::RouteObjects::isValid() const {
   if (size() != OBJECT_NUM)
     return false;
   return true;
@@ -69,10 +69,27 @@ bool Round::RouteObjects::parse(const std::string &value) {
   return true;
 }
 
-bool Round::RouteObjects::getObject(int objectIdx, std::string *value) {
-  RouteObjects::iterator objectIt = find(objectIdx);
-  if (objectIt == end())
+bool Round::RouteObjects::getObject(int objIdx, std::string *value) const {
+  RouteObjects::const_iterator objIt = find(objIdx);
+  if (objIt == end())
     return false;
-  *value = objectIt->second;
+  *value = objIt->second;
+  return true;
+}
+
+bool Round::RouteObjects::equals(const RouteObjects *otherObj) const {
+  if (!isValid() || !otherObj->isValid())
+    return false;
+  
+  for (RouteObjects::const_iterator objIt = begin(); objIt != end(); objIt++) {
+    int objIdx = objIt->first;
+    std::string objVal = objIt->second;
+    RouteObjects::const_iterator otherObjIt = otherObj->find(objIdx);
+    if (otherObjIt == otherObj->end())
+      return false;
+    if (objVal.compare(otherObjIt->second) != 0)
+      return false;
+  }
+  
   return true;
 }

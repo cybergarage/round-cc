@@ -94,6 +94,28 @@ BOOST_AUTO_TEST_CASE(RouteObjectsConstructorTest) {
   BOOST_CHECK_EQUAL(object.compare(TEST_METHOD), 0);
 }
 
+BOOST_AUTO_TEST_CASE(RouteObjectsEqualsTest) {
+  const std::string TEST_METHOD_01 = "method01";
+  const std::string TEST_NODE_01 = "node01";
+  const std::string TEST_CLUSTER_01 = "cluster01";
+
+  const std::string TEST_METHOD_02 = "method02";
+  const std::string TEST_NODE_02 = "node02";
+  const std::string TEST_CLUSTER_02 = "cluster02";
+  
+  RouteObjects routeObjs(TEST_CLUSTER_01 + "." + TEST_NODE_01 + "." + TEST_METHOD_01);
+  BOOST_CHECK_EQUAL(routeObjs.equals(&routeObjs), true);
+
+  RouteObjects routeObjs01(TEST_CLUSTER_01 + "." + TEST_NODE_01 + "." + TEST_METHOD_01);
+  BOOST_CHECK_EQUAL(routeObjs01.equals(&routeObjs01), true);
+  
+  RouteObjects routeObjs02(TEST_CLUSTER_02 + "." + TEST_NODE_02 + "." + TEST_METHOD_02);
+  BOOST_CHECK_EQUAL(routeObjs02.equals(&routeObjs02), true);
+
+  BOOST_CHECK_EQUAL(routeObjs.equals(&routeObjs01), true);
+  BOOST_CHECK_EQUAL(routeObjs.equals(&routeObjs02), false);
+}
+
 BOOST_AUTO_TEST_CASE(RouteTest) {
   const std::string TEST_NAME = "rname";
   const std::string TEST_SRC_METHOD = "smethod";

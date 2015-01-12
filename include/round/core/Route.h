@@ -36,21 +36,23 @@ public:
   RouteObjects(const std::string &value);
   ~RouteObjects();
   
-  bool isValid();
+  bool isValid() const;
   bool parse(const std::string &value);
 
-  bool getObject(int objIdx, std::string *value);
+  bool getObject(int objIdx, std::string *value) const;
 
-  bool getMethod(std::string *value) {
+  bool getMethod(std::string *value) const {
     return getObject(METHOD, value);
   }
-  bool getNode(std::string *value) {
+  bool getNode(std::string *value) const {
     return getObject(NODE, value);
   }
   
-  bool getCluster(std::string *value) {
+  bool getCluster(std::string *value) const {
     return getObject(CLUSTER, value);
   }
+  
+  bool equals(const RouteObjects *otherObj) const;
 };
   
 class Route {
@@ -73,31 +75,31 @@ public:
   bool isValid();
   
   bool setName(const std::string &value);
-  bool getName(std::string *value);
+  bool getName(std::string *value) const;
   
   bool setSource(const std::string &value);
   bool setDestination(const std::string &value);
   
-  bool getSourceMethod(std::string *value) {
+  bool getSourceMethod(std::string *value) const {
     return this->srcObjects.getMethod(value);
   }
-  bool getSourceNode(std::string *value) {
+  bool getSourceNode(std::string *value) const {
     return this->srcObjects.getNode(value);
   }
 
-  bool getSourceCluster(std::string *value) {
+  bool getSourceCluster(std::string *value) const {
     return this->srcObjects.getCluster(value);
   }
 
-  bool getDestinationMethod(std::string *value) {
+  bool getDestinationMethod(std::string *value) const {
     return this->destObjects.getMethod(value);
   }
   
-  bool getDestinationNode(std::string *value) {
+  bool getDestinationNode(std::string *value) const {
     return this->destObjects.getNode(value);
   }
   
-  bool getDestinationCluster(std::string *value) {
+  bool getDestinationCluster(std::string *value) const {
     return this->destObjects.getCluster(value);
   }
   
@@ -117,8 +119,8 @@ class RouteList : public Vector<Route> {
   
   bool addRoute(const std::string &name, const std::string &srcObject, const std::string *destObject);
 
-  Route *getRouteByName(const std::string &name);
-  Route *getRouteBySouceObject(const std::string &srcObject);
+  Route *getRouteByName(const std::string &name) const ;
+  Route *getRouteBySouceObject(const std::string &srcObject) const ;
 };
 
 class RouteEngine : public RouteList {

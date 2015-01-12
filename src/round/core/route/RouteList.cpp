@@ -15,3 +15,15 @@ Round::RouteList::RouteList() {
 
 Round::RouteList::~RouteList() {
 }
+
+bool Round::RouteList::addRoute(const std::string &name, const std::string &srcObject, const std::string *destObject) {
+  
+}
+
+Round::Route *Round::RouteList::getRouteByName(const std::string &name) const {
+  
+}
+
+Round::Route *Round::RouteList::getRouteBySouceObject(const std::string &srcObject) const {
+  
+}

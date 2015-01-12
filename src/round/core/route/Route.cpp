@@ -34,7 +34,7 @@ bool Round::Route::setName(const std::string &value) {
   return true;
 }
 
-bool Round::Route::getName(std::string *value) {
+bool Round::Route::getName(std::string *value) const {
   if (this->name.length() <= 0)
     return false;
   *value = this->name;
