@@ -94,6 +94,27 @@ bool Round::RouteObjects::equals(const RouteObjects &otherObj) const {
   return true;
 }
 
+bool Round::RouteObjects::isMethod(const std::string &value) const {
+  std::string thisValue;
+  if (!getMethod(&thisValue))
+    return false;
+  return (thisValue.compare(value) == 0) ? true : false;
+}
+
+bool Round::RouteObjects::isNode(const std::string &value) const {
+  std::string thisValue;
+  if (!getNode(&thisValue))
+    return false;
+  return (thisValue.compare(value) == 0) ? true : false;
+}
+
+bool Round::RouteObjects::isCluster(const std::string &value) const {
+  std::string thisValue;
+  if (!getCluster(&thisValue))
+    return false;
+  return (thisValue.compare(value) == 0) ? true : false;
+}
+
 bool Round::RouteObjects::equals(const std::string &otherRoute) const {
   RouteObjects otherRouteObjs(otherRoute);
   return equals(otherRouteObjs);

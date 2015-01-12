@@ -91,3 +91,23 @@ Round::Route *Round::RouteList::getRouteBySouceObject(const std::string &srcObje
   return foundRuote;
   
 }
+
+Round::Route *Round::RouteList::getRouteBySouceMethod(const std::string &srcMethod) const {
+  lock();
+  
+  Route *foundRuote = NULL;
+  
+  for (RouteList::const_iterator routeIt = begin(); routeIt != end(); routeIt++) {
+    Route *route = *routeIt;
+    RouteObjects srcObjs = route->getSourceObjects();
+    if (srcObjs.isMethod(srcMethod)) {
+      foundRuote = route;
+      break;
+    }
+  }
+  
+  unlock();
+  
+  return foundRuote;
+  
+}

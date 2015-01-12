@@ -315,6 +315,7 @@ BOOST_AUTO_TEST_CASE(RouteListTest) {
   route = routeList.getRouteBySouceObject(TEST_01_SRC_OBJ);
   BOOST_CHECK_EQUAL(route->isName(TEST_01_NAME), true);
   BOOST_CHECK_EQUAL(route->isSource(TEST_01_SRC_OBJ), true);
+  BOOST_CHECK_EQUAL(route->isSourceMethod(TEST_01_SRC_METHOD), true);
   BOOST_CHECK_EQUAL(route->isDestination(TEST_01_DEST_OBJ), true);
 
   BOOST_CHECK_EQUAL(routeList.addRoute(TEST_01_NAME, TEST_01_SRC_OBJ, TEST_01_DEST_OBJ), false);
@@ -325,6 +326,7 @@ BOOST_AUTO_TEST_CASE(RouteListTest) {
   route = routeList.getRouteBySouceObject(TEST_02_SRC_OBJ);
   BOOST_CHECK_EQUAL(route->isName(TEST_02_NAME), true);
   BOOST_CHECK_EQUAL(route->isSource(TEST_02_SRC_OBJ), true);
+  BOOST_CHECK_EQUAL(route->isSourceMethod(TEST_02_SRC_METHOD), true);
   BOOST_CHECK_EQUAL(route->isDestination(TEST_02_DEST_OBJ), true);
 
   BOOST_CHECK_EQUAL(routeList.addRoute(TEST_02_NAME, TEST_02_SRC_OBJ, TEST_02_DEST_OBJ), false);
@@ -346,6 +348,7 @@ BOOST_AUTO_TEST_CASE(RouteListTest) {
   route = routeList.getRouteBySouceObject(TEST_01P_SRC_OBJ);
   BOOST_CHECK_EQUAL(route->isName(TEST_01_NAME), true);
   BOOST_CHECK_EQUAL(route->isSource(TEST_01P_SRC_OBJ), true);
+  BOOST_CHECK_EQUAL(route->isSourceMethod(TEST_01P_SRC_METHOD), true);
   BOOST_CHECK_EQUAL(route->isDestination(TEST_01P_DEST_OBJ), true);
   
   BOOST_CHECK_EQUAL(routeList.setRoute(TEST_01_NAME, TEST_01_SRC_OBJ, TEST_01_DEST_OBJ), true);
@@ -354,6 +357,7 @@ BOOST_AUTO_TEST_CASE(RouteListTest) {
   route = routeList.getRouteBySouceObject(TEST_01_SRC_OBJ);
   BOOST_CHECK_EQUAL(route->isName(TEST_01_NAME), true);
   BOOST_CHECK_EQUAL(route->isSource(TEST_01_SRC_OBJ), true);
+  BOOST_CHECK_EQUAL(route->isSourceMethod(TEST_01_SRC_METHOD), true);
   BOOST_CHECK_EQUAL(route->isDestination(TEST_01_DEST_OBJ), true);
 }
 

@@ -44,6 +44,7 @@ public:
   bool getMethod(std::string *value) const {
     return getObject(METHOD, value);
   }
+  
   bool getNode(std::string *value) const {
     return getObject(NODE, value);
   }
@@ -51,6 +52,10 @@ public:
   bool getCluster(std::string *value) const {
     return getObject(CLUSTER, value);
   }
+
+  bool isMethod(const std::string &value) const;
+  bool isNode(const std::string &value) const;
+  bool isCluster(const std::string &value) const;
   
   bool equals(const RouteObjects &otherObj) const;
   bool equals(const std::string &otherRoute) const;
@@ -92,6 +97,10 @@ public:
   
   bool isSource(const std::string &value) const {
     return this->srcObjects.equals(value);
+  }
+  
+  bool isSourceMethod(const std::string &value) const {
+    return this->srcObjects.isMethod(value);
   }
   
   bool getSourceMethod(std::string *value) const {
@@ -143,6 +152,7 @@ class RouteList : public Vector<Route> {
 
   Route *getRouteByName(const std::string &name) const ;
   Route *getRouteBySouceObject(const std::string &srcObject) const ;
+  Route *getRouteBySouceMethod(const std::string &srcMethod) const ;
 };
 
 class RouteEngine : public RouteList {
@@ -153,7 +163,7 @@ public:
   virtual ~RouteEngine();
 };
 
-class RouteManager {
+class RouteManager : public RouteEngine {
     
  public:
   
