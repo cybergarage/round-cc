@@ -16,10 +16,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="round_dp_quorum.svg"
-   inkscape:export-filename="/Users/skonno/Src/round/doc/img/round_dp_quorum.png"
-   inkscape:export-xdpi="119.94187"
-   inkscape:export-ydpi="119.94187">
+   sodipodi:docname="round_dp_mapreduce.svg"
+   inkscape:export-filename="/Users/skonno/Src/round/doc/img/round_dp_mapreduce.png"
+   inkscape:export-xdpi="140"
+   inkscape:export-ydpi="140">
   <defs
      id="defs4">
     <marker
@@ -210,10 +210,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.1692372"
-     inkscape:cx="274.30506"
+     inkscape:cx="192.70956"
      inkscape:cy="91.808191"
      inkscape:document-units="px"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer1"
      showgrid="true"
      showguides="false"
      inkscape:window-width="1816"
@@ -244,7 +244,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -268,12 +268,12 @@
        x="79.999992"
        y="104.00002" />
     <rect
-       style="fill:none;stroke:#000000;stroke-width:1.95603859;stroke-miterlimit:3.17311573;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:none;stroke:#000000;stroke-width:1.98532736;stroke-miterlimit:3.17311573;stroke-opacity:1;stroke-dasharray:none"
        id="rect4069"
-       width="330"
-       height="110"
-       x="33.999996"
-       y="-40.999969" />
+       width="339.99396"
+       height="109.98788"
+       x="34.006054"
+       y="-40.993912" />
     <rect
        y="-25.999928"
        x="90"
@@ -308,11 +308,11 @@
        inkscape:connector-curvature="0"
        transform="translate(-122,-53.158175)" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#TriangleOutM)"
-       d="m 471,67.158211 30,0 0,-85 -455.000004,5 0,14.9999998"
-       id="path5050"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;marker-end:url(#TriangleOutM)"
+       d="m 446,49.368164 0,-39.9999999 -400.000004,0 0,19.9999999"
+       id="path3068"
        inkscape:connector-curvature="0"
-       transform="translate(-122,-53.158175)" />
+       transform="translate(-122,-80.368127)" />
   </g>
   <g
      inkscape:label="Text"
@@ -339,22 +339,22 @@
        sodipodi:cy="195.19922"
        sodipodi:rx="42.5"
        sodipodi:ry="20"
-       d="m -177.10059,195.19922 c 0,11.04569 -19.02789,20 -42.5,20 -23.4721,0 -42.5,-8.95431 -42.5,-20 0,-11.0457 19.0279,-20 42.5,-20 23.47211,0 42.5,8.9543 42.5,20 z"
-       transform="translate(327.10059,-17.837018)" />
+       d="m -177.10059,195.19922 a 42.5,20 0 1 1 -85,0 42.5,20 0 1 1 85,0 z"
+       transform="translate(329.60059,-12.837025)" />
     <text
        sodipodi:linespacing="125%"
        id="text4078"
-       y="180.36218"
-       x="95.999985"
+       y="185.36218"
+       x="98.499977"
        style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
        xml:space="preserve"><tspan
          id="tspan4080"
-         y="180.36218"
-         x="95.999985"
+         y="185.36218"
+         x="98.499977"
          sodipodi:role="line">Client</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.58333325;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#TriangleOutM)"
-       d="m 160,177.3622 50,0"
+       d="m 160,182.36219 105,0"
        id="path5536"
        inkscape:connector-curvature="0" />
     <text
@@ -362,41 +362,37 @@
        id="text5745"
        y="185.3622"
        x="285"
-       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
        xml:space="preserve"><tspan
          sodipodi:role="line"
-         id="tspan3188"
-         x="285"
-         y="185.3622">Exec Method</tspan></text>
+         id="tspan3062">Map Method</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:6px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
        x="170"
-       y="172.3622"
+       y="177.3622"
        id="text3156"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3162"
          x="170"
-         y="172.3622">dest : &quot;all&quot;</tspan></text>
+         y="177.3622">dest : &quot;all&quot;</tspan></text>
     <rect
        y="172.36221"
        x="471"
        height="79.999985"
-       width="63.999996"
+       width="73.999992"
        id="rect5743-3"
-       style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:3.17311573;stroke-opacity:1;stroke-dasharray:none" />
+       style="fill:none;stroke:#000000;stroke-width:2.15058136;stroke-miterlimit:3.17311573;stroke-opacity:1;stroke-dasharray:none" />
     <text
        sodipodi:linespacing="125%"
        id="text5745-3"
        y="214.3622"
        x="480"
-       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
        xml:space="preserve"><tspan
          sodipodi:role="line"
-         id="tspan3235"
-         x="480"
-         y="214.3622">Filter Method</tspan></text>
+         id="tspan3066">Reduce Method</tspan></text>
     <path
        inkscape:connector-curvature="0"
        id="path3229"
@@ -413,22 +409,15 @@
          id="tspan3314"
          x="355"
          y="177.36221"> {&quot;jsonrpc&quot;: &quot;2.0&quot;, &quot;result&quot;: xxxxx, ....}</tspan></text>
-    <path
-       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.17311573;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#TriangleOutM)"
-       d="m 230,177.3622 35,0"
-       id="path4151"
-       inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
-       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
        x="285"
        y="319.36221"
        id="text4157"
        sodipodi:linespacing="125%"><tspan
-         y="319.36221"
-         x="285"
-         id="tspan4159"
-         sodipodi:role="line">Exec Method</tspan></text>
+         sodipodi:role="line"
+         id="tspan3064">Map Method</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.17311573;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#TriangleOutM)"
        d="m 345,182.36222 115,0"
@@ -479,8 +468,8 @@
          x="265"
          y="292.36221">Remote Nodes</tspan></text>
     <path
-       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.17311573;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#TriangleOutM)"
-       d="m 245,177.3622 0,140 25,0"
+       style="fill:none;stroke:#000000;stroke-width:1.96396101;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.17311573;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#TriangleOutM)"
+       d="m 245,182.36219 0,135.00001 25,0"
        id="path4229"
        inkscape:connector-curvature="0" />
     <path

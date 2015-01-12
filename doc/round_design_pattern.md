@@ -10,7 +10,22 @@
 
 ## Execution
 
-### Pipeline
+### Map Reduce
+
+![Map-Reduce](img/round_dp_mapreduce.png)
+
+```
+{
+  methods : [
+    {jsonrpc : "2.0", "method":"map_method", ....}
+    {jsonrpc : "2.0", "method":"filter_method", ....}
+  ]
+
+  routes : [
+  {src : "exec_method", dest : "filter_method"}
+  ]
+}
+```
 
 ### Quorum
 
