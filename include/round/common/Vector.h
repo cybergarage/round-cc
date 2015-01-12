@@ -117,18 +117,18 @@ private:
     return true;
   }
 
-  bool lock() {
+  bool lock() const {
     return this->mutex.lock();
   }
   
-  bool unlock() {
+  bool unlock() const {
     return this->mutex.unlock();
   }
 
 private:
   
   bool weekContainerFlag;
-  Mutex mutex;
+  mutable Mutex mutex;
 };
 
 }

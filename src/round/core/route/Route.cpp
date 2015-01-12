@@ -41,6 +41,10 @@ bool Round::Route::getName(std::string *value) const {
   return  true;
 }
 
+bool Round::Route::isName(const std::string &value) const {
+  return (this->name.compare(value) == 0) ? true : false;
+}
+
 bool Round::Route::isValid() {
   if (this->name.length() <= 0)
     return false;
@@ -63,6 +67,12 @@ bool Round::Route::equals(const Route *otherRoute) const {
   if (!otherRoute)
     return false;
   
+  std::string otherRouteName;
+  if (!otherRoute->getName(&otherRouteName))
+    return false;
+  if (!this->isName(otherRouteName))
+    return false;
+  
   if (!this->srcObjects.equals(otherRoute->getSourceObjects()))
     return false;
   
@@ -71,4 +81,3 @@ bool Round::Route::equals(const Route *otherRoute) const {
 
   return true;
 }
-

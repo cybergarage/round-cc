@@ -53,6 +53,7 @@ public:
   }
   
   bool equals(const RouteObjects &otherObj) const;
+  bool equals(const std::string &otherRoute) const;
 };
   
 class Route {
@@ -76,6 +77,7 @@ public:
   
   bool setName(const std::string &value);
   bool getName(std::string *value) const;
+  bool isName(const std::string &value) const;
   
   bool setSource(const std::string &value);
   bool setDestination(const std::string &value);
@@ -88,9 +90,14 @@ public:
     return this->destObjects;
   }
   
+  bool isSource(const std::string &value) const {
+    return this->srcObjects.equals(value);
+  }
+  
   bool getSourceMethod(std::string *value) const {
     return this->srcObjects.getMethod(value);
   }
+  
   bool getSourceNode(std::string *value) const {
     return this->srcObjects.getNode(value);
   }
@@ -99,6 +106,10 @@ public:
     return this->srcObjects.getCluster(value);
   }
 
+  bool isDestination(const std::string &value) const {
+    return this->destObjects.equals(value);
+  }
+  
   bool getDestinationMethod(std::string *value) const {
     return this->destObjects.getMethod(value);
   }
@@ -127,7 +138,8 @@ class RouteList : public Vector<Route> {
   RouteList();
   ~RouteList();
   
-  bool addRoute(const std::string &name, const std::string &srcObject, const std::string *destObject);
+  bool addRoute(const std::string &name, const std::string &srcObject, const std::string &destObject);
+  bool setRoute(const std::string &name, const std::string &srcObject, const std::string &destObject);
 
   Route *getRouteByName(const std::string &name) const ;
   Route *getRouteBySouceObject(const std::string &srcObject) const ;

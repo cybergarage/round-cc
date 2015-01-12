@@ -93,3 +93,8 @@ bool Round::RouteObjects::equals(const RouteObjects &otherObj) const {
   
   return true;
 }
+
+bool Round::RouteObjects::equals(const std::string &otherRoute) const {
+  RouteObjects otherRouteObjs(otherRoute);
+  return equals(otherRouteObjs);
+}
