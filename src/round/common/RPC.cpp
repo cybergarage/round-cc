@@ -19,31 +19,6 @@
 
 static std::map<int, std::string> gJsonRpcErrorStrings;
 
-enum {
-  ErrorCodeUnknown                   = 0,
-  
-  // Standard Response Error Codes
-  ErrorCodeParserError               = -32700,
-  ErrorCodeInvalidRequest            = -32600,
-  ErrorCodeMethodNotFound            = -32601,
-  ErrorCodeInvalidParams             = -32602,
-  ErrorCodeInternalError             = -32603,
-  
-  ErrorCodeServerErrorMax            = -32000,
-  ErrorCodeServerErrorMin            = -32099,
-  ErrorCodeServerError               = ErrorCodeServerErrorMax,
-  
-  // Extend Parameter Error Codes
-  ErrorCodeBadHashCode               = -32000,
-  ErrorCodeMovedPermanently          = -32001,
-  
-  // Extended Script Engine Error Codes
-  ErrorCodeScriptEngineInternalError = -32010,
-  ErrorCodeScriptEngineNotFound      = -32011,
-  ErrorCodeScriptCompileError        = -32012,
-  ErrorCodeScriptRuntimeError        = -32013,
-};
-
 int Round::RPC::JSON::HTTP::ErrorCodeToHTTPStatusCode(int jsonErrorCode) {
   // Standard Response Error Codes
   switch (jsonErrorCode) {
@@ -63,6 +38,12 @@ int Round::RPC::JSON::HTTP::ErrorCodeToHTTPStatusCode(int jsonErrorCode) {
       return uHTTP::HTTP::BAD_REQUEST;
     case RPC::JSON::ErrorCodeMovedPermanently :
       return uHTTP::HTTP::MOVED_PERMANENTLY;
+  }
+  
+  // Extented Parameter
+  switch (jsonErrorCode) {
+    case RPC::JSON::ErrorConditionFailed :
+      return uHTTP::HTTP::NOT_ACCEPTABLE;
   }
   
   // Extended Script Engine Error Codes

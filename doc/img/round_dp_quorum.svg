@@ -12,7 +12,7 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="502"
-   height="240.36816"
+   height="230.36816"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
@@ -211,7 +211,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="2.1692372"
      inkscape:cx="274.30506"
-     inkscape:cy="101.80819"
+     inkscape:cy="91.808191"
      inkscape:document-units="px"
      inkscape:current-layer="layer2"
      showgrid="true"
@@ -234,7 +234,7 @@
        enabled="true"
        snapvisiblegridlinesonly="true"
        originx="-64.000004px"
-       originy="-694px" />
+       originy="-704px" />
   </sodipodi:namedview>
   <metadata
      id="metadata7">
@@ -252,10 +252,10 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Box"
-     transform="translate(122,80.368131)">
+     transform="translate(122,80.368127)">
     <rect
-       y="119.00003"
-       x="94.999992"
+       y="109.00003"
+       x="85"
        height="40.000004"
        width="98.999992"
        id="rect5048"
@@ -265,8 +265,8 @@
        id="rect5046"
        width="98.999992"
        height="40.000004"
-       x="85"
-       y="109.00004" />
+       x="79.999992"
+       y="104.00002" />
     <rect
        style="fill:none;stroke:#000000;stroke-width:1.95603859;stroke-miterlimit:3.17311573;stroke-opacity:1;stroke-dasharray:none"
        id="rect4069"

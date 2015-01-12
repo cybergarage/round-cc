@@ -10,14 +10,20 @@ Round adds the following original fields to [JSON-RPC 2.0][json-rpc] specificati
 
 | Field | Descripton | Default | Detail |
 | - | - | - | - |
-| hash | - | (node) | |
+| hash | - | (none) | |
 | dest | one, all, quorum | one | |
+| cond | - | - |  |
+| type | - | - |  |
 | ts | - | - | The field is handled automatically by Round |
 | digest | - | (none) | - |
 
 ### hash
 
 The hash field specifies a destination node of the request object. The node which is received the request object checks the hash code whether the node should execute the request object.  
+
+```
+hash = SHA256-HASH
+```
 
 #### Request object
 
@@ -41,6 +47,11 @@ If the node returns the error object, the cluster might be updated because of ad
 
 The dest, destination, field specifies target nodes of the request object message.
 
+```
+dest = "one" | "all" | quorum
+quorum = NUMBER
+```
+
 #### Request object
 
 ```
@@ -57,6 +68,55 @@ If the target nodes are two or more nodes, the response object has an array cont
 {"jsonrpc": "2.0", "result": 6, "id": "1", "hash": "xxxxxxxxxxxxxxxx", .....},
 {"jsonrpc": "2.0", "result": 9, "id": "1", "hash": "xxxxxxxxxxxxxxxx", .....},
 {"jsonrpc": "2.0", "result": 2, "id": "1", "hash": "xxxxxxxxxxxxxxxx", .....},
+]
+```
+
+### cond
+
+The field specifies a condition by JavaScript whether the message is executed. In the condition, you can use two variables, 'params' and 'prev_result'.
+
+```
+cond = JS_SCRIPT
+```
+
+#### Request object
+
+The 'params' is a same variable in the request object ast the following.
+
+```
+--> {"jsonrpc": "2.0", "method": "deposit", "params": "{}", "cond": "(0 < params[\"amount\"])" }
+```
+
+The 'prev_result' is enabled only when the request message is a batch request. Using the field, you can only execute a request when the previos request is success.
+
+```
+--> [
+{"jsonrpc": "2.0", "method": "deposit", .... },
+{"jsonrpc": "2.0", "method": "withdraw", "cond" : "(prev_result[\"success\"] == \"true\")" , .... },
+]
+```
+
+### type
+
+The field specifies a request type.
+
+```
+type = "quorum"
+```
+
+### quorum
+
+The quorum type uses to execute the request method in quorum mode. To enable the quorum type, you have to set a suitable 'dest' field such as 'all' or a number too.
+
+```
+--> {"jsonrpc": "2.0", "method": "set_counter", "type": "quorum", ....}
+```
+
+The 'quorum' type request is a syntactic sugar function, and the messages is equals to the following a batch message.
+```
+--> [
+{"jsonrpc": "2.0", "method": "_quorum_prepare", ....}
+{"jsonrpc": "2.0", "method": "set_counter", "cond" : "prev_result" , .... },
 ]
 ```
 
@@ -98,14 +158,15 @@ When the request object hasn't the parameter, the remote node does't update the 
 
 Round added the folloinwg error codes in the  implementation defined range [JSON-RPC][json-rpc]. Round returns the following error code when the specified method couldn't be executed.
 
-| code | message | data |
+| code | message | description |
 |-|-|-|
-| -32000 | Bad Hash Length | { "cluster" : } |
-| -32001 | Moved Permanently | { "cluster" : } |
-| -32010 | Internal Script Engine Error | (none) |
-| -32011 | Invalid Script Language | (none) |
-| -32012 | Invalid Script Code | (none) |
-| -32013 | Script Runtime Error  | (none) |
+| -32000 | Bad Hash Length | - |
+| -32001 | Moved Permanently | - |
+| -32010 | Condition Failed | - |
+| -32020 | Internal Script Engine Error | - |
+| -32021 | Invalid Script Language | - |
+| -32022 | Invalid Script Code | - |
+| -32023 | Script Runtime Error  | - |
 
 ## Asynchronous Request
 
@@ -143,22 +204,3 @@ The 'result' member is required on success in [JSON-RPC 2.0][json-rpc]. However,
 [rpc]: http://en.wikipedia.org/wiki/Remote_procedure_call
 [json-rpc]: http://www.jsonrpc.org/specification
 [json-rpc-http]: http://jsonrpc.org/historical/json-rpc-over-http.html
-
-## Consensus Protocol
-
-Round uses a traditional consensus protocol, [Paxos](http://en.wikipedia.org/wiki/Paxos_(computer_science), to provide consistency. Each node acts in three roles; Proposer, Acceptor and Learner in Paxos to reduces the message complexity significantly.
-
-![round_internal_paxos](/img/round_internal_paxos.svg)
-
-## Failure Detection
-
-Any node can vote a failure suspicion into other nodes in the same cluster when the voted node suspects failure to other node or itself.
-
-The algorithm of failure detection is programmable.
-
-## Security
-
-Round supports a security model based on [HMAC](https://tools.ietf.org/html/rfc2104) to reject unreliable messages from evil users.
-
-The node
-a session key.
