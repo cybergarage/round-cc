@@ -43,10 +43,12 @@ enum {
   ErrorCodeBadHashCode               = -32000,
   ErrorCodeMovedPermanently          = -32001,
   
-  ErrorCodeScriptEngineInternalError = -32010,
-  ErrorCodeScriptEngineNotFound      = -32011,
-  ErrorCodeScriptCompileError        = -32012,
-  ErrorCodeScriptRuntimeError        = -32013,
+  ErrorConditionFailed               = -32010,
+  
+  ErrorCodeScriptEngineInternalError = -32020,
+  ErrorCodeScriptEngineNotFound      = -32021,
+  ErrorCodeScriptCompileError        = -32022,
+  ErrorCodeScriptRuntimeError        = -32023,
   
   ErrorCodeServerErrorMax            = -32000,
   ErrorCodeServerErrorMin            = -32099,
