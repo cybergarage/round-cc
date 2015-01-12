@@ -10,6 +10,10 @@
 		210E5FE21A5EDFDA005667CB /* liblibmupnp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 210E5FDF1A5EDFC9005667CB /* liblibmupnp++.a */; };
 		21B854041A60E470009E6ECB /* TclEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B854031A60E470009E6ECB /* TclEngine.cpp */; };
 		21B854061A60E4B1009E6ECB /* Tcl.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B854051A60E4B1009E6ECB /* Tcl.h */; };
+		21D03AD41A63C4A60098122A /* Route.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D03AD31A63C4A60098122A /* Route.h */; };
+		21D03AD71A63C58A0098122A /* Route.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D03AD51A63C58A0098122A /* Route.cpp */; };
+		21D03AD81A63C58A0098122A /* RouteEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D03AD61A63C58A0098122A /* RouteEngine.cpp */; };
+		21D03ADA1A63C6390098122A /* RouteManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D03AD91A63C6390098122A /* RouteManager.cpp */; };
 		21D8E1AB1A60E19300E8A63F /* Client.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D8E1711A60E19300E8A63F /* Client.h */; };
 		21D8E1AC1A60E19300E8A63F /* BitOption.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D8E1731A60E19300E8A63F /* BitOption.h */; };
 		21D8E1AD1A60E19300E8A63F /* Clock.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D8E1741A60E19300E8A63F /* Clock.h */; };
@@ -175,6 +179,10 @@
 		21A9FFAA154014F300BDFCDC /* liblibround++.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "liblibround++.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B854031A60E470009E6ECB /* TclEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TclEngine.cpp; sourceTree = "<group>"; };
 		21B854051A60E4B1009E6ECB /* Tcl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tcl.h; sourceTree = "<group>"; };
+		21D03AD31A63C4A60098122A /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
+		21D03AD51A63C58A0098122A /* Route.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Route.cpp; sourceTree = "<group>"; };
+		21D03AD61A63C58A0098122A /* RouteEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RouteEngine.cpp; sourceTree = "<group>"; };
+		21D03AD91A63C6390098122A /* RouteManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RouteManager.cpp; sourceTree = "<group>"; };
 		21D8E1711A60E19300E8A63F /* Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
 		21D8E1731A60E19300E8A63F /* BitOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitOption.h; sourceTree = "<group>"; };
 		21D8E1741A60E19300E8A63F /* Clock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clock.h; sourceTree = "<group>"; };
@@ -439,6 +447,7 @@
 		21D8E1891A60E19300E8A63F /* core */ = {
 			isa = PBXGroup;
 			children = (
+				21D03AD31A63C4A60098122A /* Route.h */,
 				21D8E18A1A60E19300E8A63F /* ClientCore.h */,
 				21D8E18B1A60E19300E8A63F /* Cluster.h */,
 				21D8E18C1A60E19300E8A63F /* ErrorNo.h */,
@@ -605,6 +614,9 @@
 		21D8E2541A60E1E200E8A63F /* core */ = {
 			isa = PBXGroup;
 			children = (
+				21D03AD91A63C6390098122A /* RouteManager.cpp */,
+				21D03AD51A63C58A0098122A /* Route.cpp */,
+				21D03AD61A63C58A0098122A /* RouteEngine.cpp */,
 				21D8E2751A60E1E200E8A63F /* ClientCore.cpp */,
 				21D8E2761A60E1E200E8A63F /* Cluster.cpp */,
 				21D8E2771A60E1E200E8A63F /* ClusterList.cpp */,
@@ -712,6 +724,7 @@
 				21D8E1BF1A60E19300E8A63F /* Thread.h in Headers */,
 				21D8E1B01A60E19300E8A63F /* ConsistentHash.h in Headers */,
 				21D8E1C31A60E19300E8A63F /* Cluster.h in Headers */,
+				21D03AD41A63C4A60098122A /* Route.h in Headers */,
 				21D8E1C61A60E19300E8A63F /* HTTPUServer.h in Headers */,
 				21D8E1CC1A60E19300E8A63F /* Logger.h in Headers */,
 				21D8E1D81A60E19300E8A63F /* SystemMethod.h in Headers */,
@@ -833,6 +846,7 @@
 				21D8E2E61A60E1E200E8A63F /* LocalNodeConfig.cpp in Sources */,
 				21D8E2D81A60E1E200E8A63F /* RPC.cpp in Sources */,
 				21D8E2D01A60E1E200E8A63F /* Mutex.cpp in Sources */,
+				21D03AD71A63C58A0098122A /* Route.cpp in Sources */,
 				21D8E2FA1A60E1E200E8A63F /* ScriptMap.cpp in Sources */,
 				21D8E2CE1A60E1E200E8A63F /* MessageManager.cpp in Sources */,
 				21D8E2CB1A60E1E200E8A63F /* JSONReal.cpp in Sources */,
@@ -853,6 +867,7 @@
 				21D8E2FB1A60E1E200E8A63F /* ServerNode.cpp in Sources */,
 				21D8E2B51A60E1E200E8A63F /* ConsistentHashObject.cpp in Sources */,
 				21D8E2F11A60E1E200E8A63F /* NodeList.cpp in Sources */,
+				21D03AD81A63C58A0098122A /* RouteEngine.cpp in Sources */,
 				21D8E2FF1A60E1E200E8A63F /* Finder.cpp in Sources */,
 				21D8E2F51A60E1E200E8A63F /* RemoteNode.cpp in Sources */,
 				21D8E2D41A60E1E200E8A63F /* Random.cpp in Sources */,
@@ -903,6 +918,7 @@
 				21D8E2B81A60E1E200E8A63F /* MD5.cpp in Sources */,
 				21D8E2CA1A60E1E200E8A63F /* JSONParser.cpp in Sources */,
 				21D8E2CC1A60E1E200E8A63F /* JSONString.cpp in Sources */,
+				21D03ADA1A63C6390098122A /* RouteManager.cpp in Sources */,
 				21D8E2ED1A60E1E200E8A63F /* NodeFinder.cpp in Sources */,
 				21D8E2B41A60E1E200E8A63F /* ConsistentHashNode.cpp in Sources */,
 				21D8E2E81A60E1E200E8A63F /* LocalNodeWorker.cpp in Sources */,
