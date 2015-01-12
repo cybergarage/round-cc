@@ -16,11 +16,11 @@ The sample is a simple distributed key value store to small data such as configu
 
 ## CDN (Contents Delivery Network)
 
-## Map Reduce
+## Key Value Store
+
+![kvs](./img/round_app_kvs.png)
 
 ## Search Engine
-
-## In-Memory Database
 
 ## NoSQL Database
 
