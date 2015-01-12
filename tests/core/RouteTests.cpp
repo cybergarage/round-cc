@@ -74,7 +74,7 @@ BOOST_AUTO_TEST_CASE(RouteObjectsConstructorTest) {
   
   // "cluster.node.method"
   
-  RoundObjects routeObjs(TEST_CLUSTER + "." + TEST_NODE + "." + TEST_METHOD);
+  RouteObjects routeObjs(TEST_CLUSTER + "." + TEST_NODE + "." + TEST_METHOD);
   std::string name, object;
   
   BOOST_CHECK_EQUAL(routeObjs.isValid(), true);

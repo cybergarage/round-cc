@@ -14,10 +14,6 @@
 
 #include <round/core/Route.h>
 
-const int Round::Route::METHOD = Round::RouteObjects::METHOD;
-const int Round::Route::NODE = Round::RouteObjects::NODE;
-const int Round::Route::CLUSTER = Round::RouteObjects::CLUSTER;
-
 const std::string Round::Route::NODE_DEFALUT = NODE_LOCAL;
 const std::string Round::Route::NODE_LOCAL = "local";
 const std::string Round::Route::NODE_ALL = "all";

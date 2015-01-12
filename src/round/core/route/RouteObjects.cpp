@@ -49,9 +49,9 @@ bool Round::RouteObjects::parse(const std::string &value) {
   if ((objectSize < 1) || (3 < objectSize))
     return false;
   
-  this->insert(std::pair<int, std::string>(Route::METHOD, Route::METHOD_DEFALUT));
-  this->insert(std::pair<int, std::string>(Route::NODE, Route::NODE_DEFALUT));
-  this->insert(std::pair<int, std::string>(Route::CLUSTER, Route::CLUSTER_DEFALUT));
+  this->insert(std::pair<int, std::string>(METHOD, Route::METHOD_DEFALUT));
+  this->insert(std::pair<int, std::string>(NODE, Route::NODE_DEFALUT));
+  this->insert(std::pair<int, std::string>(CLUSTER, Route::CLUSTER_DEFALUT));
 
   int objectIdx = 0;
   BOOST_REVERSE_FOREACH(std::string object, objectList) {

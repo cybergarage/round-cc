@@ -57,10 +57,6 @@ class Route {
 
 public:
   
-  static const int METHOD;
-  static const int NODE;
-  static const int CLUSTER;
-  
   static const std::string NODE_DEFALUT;
   static const std::string NODE_LOCAL;
   static const std::string NODE_ALL;
@@ -83,35 +79,26 @@ public:
   bool setDestination(const std::string &value);
   
   bool getSourceMethod(std::string *value) {
-    return getSourceObject(METHOD, value);
+    return this->srcObjects.getMethod(value);
   }
   bool getSourceNode(std::string *value) {
-    return getSourceObject(NODE, value);
+    return this->srcObjects.getNode(value);
   }
 
   bool getSourceCluster(std::string *value) {
-    return getSourceObject(CLUSTER, value);
+    return this->srcObjects.getCluster(value);
   }
 
   bool getDestinationMethod(std::string *value) {
-    return getDestinationObject(METHOD, value);
+    return this->destObjects.getMethod(value);
   }
+  
   bool getDestinationNode(std::string *value) {
-    return getDestinationObject(NODE, value);
+    return this->destObjects.getNode(value);
   }
   
   bool getDestinationCluster(std::string *value) {
-    return getDestinationObject(CLUSTER, value);
-  }
-  
-private:
-  
-  bool getSourceObject(int objIdx, std::string *value) {
-    return this->srcObjects.getObject(objIdx, value);
-  }
-  
-  bool getDestinationObject(int objIdx, std::string *value) {
-    return this->destObjects.getObject(objIdx, value);
+    return this->destObjects.getCluster(value);
   }
   
 private:
