@@ -18,6 +18,7 @@ using namespace Round;
 BOOST_AUTO_TEST_SUITE(route)
 
 BOOST_AUTO_TEST_CASE(RouteTest) {
+  const std::string TEST_NAME = "rname";
   const std::string TEST_SRC_METHOD = "smethod";
   const std::string TEST_SRC_NODE = "snode";
   const std::string TEST_SRC_CLUSTER = "scluster";
@@ -27,11 +28,12 @@ BOOST_AUTO_TEST_CASE(RouteTest) {
   const std::string TEST_DEST_CLUSTER = "dcluster";
   
   Route route;
-  std::string object;
+  std::string name, object;
   
   // initialize node
   
   BOOST_CHECK_EQUAL(route.isValid(), false);
+  BOOST_CHECK_EQUAL(route.getName(&name), false);
   BOOST_CHECK_EQUAL(route.getSourceCluster(&object), false);
   BOOST_CHECK_EQUAL(route.getSourceNode(&object), false);
   BOOST_CHECK_EQUAL(route.getSourceMethod(&object), false);
@@ -39,6 +41,13 @@ BOOST_AUTO_TEST_CASE(RouteTest) {
   BOOST_CHECK_EQUAL(route.getDestinationNode(&object), false);
   BOOST_CHECK_EQUAL(route.getDestinationMethod(&object), false);
 
+  // "name"
+
+  BOOST_CHECK_EQUAL(route.setName(TEST_NAME), true);
+  BOOST_CHECK_EQUAL(route.isValid(), false);
+  BOOST_CHECK_EQUAL(route.getName(&name), true);
+  BOOST_CHECK_EQUAL(name.compare(TEST_NAME), 0);
+  
   // "method" (Src)
   
   BOOST_CHECK_EQUAL(route.setSource(TEST_SRC_METHOD), true);
@@ -108,6 +117,9 @@ BOOST_AUTO_TEST_CASE(RouteTest) {
   // Last Check
   
   BOOST_CHECK_EQUAL(route.isValid(), true);
+  
+  BOOST_CHECK_EQUAL(route.getName(&name), true);
+  BOOST_CHECK_EQUAL(name.compare(TEST_NAME), 0);
   
   BOOST_CHECK_EQUAL(route.getSourceCluster(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_SRC_CLUSTER), 0);

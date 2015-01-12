@@ -46,6 +46,9 @@ public:
 
   bool isValid();
   
+  bool setName(const std::string &value);
+  bool getName(std::string *value);
+  
   bool setSource(const std::string &value);
   bool setDestination(const std::string &value);
   
@@ -87,6 +90,7 @@ private:
   
 private:
   
+  std::string  name;
   RouteObjects srcObjects;
   RouteObjects destObjects;
 };

@@ -36,7 +36,21 @@ Round::Route::Route() {
 Round::Route::~Route() {
 }
 
+bool Round::Route::setName(const std::string &value) {
+  this->name = value;
+  return true;
+}
+
+bool Round::Route::getName(std::string *value) {
+  if (this->name.length() <= 0)
+    return false;
+  *value = this->name;
+  return  true;
+}
+
 bool Round::Route::isValid() {
+  if (this->name.length() <= 0)
+    return false;
   if (this->srcObjects.size() != OBJECT_NUM)
     return false;
   if (this->destObjects.size() != OBJECT_NUM)
