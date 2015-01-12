@@ -42,6 +42,9 @@ bool Round::RouteObjects::isValid() {
 bool Round::RouteObjects::parse(const std::string &value) {
   clear();
   
+  if (value.length() <= 0)
+    return false;
+  
   std::list<std::string> objectList;
   boost::split(objectList, value, boost::is_any_of(OBJECT_SEP));
 

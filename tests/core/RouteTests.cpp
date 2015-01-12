@@ -25,8 +25,16 @@ BOOST_AUTO_TEST_CASE(RouteObjectsParseTest) {
   RouteObjects routeObjs;
   std::string name, object;
   
-  // initialize node
+  // Initialize node
   
+  BOOST_CHECK_EQUAL(routeObjs.isValid(), false);
+  BOOST_CHECK_EQUAL(routeObjs.getCluster(&object), false);
+  BOOST_CHECK_EQUAL(routeObjs.getNode(&object), false);
+  BOOST_CHECK_EQUAL(routeObjs.getMethod(&object), false);
+  
+  // Parse null object
+  
+  BOOST_CHECK_EQUAL(routeObjs.parse(""), false);
   BOOST_CHECK_EQUAL(routeObjs.isValid(), false);
   BOOST_CHECK_EQUAL(routeObjs.getCluster(&object), false);
   BOOST_CHECK_EQUAL(routeObjs.getNode(&object), false);
