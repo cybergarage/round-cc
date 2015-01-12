@@ -52,7 +52,7 @@ public:
     return getObject(CLUSTER, value);
   }
   
-  bool equals(const RouteObjects *otherObj) const;
+  bool equals(const RouteObjects &otherObj) const;
 };
   
 class Route {
@@ -80,6 +80,14 @@ public:
   bool setSource(const std::string &value);
   bool setDestination(const std::string &value);
   
+  const RouteObjects &getSourceObjects() const {
+    return this->srcObjects;
+  }
+  
+  const RouteObjects &getDestinationObjects() const {
+    return this->destObjects;
+  }
+  
   bool getSourceMethod(std::string *value) const {
     return this->srcObjects.getMethod(value);
   }
@@ -102,6 +110,8 @@ public:
   bool getDestinationCluster(std::string *value) const {
     return this->destObjects.getCluster(value);
   }
+  
+  bool equals(const Route *otherRoute) const;
   
 private:
   

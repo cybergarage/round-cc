@@ -104,16 +104,16 @@ BOOST_AUTO_TEST_CASE(RouteObjectsEqualsTest) {
   const std::string TEST_CLUSTER_02 = "cluster02";
   
   RouteObjects routeObjs(TEST_CLUSTER_01 + "." + TEST_NODE_01 + "." + TEST_METHOD_01);
-  BOOST_CHECK_EQUAL(routeObjs.equals(&routeObjs), true);
+  BOOST_CHECK_EQUAL(routeObjs.equals(routeObjs), true);
 
   RouteObjects routeObjs01(TEST_CLUSTER_01 + "." + TEST_NODE_01 + "." + TEST_METHOD_01);
-  BOOST_CHECK_EQUAL(routeObjs01.equals(&routeObjs01), true);
+  BOOST_CHECK_EQUAL(routeObjs01.equals(routeObjs01), true);
   
   RouteObjects routeObjs02(TEST_CLUSTER_02 + "." + TEST_NODE_02 + "." + TEST_METHOD_02);
-  BOOST_CHECK_EQUAL(routeObjs02.equals(&routeObjs02), true);
+  BOOST_CHECK_EQUAL(routeObjs02.equals(routeObjs02), true);
 
-  BOOST_CHECK_EQUAL(routeObjs.equals(&routeObjs01), true);
-  BOOST_CHECK_EQUAL(routeObjs.equals(&routeObjs02), false);
+  BOOST_CHECK_EQUAL(routeObjs.equals(routeObjs01), true);
+  BOOST_CHECK_EQUAL(routeObjs.equals(routeObjs02), false);
 }
 
 BOOST_AUTO_TEST_CASE(RouteTest) {
@@ -234,6 +234,43 @@ BOOST_AUTO_TEST_CASE(RouteTest) {
   BOOST_CHECK_EQUAL(route.getDestinationMethod(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_DEST_METHOD), 0);
 }
+
+BOOST_AUTO_TEST_CASE(RouteEqualsTest) {
+  const std::string TEST_SRC_METHOD_01 = "smethod01";
+  const std::string TEST_SRC_NODE_01 = "snode01";
+  const std::string TEST_SRC_CLUSTER_01 = "scluster01";
+  
+  const std::string TEST_DEST_METHOD_01 = "dmethod01";
+  const std::string TEST_DEST_NODE_01 = "dnode01";
+  const std::string TEST_DEST_CLUSTER_01 = "dcluster01";
+  
+  const std::string TEST_SRC_METHOD_02 = "smethod02";
+  const std::string TEST_SRC_NODE_02 = "snode02";
+  const std::string TEST_SRC_CLUSTER_02 = "scluster02";
+  
+  const std::string TEST_DEST_METHOD_02 = "dmethod02";
+  const std::string TEST_DEST_NODE_02 = "dnode02";
+  const std::string TEST_DEST_CLUSTER_02 = "dcluster02";
+  
+  Route route;
+  BOOST_CHECK_EQUAL(route.setSource(TEST_SRC_CLUSTER_01 + "." + TEST_SRC_NODE_01 + "." + TEST_SRC_METHOD_01), true);
+  BOOST_CHECK_EQUAL(route.setDestination(TEST_DEST_CLUSTER_01 + "." + TEST_DEST_NODE_01 + "." + TEST_DEST_METHOD_01), true);
+  BOOST_CHECK_EQUAL(route.equals(&route), true);
+
+  Route route01;
+  BOOST_CHECK_EQUAL(route01.setSource(TEST_SRC_CLUSTER_01 + "." + TEST_SRC_NODE_01 + "." + TEST_SRC_METHOD_01), true);
+  BOOST_CHECK_EQUAL(route01.setDestination(TEST_DEST_CLUSTER_01 + "." + TEST_DEST_NODE_01 + "." + TEST_DEST_METHOD_01), true);
+  BOOST_CHECK_EQUAL(route01.equals(&route01), true);
+
+  Route route02;
+  BOOST_CHECK_EQUAL(route02.setSource(TEST_SRC_CLUSTER_02 + "." + TEST_SRC_NODE_02 + "." + TEST_SRC_METHOD_02), true);
+  BOOST_CHECK_EQUAL(route02.setDestination(TEST_DEST_CLUSTER_02 + "." + TEST_DEST_NODE_02 + "." + TEST_DEST_METHOD_02), true);
+  BOOST_CHECK_EQUAL(route02.equals(&route02), true);
+  
+  BOOST_CHECK_EQUAL(route.equals(&route01), true);
+  BOOST_CHECK_EQUAL(route.equals(&route02), false);
+}
+
 
 BOOST_AUTO_TEST_SUITE_END()
 

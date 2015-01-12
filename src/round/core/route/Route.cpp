@@ -58,3 +58,17 @@ bool Round::Route::setSource(const std::string &value) {
 bool Round::Route::setDestination(const std::string &value) {
   return this->destObjects.parse(value);
 }
+
+bool Round::Route::equals(const Route *otherRoute) const {
+  if (!otherRoute)
+    return false;
+  
+  if (!this->srcObjects.equals(otherRoute->getSourceObjects()))
+    return false;
+  
+  if (!this->destObjects.equals(otherRoute->getDestinationObjects()))
+    return false;
+
+  return true;
+}
+

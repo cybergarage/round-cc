@@ -77,15 +77,15 @@ bool Round::RouteObjects::getObject(int objIdx, std::string *value) const {
   return true;
 }
 
-bool Round::RouteObjects::equals(const RouteObjects *otherObj) const {
-  if (!isValid() || !otherObj->isValid())
+bool Round::RouteObjects::equals(const RouteObjects &otherObj) const {
+  if (!isValid() || !otherObj.isValid())
     return false;
   
   for (RouteObjects::const_iterator objIt = begin(); objIt != end(); objIt++) {
     int objIdx = objIt->first;
     std::string objVal = objIt->second;
-    RouteObjects::const_iterator otherObjIt = otherObj->find(objIdx);
-    if (otherObjIt == otherObj->end())
+    RouteObjects::const_iterator otherObjIt = otherObj.find(objIdx);
+    if (otherObjIt == otherObj.end())
       return false;
     if (objVal.compare(otherObjIt->second) != 0)
       return false;
