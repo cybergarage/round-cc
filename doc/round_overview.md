@@ -30,31 +30,32 @@ The initial version is implemented with C++, whereas the core module can be done
 
 ### Zeroconf
 
-In typical cloud systems, some configurations such as the ip address and the service port are needed to add a new node manually, but the manual configurations are obstacle for auto scale distributed systems. In Round, all new nodes are added into a cluster without special configuration and the nodes are available soon automatically.
+In typical cloud systems, users have to set some configuration to start distributed services. Round is designed not to set configurations by users using Zeroconf.
+
+Zeroconf is a tecnology to find services without user configuration.　In Round, all new nodes are added into a cluster without special configuration and the nodes are available automatically.
 
 ![round_overview_zeroconf](img/round_overview_zeroconf.png)
 
-In Round, some noficication events are defined for the node statues. When a node status is changed, the notification message is sent to all other nodes  in the same cluster. For example, each existing node is recieved a notirication message when a new node is added or removed.
-
 ### Decentralized
 
-Round is a decentralized and distributed system, every nodes in a cluster has equal roll, the cluster has no master node. In typical distributed systems are centric, they has a master node.
+Round is a decentralized and distributed system,
+every nodes in a cluster has equal roll, the cluster has no master node.
+
+In typical distributed systems such as consensus services are centric which has a master node. However, Round has no master node.
 
 ![round_overview_zeroconf](img/round_overview_decentralized.png)
 
-### Dynamics
-
-The behaviors of node are defined using a dynamic programming language script, so the distributed strategies and algorithms are configurable dynamically. To send a script, developers can change the strategy and algorithm of all nodes in the cluster dynamically.
-
-![round_overview_dynamics](img/round_overview_dynamics.png)
-
 ### Autonomous
 
-Each node run as an autonomous agent in the cluster, a node communicate to other nodes based on the specified behaviors using the message protocol synchronously or asynchronously.
+Each node run as an autonomous agent based on the specified behaviors by programming. They communicates synchronously or asynchronously messages to other nodes based on the specified behaviors autonomously.
 
 ![round_overview_autonomous](img/round_overview_autonomous.png)
 
-The some basic behaviors are defined as default, and developers can override the default behaviors or add new behaviors using some programming languages such as JavaScript or Java.
+### Dynamics
+
+The behaviors of node are defined using some dynamic and static programming language scripts, the behaviors can be changed to send the programming scripts dynamically.
+
+![round_overview_dynamics](img/round_overview_dynamics.png)
 
 ## Support Functions
 
