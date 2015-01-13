@@ -71,10 +71,9 @@ bool Round::ServerNode::isRpcRequest(uHTTP::HTTPRequest *httpReq) {
   return false;
 }
 
-Round::HttpStatusCode Round::ServerNode::postRpcRequest(uHTTP::HTTPRequest *httpReq, NodeRequest *nodeReq) {
+Round::HttpStatusCode Round::ServerNode::postRpcRequest(uHTTP::HTTPRequest *httpReq, Message *nodeReq) {
   if (!httpReq || !nodeReq)
     return false;
-  nodeReq->setHttpRequest(httpReq);
   return pushMessage(nodeReq);
 }
 
@@ -98,15 +97,11 @@ Round::HttpStatusCode Round::ServerNode::httpRpcRequestReceived(uHTTP::HTTPReque
     return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeParserError);
   }
 
-  Message *rpcMsg = NULL;
-  
-  if (rootObject->isDictionary() == false)
-    return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeInvalidRequest);
-
   NodeRequest *nodeReq = dynamic_cast<NodeRequest *>(jsonParser.popRootObject());
   if (!nodeReq)
     return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeInvalidRequest);
-
+  nodeReq->setHttpRequest(httpReq);
+  
   // Post RPC Request
   
   if (!postRpcRequest(httpReq, nodeReq))

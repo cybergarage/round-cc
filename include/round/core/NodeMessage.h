@@ -45,14 +45,17 @@ class NodeRequest : public RPC::JSON::Request {
   }
   
   bool setHttpRequest(uHTTP::HTTPRequest *httpReq);
-  uHTTP::HTTPRequest *getHttpRequest() const {return this->httpReq;}
+  
+  uHTTP::HTTPRequest *getHttpRequest() const {
+    return this->httpReq;
+  }
   
  private:
   
-  mutable uHTTP::HTTPRequest *httpReq;
-
   void init();
   bool close();
+  
+  mutable uHTTP::HTTPRequest *httpReq;
 };
 
 class NodeBatchRequest : public RPC::JSON::BatchRequest {

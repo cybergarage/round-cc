@@ -48,7 +48,7 @@ protected:
 private:
   
   HttpStatusCode postRpcErrorResponse(uHTTP::HTTPRequest *httpReq, int rpcErrorCode);
-  HttpStatusCode postRpcRequest(uHTTP::HTTPRequest *httpReq, NodeRequest *nodeReq);
+  HttpStatusCode postRpcRequest(uHTTP::HTTPRequest *httpReq, Message *nodeReq);
   
   int serverPort;
   std::string serverAddress;

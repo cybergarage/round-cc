@@ -64,7 +64,7 @@ namespace HTTP {
 
 void ErrorCodeToError(int jsonErrorCode, Error *error);
   
-class Message : public ::Round::Message {
+class Message : public ::Round::Request {
  public:
   static const std::string JSON_RPC;
   static const std::string METHOD;
@@ -191,7 +191,7 @@ class Request : public Message {
   void toHTTPRequest(uHTTP::HTTPRequest *httpReq) const;
 };
 
-class BatchRequest : public JSONArray {
+class BatchRequest : public ::Round::BatchRequest {
     
  public:
     

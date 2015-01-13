@@ -22,7 +22,7 @@
 #endif
 
 const std::string Round::LocalNodeScriptManager::SYSTEM_ECHO_METHOD_CODE = "function _echo(params) {return params;}";
-const std::string Round::LocalNodeScriptManager::SYSTEM_ECHO_METHOD_LANGUAGE = JavaScriptEngine::LANGUAGE;
+const std::string Round::LocalNodeScriptManager::SYSTEM_ECHO_METHOD_LANGUAGE = "js"; //JavaScriptEngine::LANGUAGE;
 
 Round::LocalNodeScriptManager::LocalNodeScriptManager() {
   init();

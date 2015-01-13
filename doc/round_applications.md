@@ -6,6 +6,8 @@
 
 The sample is a simple only to echo the specified parameters.
 
+![echo](./img/round_app_echo.png)
+
 ### Script
 
 ```
