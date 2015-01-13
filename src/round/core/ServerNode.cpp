@@ -97,6 +97,8 @@ Round::HttpStatusCode Round::ServerNode::httpRpcRequestReceived(uHTTP::HTTPReque
   if (!rootObject) {
     return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeParserError);
   }
+
+  Message *rpcMsg = NULL;
   
   if (rootObject->isDictionary() == false)
     return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeInvalidRequest);

@@ -55,6 +55,14 @@ class NodeRequest : public RPC::JSON::Request {
   bool close();
 };
 
+class NodeBatchRequest : public RPC::JSON::BatchRequest {
+
+  public:
+    
+    NodeBatchRequest();
+    virtual ~NodeBatchRequest();
+};
+
 class NodeResponse : public RPC::JSON::Response {
 public:
   NodeResponse();
@@ -69,6 +77,10 @@ class NodeRequestParser : public JSONParser {
   
   JSONDictionary *createJSONDictionary() {
     return new NodeRequest();
+  }
+
+  JSONArray *createJSONArray() {
+    return new NodeBatchRequest();
   }
 };
 
