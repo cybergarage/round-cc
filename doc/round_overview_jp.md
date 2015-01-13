@@ -24,7 +24,7 @@ Roundは以下の原則に基づいて設計されて``います。
 
 Roundの初期バージョンはC++で実装されていますが、公開されているRoundの技術仕様から、JavaやGoなどの他のプログラミング言語でコアモジュールを実装することも可能です。
 
-## 設計の特徴
+## 特徴
 
 ### Zeroconf
 
@@ -52,22 +52,29 @@ Roundは非集中型の分散システムで、クラスターにある全ての
 
 ![round_overview_dynamics](img/round_overview_dynamics.png)
 
-## Support Functions
+## 提供機能
 
-Round supports the following functions to develop distrubted applications or systems.
+Roundは、分散システムアプリケーションを簡単に開発するために以下の機能を提供します。
+
+Round offers the following functions to develop distributed system application easily.
+
+### 自動設定
+
+ネットワークに追加された新しいノードは、同じクラスターの他のノードに自動的に設定されます。Roundは自動設定外に静的な設定も対応しています。
 
 ### Auto Configuration
 
-To add a new node into a cluster.
+Each new node added into network is discovered by other nodes in the same cluster automatically. In addition to the auto configuration, Round supports static configurations too.
 
-### Service Discovery
-
+### 動的プログラミング
 ### Dynamic Configuration
 
-### Messaging
+Roundでは、各ノードに動的スクリプトを設定したり、そのスクリプトをイベントに関連付けたりしながら、分散システムアプリケーションを構築していきます。
 
-Node can communicate to other nodes in the same cluster using [RPC (remote procedure call)](http://en.wikipedia.org/wiki/Remote_procedure_call).
+In Round, you can build distributed system applications to set dynamic scripts and connect the scripts into events.
 
-### Security
+RoundはJavaScritやJavaなどの複数の動的プログラミング言語に対応していますので、利用者の好みのプログラミング言語で分散システムアプリケーションが開発できます。C++などの静的プログラミング言語にも対応しています。
+
+Round supports some dynamic programming languages such ad JavaScript and Java, then you can develop distributed system applications using your favorite programming language. It supports some programming languages such C++.
 
 Monochrome iconset by [Danny Allen](http://dannya.org).

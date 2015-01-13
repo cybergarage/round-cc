@@ -10,7 +10,7 @@ Round adds the following original fields to [JSON-RPC 2.0][json-rpc] specificati
 
 | Field | Descripton | Default | Detail |
 | - | - | - | - |
-| hash | - | (none) | |
+| hash | - | random | |
 | dest | one, all, quorum | one | |
 | cond | - | - |  |
 | type | - | - |  |
@@ -22,7 +22,7 @@ Round adds the following original fields to [JSON-RPC 2.0][json-rpc] specificati
 The hash field specifies a destination node of the request object. The node which is received the request object checks the hash code whether the node should execute the request object.  
 
 ```
-hash = SHA256-HASH
+hash = (SHA256-HASH | "random")
 ```
 
 #### Request object

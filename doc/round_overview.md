@@ -59,20 +59,4 @@ The behaviors of node are defined using some dynamic and static programming lang
 
 ## Support Functions
 
-Round supports the following functions to develop distrubted applications or systems.
-
-### Auto Configuration
-
-To add a new node into a cluster.
-
-### Service Discovery
-
-### Dynamic Configuration
-
-### Messaging
-
-Node can communicate to other nodes in the same cluster using [RPC (remote procedure call)](http://en.wikipedia.org/wiki/Remote_procedure_call).
-
-### Security
-
 Monochrome iconset by [Danny Allen](http://dannya.org).
