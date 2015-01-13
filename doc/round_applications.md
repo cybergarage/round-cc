@@ -2,11 +2,25 @@
 
 # Applications
 
-## Dynamic DNS
+## Echo
 
-## DNS Server
+The sample is a simple only to echo the specified parameters.
 
-## Time Server
+### Script
+
+```
+{
+  methods : [
+    {
+      "name": "echo",
+      "language": "js",
+      "code": "function echo(params) {return params;}"",
+    }
+  ]
+}
+
+```
+
 
 ## Chubby
 
@@ -23,6 +37,12 @@ The sample is a simple distributed key value store which is based on [eventual c
 ## CDN (Contents Delivery Network)
 
 ## Search Engine
+
+## Dynamic DNS
+
+## DNS Server
+
+## Time Server
 
 # References
 

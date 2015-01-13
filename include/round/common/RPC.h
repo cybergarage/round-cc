@@ -191,6 +191,14 @@ class Request : public Message {
   void toHTTPRequest(uHTTP::HTTPRequest *httpReq) const;
 };
 
+class BatchRequest : public JSONArray {
+    
+ public:
+    
+  BatchRequest();
+  ~BatchRequest();
+};
+
 class Response : public Message {
  public:
   Response();

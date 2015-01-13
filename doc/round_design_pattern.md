@@ -12,7 +12,11 @@
 
 ### Map Reduce
 
+### Diagram
+
 ![Map-Reduce](img/round_dp_mapreduce.png)
+
+### Script
 
 ```
 {
@@ -22,14 +26,18 @@
   ]
 
   routes : [
-  {src : "exec_method", dest : "filter_method"}
+    {src : "exec_method", dest : "filter_method"}
   ]
 }
 ```
 
 ### Quorum
 
+### Diagram
+
 ![Quorum  Pattern](img/round_dp_quorum.png)
+
+#### Script
 
 ```
 {

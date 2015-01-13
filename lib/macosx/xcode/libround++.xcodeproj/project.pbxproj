@@ -157,6 +157,7 @@
 		21F4CE6E1A63F0BA00E7F0CC /* ScriptManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4CE651A63F0BA00E7F0CC /* ScriptManager.cpp */; };
 		21F4CE6F1A63F0BA00E7F0CC /* ScriptMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4CE661A63F0BA00E7F0CC /* ScriptMap.cpp */; };
 		21F4CE711A63F45500E7F0CC /* RouteObjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4CE701A63F45500E7F0CC /* RouteObjects.cpp */; };
+		21F4CE731A64DAFD00E7F0CC /* BatchRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4CE721A64DAFD00E7F0CC /* BatchRequest.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -337,6 +338,7 @@
 		21F4CE651A63F0BA00E7F0CC /* ScriptManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptManager.cpp; sourceTree = "<group>"; };
 		21F4CE661A63F0BA00E7F0CC /* ScriptMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptMap.cpp; sourceTree = "<group>"; };
 		21F4CE701A63F45500E7F0CC /* RouteObjects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RouteObjects.cpp; sourceTree = "<group>"; };
+		21F4CE721A64DAFD00E7F0CC /* BatchRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BatchRequest.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -608,6 +610,7 @@
 		21D8E2431A60E1E200E8A63F /* rpc */ = {
 			isa = PBXGroup;
 			children = (
+				21F4CE721A64DAFD00E7F0CC /* BatchRequest.cpp */,
 				21D8E24A1A60E1E200E8A63F /* Message.cpp */,
 				21D8E24B1A60E1E200E8A63F /* Request.cpp */,
 				21D8E24C1A60E1E200E8A63F /* Response.cpp */,
@@ -926,6 +929,7 @@
 				21D8E2C01A60E1E200E8A63F /* Error.cpp in Sources */,
 				21D8E2AF1A60E1E200E8A63F /* Client.cpp in Sources */,
 				21D8E2F21A60E1E200E8A63F /* NodeRequest.cpp in Sources */,
+				21F4CE731A64DAFD00E7F0CC /* BatchRequest.cpp in Sources */,
 				21D8E2E91A60E1E200E8A63F /* Logger.cpp in Sources */,
 				21D8E2D11A60E1E200E8A63F /* NotificationCenter.cpp in Sources */,
 				21D8E2D21A60E1E200E8A63F /* NotificationObserver.cpp in Sources */,
