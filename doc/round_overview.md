@@ -59,4 +59,23 @@ The behaviors of node are defined using some dynamic and static programming lang
 
 ## Support Functions
 
+Round offers the following functions to develop distributed system application easily.
+
+### Auto Configuration
+
+A new node is stared, it is added into a network automatically. Other nodes in the same network are received some event messages when a node is added or removed.
+
+![auto-configuration](img/round_overview_autoconfig.png)
+
+In addition to the auto configuration, Round supports none auto configuration network and static configurations too.
+
+
+### Dynamic Programming
+
+In Round, you can build distributed system applications to set programming scripts and connect the scripts into events dynamically.
+
+![auto-configuration](img/round_overview_programming.png)
+
+Round supports some dynamic programming languages such ad JavaScript and Java, then you can develop distributed system applications using your favorite programming language. It supports some programming languages such C++.
+
 Monochrome iconset by [Danny Allen](http://dannya.org).

@@ -60,21 +60,18 @@ Round offers the following functions to develop distributed system application e
 
 ### 自動設定
 
-ネットワークに追加された新しいノードは、同じクラスターの他のノードに自動的に設定されます。Roundは自動設定外に静的な設定も対応しています。
+起動された新しいノードは、ネットワークに自動的に追加されます。同じネットワークの他のノードは、ノードが追加されたり削除されたりすると、そのイベントを受信します。
 
-### Auto Configuration
+![auto-configuration](img/round_overview_autoconfig.png)
 
-Each new node added into network is discovered by other nodes in the same cluster automatically. In addition to the auto configuration, Round supports static configurations too.
+Roundは、自走設定に以外にも自動設定でないネットワークや固定的な設定にも対応しています。
 
 ### 動的プログラミング
-### Dynamic Configuration
 
-Roundでは、各ノードに動的スクリプトを設定したり、そのスクリプトをイベントに関連付けたりしながら、分散システムアプリケーションを構築していきます。
+Roundでは、各ノードに動的にスクリプトを設定したり、そのスクリプトをイベントに関連付けたりしながら、分散システムアプリケーションを構築していきます。
 
-In Round, you can build distributed system applications to set dynamic scripts and connect the scripts into events.
+![auto-configuration](img/round_overview_programming.png)
 
 RoundはJavaScritやJavaなどの複数の動的プログラミング言語に対応していますので、利用者の好みのプログラミング言語で分散システムアプリケーションが開発できます。C++などの静的プログラミング言語にも対応しています。
-
-Round supports some dynamic programming languages such ad JavaScript and Java, then you can develop distributed system applications using your favorite programming language. It supports some programming languages such C++.
 
 Monochrome iconset by [Danny Allen](http://dannya.org).
