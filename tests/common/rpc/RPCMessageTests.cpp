@@ -211,6 +211,17 @@ BOOST_AUTO_TEST_CASE(RPCRequestExtentionMethodTest) {
   BOOST_CHECK(!rpcMsg.isDestAll());
   BOOST_CHECK(!rpcMsg.isDestOne());
   BOOST_CHECK(!rpcMsg.isDestQuorum());
+
+  // dest
+  
+  const std::string TEST_BAD_ENCORD = "base64";
+
+  BOOST_CHECK(!rpcMsg.hasEndord());
+  BOOST_CHECK(!rpcMsg.isJSONRPCEncord());
+  BOOST_CHECK(rpcMsg.setEncord(RPC::JSON::Message::ENCORD_JSONRPC));
+  BOOST_CHECK(rpcMsg.isJSONRPCEncord());
+  BOOST_CHECK(rpcMsg.setEncord(TEST_BAD_ENCORD));
+  BOOST_CHECK(!rpcMsg.isJSONRPCEncord());
 }
 
 class TestMessageParser : public JSONParser {

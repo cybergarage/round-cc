@@ -14,6 +14,8 @@
 #include <vector>
 #include <stdlib.h>
 
+#include <round/common/Mutex.h>
+
 namespace Round {
 
 template <typename T> class Vector : public std::vector<T*> {
@@ -114,11 +116,19 @@ private:
     std::vector<T*>::clear();
     return true;
   }
+
+  bool lock() const {
+    return this->mutex.lock();
+  }
   
+  bool unlock() const {
+    return this->mutex.unlock();
+  }
+
 private:
   
   bool weekContainerFlag;
-  
+  mutable Mutex mutex;
 };
 
 }

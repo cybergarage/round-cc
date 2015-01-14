@@ -63,18 +63,18 @@ bool Round::ServerNode::isRpcRequest(uHTTP::HTTPRequest *httpReq) {
   std::string uri;
   httpReq->getURI(uri);
   
-  if (method.compare(RPC::HTTP::METHOD) == 0) {
-    if (uri.compare(RPC::HTTP::ENDPOINT) == 0)
-      return true;
-  }
+  if (!RPC::JSON::HTTP::IsRequestMethod(method))
+    return false;
+  
+  if (!RPC::JSON::HTTP::IsRequestPath(uri))
+    return false;
 
-  return false;
+  return true;
 }
 
-Round::HttpStatusCode Round::ServerNode::postRpcRequest(uHTTP::HTTPRequest *httpReq, NodeRequest *nodeReq) {
+Round::HttpStatusCode Round::ServerNode::postRpcRequest(uHTTP::HTTPRequest *httpReq, Message *nodeReq) {
   if (!httpReq || !nodeReq)
     return false;
-  nodeReq->setHttpRequest(httpReq);
   return pushMessage(nodeReq);
 }
 
@@ -88,26 +88,32 @@ Round::HttpStatusCode Round::ServerNode::httpRpcRequestReceived(uHTTP::HTTPReque
   
   RoundLogTrace(httpContent.c_str());
   
-  Error error;
-  NodeRequestParser jsonParser;
-  if (jsonParser.parse(httpContent, &error) == false)
-    return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeParserError);
+  Message *rpcReq = NULL;
   
-  JSONObject *rootObject = jsonParser.getRootObject();
-  if (!rootObject) {
-    return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeParserError);
+  if (httpReq->isPostRequest()) {
+    Error error;
+    NodeRequestParser jsonParser;
+    if (jsonParser.parse(httpContent, &error) == false)
+      return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeParserError);
+  
+    JSONObject *rootObject = jsonParser.getRootObject();
+    if (!rootObject) {
+      return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeParserError);
+    }
+    
+    NodeRequest *nodeReq = dynamic_cast<NodeRequest *>(jsonParser.popRootObject());
+    if (nodeReq) {
+      nodeReq->setHttpRequest(httpReq);
+      rpcReq = nodeReq;
+    }
   }
   
-  if (rootObject->isDictionary() == false)
+  if (!rpcReq)
     return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeInvalidRequest);
-
-  NodeRequest *nodeReq = dynamic_cast<NodeRequest *>(jsonParser.popRootObject());
-  if (!nodeReq)
-    return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeInvalidRequest);
-
+  
   // Post RPC Request
   
-  if (!postRpcRequest(httpReq, nodeReq))
+  if (!postRpcRequest(httpReq, rpcReq))
     return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeInternalError);
   
   return uHTTP::HTTP::PROCESSING;

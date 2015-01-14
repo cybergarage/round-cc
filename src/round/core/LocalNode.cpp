@@ -174,7 +174,7 @@ bool Round::LocalNode::postMessage(const NodeRequest *nodeReq, NodeResponse *nod
   return execMessage(nodeReq, nodeRes, error);
 }
 
-bool Round::LocalNode::pushMessage(const NodeRequest *nodeReq) {
+bool Round::LocalNode::pushMessage(const Message *nodeReq) {
   return this->nodeMsgMgr.pushMessage(nodeReq);
 }
 

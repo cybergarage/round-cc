@@ -117,8 +117,6 @@ bool Round::SystemClusterInfoDict::setCluster(LocalNode *node) {
   }
   
   return true;
-
-  
 }
 
 bool Round::SystemClusterInfoDict::getCluster(Cluster *cluster) {

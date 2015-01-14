@@ -21,7 +21,7 @@ using namespace Round;
 
 BOOST_AUTO_TEST_SUITE(rpc)
 
-BOOST_AUTO_TEST_CASE(GetURLEncodeWithBase64Test) {
+BOOST_AUTO_TEST_CASE(URLEncodeWithBase64Test) {
   std::vector<std::string> testStrings;
   
   testStrings.push_back("");
@@ -55,9 +55,43 @@ BOOST_AUTO_TEST_CASE(GetURLEncodeWithBase64Test) {
     // Compare
     std::string b64DecordedString((const char *)b64DecordedBytes, b64DecordedByteLen);
     BOOST_CHECK_EQUAL((*testString).compare(b64DecordedString), 0);
-    if ((*testString).compare(b64DecordedString) != 0) {
-      BOOST_MESSAGE("\"" << (*testString) << "\"" << "is not equals \"" << b64DecordedString << "\"");
-    }
+    
+    free(b64DecordedBytes);
+  }
+}
+
+BOOST_AUTO_TEST_CASE(JSONRPCEncodeTest) {
+  std::vector<std::string> testStrings;
+  
+  testStrings.push_back("");
+  testStrings.push_back("a");
+  testStrings.push_back("ab");
+  testStrings.push_back("abc");
+  testStrings.push_back("0123456789");
+  testStrings.push_back("abcdefghijklmnopqrstuvwxyz");
+  testStrings.push_back("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+  testStrings.push_back("+-=~`!@#$%^&*()_+{}[]|\\:;\"'<>,.?/");
+  testStrings.push_back("あかさたなはまやらわん");
+  
+  for (std::vector<std::string>::iterator testString = testStrings.begin(); testString != testStrings.end(); testString++) {
+    byte *rawBytes = (byte *)(*testString).c_str();
+    
+    // Encord
+    byte *encordBytes = rawBytes;
+    size_t ecordByteLen = (*testString).length();
+    std::string encodedStr;
+    BOOST_CHECK(0 <= RPC::JSON::Encode(encordBytes, ecordByteLen, &encodedStr));
+    
+    // Decord
+    byte *decordedBytes;
+    size_t decordedByteLen = RPC::JSON::Decode(encodedStr, &decordedBytes);
+    BOOST_CHECK(0 <= decordedByteLen);
+    
+    // Compare
+    std::string decordedString((const char *)decordedBytes, decordedByteLen);
+    BOOST_CHECK_EQUAL((*testString).compare(decordedString), 0);
+
+    free(decordedBytes);
   }
 }
 

@@ -73,7 +73,14 @@ Round prepares the following default static methods. The methods are implemented
 #### _set_method
 
 ```
-_set_method := "{" language,  "}"
+_set_method := "{" name language code encoding "}"
+
+name     = "name" ":" TOKEN
+language = "language" ":" supported-language
+code     = "code" ":" TOKEN
+encoding = "code" ":" ("none" | "base64")
+
+supported-language = ("js" | "java" | "tcl")
 ```
 
 If the code parameter isn't specified, the method is removed.
@@ -83,20 +90,26 @@ If the code parameter isn't specified, the method is removed.
 ```
 _set_route := "{" name source destnation [params] [type] [cond]"}"
 
-name = "name" ":" TOKEN
-source = "src" ":" (timer-name | method-name)
-destnation = "dest" ":" method-name
-params = "{" *(param) "}"
-type = "type" ":" ("pipe" | "event")
-cond = "cond" ":" SCRIPT
+name       = "name" ":" TOKEN
+source     = "src" ":" source-object
+destnation = "dest" ":" destnation-object
+params     = "{" *(param) "}"
+type       = "type" ":" ("pipe" | "event")
+cond       = "cond" ":" JS_SCRIPT
 
-param = (src-out-param-name | src-param-script) ":" in-param-name
+param                = (src-out-param-name | src-param-script) ":" in-param-name
+src-out-param-name   = TOKEN
+src-out-param-script = JS_SCRIPT
+in-param-name        = TOKEN
 
-src-out-param-name = TOKEN
-src-out-param-script = SCRIPT
-int-param-name = TOKEN
-timer-name = TOKEN
-method-name = TOKEN
+source-object     = [cluster "."] [node "."] (trigger-name | method-name)
+destnation-object = [cluster "."] [node "."] (method-name)
+cluster           = ("local" | cluster-name)
+node              = ("local" | "all" | hash-code)
+cluster-name      = TOKEN
+hash-code         = NODE_HASH
+trigger-name      = TOKEN
+method-name       = TOKEN
 ```
 
 #### _set_timer
@@ -104,11 +117,11 @@ method-name = TOKEN
 ```
 _set_timer := "{" name [start_time] [stop_time] [cycle_interval] [loop] "}"
 
-name = "name" ":" TOKEN
-start_time = "start_time" ":" INTEGER
-stop_time = "stop_time" ":" INTEGER
+name           = "name" ":" TOKEN
+start_time     = "start_time" ":" INTEGER
+stop_time      = "stop_time" ":" INTEGER
 cycle_interval = "cycle_interval" ":" INTEGER
-loop = "loop" ":" BOOL
+loop           = "loop" ":" BOOL
 ```
 
 ### Dynamic Methods
@@ -126,32 +139,6 @@ Round prepares the following default dynamic methods. The methods are implemente
 | _get_log_level | Get the current log level | (none) | "TRACE", "LOG", "WARN", "ERR" "FATAL" | "LOG" |
 | _echo | System Echo | - | - | - |
 
-### System Notification Methods
-
-#### Local Notification Methods
-
-| Method Name | Perpose | Params | Outputs | Default |
-| --- | --- | --- | --- | --- |
-| _notify_pre_activated | - | - | - | - |
-| _notify_post_activated | - | - | - | - |
-| _notify_pre_closed | - | - | - | - |
-| _notify_post_closed | - | - | - | - |
-| _notify_method_added | - | - | - | - |
-| _notify_method_added | - | - | - | - |
-| _notify_method_removed | - | - | - | - |
-| _notify_method_updated | - | - | - | - |
-| _notify_log_occurred | - | - | - | - |
-
-The methods are executed ......
-
-### Remote Notification Methods
-
-| Method Name | Perpose | Params | Outputs | Default |
-| --- | --- | --- | --- | --- |
-| _notify_node_added | - | - | - | - |
-| _notify_node_removed | - | - | - | - |
-| _notify_node_suspected | - | - | - | - |
-
 ### Static Methods
 
 The following methods is defined in Round using the native programming language statically. Developers can't override the static methods.
@@ -160,6 +147,24 @@ The following methods is defined in Round using the native programming language 
 |-|-|-|
 | _get_node_info | Get a node name | - |
 | _get_node_stats | Get a node name | - |
+
+## Trigger
+
+| Trigger Name | Perpose | Params | Outputs | Default |
+| --- | --- | --- | --- | --- |
+| _pre_activate | - | - | - | - |
+| _post_activated | - | - | - | - |
+| _pre_closed | - | - | - | - |
+| _post_closed | - | - | - | - |
+| _method_added | - | - | - | - |
+| _method_removed | - | - | - | - |
+| _method_updated | - | - | - | - |
+| _message_received | - | - | - | - |
+| _message_executed | - | - | - | - |
+| _log_occurred | - | - | - | - |
+| _node_added | - | - | - | - |
+| _node_removed | - | - | - | - |
+| _node_suspected | - | - | - | - |
 
 ## Supprted Programming Languages
 

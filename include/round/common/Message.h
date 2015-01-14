@@ -22,12 +22,32 @@ namespace Round {
 
 typedef int MessageType;
   
-class Message : public JSONDictionary {
+class Message {
   
 public:
   
   Message();
-  ~Message();
+  virtual ~Message();
+  
+private:
+  
+  mutable void *userObject;
+};
+
+class Request : public Message, public JSONDictionary {
+    
+  public:
+    
+  Request() {}
+  virtual ~Request() {}
+};
+
+class BatchRequest : public Message, public JSONArray {
+    
+  public:
+    
+    BatchRequest() {}
+    virtual ~BatchRequest() {}
 };
 
 class MessageQueue : private std::queue<const Message *> {

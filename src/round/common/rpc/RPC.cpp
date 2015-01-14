@@ -9,8 +9,11 @@
 ******************************************************************/
 
 #include <map>
-#include <round/common/RPC.h>
+
 #include <uhttp/HTTP.h>
+#include <round/common/RPC.h>
+#include <round/common/encoding/Base64.h>
+#include <round/common/encoding/URL.h>
 
 /*
  * JSON-RPC over HTTP
@@ -19,30 +22,19 @@
 
 static std::map<int, std::string> gJsonRpcErrorStrings;
 
-enum {
-  ErrorCodeUnknown                   = 0,
-  
-  // Standard Response Error Codes
-  ErrorCodeParserError               = -32700,
-  ErrorCodeInvalidRequest            = -32600,
-  ErrorCodeMethodNotFound            = -32601,
-  ErrorCodeInvalidParams             = -32602,
-  ErrorCodeInternalError             = -32603,
-  
-  ErrorCodeServerErrorMax            = -32000,
-  ErrorCodeServerErrorMin            = -32099,
-  ErrorCodeServerError               = ErrorCodeServerErrorMax,
-  
-  // Extend Parameter Error Codes
-  ErrorCodeBadHashCode               = -32000,
-  ErrorCodeMovedPermanently          = -32001,
-  
-  // Extended Script Engine Error Codes
-  ErrorCodeScriptEngineInternalError = -32010,
-  ErrorCodeScriptEngineNotFound      = -32011,
-  ErrorCodeScriptCompileError        = -32012,
-  ErrorCodeScriptRuntimeError        = -32013,
-};
+bool Round::RPC::JSON::HTTP::IsRequestMethod(const std::string &method) {
+  if (method.compare(RPC::HTTP::METHOD) ==0)
+    return true;
+  if (method.compare(RPC::HTTP::REST_METHOD) ==0)
+    return true;
+  return false;
+}
+
+bool Round::RPC::JSON::HTTP::IsRequestPath(const std::string &method) {
+  if (method.compare(RPC::HTTP::ENDPOINT) == 0)
+    return true;
+  return false;
+}
 
 int Round::RPC::JSON::HTTP::ErrorCodeToHTTPStatusCode(int jsonErrorCode) {
   // Standard Response Error Codes
@@ -63,6 +55,12 @@ int Round::RPC::JSON::HTTP::ErrorCodeToHTTPStatusCode(int jsonErrorCode) {
       return uHTTP::HTTP::BAD_REQUEST;
     case RPC::JSON::ErrorCodeMovedPermanently :
       return uHTTP::HTTP::MOVED_PERMANENTLY;
+  }
+  
+  // Extented Parameter
+  switch (jsonErrorCode) {
+    case RPC::JSON::ErrorConditionFailed :
+      return uHTTP::HTTP::NOT_ACCEPTABLE;
   }
   
   // Extended Script Engine Error Codes
@@ -132,4 +130,16 @@ void Round::RPC::JSON::ErrorCodeToError(int jsonErrorCode, Error *error) {
 
   error->setDetailCode(jsonErrorCode);
   error->setDetailMessage(ErrorCodeToString(jsonErrorCode));
+}
+
+ssize_t Round::RPC::JSON::Encode(const byte *inBytes, size_t rawByteLen, std::string *encodedStr) {
+  std::string base64Str;
+  Base64::Encode(inBytes, rawByteLen, &base64Str);
+  return URL::Encode(base64Str, encodedStr);
+}
+
+ssize_t Round::RPC::JSON::Decode(const std::string &encodedStr, byte **decordedBytes) {
+  std::string decordedStr;
+  URL::Decode(encodedStr, &decordedStr);
+  return Base64::Decode(decordedStr, decordedBytes);
 }

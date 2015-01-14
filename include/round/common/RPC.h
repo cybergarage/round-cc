@@ -11,6 +11,7 @@
 #ifndef _ROUNDCC_RPC_H_
 #define _ROUNDCC_RPC_H_
 
+#include <round/common/types.h>
 #include <round/common/Error.h>
 #include <round/common/Message.h>
 #include <round/common/HashObject.h>
@@ -25,6 +26,7 @@ namespace HTTP {
 static const std::string ENDPOINT     = "/rpc/do";
 static const std::string CONTENT_TYPE = "application/json-rpc";
 static const std::string METHOD       = "POST";
+static const std::string REST_METHOD  = "GET";
 static const std::string ACCEPT       = CONTENT_TYPE;
 }
   
@@ -43,10 +45,12 @@ enum {
   ErrorCodeBadHashCode               = -32000,
   ErrorCodeMovedPermanently          = -32001,
   
-  ErrorCodeScriptEngineInternalError = -32010,
-  ErrorCodeScriptEngineNotFound      = -32011,
-  ErrorCodeScriptCompileError        = -32012,
-  ErrorCodeScriptRuntimeError        = -32013,
+  ErrorConditionFailed               = -32010,
+  
+  ErrorCodeScriptEngineInternalError = -32020,
+  ErrorCodeScriptEngineNotFound      = -32021,
+  ErrorCodeScriptCompileError        = -32022,
+  ErrorCodeScriptRuntimeError        = -32023,
   
   ErrorCodeServerErrorMax            = -32000,
   ErrorCodeServerErrorMin            = -32099,
@@ -55,14 +59,18 @@ enum {
 
 const std::string &ErrorCodeToString(int jsonErrorCode);
 bool IsServerErrorCode(int jsonErrorCode);
+void ErrorCodeToError(int jsonErrorCode, Error *error);
 
 namespace HTTP {
+  bool IsRequestMethod(const std::string &method);
+  bool IsRequestPath(const std::string &method);
   int ErrorCodeToHTTPStatusCode(int jsonErrorCode);
 }
 
-void ErrorCodeToError(int jsonErrorCode, Error *error);
-  
-class Message : public ::Round::Message {
+ssize_t Encode(const byte *inBytes, size_t rawByteLen, std::string *encodedStr);
+ssize_t Decode(const std::string &encodedStr, byte **decordedBytes);
+
+class Message : public ::Round::Request {
  public:
   static const std::string JSON_RPC;
   static const std::string METHOD;
@@ -79,6 +87,8 @@ class Message : public ::Round::Message {
   static const std::string DEST;
   static const std::string DEST_ONE;
   static const std::string DEST_ALL;
+  static const std::string ENCORD;
+  static const std::string ENCORD_JSONRPC;
   
  public:
   Message();
@@ -157,6 +167,22 @@ class Message : public ::Round::Message {
   bool isDestQuorum() const;
 
   bool getQuorum(size_t *value) const;
+
+  // encord
+  
+  bool setEncord(const std::string &value) {
+    return set(ENCORD, value);
+  }
+  
+  bool getEncord(std::string *value) const {
+    return get(ENCORD, value);
+  }
+
+  bool hasEndord() const {
+    return hasKey(ENCORD);
+  }
+  
+  bool isJSONRPCEncord() const;
 };
 
 class Request : public Message {
@@ -187,6 +213,14 @@ class Request : public Message {
   }
   
   void toHTTPRequest(uHTTP::HTTPRequest *httpReq) const;
+};
+
+class BatchRequest : public ::Round::BatchRequest {
+    
+ public:
+    
+  BatchRequest();
+  ~BatchRequest();
 };
 
 class Response : public Message {

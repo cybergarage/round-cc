@@ -2,23 +2,31 @@
 
 # Getting Started
 
-## Getting Round
+## Installation
 
-The latest release and setup instructions are available at [GitHub](https://github.com/cybergarage/Round).
+Official binary distributions are available for Linux and Mac OS X. If a binary distribution is not available for your combination of operating system and architecture, try installing from source.
 
-## Installing Round
+### MacOSX
 
-### Installing from distribution
+#### Homebrew
 
-Official binary distributions are available for Linux, FreeBSD, Mac OS X. If a binary distribution is not available for your combination of operating system and architecture, try installing from source.
+[Java for OS X 2014-001](http://support.apple.com/kb/DL1572)
 
-### System requirements
+To get started on OSX run the following in a terminal:
 
-| Operating system	| Architectures | Notes |
-|-|-|-|
-| FreeBSD 8 or later | amd64, 386, arm | 	Debian GNU/kFreeBSD not supported |
-| Linux 2.6.23 or later with glibc | amd64, 386, arm | 	CentOS/RHEL 5.x not supported |
-| Mac OS X 10.6 or later | amd64, 386 | You only need to install the command line tools for Xcode .|
+```
+brew install round++
+```
+
+### Ubuntu
+
+#### Docker
+
+To get started with Docker on Linux run the following in a terminal:
+
+```
+docker run  cybergarage/round:<version>
+```
 
 ### Installing from source
 
@@ -32,11 +40,8 @@ Round is an open source project, distributed under a [BSD-style license](../LICE
 | [OpenSSL](https://www.openssl.org) | 1.0.1 or later |
 | libxml2 | ??? |
 | [Jansson](http://www.digip.org/jansson/) | 2.6 or later |
-| [CyberLink for C++](http://www.cybergarage.org/do/view/Main/CyberLinkForCC) | ??? |
+| [mUPnP for C++](http://www.cybergarage.org/do/view/Main/CyberLinkForCC) | ??? |
 | [µHTTP for C++](http://www.cybergarage.org/do/view/Main/HttpEngineForCC) | ??? |
-
-
-[Java for OS X 2014-001](http://support.apple.com/kb/DL1572)
 
 ## Running Round
 
@@ -51,5 +56,3 @@ Next, let's start the client utility command:
 ```
 ./bin/round/round
 ```
-
-## Next Steps
