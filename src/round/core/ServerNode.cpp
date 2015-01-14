@@ -88,24 +88,32 @@ Round::HttpStatusCode Round::ServerNode::httpRpcRequestReceived(uHTTP::HTTPReque
   
   RoundLogTrace(httpContent.c_str());
   
-  Error error;
-  NodeRequestParser jsonParser;
-  if (jsonParser.parse(httpContent, &error) == false)
-    return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeParserError);
+  Message *rpcReq = NULL;
   
-  JSONObject *rootObject = jsonParser.getRootObject();
-  if (!rootObject) {
-    return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeParserError);
+  if (httpReq->isPostRequest()) {
+    Error error;
+    NodeRequestParser jsonParser;
+    if (jsonParser.parse(httpContent, &error) == false)
+      return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeParserError);
+  
+    JSONObject *rootObject = jsonParser.getRootObject();
+    if (!rootObject) {
+      return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeParserError);
+    }
+    
+    NodeRequest *nodeReq = dynamic_cast<NodeRequest *>(jsonParser.popRootObject());
+    if (nodeReq) {
+      nodeReq->setHttpRequest(httpReq);
+      rpcReq = nodeReq;
+    }
   }
-
-  NodeRequest *nodeReq = dynamic_cast<NodeRequest *>(jsonParser.popRootObject());
-  if (!nodeReq)
+  
+  if (!rpcReq)
     return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeInvalidRequest);
-  nodeReq->setHttpRequest(httpReq);
   
   // Post RPC Request
   
-  if (!postRpcRequest(httpReq, nodeReq))
+  if (!postRpcRequest(httpReq, rpcReq))
     return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeInternalError);
   
   return uHTTP::HTTP::PROCESSING;
