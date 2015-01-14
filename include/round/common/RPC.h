@@ -11,6 +11,7 @@
 #ifndef _ROUNDCC_RPC_H_
 #define _ROUNDCC_RPC_H_
 
+#include <round/common/types.h>
 #include <round/common/Error.h>
 #include <round/common/Message.h>
 #include <round/common/HashObject.h>
@@ -57,13 +58,15 @@ enum {
 
 const std::string &ErrorCodeToString(int jsonErrorCode);
 bool IsServerErrorCode(int jsonErrorCode);
+void ErrorCodeToError(int jsonErrorCode, Error *error);
 
 namespace HTTP {
-  int ErrorCodeToHTTPStatusCode(int jsonErrorCode);
+    int ErrorCodeToHTTPStatusCode(int jsonErrorCode);
 }
 
-void ErrorCodeToError(int jsonErrorCode, Error *error);
-  
+ssize_t Encode(const byte *inBytes, size_t rawByteLen, std::string *encodedStr);
+ssize_t Decode(const std::string &encodedStr, byte **decordedBytes);
+
 class Message : public ::Round::Request {
  public:
   static const std::string JSON_RPC;

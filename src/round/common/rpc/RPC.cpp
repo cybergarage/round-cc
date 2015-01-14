@@ -9,8 +9,11 @@
 ******************************************************************/
 
 #include <map>
-#include <round/common/RPC.h>
+
 #include <uhttp/HTTP.h>
+#include <round/common/RPC.h>
+#include <round/common/encoding/Base64.h>
+#include <round/common/encoding/URL.h>
 
 /*
  * JSON-RPC over HTTP
@@ -113,4 +116,16 @@ void Round::RPC::JSON::ErrorCodeToError(int jsonErrorCode, Error *error) {
 
   error->setDetailCode(jsonErrorCode);
   error->setDetailMessage(ErrorCodeToString(jsonErrorCode));
+}
+
+ssize_t Round::RPC::JSON::Encode(const byte *inBytes, size_t rawByteLen, std::string *encodedStr) {
+  std::string base64Str;
+  Base64::Encode(inBytes, rawByteLen, &base64Str);
+  return URL::Encode(base64Str, encodedStr);
+}
+
+ssize_t Round::RPC::JSON::Decode(const std::string &encodedStr, byte **decordedBytes) {
+  std::string decordedStr;
+  URL::Decode(encodedStr, &decordedStr);
+  return Base64::Decode(decordedStr, decordedBytes);
 }
