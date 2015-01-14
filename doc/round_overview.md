@@ -75,9 +75,6 @@ In addition to the auto configuration, Round supports none auto configuration ne
 Round node is a programmable RPC([Remote Procedure Call](http://en.wikipedia.org/wiki/Remote_procedure_call)) node.
 In Round, you can build distributed system applications to add programming scripts and connect events into the scripts dynamically.
 
-
-Roundのノードはプログラミング可能なノードです。Roundでは、各ノードに動的にスクリプトを設定したり、そのスクリプトをイベントに関連付けたりしながら、分散システムアプリケーションを構築していきます。
-
 ![auto-configuration](img/round_overview_programming.png)
 
 Round supports some dynamic programming languages such ad JavaScript and Java, then you can develop distributed system applications using your favorite programming language. It supports some programming languages such C++.

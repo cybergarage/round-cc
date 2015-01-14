@@ -56,8 +56,6 @@ Roundは非集中型の分散システムで、クラスターにある全ての
 
 Roundは、分散システムアプリケーションを簡単に開発するために以下の機能を提供します。
 
-Round offers the following functions to develop distributed system application easily.
-
 ### 自動設定
 
 新しく起動されたRoundノードは、ネットワークに自動的に追加されます。同じネットワークの他のノードは、ノードが追加されたり削除されたりすると、そのイベントを受信します。
