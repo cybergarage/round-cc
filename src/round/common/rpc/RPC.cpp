@@ -23,15 +23,21 @@
 static std::map<int, std::string> gJsonRpcErrorStrings;
 
 bool Round::RPC::JSON::HTTP::IsRequestMethod(const std::string &method) {
-  if (method.compare(RPC::HTTP::METHOD) ==0)
+  if (method.compare(RPC::JSON::HTTP::METHOD) ==0)
     return true;
-  if (method.compare(RPC::HTTP::REST_METHOD) ==0)
+  if (method.compare(RPC::JSON::HTTP::REST_METHOD) ==0)
     return true;
   return false;
 }
 
 bool Round::RPC::JSON::HTTP::IsRequestPath(const std::string &method) {
-  if (method.compare(RPC::HTTP::ENDPOINT) == 0)
+  if (method.compare(RPC::JSON::HTTP::ENDPOINT) == 0)
+    return true;
+  return false;
+}
+
+bool Round::RPC::JSON::HTTP::IsNoneEncorded(const std::string &value) {
+  if (value.compare(RPC::JSON::HTTP::ENCORD_NONE) == 0)
     return true;
   return false;
 }

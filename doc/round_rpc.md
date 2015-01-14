@@ -15,7 +15,6 @@ Round adds the following original fields to [JSON-RPC 2.0][json-rpc] specificati
 | cond | - | - |  |
 | type | - | - |  |
 | ts | - | - | The field is handled automatically by Round |
-| encode | none, json-rpc | (none) | - |
 | digest | - | (none) | - |
 
 ### hash
@@ -155,14 +154,6 @@ When the request object hasn't the parameter, the remote node does't update the 
 
 [lamport-timestamps]: http://en.wikipedia.org/wiki/Lamport_timestamps
 
-### encode
-
-The encode field specifies whether the 'params' field is encoded.  The 'json-rpc' is defined in [JSON-RPC over HTTP][json-rpc-http].
-
-```
-encode = ("json-rpc" | "node")
-```
-
 ## Error code
 
 Round added the folloinwg error codes in the  implementation defined range [JSON-RPC][json-rpc]. Round returns the following error code when the specified method couldn't be executed.
@@ -181,11 +172,11 @@ Round added the folloinwg error codes in the  implementation defined range [JSON
 
 Round is based on [JSON-RPC over HTTP][json-rpc-http], but Round extends the specification to support asynchronous [RPC][rpc].
 
-#### HTTP Header
+### HTTP Header
 
 In addition to standard headers of [JSON-RPC over HTTP][json-rpc-http], Round supports the following extra headers.
 
-##### X-Async-Location
+#### X-Async-Location
 
 ```
 X-Aync-Location = locationURI
@@ -195,7 +186,17 @@ prorocol = "http" | "httpu"
 
 The request over HTTPU or HTTPMU SHOULD has this header to receive the result response. If the header is not included in a request message over HTTPU or HTTPMU, the request is recognized as a notification request even if the request has a 'id' member.
 
-#### Response Code
+### GET
+
+#### encode
+
+The 'params' field must be encorded in [JSON-RPC over HTTP][json-rpc-http]. The encode field disables the encoding to use HTTP command line utilities such as 'curl' command more easily.
+
+```
+encode = none"
+```
+
+### Response Code
 
 For the asynchronous request, Round returns the following HTTP status code immediately.
 

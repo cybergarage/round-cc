@@ -178,6 +178,45 @@ BOOST_AUTO_TEST_CASE(RPCRequestExtentionMethodTest) {
   BOOST_CHECK(node.getHashCode(&nodeHash));
   BOOST_CHECK_EQUAL(nodeHash.compare(hash), 0);
   
+  // type
+  
+  const std::string TEST_TYPE = "quorum";
+  std::string type;
+  
+  BOOST_CHECK(!rpcMsg.hasType());
+  BOOST_CHECK(!rpcMsg.getType(&type));
+  
+  BOOST_CHECK(rpcMsg.setType(TEST_TYPE));
+  BOOST_CHECK(rpcMsg.hasType());
+  BOOST_CHECK(rpcMsg.getType(&type));
+  BOOST_CHECK_EQUAL(TEST_TYPE.compare(type), 0);
+  
+  // digest
+  
+  const std::string TEST_DIGEST = "abcdefghijklmnopqrstuvwxyz";
+  std::string digest;
+  
+  BOOST_CHECK(!rpcMsg.hasDigest());
+  BOOST_CHECK(!rpcMsg.getDigest(&digest));
+  
+  BOOST_CHECK(rpcMsg.setDigest(TEST_DIGEST));
+  BOOST_CHECK(rpcMsg.hasDigest());
+  BOOST_CHECK(rpcMsg.getDigest(&digest));
+  BOOST_CHECK_EQUAL(TEST_DIGEST.compare(digest), 0);
+
+  // cond
+  
+  const std::string TEST_COND = "paramOut";
+  std::string cond;
+  
+  BOOST_CHECK(!rpcMsg.hasCond());
+  BOOST_CHECK(!rpcMsg.getCond(&cond));
+  
+  BOOST_CHECK(rpcMsg.setCond(TEST_COND));
+  BOOST_CHECK(rpcMsg.hasCond());
+  BOOST_CHECK(rpcMsg.getCond(&cond));
+  BOOST_CHECK_EQUAL(TEST_COND.compare(cond), 0);
+  
   // dest
   
   const size_t TEST_QUORUM = 123456789;
@@ -211,17 +250,6 @@ BOOST_AUTO_TEST_CASE(RPCRequestExtentionMethodTest) {
   BOOST_CHECK(!rpcMsg.isDestAll());
   BOOST_CHECK(!rpcMsg.isDestOne());
   BOOST_CHECK(!rpcMsg.isDestQuorum());
-
-  // dest
-  
-  const std::string TEST_BAD_ENCORD = "base64";
-
-  BOOST_CHECK(!rpcMsg.hasEndord());
-  BOOST_CHECK(!rpcMsg.isJSONRPCEncord());
-  BOOST_CHECK(rpcMsg.setEncord(RPC::JSON::Message::ENCORD_JSONRPC));
-  BOOST_CHECK(rpcMsg.isJSONRPCEncord());
-  BOOST_CHECK(rpcMsg.setEncord(TEST_BAD_ENCORD));
-  BOOST_CHECK(!rpcMsg.isJSONRPCEncord());
 }
 
 class TestMessageParser : public JSONParser {

@@ -22,14 +22,6 @@ namespace Round {
 
 namespace RPC {
 
-namespace HTTP {
-static const std::string ENDPOINT     = "/rpc/do";
-static const std::string CONTENT_TYPE = "application/json-rpc";
-static const std::string METHOD       = "POST";
-static const std::string REST_METHOD  = "GET";
-static const std::string ACCEPT       = CONTENT_TYPE;
-}
-  
 namespace JSON {
 
 static const std::string VER = "2.0";
@@ -62,8 +54,16 @@ bool IsServerErrorCode(int jsonErrorCode);
 void ErrorCodeToError(int jsonErrorCode, Error *error);
 
 namespace HTTP {
+  static const std::string ENDPOINT     = "/rpc/do";
+  static const std::string CONTENT_TYPE = "application/json-rpc";
+  static const std::string METHOD       = "POST";
+  static const std::string REST_METHOD  = "GET";
+  static const std::string ACCEPT       = CONTENT_TYPE;
+  static const std::string ENCORD       = "encode";
+  static const std::string ENCORD_NONE  = "none";
   bool IsRequestMethod(const std::string &method);
   bool IsRequestPath(const std::string &method);
+  bool IsNoneEncorded(const std::string &value);
   int ErrorCodeToHTTPStatusCode(int jsonErrorCode);
 }
 
@@ -87,8 +87,9 @@ class Message : public ::Round::Request {
   static const std::string DEST;
   static const std::string DEST_ONE;
   static const std::string DEST_ALL;
-  static const std::string ENCORD;
-  static const std::string ENCORD_JSONRPC;
+  static const std::string TYPE;
+  static const std::string COND;
+  static const std::string DIGEST;
   
  public:
   Message();
@@ -106,6 +107,10 @@ class Message : public ::Round::Request {
     return set(ID, value);
   }
   
+  bool setId(const std::string &value) {
+    return set(ID, value);
+  }
+  
   bool getId(size_t *value) const {
     return get(ID, value);
   }
@@ -115,6 +120,10 @@ class Message : public ::Round::Request {
   // timestamp
   
   bool setTimestamp(clock_t value) {
+    return set(TIMESTAMP, value);
+  }
+  
+  bool setTimestamp(const std::string &value) {
     return set(TIMESTAMP, value);
   }
   
@@ -168,21 +177,47 @@ class Message : public ::Round::Request {
 
   bool getQuorum(size_t *value) const;
 
-  // encord
+  // type
   
-  bool setEncord(const std::string &value) {
-    return set(ENCORD, value);
+  bool setType(const std::string &value) {
+    return set(TYPE, value);
   }
   
-  bool getEncord(std::string *value) const {
-    return get(ENCORD, value);
+  bool getType(std::string *value) const {
+    return get(TYPE, value);
   }
 
-  bool hasEndord() const {
-    return hasKey(ENCORD);
+  bool hasType() const {
+    return hasKey(TYPE);
+  }
+
+  // cond
+  
+  bool setCond(const std::string &value) {
+    return set(COND, value);
   }
   
-  bool isJSONRPCEncord() const;
+  bool getCond(std::string *value) const {
+    return get(COND, value);
+  }
+  
+  bool hasCond() const {
+    return hasKey(COND);
+  }
+
+  // digest
+  
+  bool setDigest(const std::string &value) {
+    return set(DIGEST, value);
+  }
+  
+  bool getDigest(std::string *value) const {
+    return get(DIGEST, value);
+  }
+  
+  bool hasDigest() const {
+    return hasKey(DIGEST);
+  }
 };
 
 class Request : public Message {
