@@ -14,7 +14,7 @@ Round is designed based on [Zeroconf][zero-conf] concept to achieve automaticall
 
 ### Messaging
 
-Round node is a programmable RPC([Remote Procedure Call](http://en.wikipedia.org/wiki/Remote_procedure_call)) node. Its RPC is based on [JSON-RPC][json-rpc], and Round extends the specification to build distributed system applications.
+Round node is a programmable RPC([Remote Procedure Call][rpc] node. Its RPC is based on [JSON-RPC][json-rpc], and Round extends the specification to build distributed system applications.
 
 The node includes a local HTTP server to handle requests form other node or client. The HTTP server has [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer) interfaces using [JSON-RPC over HTTP][json-rpc-http], the received message is split into multiple stages similar to the [SEDA][seda] architecture. Check [Round RPC Specification](./round_rpc.md) and [Round RPC Methods](./round_rpc_methods.md) in more detail.
 
@@ -31,7 +31,7 @@ In the current verion, Round supports only the simple network topology, but we w
 
 ## Programming Model
 
-Programming model of Round is based on some programming model such as [actor model](http://en.wikipedia.org/wiki/Actor_model) and [dataflow programming](http://en.wikipedia.org/wiki/Dataflow_programming). Each node of Round is an actor which has a message queue to receive messages from clients or other nodes.
+Programming model of Round is inspired from some programming models such as [Actor model][actor-model], CSP ([Communicating Sequential Processes][csp]) and [Dataflow Programming][df-prog]. Each node of Round is an actor which has a message queue to receive messages from clients or other nodes.
 
 ![Round Programming Model](img/round_programming_model.png)
 
@@ -62,6 +62,9 @@ Round supports a security model based on [HMAC](https://tools.ietf.org/html/rfc2
 1. [JSON-RPC over HTTP][json-rpc-http]
 1. [Zero Configuration Networking (Zeroconf)][zero-conf]
 1. [Remote Procedure Call][rpc]
+1. [Actor Model][actor-model]
+1. [Communicating sequential processes][csp]
+1. [Dataflow Programming][df-prog]
 1. [Welsh, M., Culler, D., and Brewer, E. 2001. SEDA: an architecture for well-conditioned, scalable internet services][seda].
 
 [upnp-spec]: http://upnp.org/sdcps-and-certification/standards/
@@ -73,3 +76,6 @@ Round supports a security model based on [HMAC](https://tools.ietf.org/html/rfc2
 [zero-conf]: http://www.zeroconf.org/
 [rpc]: http://en.wikipedia.org/wiki/Remote_procedure_call
 [seda]: http://dl.acm.org/citation.cfm?id=502057
+[actor-model]: http://en.wikipedia.org/wiki/Actor_model
+[csp]: http://en.wikipedia.org/wiki/Communicating_sequential_processes
+[df-prog]: http://en.wikipedia.org/wiki/Dataflow_programming
