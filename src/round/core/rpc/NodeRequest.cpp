@@ -56,3 +56,79 @@ bool Round::NodeRequest::setHttpRequest(uHTTP::HTTPRequest *httpReq) {
 
   return true;
 }
+
+Round::NodeRequest *Round::NodeRequest::CreateFromHTTPGetRequest(uHTTP::HTTPRequest *httpReq) {
+  if (!httpReq->isGetRequest())
+    return NULL;
+
+  NodeRequest *nodeReq = new NodeRequest();
+  
+  std::string value;
+
+  // jsonrpc
+  
+  if (httpReq->getParameterValue(RPC::JSON::Message::JSON_RPC, &value)) {
+    nodeReq->setVersion(value);
+  }
+  
+  // method
+  
+  if (httpReq->getParameterValue(RPC::JSON::Message::METHOD, &value)) {
+    nodeReq->setMethod(value);
+  }
+  
+  // id
+  
+  if (httpReq->getParameterValue(RPC::JSON::Message::ID, &value)) {
+    nodeReq->setId(value);
+  }
+  
+  // timestamp
+  
+  if (httpReq->getParameterValue(RPC::JSON::Message::TIMESTAMP, &value)) {
+    nodeReq->setTimestamp(value);
+  }
+
+  // hash
+  
+  if (httpReq->getParameterValue(RPC::JSON::Message::HASH, &value)) {
+    nodeReq->setHash(value);
+  }
+  
+  // dest
+  
+  if (httpReq->getParameterValue(RPC::JSON::Message::DEST, &value)) {
+    nodeReq->setDest(value);
+  }
+  
+  // type
+  
+  if (httpReq->getParameterValue(RPC::JSON::Message::TYPE, &value)) {
+    nodeReq->setType(value);
+  }
+  
+  // digest
+  
+  if (httpReq->getParameterValue(RPC::JSON::Message::DIGEST, &value)) {
+    nodeReq->setDigest(value);
+  }
+  
+  // params
+  
+  if (httpReq->getParameterValue(RPC::JSON::Message::PARAMS, &value)) {
+    bool isJsonRpcEncorded = true;
+    std::string encord;
+    if (httpReq->getParameterValue(RPC::JSON::HTTP::ENCORD, &encord)) {
+      isJsonRpcEncorded = RPC::JSON::HTTP::IsNoneEncorded(encord) ? false : true;
+    }
+    
+    if (isJsonRpcEncorded) {
+      
+    }
+    else {
+      nodeReq->setParams(value);
+    }
+  }
+
+  return nodeReq;
+}

@@ -26,8 +26,9 @@ const std::string Round::RPC::JSON::Message::DEST = "dest";
 const std::string Round::RPC::JSON::Message::DEST_ONE = "one";
 const std::string Round::RPC::JSON::Message::DEST_ALL = "all";
 
-const std::string Round::RPC::JSON::Message::ENCORD = "encord";
-const std::string Round::RPC::JSON::Message::ENCORD_JSONRPC = "json-rpc";
+const std::string Round::RPC::JSON::Message::TYPE = "type";
+const std::string Round::RPC::JSON::Message::COND = "cond";
+const std::string Round::RPC::JSON::Message::DIGEST = "digest";
 
 Round::RPC::JSON::Message::Message() {
 }
@@ -86,11 +87,3 @@ bool Round::RPC::JSON::Message::getQuorum(size_t *value) const {
     return false;
   return get(DEST, value);
 }
-
-bool Round::RPC::JSON::Message::isJSONRPCEncord() const {
-  std::string eocord;
-  if (!getEncord(&eocord))
-    return false;
-  return (eocord.compare(ENCORD_JSONRPC) == 0) ? true : false;
-}
-

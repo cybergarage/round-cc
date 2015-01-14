@@ -17,10 +17,15 @@ namespace Round {
 
 class Node;
 class NodeResponse;
-  
+
 class NodeRequest : public RPC::JSON::Request {
   static const std::string SYNC;
- public:
+
+public:
+
+  static NodeRequest *CreateFromHTTPGetRequest(uHTTP::HTTPRequest *httpReq);
+
+public:
   
   NodeRequest();
   NodeRequest(const std::string &method);
@@ -92,7 +97,7 @@ class NodeMessageManager : public MessageManager {
   NodeMessageManager() {
   }
 };
-  
+
 }
 
 #endif

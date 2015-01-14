@@ -50,9 +50,9 @@ void Round::RPC::JSON::Request::toHTTPRequest(uHTTP::HTTPRequest *httpReq) const
   if (!httpReq)
     return;
   
-  httpReq->setMethod(RPC::HTTP::METHOD);
-  httpReq->setURI(RPC::HTTP::ENDPOINT);
-  httpReq->setContentType(RPC::HTTP::CONTENT_TYPE);
+  httpReq->setMethod(RPC::JSON::HTTP::METHOD);
+  httpReq->setURI(RPC::JSON::HTTP::ENDPOINT);
+  httpReq->setContentType(RPC::JSON::HTTP::CONTENT_TYPE);
   
   std::string jsonString;
   toJSONString(&jsonString);

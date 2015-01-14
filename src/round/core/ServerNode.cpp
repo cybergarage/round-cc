@@ -106,6 +106,12 @@ Round::HttpStatusCode Round::ServerNode::httpRpcRequestReceived(uHTTP::HTTPReque
       nodeReq->setHttpRequest(httpReq);
       rpcReq = nodeReq;
     }
+  } else if (httpReq->isGetRequest()) {
+    NodeRequest *nodeReq = NodeRequest::CreateFromHTTPGetRequest(httpReq);
+    if (nodeReq) {
+      nodeReq->setHttpRequest(httpReq);
+      rpcReq = nodeReq;
+    }
   }
   
   if (!rpcReq)
