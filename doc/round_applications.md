@@ -30,11 +30,48 @@ The sample is a simple distributed key value store to small data such as configu
 
 ![chubby](./img/round_app_chubby.png)
 
+### Script
+
+```
+{
+  methods : [
+    {"name":"set_key", ....}　,
+    {"name":"get_key", ....}　,
+    {"name":"reduce_key", ....}
+  ]
+
+  routes : [
+    {src : "local.get_key", dest : "local.reduce_key"}
+  ]
+}
+```
+
 ## Key Value Store
 
 The sample is a simple distributed key value store which is based on [eventual consistency](http://en.wikipedia.org/wiki/Eventual_consistency) such as Dynamo[2] and Cassandra[3]. The sample is based on [Quorum Pattern](./round_design_pattern.md).
 
 ![kvs](./img/round_app_kvs.png)
+
+### Script
+
+```
+{
+  methods : [
+    {"name":"set_key", ....}　,
+    {"name":"get_key", ....}　,
+    {"name":"reduce_key", ....} ,
+    {"name":"remove_extra_key", ....} ,
+    {"name":"copy_handle_key", ....}
+  ]
+
+  routes : [
+    {src : "local.get_key", dest : "local.reduce_key"} ,
+    {src : "local._node_added", dest : "local.remove_extra_key"} ,
+    {src : "local._node_removed", dest : "local.copy_handle_key"} ,
+    {src : "local._node_pre_activated", dest : "local.copy_handle_key"} ,
+  ]
+}
+```
 
 ## CDN (Contents Delivery Network)
 

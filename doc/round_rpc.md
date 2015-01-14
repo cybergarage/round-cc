@@ -204,3 +204,6 @@ The 'result' member is required on success in [JSON-RPC 2.0][json-rpc]. However,
 [rpc]: http://en.wikipedia.org/wiki/Remote_procedure_call
 [json-rpc]: http://www.jsonrpc.org/specification
 [json-rpc-http]: http://jsonrpc.org/historical/json-rpc-over-http.html
+
+
+For efficient communication for between the nodes, we will support more efficient remote procedure call like  [BSON](http://bsonspec.org) in the future release.

@@ -63,7 +63,7 @@ Round offers the following functions to develop distributed system application e
 
 ### Auto Configuration
 
-A new node is stared, it is added into a network automatically. Other nodes in the same network are received some event messages when a node is added or removed.
+New Round node is stared, it is added into a network automatically. Other nodes in the same network are received some event messages when a node is added or removed.
 
 ![auto-configuration](img/round_overview_autoconfig.png)
 
@@ -72,7 +72,11 @@ In addition to the auto configuration, Round supports none auto configuration ne
 
 ### Dynamic Programming
 
-In Round, you can build distributed system applications to set programming scripts and connect the scripts into events dynamically.
+Round node is a programmable RPC([Remote Procedure Call](http://en.wikipedia.org/wiki/Remote_procedure_call)) node.
+In Round, you can build distributed system applications to add programming scripts and connect events into the scripts dynamically.
+
+
+Roundのノードはプログラミング可能なノードです。Roundでは、各ノードに動的にスクリプトを設定したり、そのスクリプトをイベントに関連付けたりしながら、分散システムアプリケーションを構築していきます。
 
 ![auto-configuration](img/round_overview_programming.png)
 

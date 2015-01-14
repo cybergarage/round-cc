@@ -12,7 +12,7 @@ Roundの名前は「[円卓の騎士](http://ja.wikipedia.org/wiki/円卓の騎�
 
 ## 設計原則
 
-Roundは以下の原則に基づいて設計されて``います。
+Roundは以下の原則に基づいて設計されています。
 
 ### 簡潔性
 
@@ -60,18 +60,20 @@ Round offers the following functions to develop distributed system application e
 
 ### 自動設定
 
-起動された新しいノードは、ネットワークに自動的に追加されます。同じネットワークの他のノードは、ノードが追加されたり削除されたりすると、そのイベントを受信します。
+新しく起動されたRoundノードは、ネットワークに自動的に追加されます。同じネットワークの他のノードは、ノードが追加されたり削除されたりすると、そのイベントを受信します。
 
 ![auto-configuration](img/round_overview_autoconfig.png)
 
 Roundは、自走設定に以外にも自動設定でないネットワークや固定的な設定にも対応しています。
 
-### 動的プログラミング
+### プログラミング
 
-Roundでは、各ノードに動的にスクリプトを設定したり、そのスクリプトをイベントに関連付けたりしながら、分散システムアプリケーションを構築していきます。
+Roundのノードはプログラミング可能なRPC([Remote Procedure Call](http://en.wikipedia.org/wiki/Remote_procedure_call))ノードです。Roundでは、各ノードに動的にスクリプトを追加したり、イベントをそのスクリプトに関連付けたりしながら、分散システムアプリケーションを構築していきます。
 
-![auto-configuration](img/round_overview_programming.png)
+![auto-configuration](img/round_core_module.png)
 
 RoundはJavaScritやJavaなどの複数の動的プログラミング言語に対応していますので、利用者の好みのプログラミング言語で分散システムアプリケーションが開発できます。C++などの静的プログラミング言語にも対応しています。
+
+![auto-configuration](img/round_overview_programming.png)
 
 Monochrome iconset by [Danny Allen](http://dannya.org).
