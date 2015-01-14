@@ -26,6 +26,7 @@ namespace HTTP {
 static const std::string ENDPOINT     = "/rpc/do";
 static const std::string CONTENT_TYPE = "application/json-rpc";
 static const std::string METHOD       = "POST";
+static const std::string REST_METHOD  = "GET";
 static const std::string ACCEPT       = CONTENT_TYPE;
 }
   
@@ -61,7 +62,9 @@ bool IsServerErrorCode(int jsonErrorCode);
 void ErrorCodeToError(int jsonErrorCode, Error *error);
 
 namespace HTTP {
-    int ErrorCodeToHTTPStatusCode(int jsonErrorCode);
+  bool IsRequestMethod(const std::string &method);
+  bool IsRequestPath(const std::string &method);
+  int ErrorCodeToHTTPStatusCode(int jsonErrorCode);
 }
 
 ssize_t Encode(const byte *inBytes, size_t rawByteLen, std::string *encodedStr);

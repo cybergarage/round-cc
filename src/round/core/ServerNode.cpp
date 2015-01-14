@@ -63,12 +63,13 @@ bool Round::ServerNode::isRpcRequest(uHTTP::HTTPRequest *httpReq) {
   std::string uri;
   httpReq->getURI(uri);
   
-  if (method.compare(RPC::HTTP::METHOD) == 0) {
-    if (uri.compare(RPC::HTTP::ENDPOINT) == 0)
-      return true;
-  }
+  if (!RPC::JSON::HTTP::IsRequestMethod(method))
+    return false;
+  
+  if (!RPC::JSON::HTTP::IsRequestPath(uri))
+    return false;
 
-  return false;
+  return true;
 }
 
 Round::HttpStatusCode Round::ServerNode::postRpcRequest(uHTTP::HTTPRequest *httpReq, Message *nodeReq) {

@@ -22,6 +22,20 @@
 
 static std::map<int, std::string> gJsonRpcErrorStrings;
 
+bool Round::RPC::JSON::HTTP::IsRequestMethod(const std::string &method) {
+  if (method.compare(RPC::HTTP::METHOD) ==0)
+    return true;
+  if (method.compare(RPC::HTTP::REST_METHOD) ==0)
+    return true;
+  return false;
+}
+
+bool Round::RPC::JSON::HTTP::IsRequestPath(const std::string &method) {
+  if (method.compare(RPC::HTTP::ENDPOINT) == 0)
+    return true;
+  return false;
+}
+
 int Round::RPC::JSON::HTTP::ErrorCodeToHTTPStatusCode(int jsonErrorCode) {
   // Standard Response Error Codes
   switch (jsonErrorCode) {
