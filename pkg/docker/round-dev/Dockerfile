@@ -29,8 +29,14 @@ RUN ./bootstrap && ./configure && make && make install
 RUN apt-get install -y libboost-all-dev libssl-dev libjansson-dev openjdk-6-jdk libmozjs185-dev libv8-dev tcl-dev
 WORKDIR /tmp
 #RUN git clone https://github.com/cybergarage/Round.git round
-RUN git clone http://192.168.100.10/git/round round
+COPY round /tmp/round
 WORKDIR round
 RUN ./bootstrap && ./configure_ubuntu --enable-script-java=no && make && make install
 
-WORKDIR ~
+# JNI
+WORKDIR /root
+#ENV JVM_HOME `update-java-alternatives -l | head -n 1 | awk '{print $3}'`
+ENV JVM_HOME /usr/lib/jvm/java-1.6.0-openjdk-amd64
+ENV LD_LIBRARY_PATH $JVM_HOME/jre/lib/amd64:$JVM_HOME/jre/lib/amd64/server
+
+WORKDIR /root

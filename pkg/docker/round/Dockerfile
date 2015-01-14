@@ -20,13 +20,9 @@ RUN rm -rf mupnp
 # Round
 WORKDIR /tmp
 WORKDIR round
-RUN git pull
-RUN ./bootstrap && ./configure && make && make install
+# RUN git pull
+RUN ./bootstrap && ./configure_ubuntu && make && make install
 WORKDIR /tmp
 RUN rm -rf round
 
-# JNI
-ENV JAVA_HOME `update-java-alternatives -l | head -n 1 | awk '{print $3}'`
-ENV LD_LIBRARY_PATH $JAVA_HOME/jre/lib/amd64:$JAVA_HOME/jre/lib/amd64/server
-
-WORKDIR ~
+WORKDIR /root
