@@ -15,6 +15,7 @@ Round adds the following original fields to [JSON-RPC 2.0][json-rpc] specificati
 | cond | - | - |  |
 | type | - | - |  |
 | ts | - | - | The field is handled automatically by Round |
+| encode | none, json-rpc | (none) | - |
 | digest | - | (none) | - |
 
 ### hash
@@ -154,6 +155,14 @@ When the request object hasn't the parameter, the remote node does't update the 
 
 [lamport-timestamps]: http://en.wikipedia.org/wiki/Lamport_timestamps
 
+### encode
+
+The encode field specifies whether the 'params' field is encoded.  The 'json-rpc' is defined in [JSON-RPC over HTTP][json-rpc-http].
+
+```
+encode = ("json-rpc" | "node")
+```
+
 ## Error code
 
 Round added the folloinwg error codes in the  implementation defined range [JSON-RPC][json-rpc]. Round returns the following error code when the specified method couldn't be executed.
@@ -198,7 +207,7 @@ For the asynchronous request, Round returns the following HTTP status code immed
 
 Round doesn't check the request message in more detail. Thus all JSON-RPC errors such as 'Parser Error' are returns into the specified location asynchronously.
 
-The 'result' member is required on success in [JSON-RPC 2.0][json-rpc]. However, Round does't include the result member in the immediate response for asynchronous request because the operation is not executed yet.
+The 'result' member is required on success in [JSON-RPC][json-rpc]. However, Round does't include the result member in the immediate response for asynchronous request because the operation is not executed yet.
 
 
 [rpc]: http://en.wikipedia.org/wiki/Remote_procedure_call

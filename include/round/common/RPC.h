@@ -81,6 +81,8 @@ class Message : public ::Round::Request {
   static const std::string DEST;
   static const std::string DEST_ONE;
   static const std::string DEST_ALL;
+  static const std::string ENCORD;
+  static const std::string ENCORD_JSONRPC;
   
  public:
   Message();
@@ -159,6 +161,22 @@ class Message : public ::Round::Request {
   bool isDestQuorum() const;
 
   bool getQuorum(size_t *value) const;
+
+  // encord
+  
+  bool setEncord(const std::string &value) {
+    return set(ENCORD, value);
+  }
+  
+  bool getEncord(std::string *value) const {
+    return get(ENCORD, value);
+  }
+
+  bool hasEndord() const {
+    return hasKey(ENCORD);
+  }
+  
+  bool isJSONRPCEncord() const;
 };
 
 class Request : public Message {
