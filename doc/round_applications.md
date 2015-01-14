@@ -26,7 +26,7 @@ The sample is a simple only to echo the specified parameters.
 
 ## Chubby
 
-The sample is a simple distributed key value store to small data such as configuration data like Google's chubby [1]. The sample is based on [Quorum Pattern](./round_design_pattern.md).
+The sample is a simple distributed key value store to share same small data such as configuration data in all nodes in a cluster like Google's chubby [1]. The sample is based on [Quorum Pattern](./round_design_pattern.md).
 
 ![chubby](./img/round_app_chubby.png)
 
@@ -41,7 +41,7 @@ The sample is a simple distributed key value store to small data such as configu
   ]
 
   routes : [
-    {src : "local.get_key", dest : "local.reduce_key"}
+    {"src" : "local.get_key", "dest" : "local.reduce_key"}
   ]
 }
 ```
@@ -65,10 +65,10 @@ The sample is a simple distributed key value store which is based on [eventual c
   ]
 
   routes : [
-    {src : "local.get_key", dest : "local.reduce_key"} ,
-    {src : "local._node_added", dest : "local.remove_extra_key"} ,
-    {src : "local._node_removed", dest : "local.copy_handle_key"} ,
-    {src : "local._node_pre_activated", dest : "local.copy_handle_key"} ,
+    {"src" : "local.get_key", "dest" : "local.reduce_key"} ,
+    {"src" : "local._node_added", "dest" : "local.remove_extra_key"} ,
+    {"src" : "local._node_removed", "dest" : "local.copy_handle_key"} ,
+    {"src" : "local._node_pre_activated", "dest" : "local.copy_handle_key"} ,
   ]
 }
 ```
