@@ -16,12 +16,13 @@
 
 namespace Round {
 
-class Base64 {
- public:
-  static ssize_t Encode(const byte *inBytes, size_t rawByteLen, std::string *encodedStr);
-  static ssize_t Decode(const std::string &encodedStr, byte **decordedBytes);
-};
+namespace Base64 {
 
+ssize_t Encode(const byte *inBytes, size_t rawByteLen, std::string *encodedStr);
+ssize_t Decode(const std::string &encodedStr, byte **decordedBytes);
+
+}
+  
 }
 
 #endif
