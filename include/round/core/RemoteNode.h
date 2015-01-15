@@ -40,6 +40,7 @@ class RemoteNode : public Node {
   }
 
   bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  bool getMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error, bool jsonRpcEncodeEnable);
 
   bool isCloneable() const {
     return true;
@@ -47,6 +48,11 @@ class RemoteNode : public Node {
   
   Node *clone();
   
+private:
+
+  bool setUpdatedNodeStatusParameters(const NodeRequest *nodeReq);
+  bool postMessage(uHTTP::HTTPRequest *httpReq, NodeResponse *nodeRes, Error *error);
+
 private:
 
   std::string requestAddress;

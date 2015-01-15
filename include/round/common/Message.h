@@ -82,9 +82,6 @@ class MessageManager {
   void init();
   void clear();
 
-  bool hasId();
-  int getId();
-
  private:
  
   Semaphore *msgSem;

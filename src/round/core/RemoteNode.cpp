@@ -84,25 +84,18 @@ bool Round::RemoteNode::getClusterName(std::string *name, Error *error) {
   return true;
 }
 
-bool Round::RemoteNode::postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+bool Round::RemoteNode::postMessage(uHTTP::HTTPRequest *httpReq, NodeResponse *nodeRes, Error *error) {
+  // HTTP Request
+  
   std::string requestAddr;
   int requestPort;
   if (!getRequestAddress(&requestAddr, error) || !getRequestPort(&requestPort, error))
     return false;
-
-  // Set id and ts parameter
   
-  incrementLocalClock();
-  (const_cast<NodeRequest *>(nodeReq))->setSourceNodeParameters(this);
-  
-  // HTTP Request
-
-  uHTTP::HTTPRequest httpReq;
-  httpReq.setHost(requestAddr, requestPort);
-  nodeReq->toHTTPRequest(&httpReq);
+  httpReq->setHost(requestAddr, requestPort);
   
   uHTTP::HTTPResponse httpRes;
-  httpReq.post(requestAddr, requestPort, &httpRes);
+  httpReq->post(requestAddr, requestPort, &httpRes);
   
   int statusCode = httpRes.getStatusCode();
   bool isSuccess = uHTTP::HTTP::IsStatusCodeSuccess(statusCode);
@@ -122,16 +115,16 @@ bool Round::RemoteNode::postMessage(const NodeRequest *nodeReq, NodeResponse *no
   JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(rootObj);
   if (!jsonDict)
     return isSuccess;
-
+  
   nodeRes->set(jsonDict);
-
+  
   // Update local clock
   
   clock_t remoteTs;
   if (nodeRes->getTimestamp(&remoteTs)) {
     setRemoteClock(remoteTs);
   }
-
+  
   // Set error code and message
   
   if (!isSuccess) {
@@ -141,6 +134,46 @@ bool Round::RemoteNode::postMessage(const NodeRequest *nodeReq, NodeResponse *no
   }
   
   return isSuccess;
+}
+
+bool Round::RemoteNode::setUpdatedNodeStatusParameters(const NodeRequest *nodeReq) {
+    if (!nodeReq)
+      return false;
+  
+  // Set id and ts parameter
+  
+  incrementLocalClock();
+  (const_cast<NodeRequest *>(nodeReq))->setSourceNodeParameters(this);
+
+  return true;
+}
+
+bool Round::RemoteNode::postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+  // Set id and ts parameter
+
+  if (!setUpdatedNodeStatusParameters(nodeReq))
+    return false;
+  
+  // HTTP Request
+
+  uHTTP::HTTPRequest httpReq;
+  nodeReq->toHTTPPostRequest(&httpReq);
+
+  return postMessage(&httpReq, nodeRes, error);
+}
+
+bool Round::RemoteNode::getMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error, bool jsonRpcEncodeEnable) {
+  // Set id and ts parameter
+  
+  if (!setUpdatedNodeStatusParameters(nodeReq))
+    return false;
+  
+  // HTTP Request
+  
+  uHTTP::HTTPRequest httpReq;
+  nodeReq->toHTTPGetRequest(&httpReq, jsonRpcEncodeEnable);
+  
+  return postMessage(&httpReq, nodeRes, error);
 }
 
 Round::Node *Round::RemoteNode::clone() {

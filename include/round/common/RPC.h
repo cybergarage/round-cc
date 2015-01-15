@@ -115,6 +115,10 @@ class Message : public ::Round::Request {
     return get(ID, value);
   }
   
+  bool getId(const std::string *value) const {
+    return get(ID, value);
+  }
+  
   // Round Extention Methods.
 
   // timestamp
@@ -131,6 +135,10 @@ class Message : public ::Round::Request {
     return get(TIMESTAMP, value);
   }
 
+  bool getTimestamp(const std::string *value) const {
+    return get(TIMESTAMP, value);
+  }
+  
   bool hasTimestamp() const {
     return hasKey(TIMESTAMP);
   }
@@ -247,7 +255,8 @@ class Request : public Message {
     return get(PARAMS, value);
   }
   
-  void toHTTPRequest(uHTTP::HTTPRequest *httpReq) const;
+  void toHTTPPostRequest(uHTTP::HTTPRequest *httpReq) const;
+  void toHTTPGetRequest(uHTTP::HTTPRequest *httpReq, bool jsonRpcEncodeEnable) const;
 };
 
 class BatchRequest : public ::Round::BatchRequest {
