@@ -257,6 +257,95 @@ void NodeTestController::runSystemMethodTest(Round::Node *node) {
   runSystemGetNetworkInfoTest(node);
 }
 
+void NodeTestController::runUserMethodTest(Round::Node *node) {
+  // echo (POST)
+  runPostEchoMethodTest(node);
+  
+  // echo (GET) only RemoteNode
+  RemoteNode *remoteNode = dynamic_cast<RemoteNode *>(node);
+  if (remoteNode) {
+    runGetEchoMethodTest(remoteNode, true);
+  }
+}
+
+void NodeTestController::runPostEchoMethodTest(Round::Node *node) {
+  Error err;
+  
+  BOOST_CHECK(node->isAlive(&err));
+  
+  // Post Node Message (Set 'echo' method)
+  
+  NodeRequest *nodeReq;
+  NodeResponse nodeRes;
+  clock_t prevClock, postClock;
+  std::string result;
+  
+  NodeRequestParser reqParser;
+  BOOST_CHECK(reqParser.parse(Test::RPC_SET_ECHO, &err));
+  BOOST_CHECK(reqParser.getRootObject()->isDictionary());
+  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
+  BOOST_CHECK(nodeReq);
+  
+  prevClock = node->getLocalClock();
+  BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &err));
+  postClock = node->getLocalClock();
+  BOOST_CHECK(prevClock < postClock);
+  
+  // Post Node Message (Run 'echo' method)
+  
+  BOOST_CHECK(reqParser.parse(Test::RPC_RUN_ECHO, &err));
+  BOOST_CHECK(reqParser.getRootObject()->isDictionary());
+  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
+  BOOST_CHECK(nodeReq);
+  
+  prevClock = node->getLocalClock();
+  BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &err));
+  postClock = node->getLocalClock();
+  BOOST_CHECK(prevClock < postClock);
+  
+  BOOST_CHECK(nodeRes.getResult(&result));
+  BOOST_CHECK_EQUAL(result.compare(RPC_SET_ECHO_PARAMS), 0);
+}
+
+void NodeTestController::runGetEchoMethodTest(Round::RemoteNode *node, bool isJsonRpcEncodeEnabled) {
+  Error err;
+  
+  BOOST_CHECK(node->isAlive(&err));
+  
+  // Post Node Message (Set 'echo' method)
+  
+  NodeRequest *nodeReq;
+  NodeResponse nodeRes;
+  clock_t prevClock, postClock;
+  std::string result;
+  
+  NodeRequestParser reqParser;
+  BOOST_CHECK(reqParser.parse(Test::RPC_SET_ECHO, &err));
+  BOOST_CHECK(reqParser.getRootObject()->isDictionary());
+  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
+  BOOST_CHECK(nodeReq);
+  
+  prevClock = node->getLocalClock();
+  BOOST_CHECK(node->getMessage(nodeReq, &nodeRes, &err, isJsonRpcEncodeEnabled));
+  postClock = node->getLocalClock();
+  BOOST_CHECK(prevClock < postClock);
+  
+  // Post Node Message (Run 'echo' method)
+  
+  BOOST_CHECK(reqParser.parse(Test::RPC_RUN_ECHO, &err));
+  BOOST_CHECK(reqParser.getRootObject()->isDictionary());
+  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
+  BOOST_CHECK(nodeReq);
+  
+  prevClock = node->getLocalClock();
+  BOOST_CHECK(node->getMessage(nodeReq, &nodeRes, &err, isJsonRpcEncodeEnabled));
+  postClock = node->getLocalClock();
+  BOOST_CHECK(prevClock < postClock);
+
+  BOOST_CHECK(nodeRes.getResult(&result));
+  BOOST_CHECK_EQUAL(result.compare(RPC_SET_ECHO_PARAMS), 0);
+}
+
 void NodeTestController::runRpcHashTest(Round::Node **nodes, size_t nodeCnt) {
   Error err;
   

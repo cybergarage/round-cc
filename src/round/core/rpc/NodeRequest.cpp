@@ -11,8 +11,11 @@
 #include <string.h>
 #include <sstream>
 
+#include <boost/algorithm/string/replace.hpp>
+
 #include <round/core/NodeMessage.h>
 #include <round/core/Node.h>
+#include <round/common/encoding/URL.h>
 
 const std::string Round::NodeRequest::SYNC = "sync";
 
@@ -112,7 +115,7 @@ Round::NodeRequest *Round::NodeRequest::CreateFromHTTPGetRequest(uHTTP::HTTPRequ
   if (httpReq->getParameterValue(RPC::JSON::Message::DIGEST, &value)) {
     nodeReq->setDigest(value);
   }
-  
+
   // params
   
   if (httpReq->getParameterValue(RPC::JSON::Message::PARAMS, &value)) {
@@ -121,12 +124,19 @@ Round::NodeRequest *Round::NodeRequest::CreateFromHTTPGetRequest(uHTTP::HTTPRequ
     if (httpReq->getParameterValue(RPC::JSON::HTTP::ENCORD, &encord)) {
       isJsonRpcEncorded = RPC::JSON::HTTP::IsNoneEncorded(encord) ? false : true;
     }
-    
     if (isJsonRpcEncorded) {
-      
+      byte *decordedBytes = NULL;
+      size_t decordedByteLen = RPC::JSON::Decode(value, &decordedBytes);
+      if (decordedBytes) {
+        std::string decordedString((const char *)decordedBytes, decordedByteLen);
+        nodeReq->setParams(decordedString);
+        free(decordedBytes);
+      }
     }
     else {
-      nodeReq->setParams(value);
+      std::string decordedStr;
+      URL::Decode(value, &decordedStr);
+      nodeReq->setParams(decordedStr);
     }
   }
 

@@ -15,6 +15,7 @@
 #include <string>
 #include <round/core/LocalNode.h>
 #include <round/core/ServerNode.h>
+#include <round/core/RemoteNode.h>
 
 #include "RoundTest.h"
 
@@ -102,14 +103,19 @@ class NodeTestController {
 
   void runScriptManagerTest(Round::Node *node);
   void runSystemMethodTest(Round::Node *node);
+  void runUserMethodTest(Round::Node *node);
   void runRpcTest(Round::Node **nodes, size_t nodeCnt);
 
+  void runGetEchoMethodTest(Round::RemoteNode *node, bool isJsonRpcEncodeEnabled);
+  
  private:
   void runSystemEchoTest(Round::Node *node);
   void runSystemGetNodeInfoTest(Round::Node *node);
   void runSystemGetClusterInfoTest(Round::Node *node);
   void runSystemGetNetworkInfoTest(Round::Node *node);
 
+  void runPostEchoMethodTest(Round::Node *node);
+  
   void runRpcHashTest(Round::Node **nodes, size_t nodeCnt);
 };
 

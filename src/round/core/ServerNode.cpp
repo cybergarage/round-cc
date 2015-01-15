@@ -79,19 +79,19 @@ Round::HttpStatusCode Round::ServerNode::postRpcRequest(uHTTP::HTTPRequest *http
 }
 
 Round::HttpStatusCode Round::ServerNode::httpRpcRequestReceived(uHTTP::HTTPRequest *httpReq) {
+  Error error;
   
   // Check RPC Request
-
-  std::string httpContent = httpReq->getContent();
-  if (httpContent.length() <= 0)
-    return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeInvalidRequest);
-  
-  RoundLogTrace(httpContent.c_str());
   
   Message *rpcReq = NULL;
   
   if (httpReq->isPostRequest()) {
-    Error error;
+    std::string httpContent = httpReq->getContent();
+    if (httpContent.length() <= 0)
+      return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeInvalidRequest);
+    
+    RoundLogTrace(httpContent.c_str());
+    
     NodeRequestParser jsonParser;
     if (jsonParser.parse(httpContent, &error) == false)
       return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeParserError);

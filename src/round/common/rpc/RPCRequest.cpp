@@ -8,7 +8,9 @@
 *
 ******************************************************************/
 
+#include <boost/algorithm/string.hpp>
 #include <round/common/RPC.h>
+#include <round/common/encoding/URL.h>
 
 Round::RPC::JSON::Request::Request() {
 }
@@ -63,7 +65,7 @@ void Round::RPC::JSON::Request::toHTTPGetRequest(uHTTP::HTTPRequest *httpReq, bo
   if (!httpReq)
     return;
   
-  httpReq->setMethod(RPC::JSON::HTTP::METHOD);
+  httpReq->setMethod(RPC::JSON::HTTP::GET_METHOD);
   httpReq->setContentType(RPC::JSON::HTTP::CONTENT_TYPE);
 
   std::stringstream uriBuf;
@@ -81,7 +83,9 @@ void Round::RPC::JSON::Request::toHTTPGetRequest(uHTTP::HTTPRequest *httpReq, bo
         }
       }
       else {
-        uriBuf << "&" << RPC::JSON::Message::PARAMS << "=" << paramVal;
+        URL::Encode(paramVal, &encodedStr);
+        uriBuf << "&" << RPC::JSON::Message::PARAMS << "=" << encodedStr;
+        uriBuf << "&" << RPC::JSON::HTTP::ENCORD << "=" << RPC::JSON::HTTP::ENCORD_NONE;
       }
     }
 
@@ -91,12 +95,15 @@ void Round::RPC::JSON::Request::toHTTPGetRequest(uHTTP::HTTPRequest *httpReq, bo
         continue;
       if (key.compare(RPC::JSON::Message::PARAMS) == 0)
         continue;
+      
       JSONObject *jsonObj = jsonObjIt->second;
       if (!jsonObj)
         continue;
       std::string jsonObjStr;
       if (!jsonObj->toJSONString(&jsonObjStr))
         continue;
+      boost::trim_if(jsonObjStr, boost::is_any_of("\""));
+      
       uriBuf << "&" << key << "=" << jsonObjStr;
     }
   }

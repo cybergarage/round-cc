@@ -15,13 +15,14 @@
 #include "RoundTest.h"
 #include "TestServer.h"
 #include "TestScript.h"
+#include "TestNode.h"
 
 using namespace std;
 using namespace Round;
 
 BOOST_AUTO_TEST_SUITE(server)
 
-BOOST_AUTO_TEST_CASE(RoundRealServerRunTest) {
+BOOST_AUTO_TEST_CASE(ServerRequestTest) {
   Error err;
 
   // Start Server
@@ -45,7 +46,8 @@ BOOST_AUTO_TEST_CASE(RoundRealServerRunTest) {
   // Check Server
   
   RemoteNode remoteNode(httpHost, httpPort);
-  BOOST_CHECK(remoteNode.isAlive(&err));
+  NodeTestController nodeTestController;
+  nodeTestController.runUserMethodTest(&remoteNode);
   
   // Stop Server
   
@@ -56,7 +58,7 @@ BOOST_AUTO_TEST_CASE(RoundRealServerRunTest) {
   delete nodeServer;
 }
 
-BOOST_AUTO_TEST_CASE() {
+BOOST_AUTO_TEST_CASE(ServerGetRequestTest) {
   Error err;
   
   // Start Server
@@ -79,36 +81,9 @@ BOOST_AUTO_TEST_CASE() {
   // Remote Node
   
   RemoteNode remoteNode(httpHost, httpPort);
-  BOOST_CHECK(remoteNode.isAlive(&err));
-  
-  // Post Node Message (Set 'echo' method)
-  
-  NodeRequest *nodeReq;
-  NodeResponse nodeRes;
-  clock_t prevClock, postClock;
-  
-  NodeRequestParser reqParser;
-  BOOST_CHECK(reqParser.parse(Test::RPC_SET_ECHO, &err));
-  BOOST_CHECK(reqParser.getRootObject()->isDictionary());
-  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
-  BOOST_CHECK(nodeReq);
-  
-  prevClock = remoteNode.getLocalClock();
-  BOOST_CHECK(remoteNode.postMessage(nodeReq, &nodeRes, &err));
-  postClock = remoteNode.getLocalClock();
-  BOOST_CHECK(prevClock < postClock);
-  
-  // Post Node Message (Run 'echo' method)
-  
-  BOOST_CHECK(reqParser.parse(Test::RPC_RUN_ECHO, &err));
-  BOOST_CHECK(reqParser.getRootObject()->isDictionary());
-  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
-  BOOST_CHECK(nodeReq);
-  
-  prevClock = remoteNode.getLocalClock();
-  BOOST_CHECK(remoteNode.postMessage(nodeReq, &nodeRes, &err));
-  postClock = remoteNode.getLocalClock();
-  BOOST_CHECK(prevClock < postClock);
+  NodeTestController nodeTestController;
+  nodeTestController.runGetEchoMethodTest(&remoteNode, true);
+  nodeTestController.runGetEchoMethodTest(&remoteNode, false);
   
   // Stop Server
   
