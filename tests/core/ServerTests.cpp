@@ -14,6 +14,7 @@
 
 #include "RoundTest.h"
 #include "TestServer.h"
+#include "TestScript.h"
 
 using namespace std;
 using namespace Round;
@@ -23,6 +24,8 @@ BOOST_AUTO_TEST_SUITE(server)
 BOOST_AUTO_TEST_CASE(RoundRealServerRunTest) {
   Error err;
 
+  // Start Server
+  
   Server *nodeServer = new TestServer();
 
   BOOST_CHECK(nodeServer->start(&err));
@@ -38,12 +41,79 @@ BOOST_AUTO_TEST_CASE(RoundRealServerRunTest) {
   BOOST_CHECK(0 < httpPort);
   
   BOOST_MESSAGE("Server : " << httpHost << ":" << httpPort);
+
+  // Check Server
   
-
   RemoteNode remoteNode(httpHost, httpPort);
-
+  BOOST_CHECK(remoteNode.isAlive(&err));
+  
+  // Stop Server
+  
+  BOOST_CHECK(nodeServer->stop(&err));
+  
   BOOST_MESSAGE("Server is stopped");
   
+  delete nodeServer;
+}
+
+BOOST_AUTO_TEST_CASE() {
+  Error err;
+  
+  // Start Server
+  
+  Server *nodeServer = new TestServer();
+  BOOST_CHECK(nodeServer->start(&err));
+  
+  BOOST_MESSAGE("Server is started");
+  
+  string httpHost;
+  BOOST_CHECK(nodeServer->getRequestAddress(&httpHost, &err));
+  BOOST_CHECK(0 < httpHost.length());
+  
+  int httpPort;
+  BOOST_CHECK(nodeServer->getRequestPort(&httpPort, &err));
+  BOOST_CHECK(0 < httpPort);
+  
+  BOOST_MESSAGE("Server : " << httpHost << ":" << httpPort);
+  
+  // Remote Node
+  
+  RemoteNode remoteNode(httpHost, httpPort);
+  BOOST_CHECK(remoteNode.isAlive(&err));
+  
+  // Post Node Message (Set 'echo' method)
+  
+  NodeRequest *nodeReq;
+  NodeResponse nodeRes;
+  clock_t prevClock, postClock;
+  
+  NodeRequestParser reqParser;
+  BOOST_CHECK(reqParser.parse(Test::RPC_SET_ECHO, &err));
+  BOOST_CHECK(reqParser.getRootObject()->isDictionary());
+  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
+  BOOST_CHECK(nodeReq);
+  
+  prevClock = remoteNode.getLocalClock();
+  BOOST_CHECK(remoteNode.postMessage(nodeReq, &nodeRes, &err));
+  postClock = remoteNode.getLocalClock();
+  BOOST_CHECK(prevClock < postClock);
+  
+  // Post Node Message (Run 'echo' method)
+  
+  BOOST_CHECK(reqParser.parse(Test::RPC_RUN_ECHO, &err));
+  BOOST_CHECK(reqParser.getRootObject()->isDictionary());
+  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
+  BOOST_CHECK(nodeReq);
+  
+  prevClock = remoteNode.getLocalClock();
+  BOOST_CHECK(remoteNode.postMessage(nodeReq, &nodeRes, &err));
+  postClock = remoteNode.getLocalClock();
+  BOOST_CHECK(prevClock < postClock);
+  
+  // Stop Server
+  
+  BOOST_CHECK(nodeServer->stop(&err));
+  BOOST_MESSAGE("Server is stopped");
   delete nodeServer;
 }
 
