@@ -15,6 +15,11 @@
 
 namespace Round {
 
+namespace HTTP {
+static const std::string ENDPOINT     = "/rql";
+static const std::string QUERY        = "query";
+}
+  
 class RQLParser  : public uSQL::SQLParser {
 
 public:
