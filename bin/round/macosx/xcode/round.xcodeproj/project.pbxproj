@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		218A8C5F195D63060000234F /* libuhttp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 218A8C4C195D62A50000234F /* libuhttp++.a */; };
+		21AD0F3D1A68C44400522C44 /* liblibmupnp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21AD0F3A1A68C2C700522C44 /* liblibmupnp++.a */; };
+		21AD0F421A68C74100522C44 /* JavaVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21AD0F411A68C74100522C44 /* JavaVM.framework */; };
+		21AD0F441A68C74800522C44 /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21AD0F431A68C74800522C44 /* Tcl.framework */; };
 		21CCABCD1A145D0300FE57DF /* liblibround++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2135E2631A13C81100E20DF9 /* liblibround++.a */; };
 		21EC1EC515493D01003945A5 /* round.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EC1EC415493D01003945A5 /* round.cpp */; };
 /* End PBXBuildFile section */
@@ -41,6 +44,13 @@
 			remoteGlobalIDString = 219C21ED155C7877003ABA46;
 			remoteInfo = "libmupnp++";
 		};
+		21AD0F3B1A68C43F00522C44 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21AD0F351A68C2C700522C44 /* libmupnp++.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 219C21EC155C7877003ABA46;
+			remoteInfo = "libmupnp++";
+		};
 		21B552A61A14F34500EE1D06 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2135E25D1A13C81100E20DF9 /* libround++.xcodeproj */;
@@ -67,6 +77,8 @@
 		2136E04A15493B2B007AC214 /* round */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = round; sourceTree = BUILT_PRODUCTS_DIR; };
 		218A8C47195D62A50000234F /* libuhttp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuhttp.xcodeproj; path = ../../../../../uhttp/lib/macosx/xcode/libuhttp.xcodeproj; sourceTree = "<group>"; };
 		21AD0F351A68C2C700522C44 /* libmupnp++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libmupnp++.xcodeproj"; path = "../../../../../mupnp/lib/macosx/xcode/libmupnp++.xcodeproj"; sourceTree = "<group>"; };
+		21AD0F411A68C74100522C44 /* JavaVM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaVM.framework; path = System/Library/Frameworks/JavaVM.framework; sourceTree = SDKROOT; };
+		21AD0F431A68C74800522C44 /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = System/Library/Frameworks/Tcl.framework; sourceTree = SDKROOT; };
 		21EC1EC415493D01003945A5 /* round.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; name = round.cpp; path = ../../round.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 /* End PBXFileReference section */
 
@@ -75,6 +87,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21AD0F421A68C74100522C44 /* JavaVM.framework in Frameworks */,
+				21AD0F441A68C74800522C44 /* Tcl.framework in Frameworks */,
+				21AD0F3D1A68C44400522C44 /* liblibmupnp++.a in Frameworks */,
 				21CCABCD1A145D0300FE57DF /* liblibround++.a in Frameworks */,
 				218A8C5F195D63060000234F /* libuhttp++.a in Frameworks */,
 			);
@@ -135,6 +150,8 @@
 		21EC1EBA15493CC6003945A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				21AD0F431A68C74800522C44 /* Tcl.framework */,
+				21AD0F411A68C74100522C44 /* JavaVM.framework */,
 				21AD0F351A68C2C700522C44 /* libmupnp++.xcodeproj */,
 				2135E25D1A13C81100E20DF9 /* libround++.xcodeproj */,
 				218A8C47195D62A50000234F /* libuhttp.xcodeproj */,
@@ -156,6 +173,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				21AD0F3C1A68C43F00522C44 /* PBXTargetDependency */,
 				21B552A71A14F34500EE1D06 /* PBXTargetDependency */,
 				218A8C5C195D62F90000234F /* PBXTargetDependency */,
 			);
@@ -244,6 +262,11 @@
 			name = libuhttp;
 			targetProxy = 218A8C5B195D62F90000234F /* PBXContainerItemProxy */;
 		};
+		21AD0F3C1A68C43F00522C44 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "libmupnp++";
+			targetProxy = 21AD0F3B1A68C43F00522C44 /* PBXContainerItemProxy */;
+		};
 		21B552A71A14F34500EE1D06 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "libround++";
@@ -298,6 +321,11 @@
 					"-lsqlite3",
 					"-lboost_filesystem",
 					"-lboost_system",
+					"-lv8",
+					"-lmozjs185",
+					"-ljansson",
+					"-lssl",
+					"-lcrypto",
 				);
 				SDKROOT = macosx;
 			};
@@ -342,6 +370,11 @@
 					"-lsqlite3",
 					"-lboost_filesystem",
 					"-lboost_system",
+					"-lv8",
+					"-lmozjs185",
+					"-ljansson",
+					"-lssl",
+					"-lcrypto",
 				);
 				SDKROOT = macosx;
 			};
@@ -351,6 +384,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				OTHER_LDFLAGS = (
+					"-ledit",
+					"-lxml2",
+					"-lleveldb",
+					"-lsqlite3",
+					"-lboost_filesystem",
+					"-lboost_system",
+					"-lv8",
+					"-lmozjs185",
+					"-ljansson",
+					"-lcrypto",
+					"-lssl",
+				);
 				PRODUCT_NAME = round;
 			};
 			name = Debug;
@@ -359,6 +405,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				OTHER_LDFLAGS = (
+					"-ledit",
+					"-lxml2",
+					"-lleveldb",
+					"-lsqlite3",
+					"-lboost_filesystem",
+					"-lboost_system",
+					"-lv8",
+					"-lmozjs185",
+					"-ljansson",
+					"-lcrypto",
+					"-lssl",
+				);
 				PRODUCT_NAME = round;
 			};
 			name = Release;

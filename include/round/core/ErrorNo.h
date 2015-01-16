@@ -33,9 +33,9 @@ ClientErrorCannotFindNode = -3001,
 };
 
 enum CosoleClientErrors {
-  ConsoleClientErrorOperationFailed = NodeErrorOperationFailed,
-  ConsoleClientErrorShowTargetNotFound = -3101,
-  ConsoleClientErrorClusterNotFound = -3102,
+ConsoleClientErrorOperationFailed = NodeErrorOperationFailed,
+ConsoleClientErrorShowTargetNotFound = -3101,
+ConsoleClientErrorClusterNotFound = -3102,
 };
 
 enum ServerErrors {

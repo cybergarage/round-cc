@@ -8,22 +8,58 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDCC_CONSOLECLIENT_H_
-#define _ROUNDCC_CONSOLECLIENT_H_
+#ifndef _ROUNDCC_CONSOLE_CLIENT_H_
+#define _ROUNDCC_CONSOLE_CLIENT_H_
 
 #include <string>
 #include <round/Client.h>
-#include <round/ui/ConsoleError.h>
+#include <round/common/Vector.h>
 
 namespace Round {
 
-class ConsoleClient : public Client
+namespace Console {
+
+class Option : public std::string {
+    
+  public:
+    
+  Option() {}
+};
+  
+  
+class Options : Round::Vector<Option> {
+    
+ public:
+    
+  Options() {}
+};
+
+class Command {
+    
+ public:
+    
+    Command();
+    ~Command();
+
+ private:
+  std::string name;
+};
+
+class Commands : Round::Vector<Command> {
+    
+ public:
+    
+  Commands();
+  ~Commands();
+};
+  
+class Client : public Round::Client
 {
 
 public:
         
-  ConsoleClient();
-  ~ConsoleClient();
+  Client();
+  ~Client();
 
 private:
   
@@ -93,6 +129,8 @@ private:
   std::string programtName;
   std::string promptName;
 };
+
+}
 
 }
 

@@ -12,23 +12,23 @@
 #include <vector>
 #include <string>
 
-#include <round/ui/ConsoleClient.h>
+#include <round/ui/Console.h>
 
-const std::string Round::ConsoleClient::QUIT = "quit";
-const std::string Round::ConsoleClient::EXIT = "exit";
-const std::string Round::ConsoleClient::SHOW = "show";
-const std::string Round::ConsoleClient::SEARCH = "search";
-const std::string Round::ConsoleClient::USE = "use";
-const std::string Round::ConsoleClient::CLUSTERS = "clusters";
-const std::string Round::ConsoleClient::NODES = "nodes";
+const std::string Round::Console::Client::QUIT = "quit";
+const std::string Round::Console::Client::EXIT = "exit";
+const std::string Round::Console::Client::SHOW = "show";
+const std::string Round::Console::Client::SEARCH = "search";
+const std::string Round::Console::Client::USE = "use";
+const std::string Round::Console::Client::CLUSTERS = "clusters";
+const std::string Round::Console::Client::NODES = "nodes";
 
-Round::ConsoleClient::ConsoleClient() {
+Round::Console::Client::Client() {
 }
 
-Round::ConsoleClient::~ConsoleClient() {
+Round::Console::Client::~Client() {
 }
 
-void Round::ConsoleClient::setProgramNameFromArgument(const std::string &argValue)
+void Round::Console::Client::setProgramNameFromArgument(const std::string &argValue)
 {
   this->promptName = argValue;
   size_t lastPathIndex = this->promptName.find_last_of("/");
@@ -52,7 +52,7 @@ struct roundcc_tocapital {
   }
 };
 
-const char *Round::ConsoleClient::getBootMessage(std::string &buffer)
+const char *Round::Console::Client::getBootMessage(std::string &buffer)
 {
   std::stringstream bootMsg;
   //bootMsg << ROUNDCC_PRODUCT_NAME << " " << ROUNDCC_VERSION;
@@ -63,34 +63,34 @@ const char *Round::ConsoleClient::getBootMessage(std::string &buffer)
   return buffer.c_str();
 }
 
-const char *Round::ConsoleClient::getProgramName()
+const char *Round::Console::Client::getProgramName()
 {
   return promptName.c_str();
 }
 
-const char *Round::ConsoleClient::getPromptName()
+const char *Round::Console::Client::getPromptName()
 {
   return promptName.c_str();
 }
 
-bool Round::ConsoleClient::isCommand(const std::string &command, const std::string &inputLine) {
+bool Round::Console::Client::isCommand(const std::string &command, const std::string &inputLine) {
   size_t lastExtraIndex = inputLine.find_last_not_of(" \n");
   std::string lowerInputLine = (lastExtraIndex == std::string::npos) ? inputLine : (std::string(inputLine, 0, (lastExtraIndex + 1)));
   std::transform(lowerInputLine.begin(), lowerInputLine.end(), lowerInputLine.begin(), ::tolower);
   return (lowerInputLine.find_first_of(command) == 0) ? true : false;
 }
 
-bool Round::ConsoleClient::isQuitCommand(const std::string &inputLine) {
+bool Round::Console::Client::isQuitCommand(const std::string &inputLine) {
   if (isCommand(QUIT, inputLine))
     return true;
   return isCommand(EXIT, inputLine);
 }
 
-bool Round::ConsoleClient::isQueryCommand(const std::string &inputLine) {
+bool Round::Console::Client::isQueryCommand(const std::string &inputLine) {
   return !isConsoleCommand(inputLine);
 }
 
-bool Round::ConsoleClient::show(const std::vector<std::string> &commands, Error *error) {
+bool Round::Console::Client::show(const std::vector<std::string> &commands, Error *error) {
   if (commands.size() < 2) {
     /*
     Cluster *targetCluster = getTargetCluster();
@@ -147,17 +147,17 @@ bool Round::ConsoleClient::show(const std::vector<std::string> &commands, Error 
   return false;
 }
 
-bool Round::ConsoleClient::use(const std::vector<std::string> &commands, Error *error) {
+bool Round::Console::Client::use(const std::vector<std::string> &commands, Error *error) {
   /*
   if (commands.size() < 2) {
-    error->setCode(ConsoleClientErrorClusterNotFound);
+    error->setCode(Console::ClientErrorClusterNotFound);
   }
     return false;
   
   std::string target = commands[1];
   
   if (!setTargetCluster(target)) {
-    error->setCode(ConsoleClientErrorClusterNotFound);
+    error->setCode(Console::ClientErrorClusterNotFound);
   }
    */
   
@@ -166,14 +166,14 @@ bool Round::ConsoleClient::use(const std::vector<std::string> &commands, Error *
   return false;
 }
 
-bool Round::ConsoleClient::exec(const std::string &command, Error *error) {
+bool Round::Console::Client::exec(const std::string &command, Error *error) {
   std::string lowerCommand = command;
   std::transform(lowerCommand.begin(), lowerCommand.end(), lowerCommand.begin(), ::tolower);
   std::vector<std::string> commands;
   boost::algorithm::split(commands, command, boost::is_any_of(" "));
 
   if (commands.size() <= 0) {
-    //error->setCode(ConsoleClientErrorOperationFailed);
+    //error->setCode(Console::ClientErrorOperationFailed);
     return false;
   }
   
@@ -191,7 +191,7 @@ bool Round::ConsoleClient::exec(const std::string &command, Error *error) {
     return Client::search(error);
   }
   
-  //error->setCode(ConsoleClientErrorOperationFailed);
+  //error->setCode(Console::ClientErrorOperationFailed);
   
   return false;
 }

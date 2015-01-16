@@ -8,17 +8,12 @@
  *
  ******************************************************************/
 
-#include <round/ui/ConsoleError.h>
+#include <round/ui/Console.h>
 
-Round::ConsoleError::ConsoleError()
-{
-  clear();
-}
-
-Round::ConsoleError::~ConsoleError()
+Round::Console::Commands::Commands()
 {
 }
 
-void Round::ConsoleError::clear()
+Round::Console::Commands::~Commands()
 {
 }

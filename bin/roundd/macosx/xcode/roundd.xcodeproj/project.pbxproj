@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		211FBA371A1478C500B9B71E /* liblibround++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 211FBA361A1478BA00B9B71E /* liblibround++.a */; };
+		214E57A81A68C81800699FDD /* liblibmupnp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2193C2281A68BD530006EF34 /* liblibmupnp++.a */; };
+		214E57AA1A68C82000699FDD /* JavaVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 214E57A91A68C82000699FDD /* JavaVM.framework */; };
+		214E57AC1A68C82700699FDD /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 214E57AB1A68C82700699FDD /* Tcl.framework */; };
 		21BB27CD15AE63A500FBA099 /* libuhttp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BB27BE15AE635300FBA099 /* libuhttp++.a */; };
 		21E6F32B15493EE800F7077B /* roundd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E6F32A15493EE800F7077B /* roundd.cpp */; };
 /* End PBXBuildFile section */
@@ -64,6 +67,8 @@
 
 /* Begin PBXFileReference section */
 		211FBA301A1478BA00B9B71E /* libround++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libround++.xcodeproj"; path = "../../../../lib/macosx/xcode/libround++.xcodeproj"; sourceTree = "<group>"; };
+		214E57A91A68C82000699FDD /* JavaVM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaVM.framework; path = System/Library/Frameworks/JavaVM.framework; sourceTree = SDKROOT; };
+		214E57AB1A68C82700699FDD /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = System/Library/Frameworks/Tcl.framework; sourceTree = SDKROOT; };
 		2191B3BB15493B4C003B80F4 /* roundd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = roundd; sourceTree = BUILT_PRODUCTS_DIR; };
 		2193C2231A68BD530006EF34 /* libmupnp++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libmupnp++.xcodeproj"; path = "../../../../../mupnp/lib/macosx/xcode/libmupnp++.xcodeproj"; sourceTree = "<group>"; };
 		21BB27B615AE635200FBA099 /* libuhttp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuhttp.xcodeproj; path = ../../../../../uhttp/lib/macosx/xcode/libuhttp.xcodeproj; sourceTree = "<group>"; };
@@ -75,6 +80,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				214E57AA1A68C82000699FDD /* JavaVM.framework in Frameworks */,
+				214E57AC1A68C82700699FDD /* Tcl.framework in Frameworks */,
+				214E57A81A68C81800699FDD /* liblibmupnp++.a in Frameworks */,
 				211FBA371A1478C500B9B71E /* liblibround++.a in Frameworks */,
 				21BB27CD15AE63A500FBA099 /* libuhttp++.a in Frameworks */,
 			);
@@ -127,6 +135,8 @@
 		21E6F31E15493EB300F7077B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				214E57AB1A68C82700699FDD /* Tcl.framework */,
+				214E57A91A68C82000699FDD /* JavaVM.framework */,
 				2193C2231A68BD530006EF34 /* libmupnp++.xcodeproj */,
 				211FBA301A1478BA00B9B71E /* libround++.xcodeproj */,
 				21BB27B615AE635200FBA099 /* libuhttp.xcodeproj */,
@@ -289,6 +299,11 @@
 					"-lxml2",
 					"-lboost_filesystem-mt",
 					"-lboost_system-mt",
+					"-lv8",
+					"-lmoz185",
+					"-ljansson",
+					"-lssl",
+					"-lcrypto",
 				);
 				SDKROOT = macosx;
 			};
@@ -324,6 +339,11 @@
 					"-lxml2",
 					"-lboost_filesystem-mt",
 					"-lboost_system-mt",
+					"-lv8",
+					"-lmoz185",
+					"-ljansson",
+					"-lssl",
+					"-lcrypto",
 				);
 				SDKROOT = macosx;
 			};

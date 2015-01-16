@@ -8,27 +8,12 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDCC_CONSOLEERROR_H_
-#define _ROUNDCC_CONSOLEERROR_H_
+#include <round/ui/Console.h>
 
-#include <round/common/Error.h>
-
-namespace Round {
-
-class ConsoleError : public Error {
-
-private:
-
-public:
-  
-  ConsoleError();
-  ~ConsoleError();
-  
-  bool isSQLCommand();
-
-  void clear();
-};
-
+Round::Console::Command::Command()
+{
 }
 
-#endif
+Round::Console::Command::~Command()
+{
+}

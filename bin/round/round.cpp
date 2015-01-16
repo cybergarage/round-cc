@@ -18,27 +18,37 @@
 #include <unistd.h>
 #include <histedit.h>
 
-#include <round/ui/ConsoleClient.h>
+#include <round/ui/Console.h>
 
-typedef std::map<std::string,std::string> RounddOptionsDictionary;
+namespace Roundd {
+  typedef std::map<std::string,std::string> Commands;
+  typedef std::map<std::string,std::string> Options;
+}
 
-static Round::ConsoleClient *gCmdLineClient;
+static Round::Console::Client *gCmdLineClient;
 
-const char *prompt(EditLine *e)
-{
+const char *prompt(EditLine *e) {
   return gCmdLineClient->getPromptName();
 }
 
 void usage() {
-  std::cout << "Usage: " << gCmdLineClient->getProgramName() << " [-options]" << std::endl;
+  std::cout << "Usage: " << gCmdLineClient->getProgramName() << " [-options] <command>" << std::endl;
   
-  RounddOptionsDictionary options;
+  Roundd::Commands commands;
+  commands["?"]                = "Prints this help message";
+  commands["h <host address>"] = "Host address of a node in a cluster";
+  commands["p <port number>"]  = "Port number of a node in a cluster";
+  for (Roundd::Commands::iterator cmd=commands.begin(); cmd != commands.end(); cmd++) {
+    std::string optionParam = cmd->first;
+    std::string optionDesc = cmd->second;
+    std::cout << "\t-" << optionParam << "\t\t" << optionDesc << std::endl;
+  }
   
+  Roundd::Options options;
   options["?"]                = "Prints this help message";
   options["h <host address>"] = "Host address of a node in a cluster";
   options["p <port number>"]  = "Port number of a node in a cluster";
-  
-  for (RounddOptionsDictionary::iterator option=options.begin(); option != options.end(); option++) {
+  for (Roundd::Options::iterator option=options.begin(); option != options.end(); option++) {
     std::string optionParam = option->first;
     std::string optionDesc = option->second;
     std::cout << "\t-" << optionParam << "\t\t" << optionDesc << std::endl;
@@ -56,7 +66,7 @@ int main(int argc, char *argv[])
   
   // Setup Client
   
-  gCmdLineClient = new Round::ConsoleClient();
+  gCmdLineClient = new Round::Console::Client();
   gCmdLineClient->setProgramNameFromArgument(argv[0]);
 
   // Boot Message
@@ -181,7 +191,7 @@ int main(int argc, char *argv[])
     std::string inputCommand = inputLine;
     boost::trim(inputCommand);
 
-    Round::ConsoleError error;
+    Round::Error error;
     
     if (gCmdLineClient->isConsoleCommand(inputCommand)) {
       if (gCmdLineClient->isQuitCommand(inputCommand)) {
