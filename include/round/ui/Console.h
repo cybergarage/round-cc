@@ -11,7 +11,9 @@
 #ifndef _ROUNDCC_CONSOLE_CLIENT_H_
 #define _ROUNDCC_CONSOLE_CLIENT_H_
 
+#include <map>
 #include <string>
+
 #include <round/Client.h>
 #include <round/common/Vector.h>
 
@@ -20,37 +22,75 @@ namespace Round {
 namespace Console {
 
 class Option : public std::string {
+ public:
+  char type;
+  std::string desc;
+  
+ public:
     
-  public:
-    
-  Option() {}
+  Option(char c, const std::string &dest) {
+    this->type = c;
+    this->desc = desc;
+  }
+  
+  const char getId() const {
+    return this->type;
+  }
+
+  const std::string &getDescription() const {
+    return this->desc;
+  }
 };
   
-  
 class Options : Round::Vector<Option> {
-    
  public:
     
   Options() {}
 };
 
-class Command {
-    
- public:
-    
-    Command();
-    ~Command();
+typedef std::string Param;
 
- private:
-  std::string name;
+class Params : std::vector<Param> {
+ public:
+  Params() {}
 };
 
-class Commands : Round::Vector<Command> {
+typedef std::string Message;
+  
+class Command {
+ public:
+  
+  static const std::string QUIT;
+  static const std::string EXIT;
+  static const std::string LIST;
+  static const std::string USE;
+  static const std::string CLUSTERS;
+  static const std::string NODES;
+  
+  static std::string GetCommand(const std::string &inputLine);
+  
+ public:
+  std::string name;
+  
+ public:
+    
+  Command();
+  ~Command();
+
+  bool isCommand(const std::string &inputLine);
+  
+  virtual bool exec(Round::Client *client, const Params *params, Message *msg, Error *err) = 0;
+};
+
+class Commands : std::map<std::string, Command*> {
     
  public:
     
   Commands();
   ~Commands();
+  
+  bool hasCommand(const std::string &inputLine);
+  bool execCommand(Round::Client *client, const std::string &inputLine, Message *msg, Error *err); 
 };
   
 class Client : public Round::Client
@@ -61,17 +101,6 @@ public:
   Client();
   ~Client();
 
-private:
-  
-  static const std::string QUIT;
-  static const std::string EXIT;
-  static const std::string SHOW;
-  static const std::string USE;
-  static const std::string SEARCH;
-  
-  static const std::string CLUSTERS;
-  static const std::string NODES;
-  
 public:
   
   void setProgramNameFromArgument(const std::string &argValue);
@@ -79,55 +108,23 @@ public:
   const char *getProgramName();
   const char *getPromptName();
 
-  bool isConsoleCommand(const std::string &inputLine) {
-    if (isQuitCommand(inputLine))
-      return true;
-    if (isShowCommand(inputLine))
-      return true;
-    if (isUseCommand(inputLine))
-      return true;
-    return false;
-  }
-  
-  bool isQuitCommand(const std::string &inputLine);
-  
-  bool isQueryCommand(const std::string &inputLine);
-
-  bool isUnknownCommand(const std::string &inputLine) {
-    if (isConsoleCommand(inputLine))
-      return false;
-    if (isQueryCommand(inputLine))
-      return false;
-    return true;
-  }
-
-  bool show(const std::vector<std::string> &commands, Error *error);
-  bool use(const std::vector<std::string> &commands, Error *error);
-  
-  bool exec(const std::string &command, Error *error);
-
-private:
-  
-  bool isShowCommand(const std::string &inputLine) {
-    return isCommand(SHOW, inputLine);
-  }
-  
-  bool isUseCommand(const std::string &inputLine) {
-    return isCommand(USE, inputLine);
-  }
-  
-  bool isSearchCommand(const std::string &inputLine) {
-    return isCommand(SEARCH, inputLine);
-  }
+  bool isConsoleCommand(const std::string &inputLine);
+  bool isConsoleQuitCommand(const std::string &inputLine);
+  bool execConsoleCommand(const std::string &inputLine, Message *msg, Error *err);
   
 private:
-  
-  bool isCommand(const std::string &command, const std::string &inputLine);
+
+  void init();
+  void initOptions();
+  void initCommands();
   
 private:
 
   std::string programtName;
   std::string promptName;
+
+  Options options;
+  Commands commands;
 };
 
 }

@@ -15,7 +15,7 @@
 #include <round/core/SystemMethod.h>
 
 const std::string Round::Node::NAME = ROUNDCC_PRODUCT_NAME;
-const std::string Round::Node::VER= ROUNDCC_VERSION;
+const std::string Round::Node::VER= ROUNDCC_PRODUCT_VERSION;
 
 Round::Node::Node() {
   setWeakFlag(true);

@@ -14,7 +14,7 @@
 #include <string>
 
 static const std::string ROUNDCC_PRODUCT_NAME = "round";
-static const std::string ROUNDCC_VERSION = "0.1";
+static const std::string ROUNDCC_PRODUCT_VERSION = "0.1";
 
 #include <round/common/Error.h>
 #include <round/core/Log.h>
