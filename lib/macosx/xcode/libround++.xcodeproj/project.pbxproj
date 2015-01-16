@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		210E5FE21A5EDFDA005667CB /* liblibmupnp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 210E5FDF1A5EDFC9005667CB /* liblibmupnp++.a */; };
+		212C05AA1A695F6100F6CB0B /* RQLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212C05A91A695F6100F6CB0B /* RQLParser.cpp */; };
 		21526C891A6682F900CF3D12 /* RPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21526C841A6682F900CF3D12 /* RPC.cpp */; };
 		21526C8A1A6682F900CF3D12 /* RPCBatchRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21526C851A6682F900CF3D12 /* RPCBatchRequest.cpp */; };
 		21526C8B1A6682F900CF3D12 /* RPCMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21526C861A6682F900CF3D12 /* RPCMessage.cpp */; };
@@ -16,6 +17,7 @@
 		2189FBF61A66D73C004D907C /* SystemMethod.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2189FBF31A66D73C004D907C /* SystemMethod.cpp */; };
 		2189FBF71A66D73C004D907C /* SystemMethodRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2189FBF41A66D73C004D907C /* SystemMethodRequest.cpp */; };
 		2189FBF81A66D73C004D907C /* SystemMethodResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2189FBF51A66D73C004D907C /* SystemMethodResponse.cpp */; };
+		21A7F60B1A69D10700FAC15B /* RQL.h in Headers */ = {isa = PBXBuildFile; fileRef = 21A7F60A1A69D10700FAC15B /* RQL.h */; };
 		21AAFCBF1A68C8E6008DEF0E /* Console.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AAFCBE1A68C8E6008DEF0E /* Console.h */; };
 		21AAFCC41A68CD23008DEF0E /* Client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AAFCC01A68CD23008DEF0E /* Client.cpp */; };
 		21AAFCC51A68CD23008DEF0E /* Command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AAFCC11A68CD23008DEF0E /* Command.cpp */; };
@@ -180,6 +182,7 @@
 
 /* Begin PBXFileReference section */
 		210E5FDA1A5EDFC9005667CB /* libmupnp++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libmupnp++.xcodeproj"; path = "../../../../mupnp/lib/macosx/xcode/libmupnp++.xcodeproj"; sourceTree = "<group>"; };
+		212C05A91A695F6100F6CB0B /* RQLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RQLParser.cpp; sourceTree = "<group>"; };
 		21526C841A6682F900CF3D12 /* RPC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPC.cpp; sourceTree = "<group>"; };
 		21526C851A6682F900CF3D12 /* RPCBatchRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCBatchRequest.cpp; sourceTree = "<group>"; };
 		21526C861A6682F900CF3D12 /* RPCMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCMessage.cpp; sourceTree = "<group>"; };
@@ -188,6 +191,7 @@
 		2189FBF31A66D73C004D907C /* SystemMethod.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemMethod.cpp; sourceTree = "<group>"; };
 		2189FBF41A66D73C004D907C /* SystemMethodRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemMethodRequest.cpp; sourceTree = "<group>"; };
 		2189FBF51A66D73C004D907C /* SystemMethodResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemMethodResponse.cpp; sourceTree = "<group>"; };
+		21A7F60A1A69D10700FAC15B /* RQL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RQL.h; sourceTree = "<group>"; };
 		21A9FFAA154014F300BDFCDC /* liblibround++.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "liblibround++.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21AAFCBE1A68C8E6008DEF0E /* Console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Console.h; sourceTree = "<group>"; };
 		21AAFCC01A68CD23008DEF0E /* Client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Client.cpp; path = console/Client.cpp; sourceTree = "<group>"; };
@@ -363,6 +367,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		212C05A81A695F6100F6CB0B /* rql */ = {
+			isa = PBXGroup;
+			children = (
+				212C05A91A695F6100F6CB0B /* RQLParser.cpp */,
+			);
+			path = rql;
+			sourceTree = "<group>";
+		};
 		21A41AB01540235B008085EB /* Headers */ = {
 			isa = PBXGroup;
 			children = (
@@ -474,6 +486,7 @@
 				21D8E19D1A60E19300E8A63F /* NodeStatus.h */,
 				21D8E19E1A60E19300E8A63F /* RemoteNode.h */,
 				21D03AD31A63C4A60098122A /* Route.h */,
+				21A7F60A1A69D10700FAC15B /* RQL.h */,
 				21D8E19F1A60E19300E8A63F /* Script.h */,
 				21D8E1A01A60E19300E8A63F /* ServerNode.h */,
 				21D8E1A11A60E19300E8A63F /* SystemMethod.h */,
@@ -622,6 +635,7 @@
 		21D8E2541A60E1E200E8A63F /* core */ = {
 			isa = PBXGroup;
 			children = (
+				212C05A81A695F6100F6CB0B /* rql */,
 				21D8E2751A60E1E200E8A63F /* ClientCore.cpp */,
 				21D8E2761A60E1E200E8A63F /* Cluster.cpp */,
 				21D8E2771A60E1E200E8A63F /* ClusterList.cpp */,
@@ -743,6 +757,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21D8E2BB1A60E1E200E8A63F /* SHA.h in Headers */,
+				21A7F60B1A69D10700FAC15B /* RQL.h in Headers */,
 				21D8E1B61A60E19300E8A63F /* Mutex.h in Headers */,
 				21D8E1BE1A60E19300E8A63F /* StringTokenizer.h in Headers */,
 				21D8E2BD1A60E1E200E8A63F /* Base64.h in Headers */,
@@ -896,6 +911,7 @@
 				21D8E2EA1A60E1E200E8A63F /* Node.cpp in Sources */,
 				21D8E2E41A60E1E200E8A63F /* UPnPServerNode.cpp in Sources */,
 				21F4CE6F1A63F0BA00E7F0CC /* ScriptMap.cpp in Sources */,
+				212C05AA1A695F6100F6CB0B /* RQLParser.cpp in Sources */,
 				21D8E2C11A60E1E200E8A63F /* HashObject.cpp in Sources */,
 				21526C8A1A6682F900CF3D12 /* RPCBatchRequest.cpp in Sources */,
 				21D8E2BA1A60E1E200E8A63F /* SHA.cpp in Sources */,
