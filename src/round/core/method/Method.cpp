@@ -16,3 +16,7 @@ Round::Method::Method(const std::string &name) {
 
 Round::Method::~Method() {
 }
+
+const std::string &Round::Method::getName() const {
+  return this->name;
+}

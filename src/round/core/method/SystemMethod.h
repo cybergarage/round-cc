@@ -17,15 +17,39 @@
 
 namespace Round {
 
+class _get_node_info : public Method {
+public:
+  static const std::string NAME;
+public:
+  _get_node_info();
+  ~_get_node_info();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const;
+};
+
+class _get_network_info : public Method {
+public:
+  static const std::string NAME;
+public:
+  _get_network_info();
+  ~_get_network_info();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const;
+};
+
+class _get_cluster_info : public Method {
+public:
+  static const std::string NAME;
+public:
+  _get_cluster_info();
+  ~_get_cluster_info();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const;
+};
+
 class SystemMethodRequest : public NodeRequest {
  public:
   static const std::string PREFIX;
   
   static const std::string SET_METHOD;
   static const std::string ECHO;
-  static const std::string GET_NODE_INFO;
-  static const std::string GET_CLUSTER_INFO;
-  static const std::string GET_NETWORK_INFO;
   
   static const std::string LANGUAGE;
   static const std::string NAME;
@@ -47,21 +71,21 @@ class SystemEchoRequest : public SystemMethodRequest {
 class SystemGetNodeInfoRequest : public SystemMethodRequest {
  public:
   SystemGetNodeInfoRequest() {
-    setMethod(GET_NODE_INFO);
+    setMethod(_get_node_info::NAME);
   }
 };
 
 class SystemGetClusterInfoRequest : public SystemMethodRequest {
  public:
   SystemGetClusterInfoRequest() {
-      setMethod(GET_CLUSTER_INFO);
+    setMethod(_get_cluster_info::NAME);
   }
 };
 
 class SystemGetNetworkInfoRequest : public SystemMethodRequest {
  public:
   SystemGetNetworkInfoRequest() {
-    setMethod(GET_NETWORK_INFO);
+    setMethod(_get_network_info::NAME);
   }
 };
   

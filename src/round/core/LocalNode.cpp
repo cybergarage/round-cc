@@ -453,53 +453,13 @@ bool Round::LocalNode::isSystemMethod(const std::string &method) {
 }
 
 bool Round::LocalNode::execSystemMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
-  static std::map<std::string, int> systemMethods;
-  enum {
-      SystemGetNodeInfo,
-      SystemGetClusterInfo,
-      SystemGetNetworkInfo,
-  };
-  
-  if (systemMethods.size() <= 0) {
-    systemMethods[SystemMethodRequest::GET_NODE_INFO] = SystemGetNodeInfo;
-    systemMethods[SystemMethodRequest::GET_CLUSTER_INFO] = SystemGetClusterInfo;
-    systemMethods[SystemMethodRequest::GET_NETWORK_INFO] = SystemGetNetworkInfo;
-  }
-  
   std::string reqMethod;
   nodeReq->getMethod(&reqMethod);
   
-  if (systemMethods.find(reqMethod) == systemMethods.end()) {
+  if (!this->sysMethodMgr.hasMethod(reqMethod)) {
     RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeMethodNotFound, error);
     return false;
   }
-  
-  int systemMethodType = systemMethods[reqMethod];
-  switch (systemMethodType) {
-  case SystemGetNodeInfo:
-    return _get_node_info(nodeReq, nodeRes, error);
-  case SystemGetClusterInfo:
-    return _get_cluster_info(nodeReq, nodeRes, error);
-  case SystemGetNetworkInfo:
-    return _get_network_info(nodeReq, nodeRes, error);
-  }
-  
-  RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeMethodNotFound, error);
 
-  return false;
-}
-
-bool Round::LocalNode::_get_node_info(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
-  SystemGetNodeInfoResponse sysRes(nodeRes);
-  return sysRes.setNode(this);
-}
-
-bool Round::LocalNode::_get_cluster_info(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
-  SystemGetClusterInfoResponse sysRes(nodeRes);
-  return sysRes.setCluster(this);
-}
-
-bool Round::LocalNode::_get_network_info(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
-  SystemGetNetworkInfoResponse sysRes(nodeRes);
-  return sysRes.setClusters(this);
+  return this->sysMethodMgr.exec(reqMethod, this, nodeReq, nodeRes, error);
 }

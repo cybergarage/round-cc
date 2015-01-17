@@ -16,6 +16,8 @@
 
 namespace Round {
 
+class LocalNode;
+  
 class Method {
 
  public:
@@ -23,7 +25,7 @@ class Method {
   virtual ~Method();
   
   const std::string &getName() const;
-  virtual bool exec(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const = 0;
+  virtual bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const = 0;
 
  private:
   std::string name;
@@ -37,7 +39,7 @@ class StaticMethodMap : public std::map<std::string, Method *> {
   ~StaticMethodMap();
     
   bool hasMethod(const std::string &name) const;
-  bool exec(const std::string &name, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const;
+  bool exec(const std::string &name, LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const;
   
   void clear();
 };
@@ -53,8 +55,10 @@ class StaticMethodManager {
     return systemMethods.hasMethod(name);
   }
 
-  bool exec(const std::string &name, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const {
-    return systemMethods.exec(name, nodeReq, nodeRes, error);
+  bool addMethod(Method *method);
+  
+  bool exec(const std::string &name, LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const {
+    return systemMethods.exec(name, node, nodeReq, nodeRes, error);
   }
   
  private:

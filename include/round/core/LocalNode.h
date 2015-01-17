@@ -47,6 +47,15 @@ class LocalNodeScriptManager : public ScriptManager {
   void init();
 };
 
+class LocalNodeStaticMethodManager : public StaticMethodManager {
+  public:
+    LocalNodeStaticMethodManager();
+    ~LocalNodeStaticMethodManager();
+    
+  private:
+    void init();
+};
+  
 /**
  * LocalNode is a real implementation of Node class.
  */
@@ -113,13 +122,9 @@ private:
   
   bool setError(int rpcErrorCode, Error *err);
 
-  bool isSystemMethod(const std::string &method);
   bool execMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  bool isSystemMethod(const std::string &method);
   bool execSystemMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
-  
-  virtual bool _get_node_info(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
-  virtual bool _get_cluster_info(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
-  virtual bool _get_network_info(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
 
 private:
 
@@ -127,10 +132,10 @@ private:
   NodeGraph               nodeGraph;
   NodeStatus              nodeStatus;
   
-  NodeMessageManager      nodeMsgMgr;
-  LocalNodeWorkder        nodeWorker;
-  LocalNodeScriptManager  scriptMgr;
-  StaticMethodManager     sysMethodMgr;
+  NodeMessageManager            nodeMsgMgr;
+  LocalNodeWorkder              nodeWorker;
+  LocalNodeScriptManager        scriptMgr;
+  LocalNodeStaticMethodManager  sysMethodMgr;
 };
 
 }
