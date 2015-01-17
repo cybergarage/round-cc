@@ -24,7 +24,7 @@ Request-URI = "/rpc" [Get-Params]
 
 ### GET
 
-Round-RPC add an 'encode' parameter to disable only base64 encode to request from HTTP command line utility such as 'curl' easily.
+Round-RPC add an 'encode' parameter to disable only base64 encode for the 'params' parameter of [JSON-RPC over HTTP][json-rpc-http] to request from HTTP command line utility such as 'curl' easily.
 
 ```
 Encode-Param = "encode" "=" "none"
@@ -52,8 +52,20 @@ Content-Length : ....
 
 ### GET Request
 
+#### JSON-RPC encoding (Base64 + URLEncode)
+
 ```
-GET /rpc?jsonrpc=2.0&method=sum&params=%5B42%2C%2023%5D&id=1.... HTTP/1.1
+GET /rpc?jsonrpc=2.0&method=sum&params=JTVCNDIlMkMlMjAyMyU1RAo=&id=1&.... HTTP/1.1
+Host : ....
+Accept : "application/json"
+Content-Length : 0
+
+```
+
+#### JSON-RPC encoding without Base64  (Only URLEncode)
+
+```
+GET /rpc?jsonrpc=2.0&method=sum&encode=none&params=%5B42%2C%2023%5D&id=1&.... HTTP/1.1
 Host : ....
 Accept : "application/json"
 Content-Length : 0
