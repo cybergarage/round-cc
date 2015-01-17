@@ -249,13 +249,49 @@ AC_ARG_ENABLE(
 )
 if [ test $ROUND_USE_JSON_JANSSON = yes ]; then
 	AC_CHECK_LIB([jansson],[main],,[AC_MSG_ERROR(Round for C++ needs Jansson $JANSSON_VERSION later)])
+
+	AC_MSG_CHECKING(json_object_foreach)
+	AC_TRY_COMPILE([
+	#include <jansson.h>
+	void func()
+	{
+		json_t *jsonTDict;
+		const char *jsonKey;
+		json_t *jsonTObj;
+		json_object_foreach(jsonTDict, jsonKey, jsonTObj) {
+		}
+	}
+	],
+	[],
+	[AC_MSG_RESULT(yes)
+	AC_DEFINE([ROUND_USE_JANSSON_JSON_OBJECT_FOREACH],1,[boost::random])],
+	[AC_MSG_RESULT(no)]
+	)
+
+	AC_MSG_CHECKING(json_array_foreach)
+	AC_TRY_COMPILE([
+	#include <jansson.h>
+	void func()
+	{
+		json_t *jsonTArray;
+		size_t jsonIdx;
+		json_t *jsonTObj;
+		json_array_foreach(jsonTArray, jsonIdx, jsonTObj) {
+		}
+	}
+	],
+	[],
+	[AC_MSG_RESULT(yes)
+	AC_DEFINE([ROUND_USE_JANSSON_JSON_ARRAY_FOREACH],1,[boost::random])],
+	[AC_MSG_RESULT(no)]
+	)
 fi
 
 ##############################
 # Checks for compile
 ##############################
 
-AC_MSG_CHECKING(for boost::random)
+AC_MSG_CHECKING(boost::random)
 AC_TRY_COMPILE([
 #include <algorithm>
 #include <boost/random.hpp>
@@ -271,7 +307,7 @@ AC_DEFINE([ROUND_HAVE_BOOST_RANDOM],1,[boost::random])],
 [AC_MSG_RESULT(no)]
 )
 
-AC_MSG_CHECKING(for boost::unit_test::log_level)
+AC_MSG_CHECKING(boost::unit_test::log_level)
 AC_TRY_COMPILE([
 #include <boost/test/unit_test.hpp>
 #include <boost/test/detail/unit_test_parameters.hpp>

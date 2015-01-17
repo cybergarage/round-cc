@@ -14,7 +14,7 @@
 #include <round/common/JSON.h>
 #include <jansson.h>
 
-#if defined(USE_ROUND_JSON_PARSER_JANSSON)
+#if defined(ROUND_USE_JSON_PARSER_JANSSON)
 
 static void RoundToJSONObject(Round::JSONParser *jsonParser, Round::JSONDictionary *parentDict, json_t *jsonTDict);
 static void RoundToJSONObject(Round::JSONParser *jsonParser, Round::JSONArray *parentArray, json_t *jsonTArray);
@@ -64,11 +64,14 @@ static void RoundToJSONObject(Round::JSONParser *jsonParser, Round::JSONDictiona
   json_t *jsonTObj;
   Round::JSONObject *childObject;
   
+#if defined(ROUND_USE_JANSSON_JSON_OBJECT_FOREACH)
   // New in version 2.3
-  // json_object_foreach(jsonTDict, jsonKey, jsonTObj) {
+  json_object_foreach(jsonTDict, jsonKey, jsonTObj) {
+#else
   for (void *it = json_object_iter(jsonTDict); it; it = json_object_iter_next(jsonTDict, it)) {
     jsonKey = json_object_iter_key(it);
     jsonTObj = json_object_iter_value(it);
+#endif
     childObject = RoundToJSONObject(jsonParser, jsonTObj);
     parentDict->set(jsonKey, childObject);
     if (json_is_object(jsonTObj)) {
@@ -87,11 +90,14 @@ static void RoundToJSONObject(Round::JSONParser *jsonParser, Round::JSONArray *p
   json_t *jsonTObj;
   Round::JSONObject *childObject;
 
+#if defined(ROUND_USE_JANSSON_JSON_ARRAY_FOREACH)
   // New in version 2.5.
-  // json_array_foreach(jsonTArray, jsonIdx, jsonTObj) {
+  json_array_foreach(jsonTArray, jsonIdx, jsonTObj) {
+#else
   size_t jsonTObjCnt = json_array_size(jsonTArray);
   for (jsonIdx =0; jsonIdx < jsonTObjCnt; jsonIdx++) {
     jsonTObj = json_array_get(jsonTArray, jsonIdx);
+#endif
     childObject = RoundToJSONObject(jsonParser, jsonTObj);
     parentArray->add(childObject);
     if (json_is_object(jsonTObj)) {
