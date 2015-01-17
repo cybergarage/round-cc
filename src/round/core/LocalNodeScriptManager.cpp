@@ -11,7 +11,7 @@
 #include <round/core/LocalNode.h>
 #include <round/common/platform.h>
 
-#include <round/core/Method.h>
+#include <round/core/method/SystemMethod.h>
 
 #include <round/script/JavaScript.h>
 #if defined(ROUND_SUPPORT_JAVA_JNI)

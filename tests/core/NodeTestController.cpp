@@ -14,7 +14,7 @@
 #include <string.h>
 
 #include <round/Round.h>
-#include <round/core/Method.h>
+#include <round/core/method/SystemMethod.h>
 
 #include "TestNode.h"
 #include "TestScript.h"

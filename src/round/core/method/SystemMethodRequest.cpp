@@ -11,8 +11,8 @@
 #include <string.h>
 #include <sstream>
 
-#include <round/core/Method.h>
 #include <round/core/LocalNode.h>
+#include <round/core/method/SystemMethod.h>
 
 const std::string Round::SystemMethodRequest::PREFIX      = "_";
 

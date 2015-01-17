@@ -17,6 +17,7 @@
 #include <round/core/NodeFinder.h>
 #include <round/core/LocalNodeConfig.h>
 #include <round/core/Script.h>
+#include <round/core/Method.h>
 
 namespace Round {
 
@@ -129,6 +130,7 @@ private:
   NodeMessageManager      nodeMsgMgr;
   LocalNodeWorkder        nodeWorker;
   LocalNodeScriptManager  scriptMgr;
+  StaticMethodManager     sysMethodMgr;
 };
 
 }

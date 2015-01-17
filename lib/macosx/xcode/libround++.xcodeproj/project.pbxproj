@@ -26,6 +26,9 @@
 		21AAFCC61A68CD23008DEF0E /* Commands.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AAFCC21A68CD23008DEF0E /* Commands.cpp */; };
 		21B854041A60E470009E6ECB /* TclEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B854031A60E470009E6ECB /* TclEngine.cpp */; };
 		21B854061A60E4B1009E6ECB /* Tcl.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B854051A60E4B1009E6ECB /* Tcl.h */; };
+		21C05C311A6A64C300B38EBB /* StaticMethodEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C05C2F1A6A64C300B38EBB /* StaticMethodEngine.cpp */; };
+		21C05C321A6A64C300B38EBB /* StaticMethodMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C05C301A6A64C300B38EBB /* StaticMethodMap.cpp */; };
+		21C05C341A6A651000B38EBB /* SystemMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C05C331A6A651000B38EBB /* SystemMethod.h */; };
 		21D03AD41A63C4A60098122A /* Route.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D03AD31A63C4A60098122A /* Route.h */; };
 		21D8E1AB1A60E19300E8A63F /* Client.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D8E1711A60E19300E8A63F /* Client.h */; };
 		21D8E1AC1A60E19300E8A63F /* BitOption.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D8E1731A60E19300E8A63F /* BitOption.h */; };
@@ -202,6 +205,9 @@
 		21AAFCC21A68CD23008DEF0E /* Commands.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Commands.cpp; path = console/Commands.cpp; sourceTree = "<group>"; };
 		21B854031A60E470009E6ECB /* TclEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TclEngine.cpp; sourceTree = "<group>"; };
 		21B854051A60E4B1009E6ECB /* Tcl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tcl.h; sourceTree = "<group>"; };
+		21C05C2F1A6A64C300B38EBB /* StaticMethodEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticMethodEngine.cpp; sourceTree = "<group>"; };
+		21C05C301A6A64C300B38EBB /* StaticMethodMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticMethodMap.cpp; sourceTree = "<group>"; };
+		21C05C331A6A651000B38EBB /* SystemMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemMethod.h; sourceTree = "<group>"; };
 		21D03AD31A63C4A60098122A /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
 		21D8E1711A60E19300E8A63F /* Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
 		21D8E1731A60E19300E8A63F /* BitOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitOption.h; sourceTree = "<group>"; };
@@ -364,6 +370,9 @@
 		210A64B91A6A28B700E8F61D /* method */ = {
 			isa = PBXGroup;
 			children = (
+				21C05C331A6A651000B38EBB /* SystemMethod.h */,
+				21C05C2F1A6A64C300B38EBB /* StaticMethodEngine.cpp */,
+				21C05C301A6A64C300B38EBB /* StaticMethodMap.cpp */,
 				210A64C21A6A322000E8F61D /* Method.cpp */,
 				210A64BA1A6A28B700E8F61D /* SystemMethod.cpp */,
 				210A64BB1A6A28B700E8F61D /* SystemMethodRequest.cpp */,
@@ -797,6 +806,7 @@
 				21D8E1B51A60E19300E8A63F /* Message.h in Headers */,
 				21D8E2BF1A60E1E200E8A63F /* URL.h in Headers */,
 				21D8E1B71A60E19300E8A63F /* Notification.h in Headers */,
+				21C05C341A6A651000B38EBB /* SystemMethod.h in Headers */,
 				21D8E1D91A60E19300E8A63F /* Finder.h in Headers */,
 				21D8E2B91A60E1E200E8A63F /* MD5.h in Headers */,
 				21D8E1C51A60E19300E8A63F /* HTTP.h in Headers */,
@@ -899,6 +909,7 @@
 				21D8E3021A60E1E200E8A63F /* JavaScriptEngineSpiderMonkey.cpp in Sources */,
 				21D8E2C91A60E1E200E8A63F /* JSONObject.cpp in Sources */,
 				21D8E2E71A60E1E200E8A63F /* LocalNodeScriptManager.cpp in Sources */,
+				21C05C321A6A64C300B38EBB /* StaticMethodMap.cpp in Sources */,
 				21D8E2BC1A60E1E200E8A63F /* Base64.cpp in Sources */,
 				21526C891A6682F900CF3D12 /* RPC.cpp in Sources */,
 				21D8E2C41A60E1E200E8A63F /* JSONArray.cpp in Sources */,
@@ -966,6 +977,7 @@
 				21D8E2C61A60E1E200E8A63F /* JSONDictionary.cpp in Sources */,
 				21D8E3031A60E1E200E8A63F /* JavaScriptEngineV8.cpp in Sources */,
 				21D8E2C21A60E1E200E8A63F /* JSONParserJansson.cpp in Sources */,
+				21C05C311A6A64C300B38EBB /* StaticMethodEngine.cpp in Sources */,
 				21F4CE6B1A63F0BA00E7F0CC /* Script.cpp in Sources */,
 				21D8E2CD1A60E1E200E8A63F /* Message.cpp in Sources */,
 				21D8E2C01A60E1E200E8A63F /* Error.cpp in Sources */,

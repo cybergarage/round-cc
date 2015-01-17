@@ -12,6 +12,7 @@
 #include <round/core/RemoteNode.h>
 #include <round/core/NodeGraph.h>
 #include <round/core/Method.h>
+#include <round/core/method/SystemMethod.h>
 
 #include <uhttp/net/Socket.h>
 
