@@ -15,7 +15,7 @@
 
 const std::string Round::_get_cluster_info::NAME = "_get_cluster_info";
 
-Round::_get_cluster_info::_get_cluster_info() : Method(NAME) {
+Round::_get_cluster_info::_get_cluster_info() : SystemMethod(NAME) {
 }
 
 Round::_get_cluster_info::~_get_cluster_info() {

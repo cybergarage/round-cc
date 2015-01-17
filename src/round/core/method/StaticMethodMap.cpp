@@ -21,7 +21,7 @@ bool Round::StaticMethodMap::hasMethod(const std::string &name) const {
   return (find(name) != end()) ? true : false;
 }
 
-bool Round::StaticMethodMap::exec(const std::string &name, LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const {
+bool Round::StaticMethodMap::exec(const std::string &name, const Node *node, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const {
   StaticMethodMap::const_iterator methodId = find(name);
   if (methodId == end())
     return false;

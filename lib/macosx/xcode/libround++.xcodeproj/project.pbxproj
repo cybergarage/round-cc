@@ -33,6 +33,8 @@
 		21C05C3A1A6A748800B38EBB /* _get_network_info.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C05C381A6A748800B38EBB /* _get_network_info.cpp */; };
 		21C05C3C1A6A783400B38EBB /* LocalNodeStaticMethodManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C05C3B1A6A783400B38EBB /* LocalNodeStaticMethodManager.cpp */; };
 		21C05C3E1A6A79B000B38EBB /* StaticMethodManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C05C3D1A6A79B000B38EBB /* StaticMethodManager.cpp */; };
+		21C05C401A6A846100B38EBB /* SystemClusterInfoDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C05C3F1A6A846100B38EBB /* SystemClusterInfoDict.cpp */; };
+		21C05C421A6A846C00B38EBB /* SystemNodeInfoDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C05C411A6A846C00B38EBB /* SystemNodeInfoDict.cpp */; };
 		21D03AD41A63C4A60098122A /* Route.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D03AD31A63C4A60098122A /* Route.h */; };
 		21D8E1AB1A60E19300E8A63F /* Client.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D8E1711A60E19300E8A63F /* Client.h */; };
 		21D8E1AC1A60E19300E8A63F /* BitOption.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D8E1731A60E19300E8A63F /* BitOption.h */; };
@@ -216,6 +218,8 @@
 		21C05C381A6A748800B38EBB /* _get_network_info.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _get_network_info.cpp; sourceTree = "<group>"; };
 		21C05C3B1A6A783400B38EBB /* LocalNodeStaticMethodManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalNodeStaticMethodManager.cpp; sourceTree = "<group>"; };
 		21C05C3D1A6A79B000B38EBB /* StaticMethodManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticMethodManager.cpp; sourceTree = "<group>"; };
+		21C05C3F1A6A846100B38EBB /* SystemClusterInfoDict.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemClusterInfoDict.cpp; sourceTree = "<group>"; };
+		21C05C411A6A846C00B38EBB /* SystemNodeInfoDict.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemNodeInfoDict.cpp; sourceTree = "<group>"; };
 		21D03AD31A63C4A60098122A /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
 		21D8E1711A60E19300E8A63F /* Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
 		21D8E1731A60E19300E8A63F /* BitOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitOption.h; sourceTree = "<group>"; };
@@ -384,10 +388,12 @@
 				210A64C21A6A322000E8F61D /* Method.cpp */,
 				21C05C3D1A6A79B000B38EBB /* StaticMethodManager.cpp */,
 				21C05C301A6A64C300B38EBB /* StaticMethodMap.cpp */,
+				21C05C3F1A6A846100B38EBB /* SystemClusterInfoDict.cpp */,
 				210A64BA1A6A28B700E8F61D /* SystemMethod.cpp */,
 				21C05C331A6A651000B38EBB /* SystemMethod.h */,
 				210A64BB1A6A28B700E8F61D /* SystemMethodRequest.cpp */,
 				210A64BC1A6A28B700E8F61D /* SystemMethodResponse.cpp */,
+				21C05C411A6A846C00B38EBB /* SystemNodeInfoDict.cpp */,
 			);
 			path = method;
 			sourceTree = "<group>";
@@ -937,6 +943,7 @@
 				21E1EB161A64FE2800FEABF6 /* NodeRequest.cpp in Sources */,
 				21B854041A60E470009E6ECB /* TclEngine.cpp in Sources */,
 				21526C8B1A6682F900CF3D12 /* RPCMessage.cpp in Sources */,
+				21C05C421A6A846C00B38EBB /* SystemNodeInfoDict.cpp in Sources */,
 				21D8E2B01A60E1E200E8A63F /* BitOption.cpp in Sources */,
 				21F4CE6C1A63F0BA00E7F0CC /* ScriptEngine.cpp in Sources */,
 				21D8E2B11A60E1E200E8A63F /* Clock.cpp in Sources */,
@@ -959,6 +966,7 @@
 				21D8E2D41A60E1E200E8A63F /* Random.cpp in Sources */,
 				21D8E2DD1A60E1E200E8A63F /* ThreadList.cpp in Sources */,
 				21F4CE6A1A63F0BA00E7F0CC /* RouteManager.cpp in Sources */,
+				21C05C401A6A846100B38EBB /* SystemClusterInfoDict.cpp in Sources */,
 				21C05C3A1A6A748800B38EBB /* _get_network_info.cpp in Sources */,
 				21D8E2DE1A60E1E200E8A63F /* ThreadManager.cpp in Sources */,
 				21D8E2E51A60E1E200E8A63F /* LocalNode.cpp in Sources */,

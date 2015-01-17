@@ -15,7 +15,7 @@
 
 const std::string Round::_get_network_info::NAME  = "_get_network_info";
 
-Round::_get_network_info::_get_network_info() : Method(NAME) {
+Round::_get_network_info::_get_network_info() : SystemMethod(NAME) {
 }
 
 Round::_get_network_info::~_get_network_info() {

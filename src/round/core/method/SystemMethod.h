@@ -17,7 +17,17 @@
 
 namespace Round {
 
-class _get_node_info : public Method {
+class SystemMethod : public Method {
+    
+public:
+  SystemMethod(const std::string &name);
+  ~SystemMethod();
+  
+  bool exec(const Node *node, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const;
+  virtual bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const = 0;
+};
+  
+class _get_node_info : public SystemMethod {
 public:
   static const std::string NAME;
 public:
@@ -26,7 +36,7 @@ public:
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const;
 };
 
-class _get_network_info : public Method {
+class _get_network_info : public SystemMethod {
 public:
   static const std::string NAME;
 public:
@@ -35,7 +45,7 @@ public:
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const;
 };
 
-class _get_cluster_info : public Method {
+class _get_cluster_info : public SystemMethod {
 public:
   static const std::string NAME;
 public:
