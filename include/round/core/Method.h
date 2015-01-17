@@ -11,6 +11,7 @@
 #ifndef _ROUNDCC_SYSTEMMETHOD_H_
 #define _ROUNDCC_SYSTEMMETHOD_H_
 
+#include <string>
 #include <round/core/Node.h>
 #include <round/core/NodeMessage.h>
 #include <round/core/LocalNode.h>
@@ -18,9 +19,18 @@
 
 namespace Round {
 
-/**
- * SystemMethodResponse uses to create a response message for system methods.
- */
+class Method {
+
+ public:
+  Method(const std::string &name);
+  ~Method();
+  
+  const std::string &getName() const;
+  virtual bool exec(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const = 0;
+
+ private:
+  std::string name;
+};
 
 class SystemMethodRequest : public NodeRequest {
  public:
@@ -40,8 +50,6 @@ class SystemMethodRequest : public NodeRequest {
   
  public:
   SystemMethodRequest();
-
- private:
 };
 
 class SystemEchoRequest : public SystemMethodRequest {

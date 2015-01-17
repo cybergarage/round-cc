@@ -11,7 +11,7 @@
 #include <string.h>
 #include <sstream>
 
-#include <round/core/SystemMethod.h>
+#include <round/core/Method.h>
 
 ////////////////////////////////////////
 // SystemNodeInfoDict

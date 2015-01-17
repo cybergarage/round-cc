@@ -11,7 +11,7 @@
 #include <string.h>
 #include <sstream>
 
-#include <round/core/SystemMethod.h>
+#include <round/core/Method.h>
 
 const std::string Round::SystemMethodResponse::NAME     = "name";
 const std::string Round::SystemMethodResponse::IP       = "ip";

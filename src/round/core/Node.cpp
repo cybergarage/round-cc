@@ -12,7 +12,7 @@
 
 #include <round/Round.h>
 #include <round/core/Node.h>
-#include <round/core/SystemMethod.h>
+#include <round/core/Method.h>
 
 const std::string Round::Node::NAME = ROUNDCC_PRODUCT_NAME;
 const std::string Round::Node::VER= ROUNDCC_PRODUCT_VERSION;

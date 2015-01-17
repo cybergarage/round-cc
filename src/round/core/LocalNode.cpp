@@ -14,7 +14,7 @@
 #include <round/Round.h>
 #include <round/core/LocalNode.h>
 #include <round/core/RemoteNode.h>
-#include <round/core/SystemMethod.h>
+#include <round/core/Method.h>
 
 ////////////////////////////////////////////////
 // Constructor
