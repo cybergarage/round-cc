@@ -1,44 +1,55 @@
 ![round_logo](./img/round_logo.png)
 
-# Round APIs
+# Client Libraries
 
-## APIs
+The client libraries handles add the following parameters into RPC requests automatically.
 
+- id
+- ts (Lamport Timestamp)
 
-### Request
+The libraries handles the RPC responses and updates local information of Client.
 
-| Parameter | M/U | Detail | Default | Constants |
-|-|-|-|-|-|
-| Method | M | Operation Method | - | GET, PUT |
-| Sync | O | URI | Sync | Async,Sync |
+- Clusters
+- Nodes in clusters
+- Timestamp (Lamport Timestamp)
 
-HTTP and HTTPU, HTTMU,
+## C++
+
+Under Development :wink:
+
+## Java
+
+Under Development :wink:
+
+## Go
+
+Under Development :wink:
+
+# Native Interfaces
+
+Round is implemented by C++, you can add static system methods by the native programming language.
+
+## Adding Native Methods
+
+### Sever and Method class
+
+First, create a sub class of Round::Server() to add the native methods. Next, create a sub class of Round::Method() and add the method class using Round::Server::addMethod() in Round::Server::initialize().
+
 
 ```
-PUT /rpc/do HTTP/1.1
-Accept : "application/json-rpc"
-{
-  "jsonrpc": "2.0",
-  "method": "subtract",
-  "params": [42, 23], "id": 1
+#include <round/Round.h>
+
+class MyMethod : public Round::Method {
+  .....
+  bool exec(const Node *node, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const {
+    .....
+  }
+}
+
+class MyServer : public Round::Server {
+  .....
+  void initialize() {
+    addMethod(new MyMethod());
+  }
 }
 ```
-
-```
-PUT /rpc/do HTTP/1.1
-Accept : "application/json-rpc"
-{
-  "jsonrpc": "2.0",
-  "method": "subtract",
-  "params": [42, 23], "id": 1
-}
-```
-
-Location
-
-
-If a request is selected, the response will be returned over HTTPU.
-
-### Response
-
-HTTP or HTTPU

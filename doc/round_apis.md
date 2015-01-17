@@ -1,19 +1,44 @@
 ![round_logo](./img/round_logo.png)
 
-# Round Client Libraries
+# Round APIs
 
-The client libraries
+## APIs
 
-- id
-- ts (Lamport Timestamp)
-- Cluster update
 
-## C++
+### Request
 
-### Client
+| Parameter | M/U | Detail | Default | Constants |
+|-|-|-|-|-|
+| Method | M | Operation Method | - | GET, PUT |
+| Sync | O | URI | Sync | Async,Sync |
 
-### Node::postMessage()
+HTTP and HTTPU, HTTMU,
 
-## Java
+```
+PUT /rpc/do HTTP/1.1
+Accept : "application/json-rpc"
+{
+  "jsonrpc": "2.0",
+  "method": "subtract",
+  "params": [42, 23], "id": 1
+}
+```
 
-Currently, the Java package supports only sycronus mode over HTTP.
+```
+PUT /rpc/do HTTP/1.1
+Accept : "application/json-rpc"
+{
+  "jsonrpc": "2.0",
+  "method": "subtract",
+  "params": [42, 23], "id": 1
+}
+```
+
+Location
+
+
+If a request is selected, the response will be returned over HTTPU.
+
+### Response
+
+HTTP or HTTPU
