@@ -72,7 +72,7 @@ In addition to the auto configuration, Round supports none auto configuration ne
 
 ### Dynamic Programming
 
-Round node is a programmable RPC([Remote Procedure Call](http://en.wikipedia.org/wiki/Remote_procedure_call)) node.
+Round node is a programmable RPC ([Remote Procedure Call](http://en.wikipedia.org/wiki/Remote_procedure_call)) node.
 In Round, you can build distributed system applications to add programming scripts and connect events into the scripts dynamically.
 
 ![auto-configuration](img/round_overview_programming.png)
