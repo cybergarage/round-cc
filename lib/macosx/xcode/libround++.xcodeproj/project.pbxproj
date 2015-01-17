@@ -324,15 +324,6 @@
 		21D8E2751A60E1E200E8A63F /* ClientCore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClientCore.cpp; sourceTree = "<group>"; };
 		21D8E2761A60E1E200E8A63F /* Cluster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cluster.cpp; sourceTree = "<group>"; };
 		21D8E2771A60E1E200E8A63F /* ClusterList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClusterList.cpp; sourceTree = "<group>"; };
-		21D8E27A1A60E1E200E8A63F /* .dirstamp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .dirstamp; sourceTree = "<group>"; };
-		21D8E27B1A60E1E200E8A63F /* HTTPUServer.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HTTPUServer.Po; sourceTree = "<group>"; };
-		21D8E27C1A60E1E200E8A63F /* JavaEngine.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JavaEngine.Po; sourceTree = "<group>"; };
-		21D8E27D1A60E1E200E8A63F /* JavaScriptEngine.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JavaScriptEngine.Po; sourceTree = "<group>"; };
-		21D8E27E1A60E1E200E8A63F /* JavaScriptEngineSpiderMonkey.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JavaScriptEngineSpiderMonkey.Po; sourceTree = "<group>"; };
-		21D8E27F1A60E1E200E8A63F /* JavaScriptEngineV8.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JavaScriptEngineV8.Po; sourceTree = "<group>"; };
-		21D8E2801A60E1E200E8A63F /* UPnPNodeFinder.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UPnPNodeFinder.Po; sourceTree = "<group>"; };
-		21D8E2811A60E1E200E8A63F /* UPnPServerNode.Po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UPnPServerNode.Po; sourceTree = "<group>"; };
-		21D8E2821A60E1E200E8A63F /* .dirstamp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .dirstamp; sourceTree = "<group>"; };
 		21D8E2831A60E1E200E8A63F /* HTTPUServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTTPUServer.cpp; sourceTree = "<group>"; };
 		21D8E2841A60E1E200E8A63F /* UPnPNodeFinder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UPnPNodeFinder.cpp; sourceTree = "<group>"; };
 		21D8E2851A60E1E200E8A63F /* UPnPServerNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UPnPServerNode.cpp; sourceTree = "<group>"; };
@@ -716,28 +707,11 @@
 		21D8E2781A60E1E200E8A63F /* impl */ = {
 			isa = PBXGroup;
 			children = (
-				21D8E2791A60E1E200E8A63F /* .deps */,
-				21D8E2821A60E1E200E8A63F /* .dirstamp */,
 				21D8E2831A60E1E200E8A63F /* HTTPUServer.cpp */,
 				21D8E2841A60E1E200E8A63F /* UPnPNodeFinder.cpp */,
 				21D8E2851A60E1E200E8A63F /* UPnPServerNode.cpp */,
 			);
 			path = impl;
-			sourceTree = "<group>";
-		};
-		21D8E2791A60E1E200E8A63F /* .deps */ = {
-			isa = PBXGroup;
-			children = (
-				21D8E27A1A60E1E200E8A63F /* .dirstamp */,
-				21D8E27B1A60E1E200E8A63F /* HTTPUServer.Po */,
-				21D8E27C1A60E1E200E8A63F /* JavaEngine.Po */,
-				21D8E27D1A60E1E200E8A63F /* JavaScriptEngine.Po */,
-				21D8E27E1A60E1E200E8A63F /* JavaScriptEngineSpiderMonkey.Po */,
-				21D8E27F1A60E1E200E8A63F /* JavaScriptEngineV8.Po */,
-				21D8E2801A60E1E200E8A63F /* UPnPNodeFinder.Po */,
-				21D8E2811A60E1E200E8A63F /* UPnPServerNode.Po */,
-			);
-			path = .deps;
 			sourceTree = "<group>";
 		};
 		21D8E2A11A60E1E200E8A63F /* script */ = {

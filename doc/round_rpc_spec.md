@@ -1,6 +1,6 @@
 ![round_logo](./img/round_logo.png)
 
-# Round RPC Specfication
+# Round-RPC Specfication
 
 Round is based on [JSON-RPC 2.0][json-rpc], and Round extends the specification to develop distributed system applications as the following.
 
@@ -10,7 +10,7 @@ Round adds the following original fields to [JSON-RPC 2.0][json-rpc] specificati
 
 | Field | Descripton | Default | Detail |
 | - | - | - | - |
-| hash | - | random | |
+| hash | - | - | |
 | dest | one, all, quorum | one | |
 | cond | - | - |  |
 | type | - | - |  |
@@ -22,7 +22,7 @@ Round adds the following original fields to [JSON-RPC 2.0][json-rpc] specificati
 The hash field specifies a destination node of the request object. The node which is received the request object checks the hash code whether the node should execute the request object.  
 
 ```
-hash = (SHA256-HASH | "random")
+hash = [SHA256-HASH]
 ```
 
 #### Request object

@@ -21,12 +21,14 @@ The name "Round" derives from "[Knights of the Round Table](http://en.wikipedia.
 
 ## API and Libraries
 
-- RPC
-    -- [Specification](doc/round_rpc_spec.md)
-    -- [Methods](doc/round_rpc_methods.md)
+- Round-RPC
+    - [Specification](doc/round_rpc_spec.md)
+    - [Methods](doc/round_rpc_methods.md)
+- HTTP
+    - [Round-RPC over HTTP](doc/round_rpc_http.md)
+    - [RQL (Round Query Language)](doc/round_rql.md)
 - Client
-    -- [API](doc/round_client_api.md)
-    -- [Libraries](doc/round_client_lib.md)
+    - [Libraries](doc/round_client_lib.md)
 
 ## Examples
 

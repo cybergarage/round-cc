@@ -54,8 +54,8 @@ bool IsServerErrorCode(int jsonErrorCode);
 void ErrorCodeToError(int jsonErrorCode, Error *error);
 
 namespace HTTP {
-  static const std::string ENDPOINT     = "/rpc/do";
-  static const std::string CONTENT_TYPE = "application/json-rpc";
+  static const std::string ENDPOINT     = "/rpc";
+  static const std::string CONTENT_TYPE = "application/json";
   static const std::string METHOD       = uHTTP::HTTP::POST;
   static const std::string GET_METHOD   = uHTTP::HTTP::GET;
   static const std::string ACCEPT       = CONTENT_TYPE;
