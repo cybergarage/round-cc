@@ -33,6 +33,9 @@ class Server : public UPnPServerNode {
     return &logger;
   }
 
+  virtual void initialize() {};
+  virtual void finalize() {};
+  
 private:
 
   static Logger logger;

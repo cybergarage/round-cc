@@ -18,9 +18,11 @@ Round::Server::Server() {
   if (!uHTTP::Logger::HasSharedInstance()) {
     Logger::SetSharedInstance(&this->logger);
   }
+  initialize();
 }
 
 Round::Server::~Server() {
+  finalize();
 }
 
 void Round::Server::setHttpdPort(int port) {
