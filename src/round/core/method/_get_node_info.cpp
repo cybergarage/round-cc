@@ -21,7 +21,7 @@ Round::_get_node_info::_get_node_info() : SystemMethod(NAME) {
 Round::_get_node_info::~_get_node_info() {
 }
 
-bool Round::_get_node_info::exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const {
+bool Round::_get_node_info::exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const {
   SystemGetNodeInfoResponse sysRes(nodeRes);
   return sysRes.setNode(node);
 }

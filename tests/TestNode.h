@@ -113,6 +113,7 @@ class NodeTestController {
   void runSystemGetNodeInfoTest(Round::Node *node);
   void runSystemGetClusterInfoTest(Round::Node *node);
   void runSystemGetNetworkInfoTest(Round::Node *node);
+  void runSystemKeyMethodsTest(Round::Node *node);
 
   void runPostEchoMethodTest(Round::Node *node);
   

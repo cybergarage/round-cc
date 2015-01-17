@@ -10,8 +10,8 @@
 
 #include <round/core/Method.h>
 
-Round::StaticMethodManager::StaticMethodManager() {
+Round::MethodManager::MethodManager() {
 }
 
-Round::StaticMethodManager::~StaticMethodManager() {
+Round::MethodManager::~MethodManager() {
 }

@@ -44,5 +44,5 @@ void Round::LocalNodeScriptManager::init() {
 #endif
 
   // Default Dynamic System Method
-  setScript(Round::SystemMethodRequest::ECHO, SYSTEM_ECHO_METHOD_LANGUAGE, SYSTEM_ECHO_METHOD_CODE, Script::ENCODING_NONE, &error);
+  setScript(Round::SystemMethod::ECHO, SYSTEM_ECHO_METHOD_LANGUAGE, SYSTEM_ECHO_METHOD_CODE, Script::ENCODING_NONE, &error);
 }

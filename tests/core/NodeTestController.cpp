@@ -243,18 +243,41 @@ void NodeTestController::runSystemGetNetworkInfoTest(Round::Node *node) {
   BOOST_CHECK(cluster->hasNode(node));
 }
 
+void NodeTestController::runSystemKeyMethodsTest(Round::Node *node) {
+  Error err;
+ 
+  string key = "key";
+  string value;
+  string valueBuf;
+  
+  BOOST_CHECK_EQUAL(node->getKey(key, &valueBuf, &err), false);
+  
+  value = "hello";
+  BOOST_CHECK(node->setKey(key, value, &err));
+  BOOST_CHECK_EQUAL(node->getKey(key, &valueBuf, &err), true);
+  BOOST_CHECK_EQUAL(valueBuf.compare(value), 0);
+  
+  value = "world";
+  BOOST_CHECK(node->setKey(key, value, &err));
+  BOOST_CHECK_EQUAL(node->getKey(key, &valueBuf, &err), true);
+  BOOST_CHECK_EQUAL(valueBuf.compare(value), 0);
+}
+
 void NodeTestController::runSystemMethodTest(Round::Node *node) {
-  // _echo
+  // _echo()
   runSystemEchoTest(node);
   
-  // _get_node_info
+  // _get_node_info()
   runSystemGetNodeInfoTest(node);
   
-  // _get_cluster_info
+  // _get_cluster_info()
   runSystemGetClusterInfoTest(node);
 
-  // _get_network_info
+  // _get_network_info()
   runSystemGetNetworkInfoTest(node);
+
+  // _set_key() and _get_key()
+  runSystemKeyMethodsTest(node);
 }
 
 void NodeTestController::runUserMethodTest(Round::Node *node) {

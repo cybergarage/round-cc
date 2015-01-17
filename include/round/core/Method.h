@@ -25,47 +25,47 @@ class Method {
   virtual ~Method();
   
   const std::string &getName() const;
-  virtual bool exec(const Node *node, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const = 0;
+  virtual bool exec(const Node *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const = 0;
 
  private:
   std::string name;
 };
 
-class StaticMethodMap : public std::map<std::string, Method *> {
+class MethodMap : public std::map<std::string, Method *> {
     
  public:
     
-  StaticMethodMap();
-  ~StaticMethodMap();
+  MethodMap();
+  ~MethodMap();
     
   bool hasMethod(const std::string &name) const;
   bool addMethod(Method *method);
-  bool exec(const std::string &name, const Node *node, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const;
+  bool exec(const std::string &name, const Node *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
   
   void clear();
 };
 
-class StaticMethodManager {
+class MethodManager {
     
  public:
     
-  StaticMethodManager();
-  ~StaticMethodManager();
+  MethodManager();
+  ~MethodManager();
 
   bool hasMethod(const std::string &name) const {
     return systemMethods.hasMethod(name);
   }
 
   bool addMethod(Method *method) {
-    systemMethods.addMethod(method);
+    return systemMethods.addMethod(method);
   }
   
-  bool exec(const std::string &name, const Node *node, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const {
-    return systemMethods.exec(name, node, nodeReq, nodeRes, error);
+  bool exec(const std::string &name, const Node *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const {
+    return systemMethods.exec(name, node, nodeReq, nodeRes);
   }
   
  private:
-  StaticMethodMap systemMethods;
+  MethodMap systemMethods;
 };
   
 }

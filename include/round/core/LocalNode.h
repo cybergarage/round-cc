@@ -47,7 +47,7 @@ class LocalNodeScriptManager : public ScriptManager {
   void init();
 };
 
-class LocalNodeStaticMethodManager : public StaticMethodManager {
+class LocalNodeStaticMethodManager : public MethodManager {
   public:
     LocalNodeStaticMethodManager();
     ~LocalNodeStaticMethodManager();
@@ -133,16 +133,17 @@ private:
 
   void init();
 
-  bool isSetMethod(const std::string &method);
-  bool setMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
-  
-  bool hasUserMethod(const std::string &method);
-  
-  bool setError(int rpcErrorCode, Error *err);
-
   bool execMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
-  bool isSystemMethod(const std::string &method);
-  bool execSystemMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  bool setError(int rpcErrorCode, Error *err);
+  
+  bool is_set_method(const std::string &method);
+  bool _set_method(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  
+  bool hasDynamicMethod(const std::string &method);
+  bool execDynamicMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  
+  bool hasNativeMethod(const std::string &method);
+  bool execNativeMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
 
 private:
 

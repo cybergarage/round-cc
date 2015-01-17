@@ -41,7 +41,7 @@ First, create a sub class of Round::Server() to add the native methods. Next, cr
 
 class MyMethod : public Round::Method {
   .....
-  bool exec(const Node *node, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const {
+  bool exec(const Node *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const {
     .....
   }
 }

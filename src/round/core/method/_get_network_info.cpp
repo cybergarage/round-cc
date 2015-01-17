@@ -21,7 +21,7 @@ Round::_get_network_info::_get_network_info() : SystemMethod(NAME) {
 Round::_get_network_info::~_get_network_info() {
 }
 
-bool Round::_get_network_info::exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const {
+bool Round::_get_network_info::exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const {
   SystemGetNetworkInfoResponse sysRes(nodeRes);
   return sysRes.setClusters(node);
 }

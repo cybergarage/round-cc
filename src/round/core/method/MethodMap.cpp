@@ -10,24 +10,24 @@
 
 #include <round/core/Method.h>
 
-Round::StaticMethodMap::StaticMethodMap() {
+Round::MethodMap::MethodMap() {
 }
 
-Round::StaticMethodMap::~StaticMethodMap() {
+Round::MethodMap::~MethodMap() {
   clear();
 }
 
-bool Round::StaticMethodMap::hasMethod(const std::string &name) const {
+bool Round::MethodMap::hasMethod(const std::string &name) const {
   return (find(name) != end()) ? true : false;
 }
 
-bool Round::StaticMethodMap::addMethod(Method *method) {
+bool Round::MethodMap::addMethod(Method *method) {
   if (!method)
     return false;
   
   const std::string methodName = method->getName();
   
-  StaticMethodMap::const_iterator methodId = find(methodName);
+  MethodMap::const_iterator methodId = find(methodName);
   if (methodId != end()) {
     erase(methodId);
   }
@@ -38,16 +38,16 @@ bool Round::StaticMethodMap::addMethod(Method *method) {
 }
 
 
-bool Round::StaticMethodMap::exec(const std::string &name, const Node *node, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const {
-  StaticMethodMap::const_iterator methodId = find(name);
+bool Round::MethodMap::exec(const std::string &name, const Node *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const {
+  MethodMap::const_iterator methodId = find(name);
   if (methodId == end())
     return false;
   Method *method = methodId->second;
-  return method->exec(node, nodeReq, nodeRes, error);
+  return method->exec(node, nodeReq, nodeRes);
 }
 
-void Round::StaticMethodMap::clear() {
-  for (StaticMethodMap::iterator methodId = begin(); methodId != end(); methodId++) {
+void Round::MethodMap::clear() {
+  for (MethodMap::iterator methodId = begin(); methodId != end(); methodId++) {
     Method *method = methodId->second;
     if (method)
       delete method;

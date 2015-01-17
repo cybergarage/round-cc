@@ -21,7 +21,7 @@ Round::_get_cluster_info::_get_cluster_info() : SystemMethod(NAME) {
 Round::_get_cluster_info::~_get_cluster_info() {
 }
 
-bool Round::_get_cluster_info::exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const {
+bool Round::_get_cluster_info::exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const {
   SystemGetClusterInfoResponse sysRes(nodeRes);
   return sysRes.setCluster(node);
 }

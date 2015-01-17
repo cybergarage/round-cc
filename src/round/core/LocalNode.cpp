@@ -257,10 +257,6 @@ bool Round::LocalNode::getAllOtherNodes(NodeList *nodes) {
 // Execution
 ////////////////////////////////////////////////
 
-bool Round::LocalNode::hasUserMethod(const std::string &method) {
-  return this->scriptMgr.hasScript(method);
-}
-
 bool Round::LocalNode::setError(int rpcErrorCode, Error *err) {
   if (!err)
     return false;
@@ -349,6 +345,63 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
 }
 
 ////////////////////////////////////////////////
+// Dynamic Method
+////////////////////////////////////////////////
+
+bool Round::LocalNode::hasDynamicMethod(const std::string &method) {
+  return this->scriptMgr.hasScript(method);
+}
+
+bool Round::LocalNode::execDynamicMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+  std::string method;
+  nodeReq->getMethod(&method);
+  
+  if (!this->scriptMgr.hasScript(method)) {
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeMethodNotFound, error);
+    return false;
+  }
+  
+  std::string params;
+  nodeReq->getParams(&params);
+  
+  std::string result;
+  bool isSuccess = this->scriptMgr.run(method, params, &result, error);
+  if (isSuccess) {
+    nodeRes->setResult(result);
+  }
+  else {
+    nodeRes->setError(error);
+  }
+  
+  return isSuccess;
+}
+
+////////////////////////////////////////////////
+// Native Method
+////////////////////////////////////////////////
+
+bool Round::LocalNode::hasNativeMethod(const std::string &method) {
+  return this->sysMethodMgr.hasMethod(method);
+}
+
+bool Round::LocalNode::execNativeMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+  std::string reqMethod;
+  nodeReq->getMethod(&reqMethod);
+  
+  if (!this->sysMethodMgr.hasMethod(reqMethod)) {
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeMethodNotFound, error);
+    return false;
+  }
+  
+  bool isSuccess = this->sysMethodMgr.exec(reqMethod, this, nodeReq, nodeRes);
+  if (!isSuccess) {
+    setError(RPC::JSON::ErrorCodeInvalidParams, error);
+  }
+  
+  return isSuccess;
+}
+
+////////////////////////////////////////////////
 // Exce Method
 ////////////////////////////////////////////////
 
@@ -369,30 +422,20 @@ bool Round::LocalNode::execMethod(const NodeRequest *nodeReq, NodeResponse *node
     return false;
   }
   
-  if (isSetMethod(name)) {
-    if (!setMethod(nodeReq, nodeRes, error)) {
+  if (is_set_method(name)) {
+    if (!_set_method(nodeReq, nodeRes, error)) {
       setError(RPC::JSON::ErrorCodeInvalidParams, error);
       return false;
     }
     return true;
   }
   
-  if (hasUserMethod(name)) {
-    std::string params;
-    nodeReq->getParams(&params);
-    std::string result;
-    bool isSuccess = this->scriptMgr.run(name, params, &result, error);
-    if (isSuccess) {
-      nodeRes->setResult(result);
-    }
-    else {
-      nodeRes->setError(error);
-    }
-    return isSuccess;
+  if (hasDynamicMethod(name)) {
+    return execDynamicMethod(nodeReq, nodeRes, error);
   }
   
-  if (isSystemMethod(name)) {
-    return execSystemMethod(nodeReq, nodeRes, error);
+  if (hasNativeMethod(name)) {
+    return execNativeMethod(nodeReq, nodeRes, error);
   }
   
   setError(RPC::JSON::ErrorCodeMethodNotFound, error);
@@ -401,14 +444,14 @@ bool Round::LocalNode::execMethod(const NodeRequest *nodeReq, NodeResponse *node
 }
 
 ////////////////////////////////////////////////
-// System Static Method
+// _set_method
 ////////////////////////////////////////////////
 
-bool Round::LocalNode::isSetMethod(const std::string &method) {
-  return (SystemMethodRequest::SET_METHOD.compare(method) == 0) ? true : false;
+bool Round::LocalNode::is_set_method(const std::string &method) {
+  return (SystemMethod::SET_METHOD.compare(method) == 0) ? true : false;
 }
 
-bool Round::LocalNode::setMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *err) {
+bool Round::LocalNode::_set_method(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *err) {
   std::string params;
   nodeReq->getParams(&params);
   
@@ -437,7 +480,7 @@ bool Round::LocalNode::setMethod(const NodeRequest *nodeReq, NodeResponse *nodeR
   }
 
   // Couldn't override '_set_method'
-  if (isSetMethod(scriptMethod)) {
+  if (is_set_method(scriptMethod)) {
     RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
     return false;
   }
@@ -462,24 +505,4 @@ bool Round::LocalNode::setMethod(const NodeRequest *nodeReq, NodeResponse *nodeR
   }
   
   return this->scriptMgr.setScript(scriptMethod, scriptLang, scriptCode, encodeType, err);
-}
-
-////////////////////////////////////////////////
-// System Dynamic Method
-////////////////////////////////////////////////
-
-bool Round::LocalNode::isSystemMethod(const std::string &method) {
-  return (method.find(SystemMethodRequest::PREFIX) == 0) ? true : false;
-}
-
-bool Round::LocalNode::execSystemMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
-  std::string reqMethod;
-  nodeReq->getMethod(&reqMethod);
-  
-  if (!this->sysMethodMgr.hasMethod(reqMethod)) {
-    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeMethodNotFound, error);
-    return false;
-  }
-
-  return this->sysMethodMgr.exec(reqMethod, this, nodeReq, nodeRes, error);
 }
