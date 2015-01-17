@@ -11,22 +11,24 @@ The name "Round" derives from "[Knights of the Round Table](http://en.wikipedia.
 ## Overview
 
 - [What is Round](doc/round_overview.md)
-- [Getting Started](doc/round_installation.md)
+- [Getting Started](doc/round_install.md)
 - [Configuration](doc/round_config.md)
 
 ## Architecture
 
 - [Overview](doc/round_internals.md)
-- [RPC Specification](doc/round_rpc.md)
 - [Coversion](doc/round_conversions.md)
 
 ## API and Libraries
 
-- [API](doc/round_apis.md)
-- [RPC](doc/round_rpc_methods.md)
-- [Client Libraries](doc/round_clientlib.md)
+- RPC
+    -- [Specification](doc/round_rpc_spec.md)
+    -- [Methods](doc/round_rpc_methods.md)
+- Client
+    -- [API](doc/round_client_api.md)
+    -- [Libraries](doc/round_client_lib.md)
 
 ## Examples
 
 - [Design Pattern](doc/round_design_pattern.md)
-- [Samples](doc/round_applications.md)
+- [Examples](doc/round_examples.md)
