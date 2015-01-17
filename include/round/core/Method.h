@@ -39,6 +39,7 @@ class StaticMethodMap : public std::map<std::string, Method *> {
   ~StaticMethodMap();
     
   bool hasMethod(const std::string &name) const;
+  bool addMethod(Method *method);
   bool exec(const std::string &name, const Node *node, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const;
   
   void clear();
@@ -55,7 +56,9 @@ class StaticMethodManager {
     return systemMethods.hasMethod(name);
   }
 
-  bool addMethod(Method *method);
+  bool addMethod(Method *method) {
+    systemMethods.addMethod(method);
+  }
   
   bool exec(const std::string &name, const Node *node, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const {
     return systemMethods.exec(name, node, nodeReq, nodeRes, error);

@@ -21,6 +21,23 @@ bool Round::StaticMethodMap::hasMethod(const std::string &name) const {
   return (find(name) != end()) ? true : false;
 }
 
+bool Round::StaticMethodMap::addMethod(Method *method) {
+  if (!method)
+    return false;
+  
+  const std::string methodName = method->getName();
+  
+  StaticMethodMap::const_iterator methodId = find(methodName);
+  if (methodId != end()) {
+    erase(methodId);
+  }
+
+  insert(std::pair<std::string, Method *>(methodName, method));
+  
+  return true;
+}
+
+
 bool Round::StaticMethodMap::exec(const std::string &name, const Node *node, const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) const {
   StaticMethodMap::const_iterator methodId = find(name);
   if (methodId == end())

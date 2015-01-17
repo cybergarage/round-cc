@@ -55,6 +55,17 @@ class LocalNodeStaticMethodManager : public StaticMethodManager {
   private:
     void init();
 };
+
+class LocalMemory : public std::map<std::string, std::string> {
+    
+public:
+    
+  LocalMemory();
+  ~LocalMemory();
+  
+  bool setKey(const std::string &key, const std::string &value);
+  bool getKey(const std::string &key, std::string *value) const;
+};
   
 /**
  * LocalNode is a real implementation of Node class.
@@ -67,6 +78,12 @@ class LocalNode : public Node, public NodeFinderObserver {
   virtual ~LocalNode();
 
   bool getClusterName(std::string *name, Error *error);
+  
+  bool addMethod(Method *method);
+  
+  bool setKey(const std::string &key, const std::string &value);
+  bool getKey(const std::string &key, std::string *value) const;
+  
   bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
   
   bool loadConfigFromString(const std::string &string, Error *error);
@@ -82,6 +99,7 @@ class LocalNode : public Node, public NodeFinderObserver {
   
   virtual bool start(Error *error);
   virtual bool stop(Error *error);
+  
   bool restart(Error *error);
   
   LocalNodeConfig *getNodeConfig() {
@@ -128,14 +146,16 @@ private:
 
 private:
 
-  LocalNodeConfig         nodeConfig;
   NodeGraph               nodeGraph;
   NodeStatus              nodeStatus;
   
   NodeMessageManager            nodeMsgMgr;
+  
+  LocalNodeConfig               nodeConfig;
   LocalNodeWorkder              nodeWorker;
   LocalNodeScriptManager        scriptMgr;
   LocalNodeStaticMethodManager  sysMethodMgr;
+  LocalMemory                   memory;
 };
 
 }

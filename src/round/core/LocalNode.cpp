@@ -163,6 +163,26 @@ bool Round::LocalNode::nodeRemoved(Round::Node *notifyNode)  {
 }
 
 ////////////////////////////////////////////////
+// Method
+////////////////////////////////////////////////
+
+bool Round::LocalNode::addMethod(Method *method) {
+  return this->sysMethodMgr.addMethod(method);
+}
+
+////////////////////////////////////////////////
+// Memory
+////////////////////////////////////////////////
+
+bool Round::LocalNode::setKey(const std::string &key, const std::string &value) {
+  return this->memory.setKey(key, value);
+}
+
+bool Round::LocalNode::getKey(const std::string &key, std::string *value) const {
+  return this->memory.getKey(key, value);
+}
+
+////////////////////////////////////////////////
 // Message
 ////////////////////////////////////////////////
 
