@@ -16,7 +16,7 @@
 const std::string Round::get_key::NAME   = "get_key";
 const std::string Round::get_key::KEY    = "key";
 
-Round::get_key::get_key() : SystemMethod(NAME) {
+Round::get_key::get_key() : system_method(NAME) {
 }
 
 Round::get_key::~get_key() {

@@ -15,7 +15,7 @@
 
 const std::string Round::set_timer::NAME   = "set_timer";
 
-Round::set_timer::set_timer() : SystemMethod(NAME) {
+Round::set_timer::set_timer() : system_method(NAME) {
 }
 
 Round::set_timer::~set_timer() {

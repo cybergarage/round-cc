@@ -17,12 +17,12 @@
 
 namespace Round {
 
-class SystemMethod : public Method {
+class system_method : public Method {
 public:
   static const std::string ECHO;  
 public:
-  SystemMethod(const std::string &name);
-  ~SystemMethod();
+  system_method(const std::string &name);
+  ~system_method();
   
   bool exec(const Node *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
   virtual bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const = 0;
@@ -60,13 +60,13 @@ public:
 class SystemEchoRequest : public SystemMethodRequest {
  public:
   SystemEchoRequest() {
-    setMethod(SystemMethod::ECHO);
+    setMethod(system_method::ECHO);
   }
 };
 
 // set_method
   
-class set_method : public SystemMethod {
+class set_method : public system_method {
  public:
   static const std::string NAME;
   static const std::string METHOD_LANGUAGE;
@@ -82,7 +82,7 @@ class set_method : public SystemMethod {
 
 // set_route
   
-class set_route : public SystemMethod {
+class set_route : public system_method {
   public:
     static const std::string NAME;
   public:
@@ -93,7 +93,7 @@ class set_route : public SystemMethod {
 
 // set_timer
   
-class set_timer : public SystemMethod {
+class set_timer : public system_method {
 public:
   static const std::string NAME;
 public:
@@ -104,7 +104,7 @@ public:
 
 // set_alias
   
-class set_alias : public SystemMethod {
+class set_alias : public system_method {
  public:
   static const std::string NAME;
  public:
@@ -115,7 +115,7 @@ class set_alias : public SystemMethod {
   
 // get_node_info
 
-class get_node_info : public SystemMethod {
+class get_node_info : public system_method {
 public:
   static const std::string NAME;
 public:
@@ -237,7 +237,7 @@ private:
 
 // get_cluster_info
 
-class get_cluster_info : public SystemMethod {
+class get_cluster_info : public system_method {
 public:
   static const std::string NAME;
 public:
@@ -301,7 +301,7 @@ class SystemGetNetworkInfoResponse : public SystemMethodResponse {
 
 // get_network_info
 
-class get_network_info : public SystemMethod {
+class get_network_info : public system_method {
 public:
   static const std::string NAME;
 public:
@@ -319,7 +319,7 @@ class SystemGetNetworkInfoRequest : public SystemMethodRequest {
   
 // set_key
 
-class set_key : public SystemMethod {
+class set_key : public system_method {
  public:
   static const std::string NAME;
   static const std::string KEY;
@@ -347,7 +347,7 @@ class SystemSetKeyRequest : public SystemMethodRequest {
 
 // get_key
 
-class get_key : public SystemMethod {
+class get_key : public system_method {
 public:
   static const std::string NAME;
   static const std::string KEY;

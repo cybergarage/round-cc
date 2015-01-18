@@ -37,7 +37,6 @@
 		21B911B31A6B5F4300C791FD /* MethodMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911A51A6B5F4300C791FD /* MethodMap.cpp */; };
 		21B911B41A6B5F4300C791FD /* set_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911A61A6B5F4300C791FD /* set_key.cpp */; };
 		21B911B51A6B5F4300C791FD /* SystemClusterInfoDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911A71A6B5F4300C791FD /* SystemClusterInfoDict.cpp */; };
-		21B911B61A6B5F4300C791FD /* SystemMethod.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911A81A6B5F4300C791FD /* SystemMethod.cpp */; };
 		21B911B71A6B5F4300C791FD /* SystemMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B911A91A6B5F4300C791FD /* SystemMethod.h */; };
 		21B911B81A6B5F4300C791FD /* SystemMethodRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911AA1A6B5F4300C791FD /* SystemMethodRequest.cpp */; };
 		21B911B91A6B5F4300C791FD /* SystemMethodResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911AB1A6B5F4300C791FD /* SystemMethodResponse.cpp */; };
@@ -47,6 +46,7 @@
 		21D8CA741A6B70FC002CBDC3 /* set_route.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D8CA721A6B70FC002CBDC3 /* set_route.cpp */; };
 		21D8CA751A6B70FC002CBDC3 /* set_timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D8CA731A6B70FC002CBDC3 /* set_timer.cpp */; };
 		21D8CA771A6B7284002CBDC3 /* set_alias.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D8CA761A6B7284002CBDC3 /* set_alias.cpp */; };
+		21D8CA7A1A6B7781002CBDC3 /* system_method.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D8CA791A6B7781002CBDC3 /* system_method.cpp */; };
 		21D8E1AB1A60E19300E8A63F /* Client.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D8E1711A60E19300E8A63F /* Client.h */; };
 		21D8E1AC1A60E19300E8A63F /* BitOption.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D8E1731A60E19300E8A63F /* BitOption.h */; };
 		21D8E1AD1A60E19300E8A63F /* Clock.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D8E1741A60E19300E8A63F /* Clock.h */; };
@@ -229,7 +229,6 @@
 		21B911A51A6B5F4300C791FD /* MethodMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MethodMap.cpp; sourceTree = "<group>"; };
 		21B911A61A6B5F4300C791FD /* set_key.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = set_key.cpp; sourceTree = "<group>"; };
 		21B911A71A6B5F4300C791FD /* SystemClusterInfoDict.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemClusterInfoDict.cpp; sourceTree = "<group>"; };
-		21B911A81A6B5F4300C791FD /* SystemMethod.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemMethod.cpp; sourceTree = "<group>"; };
 		21B911A91A6B5F4300C791FD /* SystemMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemMethod.h; sourceTree = "<group>"; };
 		21B911AA1A6B5F4300C791FD /* SystemMethodRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemMethodRequest.cpp; sourceTree = "<group>"; };
 		21B911AB1A6B5F4300C791FD /* SystemMethodResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemMethodResponse.cpp; sourceTree = "<group>"; };
@@ -239,6 +238,7 @@
 		21D8CA721A6B70FC002CBDC3 /* set_route.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = set_route.cpp; sourceTree = "<group>"; };
 		21D8CA731A6B70FC002CBDC3 /* set_timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = set_timer.cpp; sourceTree = "<group>"; };
 		21D8CA761A6B7284002CBDC3 /* set_alias.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = set_alias.cpp; sourceTree = "<group>"; };
+		21D8CA791A6B7781002CBDC3 /* system_method.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = system_method.cpp; sourceTree = "<group>"; };
 		21D8E1711A60E19300E8A63F /* Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
 		21D8E1731A60E19300E8A63F /* BitOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitOption.h; sourceTree = "<group>"; };
 		21D8E1741A60E19300E8A63F /* Clock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clock.h; sourceTree = "<group>"; };
@@ -465,8 +465,8 @@
 				21B911BB1A6B61CC00C791FD /* set_method.cpp */,
 				21D8CA721A6B70FC002CBDC3 /* set_route.cpp */,
 				21D8CA731A6B70FC002CBDC3 /* set_timer.cpp */,
+				21D8CA791A6B7781002CBDC3 /* system_method.cpp */,
 				21B911A71A6B5F4300C791FD /* SystemClusterInfoDict.cpp */,
-				21B911A81A6B5F4300C791FD /* SystemMethod.cpp */,
 				21B911A91A6B5F4300C791FD /* SystemMethod.h */,
 				21B911AA1A6B5F4300C791FD /* SystemMethodRequest.cpp */,
 				21B911AB1A6B5F4300C791FD /* SystemMethodResponse.cpp */,
@@ -977,7 +977,6 @@
 				21E1EB151A64FE2800FEABF6 /* NodeBatchRequest.cpp in Sources */,
 				21B911B81A6B5F4300C791FD /* SystemMethodRequest.cpp in Sources */,
 				21D8E2C71A60E1E200E8A63F /* JSONInterger.cpp in Sources */,
-				21B911B61A6B5F4300C791FD /* SystemMethod.cpp in Sources */,
 				21D8E2EC1A60E1E200E8A63F /* NodeCore.cpp in Sources */,
 				21D8E3001A60E1E200E8A63F /* JavaEngine.cpp in Sources */,
 				21D8E2B21A60E1E200E8A63F /* Configuration.cpp in Sources */,
@@ -1018,6 +1017,7 @@
 				21D8E2D11A60E1E200E8A63F /* NotificationCenter.cpp in Sources */,
 				21B911B41A6B5F4300C791FD /* set_key.cpp in Sources */,
 				21B911991A6B5E5400C791FD /* LocalMemory.cpp in Sources */,
+				21D8CA7A1A6B7781002CBDC3 /* system_method.cpp in Sources */,
 				21D8E2D21A60E1E200E8A63F /* NotificationObserver.cpp in Sources */,
 				21D8E2C51A60E1E200E8A63F /* JSONBoolean.cpp in Sources */,
 				21D8E2EE1A60E1E200E8A63F /* NodeFinderNotification.cpp in Sources */,

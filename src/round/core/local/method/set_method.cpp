@@ -21,7 +21,7 @@ const std::string Round::set_method::METHOD_ENCODE        = "encode";
 const std::string Round::set_method::METHOD_ENCODE_BASE64 = "base64";
 
 
-Round::set_method::set_method() : SystemMethod(NAME) {
+Round::set_method::set_method() : system_method(NAME) {
 }
 
 Round::set_method::~set_method() {

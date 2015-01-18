@@ -15,7 +15,7 @@
 
 const std::string Round::set_route::NAME   = "set_route";
 
-Round::set_route::set_route() : SystemMethod(NAME) {
+Round::set_route::set_route() : system_method(NAME) {
 }
 
 Round::set_route::~set_route() {

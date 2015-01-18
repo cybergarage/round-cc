@@ -15,7 +15,7 @@
 
 const std::string Round::get_node_info::NAME = "get_node_info";
 
-Round::get_node_info::get_node_info() : SystemMethod(NAME) {
+Round::get_node_info::get_node_info() : system_method(NAME) {
 }
 
 Round::get_node_info::~get_node_info() {

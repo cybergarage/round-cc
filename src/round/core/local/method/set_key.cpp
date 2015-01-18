@@ -17,7 +17,7 @@ const std::string Round::set_key::NAME   = "set_key";
 const std::string Round::set_key::KEY    = "key";
 const std::string Round::set_key::VALUE  = "value";
 
-Round::set_key::set_key() : SystemMethod(NAME) {
+Round::set_key::set_key() : system_method(NAME) {
 }
 
 Round::set_key::~set_key() {
