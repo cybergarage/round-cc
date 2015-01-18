@@ -44,6 +44,8 @@
 		21B911BA1A6B5F4300C791FD /* SystemNodeInfoDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911AC1A6B5F4300C791FD /* SystemNodeInfoDict.cpp */; };
 		21B911BC1A6B61CC00C791FD /* set_method.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911BB1A6B61CC00C791FD /* set_method.cpp */; };
 		21D03AD41A63C4A60098122A /* Route.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D03AD31A63C4A60098122A /* Route.h */; };
+		21D8CA741A6B70FC002CBDC3 /* set_route.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D8CA721A6B70FC002CBDC3 /* set_route.cpp */; };
+		21D8CA751A6B70FC002CBDC3 /* set_timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D8CA731A6B70FC002CBDC3 /* set_timer.cpp */; };
 		21D8E1AB1A60E19300E8A63F /* Client.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D8E1711A60E19300E8A63F /* Client.h */; };
 		21D8E1AC1A60E19300E8A63F /* BitOption.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D8E1731A60E19300E8A63F /* BitOption.h */; };
 		21D8E1AD1A60E19300E8A63F /* Clock.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D8E1741A60E19300E8A63F /* Clock.h */; };
@@ -233,6 +235,8 @@
 		21B911AC1A6B5F4300C791FD /* SystemNodeInfoDict.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemNodeInfoDict.cpp; sourceTree = "<group>"; };
 		21B911BB1A6B61CC00C791FD /* set_method.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = set_method.cpp; sourceTree = "<group>"; };
 		21D03AD31A63C4A60098122A /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
+		21D8CA721A6B70FC002CBDC3 /* set_route.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = set_route.cpp; sourceTree = "<group>"; };
+		21D8CA731A6B70FC002CBDC3 /* set_timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = set_timer.cpp; sourceTree = "<group>"; };
 		21D8E1711A60E19300E8A63F /* Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
 		21D8E1731A60E19300E8A63F /* BitOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitOption.h; sourceTree = "<group>"; };
 		21D8E1741A60E19300E8A63F /* Clock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clock.h; sourceTree = "<group>"; };
@@ -447,7 +451,6 @@
 		21B9119E1A6B5F4300C791FD /* method */ = {
 			isa = PBXGroup;
 			children = (
-				21B911BB1A6B61CC00C791FD /* set_method.cpp */,
 				21B9119F1A6B5F4300C791FD /* get_cluster_info.cpp */,
 				21B911A01A6B5F4300C791FD /* get_key.cpp */,
 				21B911A11A6B5F4300C791FD /* get_network_info.cpp */,
@@ -456,6 +459,9 @@
 				21B911A41A6B5F4300C791FD /* MethodManager.cpp */,
 				21B911A51A6B5F4300C791FD /* MethodMap.cpp */,
 				21B911A61A6B5F4300C791FD /* set_key.cpp */,
+				21B911BB1A6B61CC00C791FD /* set_method.cpp */,
+				21D8CA721A6B70FC002CBDC3 /* set_route.cpp */,
+				21D8CA731A6B70FC002CBDC3 /* set_timer.cpp */,
 				21B911A71A6B5F4300C791FD /* SystemClusterInfoDict.cpp */,
 				21B911A81A6B5F4300C791FD /* SystemMethod.cpp */,
 				21B911A91A6B5F4300C791FD /* SystemMethod.h */,
@@ -958,8 +964,10 @@
 				21B9119D1A6B5E5400C791FD /* LocalWorker.cpp in Sources */,
 				21D8E2FF1A60E1E200E8A63F /* Finder.cpp in Sources */,
 				21D8E2F51A60E1E200E8A63F /* RemoteNode.cpp in Sources */,
+				21D8CA741A6B70FC002CBDC3 /* set_route.cpp in Sources */,
 				21D8E2D41A60E1E200E8A63F /* Random.cpp in Sources */,
 				21D8E2DD1A60E1E200E8A63F /* ThreadList.cpp in Sources */,
+				21D8CA751A6B70FC002CBDC3 /* set_timer.cpp in Sources */,
 				21F4CE6A1A63F0BA00E7F0CC /* RouteManager.cpp in Sources */,
 				21D8E2DE1A60E1E200E8A63F /* ThreadManager.cpp in Sources */,
 				21D8E2E51A60E1E200E8A63F /* LocalNode.cpp in Sources */,

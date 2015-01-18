@@ -79,6 +79,28 @@ class set_method : public SystemMethod {
   ~set_method();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
+
+// set_route
+  
+class set_route : public SystemMethod {
+  public:
+    static const std::string NAME;
+  public:
+    set_route();
+    ~set_route();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
+};
+
+// set_timer
+  
+class set_timer : public SystemMethod {
+public:
+  static const std::string NAME;
+public:
+  set_timer();
+  ~set_timer();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
+};
   
 // get_node_info
 
