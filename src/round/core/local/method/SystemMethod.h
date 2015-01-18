@@ -33,21 +33,7 @@ class SystemMethodRequest : public NodeRequest {
   SystemMethodRequest();
 };
 
-/**
- * SystemMethodResponse uses to create a response message for system methods.
- */
-
 class SystemMethodResponse {
-  public:
-    static const std::string NAME;
-    static const std::string IP;
-    static const std::string PORT;
-    static const std::string HASH;
-    static const std::string VER;
-    static const std::string CLUSTER;
-    static const std::string NODES;
-    static const std::string CLUSTERS;
-    
 public:
     SystemMethodResponse(NodeResponse *nodeRes);
     
@@ -126,6 +112,14 @@ public:
 
 class SystemNodeInfoDict {
 public:
+  static const std::string NAME;
+  static const std::string IP;
+  static const std::string PORT;
+  static const std::string HASH;
+  static const std::string VER;
+  static const std::string CLUSTER;
+  
+public:
   SystemNodeInfoDict() {
     setJSONDictionary(NULL);
   }
@@ -142,35 +136,35 @@ public:
   bool getNode(RemoteNode *node);
   
   bool setIp(const std::string &value) {
-    return (this->jsonDict) ? this->jsonDict->set(SystemMethodResponse::IP, value) : false;
+    return (this->jsonDict) ? this->jsonDict->set(IP, value) : false;
   }
   
   bool getIp(std::string *value) const {
-    return (this->jsonDict) ? this->jsonDict->get(SystemMethodResponse::IP, value) : false;
+    return (this->jsonDict) ? this->jsonDict->get(IP, value) : false;
   }
   
   bool setPort(int value) {
-    return (this->jsonDict) ? this->jsonDict->set(SystemMethodResponse::PORT, value) : false;
+    return (this->jsonDict) ? this->jsonDict->set(PORT, value) : false;
   }
   
   bool getPort(int *value) const {
-    return (this->jsonDict) ? this->jsonDict->get(SystemMethodResponse::PORT, value) : false;
+    return (this->jsonDict) ? this->jsonDict->get(PORT, value) : false;
   }
   
   bool setCluster(const std::string &value) {
-    return (this->jsonDict) ? this->jsonDict->set(SystemMethodResponse::CLUSTER, value) : false;
+    return (this->jsonDict) ? this->jsonDict->set(CLUSTER, value) : false;
   }
   
   bool getCluster(std::string *value) const {
-    return (this->jsonDict) ? this->jsonDict->get(SystemMethodResponse::CLUSTER, value) : false;
+    return (this->jsonDict) ? this->jsonDict->get(CLUSTER, value) : false;
   }
   
   bool setHash(const std::string &value) {
-    return (this->jsonDict) ? this->jsonDict->set(SystemMethodResponse::HASH, value) : false;
+    return (this->jsonDict) ? this->jsonDict->set(HASH, value) : false;
   }
   
   bool getHash(std::string *value) const {
-    return (this->jsonDict) ? this->jsonDict->get(SystemMethodResponse::HASH, value) : false;
+    return (this->jsonDict) ? this->jsonDict->get(HASH, value) : false;
   }
   
 private:
@@ -247,6 +241,10 @@ public:
 };
 
 class SystemClusterInfoDict {
+public:
+  static const std::string NAME;
+  static const std::string NODES;
+  static const std::string CLUSTER;
  public:
   SystemClusterInfoDict() {
     setJSONDictionary(NULL);
@@ -277,6 +275,8 @@ public:
 };
   
 class SystemGetClusterInfoResponse : public SystemMethodResponse {
+  static const std::string NODES;
+  static const std::string CLUSTER;
  public:
   SystemGetClusterInfoResponse(NodeResponse *nodeRes) : SystemMethodResponse(nodeRes) {
   }
@@ -289,6 +289,7 @@ class SystemGetClusterInfoResponse : public SystemMethodResponse {
 };
 
 class SystemGetNetworkInfoResponse : public SystemMethodResponse {
+  static const std::string CLUSTERS;
  public:
   SystemGetNetworkInfoResponse(NodeResponse *nodeRes) : SystemMethodResponse(nodeRes) {
   }

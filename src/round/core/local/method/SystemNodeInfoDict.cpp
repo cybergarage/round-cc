@@ -13,6 +13,13 @@
 
 #include <round/core/local/method/SystemMethod.h>
 
+const std::string Round::SystemNodeInfoDict::NAME     = "name";
+const std::string Round::SystemNodeInfoDict::IP       = "ip";
+const std::string Round::SystemNodeInfoDict::PORT     = "port";
+const std::string Round::SystemNodeInfoDict::HASH     = "hash";
+const std::string Round::SystemNodeInfoDict::VER      = "version";
+const std::string Round::SystemNodeInfoDict::CLUSTER  = "cluster";
+
 bool Round::SystemNodeInfoDict::setNode(Node *node) {
   Error error;
   

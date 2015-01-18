@@ -13,15 +13,19 @@
 
 #include <round/core/local/method/SystemMethod.h>
 
+const std::string Round::SystemClusterInfoDict::NAME     = "name";
+const std::string Round::SystemClusterInfoDict::NODES    = "nodes";
+const std::string Round::SystemClusterInfoDict::CLUSTER  = "cluster";
+
 Round::JSONArray *Round::SystemClusterInfoDict::getNodeArray() {
   JSONObject *jsonObj = NULL;
-  this->jsonDict->get(SystemMethodResponse::NODES, &jsonObj);
+  this->jsonDict->get(NODES, &jsonObj);
   JSONArray *jsonArray = dynamic_cast<JSONArray *>(jsonObj);
   if (jsonArray)
     return jsonArray;
   
   jsonArray = new JSONArray();
-  this->jsonDict->set(SystemMethodResponse::NODES, jsonArray);
+  this->jsonDict->set(NODES, jsonArray);
   
   return jsonArray;
 }
@@ -33,7 +37,7 @@ bool Round::SystemClusterInfoDict::setCluster(LocalNode *node) {
   
   std::string clusterName;
   if (node->getClusterName(&clusterName, &error)) {
-    this->jsonDict->set(SystemMethodResponse::NAME, clusterName);
+    this->jsonDict->set(NAME, clusterName);
   }
   
   // Cluseter Nodes
@@ -62,7 +66,7 @@ bool Round::SystemClusterInfoDict::getCluster(Cluster *cluster) {
   // Cluster Name
   
   std::string clusterName;
-  if (this->jsonDict->get(SystemMethodResponse::NAME, &clusterName)) {
+  if (this->jsonDict->get(NAME, &clusterName)) {
     cluster->setName(clusterName);
   }
   
