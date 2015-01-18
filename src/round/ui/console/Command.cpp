@@ -8,6 +8,7 @@
  *
  ******************************************************************/
 
+#include <boost/algorithm/string.hpp>
 #include <round/ui/Console.h>
 
 const std::string Round::Console::Command::QUIT = "quit";
