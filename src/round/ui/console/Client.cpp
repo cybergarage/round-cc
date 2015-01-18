@@ -80,14 +80,18 @@ const char *Round::Console::Client::getPromptName()
   return promptName.c_str();
 }
 
-bool Round::Console::Client::isConsoleCommand(const std::string &inputLine) {
-  return false;
+bool Round::Console::Client::isConsoleCommand(const Input &input) {
+  return this->commands.hasCommand(&input);
 }
 
-bool Round::Console::Client::isConsoleQuitCommand(const std::string &inputLine) {
-  return false;
+bool Round::Console::Client::isQuitCommand(const Input &input) {
+  return Command::IsQuit(&input);
 }
 
-bool Round::Console::Client::execConsoleCommand(const std::string &inputLine,  Message *msg, Error *err) {
-  return false;
+bool Round::Console::Client::isShellCommand(const Input &input) {
+  return Command::IsShell(&input);
+}
+
+bool Round::Console::Client::execConsoleCommand(const Input &input, Message *msg, Error *err) {
+  return this->commands.execCommand(this, &input, msg, err);
 }

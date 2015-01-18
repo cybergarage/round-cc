@@ -22,6 +22,7 @@
 #include <round/ui/Console.h>
 
 static const std::string ROUND_CERR_PREFIX = "Error : ";
+static const std::string ROUND_UNKNOWN_COMMAND_MSG = "Unrecognized command ";
 
 namespace Roundd {
   typedef std::map<std::string,std::string> Commands;
@@ -38,9 +39,6 @@ void usage() {
   std::cout << "Usage: " << gConsoleClient->getProgramName() << " [-options] <command>" << std::endl;
   
   Roundd::Commands commands;
-  commands["?"]                = "Prints this help message";
-  commands["h <host address>"] = "Host address of a node in a cluster";
-  commands["p <port number>"]  = "Port number of a node in a cluster";
   for (Roundd::Commands::iterator cmd=commands.begin(); cmd != commands.end(); cmd++) {
     std::string optionParam = cmd->first;
     std::string optionDesc = cmd->second;
@@ -48,14 +46,27 @@ void usage() {
   }
   
   Roundd::Options options;
-  options["?"]                = "Prints this help message";
-  options["h <host address>"] = "Host address of a node in a cluster";
-  options["p <port number>"]  = "Port number of a node in a cluster";
   for (Roundd::Options::iterator option=options.begin(); option != options.end(); option++) {
     std::string optionParam = option->first;
     std::string optionDesc = option->second;
     std::cout << "\t-" << optionParam << "\t\t" << optionDesc << std::endl;
   }
+}
+
+bool exec_console_command(Round::Console::Client &client, const Round::Console::Input &input) {
+  Round::Console::Message msg;
+  Round::Error err;
+  
+  if (client.execConsoleCommand(input, &msg, &err)) {
+    if (0 < msg.length()) {
+      std::cout << msg << std::endl;
+    }
+    return true;
+  }
+
+  std::cerr << ROUND_CERR_PREFIX << err.getMessage() << "'" << std::endl;
+
+  return false;
 }
 
 int main(int argc, char *argv[])
@@ -64,18 +75,14 @@ int main(int argc, char *argv[])
   
   // Setup Client
   
-  gConsoleClient = new Round::Console::Client();
-  if (!gConsoleClient) {
-    std::cerr << ROUND_CERR_PREFIX << ROUNDCC_PRODUCT_NAME << " couldn't start" << std::endl;
-    return EXIT_FAILURE;
-  }
-    
-  gConsoleClient->setProgramNameFromArgument(argv[0]);
+  Round::Console::Client client;
+  gConsoleClient = &client;
+  client.setProgramNameFromArgument(argv[0]);
 
   // Boot Message
   
   std::string bootMessage;
-  gConsoleClient->getBootMessage(bootMessage);
+  client.getBootMessage(bootMessage);
   std::cout << bootMessage << std::endl;
 
   // Parse command line options
@@ -107,69 +114,33 @@ int main(int argc, char *argv[])
   argc -= optind;
   argv += optind;
   
-  // Setup Client
+  // Check command
   
-  bool hasNodeParameters = false;
-  if ((0 < nodeHost.length()) && (0 < nodePort)) {
-    hasNodeParameters = true;
+  if (argc <= 0) {
+    usage();
+    exit(EXIT_FAILURE);
   }
 
-  if (hasNodeParameters) {
-    gConsoleClient->setFinderEnabled(false);
-
-    /*
-    Round::RemoteNode remoteNode(nodeHost, nodePort);
-    Round::Cluster remoteCluster;
-    Round::NodeGraph remoteNodeGraph;
-
-    // Target Cluster
-    if (!remoteNode.getCluster(&remoteCluster, &error)) {
-      OutputRemoteNodeError(remoteNode);
-      exit(EXIT_FAILURE);
-    }
-    std::string remoteClusterName = remoteCluster.getName();
-    if (!gConsoleClient->addCluster(remoteClusterName)) {
-      OutputRemoteNodeError(remoteNode);
-      exit(EXIT_FAILURE);
-    }
-    if (!gConsoleClient->setTargetCluster(remoteClusterName)) {
-      OutputRemoteNodeError(remoteNode);
-      exit(EXIT_FAILURE);
+  std::string firstArg = argv[0];
+  
+  // Execute command
+  
+  if (!client.isShellCommand(firstArg)) {
+    Round::Console::Input input;
+    input.cmd = firstArg;
+    for (int n=1; n<argc; n++) {
+      input.params.addParam(argv[n]);
     }
     
-    // Target Node Graph
-    Round::Cluster *targetCluster = gConsoleClient->getTargetCluster();
-    if (!targetCluster) {
-      OutputRemoteNodeError(remoteNode);
-      exit(EXIT_FAILURE);
-    }
-    Round::NodeGraph *targetNodeGraph = targetCluster->getNodeGraph();
-    if (!targetNodeGraph) {
-      OutputRemoteNodeError(remoteNode);
-      exit(EXIT_FAILURE);
-    }
-    if (!remoteNode.getNodeGraph(&remoteNodeGraph, &error)) {
-      OutputRemoteNodeError(remoteNode);
-      exit(EXIT_FAILURE);
-    }
-    if (!targetNodeGraph->set(remoteNodeGraph)) {
-      OutputRemoteNodeError(remoteNode);
-      exit(EXIT_FAILURE);
-    }
-     */
-  }
-  else {
-    gConsoleClient->setFinderEnabled(true);
-  }
-  
-  if (!gConsoleClient->start(&error)) {
-    std::cout << "Couldn't start client" << std::endl;
+    if (exec_console_command(client, input))
+      exit(EXIT_SUCCESS);
+    
     exit(EXIT_FAILURE);
   }
   
   // Initialize the EditLine
   
-  EditLine *el = el_init(gConsoleClient->getProgramName(), stdin, stdout, stderr);
+  EditLine *el = el_init(client.getProgramName(), stdin, stdout, stderr);
   el_set(el, EL_PROMPT, &prompt);
   el_set(el, EL_EDITOR, "vi");
   
@@ -180,46 +151,36 @@ int main(int argc, char *argv[])
   history(inputHistory, &ev, H_SETSIZE, 1024);
   el_set(el, EL_HIST, history, inputHistory);
 
+  Round::Console::Input input;
+  
   while (true) {
     int readCount = 0;
-    const char *inputLine = el_gets(el, &readCount);
+    std::string inputLine = el_gets(el, &readCount);
 
     if (readCount <= 0)
         continue;
+
     if ((readCount == 1) && inputLine[0] == '\n')
         continue;
 
-    history(inputHistory, &ev, H_ENTER, inputLine);
+    boost::trim(inputLine);
+    history(inputHistory, &ev, H_ENTER, inputLine.c_str());
 
-    std::string inputCommand = inputLine;
-    boost::trim(inputCommand);
+    input.parse(inputLine);
 
-    Round::Error error;
-
-    if (gConsoleClient->isConsoleCommand(inputCommand)) {
-      std::cerr << "Unrecognized command '" << inputCommand << "'" << std::endl;
+    if (client.isQuitCommand(input))
+      break;
+    
+    if (!client.isConsoleCommand(input)) {
+      std::cerr << ROUND_UNKNOWN_COMMAND_MSG << " '" << inputLine << "'" << std::endl;
       continue;
     }
 
-    if (gConsoleClient->isConsoleQuitCommand(inputCommand))
-        break;
-
-    Round::Console::Message msg;
-    Round::Error err;
-    if (gConsoleClient->execConsoleCommand(inputCommand, &msg, &err)) {
-      if (0 < msg.length()) {
-        std::cout << msg << std::endl;
-      }
-    }
-    else {
-      std::cerr << ROUND_CERR_PREFIX << err.getMessage() << "'" << std::endl;
-    }
+    exec_console_command(client, input);
   }
 
   history_end(inputHistory);
   el_end(el);
-
-  delete gConsoleClient;
-    
+  
   return EXIT_SUCCESS;
 }

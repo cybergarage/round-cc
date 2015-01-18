@@ -48,11 +48,29 @@ class Options : Round::Vector<Option> {
   Options() {}
 };
 
-typedef std::string Param;
+typedef const std::string Param;
 
-class Params : std::vector<Param> {
+class Params : public std::vector<Param> {
  public:
   Params() {}
+  
+  void addParam(Param &param) {
+    push_back(param);
+  }
+};
+
+class Input{
+public:
+  std::string cmd;
+  Params params;
+  
+public:
+  Input();
+  Input(const std::string &inputLine);
+  bool parse(const std::string &inputLine);
+
+private:
+  void clear();
 };
 
 typedef std::string Message;
@@ -62,24 +80,27 @@ class Command {
   
   static const std::string QUIT;
   static const std::string EXIT;
-  static const std::string LIST;
-  static const std::string USE;
-  static const std::string CLUSTERS;
-  static const std::string NODES;
-  
-  static std::string GetCommand(const std::string &inputLine);
+  static const std::string SHELL;
   
  public:
   std::string name;
   
  public:
     
-  Command();
+  Command(const std::string &name);
   ~Command();
 
-  bool isCommand(const std::string &inputLine);
+  const std::string &getName() const {
+    return this->name;
+  }
   
-  virtual bool exec(Round::Client *client, const Params *params, Message *msg, Error *err) = 0;
+  static bool IsCommand(const std::string &name, const Input *input);
+  static bool IsQuit(const Input *input);
+  static bool IsShell(const Input *input);
+  
+  bool isCommand(const Input *input);
+  
+  virtual bool exec(Round::Client *client, const Params *params, Message *msg, Error *err) const = 0;
 };
 
 class Commands : std::map<std::string, Command*> {
@@ -89,8 +110,12 @@ class Commands : std::map<std::string, Command*> {
   Commands();
   ~Commands();
   
-  bool hasCommand(const std::string &inputLine);
-  bool execCommand(Round::Client *client, const std::string &inputLine, Message *msg, Error *err); 
+  bool addCommand(Command *cmd);
+  bool hasCommand(const Input *input) const ;
+  bool execCommand(Round::Client *client, const Input *input, Message *msg, Error *err) const ;
+  
+private:
+  void init();
 };
   
 class Client : public Round::Client
@@ -108,9 +133,12 @@ public:
   const char *getProgramName();
   const char *getPromptName();
 
-  bool isConsoleCommand(const std::string &inputLine);
-  bool isConsoleQuitCommand(const std::string &inputLine);
-  bool execConsoleCommand(const std::string &inputLine, Message *msg, Error *err);
+  bool isQuitCommand(const Input &input);
+  bool isShellCommand(const Input &input);
+  
+  bool isConsoleCommand(const Input &input);
+  
+  bool execConsoleCommand(const Input &input, Message *msg, Error *err);
   
 private:
 
