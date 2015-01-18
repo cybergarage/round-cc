@@ -170,6 +170,10 @@ bool Round::LocalNode::addMethod(Method *method) {
   return this->sysMethodMgr.addMethod(method);
 }
 
+bool Round::LocalNode::setScript(const std::string &method, const std::string &lang, const std::string &code, int encodeType, Error *error) {
+  return this->scriptMgr.setScript(method, lang, code, encodeType, error);
+}
+
 ////////////////////////////////////////////////
 // Memory
 ////////////////////////////////////////////////
@@ -348,7 +352,7 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
 // Dynamic Method
 ////////////////////////////////////////////////
 
-bool Round::LocalNode::hasDynamicMethod(const std::string &method) {
+bool Round::LocalNode::isDynamicMethod(const std::string &method) {
   return this->scriptMgr.hasScript(method);
 }
 
@@ -377,10 +381,35 @@ bool Round::LocalNode::execDynamicMethod(const NodeRequest *nodeReq, NodeRespons
 }
 
 ////////////////////////////////////////////////
+// Static Method
+////////////////////////////////////////////////
+
+bool Round::LocalNode::isStaticMethod(const std::string &method) {
+  return this->staticMethodMgr.hasMethod(method);
+}
+
+bool Round::LocalNode::execStaticMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+  std::string reqMethod;
+  nodeReq->getMethod(&reqMethod);
+  
+  if (!this->staticMethodMgr.hasMethod(reqMethod)) {
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeMethodNotFound, error);
+    return false;
+  }
+  
+  bool isSuccess = this->staticMethodMgr.exec(reqMethod, this, nodeReq, nodeRes);
+  if (!isSuccess) {
+    setError(RPC::JSON::ErrorCodeInvalidParams, error);
+  }
+  
+  return isSuccess;
+}
+
+////////////////////////////////////////////////
 // Native Method
 ////////////////////////////////////////////////
 
-bool Round::LocalNode::hasNativeMethod(const std::string &method) {
+bool Round::LocalNode::isNativeMethod(const std::string &method) {
   return this->sysMethodMgr.hasMethod(method);
 }
 
@@ -422,87 +451,19 @@ bool Round::LocalNode::execMethod(const NodeRequest *nodeReq, NodeResponse *node
     return false;
   }
   
-  if (is_set_method(name)) {
-    if (!set_method(nodeReq, nodeRes, error)) {
-      setError(RPC::JSON::ErrorCodeInvalidParams, error);
-      return false;
-    }
-    return true;
+  if (isStaticMethod(name)) {
+    return execStaticMethod(nodeReq, nodeRes, error);
   }
   
-  if (hasDynamicMethod(name)) {
+  if (isDynamicMethod(name)) {
     return execDynamicMethod(nodeReq, nodeRes, error);
   }
   
-  if (hasNativeMethod(name)) {
+  if (isNativeMethod(name)) {
     return execNativeMethod(nodeReq, nodeRes, error);
   }
   
   setError(RPC::JSON::ErrorCodeMethodNotFound, error);
   
   return false;
-}
-
-////////////////////////////////////////////////
-// set_method
-////////////////////////////////////////////////
-
-bool Round::LocalNode::is_set_method(const std::string &method) {
-  return (SystemMethod::SET_METHOD.compare(method) == 0) ? true : false;
-}
-
-bool Round::LocalNode::set_method(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *err) {
-  std::string params;
-  nodeReq->getParams(&params);
-  
-  JSONParser jsonParser;
-  if (!jsonParser.parse(params, err)) {
-    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
-    return false;
-  }
-  
-  JSONObject *jsonObj = jsonParser.getRootObject();
-  if (!jsonObj->isDictionary()) {
-    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
-    return false;
-  }
-
-  JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(jsonObj);
-  if (!jsonDict) {
-    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
-    return false;
-  }
-  
-  std::string scriptMethod;
-  if (!jsonDict->get(SystemMethodRequest::NAME, &scriptMethod) || (scriptMethod.length() <= 0)) {
-    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
-    return false;
-  }
-
-  // Couldn't override 'set_method'
-  if (is_set_method(scriptMethod)) {
-    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
-    return false;
-  }
-
-  std::string scriptLang;
-  if (!jsonDict->get(SystemMethodRequest::LANGUAGE, &scriptLang) || (scriptLang.length() <= 0)) {
-    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
-    return false;
-  }
-
-  // This method is removed if the code parameter is null.
-  std::string scriptCode;
-  jsonDict->get(SystemMethodRequest::CODE, &scriptCode);
-  
-  // Encode
-  int encodeType = Script::ENCODING_NONE;
-  std::string encodeTypeStr;
-  if (jsonDict->get(SystemMethodRequest::ENCODE, &encodeTypeStr)) {
-    if (encodeTypeStr.compare(SystemMethodRequest::ENCODE_BASE64)) {
-      encodeType = Script::ENCODING_BASE64;
-    }
-  }
-  
-  return this->scriptMgr.setScript(scriptMethod, scriptLang, scriptCode, encodeType, err);
 }

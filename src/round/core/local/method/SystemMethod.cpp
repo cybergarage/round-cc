@@ -13,9 +13,7 @@
 
 #include <round/core/local/method/SystemMethod.h>
 
-const std::string Round::SystemMethod::PREFIX      = "_";
-const std::string Round::SystemMethod::ECHO        = "_echo";
-const std::string Round::SystemMethod::SET_METHOD  = "set_method";
+const std::string Round::SystemMethod::ECHO = "_echo";
 
 Round::SystemMethod::SystemMethod(const std::string &name) : Method(name) {
 }

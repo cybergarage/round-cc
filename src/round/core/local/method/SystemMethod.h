@@ -18,13 +18,8 @@
 namespace Round {
 
 class SystemMethod : public Method {
-    
 public:
-  
-  static const std::string PREFIX;
-  static const std::string SET_METHOD;
-  static const std::string ECHO;
-  
+  static const std::string ECHO;  
 public:
   SystemMethod(const std::string &name);
   ~SystemMethod();
@@ -34,13 +29,6 @@ public:
 };
 
 class SystemMethodRequest : public NodeRequest {
- public:
-  static const std::string LANGUAGE;
-  static const std::string NAME;
-  static const std::string CODE;
-  static const std::string ENCODE;
-  static const std::string ENCODE_BASE64;
-  
  public:
   SystemMethodRequest();
 };
@@ -76,6 +64,22 @@ class SystemEchoRequest : public SystemMethodRequest {
   }
 };
 
+// set_method
+  
+class set_method : public SystemMethod {
+ public:
+  static const std::string NAME;
+  static const std::string METHOD_LANGUAGE;
+  static const std::string METHOD_NAME;
+  static const std::string METHOD_CODE;
+  static const std::string METHOD_ENCODE;
+  static const std::string METHOD_ENCODE_BASE64;
+ public:
+  set_method();
+  ~set_method();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
+};
+  
 // get_node_info
 
 class get_node_info : public SystemMethod {

@@ -14,12 +14,6 @@
 #include <round/core/LocalNode.h>
 #include <round/core/local/method/SystemMethod.h>
 
-const std::string Round::SystemMethodRequest::LANGUAGE      = "language";
-const std::string Round::SystemMethodRequest::NAME          = "name";
-const std::string Round::SystemMethodRequest::CODE          = "code";
-const std::string Round::SystemMethodRequest::ENCODE        = "encode";
-const std::string Round::SystemMethodRequest::ENCODE_BASE64 = "base64";
-
 Round::SystemMethodRequest::SystemMethodRequest() {
   setVersion(RPC::JSON::VER);
 }

@@ -21,9 +21,5 @@ Round::LocalStaticMethodManager::~LocalStaticMethodManager() {
 }
 
 void Round::LocalStaticMethodManager::init() {
-  addMethod(new get_node_info());
-  addMethod(new get_cluster_info());
-  addMethod(new get_network_info());
-  addMethod(new set_key());
-  addMethod(new get_key());
+  addMethod(new set_method());
 }

@@ -179,6 +179,7 @@ class LocalNode : public Node, public NodeFinderObserver {
   bool getClusterName(std::string *name, Error *error);
   
   bool addMethod(Method *method);
+  bool setScript(const std::string &method, const std::string &lang, const std::string &script, int encodeType, Error *error);
   
   bool setKey(const std::string &key, const std::string &value);
   bool getKey(const std::string &key, std::string *value) const;
@@ -213,10 +214,10 @@ class LocalNode : public Node, public NodeFinderObserver {
     return false;
   }
 
-public:
-  
   bool getQuorumNodes(NodeList *nodes, size_t quorum);
   bool getAllOtherNodes(NodeList *nodes);
+
+  bool isStaticMethod(const std::string &method);
 
 protected:
 
@@ -235,13 +236,12 @@ private:
   bool execMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
   bool setError(int rpcErrorCode, Error *err);
   
-  bool is_set_method(const std::string &method);
-  bool set_method(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  bool execStaticMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
   
-  bool hasDynamicMethod(const std::string &method);
+  bool isDynamicMethod(const std::string &method);
   bool execDynamicMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
   
-  bool hasNativeMethod(const std::string &method);
+  bool isNativeMethod(const std::string &method);
   bool execNativeMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
 
 private:
