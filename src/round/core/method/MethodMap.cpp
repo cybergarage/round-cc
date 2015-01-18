@@ -27,7 +27,7 @@ bool Round::MethodMap::addMethod(Method *method) {
   
   const std::string methodName = method->getName();
   
-  MethodMap::const_iterator methodId = find(methodName);
+  MethodMap::iterator methodId = find(methodName);
   if (methodId != end()) {
     erase(methodId);
   }
