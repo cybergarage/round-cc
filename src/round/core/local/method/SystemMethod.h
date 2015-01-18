@@ -101,6 +101,17 @@ public:
   ~set_timer();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
+
+// set_alias
+  
+class set_alias : public SystemMethod {
+ public:
+  static const std::string NAME;
+ public:
+  set_alias();
+  ~set_alias();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
+};
   
 // get_node_info
 

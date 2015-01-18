@@ -46,6 +46,7 @@
 		21D03AD41A63C4A60098122A /* Route.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D03AD31A63C4A60098122A /* Route.h */; };
 		21D8CA741A6B70FC002CBDC3 /* set_route.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D8CA721A6B70FC002CBDC3 /* set_route.cpp */; };
 		21D8CA751A6B70FC002CBDC3 /* set_timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D8CA731A6B70FC002CBDC3 /* set_timer.cpp */; };
+		21D8CA771A6B7284002CBDC3 /* set_alias.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D8CA761A6B7284002CBDC3 /* set_alias.cpp */; };
 		21D8E1AB1A60E19300E8A63F /* Client.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D8E1711A60E19300E8A63F /* Client.h */; };
 		21D8E1AC1A60E19300E8A63F /* BitOption.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D8E1731A60E19300E8A63F /* BitOption.h */; };
 		21D8E1AD1A60E19300E8A63F /* Clock.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D8E1741A60E19300E8A63F /* Clock.h */; };
@@ -237,6 +238,7 @@
 		21D03AD31A63C4A60098122A /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
 		21D8CA721A6B70FC002CBDC3 /* set_route.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = set_route.cpp; sourceTree = "<group>"; };
 		21D8CA731A6B70FC002CBDC3 /* set_timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = set_timer.cpp; sourceTree = "<group>"; };
+		21D8CA761A6B7284002CBDC3 /* set_alias.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = set_alias.cpp; sourceTree = "<group>"; };
 		21D8E1711A60E19300E8A63F /* Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
 		21D8E1731A60E19300E8A63F /* BitOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitOption.h; sourceTree = "<group>"; };
 		21D8E1741A60E19300E8A63F /* Clock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clock.h; sourceTree = "<group>"; };
@@ -458,6 +460,7 @@
 				21B911A31A6B5F4300C791FD /* Method.cpp */,
 				21B911A41A6B5F4300C791FD /* MethodManager.cpp */,
 				21B911A51A6B5F4300C791FD /* MethodMap.cpp */,
+				21D8CA761A6B7284002CBDC3 /* set_alias.cpp */,
 				21B911A61A6B5F4300C791FD /* set_key.cpp */,
 				21B911BB1A6B61CC00C791FD /* set_method.cpp */,
 				21D8CA721A6B70FC002CBDC3 /* set_route.cpp */,
@@ -992,6 +995,7 @@
 				21B911BA1A6B5F4300C791FD /* SystemNodeInfoDict.cpp in Sources */,
 				21B911B31A6B5F4300C791FD /* MethodMap.cpp in Sources */,
 				21D8E2C31A60E1E200E8A63F /* JSONParserParse.cpp in Sources */,
+				21D8CA771A6B7284002CBDC3 /* set_alias.cpp in Sources */,
 				21526C8C1A6682F900CF3D12 /* RPCRequest.cpp in Sources */,
 				21F4CE691A63F0BA00E7F0CC /* RouteList.cpp in Sources */,
 				21D8E3011A60E1E200E8A63F /* JavaScriptEngine.cpp in Sources */,
