@@ -137,7 +137,7 @@ private:
   bool setError(int rpcErrorCode, Error *err);
   
   bool is_set_method(const std::string &method);
-  bool _set_method(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  bool set_method(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
   
   bool hasDynamicMethod(const std::string &method);
   bool execDynamicMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);

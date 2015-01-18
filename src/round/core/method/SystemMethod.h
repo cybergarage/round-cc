@@ -76,14 +76,14 @@ class SystemEchoRequest : public SystemMethodRequest {
   }
 };
 
-// _get_node_info
+// get_node_info
 
-class _get_node_info : public SystemMethod {
+class get_node_info : public SystemMethod {
 public:
   static const std::string NAME;
 public:
-  _get_node_info();
-  ~_get_node_info();
+  get_node_info();
+  ~get_node_info();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
@@ -143,7 +143,7 @@ private:
 class SystemGetNodeInfoRequest : public SystemMethodRequest {
  public:
   SystemGetNodeInfoRequest() {
-    setMethod(_get_node_info::NAME);
+    setMethod(get_node_info::NAME);
   }
 };
 
@@ -198,14 +198,14 @@ private:
   mutable SystemNodeInfoDict nodeInfoDict;
 };
 
-// _get_cluster_info
+// get_cluster_info
 
-class _get_cluster_info : public SystemMethod {
+class get_cluster_info : public SystemMethod {
 public:
   static const std::string NAME;
 public:
-  _get_cluster_info();
-  ~_get_cluster_info();
+  get_cluster_info();
+  ~get_cluster_info();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
@@ -235,7 +235,7 @@ class SystemClusterInfoDict {
 class SystemGetClusterInfoRequest : public SystemMethodRequest {
 public:
   SystemGetClusterInfoRequest() {
-    setMethod(_get_cluster_info::NAME);
+    setMethod(get_cluster_info::NAME);
   }
 };
   
@@ -262,72 +262,72 @@ class SystemGetNetworkInfoResponse : public SystemMethodResponse {
   JSONArray *getResultClusterArray();
 };
 
-// _get_network_info
+// get_network_info
 
-class _get_network_info : public SystemMethod {
+class get_network_info : public SystemMethod {
 public:
   static const std::string NAME;
 public:
-  _get_network_info();
-  ~_get_network_info();
+  get_network_info();
+  ~get_network_info();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
 class SystemGetNetworkInfoRequest : public SystemMethodRequest {
  public:
   SystemGetNetworkInfoRequest() {
-    setMethod(_get_network_info::NAME);
+    setMethod(get_network_info::NAME);
   }
 };
   
-// _set_key
+// set_key
 
-class _set_key : public SystemMethod {
+class set_key : public SystemMethod {
  public:
   static const std::string NAME;
   static const std::string KEY;
   static const std::string VALUE;
  public:
-  _set_key();
-  ~_set_key();
+  set_key();
+  ~set_key();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
 class SystemSetKeyRequest : public SystemMethodRequest {
  public:
   SystemSetKeyRequest() {
-    setMethod(_set_key::NAME);
+    setMethod(set_key::NAME);
   }
   
   void setKey(const std::string &value) {
-    set(_set_key::KEY, value);
+    set(set_key::KEY, value);
   }
 
   void setValue(const std::string &value) {
-    set(_set_key::VALUE, value);
+    set(set_key::VALUE, value);
   }
 };
 
-// _get_key
+// get_key
 
-class _get_key : public SystemMethod {
+class get_key : public SystemMethod {
 public:
   static const std::string NAME;
   static const std::string KEY;
 public:
-  _get_key();
-  ~_get_key();
+  get_key();
+  ~get_key();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
 class SystemGetKeyRequest : public SystemMethodRequest {
 public:
   SystemGetKeyRequest() {
-    setMethod(_get_key::NAME);
+    setMethod(get_key::NAME);
   }
 
   void setKey(const std::string &value) {
-    set(_get_key::KEY, value);
+    set(get_key::KEY, value);
   }
 };
   

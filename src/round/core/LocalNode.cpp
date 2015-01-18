@@ -423,7 +423,7 @@ bool Round::LocalNode::execMethod(const NodeRequest *nodeReq, NodeResponse *node
   }
   
   if (is_set_method(name)) {
-    if (!_set_method(nodeReq, nodeRes, error)) {
+    if (!set_method(nodeReq, nodeRes, error)) {
       setError(RPC::JSON::ErrorCodeInvalidParams, error);
       return false;
     }
@@ -444,14 +444,14 @@ bool Round::LocalNode::execMethod(const NodeRequest *nodeReq, NodeResponse *node
 }
 
 ////////////////////////////////////////////////
-// _set_method
+// set_method
 ////////////////////////////////////////////////
 
 bool Round::LocalNode::is_set_method(const std::string &method) {
   return (SystemMethod::SET_METHOD.compare(method) == 0) ? true : false;
 }
 
-bool Round::LocalNode::_set_method(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *err) {
+bool Round::LocalNode::set_method(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *err) {
   std::string params;
   nodeReq->getParams(&params);
   
@@ -479,7 +479,7 @@ bool Round::LocalNode::_set_method(const NodeRequest *nodeReq, NodeResponse *nod
     return false;
   }
 
-  // Couldn't override '_set_method'
+  // Couldn't override 'set_method'
   if (is_set_method(scriptMethod)) {
     RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
     return false;

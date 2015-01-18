@@ -13,15 +13,15 @@
 
 #include <round/core/method/SystemMethod.h>
 
-const std::string Round::_get_node_info::NAME = "_get_node_info";
+const std::string Round::get_node_info::NAME = "get_node_info";
 
-Round::_get_node_info::_get_node_info() : SystemMethod(NAME) {
+Round::get_node_info::get_node_info() : SystemMethod(NAME) {
 }
 
-Round::_get_node_info::~_get_node_info() {
+Round::get_node_info::~get_node_info() {
 }
 
-bool Round::_get_node_info::exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const {
+bool Round::get_node_info::exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const {
   SystemGetNodeInfoResponse sysRes(nodeRes);
   return sysRes.setNode(node);
 }

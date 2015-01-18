@@ -31,7 +31,7 @@ void NodeTestController::runScriptManagerTest(Node *node) {
   Error error;
   clock_t prevClock, postClock;
   
-  // Post Node Message (Overide '_set_method' method)
+  // Post Node Message (Overide 'set_method' method)
   
   BOOST_CHECK(reqParser.parse(Test::RPC_SET_SETMETHOD, &error));
   BOOST_CHECK(reqParser.getRootObject()->isDictionary());
@@ -267,16 +267,16 @@ void NodeTestController::runSystemMethodTest(Round::Node *node) {
   // _echo()
   runSystemEchoTest(node);
   
-  // _get_node_info()
+  // get_node_info()
   runSystemGetNodeInfoTest(node);
   
-  // _get_cluster_info()
+  // get_cluster_info()
   runSystemGetClusterInfoTest(node);
 
-  // _get_network_info()
+  // get_network_info()
   runSystemGetNetworkInfoTest(node);
 
-  // _set_key() and _get_key()
+  // set_key() and get_key()
   runSystemKeyMethodsTest(node);
 }
 

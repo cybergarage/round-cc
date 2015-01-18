@@ -23,7 +23,7 @@ BOOST_AUTO_TEST_SUITE(json)
 ////////////////////////////////////////////////////////////
 
 BOOST_AUTO_TEST_CASE(JSONParseRpcBasicMessageTest01) {
-  const char *testString = "{\"id\":\"1\",\"jsonrpc\":\"2.0\",\"method\":\"_set_method\",\"params\":{\"code\":\"function echo(params) {return params;}\",\"language\":\"js\",\"name\":\"echo\"}}";
+  const char *testString = "{\"id\":\"1\",\"jsonrpc\":\"2.0\",\"method\":\"set_method\",\"params\":{\"code\":\"function echo(params) {return params;}\",\"language\":\"js\",\"name\":\"echo\"}}";
   
   Error error;
   JSONParser jsonParser;
@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE(JSONParseRpcBasicMessageTest01) {
   BOOST_CHECK_EQUAL(jsonStr.compare("2.0"), 0);
   
   BOOST_CHECK(jsonDict->get("method", &jsonStr));
-  BOOST_CHECK_EQUAL(jsonStr.compare("_set_method"), 0);
+  BOOST_CHECK_EQUAL(jsonStr.compare("set_method"), 0);
   
   BOOST_CHECK(jsonDict->get("params", &jsonObj));
 }
