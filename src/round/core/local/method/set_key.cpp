@@ -11,7 +11,7 @@
 #include <string.h>
 #include <sstream>
 
-#include <round/core/method/SystemMethod.h>
+#include <round/core/local/method/SystemMethod.h>
 
 const std::string Round::set_key::NAME   = "set_key";
 const std::string Round::set_key::KEY    = "key";

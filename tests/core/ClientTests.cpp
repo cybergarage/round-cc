@@ -24,7 +24,7 @@ BOOST_AUTO_TEST_CASE(RoundClientFindSeverTest) {
   Error error;
   
   TestServer server;
-  LocalNodeConfig *serverConfig = server.getNodeConfig();
+  LocalConfig *serverConfig = server.getNodeConfig();
   BOOST_CHECK(serverConfig);
   BOOST_CHECK(serverConfig->setCluster(FRACTAL_CLIENT_TEST_CLUSTER_NAME));
   BOOST_CHECK(server.start(&error));

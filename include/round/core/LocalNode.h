@@ -15,7 +15,7 @@
 #include <round/core/Node.h>
 #include <round/core/NodeGraph.h>
 #include <round/core/NodeFinder.h>
-#include <round/core/LocalNodeConfig.h>
+#include <round/core/NodeConfig.h>
 #include <round/core/Script.h>
 #include <round/core/Method.h>
 
@@ -23,10 +23,10 @@ namespace Round {
 
 class LocalNode;
 
-class LocalNodeWorkder : public Thread<LocalNode> {
+class LocalWorkder : public Thread<LocalNode> {
  public:
-  LocalNodeWorkder();
-  ~LocalNodeWorkder();
+  LocalWorkder();
+  ~LocalWorkder();
 
   void run();
   
@@ -34,23 +34,32 @@ class LocalNodeWorkder : public Thread<LocalNode> {
   void post(uHTTP::HTTPRequest *httpReq, const NodeResponse *nodeRes);
 };
 
-class LocalNodeScriptManager : public ScriptManager {
+class LocalScriptManager : public ScriptManager {
  public:
   static const std::string SYSTEM_ECHO_METHOD_CODE;
   static const std::string SYSTEM_ECHO_METHOD_LANGUAGE;
   
  public:
-  LocalNodeScriptManager();
-  ~LocalNodeScriptManager();
+  LocalScriptManager();
+  ~LocalScriptManager();
 
  private:
   void init();
 };
 
-class LocalNodeStaticMethodManager : public MethodManager {
+class LocalStaticMethodManager : public MethodManager {
+public:
+  LocalStaticMethodManager();
+  ~LocalStaticMethodManager();
+    
+private:
+  void init();
+};
+  
+class LocalNativeMethodManager : public MethodManager {
   public:
-    LocalNodeStaticMethodManager();
-    ~LocalNodeStaticMethodManager();
+    LocalNativeMethodManager();
+    ~LocalNativeMethodManager();
     
   private:
     void init();
@@ -65,6 +74,96 @@ public:
   
   bool setKey(const std::string &key, const std::string &value);
   bool getKey(const std::string &key, std::string *value) const;
+};
+
+class LocalConfig : public NodeConfig {
+ public:
+  static const std::string DEFAULT_FILENAME;
+  static const std::string AUTO;
+  static const int DEFAULT_HTTPD_PORT;
+
+  enum Sections {
+    General = 0,
+    Httpd,
+    Log,
+    SectionCount,
+  };
+
+  enum GeneralSectionKeys {
+    Cluster = 0,
+    DatabaseDir,
+    GeneralKeyCount,
+  };
+
+  enum HttpdSectionKeys {
+    HttpdBindAddress = 0,
+    HttpdBindPort,
+    HttpdKeyCount,
+  };
+
+  enum LogSectionKeys {
+    LogFile = 0,
+    ErrorLogFile,
+    LogLevel,
+    LogKeyCount,
+  };
+
+ public:
+  LocalConfig();
+  ~LocalConfig();
+
+  bool isValid(Error *error);
+
+  size_t getSectionCount() const;
+  size_t getSectionKeyCount(size_t section) const;
+  
+  const char *getSectionKeyString(size_t section, size_t n) const;
+  const char *getSectionString(size_t n) const;
+
+ public:
+  bool getHttpdBindAddress(std::string *value, Error *error) const;
+  bool getHttpdBindPort(int *value, Error *error) const;
+
+  bool getCluster(std::string *value, Error *error) const {
+    return getValue(General, Cluster, value, error);
+  }
+  
+  bool getDatabaseDirectory(std::string *value, Error *error) const {
+    return getValue(General, DatabaseDir, value, error);
+  }
+
+  bool getLogFilename(std::string *value, Error *error) const {
+    return getValue(Log, LogFile, value, error);
+  }
+
+  bool getErrorLogFilename(std::string *value, Error *error) const {
+    return getValue(Log, ErrorLogFile, value, error);
+  }
+
+  bool setHttpdBindAddress(const std::string &value) {
+    return setValue(Httpd, HttpdBindAddress, value);
+  }
+  
+  bool setHttpdBindPort(int port) {
+    return setValue(Httpd, HttpdBindPort, port);
+  }
+  
+  bool setCluster(const std::string &value) {
+    return setValue(General, Cluster, value);
+  }
+  
+  bool setDatabaseDirectory(const std::string &value) {
+    return setValue(General, DatabaseDir, value);
+  }
+
+  bool setLogFilename(const std::string &value) {
+    return setValue(Log, LogFile, value);
+  }
+  
+  bool setErrorLogFilename(const std::string &value) {
+    return setValue(Log, ErrorLogFile, value);
+  }
+  
 };
   
 /**
@@ -102,7 +201,7 @@ class LocalNode : public Node, public NodeFinderObserver {
   
   bool restart(Error *error);
   
-  LocalNodeConfig *getNodeConfig() {
+  LocalConfig *getNodeConfig() {
     return &this->nodeConfig;
   }
 
@@ -150,13 +249,14 @@ private:
   NodeGraph               nodeGraph;
   NodeStatus              nodeStatus;
   
-  NodeMessageManager            nodeMsgMgr;
+  NodeMessageManager        nodeMsgMgr;
   
-  LocalNodeConfig               nodeConfig;
-  LocalNodeWorkder              nodeWorker;
-  LocalNodeScriptManager        scriptMgr;
-  LocalNodeStaticMethodManager  sysMethodMgr;
-  LocalMemory                   memory;
+  LocalConfig               nodeConfig;
+  LocalWorkder              nodeWorker;
+  LocalScriptManager        scriptMgr;
+  LocalStaticMethodManager  staticMethodMgr;
+  LocalNativeMethodManager  sysMethodMgr;
+  LocalMemory               memory;
 };
 
 }

@@ -11,7 +11,7 @@
 #include <string.h>
 #include <sstream>
 
-#include <round/core/method/SystemMethod.h>
+#include <round/core/local/method/SystemMethod.h>
 
 bool Round::SystemNodeInfoDict::setNode(Node *node) {
   Error error;

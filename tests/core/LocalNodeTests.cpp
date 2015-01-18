@@ -38,7 +38,7 @@ BOOST_AUTO_TEST_CASE(LocalNodeEqualTest) {
 }
 
 BOOST_AUTO_TEST_CASE(LocalNodConfigGraphTest) {
-  LocalNodeConfig nodeConfig;
+  LocalConfig nodeConfig;
   Error error;
   std::string retStringValue;
   int retIntValue;
@@ -103,7 +103,7 @@ BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(rpc)
 
-BOOST_AUTO_TEST_CASE(LocalNodeScriptManagerTest) {
+BOOST_AUTO_TEST_CASE(LocalScriptManagerTest) {
   TestLocalNode node;
   NodeTestController nodeTestController;
   nodeTestController.runScriptManagerTest(&node);

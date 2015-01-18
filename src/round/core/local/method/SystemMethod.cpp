@@ -11,7 +11,7 @@
 #include <string.h>
 #include <sstream>
 
-#include <round/core/method/SystemMethod.h>
+#include <round/core/local/method/SystemMethod.h>
 
 const std::string Round::SystemMethod::PREFIX      = "_";
 const std::string Round::SystemMethod::ECHO        = "_echo";

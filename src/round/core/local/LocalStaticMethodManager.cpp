@@ -11,16 +11,16 @@
 #include <round/core/LocalNode.h>
 #include <round/common/platform.h>
 
-#include <round/core/method/SystemMethod.h>
+#include <round/core/local/method/SystemMethod.h>
 
-Round::LocalNodeStaticMethodManager::LocalNodeStaticMethodManager() {
+Round::LocalStaticMethodManager::LocalStaticMethodManager() {
   init();
 }
 
-Round::LocalNodeStaticMethodManager::~LocalNodeStaticMethodManager() {
+Round::LocalStaticMethodManager::~LocalStaticMethodManager() {
 }
 
-void Round::LocalNodeStaticMethodManager::init() {
+void Round::LocalStaticMethodManager::init() {
   addMethod(new get_node_info());
   addMethod(new get_cluster_info());
   addMethod(new get_network_info());

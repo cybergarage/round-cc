@@ -12,7 +12,7 @@
 #include <sstream>
 
 #include <round/core/LocalNode.h>
-#include <round/core/method/SystemMethod.h>
+#include <round/core/local/method/SystemMethod.h>
 
 const std::string Round::SystemMethodRequest::LANGUAGE      = "language";
 const std::string Round::SystemMethodRequest::NAME          = "name";

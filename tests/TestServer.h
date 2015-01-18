@@ -38,7 +38,7 @@ class TestServer : public Round::Server {
     BOOST_CHECK(loadConfigFromString(FRACTAL_TEST_SERVER_CONFIG, &err));
     BOOST_CHECK(isConfigValid(&err));
     
-    Round::LocalNodeConfig *nodeConfig = getNodeConfig();
+    Round::LocalConfig *nodeConfig = getNodeConfig();
     Round::Random httpPortRand(10000, 20000);
     nodeConfig->setHttpdBindPort(httpPortRand.rand());
     

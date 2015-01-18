@@ -10,14 +10,14 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <round/core/LocalNodeConfig.h>
+#include <round/core/LocalNode.h>
 
 using namespace std;
 using namespace Round;
 
 BOOST_AUTO_TEST_SUITE(node)
 
-class TestNodeConfig : public LocalNodeConfig {
+class TestNodeConfig : public LocalConfig {
  public:
   TestNodeConfig() {
   }

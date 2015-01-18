@@ -11,7 +11,7 @@
 #include <round/Server.h>
 #include <round/core/HTTP.h>
 
-int Round::Server::DEFAULT_HTTPD_PORT = Round::LocalNodeConfig::DEFAULT_HTTPD_PORT;
+int Round::Server::DEFAULT_HTTPD_PORT = Round::LocalConfig::DEFAULT_HTTPD_PORT;
 Round::Logger Round::Server::logger;
 
 Round::Server::Server() {
