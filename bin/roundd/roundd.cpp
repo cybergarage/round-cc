@@ -2,7 +2,7 @@
  *
  * Round for C++
  *
- * Copyright (C) Satoshi Konno 2012
+ * Copyright (C) Satoshi Konno 2015
  *
  * This is licensed under BSD-style license, see file COPYING.
  *
@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
   bool deamonMode = true;
   bool verboseMode = false;
   bool hasPortParameter = false;
-int httpdPort = 0;//Round::Server::DEFAULT_HTTPD_PORT;
+  int httpdPort = 0;//Round::Server::DEFAULT_HTTPD_PORT;
 
   int ch;
   while ((ch = getopt(argc, argv, "fhvp:c:")) != -1) {

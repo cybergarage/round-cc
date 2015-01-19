@@ -97,6 +97,12 @@ int main(int argc, char *argv[])
 
   std::string firstArg = argv[0];
   
+  // Start Client
+  
+  if (!client.start(&error)) {
+    exit(EXIT_FAILURE);
+  }
+  
   // Execute command
   
   if (!client.isShellCommand(firstArg)) {
