@@ -24,33 +24,10 @@
 static const std::string ROUND_CERR_PREFIX = "Error : ";
 static const std::string ROUND_UNKNOWN_COMMAND_MSG = "Unrecognized command ";
 
-namespace Roundd {
-  typedef std::map<std::string,std::string> Commands;
-  typedef std::map<std::string,std::string> Options;
-}
-
 static Round::Console::Client *gConsoleClient;
 
 const char *prompt(EditLine *e) {
   return gConsoleClient->getPromptName();
-}
-
-void usage() {
-  std::cout << "Usage: " << gConsoleClient->getProgramName() << " [-options] <command>" << std::endl;
-  
-  Roundd::Commands commands;
-  for (Roundd::Commands::iterator cmd=commands.begin(); cmd != commands.end(); cmd++) {
-    std::string optionParam = cmd->first;
-    std::string optionDesc = cmd->second;
-    std::cout << "\t-" << optionParam << "\t\t" << optionDesc << std::endl;
-  }
-  
-  Roundd::Options options;
-  for (Roundd::Options::iterator option=options.begin(); option != options.end(); option++) {
-    std::string optionParam = option->first;
-    std::string optionDesc = option->second;
-    std::cout << "\t-" << optionParam << "\t\t" << optionDesc << std::endl;
-  }
 }
 
 bool exec_console_command(Round::Console::Client &client, const Round::Console::Input &input) {
@@ -79,12 +56,6 @@ int main(int argc, char *argv[])
   gConsoleClient = &client;
   client.setProgramNameFromArgument(argv[0]);
 
-  // Boot Message
-  
-  std::string bootMessage;
-  client.getBootMessage(bootMessage);
-  std::cout << bootMessage << std::endl;
-
   // Parse command line options
   
   std::string nodeHost;
@@ -106,7 +77,7 @@ int main(int argc, char *argv[])
       case '?':
       default:
         {
-          usage();
+          client.usage();
           exit(EXIT_SUCCESS);
         }
     }
@@ -117,7 +88,7 @@ int main(int argc, char *argv[])
   // Check command
   
   if (argc <= 0) {
-    usage();
+    client.usage();
     exit(EXIT_FAILURE);
   }
 
@@ -137,6 +108,12 @@ int main(int argc, char *argv[])
     
     exit(EXIT_FAILURE);
   }
+  
+  // Boot Message
+  
+  std::string bootMessage;
+  client.getBootMessage(bootMessage);
+  std::cout << bootMessage << std::endl;
   
   // Initialize the EditLine
   

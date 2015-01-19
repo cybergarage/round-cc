@@ -15,6 +15,7 @@
 		21526C8B1A6682F900CF3D12 /* RPCMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21526C861A6682F900CF3D12 /* RPCMessage.cpp */; };
 		21526C8C1A6682F900CF3D12 /* RPCRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21526C871A6682F900CF3D12 /* RPCRequest.cpp */; };
 		21526C8D1A6682F900CF3D12 /* RPCResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21526C881A6682F900CF3D12 /* RPCResponse.cpp */; };
+		217342FD1A6CB3C000ADA1C8 /* question.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217342FC1A6CB3C000ADA1C8 /* question.cpp */; };
 		219EA4371A6BB0BD00F3D89B /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 219EA4361A6BB0BD00F3D89B /* Input.cpp */; };
 		21A7F60B1A69D10700FAC15B /* RQL.h in Headers */ = {isa = PBXBuildFile; fileRef = 21A7F60A1A69D10700FAC15B /* RQL.h */; };
 		21AAFCBF1A68C8E6008DEF0E /* Console.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AAFCBE1A68C8E6008DEF0E /* Console.h */; };
@@ -46,6 +47,14 @@
 		21B911BA1A6B5F4300C791FD /* SystemNodeInfoDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911AC1A6B5F4300C791FD /* SystemNodeInfoDict.cpp */; };
 		21B911BC1A6B61CC00C791FD /* set_method.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911BB1A6B61CC00C791FD /* set_method.cpp */; };
 		21D03AD41A63C4A60098122A /* Route.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D03AD31A63C4A60098122A /* Route.h */; };
+		21D7A5961A6BDE7C00D43061 /* help.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7A5931A6BDE7C00D43061 /* help.cpp */; };
+		21D7A5971A6BDE7C00D43061 /* search.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7A5941A6BDE7C00D43061 /* search.cpp */; };
+		21D7A5991A6BE1E400D43061 /* shell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7A5981A6BE1E400D43061 /* shell.cpp */; };
+		21D7A59B1A6BE47F00D43061 /* Options.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7A59A1A6BE47F00D43061 /* Options.cpp */; };
+		21D7A59F1A6BF1E100D43061 /* version.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7A59E1A6BF1E100D43061 /* version.cpp */; };
+		21D7A5A11A6BF1E900D43061 /* update.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7A5A01A6BF1E900D43061 /* update.cpp */; };
+		21D7A5A41A6BF4A500D43061 /* exit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7A5A21A6BF4A500D43061 /* exit.cpp */; };
+		21D7A5A51A6BF4A500D43061 /* quit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7A5A31A6BF4A500D43061 /* quit.cpp */; };
 		21D8CA741A6B70FC002CBDC3 /* set_route.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D8CA721A6B70FC002CBDC3 /* set_route.cpp */; };
 		21D8CA751A6B70FC002CBDC3 /* set_timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D8CA731A6B70FC002CBDC3 /* set_timer.cpp */; };
 		21D8CA771A6B7284002CBDC3 /* set_alias.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D8CA761A6B7284002CBDC3 /* set_alias.cpp */; };
@@ -209,6 +218,7 @@
 		21526C861A6682F900CF3D12 /* RPCMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCMessage.cpp; sourceTree = "<group>"; };
 		21526C871A6682F900CF3D12 /* RPCRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCRequest.cpp; sourceTree = "<group>"; };
 		21526C881A6682F900CF3D12 /* RPCResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCResponse.cpp; sourceTree = "<group>"; };
+		217342FC1A6CB3C000ADA1C8 /* question.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = question.cpp; sourceTree = "<group>"; };
 		219EA4361A6BB0BD00F3D89B /* Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Input.cpp; sourceTree = "<group>"; };
 		21A7F60A1A69D10700FAC15B /* RQL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RQL.h; sourceTree = "<group>"; };
 		21A9FFAA154014F300BDFCDC /* liblibround++.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "liblibround++.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -241,6 +251,14 @@
 		21B911AC1A6B5F4300C791FD /* SystemNodeInfoDict.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemNodeInfoDict.cpp; sourceTree = "<group>"; };
 		21B911BB1A6B61CC00C791FD /* set_method.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = set_method.cpp; sourceTree = "<group>"; };
 		21D03AD31A63C4A60098122A /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
+		21D7A5931A6BDE7C00D43061 /* help.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = help.cpp; sourceTree = "<group>"; };
+		21D7A5941A6BDE7C00D43061 /* search.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = search.cpp; sourceTree = "<group>"; };
+		21D7A5981A6BE1E400D43061 /* shell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shell.cpp; sourceTree = "<group>"; };
+		21D7A59A1A6BE47F00D43061 /* Options.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Options.cpp; sourceTree = "<group>"; };
+		21D7A59E1A6BF1E100D43061 /* version.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = version.cpp; sourceTree = "<group>"; };
+		21D7A5A01A6BF1E900D43061 /* update.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = update.cpp; sourceTree = "<group>"; };
+		21D7A5A21A6BF4A500D43061 /* exit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exit.cpp; sourceTree = "<group>"; };
+		21D7A5A31A6BF4A500D43061 /* quit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = quit.cpp; sourceTree = "<group>"; };
 		21D8CA721A6B70FC002CBDC3 /* set_route.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = set_route.cpp; sourceTree = "<group>"; };
 		21D8CA731A6B70FC002CBDC3 /* set_timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = set_timer.cpp; sourceTree = "<group>"; };
 		21D8CA761A6B7284002CBDC3 /* set_alias.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = set_alias.cpp; sourceTree = "<group>"; };
@@ -459,6 +477,7 @@
 				21B329441A6B939D0077C313 /* Command.h */,
 				21B3293A1A6B82CA0077C313 /* Commands.cpp */,
 				219EA4361A6BB0BD00F3D89B /* Input.cpp */,
+				21D7A59A1A6BE47F00D43061 /* Options.cpp */,
 			);
 			path = console;
 			sourceTree = "<group>";
@@ -466,7 +485,15 @@
 		21B329421A6B939D0077C313 /* cmd */ = {
 			isa = PBXGroup;
 			children = (
+				217342FC1A6CB3C000ADA1C8 /* question.cpp */,
+				21D7A5A21A6BF4A500D43061 /* exit.cpp */,
+				21D7A5931A6BDE7C00D43061 /* help.cpp */,
 				21B329471A6B94720077C313 /* list.cpp */,
+				21D7A5A31A6BF4A500D43061 /* quit.cpp */,
+				21D7A5941A6BDE7C00D43061 /* search.cpp */,
+				21D7A5981A6BE1E400D43061 /* shell.cpp */,
+				21D7A5A01A6BF1E900D43061 /* update.cpp */,
+				21D7A59E1A6BF1E100D43061 /* version.cpp */,
 			);
 			path = cmd;
 			sourceTree = "<group>";
@@ -960,6 +987,7 @@
 				21D8E2C41A60E1E200E8A63F /* JSONArray.cpp in Sources */,
 				21D8E2EF1A60E1E200E8A63F /* NodeFinderObserver.cpp in Sources */,
 				21B3293D1A6B82CA0077C313 /* Client.cpp in Sources */,
+				21D7A59F1A6BF1E100D43061 /* version.cpp in Sources */,
 				21D8E2D01A60E1E200E8A63F /* Mutex.cpp in Sources */,
 				21D8E2CE1A60E1E200E8A63F /* MessageManager.cpp in Sources */,
 				21B911B21A6B5F4300C791FD /* MethodManager.cpp in Sources */,
@@ -970,8 +998,11 @@
 				21B911B11A6B5F4300C791FD /* Method.cpp in Sources */,
 				21B911B01A6B5F4300C791FD /* get_node_info.cpp in Sources */,
 				21E1EB161A64FE2800FEABF6 /* NodeRequest.cpp in Sources */,
+				21D7A5991A6BE1E400D43061 /* shell.cpp in Sources */,
 				21B854041A60E470009E6ECB /* TclEngine.cpp in Sources */,
+				217342FD1A6CB3C000ADA1C8 /* question.cpp in Sources */,
 				21526C8B1A6682F900CF3D12 /* RPCMessage.cpp in Sources */,
+				21D7A5971A6BDE7C00D43061 /* search.cpp in Sources */,
 				21B911B51A6B5F4300C791FD /* SystemClusterInfoDict.cpp in Sources */,
 				21D8E2B01A60E1E200E8A63F /* BitOption.cpp in Sources */,
 				21F4CE6C1A63F0BA00E7F0CC /* ScriptEngine.cpp in Sources */,
@@ -979,6 +1010,7 @@
 				21D8E2E31A60E1E200E8A63F /* UPnPNodeFinder.cpp in Sources */,
 				21D8E2D31A60E1E200E8A63F /* Properties.cpp in Sources */,
 				21D8E2EA1A60E1E200E8A63F /* Node.cpp in Sources */,
+				21D7A5A51A6BF4A500D43061 /* quit.cpp in Sources */,
 				21D8E2E41A60E1E200E8A63F /* UPnPServerNode.cpp in Sources */,
 				21B911B91A6B5F4300C791FD /* SystemMethodResponse.cpp in Sources */,
 				21F4CE6F1A63F0BA00E7F0CC /* ScriptMap.cpp in Sources */,
@@ -999,7 +1031,9 @@
 				21D8CA751A6B70FC002CBDC3 /* set_timer.cpp in Sources */,
 				21F4CE6A1A63F0BA00E7F0CC /* RouteManager.cpp in Sources */,
 				21D8E2DE1A60E1E200E8A63F /* ThreadManager.cpp in Sources */,
+				21D7A5961A6BDE7C00D43061 /* help.cpp in Sources */,
 				21D8E2E51A60E1E200E8A63F /* LocalNode.cpp in Sources */,
+				21D7A59B1A6BE47F00D43061 /* Options.cpp in Sources */,
 				21E1EB151A64FE2800FEABF6 /* NodeBatchRequest.cpp in Sources */,
 				21B911B81A6B5F4300C791FD /* SystemMethodRequest.cpp in Sources */,
 				21D8E2C71A60E1E200E8A63F /* JSONInterger.cpp in Sources */,
@@ -1030,6 +1064,7 @@
 				21D8E2DA1A60E1E200E8A63F /* Settings.cpp in Sources */,
 				21D8E2E21A60E1E200E8A63F /* HTTPUServer.cpp in Sources */,
 				21D8E2C81A60E1E200E8A63F /* JSONNull.cpp in Sources */,
+				21D7A5A41A6BF4A500D43061 /* exit.cpp in Sources */,
 				21B911981A6B5E5400C791FD /* LocalConfig.cpp in Sources */,
 				21D8E2C61A60E1E200E8A63F /* JSONDictionary.cpp in Sources */,
 				21B911AE1A6B5F4300C791FD /* get_key.cpp in Sources */,
@@ -1065,6 +1100,7 @@
 				21D8E2CC1A60E1E200E8A63F /* JSONString.cpp in Sources */,
 				21D8E2ED1A60E1E200E8A63F /* NodeFinder.cpp in Sources */,
 				21D8E2B41A60E1E200E8A63F /* ConsistentHashNode.cpp in Sources */,
+				21D7A5A11A6BF1E900D43061 /* update.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

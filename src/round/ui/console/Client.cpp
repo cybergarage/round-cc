@@ -14,6 +14,7 @@
 
 #include <round/Round.h>
 #include <round/ui/Console.h>
+#include <round/ui/console/Command.h>
 
 Round::Console::Client::Client() {
   init();
@@ -94,4 +95,11 @@ bool Round::Console::Client::isShellCommand(const Input &input) {
 
 bool Round::Console::Client::execConsoleCommand(const Input &input, Message *msg, Error *err) {
   return this->commands.execCommand(this, &input, msg, err);
+}
+
+void Round::Console::Client::usage() {
+  Command *help = this->commands.getCommand(Round::Console::help::NAME);
+  if (!help)
+    return;
+  help->exec(this, NULL, NULL, NULL);
 }

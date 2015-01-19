@@ -24,28 +24,31 @@ namespace Console {
 class Option : public std::string {
  public:
   char type;
-  std::string desc;
   
  public:
     
-  Option(char c, const std::string &dest) {
+  Option(char c) {
     this->type = c;
-    this->desc = desc;
   }
+  
+  virtual ~Option() {}
   
   const char getId() const {
     return this->type;
   }
 
-  const std::string &getDescription() const {
-    return this->desc;
-  }
+  virtual const std::string getDescription() const = 0;
 };
   
-class Options : Round::Vector<Option> {
+class Options : public std::map<char, Option*> {
  public:
     
-  Options() {}
+  Options();
+  ~Options();
+
+private:
+  void init();
+  void clear();
 };
 
 typedef const std::string Param;
@@ -74,6 +77,7 @@ private:
 };
 
 typedef std::string Message;
+class Client;
   
 class Command {
  public:
@@ -88,9 +92,9 @@ class Command {
  public:
     
   Command(const std::string &name);
-  ~Command();
+  virtual ~Command();
 
-  const std::string &getName() const {
+  const std::string getName() const {
     return this->name;
   }
   
@@ -100,10 +104,11 @@ class Command {
   
   bool isCommand(const Input *input);
   
-  virtual bool exec(Round::Client *client, const Params *params, Message *msg, Error *err) const = 0;
+  virtual bool exec(Client *client, const Params *params, Message *msg, Error *err) const = 0;
+  virtual const std::string getDescription() const = 0;
 };
 
-class Commands : std::map<std::string, Command*> {
+class Commands : public std::map<std::string, Command*> {
     
  public:
     
@@ -112,14 +117,20 @@ class Commands : std::map<std::string, Command*> {
   
   bool addCommand(Command *cmd);
   bool hasCommand(const Input *input) const ;
-  bool execCommand(Round::Client *client, const Input *input, Message *msg, Error *err) const ;
+  Command *getCommand(const std::string &name) const ;
+  bool execCommand(Client *client, const Input *input, Message *msg, Error *err) const ;
   
 private:
   void init();
+  void clear();
 };
   
 class Client : public Round::Client
 {
+public:
+  
+  Options options;
+  Commands commands;
 
 public:
         
@@ -135,10 +146,11 @@ public:
 
   bool isQuitCommand(const Input &input);
   bool isShellCommand(const Input &input);
-  
   bool isConsoleCommand(const Input &input);
   
   bool execConsoleCommand(const Input &input, Message *msg, Error *err);
+  
+  void usage();
   
 private:
 
@@ -150,9 +162,6 @@ private:
 
   std::string programtName;
   std::string promptName;
-
-  Options options;
-  Commands commands;
 };
 
 }
