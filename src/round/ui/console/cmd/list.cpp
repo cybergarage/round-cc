@@ -32,12 +32,12 @@ bool Round::Console::list::exec(Round::Console::Client *client, const Params *pa
       std::string hash;
       node->getHashCode(&hash);
       std::string host;
-      if (node->getRequestAddress(&host, err))
+      if (!node->getRequestAddress(&host, err))
         return false;
       int port;
-      if (node->getRequestPort(&port, err))
+      if (!node->getRequestPort(&port, err))
         return false;
-      std::cout << "[" << nodeCnt << "] " << host << ":" << port << " (" << hash << ")" << std::endl;
+      std::cout << TAB << "[" << nodeCnt << "] " << host << ":" << port << /*" (" << hash << ")" <<*/ std::endl;
       nodeCnt++;
     }
     

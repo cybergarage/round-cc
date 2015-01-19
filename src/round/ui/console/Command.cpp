@@ -11,6 +11,7 @@
 #include <boost/algorithm/string.hpp>
 #include <round/ui/Console.h>
 
+const std::string Round::Console::Command::TAB = "    ";
 const std::string Round::Console::Command::QUIT = "quit";
 const std::string Round::Console::Command::EXIT = "exit";
 const std::string Round::Console::Command::SHELL = "shell";

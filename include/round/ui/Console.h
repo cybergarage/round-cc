@@ -82,6 +82,8 @@ class Client;
 class Command {
  public:
   
+  static const std::string TAB;
+  
   static const std::string QUIT;
   static const std::string EXIT;
   static const std::string SHELL;
@@ -136,8 +138,6 @@ public:
         
   Client();
   ~Client();
-
-public:
   
   void setProgramNameFromArgument(const std::string &argValue);
   const char *getBootMessage(std::string &buffer);
@@ -150,7 +150,7 @@ public:
   
   bool execConsoleCommand(const Input &input, Message *msg, Error *err);
   
-  void usage();
+  bool usage();
   
 private:
 

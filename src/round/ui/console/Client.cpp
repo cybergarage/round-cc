@@ -97,9 +97,19 @@ bool Round::Console::Client::execConsoleCommand(const Input &input, Message *msg
   return this->commands.execCommand(this, &input, msg, err);
 }
 
-void Round::Console::Client::usage() {
+bool Round::Console::Client::usage() {
   Command *help = this->commands.getCommand(Round::Console::help::NAME);
   if (!help)
-    return;
+    return false;
+
+  std::cout << "Usage: " << getProgramName() << " [-options] <command>" << std::endl;
+  std::cout << std::endl;
   help->exec(this, NULL, NULL, NULL);
+  std::cout << std::endl;
+  for (Options::iterator optIt=options.begin(); optIt != options.end(); optIt++) {
+    Option *opt = optIt->second;
+    std::cout << "-" << opt->getId() << Command::TAB << opt->getDescription() << std::endl;
+  }
+  
+  return true;
 }
