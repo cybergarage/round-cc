@@ -18,8 +18,8 @@
 //  UPnPNodeFinder
 ////////////////////////////////////////////////
 
-int Round::UPnPNodeFinder::HTTP_PORT_RANGE_MIN = 10000;
-int Round::UPnPNodeFinder::HTTP_PORT_RANGE_MAX = 60000;
+int Round::UPnPNodeFinder::HTTP_PORT_RANGE_MIN = 4004;
+int Round::UPnPNodeFinder::HTTP_PORT_RANGE_MAX = 9999;
 
 Round::UPnPNodeFinder::UPnPNodeFinder() {
   Random randomPort(HTTP_PORT_RANGE_MIN, HTTP_PORT_RANGE_MAX);
