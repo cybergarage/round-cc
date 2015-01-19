@@ -25,7 +25,7 @@ stop)
     ERROR=$?
     ;;
 status)
-	ps -A | grep ${ROUNDD} | grep -v ${ROUNDDCTRL} || true
+	ps -A | grep ${ROUNDD} | grep -v ${ROUNDDCTRL} | grep -v "grep" || true
     ERROR=$?
     ;;
 *)
