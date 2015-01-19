@@ -18,9 +18,11 @@ bool Round::Console::list::exec(Round::Console::Client *client, const Params *pa
 
   size_t clusterCnt = 0;
   for (ClusterList::const_iterator cluster = clusters->begin(); cluster != clusters->end(); cluster++) {
+    
     std::string clusterName = (*cluster)->getName();
     std::cout << "[" << clusterCnt << "] " << clusterName << std::endl;
-    clusterCnt++;
+    
+    cluster++;
   }
   return true;
 }
