@@ -172,6 +172,8 @@ class LocalConfig : public NodeConfig {
 class LocalNode : public Node, public NodeFinderObserver {
  public:
   
+  static const std::string DEFALUT_CLUSTER;
+  
  public:
   LocalNode();
   virtual ~LocalNode();
