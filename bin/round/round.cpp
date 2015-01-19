@@ -49,6 +49,25 @@ bool exec_console_command(Round::Console::Client &client, const Round::Console::
   return false;
 }
 
+bool exec_rpc_command(Round::Console::Client &client, const Round::Console::Input &input) {
+  Round::Console::Message msg;
+  Round::Error err;
+  
+  if (client.execRPCCommand(input, &msg, &err)) {
+    if (0 < msg.length()) {
+      std::cout << msg << std::endl;
+    }
+    return true;
+  }
+  
+  std::string errMsg = err.getMessage();
+  if (0 < errMsg.length()) {
+    std::cerr << ROUND_CERR_PREFIX << errMsg << "'" << std::endl;
+  }
+  
+  return false;
+}
+
 int main(int argc, char *argv[])
 {
   Round::Error error;
@@ -156,6 +175,11 @@ int main(int argc, char *argv[])
 
     if (client.isQuitCommand(input))
       break;
+    
+    if (client.isRPCCommand(input)) {
+      exec_rpc_command(client, input);
+      continue;
+    }
     
     if (!client.isConsoleCommand(input)) {
       std::cerr << ROUND_UNKNOWN_COMMAND_MSG << " '" << inputLine << "'" << std::endl;

@@ -21,7 +21,7 @@ class shell : public Command {
 public:
   static const std::string NAME;
   shell() : Command(NAME) {}
-  bool exec(Round::Console::Client *client, const Params *params, Message *msg, Error *err) const;
+  bool exec(Round::Console::Client *client, const Input *input, Message *msg, Error *err) const;
   const std::string getDescription() const;
 };
 
@@ -29,7 +29,7 @@ class version : public Command {
 public:
   static const std::string NAME;
   version() : Command(NAME) {}
-  bool exec(Round::Console::Client *client, const Params *params, Message *msg, Error *err) const;
+  bool exec(Round::Console::Client *client, const Input *input, Message *msg, Error *err) const;
   const std::string getDescription() const;
 };
 
@@ -37,7 +37,7 @@ class list : public Command {
 public:
   static const std::string NAME;
   list() : Command(NAME) {}
-  bool exec(Round::Console::Client *client, const Params *params, Message *msg, Error *err) const;
+  bool exec(Round::Console::Client *client, const Input *input, Message *msg, Error *err) const;
   const std::string getDescription() const;
 };
 
@@ -45,7 +45,7 @@ class search : public Command {
 public:
   static const std::string NAME;
   search() : Command(NAME) {}
-  bool exec(Round::Console::Client *client, const Params *params, Message *msg, Error *err) const;
+  bool exec(Round::Console::Client *client, const Input *input, Message *msg, Error *err) const;
   const std::string getDescription() const;
 };
 
@@ -53,7 +53,7 @@ class update : public Command {
 public:
   static const std::string NAME;
   update() : Command(NAME) {}
-  virtual bool exec(Round::Console::Client *client, const Params *params, Message *msg, Error *err) const;
+  virtual bool exec(Round::Console::Client *client, const Input *input, Message *msg, Error *err) const;
   const std::string getDescription() const;
 };
   
@@ -62,7 +62,7 @@ public:
   static const std::string NAME;
   help() : Command(NAME) {}
   help(const std::string &name) : Command(name) {}
-  bool exec(Round::Console::Client *client, const Params *params, Message *msg, Error *err) const;
+  bool exec(Round::Console::Client *client, const Input *input, Message *msg, Error *err) const;
   const std::string getDescription() const;
 };
 
@@ -71,7 +71,7 @@ public:
   static const std::string NAME;
   quit() : Command(NAME) {}
   quit(const std::string &name) : Command(name) {}
-  bool exec(Round::Console::Client *client, const Params *params, Message *msg, Error *err) const;
+  bool exec(Round::Console::Client *client, const Input *input, Message *msg, Error *err) const;
   const std::string getDescription() const;
 };
 
@@ -81,10 +81,26 @@ public:
   static const std::string ON;
   static const std::string OFF;
   verbose() : Command(NAME) {}
-  bool exec(Round::Console::Client *client, const Params *params, Message *msg, Error *err) const;
+  bool exec(Round::Console::Client *client, const Input *input, Message *msg, Error *err) const;
   const std::string getDescription() const;
+  const std::string getOptionDescription() const;
 };
-  
+
+////////////////////////////////////////////////////////////
+// rpc command
+////////////////////////////////////////////////////////////
+
+class rpc : public Command {
+public:
+  static const std::string NAME;
+  static const std::string PARAM_BEGIN;
+  static const std::string PARAM_END;
+  rpc() : Command(NAME) {}
+  bool exec(Round::Console::Client *client, const Input *input, Message *msg, Error *err) const;
+  const std::string getDescription() const;
+  const std::string getOptionDescription() const;
+};
+
 ////////////////////////////////////////////////////////////
 // alias commands
 ////////////////////////////////////////////////////////////

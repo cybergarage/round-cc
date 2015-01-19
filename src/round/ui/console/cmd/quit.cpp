@@ -13,10 +13,10 @@
 
 const std::string Round::Console::quit::NAME = "quit";
 
-bool Round::Console::quit::exec(Round::Console::Client *client, const Params *params, Message *msg, Error *err) const {
-  ::exit(EXIT_SUCCESS);
-}
-
 const std::string Round::Console::quit::getDescription() const {
   return "Quit interactive shell";
+}
+
+bool Round::Console::quit::exec(Round::Console::Client *client, const Input *input, Message *msg, Error *err) const {
+  ::exit(EXIT_SUCCESS);
 }

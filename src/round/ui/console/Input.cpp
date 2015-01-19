@@ -24,7 +24,7 @@ bool Round::Console::Input::parse(const std::string &inputLine) {
   size_t lastExtraIndex = inputLine.find_last_not_of(" \n");
   std::string lowerInputLine = (lastExtraIndex == std::string::npos) ? inputLine : (std::string(inputLine, 0, (lastExtraIndex + 1)));
   std::transform(lowerInputLine.begin(), lowerInputLine.end(), lowerInputLine.begin(), ::tolower);
-
+  
   typedef std::vector<std::string> Inputs;
   Inputs inputs;
   boost::algorithm::split(inputs, lowerInputLine, boost::is_space());
@@ -48,6 +48,7 @@ bool Round::Console::Input::parse(const std::string &inputLine) {
 }
 
 void Round::Console::Input::clear() {
+  this->line = "";
   this->cmd = "";
   this->params.clear();
 }

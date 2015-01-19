@@ -35,6 +35,9 @@ void Round::Console::Commands::init() {
   // alias commands
   addCommand(new exit());
   addCommand(new question());
+
+  // RPC method
+  addCommand(new rpc());
 }
 
 void Round::Console::Commands::clear() {
@@ -50,7 +53,15 @@ bool Round::Console::Commands::addCommand(Command *cmd) {
   return true;
 }
 
+bool Round::Console::Commands::isNonExecutedCommand(const Input *input) const {
+  if (input->cmd.compare(rpc::NAME) == 0)
+    return true;
+  return false;
+}
+
 bool Round::Console::Commands::hasCommand(const Input *input) const {
+  if (isNonExecutedCommand(input))
+    return false;
   return (find(input->cmd) != Commands::end()) ? true : false;
 }
 
@@ -62,9 +73,10 @@ Round::Console::Command *Round::Console::Commands::getCommand(const std::string 
 }
 
 bool Round::Console::Commands::execCommand(Client *client, const Input *input, Message *msg, Error *err) const {
+  if (isNonExecutedCommand(input))
+    return false;
   Commands::const_iterator cmdIt = find(input->cmd);
   if (cmdIt == Commands::end())
     return false;
-  return (cmdIt->second)->exec(client, &input->params, msg, err);
+  return (cmdIt->second)->exec(client, input, msg, err);
 }
-

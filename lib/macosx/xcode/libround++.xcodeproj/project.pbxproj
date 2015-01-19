@@ -47,6 +47,7 @@
 		21B911B91A6B5F4300C791FD /* SystemMethodResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911AB1A6B5F4300C791FD /* SystemMethodResponse.cpp */; };
 		21B911BA1A6B5F4300C791FD /* SystemNodeInfoDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911AC1A6B5F4300C791FD /* SystemNodeInfoDict.cpp */; };
 		21B911BC1A6B61CC00C791FD /* set_method.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911BB1A6B61CC00C791FD /* set_method.cpp */; };
+		21C249061A6D8432003C69F9 /* rpc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C249051A6D8432003C69F9 /* rpc.cpp */; };
 		21D03AD41A63C4A60098122A /* Route.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D03AD31A63C4A60098122A /* Route.h */; };
 		21D7A5961A6BDE7C00D43061 /* help.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7A5931A6BDE7C00D43061 /* help.cpp */; };
 		21D7A5971A6BDE7C00D43061 /* search.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7A5941A6BDE7C00D43061 /* search.cpp */; };
@@ -252,6 +253,7 @@
 		21B911AB1A6B5F4300C791FD /* SystemMethodResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemMethodResponse.cpp; sourceTree = "<group>"; };
 		21B911AC1A6B5F4300C791FD /* SystemNodeInfoDict.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemNodeInfoDict.cpp; sourceTree = "<group>"; };
 		21B911BB1A6B61CC00C791FD /* set_method.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = set_method.cpp; sourceTree = "<group>"; };
+		21C249051A6D8432003C69F9 /* rpc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rpc.cpp; sourceTree = "<group>"; };
 		21D03AD31A63C4A60098122A /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
 		21D7A5931A6BDE7C00D43061 /* help.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = help.cpp; sourceTree = "<group>"; };
 		21D7A5941A6BDE7C00D43061 /* search.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = search.cpp; sourceTree = "<group>"; };
@@ -487,15 +489,16 @@
 		21B329421A6B939D0077C313 /* cmd */ = {
 			isa = PBXGroup;
 			children = (
-				21A1572A1A6D4FAC0024B627 /* verbose.cpp */,
-				217342FC1A6CB3C000ADA1C8 /* question.cpp */,
 				21D7A5A21A6BF4A500D43061 /* exit.cpp */,
 				21D7A5931A6BDE7C00D43061 /* help.cpp */,
 				21B329471A6B94720077C313 /* list.cpp */,
+				217342FC1A6CB3C000ADA1C8 /* question.cpp */,
 				21D7A5A31A6BF4A500D43061 /* quit.cpp */,
+				21C249051A6D8432003C69F9 /* rpc.cpp */,
 				21D7A5941A6BDE7C00D43061 /* search.cpp */,
 				21D7A5981A6BE1E400D43061 /* shell.cpp */,
 				21D7A5A01A6BF1E900D43061 /* update.cpp */,
+				21A1572A1A6D4FAC0024B627 /* verbose.cpp */,
 				21D7A59E1A6BF1E100D43061 /* version.cpp */,
 			);
 			path = cmd;
@@ -1039,6 +1042,7 @@
 				21D8E2E51A60E1E200E8A63F /* LocalNode.cpp in Sources */,
 				21D7A59B1A6BE47F00D43061 /* Options.cpp in Sources */,
 				21E1EB151A64FE2800FEABF6 /* NodeBatchRequest.cpp in Sources */,
+				21C249061A6D8432003C69F9 /* rpc.cpp in Sources */,
 				21B911B81A6B5F4300C791FD /* SystemMethodRequest.cpp in Sources */,
 				21D8E2C71A60E1E200E8A63F /* JSONInterger.cpp in Sources */,
 				21D8E2EC1A60E1E200E8A63F /* NodeCore.cpp in Sources */,

@@ -13,11 +13,11 @@
 
 const std::string Round::Console::version::NAME = "version";
 
-bool Round::Console::version::exec(Round::Console::Client *client, const Params *params, Message *msg, Error *err) const {
-  std::cout << ROUNDCC_PRODUCT_VERSION << std::endl;
-  return true;
-}
-
 const std::string Round::Console::version::getDescription() const {
   return "Show version number";
+}
+
+bool Round::Console::version::exec(Round::Console::Client *client, const Input *input, Message *msg, Error *err) const {
+  std::cout << ROUNDCC_PRODUCT_VERSION << std::endl;
+  return true;
 }

@@ -64,6 +64,7 @@ class Params : public std::vector<Param> {
 
 class Input{
 public:
+  std::string line;
   std::string cmd;
   Params params;
   
@@ -106,8 +107,9 @@ class Command {
   
   bool isCommand(const Input *input);
   
-  virtual bool exec(Client *client, const Params *params, Message *msg, Error *err) const = 0;
+  virtual bool exec(Client *client, const Input *input, Message *msg, Error *err) const = 0;
   virtual const std::string getDescription() const = 0;
+  virtual const std::string getOptionDescription() const {return "";};
 };
 
 class Commands : public std::map<std::string, Command*> {
@@ -125,6 +127,8 @@ class Commands : public std::map<std::string, Command*> {
 private:
   void init();
   void clear();
+
+  bool isNonExecutedCommand(const Input *input) const;
 };
   
 class Client : public Round::Client
@@ -147,8 +151,10 @@ public:
   bool isQuitCommand(const Input &input);
   bool isShellCommand(const Input &input);
   bool isConsoleCommand(const Input &input);
+  bool isRPCCommand(const Input &input);
   
   bool execConsoleCommand(const Input &input, Message *msg, Error *err);
+  bool execRPCCommand(const Input &input, Message *msg, Error *err);
   
   bool usage();
   

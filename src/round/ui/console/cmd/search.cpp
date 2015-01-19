@@ -12,10 +12,10 @@
 
 const std::string Round::Console::search::NAME = "search";
 
-bool Round::Console::search::exec(Round::Console::Client *client, const Params *params, Message *msg, Error *err) const {
-  return client->search(err);
-}
-
 const std::string Round::Console::search::getDescription() const {
   return "Search new clusters and nodes";
+}
+
+bool Round::Console::search::exec(Round::Console::Client *client, const Input *input, Message *msg, Error *err) const {
+  return client->search(err);
 }

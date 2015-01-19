@@ -15,16 +15,24 @@ const std::string Round::Console::verbose::NAME = "verbose";
 const std::string Round::Console::verbose::ON = "on";
 const std::string Round::Console::verbose::OFF = "off";
 
-bool Round::Console::verbose::exec(Round::Console::Client *client, const Params *params, Message *msg, Error *err) const {
-  if (params->size() <= 0) {
-    err->setMessage("verbose mode is node specified");
+const std::string Round::Console::verbose::getDescription() const {
+  return "Set the operation logging level";
+}
+
+const std::string Round::Console::verbose::getOptionDescription() const {
+  return "<on|off>";
+}
+
+bool Round::Console::verbose::exec(Round::Console::Client *client, const Input *input, Message *msg, Error *err) const {
+  if (input->params.size() <= 0) {
+    err->setMessage("verbose mode is not specified");
     return false;
   }
   
   Logger *sharedLogger = Logger::GetSharedInstance();
   sharedLogger->clearAllTargets();
   
-  const std::string mode = params->at(0);
+  const std::string mode = input->params.at(0);
   if (mode.compare(ON)) {
     int loggerLevel = LoggerLevel::TRACE;
     sharedLogger->setLevel(loggerLevel);
@@ -32,8 +40,4 @@ bool Round::Console::verbose::exec(Round::Console::Client *client, const Params 
   }
   
   return true;
-}
-
-const std::string Round::Console::verbose::getDescription() const {
-  return "Set the operation logging level";
 }

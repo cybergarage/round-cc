@@ -14,9 +14,13 @@
 
 const std::string Round::Console::list::NAME = "list";
 
-bool Round::Console::list::exec(Round::Console::Client *client, const Params *params, Message *msg, Error *err) const {
-  const ClusterList *clusters = client->getClusters();
+const std::string Round::Console::list::getDescription() const {
+  return "Showq found cluster nodes";
+}
 
+bool Round::Console::list::exec(Round::Console::Client *client, const Input *input, Message *msg, Error *err) const {
+  const ClusterList *clusters = client->getClusters();
+  
   size_t clusterCnt = 0;
   for (ClusterList::const_iterator cluster = clusters->begin(); cluster != clusters->end(); cluster++) {
     
@@ -44,8 +48,4 @@ bool Round::Console::list::exec(Round::Console::Client *client, const Params *pa
     clusterCnt++;
   }
   return true;
-}
-
-const std::string Round::Console::list::getDescription() const {
-  return "Showq found cluster nodes";
 }

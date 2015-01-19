@@ -14,7 +14,7 @@ Round supports not only HTTP but HTTPU and HTTPMU. HTTPU is unicast version, and
 
 ### Request-Line
 
-Round-RPC supports "POST" and "GET" methods. The request entry point must be begin with "/rpc" as the following.
+Round-RPC supports POST and GET methods. The request entry point must be begin with "/rpc" as the following.
 
 ```
 Request-Line = Method SP Request-URI SP HTTP-Version CRLF

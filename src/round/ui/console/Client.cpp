@@ -85,6 +85,16 @@ bool Round::Console::Client::isConsoleCommand(const Input &input) {
   return this->commands.hasCommand(&input);
 }
 
+bool Round::Console::Client::isRPCCommand(const Input &input) {
+  size_t paramBeginIdx = input.line.find_first_of(rpc::PARAM_BEGIN);
+  if (paramBeginIdx == std::string::npos)
+    return false;
+  size_t paramEndIdx = input.line.find_first_of(rpc::PARAM_END);
+  if (paramEndIdx == std::string::npos)
+    return false;
+  return (paramBeginIdx < paramEndIdx) ? true : false;
+}
+
 bool Round::Console::Client::isQuitCommand(const Input &input) {
   return Command::IsQuit(&input);
 }
@@ -94,7 +104,14 @@ bool Round::Console::Client::isShellCommand(const Input &input) {
 }
 
 bool Round::Console::Client::execConsoleCommand(const Input &input, Message *msg, Error *err) {
-  return this->commands.execCommand(this, &input, msg, err);
+  return this->commands.execCommand(this, &input, msg, err);test(22,222)
+}
+
+bool Round::Console::Client::execRPCCommand(const Input &input, Message *msg, Error *err) {
+  Command *cmd = this->commands.getCommand(rpc::NAME);
+  if (!cmd)
+    return false;
+  return cmd->exec(this, &input, msg, err);
 }
 
 bool Round::Console::Client::usage() {

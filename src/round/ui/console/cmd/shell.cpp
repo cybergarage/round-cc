@@ -12,10 +12,10 @@
 
 const std::string Round::Console::shell::NAME = "shell";
 
-bool Round::Console::shell::exec(Round::Console::Client *client, const Params *params, Message *msg, Error *err) const {
-  return true;
-}
-
 const std::string Round::Console::shell::getDescription() const {
   return "Run as interactive shell";
+}
+
+bool Round::Console::shell::exec(Round::Console::Client *client, const Input *input, Message *msg, Error *err) const {
+  return true;
 }
