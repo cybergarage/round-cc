@@ -75,6 +75,16 @@ public:
   const std::string getDescription() const;
 };
 
+class verbose : public Command {
+public:
+  static const std::string NAME;
+  static const std::string ON;
+  static const std::string OFF;
+  verbose() : Command(NAME) {}
+  bool exec(Round::Console::Client *client, const Params *params, Message *msg, Error *err) const;
+  const std::string getDescription() const;
+};
+  
 ////////////////////////////////////////////////////////////
 // alias commands
 ////////////////////////////////////////////////////////////

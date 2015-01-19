@@ -30,6 +30,7 @@ void Round::Console::Commands::init() {
   addCommand(new update());
   addCommand(new version());
   addCommand(new quit());
+  addCommand(new verbose());
 
   // alias commands
   addCommand(new exit());

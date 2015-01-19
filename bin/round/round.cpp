@@ -41,8 +41,11 @@ bool exec_console_command(Round::Console::Client &client, const Round::Console::
     return true;
   }
 
-  std::cerr << ROUND_CERR_PREFIX << err.getMessage() << "'" << std::endl;
-
+  std::string errMsg = err.getMessage();
+  if (0 < errMsg.length()) {
+    std::cerr << ROUND_CERR_PREFIX << errMsg << "'" << std::endl;
+  }
+  
   return false;
 }
 

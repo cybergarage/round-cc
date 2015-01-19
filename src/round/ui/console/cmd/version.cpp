@@ -19,5 +19,5 @@ bool Round::Console::version::exec(Round::Console::Client *client, const Params 
 }
 
 const std::string Round::Console::version::getDescription() const {
-  return "Show version";
+  return "Show version number";
 }

@@ -17,6 +17,7 @@
 		21526C8D1A6682F900CF3D12 /* RPCResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21526C881A6682F900CF3D12 /* RPCResponse.cpp */; };
 		217342FD1A6CB3C000ADA1C8 /* question.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217342FC1A6CB3C000ADA1C8 /* question.cpp */; };
 		219EA4371A6BB0BD00F3D89B /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 219EA4361A6BB0BD00F3D89B /* Input.cpp */; };
+		21A1572B1A6D4FAC0024B627 /* verbose.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A1572A1A6D4FAC0024B627 /* verbose.cpp */; };
 		21A7F60B1A69D10700FAC15B /* RQL.h in Headers */ = {isa = PBXBuildFile; fileRef = 21A7F60A1A69D10700FAC15B /* RQL.h */; };
 		21AAFCBF1A68C8E6008DEF0E /* Console.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AAFCBE1A68C8E6008DEF0E /* Console.h */; };
 		21B3293D1A6B82CA0077C313 /* Client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B329381A6B82CA0077C313 /* Client.cpp */; };
@@ -220,6 +221,7 @@
 		21526C881A6682F900CF3D12 /* RPCResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCResponse.cpp; sourceTree = "<group>"; };
 		217342FC1A6CB3C000ADA1C8 /* question.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = question.cpp; sourceTree = "<group>"; };
 		219EA4361A6BB0BD00F3D89B /* Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Input.cpp; sourceTree = "<group>"; };
+		21A1572A1A6D4FAC0024B627 /* verbose.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = verbose.cpp; sourceTree = "<group>"; };
 		21A7F60A1A69D10700FAC15B /* RQL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RQL.h; sourceTree = "<group>"; };
 		21A9FFAA154014F300BDFCDC /* liblibround++.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "liblibround++.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21AAFCBE1A68C8E6008DEF0E /* Console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Console.h; sourceTree = "<group>"; };
@@ -485,6 +487,7 @@
 		21B329421A6B939D0077C313 /* cmd */ = {
 			isa = PBXGroup;
 			children = (
+				21A1572A1A6D4FAC0024B627 /* verbose.cpp */,
 				217342FC1A6CB3C000ADA1C8 /* question.cpp */,
 				21D7A5A21A6BF4A500D43061 /* exit.cpp */,
 				21D7A5931A6BDE7C00D43061 /* help.cpp */,
@@ -1002,6 +1005,7 @@
 				21B854041A60E470009E6ECB /* TclEngine.cpp in Sources */,
 				217342FD1A6CB3C000ADA1C8 /* question.cpp in Sources */,
 				21526C8B1A6682F900CF3D12 /* RPCMessage.cpp in Sources */,
+				21A1572B1A6D4FAC0024B627 /* verbose.cpp in Sources */,
 				21D7A5971A6BDE7C00D43061 /* search.cpp in Sources */,
 				21B911B51A6B5F4300C791FD /* SystemClusterInfoDict.cpp in Sources */,
 				21D8E2B01A60E1E200E8A63F /* BitOption.cpp in Sources */,
