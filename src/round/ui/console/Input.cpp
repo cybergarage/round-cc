@@ -21,6 +21,8 @@ Round::Console::Input::Input(const std::string &inputLine) {
 bool Round::Console::Input::parse(const std::string &inputLine) {
   clear();
   
+  this->line = inputLine;
+  
   size_t lastExtraIndex = inputLine.find_last_not_of(" \n");
   std::string lowerInputLine = (lastExtraIndex == std::string::npos) ? inputLine : (std::string(inputLine, 0, (lastExtraIndex + 1)));
   std::transform(lowerInputLine.begin(), lowerInputLine.end(), lowerInputLine.begin(), ::tolower);

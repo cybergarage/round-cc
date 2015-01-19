@@ -95,6 +95,7 @@ public:
   static const std::string NAME;
   static const std::string PARAM_BEGIN;
   static const std::string PARAM_END;
+  static const std::string PARAM_SEP;
   rpc() : Command(NAME) {}
   bool exec(Round::Console::Client *client, const Input *input, Message *msg, Error *err) const;
   const std::string getDescription() const;
