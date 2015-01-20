@@ -16,6 +16,7 @@ const std::string Round::Console::rpc::NAME = "method(<obj>, <params>)";
 const std::string Round::Console::rpc::PARAM_BEGIN = "(";
 const std::string Round::Console::rpc::PARAM_END = ")";
 const std::string Round::Console::rpc::PARAM_SEP = ",";
+const std::string Round::Console::rpc::OBJECT_SEP = ".";
 
 const std::string Round::Console::rpc::getDescription() const {
   return "Execute RPC method";
@@ -32,5 +33,14 @@ bool Round::Console::rpc::exec(Round::Console::Client *client, const Input *inpu
   if (!rqlReq.parseQuery(input->line,err))
     return false;
 
-  return true;
+  NodeResponse nodeRes;
+  if (client->postMessage(&rqlReq, &nodeRes, err)) {
+    std::string result;
+    if (nodeRes.getResult(&result)) {
+      *msg = result;
+    }
+    return true;
+  }
+  
+  return false;
 }

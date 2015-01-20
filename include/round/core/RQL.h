@@ -30,7 +30,7 @@ public:
   bool parse(const std::string &query);
 };
 
-class RQLRequest  : public NodeRequest {
+class RQLRequest : public NodeRequest {
 public:
     
   RQLRequest();

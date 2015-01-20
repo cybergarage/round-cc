@@ -46,7 +46,7 @@ public:
   bool setTargetCluster(const std::string &clusterName);
   bool addCluster(const std::string &name);
   
-  bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  bool postMessage(NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
 
 protected:
 
@@ -57,6 +57,10 @@ protected:
   bool addCluster(Node *node);
   bool nodeAdded(Node *node);
   bool nodeRemoved(Node *node);
+
+private:
+  
+  bool findObjectNode(const std::string &obj, Node **node);
 
 private:
 
