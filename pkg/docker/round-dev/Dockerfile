@@ -8,6 +8,10 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y git g++ make automake autoconf
 RUN apt-get install -y build-essential devscripts debheper dh-make fakeroot pbuilder cdbs
 
+# Set Packaging ENV
+ENV DEBFULLNAME "Satoshi Konno"
+ENV DEBEMAIL skonno@cybergarage.org
+
 # Git configuration
 RUN git config --global user.email "skonno@cybergarage.org"
 RUN git config --global user.name "Satoshi Konno"
