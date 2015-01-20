@@ -8,9 +8,11 @@
  *
  ******************************************************************/
 
+#include <boost/algorithm/string.hpp>
 #include <round/core/ClientCore.h>
 #include <round/core/Node.h>
 #include <round/common/RPC.h>
+#include <round/ui/console/Command.h>
 
 Round::ClientCore::ClientCore() {
   setTargetCluster(NULL);
@@ -70,6 +72,14 @@ Round::Cluster *Round::ClientCore::getCluster(const std::string &name) const {
 }
 
 bool Round::ClientCore::findObjectNode(const std::string &obj, Node **node) {
+  std::list<std::string> objs;
+  boost::split(objs, obj, boost::is_any_of(Round::Console::rpc::OBJECT_SEP));
+  if (objs.size() <= 0)
+    return false;
+  
+  std::string clusterName;
+  std::string nodeName;
+  
   return false;
 }
 
