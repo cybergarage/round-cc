@@ -44,7 +44,7 @@ RQL supports only GET methods. The request entry point must be begin with "/rql"
 Request-Line = Method SP Request-URI SP HTTP-Version CRLF
 
 Method = "PUT" | "GET"
-Request-URI = "/rql" "?" RQL
+Request-URI = "/rql" "?" "query=" RQL
 
 ROL = URLEncoded-RQL
 ```

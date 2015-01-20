@@ -383,7 +383,7 @@ void NodeTestController::runRpcHashTest(Round::Node **nodes, size_t nodeCnt) {
     size_t successCnt = 0;
     for (size_t j=0; j<nodeCnt; j++) {
       SystemEchoRequest nodeReq;
-      nodeReq.setHash(nodeHashes.at(j));
+      nodeReq.setDest(nodeHashes.at(j));
       NodeResponse nodeRes;
       if (nodes[i]->postMessage(&nodeReq, &nodeRes, &err)) {
         successCnt++;

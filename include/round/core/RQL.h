@@ -12,6 +12,7 @@
 #define _ROUNDCC_RQL_H_
 
 #include <usql/SQLParser.h>
+#include <round/core/Node.h>
 
 namespace Round {
 
@@ -26,9 +27,20 @@ public:
 
   RQLParser();
 
-  bool parse(const std::string &queryString);
+  bool parse(const std::string &query);
 };
 
+class RQLRequest  : public NodeRequest {
+public:
+    
+  RQLRequest();
+    
+  bool parseQuery(const std::string &query, Error *err);
+
+private:
+  bool parseRpcQuery(const std::string &query, Error *err);
+};
+  
 }
 
 #endif

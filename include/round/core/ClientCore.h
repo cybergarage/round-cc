@@ -12,9 +12,9 @@
 #define _ROUNDCC_CLIENTCORE_H_
 
 #include <round/common/Mutex.h>
-#include <round/common/Error.h>
-#include <round/core/NodeFinder.h>
 #include <round/core/Cluster.h>
+#include <round/core/NodeFinder.h>
+#include <round/core/NodeMessage.h>
 
 namespace Round {
   
@@ -46,6 +46,8 @@ public:
   bool setTargetCluster(const std::string &clusterName);
   bool addCluster(const std::string &name);
   
+  bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+
 protected:
 
   void setTargetCluster(Cluster *cluster) {

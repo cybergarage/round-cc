@@ -68,6 +68,10 @@ Round::Cluster *Round::ClientCore::getCluster(const std::string &name) const {
   return this->clusterList.getCluster(name);
 }
 
+bool Round::ClientCore::postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+  return false;
+}
+
 bool Round::ClientCore::nodeAdded(Round::Node *node)  {
 
   bool isNodeAdded = false;

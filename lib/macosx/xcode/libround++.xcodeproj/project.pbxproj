@@ -16,6 +16,7 @@
 		21526C8C1A6682F900CF3D12 /* RPCRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21526C871A6682F900CF3D12 /* RPCRequest.cpp */; };
 		21526C8D1A6682F900CF3D12 /* RPCResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21526C881A6682F900CF3D12 /* RPCResponse.cpp */; };
 		217342FD1A6CB3C000ADA1C8 /* question.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217342FC1A6CB3C000ADA1C8 /* question.cpp */; };
+		219CE2761A6DD8F2008A6CBD /* RQLRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 219CE2751A6DD8F2008A6CBD /* RQLRequest.cpp */; };
 		219EA4371A6BB0BD00F3D89B /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 219EA4361A6BB0BD00F3D89B /* Input.cpp */; };
 		21A1572B1A6D4FAC0024B627 /* verbose.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A1572A1A6D4FAC0024B627 /* verbose.cpp */; };
 		21A7F60B1A69D10700FAC15B /* RQL.h in Headers */ = {isa = PBXBuildFile; fileRef = 21A7F60A1A69D10700FAC15B /* RQL.h */; };
@@ -221,6 +222,7 @@
 		21526C871A6682F900CF3D12 /* RPCRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCRequest.cpp; sourceTree = "<group>"; };
 		21526C881A6682F900CF3D12 /* RPCResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCResponse.cpp; sourceTree = "<group>"; };
 		217342FC1A6CB3C000ADA1C8 /* question.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = question.cpp; sourceTree = "<group>"; };
+		219CE2751A6DD8F2008A6CBD /* RQLRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RQLRequest.cpp; sourceTree = "<group>"; };
 		219EA4361A6BB0BD00F3D89B /* Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Input.cpp; sourceTree = "<group>"; };
 		21A1572A1A6D4FAC0024B627 /* verbose.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = verbose.cpp; sourceTree = "<group>"; };
 		21A7F60A1A69D10700FAC15B /* RQL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RQL.h; sourceTree = "<group>"; };
@@ -424,6 +426,7 @@
 			isa = PBXGroup;
 			children = (
 				212C05A91A695F6100F6CB0B /* RQLParser.cpp */,
+				219CE2751A6DD8F2008A6CBD /* RQLRequest.cpp */,
 			);
 			path = rql;
 			sourceTree = "<group>";
@@ -1107,6 +1110,7 @@
 				21D8E2CA1A60E1E200E8A63F /* JSONParser.cpp in Sources */,
 				21D8E2CC1A60E1E200E8A63F /* JSONString.cpp in Sources */,
 				21D8E2ED1A60E1E200E8A63F /* NodeFinder.cpp in Sources */,
+				219CE2761A6DD8F2008A6CBD /* RQLRequest.cpp in Sources */,
 				21D8E2B41A60E1E200E8A63F /* ConsistentHashNode.cpp in Sources */,
 				21D7A5A11A6BF1E900D43061 /* update.cpp in Sources */,
 			);

@@ -19,8 +19,11 @@ class Node;
 class NodeResponse;
 
 class NodeRequest : public RPC::JSON::Request {
+public:
+  
   static const std::string SYNC;
-
+  static const std::string ANY;
+  
 public:
 
   static NodeRequest *CreateFromHTTPGetRequest(uHTTP::HTTPRequest *httpReq);

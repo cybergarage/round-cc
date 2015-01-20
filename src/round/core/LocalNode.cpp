@@ -279,31 +279,21 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
   if (!nodeReq || !nodeRes || !error)
     return false;
   
-  // Check hash code
+  // Check dest
   
-  if (nodeReq->hasHash()) {
-    std::string hashCode;
-    if (nodeReq->getHash(&hashCode)) {
-      if (hashCode.length() != HashObject::GetHashCodeLength()) {
-        setError(RPC::JSON::ErrorCodeBadHashCode, error);
-        return false;
-      }
+  if (!nodeReq->isDestValid()) {
+    setError(RPC::JSON::ErrorCodeInvalidParams, error);
+    return false;
+  }
+  bool                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               isDestHash = nodeReq->isDestHash();
+  if (isDestHash) {
+    std::string nodeHash;
+    if (nodeReq->getDest(&nodeHash)) {
       NodeGraph *nodeGraph = getNodeGraph();
-      if (!nodeGraph->isHandleNode(this, hashCode)) {
+      if (!nodeGraph->isHandleNode(this, nodeHash)) {
         setError(RPC::JSON::ErrorCodeMovedPermanently, error);
         return false;
       }
-    }
-  }
-  
-  // Check dest
-  
-  bool isDestOne = true;
-  if (nodeReq->hasDest()) {
-    isDestOne = nodeReq->isDestOne();
-    if (!isDestOne && !nodeReq->isDestValid()) {
-      setError(RPC::JSON::ErrorCodeInvalidParams, error);
-      return false;
     }
   }
   
@@ -319,7 +309,7 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
   
   // Exec Method (One node)
   
-  if (isDestOne) {
+  if (isDestHash) {
     return execMethod(nodeReq, nodeRes, error);
   }
   
@@ -331,14 +321,14 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
   Error thisNodeError;
   NodeResponse *thisNodeRes = new NodeResponse();
   execMethod(nodeReq, thisNodeRes, &thisNodeError);
-  thisNodeRes->setHash(this);
+  thisNodeRes->setDest(this);
   batchArray->add(thisNodeRes);
   
   NodeList otherNodes;
   if (nodeReq->isDestAll()) {
     getAllOtherNodes(&otherNodes);
   }
-  else if (nodeReq->isDestQuorum()) {
+  else if (nodeReq->hasQuorum()) {
     size_t quorum;
     if (nodeReq->getQuorum(&quorum)) {
       getQuorumNodes(&otherNodes, quorum);
@@ -348,7 +338,7 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
     Error otherNodeError;
     NodeResponse *otherNodeRes = new NodeResponse();
     (*node)->postMessage(nodeReq, otherNodeRes, &otherNodeError);
-    otherNodeRes->setHash((*node));
+    otherNodeRes->setDest((*node));
     batchArray->add(otherNodeRes);
   }
 
