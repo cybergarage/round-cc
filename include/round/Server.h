@@ -2,7 +2,7 @@
 *
 * Round for C++
 *
-* Copyright (C) Satoshi Konno 2014
+* Copyright (C) Satoshi Konno 2015
 *
 * This is licensed under BSD-style license, see file COPYING.
 *
@@ -33,6 +33,9 @@ class Server : public UPnPServerNode {
     return &logger;
   }
 
+  virtual void initialize() {};
+  virtual void finalize() {};
+  
 private:
 
   static Logger logger;

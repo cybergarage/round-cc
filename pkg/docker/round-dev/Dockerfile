@@ -6,7 +6,7 @@ RUN apt-get update && apt-get upgrade -y
 
 # Install base packages
 RUN apt-get install -y git g++ make automake autoconf
-RUN apt-get install -y build-essential devscripts debheper dh-make fakeroot
+RUN apt-get install -y build-essential devscripts debheper dh-make fakeroot pbuilder cdbs
 
 # Git configuration
 RUN git config --global user.email "skonno@cybergarage.org"

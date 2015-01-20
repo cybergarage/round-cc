@@ -1,6 +1,6 @@
 ![round_logo](./img/round_logo.png)
 
-# Round RPC Specfication
+# Round-RPC Specfication
 
 Round is based on [JSON-RPC 2.0][json-rpc], and Round extends the specification to develop distributed system applications as the following.
 
@@ -10,49 +10,28 @@ Round adds the following original fields to [JSON-RPC 2.0][json-rpc] specificati
 
 | Field | Descripton | Default | Detail |
 | - | - | - | - |
-| hash | - | random | |
-| dest | one, all, quorum | one | |
+| dest | - | - | |
+| quorum | - | 1 | |
 | cond | - | - |  |
 | type | - | - |  |
 | ts | - | - | The field is handled automatically by Round |
 | digest | - | (none) | - |
 
-### hash
-
-The hash field specifies a destination node of the request object. The node which is received the request object checks the hash code whether the node should execute the request object.  
-
-```
-hash = (SHA256-HASH | "random")
-```
-
-#### Request object
-
-The hash field specifies a destination node of the message. In the current version, the hash code must be genarated using [SHA-256](http://en.wikipedia.org/wiki/SHA-2). If the hash field is not specified, the message is executed by the received node.
-
-```
---> {"jsonrpc": "2.0", "method": "increment_counter", "params": 1, "hash": "xxxxxxxxxxxxxxxx", ....}
-```
-
-#### Response object
-
-The message is executed if the specified hash code is handled by the received node, otherwise the node doen't executed the message and returns a error object including the detail error code as the following.
-
-```
-<-- {"jsonrpc": "2.0", "error": {"code": -32002, "message": "Moved Permanently"}, ....}
-```
-
-If the node returns the error object, the cluster might be updated because of adding or removing nodes. To update the current cluster information, Use '[_get_cluster_info](./round_rpc_methods.md)' method for the node to get the latest cluster information.
-
 ### dest
 
-The dest, destination, field specifies target nodes of the request object message.
+The dest field specifies a destination node of the request object. The node which is received the request object checks the hash code whether the node should execute the request object.  
 
 ```
-dest = "one" | "all" | quorum
-quorum = NUMBER
+dest = [ "*" | "all" | SHA256-HASH ]
 ```
 
 #### Request object
+
+The dest field specifies a destination node of the message. In the current version, the hash code must be genarated using [SHA-256](http://en.wikipedia.org/wiki/SHA-2). If the dest field is not specified, the message is executed by the received node.
+
+```
+--> {"jsonrpc": "2.0", "method": "increment_counter", "params": 1, "dest": "xxxxxxxxxxxxxxxx", ....}
+```
 
 ```
 --> {"jsonrpc": "2.0", "method": "increment_counter", "params": 1, "dest": "all", ....}
@@ -60,15 +39,31 @@ quorum = NUMBER
 
 #### Response object
 
+The message is executed if the specified dest code is handled by the received node, otherwise the node doen't executed the message and returns a error object including the detail error code as the following.
+
+```
+<-- {"jsonrpc": "2.0", "error": {"code": -32002, "message": "Moved Permanently"}, ....}
+```
+
+If the node returns the error object, the cluster might be updated because of adding or removing nodes. To update the current cluster information, Use '[_get_cluster_info](./round_rpc_methods.md)' method for the node to get the latest cluster information.
+
 If the target nodes are two or more nodes, the response object has an array containing the corresponding response objects of each target nodes like batch response of JSON-RPC specification.
 ```
 [
-{"jsonrpc": "2.0", "result": 7, "id": "1", "hash": "xxxxxxxxxxxxxxxx", .....},
-{"jsonrpc": "2.0", "result": 8, "id": "1", "hash": "xxxxxxxxxxxxxxxx", .....},
-{"jsonrpc": "2.0", "result": 6, "id": "1", "hash": "xxxxxxxxxxxxxxxx", .....},
-{"jsonrpc": "2.0", "result": 9, "id": "1", "hash": "xxxxxxxxxxxxxxxx", .....},
-{"jsonrpc": "2.0", "result": 2, "id": "1", "hash": "xxxxxxxxxxxxxxxx", .....},
+{"jsonrpc": "2.0", "result": 7, "id": "1", "dest": "xxxxxxxxxxxxxxxx", .....},
+{"jsonrpc": "2.0", "result": 8, "id": "1", "dest": "xxxxxxxxxxxxxxxx", .....},
+{"jsonrpc": "2.0", "result": 6, "id": "1", "dest": "xxxxxxxxxxxxxxxx", .....},
+{"jsonrpc": "2.0", "result": 9, "id": "1", "dest": "xxxxxxxxxxxxxxxx", .....},
+{"jsonrpc": "2.0", "result": 2, "id": "1", "dest": "xxxxxxxxxxxxxxxx", .....},
 ]
+```
+
+### quorum
+
+The extent field specifies target nodes of the request object message.
+
+```
+quorum = NUMBER
 ```
 
 ### cond
@@ -101,15 +96,15 @@ The 'prev_result' is enabled only when the request message is a batch request. U
 The field specifies a request type.
 
 ```
-type = "quorum"
+type = "paxos"
 ```
 
-### quorum
+### paxos
 
-The quorum type uses to execute the request method in quorum mode. To enable the quorum type, you have to set a suitable 'dest' field such as 'all' or a number too.
+The paxos type uses to execute the request method in quorum mode. To enable the quorum type, you have to set a suitable 'extent' field such as 'all' or a number too.
 
 ```
---> {"jsonrpc": "2.0", "method": "set_counter", "type": "quorum", ....}
+--> {"jsonrpc": "2.0", "method": "set_counter", "type": "paxos", ....}
 ```
 
 The 'quorum' type request is a syntactic sugar function, and the messages is equals to the following a batch message.

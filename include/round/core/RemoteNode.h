@@ -2,7 +2,7 @@
 *
 * Round for C++
 *
-* Copyright (C) Satoshi Konno 2014
+* Copyright (C) Satoshi Konno 2015
 *
 * This is licensed under BSD-style license, see file COPYING.
 *
@@ -25,7 +25,7 @@ class RemoteNode : public Node {
   RemoteNode(const std::string &address, int port);
   virtual ~RemoteNode();
 
- public:
+ public: 
   
   bool getRequestAddress(std::string *address, Error *error) const;
   bool getRequestPort(int *port, Error *error) const;
@@ -41,6 +41,7 @@ class RemoteNode : public Node {
 
   bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
   bool getMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error, bool jsonRpcEncodeEnable);
+  bool postRPC(const std::string &s , Error *error);
 
   bool isCloneable() const {
     return true;

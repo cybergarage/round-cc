@@ -2,28 +2,30 @@
 *
 * Round for C++
 *
-* Copyright (C) Satoshi Konno 2014
+* Copyright (C) Satoshi Konno 2015
 *
 * This is licensed under BSD-style license, see file COPYING.
 *
 ******************************************************************/
 
 #include <boost/algorithm/string.hpp>
-
 #include <boost/filesystem.hpp>
 #include <boost/foreach.hpp>
 
 #include <string.h>
 
+#include <uhttp/net/URL.h>
+#include <round/common/Random.h>
 #include <round/core/impl/UPnPServerNode.h>
 
-#include <uhttp/net/URL.h>
 
 ////////////////////////////////////////////////
 //  Constants
 ////////////////////////////////////////////////
 
 const std::string Round::UPnPServerNode::DEVICE_TYPE = "urn:cybergarage-org:device:round:1";
+int Round::UPnPServerNode::HTTP_PORT_RANGE_MIN = 4004;
+int Round::UPnPServerNode::HTTP_PORT_RANGE_MAX = 9999;
 
 static const std::string FRACTAL_NODESERVER_DESCRIPTION_URI = "description/description.xml";
 static const std::string FRACTAL_NODESERVER_PRESENTATION_URI = "/presentation";
@@ -134,8 +136,10 @@ bool Round::UPnPServerNode::start(Error *error) {
     return false;
 
   int localPort;
-  if (!getNodeConfig()->getHttpdBindPort(&localPort, error))
-    return false;
+  if (!getNodeConfig()->getHttpdBindPort(&localPort, error)) {
+    Random randomPort(HTTP_PORT_RANGE_MIN, HTTP_PORT_RANGE_MAX);
+    localPort = randomPort.rand();
+  }
   
   Device::setHTTPPort(localPort);
   

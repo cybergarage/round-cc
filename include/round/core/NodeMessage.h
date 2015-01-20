@@ -2,7 +2,7 @@
 *
 * Round for C++
 *
-* Copyright (C) Satoshi Konno 2014
+* Copyright (C) Satoshi Konno 2015
 *
 * This is licensed under BSD-style license, see file COPYING.
 *
@@ -19,8 +19,11 @@ class Node;
 class NodeResponse;
 
 class NodeRequest : public RPC::JSON::Request {
+public:
+  
   static const std::string SYNC;
-
+  static const std::string ANY;
+  
 public:
 
   static NodeRequest *CreateFromHTTPGetRequest(uHTTP::HTTPRequest *httpReq);

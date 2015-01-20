@@ -2,7 +2,7 @@
 *
 * Round for C++
 *
-* Copyright (C) Satoshi Konno 2014
+* Copyright (C) Satoshi Konno 2015
 *
 * This is licensed under BSD-style license, see file COPYING.
 *
@@ -26,6 +26,9 @@ class UPnPServerNode : public ServerNode, public mUPnP::Device {
  public:
   static const std::string DEVICE_TYPE;
 
+  static int HTTP_PORT_RANGE_MIN;
+  static int HTTP_PORT_RANGE_MAX;
+  
   public:
   
   static bool IsRoundDeviceType(const std::string &deviceType) {

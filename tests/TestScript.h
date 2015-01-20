@@ -2,7 +2,7 @@
  *
  * Round for C++
  *
- * Copyright (C) Satoshi Konno 2014
+ * Copyright (C) Satoshi Konno 2015
  *
  * This is licensed under BSD-style license, see file COPYING.
  *
@@ -89,7 +89,7 @@ const std::string JS_INVALID_FUNCTION = \
   
 const std::string RPC_SET_ECHO = \
   "{\"jsonrpc\": \"2.0\"," \
-   "\"method\": \"_set_method\","
+   "\"method\": \"set_method\","
    "\"params\": {" \
        "\"language\": \"" RPC_SET_ECHO_LANG "\", " \
        "\"name\": \"" RPC_SET_ECHO_NAME "\", " \
@@ -98,7 +98,7 @@ const std::string RPC_SET_ECHO = \
 
 const std::string RPC_REMOVE_ECHO = \
   "{\"jsonrpc\": \"2.0\"," \
-  "\"method\": \"_set_method\","
+  "\"method\": \"set_method\","
   "\"params\": {" \
   "\"language\": \"" RPC_SET_ECHO_LANG "\", " \
   "\"name\": \"" RPC_SET_ECHO_NAME "\"" \
@@ -112,10 +112,10 @@ const std::string RPC_RUN_ECHO = \
 
 const std::string RPC_SET_SETMETHOD = \
   "{\"jsonrpc\": \"2.0\"," \
-  "\"method\": \"_set_method\","
+  "\"method\": \"set_method\","
   "\"params\": {" \
   "\"language\": \"" RPC_SET_ECHO_LANG "\", " \
-  "\"name\": \"_set_method\", " \
+  "\"name\": \"set_method\", " \
   "\"code\": \"" RPC_SET_ECHO_CODE "\"" \
   "}, \"id\": 1}";
 

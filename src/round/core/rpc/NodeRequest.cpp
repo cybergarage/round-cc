@@ -2,7 +2,7 @@
 *
 * Round for C++
 *
-* Copyright (C) Satoshi Konno 2014
+* Copyright (C) Satoshi Konno 2015
 *
 * This is licensed under BSD-style license, see file COPYING.
 *
@@ -18,6 +18,7 @@
 #include <round/common/encoding/URL.h>
 
 const std::string Round::NodeRequest::SYNC = "sync";
+const std::string Round::NodeRequest::ANY = "*";
 
 Round::NodeRequest::NodeRequest() {
   init();
@@ -92,10 +93,10 @@ Round::NodeRequest *Round::NodeRequest::CreateFromHTTPGetRequest(uHTTP::HTTPRequ
     nodeReq->setTimestamp(value);
   }
 
-  // hash
+  // quorum
   
-  if (httpReq->getParameterValue(RPC::JSON::Message::HASH, &value)) {
-    nodeReq->setHash(value);
+  if (httpReq->getParameterValue(RPC::JSON::Message::QUORUM, &value)) {
+    nodeReq->setQuorum(value);
   }
   
   // dest

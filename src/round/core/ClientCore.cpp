@@ -2,7 +2,7 @@
  *
  * Round for C++
  *
- * Copyright (C) Satoshi Konno 2014
+ * Copyright (C) Satoshi Konno 2015
  *
  * This is licensed under BSD-style license, see file COPYING.
  *
@@ -10,6 +10,7 @@
 
 #include <round/core/ClientCore.h>
 #include <round/core/Node.h>
+#include <round/common/RPC.h>
 
 Round::ClientCore::ClientCore() {
   setTargetCluster(NULL);
@@ -66,6 +67,29 @@ Round::Cluster *Round::ClientCore::getClusterForNode(Round::Node *node) const {
 
 Round::Cluster *Round::ClientCore::getCluster(const std::string &name) const {
   return this->clusterList.getCluster(name);
+}
+
+bool Round::ClientCore::findObjectNode(const std::string &obj, Node **node) {
+  return false;
+}
+
+bool Round::ClientCore::postMessage(NodeRequest *nodeReq, NodeResponse *nodeRes, Error *err) {
+  std::string dest;
+  if (!nodeReq->getDest(&dest)) {
+    dest = NodeRequest::ANY;
+  }
+  
+  Node *destNode;
+  if (!findObjectNode(dest, &destNode)) {
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeMovedPermanently, err);
+    return false;
+  }
+
+  if (!nodeReq->isDestAll()) {
+    nodeReq->setDest(destNode);
+  }
+  
+  return destNode->postMessage(nodeReq, nodeRes, err);
 }
 
 bool Round::ClientCore::nodeAdded(Round::Node *node)  {

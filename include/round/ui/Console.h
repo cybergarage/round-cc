@@ -2,7 +2,7 @@
  *
  * Round for C++
  *
- * Copyright (C) Satoshi Konno 2014
+ * Copyright (C) Satoshi Konno 2015
  *
  * This is licensed under BSD-style license, see file COPYING.
  *
@@ -24,93 +24,139 @@ namespace Console {
 class Option : public std::string {
  public:
   char type;
-  std::string desc;
   
  public:
     
-  Option(char c, const std::string &dest) {
+  Option(char c) {
     this->type = c;
-    this->desc = desc;
   }
+  
+  virtual ~Option() {}
   
   const char getId() const {
     return this->type;
   }
 
-  const std::string &getDescription() const {
-    return this->desc;
-  }
+  virtual const std::string getDescription() const = 0;
 };
   
-class Options : Round::Vector<Option> {
+class Options : public std::map<char, Option*> {
  public:
     
-  Options() {}
+  Options();
+  ~Options();
+
+private:
+  void init();
+  void clear();
 };
 
-typedef std::string Param;
+typedef const std::string Param;
 
-class Params : std::vector<Param> {
+class Params : public std::vector<std::string> {
  public:
   Params() {}
+  
+  void addParam(Param &param) {
+    push_back(param);
+  }
+};
+
+class Input{
+public:
+  std::string line;
+  std::string cmd;
+  Params params;
+  
+public:
+  Input();
+  Input(const std::string &inputLine);
+  bool parse(const std::string &inputLine);
+
+private:
+  void clear();
 };
 
 typedef std::string Message;
+class Client;
   
 class Command {
  public:
   
+  static const std::string TAB;
+  
   static const std::string QUIT;
   static const std::string EXIT;
-  static const std::string LIST;
-  static const std::string USE;
-  static const std::string CLUSTERS;
-  static const std::string NODES;
-  
-  static std::string GetCommand(const std::string &inputLine);
+  static const std::string SHELL;
   
  public:
   std::string name;
   
  public:
     
-  Command();
-  ~Command();
+  Command(const std::string &name);
+  virtual ~Command();
 
-  bool isCommand(const std::string &inputLine);
+  const std::string getName() const {
+    return this->name;
+  }
   
-  virtual bool exec(Round::Client *client, const Params *params, Message *msg, Error *err) = 0;
+  static bool IsCommand(const std::string &name, const Input *input);
+  static bool IsQuit(const Input *input);
+  static bool IsShell(const Input *input);
+  
+  bool isCommand(const Input *input);
+  
+  virtual bool exec(Client *client, const Input *input, Message *msg, Error *err) const = 0;
+  virtual const std::string getDescription() const = 0;
+  virtual const std::string getOptionDescription() const {return "";};
 };
 
-class Commands : std::map<std::string, Command*> {
+class Commands : public std::map<std::string, Command*> {
     
  public:
     
   Commands();
   ~Commands();
   
-  bool hasCommand(const std::string &inputLine);
-  bool execCommand(Round::Client *client, const std::string &inputLine, Message *msg, Error *err); 
+  bool addCommand(Command *cmd);
+  bool hasCommand(const Input *input) const ;
+  Command *getCommand(const std::string &name) const ;
+  bool execCommand(Client *client, const Input *input, Message *msg, Error *err) const ;
+  
+private:
+  void init();
+  void clear();
+
+  bool isNonExecutedCommand(const Input *input) const;
 };
   
 class Client : public Round::Client
 {
+public:
+  
+  Options options;
+  Commands commands;
 
 public:
         
   Client();
   ~Client();
-
-public:
   
   void setProgramNameFromArgument(const std::string &argValue);
   const char *getBootMessage(std::string &buffer);
   const char *getProgramName();
   const char *getPromptName();
 
-  bool isConsoleCommand(const std::string &inputLine);
-  bool isConsoleQuitCommand(const std::string &inputLine);
-  bool execConsoleCommand(const std::string &inputLine, Message *msg, Error *err);
+  bool isQuitCommand(const Input &input);
+  bool isShellCommand(const Input &input);
+  bool isConsoleCommand(const Input &input);
+  bool isRPCCommand(const Input &input);
+  
+  bool execConsoleCommand(const Input &input, Message *msg, Error *err);
+  bool execRPCCommand(const Input &input, Message *msg, Error *err);
+  
+  bool usage();
   
 private:
 
@@ -122,9 +168,6 @@ private:
 
   std::string programtName;
   std::string promptName;
-
-  Options options;
-  Commands commands;
 };
 
 }

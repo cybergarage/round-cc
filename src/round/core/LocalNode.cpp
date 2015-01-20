@@ -2,7 +2,7 @@
 *
 * Round for C++
 *
-* Copyright (C) Satoshi Konno 2014
+* Copyright (C) Satoshi Konno 2015
 *
 * This is licensed under BSD-style license, see file COPYING.
 *
@@ -14,7 +14,9 @@
 #include <round/Round.h>
 #include <round/core/LocalNode.h>
 #include <round/core/RemoteNode.h>
-#include <round/core/SystemMethod.h>
+#include <round/core/local/method/SystemMethod.h>
+
+const std::string Round::LocalNode::DEFALUT_CLUSTER = ROUNDCC_PRODUCT_NAME;
 
 ////////////////////////////////////////////////
 // Constructor
@@ -52,7 +54,12 @@ bool Round::LocalNode::isConfigValid(Error *error) {
 }
 
 bool Round::LocalNode::getClusterName(std::string *name, Error *error) {
-  return this->nodeConfig.getCluster(name, error);
+  if (this->nodeConfig.getCluster(name, error))
+    return true;
+  
+  *name = DEFALUT_CLUSTER;
+  
+  return true;
 }
 
 ////////////////////////////////////////////////
@@ -163,6 +170,30 @@ bool Round::LocalNode::nodeRemoved(Round::Node *notifyNode)  {
 }
 
 ////////////////////////////////////////////////
+// Method
+////////////////////////////////////////////////
+
+bool Round::LocalNode::addMethod(Method *method) {
+  return this->sysMethodMgr.addMethod(method);
+}
+
+bool Round::LocalNode::setScript(const std::string &method, const std::string &lang, const std::string &code, int encodeType, Error *error) {
+  return this->scriptMgr.setScript(method, lang, code, encodeType, error);
+}
+
+////////////////////////////////////////////////
+// Memory
+////////////////////////////////////////////////
+
+bool Round::LocalNode::setKey(const std::string &key, const std::string &value) {
+  return this->memory.setKey(key, value);
+}
+
+bool Round::LocalNode::getKey(const std::string &key, std::string *value) const {
+  return this->memory.getKey(key, value);
+}
+
+////////////////////////////////////////////////
 // Message
 ////////////////////////////////////////////////
 
@@ -237,10 +268,6 @@ bool Round::LocalNode::getAllOtherNodes(NodeList *nodes) {
 // Execution
 ////////////////////////////////////////////////
 
-bool Round::LocalNode::hasUserMethod(const std::string &method) {
-  return this->scriptMgr.hasScript(method);
-}
-
 bool Round::LocalNode::setError(int rpcErrorCode, Error *err) {
   if (!err)
     return false;
@@ -252,31 +279,21 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
   if (!nodeReq || !nodeRes || !error)
     return false;
   
-  // Check hash code
+  // Check dest
   
-  if (nodeReq->hasHash()) {
-    std::string hashCode;
-    if (nodeReq->getHash(&hashCode)) {
-      if (hashCode.length() != HashObject::GetHashCodeLength()) {
-        setError(RPC::JSON::ErrorCodeBadHashCode, error);
-        return false;
-      }
+  if (!nodeReq->isDestValid()) {
+    setError(RPC::JSON::ErrorCodeInvalidParams, error);
+    return false;
+  }
+  bool                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               isDestHash = nodeReq->isDestHash();
+  if (isDestHash) {
+    std::string nodeHash;
+    if (nodeReq->getDest(&nodeHash)) {
       NodeGraph *nodeGraph = getNodeGraph();
-      if (!nodeGraph->isHandleNode(this, hashCode)) {
+      if (!nodeGraph->isHandleNode(this, nodeHash)) {
         setError(RPC::JSON::ErrorCodeMovedPermanently, error);
         return false;
       }
-    }
-  }
-  
-  // Check dest
-  
-  bool isDestOne = true;
-  if (nodeReq->hasDest()) {
-    isDestOne = nodeReq->isDestOne();
-    if (!isDestOne && !nodeReq->isDestValid()) {
-      setError(RPC::JSON::ErrorCodeInvalidParams, error);
-      return false;
     }
   }
   
@@ -292,7 +309,7 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
   
   // Exec Method (One node)
   
-  if (isDestOne) {
+  if (isDestHash) {
     return execMethod(nodeReq, nodeRes, error);
   }
   
@@ -304,14 +321,14 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
   Error thisNodeError;
   NodeResponse *thisNodeRes = new NodeResponse();
   execMethod(nodeReq, thisNodeRes, &thisNodeError);
-  thisNodeRes->setHash(this);
+  thisNodeRes->setDest(this);
   batchArray->add(thisNodeRes);
   
   NodeList otherNodes;
   if (nodeReq->isDestAll()) {
     getAllOtherNodes(&otherNodes);
   }
-  else if (nodeReq->isDestQuorum()) {
+  else if (nodeReq->hasQuorum()) {
     size_t quorum;
     if (nodeReq->getQuorum(&quorum)) {
       getQuorumNodes(&otherNodes, quorum);
@@ -321,11 +338,93 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
     Error otherNodeError;
     NodeResponse *otherNodeRes = new NodeResponse();
     (*node)->postMessage(nodeReq, otherNodeRes, &otherNodeError);
-    otherNodeRes->setHash((*node));
+    otherNodeRes->setDest((*node));
     batchArray->add(otherNodeRes);
   }
 
   return true;
+}
+
+////////////////////////////////////////////////
+// Dynamic Method
+////////////////////////////////////////////////
+
+bool Round::LocalNode::isDynamicMethod(const std::string &method) {
+  return this->scriptMgr.hasScript(method);
+}
+
+bool Round::LocalNode::execDynamicMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+  std::string method;
+  nodeReq->getMethod(&method);
+  
+  if (!this->scriptMgr.hasScript(method)) {
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeMethodNotFound, error);
+    return false;
+  }
+  
+  std::string params;
+  nodeReq->getParams(&params);
+  
+  std::string result;
+  bool isSuccess = this->scriptMgr.run(method, params, &result, error);
+  if (isSuccess) {
+    nodeRes->setResult(result);
+  }
+  else {
+    nodeRes->setError(error);
+  }
+  
+  return isSuccess;
+}
+
+////////////////////////////////////////////////
+// Static Method
+////////////////////////////////////////////////
+
+bool Round::LocalNode::isStaticMethod(const std::string &method) {
+  return this->staticMethodMgr.hasMethod(method);
+}
+
+bool Round::LocalNode::execStaticMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+  std::string reqMethod;
+  nodeReq->getMethod(&reqMethod);
+  
+  if (!this->staticMethodMgr.hasMethod(reqMethod)) {
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeMethodNotFound, error);
+    return false;
+  }
+  
+  bool isSuccess = this->staticMethodMgr.exec(reqMethod, this, nodeReq, nodeRes);
+  if (!isSuccess) {
+    setError(RPC::JSON::ErrorCodeInvalidParams, error);
+  }
+  
+  return isSuccess;
+}
+
+////////////////////////////////////////////////
+// Native Method
+////////////////////////////////////////////////
+
+bool Round::LocalNode::isNativeMethod(const std::string &method) {
+  return this->sysMethodMgr.hasMethod(method);
+}
+
+bool Round::LocalNode::execNativeMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+  std::string reqMethod;
+  nodeReq->getMethod(&reqMethod);
+  
+  if (!this->sysMethodMgr.hasMethod(reqMethod)) {
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeMethodNotFound, error);
+    return false;
+  }
+  
+  bool isSuccess = this->sysMethodMgr.exec(reqMethod, this, nodeReq, nodeRes);
+  if (!isSuccess) {
+    setError(RPC::JSON::ErrorCodeInvalidParams, error);
+  }
+  
+  return isSuccess;
 }
 
 ////////////////////////////////////////////////
@@ -349,157 +448,19 @@ bool Round::LocalNode::execMethod(const NodeRequest *nodeReq, NodeResponse *node
     return false;
   }
   
-  if (isSetMethod(name)) {
-    if (!setMethod(nodeReq, nodeRes, error)) {
-      setError(RPC::JSON::ErrorCodeInvalidParams, error);
-      return false;
-    }
-    return true;
+  if (isStaticMethod(name)) {
+    return execStaticMethod(nodeReq, nodeRes, error);
   }
   
-  if (hasUserMethod(name)) {
-    std::string params;
-    nodeReq->getParams(&params);
-    std::string result;
-    bool isSuccess = this->scriptMgr.run(name, params, &result, error);
-    if (isSuccess) {
-      nodeRes->setResult(result);
-    }
-    else {
-      nodeRes->setError(error);
-    }
-    return isSuccess;
+  if (isDynamicMethod(name)) {
+    return execDynamicMethod(nodeReq, nodeRes, error);
   }
   
-  if (isSystemMethod(name)) {
-    return execSystemMethod(nodeReq, nodeRes, error);
+  if (isNativeMethod(name)) {
+    return execNativeMethod(nodeReq, nodeRes, error);
   }
   
   setError(RPC::JSON::ErrorCodeMethodNotFound, error);
   
   return false;
-}
-
-////////////////////////////////////////////////
-// System Static Method
-////////////////////////////////////////////////
-
-bool Round::LocalNode::isSetMethod(const std::string &method) {
-  return (SystemMethodRequest::SET_METHOD.compare(method) == 0) ? true : false;
-}
-
-bool Round::LocalNode::setMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *err) {
-  std::string params;
-  nodeReq->getParams(&params);
-  
-  JSONParser jsonParser;
-  if (!jsonParser.parse(params, err)) {
-    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
-    return false;
-  }
-  
-  JSONObject *jsonObj = jsonParser.getRootObject();
-  if (!jsonObj->isDictionary()) {
-    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
-    return false;
-  }
-
-  JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(jsonObj);
-  if (!jsonDict) {
-    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
-    return false;
-  }
-  
-  std::string scriptMethod;
-  if (!jsonDict->get(SystemMethodRequest::NAME, &scriptMethod) || (scriptMethod.length() <= 0)) {
-    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
-    return false;
-  }
-
-  // Couldn't override '_set_method'
-  if (isSetMethod(scriptMethod)) {
-    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
-    return false;
-  }
-
-  std::string scriptLang;
-  if (!jsonDict->get(SystemMethodRequest::LANGUAGE, &scriptLang) || (scriptLang.length() <= 0)) {
-    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
-    return false;
-  }
-
-  // This method is removed if the code parameter is null.
-  std::string scriptCode;
-  jsonDict->get(SystemMethodRequest::CODE, &scriptCode);
-  
-  // Encode
-  int encodeType = Script::ENCODING_NONE;
-  std::string encodeTypeStr;
-  if (jsonDict->get(SystemMethodRequest::ENCODE, &encodeTypeStr)) {
-    if (encodeTypeStr.compare(SystemMethodRequest::ENCODE_BASE64)) {
-      encodeType = Script::ENCODING_BASE64;
-    }
-  }
-  
-  return this->scriptMgr.setScript(scriptMethod, scriptLang, scriptCode, encodeType, err);
-}
-
-////////////////////////////////////////////////
-// System Dynamic Method
-////////////////////////////////////////////////
-
-bool Round::LocalNode::isSystemMethod(const std::string &method) {
-  return (method.find(SystemMethodRequest::PREFIX) == 0) ? true : false;
-}
-
-bool Round::LocalNode::execSystemMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
-  static std::map<std::string, int> systemMethods;
-  enum {
-      SystemGetNodeInfo,
-      SystemGetClusterInfo,
-      SystemGetNetworkInfo,
-  };
-  
-  if (systemMethods.size() <= 0) {
-    systemMethods[SystemMethodRequest::GET_NODE_INFO] = SystemGetNodeInfo;
-    systemMethods[SystemMethodRequest::GET_CLUSTER_INFO] = SystemGetClusterInfo;
-    systemMethods[SystemMethodRequest::GET_NETWORK_INFO] = SystemGetNetworkInfo;
-  }
-  
-  std::string reqMethod;
-  nodeReq->getMethod(&reqMethod);
-  
-  if (systemMethods.find(reqMethod) == systemMethods.end()) {
-    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeMethodNotFound, error);
-    return false;
-  }
-  
-  int systemMethodType = systemMethods[reqMethod];
-  switch (systemMethodType) {
-  case SystemGetNodeInfo:
-    return _get_node_info(nodeReq, nodeRes, error);
-  case SystemGetClusterInfo:
-    return _get_cluster_info(nodeReq, nodeRes, error);
-  case SystemGetNetworkInfo:
-    return _get_network_info(nodeReq, nodeRes, error);
-  }
-  
-  RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeMethodNotFound, error);
-
-  return false;
-}
-
-bool Round::LocalNode::_get_node_info(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
-  SystemGetNodeInfoResponse sysRes(nodeRes);
-  return sysRes.setNode(this);
-}
-
-bool Round::LocalNode::_get_cluster_info(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
-  SystemGetClusterInfoResponse sysRes(nodeRes);
-  return sysRes.setCluster(this);
-}
-
-bool Round::LocalNode::_get_network_info(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
-  SystemGetNetworkInfoResponse sysRes(nodeRes);
-  return sysRes.setClusters(this);
 }

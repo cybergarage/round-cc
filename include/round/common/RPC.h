@@ -2,7 +2,7 @@
  *
  * Round for C++
  *
- * Copyright (C) Satoshi Konno 2014
+ * Copyright (C) Satoshi Konno 2015
  *
  * This is licensed under BSD-style license, see file COPYING.
  *
@@ -54,8 +54,8 @@ bool IsServerErrorCode(int jsonErrorCode);
 void ErrorCodeToError(int jsonErrorCode, Error *error);
 
 namespace HTTP {
-  static const std::string ENDPOINT     = "/rpc/do";
-  static const std::string CONTENT_TYPE = "application/json-rpc";
+  static const std::string ENDPOINT     = "/rpc";
+  static const std::string CONTENT_TYPE = "application/json";
   static const std::string METHOD       = uHTTP::HTTP::POST;
   static const std::string GET_METHOD   = uHTTP::HTTP::GET;
   static const std::string ACCEPT       = CONTENT_TYPE;
@@ -83,13 +83,13 @@ class Message : public ::Round::Request {
   static const std::string MESSAGE;
   
   static const std::string TIMESTAMP;
-  static const std::string HASH;
   static const std::string DEST;
-  static const std::string DEST_ONE;
+  static const std::string DEST_ANY;
   static const std::string DEST_ALL;
   static const std::string TYPE;
   static const std::string COND;
   static const std::string DIGEST;
+  static const std::string QUORUM;
   
  public:
   Message();
@@ -143,32 +143,14 @@ class Message : public ::Round::Request {
     return hasKey(TIMESTAMP);
   }
   
-  // hash
-  
-  bool setHash(const std::string &value) {
-    return set(HASH, value);
-  }
-  
-  bool setHash(HashObject *hashObj);
-  
-  bool getHash(std::string *value) const {
-    return get(HASH, value);
-  }
-  
-  bool hasHash() const {
-    return hasKey(HASH);
-  }
-
   // dest
   
   bool setDest(const std::string &value) {
     return set(DEST, value);
   }
   
-  bool setDest(size_t value) {
-    return set(DEST, value);
-  }
-
+  bool setDest(HashObject *hashObj);
+  
   bool getDest(std::string *value) const {
     return get(DEST, value);
   }
@@ -179,13 +161,30 @@ class Message : public ::Round::Request {
 
   bool isDestValid() const;
   
-  bool isDestOne() const;
+  bool isDestAny() const;
   bool isDestAll() const;
-  bool isDestQuorum() const;
+  bool isDestHash() const;
 
-  bool getQuorum(size_t *value) const;
-
-  // type
+  // quorum
+  
+  bool setQuorum(size_t value) {
+    return set(QUORUM, value);
+  }
+  
+  bool setQuorum(const std::string &value) {
+    return set(QUORUM, value);
+  }
+  
+  bool getQuorum(size_t *value) const {
+    return get(QUORUM, value);
+  }
+  
+  bool hasQuorum() const {
+    return hasKey(QUORUM);
+  }
+  
+  
+ // type
   
   bool setType(const std::string &value) {
     return set(TYPE, value);

@@ -2,7 +2,7 @@
 *
 * Round for C++
 *
-* Copyright (C) Satoshi Konno 2014
+* Copyright (C) Satoshi Konno 2015
 *
 * This is licensed under BSD-style license, see file COPYING.
 *
@@ -54,7 +54,7 @@ bool Round::ScriptManager::setEngine(ScriptEngine *engine) {
   return true;
 }
 
-bool Round::ScriptManager::setScript(const std::string &method, const std::string &lang, const std::string &code, int encodingType, Error *error) {
+bool Round::ScriptManager::setScript(const std::string &method, const std::string &lang, const std::string &code, int encodeType, Error *error) {
   const ScriptEngine *scriptEngine = this->engines.getEngine(lang);
   if (!scriptEngine) {
     RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeScriptEngineNotFound, error);
@@ -69,7 +69,7 @@ bool Round::ScriptManager::setScript(const std::string &method, const std::strin
     RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeScriptEngineInternalError, error);
     return false;
   }
-  script->setEncording(encodingType);
+  script->setEncording(encodeType);
   
   if (!scriptEngine->compile(script)) {
     RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeScriptCompileError, error);

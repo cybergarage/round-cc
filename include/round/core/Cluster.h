@@ -2,7 +2,7 @@
 *
 * Round for C++
 *
-* Copyright (C) Satoshi Konno 2014
+* Copyright (C) Satoshi Konno 2015
 *
 * This is licensed under BSD-style license, see file COPYING.
 *
@@ -18,7 +18,7 @@
 
 namespace Round {
 
-class Cluster : public NodeGraph {
+class Cluster {
 
  public:
   Cluster();
@@ -45,9 +45,36 @@ class Cluster : public NodeGraph {
     return equals(&otherCluster);
   }
   
+  // Node Graph
+  
+  const NodeGraph *getNodeGraph() const {
+    return &nodeGraph;
+  }
+  
+  bool addNode(Node *node) {
+    return this->nodeGraph.addNode(node);
+  }
+
+  bool removeNode(Node *node) {
+    return this->nodeGraph.removeNode(node);
+  }
+  
+  bool hasNode(const Node *node) const {
+    return this->nodeGraph.hasNode(node);
+  }
+  
+  Node *getNode(size_t index) const {
+    return this->nodeGraph.getNode(index);
+  }
+  
+  size_t getNodeSize() const {
+    return this->nodeGraph.size();
+  }
+  
 private:
 
   std::string name;
+  NodeGraph nodeGraph;
 };
 
 class ClusterList : public std::vector<Cluster *> {

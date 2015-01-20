@@ -2,7 +2,7 @@
  *
  * Round for C++
  *
- * Copyright (C) Satoshi Konno 2014
+ * Copyright (C) Satoshi Konno 2015
  *
  * This is licensed under BSD-style license, see file COPYING.
  *
@@ -14,7 +14,7 @@
 #include <string.h>
 
 #include <round/Round.h>
-#include <round/core/SystemMethod.h>
+#include <round/core/local/method/SystemMethod.h>
 
 #include "TestNode.h"
 #include "TestScript.h"
@@ -31,7 +31,7 @@ void NodeTestController::runScriptManagerTest(Node *node) {
   Error error;
   clock_t prevClock, postClock;
   
-  // Post Node Message (Overide '_set_method' method)
+  // Post Node Message (Overide 'set_method' method)
   
   BOOST_CHECK(reqParser.parse(Test::RPC_SET_SETMETHOD, &error));
   BOOST_CHECK(reqParser.getRootObject()->isDictionary());
@@ -243,18 +243,41 @@ void NodeTestController::runSystemGetNetworkInfoTest(Round::Node *node) {
   BOOST_CHECK(cluster->hasNode(node));
 }
 
+void NodeTestController::runSystemKeyMethodsTest(Round::Node *node) {
+  Error err;
+ 
+  string key = "key";
+  string value;
+  string valueBuf;
+  
+  BOOST_CHECK_EQUAL(node->getKey(key, &valueBuf, &err), false);
+  
+  value = "hello";
+  BOOST_CHECK(node->setKey(key, value, &err));
+  BOOST_CHECK_EQUAL(node->getKey(key, &valueBuf, &err), true);
+  BOOST_CHECK_EQUAL(valueBuf.compare(value), 0);
+  
+  value = "world";
+  BOOST_CHECK(node->setKey(key, value, &err));
+  BOOST_CHECK_EQUAL(node->getKey(key, &valueBuf, &err), true);
+  BOOST_CHECK_EQUAL(valueBuf.compare(value), 0);
+}
+
 void NodeTestController::runSystemMethodTest(Round::Node *node) {
-  // _echo
+  // _echo()
   runSystemEchoTest(node);
   
-  // _get_node_info
+  // get_node_info()
   runSystemGetNodeInfoTest(node);
   
-  // _get_cluster_info
+  // get_cluster_info()
   runSystemGetClusterInfoTest(node);
 
-  // _get_network_info
+  // get_network_info()
   runSystemGetNetworkInfoTest(node);
+
+  // set_key() and get_key()
+  runSystemKeyMethodsTest(node);
 }
 
 void NodeTestController::runUserMethodTest(Round::Node *node) {
@@ -360,7 +383,7 @@ void NodeTestController::runRpcHashTest(Round::Node **nodes, size_t nodeCnt) {
     size_t successCnt = 0;
     for (size_t j=0; j<nodeCnt; j++) {
       SystemEchoRequest nodeReq;
-      nodeReq.setHash(nodeHashes.at(j));
+      nodeReq.setDest(nodeHashes.at(j));
       NodeResponse nodeRes;
       if (nodes[i]->postMessage(&nodeReq, &nodeRes, &err)) {
         successCnt++;

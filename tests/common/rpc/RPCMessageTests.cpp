@@ -2,7 +2,7 @@
 *
 * Round for C++
 *
-* Copyright (C) Satoshi Konno 2014
+* Copyright (C) Satoshi Konno 2015
 *
 * This is licensed under BSD-style license, see file COPYING.
 *
@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <round/common/RPC.h>
+#include <round/common/digest/SHA.h>
 #include "TestNode.h"
 
 using namespace std;
@@ -155,32 +156,32 @@ BOOST_AUTO_TEST_CASE(RPCRequestExtentionMethodTest) {
   BOOST_CHECK(rpcMsg.getTimestamp(&ts));
   BOOST_CHECK_EQUAL(ts, std::numeric_limits<clock_t>::max());
 
-  // hash (string)
+  // dest (string)
   
   const std::string TEST_HASH = "0123456789";
   std::string hash;
   
-  BOOST_CHECK(!rpcMsg.hasHash());
-  BOOST_CHECK(!rpcMsg.getHash(&hash));
+  BOOST_CHECK(!rpcMsg.hasDest());
+  BOOST_CHECK(!rpcMsg.getDest(&hash));
   
-  BOOST_CHECK(rpcMsg.setHash(TEST_HASH));
-  BOOST_CHECK(rpcMsg.hasHash());
-  BOOST_CHECK(rpcMsg.getHash(&hash));
+  BOOST_CHECK(rpcMsg.setDest(TEST_HASH));
+  BOOST_CHECK(rpcMsg.hasDest());
+  BOOST_CHECK(rpcMsg.getDest(&hash));
   BOOST_CHECK_EQUAL(TEST_HASH.compare(hash), 0);
 
-  // hash (node)
+  // dest (node)
   
   TestLocalNode node;
   std::string nodeHash;
-  BOOST_CHECK(rpcMsg.setHash(&node));
-  BOOST_CHECK(rpcMsg.hasHash());
-  BOOST_CHECK(rpcMsg.getHash(&hash));
+  BOOST_CHECK(rpcMsg.setDest(&node));
+  BOOST_CHECK(rpcMsg.hasDest());
+  BOOST_CHECK(rpcMsg.getDest(&hash));
   BOOST_CHECK(node.getHashCode(&nodeHash));
   BOOST_CHECK_EQUAL(nodeHash.compare(hash), 0);
   
   // type
   
-  const std::string TEST_TYPE = "quorum";
+  const std::string TEST_TYPE = "paxos";
   std::string type;
   
   BOOST_CHECK(!rpcMsg.hasType());
@@ -218,38 +219,36 @@ BOOST_AUTO_TEST_CASE(RPCRequestExtentionMethodTest) {
   BOOST_CHECK_EQUAL(TEST_COND.compare(cond), 0);
   
   // dest
-  
-  const size_t TEST_QUORUM = 123456789;
-  const std::string TEST_BAD_QUORUM = "a";
-  size_t destQuorum;
+
+  std::string TEST_GOOD_HASH;
+  SHA256::Hash("123456789", &TEST_GOOD_HASH);
+  const std::string TEST_BAD_HASH = "a";
   
   BOOST_CHECK(!rpcMsg.hasDest());
 
-  BOOST_CHECK(rpcMsg.setDest(RPC::JSON::Message::DEST_ONE));
-  BOOST_CHECK(rpcMsg.isDestValid());
-  BOOST_CHECK(rpcMsg.isDestOne());
-  BOOST_CHECK(!rpcMsg.isDestAll());
-  BOOST_CHECK(!rpcMsg.isDestQuorum());
-  
   BOOST_CHECK(rpcMsg.setDest(RPC::JSON::Message::DEST_ALL));
   BOOST_CHECK(rpcMsg.isDestValid());
   BOOST_CHECK(rpcMsg.isDestAll());
-  BOOST_CHECK(!rpcMsg.isDestOne());
-  BOOST_CHECK(!rpcMsg.isDestQuorum());
+  BOOST_CHECK(!rpcMsg.isDestAny());
+  BOOST_CHECK(!rpcMsg.isDestHash());
 
-  BOOST_CHECK(rpcMsg.setDest(TEST_QUORUM));
+  BOOST_CHECK(rpcMsg.setDest(RPC::JSON::Message::DEST_ANY));
   BOOST_CHECK(rpcMsg.isDestValid());
-  BOOST_CHECK(rpcMsg.isDestQuorum());
-  BOOST_CHECK(rpcMsg.getQuorum(&destQuorum));
-  BOOST_CHECK_EQUAL(destQuorum, TEST_QUORUM);
+  BOOST_CHECK(rpcMsg.isDestAny());
   BOOST_CHECK(!rpcMsg.isDestAll());
-  BOOST_CHECK(!rpcMsg.isDestOne());
+  BOOST_CHECK(!rpcMsg.isDestHash());
+  
+  BOOST_CHECK(rpcMsg.setDest(TEST_GOOD_HASH));
+  BOOST_CHECK(rpcMsg.isDestValid());
+  BOOST_CHECK(rpcMsg.isDestHash());
+  BOOST_CHECK(!rpcMsg.isDestAll());
+  BOOST_CHECK(!rpcMsg.isDestAny());
 
-  BOOST_CHECK(rpcMsg.setDest(TEST_BAD_QUORUM));
+  BOOST_CHECK(rpcMsg.setDest(TEST_BAD_HASH));
   BOOST_CHECK(!rpcMsg.isDestValid());
+  BOOST_CHECK(!rpcMsg.isDestHash());
   BOOST_CHECK(!rpcMsg.isDestAll());
-  BOOST_CHECK(!rpcMsg.isDestOne());
-  BOOST_CHECK(!rpcMsg.isDestQuorum());
+  BOOST_CHECK(!rpcMsg.isDestAny());
 }
 
 class TestMessageParser : public JSONParser {

@@ -2,7 +2,7 @@
  *
  * Round for C++
  *
- * Copyright (C) Satoshi Konno 2014
+ * Copyright (C) Satoshi Konno 2015
  *
  * This is licensed under BSD-style license, see file COPYING.
  *
@@ -12,9 +12,9 @@
 #define _ROUNDCC_CLIENTCORE_H_
 
 #include <round/common/Mutex.h>
-#include <round/common/Error.h>
-#include <round/core/NodeFinder.h>
 #include <round/core/Cluster.h>
+#include <round/core/NodeFinder.h>
+#include <round/core/NodeMessage.h>
 
 namespace Round {
   
@@ -46,6 +46,8 @@ public:
   bool setTargetCluster(const std::string &clusterName);
   bool addCluster(const std::string &name);
   
+  bool postMessage(NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+
 protected:
 
   void setTargetCluster(Cluster *cluster) {
@@ -55,6 +57,10 @@ protected:
   bool addCluster(Node *node);
   bool nodeAdded(Node *node);
   bool nodeRemoved(Node *node);
+
+private:
+  
+  bool findObjectNode(const std::string &obj, Node **node);
 
 private:
 

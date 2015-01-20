@@ -2,7 +2,7 @@
 *
 * Round for C++
 *
-* Copyright (C) Satoshi Konno 2014
+* Copyright (C) Satoshi Konno 2015
 *
 * This is licensed under BSD-style license, see file COPYING.
 *
@@ -12,7 +12,7 @@
 
 #include <round/Round.h>
 #include <round/core/Node.h>
-#include <round/core/SystemMethod.h>
+#include <round/core/local/method/SystemMethod.h>
 
 const std::string Round::Node::NAME = ROUNDCC_PRODUCT_NAME;
 const std::string Round::Node::VER= ROUNDCC_PRODUCT_VERSION;
@@ -56,3 +56,24 @@ bool Round::Node::getCluster(Cluster *cluster, Error *error) {
 bool Round::Node::getClusterList(ClusterList *clusterList, Error *error) {
   return true;
 }
+
+bool Round::Node::setKey(const std::string &key, const std::string &value, Error *error) {
+  SystemSetKeyRequest nodeReq;
+  nodeReq.setKey(key);
+  nodeReq.setValue(value);
+  
+  NodeResponse nodeRes;
+  return postMessage(&nodeReq, &nodeRes, error);
+}
+
+bool Round::Node::getKey(const std::string &key, std::string *value, Error *error) {
+  SystemGetKeyRequest nodeReq;
+  nodeReq.setKey(key);
+  
+  NodeResponse nodeRes;
+  if (!postMessage(&nodeReq, &nodeRes, error))
+    return false;
+  
+  return nodeRes.getResult(value);
+}
+

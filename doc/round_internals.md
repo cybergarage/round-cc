@@ -4,6 +4,40 @@
 
 ## Architecture Overview
 
+### Core Module
+
+Round node is a programmable RPC ([Remote Procedure Call](http://en.wikipedia.org/wiki/Remote_procedure_call)) node. Its core module is consist of the following engines.
+
+![Core Module](./img/round_core_module.png)
+
+#### RPC Engine
+
+The RPC engine receives [JSON-RPC][json-rpc] messages from clients and othe nodes over HTTP or HTTPU. The HTTP server is implemented using [uHTTP for C++][uhttp].
+
+RQL (Round Query Language) is a DSL (Domain specific language) for Round. RQL supports to call RPC methods more easily. RQL is similar to SQL, and its engine is implemented using [uSQL for C++][usql].
+
+#### Zeroconf Engine
+
+The Zeroconf engine watches other node activities in the network. Its engine is implemented using [mUPnP for C++][mupnp].
+
+#### Script Engine
+
+The script engine executes the specified method by RPC messages. The script engine supports some dynamic and static programming languages such as JavaScript, Java, Tcl, and C++.
+
+#### Memory Manager
+
+The memory manager controls a volatility simple key value storage in the local node. The scripts can access the key value storage.
+
+#### Trigger Engine
+
+The trigger engine occurs various events such as other nodes activities. The basic events are defined as default, but you can add user define events too.
+
+#### Route Engine
+
+The route engine can connect the trigger with the methods. Its engine can connect the methods with the other methods too like pipelien of Unix.
+
+### Protocol Stack
+
 Round consists only some open standard network protocols such as [UPnP][upnp-spec] and [JSON-RPC][json-rpc] with standard script engines such as [Java][java] and [JavaScript][js-v8].
 
 ![round_protocol](./img/round_protocol.png)
@@ -12,16 +46,16 @@ Round consists only some open standard network protocols such as [UPnP][upnp-spe
 
 Round is designed based on [Zeroconf][zero-conf] concept to achieve automatically scalable distributed systems. Specifically, Round uses [UPnP][upnp-spec], Universal Plug and Play, as [Zeroconf][zero-conf] protocol.
 
-### Messaging
+### RPC
 
 Round node is a programmable RPC([Remote Procedure Call][rpc] node. Its RPC is based on [JSON-RPC][json-rpc], and Round extends the specification to build distributed system applications.
 
-The node includes a local HTTP server to handle requests form other node or client. The HTTP server has [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer) interfaces using [JSON-RPC over HTTP][json-rpc-http], the received message is split into multiple stages similar to the [SEDA][seda] architecture. Check [Round RPC Specification](./round_rpc.md) and [Round RPC Methods](./round_rpc_methods.md) in more detail.
-
-### Scripting
+  The node includes a local HTTP server to handle requests form other node or client. The HTTP server has [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer) interfaces using [JSON-RPC over HTTP][json-rpc-http].
 
 Round supports some dynamic and static proguramming languages such as Java, JavaScript, Tcl and C++ to set the [RPC][rpc] methods.
 Round uses same standard programming engines such as [V8][js-v8].
+
+The received message is split into multiple stages similar to the [SEDA][seda] architecture. Check [Round RPC Specification](./round_rpc.md) and [Round RPC Methods](./round_rpc_methods.md) in more detail.
 
 ## Network Topology
 
@@ -31,13 +65,15 @@ In the current verion, Round supports only the simple network topology, but we w
 
 ## Programming Model
 
-Programming model of Round is inspired from some programming models such as [Actor model][actor-model], CSP ([Communicating Sequential Processes][csp]) and [Dataflow Programming][df-prog]. Each node of Round is an actor which has a message queue to receive messages from clients or other nodes.
+Programming model of Round is inspired from some programming models, [Actor model][actor-model], CSP ([Communicating Sequential Processes][csp]) and [Dataflow Programming][df-prog].
+
+Each node of Round is an actor which has a message queue to receive messages from clients or other nodes.
 
 ![Round Programming Model](img/round_programming_model.png)
 
 ### Scripting
 
-Each node can be received messages from client and other nodes, and the messages are executed by the script engine in the node. The script engine supports some dynamic and static programming languages such as JavaScript, Java, Tcl, and C++.
+Each node can be received messages from client and other nodes, and the messages are executed by the script engine in the node.
 
 ### Routing
 
@@ -79,3 +115,6 @@ Round supports a security model based on [HMAC](https://tools.ietf.org/html/rfc2
 [actor-model]: http://en.wikipedia.org/wiki/Actor_model
 [csp]: http://en.wikipedia.org/wiki/Communicating_sequential_processes
 [df-prog]: http://en.wikipedia.org/wiki/Dataflow_programming
+[mupnp]: http://www.cybergarage.org/do/view/Main/CyberLinkForCC
+[uhttp]: http://www.cybergarage.org/do/view/Main/HttpEngineForCC
+[usql]: http://www.cybergarage.org/do/view/Main/SqlEngineForCC

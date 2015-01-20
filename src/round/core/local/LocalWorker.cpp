@@ -2,7 +2,7 @@
 *
 * Round for C++
 *
-* Copyright (C) Satoshi Konno 2014
+* Copyright (C) Satoshi Konno 2015
 *
 * This is licensed under BSD-style license, see file COPYING.
 *
@@ -11,13 +11,13 @@
 #include <round/core/LocalNode.h>
 #include <round/core/Log.h>
 
-Round::LocalNodeWorkder::LocalNodeWorkder() {
+Round::LocalWorkder::LocalWorkder() {
 }
 
-Round::LocalNodeWorkder::~LocalNodeWorkder() {
+Round::LocalWorkder::~LocalWorkder() {
 }
 
-void Round::LocalNodeWorkder::post(uHTTP::HTTPRequest *httpReq, const NodeResponse *nodeRes) {
+void Round::LocalWorkder::post(uHTTP::HTTPRequest *httpReq, const NodeResponse *nodeRes) {
   int statusCode = uHTTP::HTTP::OK_REQUEST;
   Error err;
   if (nodeRes->getError(&err)) {
@@ -31,7 +31,7 @@ void Round::LocalNodeWorkder::post(uHTTP::HTTPRequest *httpReq, const NodeRespon
   httpReq->post(&httpRes);
 }
 
-void Round::LocalNodeWorkder::run() {
+void Round::LocalWorkder::run() {
   LocalNode *node = getObject();
   if (!node)
     return;

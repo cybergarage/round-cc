@@ -2,7 +2,7 @@
 *
 * Round for C++
 *
-* Copyright (C) Satoshi Konno 2014
+* Copyright (C) Satoshi Konno 2015
 *
 * This is licensed under BSD-style license, see file COPYING.
 *
@@ -14,10 +14,9 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <round/common/platform.h>
 #include <round/common/Error.h>
 #include <round/common/Dictionary.h>
-
-#define USE_ROUND_JSON_PARSER_JANSSON 1
 
 namespace Round {
 

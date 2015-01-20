@@ -2,7 +2,7 @@
  *
  * Round for C++
  *
- * Copyright (C) Satoshi Konno 2014
+ * Copyright (C) Satoshi Konno 2015
  *
  * This is licensed under BSD-style license, see file COPYING.
  *
@@ -38,14 +38,12 @@ BOOST_AUTO_TEST_CASE(LocalNodeEqualTest) {
 }
 
 BOOST_AUTO_TEST_CASE(LocalNodConfigGraphTest) {
-  LocalNodeConfig nodeConfig;
+  LocalConfig nodeConfig;
   Error error;
   std::string retStringValue;
   int retIntValue;
   
   const std::string testHttpAddr = "testAddr";
-  // LocalNodeConfig::getHttpdBindAddress() returns a default value when the value is not specified.
-  //BOOST_CHECK_EQUAL(nodeConfig.getHttpdBindAddress(&retStringValue, &error), false);
   BOOST_CHECK(nodeConfig.setHttpdBindAddress(testHttpAddr));
   BOOST_CHECK_EQUAL(nodeConfig.getHttpdBindAddress(&retStringValue, &error), true);
   BOOST_CHECK_EQUAL(testHttpAddr, retStringValue);
@@ -81,11 +79,31 @@ BOOST_AUTO_TEST_CASE(LocalNodConfigGraphTest) {
   BOOST_CHECK_EQUAL(testErrorLogFilename, retStringValue);
 }
 
+BOOST_AUTO_TEST_CASE(LocalNodMemoryTest) {
+  TestLocalNode node;
+  
+  string key = "key";
+  string value;
+  string valueBuf;
+  
+  BOOST_CHECK_EQUAL(node.getKey(key, &valueBuf), false);
+  
+  value = "hello";
+  BOOST_CHECK(node.setKey(key, value));
+  BOOST_CHECK_EQUAL(node.getKey(key, &valueBuf), true);
+  BOOST_CHECK_EQUAL(valueBuf.compare(value), 0);
+  
+  value = "world";
+  BOOST_CHECK(node.setKey(key, value));
+  BOOST_CHECK_EQUAL(node.getKey(key, &valueBuf), true);
+  BOOST_CHECK_EQUAL(valueBuf.compare(value), 0);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(rpc)
 
-BOOST_AUTO_TEST_CASE(LocalNodeScriptManagerTest) {
+BOOST_AUTO_TEST_CASE(LocalScriptManagerTest) {
   TestLocalNode node;
   NodeTestController nodeTestController;
   nodeTestController.runScriptManagerTest(&node);

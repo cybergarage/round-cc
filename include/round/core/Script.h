@@ -2,7 +2,7 @@
 *
 * Round for C++
 *
-* Copyright (C) Satoshi Konno 2014
+* Copyright (C) Satoshi Konno 2015
 *
 * This is licensed under BSD-style license, see file COPYING.
 *
@@ -178,7 +178,7 @@ class ScriptManager {
   ScriptManager();
   virtual ~ScriptManager();
     
-  bool setScript(const std::string &method, const std::string &lang, const std::string &script, int encodingType, Error *error);
+  bool setScript(const std::string &method, const std::string &lang, const std::string &script, int encodeType, Error *error);
   bool setScript(Script *script);
   
   bool hasScript(const std::string &name) const {

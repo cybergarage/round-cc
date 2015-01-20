@@ -2,7 +2,7 @@
 *
 * Round for C++
 *
-* Copyright (C) Satoshi Konno 2014
+* Copyright (C) Satoshi Konno 2015
 *
 * This is licensed under BSD-style license, see file COPYING.
 *
@@ -11,78 +11,21 @@
 #include <string.h>
 #include <sstream>
 
-#include <round/core/SystemMethod.h>
+#include <round/core/local/method/SystemMethod.h>
 
-////////////////////////////////////////
-// SystemNodeInfoDict
-////////////////////////////////////////
-
-bool Round::SystemNodeInfoDict::setNode(Node *node) {
-  Error error;
-  
-  std::string nodeAddr;
-  if (!node->getRequestAddress(&nodeAddr, &error)) {
-    return false;
-  }
-  
-  int nodePort;
-  if (!node->getRequestPort(&nodePort, &error)) {
-    return false;
-  }
-  
-  std::string nodeCluster;
-  if (!node->getClusterName(&nodeCluster, &error)) {
-    return false;
-  }
-  
-  std::string nodeHash;
-  if (!node->getHashCode(&nodeHash)) {
-    return false;
-  }
-  
-  setIp(nodeAddr);
-  setPort(nodePort);
-  setCluster(nodeCluster);
-  setHash(nodeHash);
-  
-  return true;
-}
-
-bool Round::SystemNodeInfoDict::getNode(RemoteNode *node) {
-  std::string nodeAddr;
-  if (!getIp(&nodeAddr)) {
-    return false;
-  }
-  int nodePort;
-  if (!getPort(&nodePort)) {
-    return false;
-  }
-  
-  std::string nodeCluster;
-  if (!getCluster(&nodeCluster)) {
-    return false;
-  }
-  
-  node->setRequestAddress(nodeAddr);
-  node->setRequestPort(nodePort);
-  node->setClusterName(nodeCluster);
-  
-  return true;
-}
-
-////////////////////////////////////////
-// SystemClusterInfoDict
-////////////////////////////////////////
+const std::string Round::SystemClusterInfoDict::NAME     = "name";
+const std::string Round::SystemClusterInfoDict::NODES    = "nodes";
+const std::string Round::SystemClusterInfoDict::CLUSTER  = "cluster";
 
 Round::JSONArray *Round::SystemClusterInfoDict::getNodeArray() {
   JSONObject *jsonObj = NULL;
-  this->jsonDict->get(SystemMethodResponse::NODES, &jsonObj);
+  this->jsonDict->get(NODES, &jsonObj);
   JSONArray *jsonArray = dynamic_cast<JSONArray *>(jsonObj);
   if (jsonArray)
     return jsonArray;
   
   jsonArray = new JSONArray();
-  this->jsonDict->set(SystemMethodResponse::NODES, jsonArray);
+  this->jsonDict->set(NODES, jsonArray);
   
   return jsonArray;
 }
@@ -94,7 +37,7 @@ bool Round::SystemClusterInfoDict::setCluster(LocalNode *node) {
   
   std::string clusterName;
   if (node->getClusterName(&clusterName, &error)) {
-    this->jsonDict->set(SystemMethodResponse::NAME, clusterName);
+    this->jsonDict->set(NAME, clusterName);
   }
   
   // Cluseter Nodes
@@ -123,7 +66,7 @@ bool Round::SystemClusterInfoDict::getCluster(Cluster *cluster) {
   // Cluster Name
   
   std::string clusterName;
-  if (this->jsonDict->get(SystemMethodResponse::NAME, &clusterName)) {
+  if (this->jsonDict->get(NAME, &clusterName)) {
     cluster->setName(clusterName);
   }
   

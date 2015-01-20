@@ -2,7 +2,7 @@
 *
 * Round for C++
 *
-* Copyright (C) Satoshi Konno 2014
+* Copyright (C) Satoshi Konno 2015
 *
 * This is licensed under BSD-style license, see file COPYING.
 *
@@ -11,7 +11,7 @@
 #include <round/core/LocalNode.h>
 #include <round/common/platform.h>
 
-#include <round/core/SystemMethod.h>
+#include <round/core/local/method/SystemMethod.h>
 
 #include <round/script/JavaScript.h>
 #if defined(ROUND_SUPPORT_JAVA_JNI)
@@ -21,17 +21,17 @@
 #include <round/script/Tcl.h>
 #endif
 
-const std::string Round::LocalNodeScriptManager::SYSTEM_ECHO_METHOD_CODE = "function _echo(params) {return params;}";
-const std::string Round::LocalNodeScriptManager::SYSTEM_ECHO_METHOD_LANGUAGE = "js"; //JavaScriptEngine::LANGUAGE;
+const std::string Round::LocalScriptManager::SYSTEM_ECHO_METHOD_CODE = "function _echo(params) {return params;}";
+const std::string Round::LocalScriptManager::SYSTEM_ECHO_METHOD_LANGUAGE = "js"; //JavaScriptEngine::LANGUAGE;
 
-Round::LocalNodeScriptManager::LocalNodeScriptManager() {
+Round::LocalScriptManager::LocalScriptManager() {
   init();
 }
 
-Round::LocalNodeScriptManager::~LocalNodeScriptManager() {
+Round::LocalScriptManager::~LocalScriptManager() {
 }
 
-void Round::LocalNodeScriptManager::init() {
+void Round::LocalScriptManager::init() {
   Error error;
   
   // Default Script Engine
@@ -44,5 +44,5 @@ void Round::LocalNodeScriptManager::init() {
 #endif
 
   // Default Dynamic System Method
-  setScript(Round::SystemMethodRequest::ECHO, SYSTEM_ECHO_METHOD_LANGUAGE, SYSTEM_ECHO_METHOD_CODE, Script::ENCODING_NONE, &error);
+  setScript(Round::system_method::ECHO, SYSTEM_ECHO_METHOD_LANGUAGE, SYSTEM_ECHO_METHOD_CODE, Script::ENCODING_NONE, &error);
 }

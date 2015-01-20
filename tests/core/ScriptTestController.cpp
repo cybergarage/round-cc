@@ -2,7 +2,7 @@
  *
  * Round for C++
  *
- * Copyright (C) Satoshi Konno 2014
+ * Copyright (C) Satoshi Konno 2015
  *
  * This is licensed under BSD-style license, see file COPYING.
  *
@@ -15,7 +15,7 @@
 #include <string.h>
 
 #include <round/Round.h>
-#include <round/core/SystemMethod.h>
+#include <round/core/Method.h>
 
 #include "TestNode.h"
 #include "TestScript.h"

@@ -2,7 +2,7 @@
 *
 * Round for C++
 *
-* Copyright (C) Satoshi Konno 2014
+* Copyright (C) Satoshi Konno 2015
 *
 * This is licensed under BSD-style license, see file COPYING.
 *
@@ -20,10 +20,10 @@ const std::string Round::RPC::JSON::Message::MESSAGE = "message";
 const std::string Round::RPC::JSON::Message::RESULT = "result";
 
 const std::string Round::RPC::JSON::Message::TIMESTAMP = "ts";
-const std::string Round::RPC::JSON::Message::HASH = "hash";
+const std::string Round::RPC::JSON::Message::QUORUM = "quorum";
 
 const std::string Round::RPC::JSON::Message::DEST = "dest";
-const std::string Round::RPC::JSON::Message::DEST_ONE = "one";
+const std::string Round::RPC::JSON::Message::DEST_ANY = "*";
 const std::string Round::RPC::JSON::Message::DEST_ALL = "all";
 
 const std::string Round::RPC::JSON::Message::TYPE = "type";
@@ -39,29 +39,18 @@ Round::RPC::JSON::Message::~Message() {
 bool Round::RPC::JSON::Message::isDestValid() const {
   if (!hasDest())
     return true;
-  if (isDestOne())
+  if (isDestHash())
     return true;
   if (isDestAll())
-    return true;
-  if (isDestQuorum())
     return true;
   return false;
 }
 
-bool Round::RPC::JSON::Message::setHash(HashObject *hashObj) {
+bool Round::RPC::JSON::Message::setDest(HashObject *hashObj) {
   std::string hashCode;
   if (!hashObj->getHashCode(&hashCode))
     return false;
-  return setHash(hashCode);
-}
-
-bool Round::RPC::JSON::Message::isDestOne() const {
-  if (!hasDest())
-    return false;
-  std::string dest;
-  if (!getDest(&dest))
-    return false;
-  return (dest.compare(DEST_ONE) == 0) ? true : false;
+  return setDest(hashCode);
 }
 
 bool Round::RPC::JSON::Message::isDestAll() const {
@@ -73,17 +62,21 @@ bool Round::RPC::JSON::Message::isDestAll() const {
   return (dest.compare(DEST_ALL) == 0) ? true : false;
 }
 
-bool Round::RPC::JSON::Message::isDestQuorum() const {
+bool Round::RPC::JSON::Message::isDestAny() const {
   if (!hasDest())
     return false;
-  size_t quorum;
-  if (!get(DEST, &quorum))
+  std::string dest;
+  if (!getDest(&dest))
     return false;
-  return (0 < quorum) ? true : false;
+  return (dest.compare(DEST_ANY) == 0) ? true : false;
 }
 
-bool Round::RPC::JSON::Message::getQuorum(size_t *value) const {
-  if (!isDestQuorum())
+bool Round::RPC::JSON::Message::isDestHash() const {
+  if (!hasDest())
     return false;
-  return get(DEST, value);
+  std::string dest;
+  if (!getDest(&dest))
+    return false;
+  return (dest.length() == HashObject::GetHashCodeLength());
 }
+

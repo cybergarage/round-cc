@@ -2,7 +2,7 @@
  *
  * Round for C++
  *
- * Copyright (C) Satoshi Konno 2014
+ * Copyright (C) Satoshi Konno 2015
  *
  * This is licensed under BSD-style license, see file COPYING.
  *
@@ -122,7 +122,7 @@ BOOST_AUTO_TEST_CASE(RoundRealServerClientFindTest) {
     Cluster *foundCluster = client.getCluster(clusterName);
     BOOST_WARN_MESSAGE(foundCluster, "Cluster (" << clusterName << ") is not found !!");
     if (foundCluster) {
-      clusterNodeCnt = foundCluster->size();
+      clusterNodeCnt = foundCluster->getNodeSize();
     }
     if (clusterNodeCnt == TEST_SERVER_COUNT) {
       for (size_t n=0; n<clusterNodeCnt; n++) {
@@ -179,8 +179,8 @@ BOOST_AUTO_TEST_CASE(RoundRealServerEachFindTest) {
     for (int n=0; n<TEST_SERVER_COUNT; n++) {
       Cluster cluster;
       BOOST_CHECK(servers[n]->getCluster(&cluster, &err));
-      BOOST_WARN_MESSAGE((cluster.size() != TEST_SERVER_COUNT), "Server not found (" << cluster.size() << ") !!");
-      if (cluster.size() != TEST_SERVER_COUNT) {
+      BOOST_WARN_MESSAGE((cluster.getNodeSize() != TEST_SERVER_COUNT), "Server not found (" << cluster.getNodeSize() << ") !!");
+      if (cluster.getNodeSize() != TEST_SERVER_COUNT) {
         isServerNotFound = true;
         break;
       }

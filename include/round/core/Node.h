@@ -2,7 +2,7 @@
 *
 * Round for C++
 *
-* Copyright (C) Satoshi Konno 2014
+* Copyright (C) Satoshi Konno 2015
 *
 * This is licensed under BSD-style license, see file COPYING.
 *
@@ -36,9 +36,13 @@ class Node : public NodeCore, public Cloneable<Node> {
  public:
   
   bool isAlive(Error *error);
+  
   bool getStatus(NodeStatus *status, Error *error);
   bool getCluster(Cluster *cluster, Error *error);
   bool getClusterList(ClusterList *clusterList, Error *error);
+  
+  bool setKey(const std::string &key, const std::string &value, Error *error);
+  bool getKey(const std::string &key, std::string *value, Error *error);
 
 public:
 

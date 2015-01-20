@@ -2,7 +2,7 @@
  *
  * Round for C++
  *
- * Copyright (C) Satoshi Konno 2014
+ * Copyright (C) Satoshi Konno 2015
  *
  * This is licensed under BSD-style license, see file COPYING.
  *
@@ -113,6 +113,7 @@ class NodeTestController {
   void runSystemGetNodeInfoTest(Round::Node *node);
   void runSystemGetClusterInfoTest(Round::Node *node);
   void runSystemGetNetworkInfoTest(Round::Node *node);
+  void runSystemKeyMethodsTest(Round::Node *node);
 
   void runPostEchoMethodTest(Round::Node *node);
   
