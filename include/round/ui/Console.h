@@ -53,7 +53,7 @@ private:
 
 typedef const std::string Param;
 
-class Params : public std::vector<Param> {
+class Params : public std::vector<std::string> {
  public:
   Params() {}
   
