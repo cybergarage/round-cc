@@ -6,6 +6,7 @@ RUN apt-get update && apt-get upgrade -y
 
 # Install base packages
 RUN apt-get install -y git g++ make automake autoconf
+RUN apt-get install -y build-essential devscripts debheper dh-make fakeroot
 
 # Git configuration
 RUN git config --global user.email "skonno@cybergarage.org"
@@ -23,6 +24,13 @@ RUN apt-get install -y libxml2-dev
 WORKDIR /root
 RUN git clone https://github.com/cybergarage/mUPnPCC.git mupnp
 WORKDIR mupnp
+RUN ./bootstrap && ./configure && make && make install
+
+# uSQL for C++
+RUN apt-get install -y libantlr3c-dev
+WORKDIR /root
+RUN git clone https://github.com/cybergarage/uSQL4CC.git usql
+WORKDIR usql
 RUN ./bootstrap && ./configure && make && make install
 
 # Round

@@ -17,6 +17,14 @@ RUN ./bootstrap && ./configure && make && make install
 WORKDIR /root
 RUN rm -rf mupnp
 
+# uSQL for C++
+WORKDIR /root
+WORKDIR usql
+RUN git pull
+RUN ./bootstrap && ./configure && make && make install
+WORKDIR /root
+RUN rm -rf usql
+
 # Round
 WORKDIR /root
 WORKDIR round
