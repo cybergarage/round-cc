@@ -67,6 +67,20 @@ Round::Node *Round::NodeGraph::getRandomNode() const {
   return getNode(nodeIdx.rand());
 }
 
+Round::Node *Round::NodeGraph::getNodeByHashCode(const std::string &hashCode) const {
+  for (NodeGraph::const_iterator content = begin(); content != end(); content++) {
+    Node *node = static_cast<Node *>(*content);
+    if (!node)
+      continue;
+    std::string nodeHash;
+    if (!node->getHashCode(&nodeHash))
+      continue;
+    if (hashCode.compare(nodeHash) == 0)
+      return node;
+  }
+  return NULL;
+}
+
 bool Round::NodeGraph::hasNode(const Round::Node *node) const {
   return ConsistentHashGraph::hasNode(node);
 }

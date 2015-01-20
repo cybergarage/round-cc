@@ -29,6 +29,7 @@ class NodeGraph : public ConsistentHashGraph {
   std::size_t size() const;
 
   Node *getNode(size_t index) const;
+  Node *getNodeByHashCode(const std::string &hashCode) const;
   Node *getRandomNode() const;
 
   bool hasNode(const Node *node) const;
