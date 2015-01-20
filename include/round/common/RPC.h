@@ -34,7 +34,7 @@ enum {
   ErrorCodeInvalidParams             = -32602,
   ErrorCodeInternalError             = -32603,
   
-  ErrorCodeBadHashCode               = -32000,
+  ErrorCodeBadDestination            = -32000,
   ErrorCodeMovedPermanently          = -32001,
   
   ErrorConditionFailed               = -32010,

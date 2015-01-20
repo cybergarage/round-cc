@@ -60,7 +60,7 @@ protected:
 
 private:
   
-  bool findObjectNode(const std::string &obj, Node **node);
+  bool findObjectNode(const std::string &obj, Node **node, Error *error);
 
 private:
 

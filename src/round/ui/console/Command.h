@@ -86,18 +86,32 @@ public:
   const std::string getOptionDescription() const;
 };
 
+class use : public Command {
+public:
+  static const std::string NAME;
+  static const std::string ERROR_CLUSTER_NOTSPECFIED;
+  static const std::string ERROR_CLUSTER_NOTFOUND;
+  use() : Command(NAME) {}
+  bool exec(Round::Console::Client *client, const Input *input, Message *msg, Error *err) const;
+  const std::string getDescription() const;
+  const std::string getOptionDescription() const;
+};
+
 ////////////////////////////////////////////////////////////
 // rpc command
 ////////////////////////////////////////////////////////////
 
-class rpc : public Command {
+class method : public Command {
 public:
   static const std::string NAME;
   static const std::string PARAM_BEGIN;
   static const std::string PARAM_END;
   static const std::string PARAM_SEP;
   static const std::string OBJECT_SEP;
-  rpc() : Command(NAME) {}
+  static const std::string ERROR_OBJECT_NOTSPECEFIED;
+  static const std::string ERROR_CLUSTER_NOTFOUND;
+  static const std::string ERROR_NODE_NOTFOUND;
+  method() : Command(NAME) {}
   bool exec(Round::Console::Client *client, const Input *input, Message *msg, Error *err) const;
   const std::string getDescription() const;
   const std::string getOptionDescription() const;

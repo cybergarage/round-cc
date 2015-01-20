@@ -31,13 +31,14 @@ void Round::Console::Commands::init() {
   addCommand(new version());
   addCommand(new quit());
   addCommand(new verbose());
+  addCommand(new use());
 
   // alias commands
   addCommand(new exit());
   addCommand(new question());
 
   // RPC method
-  addCommand(new rpc());
+  addCommand(new method());
 }
 
 void Round::Console::Commands::clear() {
@@ -54,7 +55,7 @@ bool Round::Console::Commands::addCommand(Command *cmd) {
 }
 
 bool Round::Console::Commands::isNonExecutedCommand(const Input *input) const {
-  if (input->cmd.compare(rpc::NAME) == 0)
+  if (input->cmd.compare(method::NAME) == 0)
     return true;
   return false;
 }

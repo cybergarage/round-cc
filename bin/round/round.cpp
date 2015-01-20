@@ -41,7 +41,7 @@ bool exec_console_command(Round::Console::Client &client, const Round::Console::
     return true;
   }
 
-  std::string errMsg = err.getMessage();
+  std::string errMsg = err.getDetailMessage();
   if (0 < errMsg.length()) {
     std::cerr << ROUND_CERR_PREFIX << errMsg << "'" << std::endl;
   }
@@ -60,7 +60,7 @@ bool exec_rpc_command(Round::Console::Client &client, const Round::Console::Inpu
     return true;
   }
   
-  std::string errMsg = err.getMessage();
+  std::string errMsg = err.getDetailMessage();
   if (0 < errMsg.length()) {
     std::cerr << ROUND_CERR_PREFIX << errMsg << "'" << std::endl;
   }

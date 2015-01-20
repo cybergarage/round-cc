@@ -57,7 +57,7 @@ int Round::RPC::JSON::HTTP::ErrorCodeToHTTPStatusCode(int jsonErrorCode) {
   
   // Extended Parameter Error Codes
   switch (jsonErrorCode) {
-    case RPC::JSON::ErrorCodeBadHashCode :
+    case RPC::JSON::ErrorCodeBadDestination :
       return uHTTP::HTTP::BAD_REQUEST;
     case RPC::JSON::ErrorCodeMovedPermanently :
       return uHTTP::HTTP::MOVED_PERMANENTLY;
@@ -96,8 +96,8 @@ const std::string &Round::RPC::JSON::ErrorCodeToString(int jsonErrorCode) {
     gJsonRpcErrorStrings[ErrorCodeInvalidParams]  = "Invalid params";
     gJsonRpcErrorStrings[ErrorCodeInternalError]  = "Internal error";
     
-    gJsonRpcErrorStrings[ErrorCodeBadHashCode]      = "Bad Hash Length";
-    gJsonRpcErrorStrings[ErrorCodeMovedPermanently] = "Moved Permanently";
+    gJsonRpcErrorStrings[ErrorCodeBadDestination]       = "Bad Destination";
+    gJsonRpcErrorStrings[ErrorCodeMovedPermanently]     = "Moved Permanently";
     
     gJsonRpcErrorStrings[ErrorCodeScriptEngineInternalError]  = "Script Engine Internal Error";
     gJsonRpcErrorStrings[ErrorCodeScriptEngineNotFound]       = "Script Engine Not Found";

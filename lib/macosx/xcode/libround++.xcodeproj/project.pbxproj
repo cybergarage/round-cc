@@ -48,7 +48,6 @@
 		21B911B91A6B5F4300C791FD /* SystemMethodResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911AB1A6B5F4300C791FD /* SystemMethodResponse.cpp */; };
 		21B911BA1A6B5F4300C791FD /* SystemNodeInfoDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911AC1A6B5F4300C791FD /* SystemNodeInfoDict.cpp */; };
 		21B911BC1A6B61CC00C791FD /* set_method.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911BB1A6B61CC00C791FD /* set_method.cpp */; };
-		21C249061A6D8432003C69F9 /* rpc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C249051A6D8432003C69F9 /* rpc.cpp */; };
 		21D03AD41A63C4A60098122A /* Route.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D03AD31A63C4A60098122A /* Route.h */; };
 		21D7A5961A6BDE7C00D43061 /* help.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7A5931A6BDE7C00D43061 /* help.cpp */; };
 		21D7A5971A6BDE7C00D43061 /* search.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7A5941A6BDE7C00D43061 /* search.cpp */; };
@@ -193,6 +192,8 @@
 		21F4CE6E1A63F0BA00E7F0CC /* ScriptManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4CE651A63F0BA00E7F0CC /* ScriptManager.cpp */; };
 		21F4CE6F1A63F0BA00E7F0CC /* ScriptMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4CE661A63F0BA00E7F0CC /* ScriptMap.cpp */; };
 		21F4CE711A63F45500E7F0CC /* RouteObjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4CE701A63F45500E7F0CC /* RouteObjects.cpp */; };
+		21FA93DD1A6E8FF10067314A /* method.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FA93DC1A6E8FF10067314A /* method.cpp */; };
+		21FA93E11A6E90040067314A /* use.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FA93E01A6E90040067314A /* use.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -255,7 +256,6 @@
 		21B911AB1A6B5F4300C791FD /* SystemMethodResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemMethodResponse.cpp; sourceTree = "<group>"; };
 		21B911AC1A6B5F4300C791FD /* SystemNodeInfoDict.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemNodeInfoDict.cpp; sourceTree = "<group>"; };
 		21B911BB1A6B61CC00C791FD /* set_method.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = set_method.cpp; sourceTree = "<group>"; };
-		21C249051A6D8432003C69F9 /* rpc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rpc.cpp; sourceTree = "<group>"; };
 		21D03AD31A63C4A60098122A /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
 		21D7A5931A6BDE7C00D43061 /* help.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = help.cpp; sourceTree = "<group>"; };
 		21D7A5941A6BDE7C00D43061 /* search.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = search.cpp; sourceTree = "<group>"; };
@@ -400,6 +400,8 @@
 		21F4CE651A63F0BA00E7F0CC /* ScriptManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptManager.cpp; sourceTree = "<group>"; };
 		21F4CE661A63F0BA00E7F0CC /* ScriptMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptMap.cpp; sourceTree = "<group>"; };
 		21F4CE701A63F45500E7F0CC /* RouteObjects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RouteObjects.cpp; sourceTree = "<group>"; };
+		21FA93DC1A6E8FF10067314A /* method.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = method.cpp; sourceTree = "<group>"; };
+		21FA93E01A6E90040067314A /* use.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = use.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -492,12 +494,13 @@
 		21B329421A6B939D0077C313 /* cmd */ = {
 			isa = PBXGroup;
 			children = (
+				21FA93E01A6E90040067314A /* use.cpp */,
+				21FA93DC1A6E8FF10067314A /* method.cpp */,
 				21D7A5A21A6BF4A500D43061 /* exit.cpp */,
 				21D7A5931A6BDE7C00D43061 /* help.cpp */,
 				21B329471A6B94720077C313 /* list.cpp */,
 				217342FC1A6CB3C000ADA1C8 /* question.cpp */,
 				21D7A5A31A6BF4A500D43061 /* quit.cpp */,
-				21C249051A6D8432003C69F9 /* rpc.cpp */,
 				21D7A5941A6BDE7C00D43061 /* search.cpp */,
 				21D7A5981A6BE1E400D43061 /* shell.cpp */,
 				21D7A5A01A6BF1E900D43061 /* update.cpp */,
@@ -1045,10 +1048,10 @@
 				21D8E2E51A60E1E200E8A63F /* LocalNode.cpp in Sources */,
 				21D7A59B1A6BE47F00D43061 /* Options.cpp in Sources */,
 				21E1EB151A64FE2800FEABF6 /* NodeBatchRequest.cpp in Sources */,
-				21C249061A6D8432003C69F9 /* rpc.cpp in Sources */,
 				21B911B81A6B5F4300C791FD /* SystemMethodRequest.cpp in Sources */,
 				21D8E2C71A60E1E200E8A63F /* JSONInterger.cpp in Sources */,
 				21D8E2EC1A60E1E200E8A63F /* NodeCore.cpp in Sources */,
+				21FA93DD1A6E8FF10067314A /* method.cpp in Sources */,
 				21D8E3001A60E1E200E8A63F /* JavaEngine.cpp in Sources */,
 				21D8E2B21A60E1E200E8A63F /* Configuration.cpp in Sources */,
 				21D8E2B31A60E1E200E8A63F /* ConsistentHashGraph.cpp in Sources */,
@@ -1069,6 +1072,7 @@
 				21B3293E1A6B82CA0077C313 /* Command.cpp in Sources */,
 				21526C8C1A6682F900CF3D12 /* RPCRequest.cpp in Sources */,
 				21F4CE691A63F0BA00E7F0CC /* RouteList.cpp in Sources */,
+				21FA93E11A6E90040067314A /* use.cpp in Sources */,
 				21D8E3011A60E1E200E8A63F /* JavaScriptEngine.cpp in Sources */,
 				21B9119B1A6B5E5400C791FD /* LocalScriptManager.cpp in Sources */,
 				21526C8D1A6682F900CF3D12 /* RPCResponse.cpp in Sources */,

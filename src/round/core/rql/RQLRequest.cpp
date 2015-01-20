@@ -21,13 +21,13 @@ bool Round::RQLRequest::parseQuery(const std::string &query, Error *err) {
 }
 
 bool Round::RQLRequest::parseRpcQuery(const std::string &query, Error *err) {
-  size_t paramBeginIdx = query.find_first_of(Console::rpc::PARAM_BEGIN);
+  size_t paramBeginIdx = query.find_first_of(Console::method::PARAM_BEGIN);
   size_t paramSepIdx = std::string::npos;
   size_t paramEndIdx = std::string::npos;
   if (paramBeginIdx != std::string::npos) {
-    paramSepIdx = query.find_first_of(Console::rpc::PARAM_SEP, paramBeginIdx);
+    paramSepIdx = query.find_first_of(Console::method::PARAM_SEP, paramBeginIdx);
     if (paramSepIdx != std::string::npos) {
-      paramEndIdx = query.find_first_of(Console::rpc::PARAM_END, paramSepIdx);
+      paramEndIdx = query.find_first_of(Console::method::PARAM_END, paramSepIdx);
     }
   }
   

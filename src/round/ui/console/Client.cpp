@@ -86,10 +86,10 @@ bool Round::Console::Client::isConsoleCommand(const Input &input) {
 }
 
 bool Round::Console::Client::isRPCCommand(const Input &input) {
-  size_t paramBeginIdx = input.line.find_first_of(rpc::PARAM_BEGIN);
+  size_t paramBeginIdx = input.line.find_first_of(method::PARAM_BEGIN);
   if (paramBeginIdx == std::string::npos)
     return false;
-  size_t paramEndIdx = input.line.find_first_of(rpc::PARAM_END);
+  size_t paramEndIdx = input.line.find_first_of(method::PARAM_END);
   if (paramEndIdx == std::string::npos)
     return false;
   return (paramBeginIdx < paramEndIdx) ? true : false;
@@ -108,7 +108,7 @@ bool Round::Console::Client::execConsoleCommand(const Input &input, Message *msg
 }
 
 bool Round::Console::Client::execRPCCommand(const Input &input, Message *msg, Error *err) {
-  Command *cmd = this->commands.getCommand(rpc::NAME);
+  Command *cmd = this->commands.getCommand(method::NAME);
   if (!cmd)
     return false;
   return cmd->exec(this, &input, msg, err);

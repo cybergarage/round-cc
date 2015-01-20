@@ -8,7 +8,9 @@
  *
  ******************************************************************/
 
+#include <boost/lexical_cast.hpp>
 #include <boost/algorithm/string.hpp>
+
 #include <round/core/ClientCore.h>
 #include <round/core/Node.h>
 #include <round/common/RPC.h>
@@ -71,14 +73,65 @@ Round::Cluster *Round::ClientCore::getCluster(const std::string &name) const {
   return this->clusterList.getCluster(name);
 }
 
-bool Round::ClientCore::findObjectNode(const std::string &obj, Node **node) {
-  std::list<std::string> objs;
-  boost::split(objs, obj, boost::is_any_of(Round::Console::rpc::OBJECT_SEP));
-  if (objs.size() <= 0)
+bool Round::ClientCore::findObjectNode(const std::string &obj, Node **foundNode, Error *err) {
+  std::vector<std::string> objList;
+  boost::split(objList, obj, boost::is_any_of(Round::Console::method::OBJECT_SEP));
+  if (objList.size() <= 0 && 2 < objList.size()) {
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
+    err->setDetailMessage(Console::method::ERROR_OBJECT_NOTSPECEFIED);
     return false;
+  }
   
-  std::string clusterName;
-  std::string nodeName;
+  std::string cluster;
+  std::string node;
+
+  if (objList.size() == 2) {
+    cluster = objList.at(0);
+    node = objList.at(1);
+  }
+  else {
+    node = objList.at(0);
+  }
+
+  // Select cluster
+  
+  Cluster *targetCluster = getTargetCluster();
+  if (0 < cluster.length()) {
+    targetCluster = getCluster(cluster);
+  }
+
+  if (!targetCluster) {
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
+    err->setDetailMessage(Console::method::ERROR_CLUSTER_NOTFOUND);
+    return false;
+  }
+
+  // Select node
+  
+  if (node.length() <= 0) {
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
+    err->setDetailMessage(Console::method::ERROR_NODE_NOTFOUND);
+    return false;
+  }
+  
+  Node *targetNode = NULL;
+  if (node.compare(NodeRequest::ANY) == 0) {
+    targetNode = targetCluster->getRandomNode();
+  }
+  else {
+    try {
+      size_t nodeIdx = boost::lexical_cast<size_t>(node);
+      targetNode = targetCluster->getNode(nodeIdx);
+    } catch(boost::bad_lexical_cast &) {
+      targetNode = targetCluster->getNodeByHashCode(node);
+    }
+  }
+
+  if (!targetNode) {
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
+    err->setDetailMessage(Console::method::ERROR_NODE_NOTFOUND);
+    return false;
+  }
   
   return false;
 }
@@ -90,7 +143,7 @@ bool Round::ClientCore::postMessage(NodeRequest *nodeReq, NodeResponse *nodeRes,
   }
   
   Node *destNode;
-  if (!findObjectNode(dest, &destNode)) {
+  if (!findObjectNode(dest, &destNode, err)) {
     RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeMovedPermanently, err);
     return false;
   }
