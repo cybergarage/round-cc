@@ -10,6 +10,7 @@
 
 #include <round/core/Node.h>
 #include <round/core/NodeGraph.h>
+#include <round/common/Random.h>
 
 Round::NodeGraph::NodeGraph() {
 }
@@ -58,6 +59,12 @@ bool Round::NodeGraph::removeNode(const Round::Node *node) {
 
 Round::Node *Round::NodeGraph::getNode(size_t index) const {
   return static_cast<Node *>(ConsistentHashGraph::at(index));
+}
+
+Round::Node *Round::NodeGraph::getRandomNode() const {
+  int nodeSize = (int)size();
+  Random nodeIdx(0, (nodeSize-1));
+  return getNode(nodeIdx.rand());
 }
 
 bool Round::NodeGraph::hasNode(const Round::Node *node) const {

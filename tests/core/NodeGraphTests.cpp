@@ -200,5 +200,23 @@ BOOST_AUTO_TEST_CASE(RoundNodGraphSetTest) {
   BOOST_CHECK_EQUAL(nodeGraph1.size(), nodeGraph2.size());
 }
 
+BOOST_AUTO_TEST_CASE(RoundNodGraphGetRandomTest) {
+  const size_t nodeCount = FRACTAL_TEST_NODEGRAPH_MAXSIZE;
+  TestOrderdNodeGraph nodeGraph;
+  TestOrderdNode *nodes[nodeCount];
+  
+  for (size_t n = 0; n < nodeCount; n++) {
+    nodes[n] = new TestOrderdNode(n+1);
+    nodes[n]->setWeakFlag(false);
+    BOOST_CHECK(nodes[n]);
+    BOOST_CHECK(nodeGraph.addNode(nodes[n]));
+  }
+  BOOST_CHECK_EQUAL(nodeGraph.size(), nodeCount);
+
+  for (size_t n = 0; n < (nodeCount * 10); n++) {
+    BOOST_CHECK(nodeGraph.getRandomNode());
+  }
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 

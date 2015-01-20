@@ -26,8 +26,10 @@ class NodeGraph : public ConsistentHashGraph {
   bool addNode(Node *node);
   bool removeNode(const Node *node);
 
-  Node *getNode(size_t index) const;
   std::size_t size() const;
+
+  Node *getNode(size_t index) const;
+  Node *getRandomNode() const;
 
   bool hasNode(const Node *node) const;
   Node *getOffsetNode(const Node *node, off_t offset) const;
