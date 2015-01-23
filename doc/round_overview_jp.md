@@ -10,6 +10,15 @@ Roundは分散システム開発者や研究者向けの新しいオープンソ
 
 Roundの名前は「[円卓の騎士](http://ja.wikipedia.org/wiki/円卓の騎士)」に由来しており、クラスターの全てのノードが等しい役割を持ち、マスターノードが存在していないことを意味しています。
 
+Roundは、分散アプリケーション開発の基盤フレームワークであり、以下のような多種多様な分散アプリケーションの開発を支援します。
+
+- コンセンサスサービス (Chubby, ZooKeeper, etcd ...)
+- 分散データベース (Cassndra, ...)
+- 分散ファイルシステム (GFS, ...)
+- 分散処理フレームワーク (Hadoop, Storm, ...)
+
+Roundでの分散アプリケーション開発の詳細については「[Round Design Patterns](round_design_pattern.md)」を参照してください。
+
 ## 設計原則
 
 Roundは以下の原則に基づいて設計されています。
@@ -56,22 +65,32 @@ Roundは非集中型の分散システムで、クラスターにある全ての
 
 Roundは、分散システムアプリケーションを簡単に開発するために以下の機能を提供します。
 
-### 自動設定
+### 分散プログラミング
+
+Roundでは、分散アプリケーション開発に必要となる分散アルゴリズムをサポートしています。
+
+- リーダー選出
+- コンセンサスアルゴリズム (Paxos, Two-Phase Commit, ....)
+- ....
+
+### 動的プログラミング
+
+Roundのノードはプログラミング可能なRPC([Remote Procedure Call](http://en.wikipedia.org/wiki/Remote_procedure_call))ノードです。Roundでは、各ノードに動的にスクリプトを追加したり、イベントをそのスクリプトに関連付けたりしながら、分散システムアプリケーションを構築していきます。
+
+![auto-configuration](img/round_core_module.png)
+
+### 複数プログラミング言語対応
+
+RoundはJavaScritやJavaなどの複数の動的プログラミング言語に対応していますので、利用者の好みのプログラミング言語で分散システムアプリケーションが開発できます。C++などの静的プログラミング言語にも対応しています。
+
+![auto-configuration](img/round_overview_programming.png)
+
+### 自動認識
 
 新しく起動されたRoundノードは、ネットワークに自動的に追加されます。同じネットワークの他のノードは、ノードが追加されたり削除されたりすると、そのイベントを受信します。
 
 ![auto-configuration](img/round_overview_autoconfig.png)
 
 Roundは、自走設定に以外にも自動設定でないネットワークや固定的な設定にも対応しています。
-
-### プログラミング
-
-Roundのノードはプログラミング可能なRPC([Remote Procedure Call](http://en.wikipedia.org/wiki/Remote_procedure_call))ノードです。Roundでは、各ノードに動的にスクリプトを追加したり、イベントをそのスクリプトに関連付けたりしながら、分散システムアプリケーションを構築していきます。
-
-![auto-configuration](img/round_core_module.png)
-
-RoundはJavaScritやJavaなどの複数の動的プログラミング言語に対応していますので、利用者の好みのプログラミング言語で分散システムアプリケーションが開発できます。C++などの静的プログラミング言語にも対応しています。
-
-![auto-configuration](img/round_overview_programming.png)
 
 Monochrome iconset by [Danny Allen](http://dannya.org).
