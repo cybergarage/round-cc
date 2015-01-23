@@ -29,6 +29,7 @@ The name "Round" derives from "[Knights of the Round Table](http://en.wikipedia.
     - [RQL (Round Query Language)](doc/round_rql.md)
 - Client
     - [Libraries](doc/round_client_lib.md)
+    - [RPM (Round Package Manager)](doc/round_rpm.md)
 
 ## Examples
 
