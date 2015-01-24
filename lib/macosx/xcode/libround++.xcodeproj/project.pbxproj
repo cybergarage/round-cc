@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21062D191A73D0EC00FCA587 /* rpm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21062D181A73D0EC00FCA587 /* rpm.cpp */; };
 		210A64C11A6A317900E8F61D /* Method.h in Headers */ = {isa = PBXBuildFile; fileRef = 210A64C01A6A317900E8F61D /* Method.h */; };
 		210E5FE21A5EDFDA005667CB /* liblibmupnp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 210E5FDF1A5EDFC9005667CB /* liblibmupnp++.a */; };
 		212C05AA1A695F6100F6CB0B /* RQLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212C05A91A695F6100F6CB0B /* RQLParser.cpp */; };
@@ -214,6 +215,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		21062D181A73D0EC00FCA587 /* rpm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rpm.cpp; sourceTree = "<group>"; };
 		210A64C01A6A317900E8F61D /* Method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Method.h; sourceTree = "<group>"; };
 		210E5FDA1A5EDFC9005667CB /* libmupnp++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libmupnp++.xcodeproj"; path = "../../../../mupnp/lib/macosx/xcode/libmupnp++.xcodeproj"; sourceTree = "<group>"; };
 		212C05A91A695F6100F6CB0B /* RQLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RQLParser.cpp; sourceTree = "<group>"; };
@@ -494,16 +496,17 @@
 		21B329421A6B939D0077C313 /* cmd */ = {
 			isa = PBXGroup;
 			children = (
-				21FA93E01A6E90040067314A /* use.cpp */,
-				21FA93DC1A6E8FF10067314A /* method.cpp */,
 				21D7A5A21A6BF4A500D43061 /* exit.cpp */,
 				21D7A5931A6BDE7C00D43061 /* help.cpp */,
 				21B329471A6B94720077C313 /* list.cpp */,
+				21FA93DC1A6E8FF10067314A /* method.cpp */,
 				217342FC1A6CB3C000ADA1C8 /* question.cpp */,
 				21D7A5A31A6BF4A500D43061 /* quit.cpp */,
+				21062D181A73D0EC00FCA587 /* rpm.cpp */,
 				21D7A5941A6BDE7C00D43061 /* search.cpp */,
 				21D7A5981A6BE1E400D43061 /* shell.cpp */,
 				21D7A5A01A6BF1E900D43061 /* update.cpp */,
+				21FA93E01A6E90040067314A /* use.cpp */,
 				21A1572A1A6D4FAC0024B627 /* verbose.cpp */,
 				21D7A59E1A6BF1E100D43061 /* version.cpp */,
 			);
@@ -1055,6 +1058,7 @@
 				21D8E3001A60E1E200E8A63F /* JavaEngine.cpp in Sources */,
 				21D8E2B21A60E1E200E8A63F /* Configuration.cpp in Sources */,
 				21D8E2B31A60E1E200E8A63F /* ConsistentHashGraph.cpp in Sources */,
+				21062D191A73D0EC00FCA587 /* rpm.cpp in Sources */,
 				21D8E2E01A60E1E200E8A63F /* Cluster.cpp in Sources */,
 				21F4CE681A63F0BA00E7F0CC /* RouteEngine.cpp in Sources */,
 				21D8E2CF1A60E1E200E8A63F /* MessageQueue.cpp in Sources */,

@@ -32,6 +32,7 @@ void Round::Console::Commands::init() {
   addCommand(new quit());
   addCommand(new verbose());
   addCommand(new use());
+  addCommand(new rpm());
 
   // alias commands
   addCommand(new exit());

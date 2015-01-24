@@ -98,6 +98,19 @@ public:
 };
 
 ////////////////////////////////////////////////////////////
+// rpm command
+////////////////////////////////////////////////////////////
+  
+class rpm : public Command {
+public:
+  static const std::string NAME;
+  rpm() : Command(NAME) {}
+  bool exec(Round::Console::Client *client, const Input *input, Message *msg, Error *err) const;
+  const std::string getDescription() const;
+  const std::string getOptionDescription() const;
+};
+  
+////////////////////////////////////////////////////////////
 // rpc command
 ////////////////////////////////////////////////////////////
 
