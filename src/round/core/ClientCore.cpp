@@ -133,7 +133,9 @@ bool Round::ClientCore::findObjectNode(const std::string &obj, Node **foundNode,
     return false;
   }
   
-  return false;
+  *foundNode = targetNode;
+  
+  return true;
 }
 
 bool Round::ClientCore::postMessage(NodeRequest *nodeReq, NodeResponse *nodeRes, Error *err) {
