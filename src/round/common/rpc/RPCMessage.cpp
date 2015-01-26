@@ -39,11 +39,11 @@ Round::RPC::JSON::Message::~Message() {
 bool Round::RPC::JSON::Message::isDestValid() const {
   if (!hasDest())
     return true;
-  if (isDestHash())
-    return true;
   if (isDestAll())
     return true;
-  return false;
+  if (isDestAny())
+    return true;
+  return isDestHash();
 }
 
 bool Round::RPC::JSON::Message::setDest(HashObject *hashObj) {
@@ -80,3 +80,12 @@ bool Round::RPC::JSON::Message::isDestHash() const {
   return (dest.length() == HashObject::GetHashCodeLength());
 }
 
+bool Round::RPC::JSON::Message::isDestOne() const {
+  if (!hasDest())
+    return true;
+  if (isDestAny())
+    return true;
+  if (isDestAll())
+    return false;
+  return isDestHash();
+}

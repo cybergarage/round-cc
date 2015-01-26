@@ -160,10 +160,10 @@ class Message : public ::Round::Request {
   }
 
   bool isDestValid() const;
-  
   bool isDestAny() const;
   bool isDestAll() const;
   bool isDestHash() const;
+  bool isDestOne() const;
 
   // quorum
   

@@ -156,29 +156,6 @@ BOOST_AUTO_TEST_CASE(RPCRequestExtentionMethodTest) {
   BOOST_CHECK(rpcMsg.getTimestamp(&ts));
   BOOST_CHECK_EQUAL(ts, std::numeric_limits<clock_t>::max());
 
-  // dest (string)
-  
-  const std::string TEST_HASH = "0123456789";
-  std::string hash;
-  
-  BOOST_CHECK(!rpcMsg.hasDest());
-  BOOST_CHECK(!rpcMsg.getDest(&hash));
-  
-  BOOST_CHECK(rpcMsg.setDest(TEST_HASH));
-  BOOST_CHECK(rpcMsg.hasDest());
-  BOOST_CHECK(rpcMsg.getDest(&hash));
-  BOOST_CHECK_EQUAL(TEST_HASH.compare(hash), 0);
-
-  // dest (node)
-  
-  TestLocalNode node;
-  std::string nodeHash;
-  BOOST_CHECK(rpcMsg.setDest(&node));
-  BOOST_CHECK(rpcMsg.hasDest());
-  BOOST_CHECK(rpcMsg.getDest(&hash));
-  BOOST_CHECK(node.getHashCode(&nodeHash));
-  BOOST_CHECK_EQUAL(nodeHash.compare(hash), 0);
-  
   // type
   
   const std::string TEST_TYPE = "paxos";
@@ -219,36 +196,71 @@ BOOST_AUTO_TEST_CASE(RPCRequestExtentionMethodTest) {
   BOOST_CHECK_EQUAL(TEST_COND.compare(cond), 0);
   
   // dest
-
-  std::string TEST_GOOD_HASH;
-  SHA256::Hash("123456789", &TEST_GOOD_HASH);
-  const std::string TEST_BAD_HASH = "a";
+  
+  std::string dest;
   
   BOOST_CHECK(!rpcMsg.hasDest());
-
+  BOOST_CHECK(!rpcMsg.getDest(&dest));
+  BOOST_CHECK(rpcMsg.isDestValid());
+  BOOST_CHECK(rpcMsg.isDestOne());
+  BOOST_CHECK(!rpcMsg.isDestHash());
+  BOOST_CHECK(!rpcMsg.isDestAll());
+  BOOST_CHECK(!rpcMsg.isDestAny());
+  
+  const std::string TEST_DEST = "0123456789";
+  BOOST_CHECK(rpcMsg.setDest(TEST_DEST));
+  BOOST_CHECK(rpcMsg.hasDest());
+  BOOST_CHECK(rpcMsg.getDest(&dest));
+  BOOST_CHECK_EQUAL(TEST_DEST.compare(dest), 0);
+  BOOST_CHECK(!rpcMsg.isDestValid());
+  BOOST_CHECK(!rpcMsg.isDestOne());
+  BOOST_CHECK(!rpcMsg.isDestHash());
+  BOOST_CHECK(!rpcMsg.isDestAll());
+  BOOST_CHECK(!rpcMsg.isDestAny());
+  
   BOOST_CHECK(rpcMsg.setDest(RPC::JSON::Message::DEST_ALL));
   BOOST_CHECK(rpcMsg.isDestValid());
   BOOST_CHECK(rpcMsg.isDestAll());
   BOOST_CHECK(!rpcMsg.isDestAny());
   BOOST_CHECK(!rpcMsg.isDestHash());
+  BOOST_CHECK(!rpcMsg.isDestOne());
 
   BOOST_CHECK(rpcMsg.setDest(RPC::JSON::Message::DEST_ANY));
   BOOST_CHECK(rpcMsg.isDestValid());
   BOOST_CHECK(rpcMsg.isDestAny());
+  BOOST_CHECK(rpcMsg.isDestOne());
   BOOST_CHECK(!rpcMsg.isDestAll());
   BOOST_CHECK(!rpcMsg.isDestHash());
   
+  std::string TEST_GOOD_HASH;
+  SHA256::Hash("123456789", &TEST_GOOD_HASH);
   BOOST_CHECK(rpcMsg.setDest(TEST_GOOD_HASH));
   BOOST_CHECK(rpcMsg.isDestValid());
   BOOST_CHECK(rpcMsg.isDestHash());
+  BOOST_CHECK(rpcMsg.isDestOne());
   BOOST_CHECK(!rpcMsg.isDestAll());
   BOOST_CHECK(!rpcMsg.isDestAny());
 
+  TestLocalNode node;
+  std::string nodeHash;
+  BOOST_CHECK(rpcMsg.setDest(&node));
+  BOOST_CHECK(rpcMsg.hasDest());
+  BOOST_CHECK(rpcMsg.getDest(&dest));
+  BOOST_CHECK(node.getHashCode(&nodeHash));
+  BOOST_CHECK_EQUAL(nodeHash.compare(dest), 0);
+  BOOST_CHECK(rpcMsg.isDestValid());
+  BOOST_CHECK(rpcMsg.isDestHash());
+  BOOST_CHECK(rpcMsg.isDestOne());
+  BOOST_CHECK(!rpcMsg.isDestAll());
+  BOOST_CHECK(!rpcMsg.isDestAny());
+  
+  const std::string TEST_BAD_HASH = "a";
   BOOST_CHECK(rpcMsg.setDest(TEST_BAD_HASH));
   BOOST_CHECK(!rpcMsg.isDestValid());
   BOOST_CHECK(!rpcMsg.isDestHash());
   BOOST_CHECK(!rpcMsg.isDestAll());
   BOOST_CHECK(!rpcMsg.isDestAny());
+  BOOST_CHECK(!rpcMsg.isDestOne());
 }
 
 class TestMessageParser : public JSONParser {
