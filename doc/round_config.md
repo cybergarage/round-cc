@@ -8,9 +8,10 @@
 
 ```
 {
-  "log_file": "/var/round",
-  "port": <port number>,
-  "if": "<if address>",
+  "bind_port": <port number>,
+  "bind_addr": "<if address>",
+  "cluster": "<name>",
+  "log_file": "file name",
   "methods": [
 
     ]
