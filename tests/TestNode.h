@@ -78,7 +78,6 @@ class TestLocalNode : public Round::LocalNode {
 private:
 
   void initialize() {
-    getNodeConfig()->setDatabaseDirectory(".");
   }
   
   std::string address;

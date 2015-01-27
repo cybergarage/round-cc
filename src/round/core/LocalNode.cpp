@@ -16,8 +16,6 @@
 #include <round/core/RemoteNode.h>
 #include <round/core/local/method/SystemMethod.h>
 
-const std::string Round::LocalNode::DEFALUT_CLUSTER = ROUNDCC_PRODUCT_NAME;
-
 ////////////////////////////////////////////////
 // Constructor
 ////////////////////////////////////////////////
@@ -34,7 +32,7 @@ void Round::LocalNode::init() {
 }
 
 ////////////////////////////////////////////////
-// Configuration
+// Config
 ////////////////////////////////////////////////
 
 bool Round::LocalNode::loadConfigFromString(const std::string &string, Error *error) {
@@ -54,12 +52,7 @@ bool Round::LocalNode::isConfigValid(Error *error) {
 }
 
 bool Round::LocalNode::getClusterName(std::string *name, Error *error) {
-  if (this->nodeConfig.getCluster(name, error))
-    return true;
-  
-  *name = DEFALUT_CLUSTER;
-  
-  return true;
+  return this->nodeConfig.getCluster(name, error);
 }
 
 ////////////////////////////////////////////////

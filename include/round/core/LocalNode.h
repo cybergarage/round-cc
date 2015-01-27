@@ -12,10 +12,10 @@
 #define _ROUNDCC_LOCALNODE_H_
 
 #include <round/common/Thread.h>
+#include <round/common/Config.h>
 #include <round/core/Node.h>
 #include <round/core/NodeGraph.h>
 #include <round/core/NodeFinder.h>
-#include <round/core/NodeConfig.h>
 #include <round/core/Script.h>
 #include <round/core/Method.h>
 
@@ -76,94 +76,32 @@ public:
   bool getKey(const std::string &key, std::string *value) const;
 };
 
-class LocalConfig : public NodeConfig {
+class LocalConfig : public Config {
  public:
-  static const std::string DEFAULT_FILENAME;
+  
+  static const std::string BIND_ADDR;
+  static const std::string BIND_PORT;
+  static const std::string CLUSTER;
+  static const std::string LOG_FILE;
+
+  static const std::string DEFALUT_CLUSTER;
   static const std::string AUTO;
-  static const int DEFAULT_HTTPD_PORT;
-
-  enum Sections {
-    General = 0,
-    Httpd,
-    Log,
-    SectionCount,
-  };
-
-  enum GeneralSectionKeys {
-    Cluster = 0,
-    DatabaseDir,
-    GeneralKeyCount,
-  };
-
-  enum HttpdSectionKeys {
-    HttpdBindAddress = 0,
-    HttpdBindPort,
-    HttpdKeyCount,
-  };
-
-  enum LogSectionKeys {
-    LogFile = 0,
-    ErrorLogFile,
-    LogLevel,
-    LogKeyCount,
-  };
-
+  static int BIND_PORT_RANGE_MIN;
+  static int BIND_PORT_RANGE_MAX;
+  
  public:
   LocalConfig();
   ~LocalConfig();
 
   bool isValid(Error *error);
 
-  size_t getSectionCount() const;
-  size_t getSectionKeyCount(size_t section) const;
-  
-  const char *getSectionKeyString(size_t section, size_t n) const;
-  const char *getSectionString(size_t n) const;
-
  public:
-  bool getHttpdBindAddress(std::string *value, Error *error) const;
-  bool getHttpdBindPort(int *value, Error *error) const;
+  
+  bool getBindAddress(std::string *value, Error *error) const;
+  bool getBindPort(int *value, Error *error) const;
+  bool getCluster(std::string *value, Error *error) const;
+  bool getLogFilename(std::string *value, Error *error) const;
 
-  bool getCluster(std::string *value, Error *error) const {
-    return getValue(General, Cluster, value, error);
-  }
-  
-  bool getDatabaseDirectory(std::string *value, Error *error) const {
-    return getValue(General, DatabaseDir, value, error);
-  }
-
-  bool getLogFilename(std::string *value, Error *error) const {
-    return getValue(Log, LogFile, value, error);
-  }
-
-  bool getErrorLogFilename(std::string *value, Error *error) const {
-    return getValue(Log, ErrorLogFile, value, error);
-  }
-
-  bool setHttpdBindAddress(const std::string &value) {
-    return setValue(Httpd, HttpdBindAddress, value);
-  }
-  
-  bool setHttpdBindPort(int port) {
-    return setValue(Httpd, HttpdBindPort, port);
-  }
-  
-  bool setCluster(const std::string &value) {
-    return setValue(General, Cluster, value);
-  }
-  
-  bool setDatabaseDirectory(const std::string &value) {
-    return setValue(General, DatabaseDir, value);
-  }
-
-  bool setLogFilename(const std::string &value) {
-    return setValue(Log, LogFile, value);
-  }
-  
-  bool setErrorLogFilename(const std::string &value) {
-    return setValue(Log, ErrorLogFile, value);
-  }
-  
 };
   
 /**
@@ -171,8 +109,6 @@ class LocalConfig : public NodeConfig {
  */
 class LocalNode : public Node, public NodeFinderObserver {
  public:
-  
-  static const std::string DEFALUT_CLUSTER;
   
  public:
   LocalNode();

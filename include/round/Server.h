@@ -24,10 +24,7 @@ class Server : public UPnPServerNode {
   Server();
   virtual ~Server();
 
-  void setHttpdPort(int port);
-
   bool getLogFilename(std::string *value, Error *error);
-  bool getErrorLogFilename(std::string *value, Error *error);
 
   Logger *getLogger() {
     return &logger;

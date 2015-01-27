@@ -24,8 +24,6 @@
 ////////////////////////////////////////////////
 
 const std::string Round::UPnPServerNode::DEVICE_TYPE = "urn:cybergarage-org:device:round:1";
-int Round::UPnPServerNode::HTTP_PORT_RANGE_MIN = 4004;
-int Round::UPnPServerNode::HTTP_PORT_RANGE_MAX = 9999;
 
 static const std::string FRACTAL_NODESERVER_DESCRIPTION_URI = "description/description.xml";
 static const std::string FRACTAL_NODESERVER_PRESENTATION_URI = "/presentation";
@@ -129,17 +127,15 @@ bool Round::UPnPServerNode::start(Error *error) {
   if (ServerNode::start(error) == false)
     return false;
   
-  // Configuration
+  // Config
   
   std::string localAddress;
-  if (!getNodeConfig()->getHttpdBindAddress(&localAddress, error))
+  if (!getNodeConfig()->getBindAddress(&localAddress, error))
     return false;
 
   int localPort;
-  if (!getNodeConfig()->getHttpdBindPort(&localPort, error)) {
-    Random randomPort(HTTP_PORT_RANGE_MIN, HTTP_PORT_RANGE_MAX);
-    localPort = randomPort.rand();
-  }
+  if (!getNodeConfig()->getBindPort(&localPort, error))
+    return false;
   
   Device::setHTTPPort(localPort);
   

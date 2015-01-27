@@ -26,9 +26,6 @@ class UPnPServerNode : public ServerNode, public mUPnP::Device {
  public:
   static const std::string DEVICE_TYPE;
 
-  static int HTTP_PORT_RANGE_MIN;
-  static int HTTP_PORT_RANGE_MAX;
-  
   public:
   
   static bool IsRoundDeviceType(const std::string &deviceType) {

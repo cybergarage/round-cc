@@ -37,46 +37,56 @@ BOOST_AUTO_TEST_CASE(LocalNodeEqualTest) {
   BOOST_CHECK(!localNode01.equals(&localNode05));
 }
 
-BOOST_AUTO_TEST_CASE(LocalNodConfigGraphTest) {
+BOOST_AUTO_TEST_CASE(LocalConfigDefaultTest) {
   LocalConfig nodeConfig;
-  Error error;
-  std::string retStringValue;
-  int retIntValue;
   
-  const std::string testHttpAddr = "testAddr";
-  BOOST_CHECK(nodeConfig.setHttpdBindAddress(testHttpAddr));
-  BOOST_CHECK_EQUAL(nodeConfig.getHttpdBindAddress(&retStringValue, &error), true);
-  BOOST_CHECK_EQUAL(testHttpAddr, retStringValue);
+  Error err;
+  std::string value;
+  int ivalue;
   
-  const int testHttpdPort = 8483;
-  BOOST_CHECK_EQUAL(nodeConfig.getHttpdBindPort(&retIntValue, &error), false);
-  BOOST_CHECK(nodeConfig.setHttpdBindPort(testHttpdPort));
-  BOOST_CHECK_EQUAL(nodeConfig.getHttpdBindPort(&retIntValue, &error), true);
-  BOOST_CHECK_EQUAL(testHttpdPort, retIntValue);
+  BOOST_CHECK(nodeConfig.getBindAddress(&value, &err));
+  BOOST_CHECK(0 < value.length());
   
-  const std::string testCluster = "testCluster";
-  BOOST_CHECK_EQUAL(nodeConfig.getCluster(&retStringValue, &error), false);
-  BOOST_CHECK(nodeConfig.setCluster(testCluster));
-  BOOST_CHECK_EQUAL(nodeConfig.getCluster(&retStringValue, &error), true);
-  BOOST_CHECK_EQUAL(testCluster, retStringValue);
+  BOOST_CHECK(nodeConfig.getBindPort(&ivalue, &err));
+  BOOST_CHECK(LocalConfig::BIND_PORT_RANGE_MIN <= ivalue);
+  BOOST_CHECK(ivalue <= LocalConfig::BIND_PORT_RANGE_MAX);
   
-  const std::string testDatabaseDir = "testDir";
-  BOOST_CHECK_EQUAL(nodeConfig.getDatabaseDirectory(&retStringValue, &error), false);
-  BOOST_CHECK(nodeConfig.setDatabaseDirectory(testDatabaseDir));
-  BOOST_CHECK_EQUAL(nodeConfig.getDatabaseDirectory(&retStringValue, &error), true);
-  BOOST_CHECK_EQUAL(testDatabaseDir, retStringValue);
+  BOOST_CHECK(nodeConfig.getCluster(&value, &err));
+  BOOST_CHECK(value.compare(LocalConfig::DEFALUT_CLUSTER) == 0);
   
-  const std::string testLogFilename = "testLogFilename";
-  BOOST_CHECK_EQUAL(nodeConfig.getLogFilename(&retStringValue, &error), false);
-  BOOST_CHECK(nodeConfig.setLogFilename(testLogFilename));
-  BOOST_CHECK_EQUAL(nodeConfig.getLogFilename(&retStringValue, &error), true);
-  BOOST_CHECK_EQUAL(testLogFilename, retStringValue);
+  BOOST_CHECK(!nodeConfig.getLogFilename(&value, &err));
+}
+
+static const std::string ROUND_CONFIG_SAMPLE = \
+"# Round Config\n" \
+"\n"\
+"{\n"\
+"  \"bind_port\": 4649,\n"\
+"  \"bind_addr\": \"127.0.0.1\",\n"\
+"  \"cluster\": \"test\",\n"\
+"  \"log_file\": \"/var/log/round.log\"\n"\
+"}\n";
+
+BOOST_AUTO_TEST_CASE(LocalConfigTest) {
+  LocalConfig nodeConfig;
   
-  const std::string testErrorLogFilename = "testErrorFilename";
-  BOOST_CHECK_EQUAL(nodeConfig.getErrorLogFilename(&retStringValue, &error), false);
-  BOOST_CHECK(nodeConfig.setErrorLogFilename(testErrorLogFilename));
-  BOOST_CHECK_EQUAL(nodeConfig.getErrorLogFilename(&retStringValue, &error), true);
-  BOOST_CHECK_EQUAL(testErrorLogFilename, retStringValue);
+  Error err;
+  std::string value;
+  int ivalue;
+  
+  BOOST_CHECK(nodeConfig.loadFromString(ROUND_CONFIG_SAMPLE, &err));
+
+  BOOST_CHECK_EQUAL(nodeConfig.getBindAddress(&value, &err), true);
+  BOOST_CHECK_EQUAL(value.compare("127.0.0.1"), 0);
+
+  BOOST_CHECK_EQUAL(nodeConfig.getBindPort(&ivalue, &err), true);
+  BOOST_CHECK_EQUAL(ivalue, 4649);
+
+  BOOST_CHECK_EQUAL(nodeConfig.getCluster(&value, &err), true);
+  BOOST_CHECK_EQUAL(value.compare("test"), 0);
+
+  BOOST_CHECK_EQUAL(nodeConfig.getLogFilename(&value, &err), true);
+  BOOST_CHECK_EQUAL(value.compare("/var/log/round.log"), 0);
 }
 
 BOOST_AUTO_TEST_CASE(LocalNodMemoryTest) {
