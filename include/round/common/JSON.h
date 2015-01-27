@@ -16,7 +16,6 @@
 #include <map>
 #include <round/common/platform.h>
 #include <round/common/Error.h>
-#include <round/common/Dictionary.h>
 
 namespace Round {
 

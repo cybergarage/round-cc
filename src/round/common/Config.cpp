@@ -13,6 +13,7 @@
 #include <strstream>
 
 #include <round/common/Config.h>
+#include <round/common/JSON.h>
 #include <round/common/StringTokenizer.h>
 #include <round/core/ErrorNo.h>
 

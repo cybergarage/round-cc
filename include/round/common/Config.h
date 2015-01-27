@@ -13,10 +13,12 @@
 
 #include <iostream>
 #include <round/common/Error.h>
-#include <round/common/JSON.h>
 
 namespace Round {
-  
+
+class JSONObject;
+class JSONDictionary;
+
 class Config {
  public:
   static const std::string PATH_DELIM;
