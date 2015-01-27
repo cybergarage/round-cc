@@ -218,5 +218,23 @@ BOOST_AUTO_TEST_CASE(RoundNodGraphGetRandomTest) {
   }
 }
 
+BOOST_AUTO_TEST_CASE(RoundNodGraphGetOverSizeTest) {
+  const size_t nodeCount = FRACTAL_TEST_NODEGRAPH_MAXSIZE;
+  TestOrderdNodeGraph nodeGraph;
+  TestOrderdNode *nodes[nodeCount];
+  
+  for (size_t n = 0; n < nodeCount; n++) {
+    nodes[n] = new TestOrderdNode(n+1);
+    nodes[n]->setWeakFlag(false);
+    BOOST_CHECK(nodes[n]);
+    BOOST_CHECK(nodeGraph.addNode(nodes[n]));
+  }
+  BOOST_CHECK_EQUAL(nodeGraph.size(), nodeCount);
+  
+  for (size_t n = 0; n < (nodeCount * 10); n++) {
+    BOOST_CHECK(!nodeGraph.getNode(n + FRACTAL_TEST_NODEGRAPH_MAXSIZE));
+  }
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 

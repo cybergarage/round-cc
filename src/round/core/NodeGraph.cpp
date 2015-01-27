@@ -58,6 +58,8 @@ bool Round::NodeGraph::removeNode(const Round::Node *node) {
 }
 
 Round::Node *Round::NodeGraph::getNode(size_t index) const {
+  if (size() < (index+1))
+    return NULL;
   return static_cast<Node *>(ConsistentHashGraph::at(index));
 }
 
