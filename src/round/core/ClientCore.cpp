@@ -145,10 +145,8 @@ bool Round::ClientCore::postMessage(NodeRequest *nodeReq, NodeResponse *nodeRes,
   }
   
   Node *destNode;
-  if (!findObjectNode(dest, &destNode, err)) {
-    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeMovedPermanently, err);
+  if (!findObjectNode(dest, &destNode, err))
     return false;
-  }
 
   if (!nodeReq->isDestAll()) {
     nodeReq->setDest(destNode);
