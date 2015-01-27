@@ -107,7 +107,8 @@ bool Round::RemoteNode::postMessage(uHTTP::HTTPRequest *httpReq, NodeResponse *n
   
   JSONParser jsonParser;
   if (jsonParser.parse(httpContent, error) == false)
-    return isSuccess;
+    return false;
+  
   JSONObject *rootObj = jsonParser.getRootObject();
   if (!rootObj)
     return isSuccess;
