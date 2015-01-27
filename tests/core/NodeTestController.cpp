@@ -267,13 +267,13 @@ void NodeTestController::runSystemMethodTest(Round::Node *node) {
   // _echo()
   runSystemEchoTest(node);
   
-  // get_node_info()
+  // get_node_state()
   runSystemGetNodeInfoTest(node);
   
-  // get_cluster_info()
+  // get_cluster_state()
   runSystemGetClusterInfoTest(node);
 
-  // get_network_info()
+  // get_network_state()
   runSystemGetNetworkInfoTest(node);
 
   // set_key() and get_key()

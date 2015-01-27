@@ -13,15 +13,15 @@
 
 #include <round/core/local/method/SystemMethod.h>
 
-const std::string Round::get_cluster_info::NAME = "get_cluster_info";
+const std::string Round::get_cluster_state::NAME = "get_cluster_state";
 
-Round::get_cluster_info::get_cluster_info() : system_method(NAME) {
+Round::get_cluster_state::get_cluster_state() : system_method(NAME) {
 }
 
-Round::get_cluster_info::~get_cluster_info() {
+Round::get_cluster_state::~get_cluster_state() {
 }
 
-bool Round::get_cluster_info::exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const {
+bool Round::get_cluster_state::exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const {
   SystemGetClusterInfoResponse sysRes(nodeRes);
   return sysRes.setCluster(node);
 }

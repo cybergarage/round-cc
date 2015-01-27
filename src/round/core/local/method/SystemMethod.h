@@ -99,14 +99,14 @@ class set_alias : public system_method {
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
   
-// get_node_info
+// get_node_state
 
-class get_node_info : public system_method {
+class get_node_state : public system_method {
 public:
   static const std::string NAME;
 public:
-  get_node_info();
-  ~get_node_info();
+  get_node_state();
+  ~get_node_state();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
@@ -174,7 +174,7 @@ private:
 class SystemGetNodeInfoRequest : public SystemMethodRequest {
  public:
   SystemGetNodeInfoRequest() {
-    setMethod(get_node_info::NAME);
+    setMethod(get_node_state::NAME);
   }
 };
 
@@ -229,14 +229,14 @@ private:
   mutable SystemNodeInfoDict nodeInfoDict;
 };
 
-// get_cluster_info
+// get_cluster_state
 
-class get_cluster_info : public system_method {
+class get_cluster_state : public system_method {
 public:
   static const std::string NAME;
 public:
-  get_cluster_info();
-  ~get_cluster_info();
+  get_cluster_state();
+  ~get_cluster_state();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
@@ -270,7 +270,7 @@ public:
 class SystemGetClusterInfoRequest : public SystemMethodRequest {
 public:
   SystemGetClusterInfoRequest() {
-    setMethod(get_cluster_info::NAME);
+    setMethod(get_cluster_state::NAME);
   }
 };
   
@@ -300,21 +300,21 @@ class SystemGetNetworkInfoResponse : public SystemMethodResponse {
   JSONArray *getResultClusterArray();
 };
 
-// get_network_info
+// get_network_state
 
-class get_network_info : public system_method {
+class get_network_state : public system_method {
 public:
   static const std::string NAME;
 public:
-  get_network_info();
-  ~get_network_info();
+  get_network_state();
+  ~get_network_state();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
 class SystemGetNetworkInfoRequest : public SystemMethodRequest {
  public:
   SystemGetNetworkInfoRequest() {
-    setMethod(get_network_info::NAME);
+    setMethod(get_network_state::NAME);
   }
 };
   

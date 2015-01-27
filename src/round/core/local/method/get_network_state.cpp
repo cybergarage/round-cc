@@ -13,15 +13,15 @@
 
 #include <round/core/local/method/SystemMethod.h>
 
-const std::string Round::get_network_info::NAME  = "get_network_info";
+const std::string Round::get_network_state::NAME  = "get_network_state";
 
-Round::get_network_info::get_network_info() : system_method(NAME) {
+Round::get_network_state::get_network_state() : system_method(NAME) {
 }
 
-Round::get_network_info::~get_network_info() {
+Round::get_network_state::~get_network_state() {
 }
 
-bool Round::get_network_info::exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const {
+bool Round::get_network_state::exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const {
   SystemGetNetworkInfoResponse sysRes(nodeRes);
   return sysRes.setClusters(node);
 }

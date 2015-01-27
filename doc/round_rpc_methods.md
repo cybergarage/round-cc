@@ -78,9 +78,15 @@ Round adds the following default native methods. The methods are implemented usi
 
 | Method Name | Description | Params | Outputs | Default |
 | --- | --- | --- | --- | --- |
-| get_node_info | Get a node infomation | (none) | {"name" : (string), "ip" : (address), "port" : (number),  "hash" : (string) } | - |
-| get_cluster_info | Gat a cluster information which the specified node is belong | - | - | - |
-| get_network_info | Gat a cluster list which the spcecified node knows | - | - | - |
+| get_network_state | Gat a cluster list which the spcecified node knows | - | - | - |
+| get_cluster_state | Gat a cluster information which the specified node is belong | - | - | - |
+| get_node_state | Get a node infomation | (none) | {"name" : (string), "ip" : (address), "port" : (number),  "hash" : (string) } | - |
+| get_node_config | Get the node configuration | (none) | - | - |
+| get_node_stats | Get the node statistics | (none) | - | - |
+
+
+| Method Name | Description | Params | Outputs | Default |
+| --- | --- | --- | --- | --- |
 | get_node_sharedkey | Set a shared key for HMAC | - | - | - |
 | get_node_msg_digest | Set a shared key for HMAC | - | - | - |
 | get_log_level | Get the current log level | (none) | "TRACE", "LOG", "WARN", "ERR" "FATAL" | "LOG" |
@@ -92,8 +98,8 @@ Round adds the following default native methods. The methods are implemented usi
 | --- | --- | --- | --- | --- |
 | pre_activate | - | - | - | - |
 | post_activated | - | - | - | - |
-| pre_closed | - | - | - | - |
-| post_closed | - | - | - | - |
+| pre_deactivate | - | - | - | - |
+| post_activated | - | - | - | - |
 | method_added | - | - | - | - |
 | method_removed | - | - | - | - |
 | method_updated | - | - | - | - |
