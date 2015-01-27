@@ -61,6 +61,9 @@ bool exec_rpc_command(Round::Console::Client &client, const Round::Console::Inpu
   }
   
   std::string errMsg = err.getDetailMessage();
+  if (errMsg.length() <= 0) {
+    errMsg = err.getMessage();
+  }
   if (0 < errMsg.length()) {
     std::cerr << ROUND_CERR_PREFIX << errMsg << "'" << std::endl;
   }
