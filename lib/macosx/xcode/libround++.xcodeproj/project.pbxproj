@@ -14,6 +14,7 @@
 		2133317D1A773FAD00DB41AB /* get_cluster_state.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2133317A1A773FAD00DB41AB /* get_cluster_state.cpp */; };
 		2133317E1A773FAD00DB41AB /* get_network_state.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2133317B1A773FAD00DB41AB /* get_network_state.cpp */; };
 		2133317F1A773FAD00DB41AB /* get_node_state.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2133317C1A773FAD00DB41AB /* get_node_state.cpp */; };
+		213331811A77411200DB41AB /* get_node_config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213331801A77411200DB41AB /* get_node_config.cpp */; };
 		21526C891A6682F900CF3D12 /* RPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21526C841A6682F900CF3D12 /* RPC.cpp */; };
 		21526C8A1A6682F900CF3D12 /* RPCBatchRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21526C851A6682F900CF3D12 /* RPCBatchRequest.cpp */; };
 		21526C8B1A6682F900CF3D12 /* RPCMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21526C861A6682F900CF3D12 /* RPCMessage.cpp */; };
@@ -222,6 +223,7 @@
 		2133317A1A773FAD00DB41AB /* get_cluster_state.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = get_cluster_state.cpp; sourceTree = "<group>"; };
 		2133317B1A773FAD00DB41AB /* get_network_state.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = get_network_state.cpp; sourceTree = "<group>"; };
 		2133317C1A773FAD00DB41AB /* get_node_state.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = get_node_state.cpp; sourceTree = "<group>"; };
+		213331801A77411200DB41AB /* get_node_config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = get_node_config.cpp; sourceTree = "<group>"; };
 		21526C841A6682F900CF3D12 /* RPC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPC.cpp; sourceTree = "<group>"; };
 		21526C851A6682F900CF3D12 /* RPCBatchRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCBatchRequest.cpp; sourceTree = "<group>"; };
 		21526C861A6682F900CF3D12 /* RPCMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCMessage.cpp; sourceTree = "<group>"; };
@@ -530,6 +532,7 @@
 		21B9119E1A6B5F4300C791FD /* method */ = {
 			isa = PBXGroup;
 			children = (
+				213331801A77411200DB41AB /* get_node_config.cpp */,
 				2133317A1A773FAD00DB41AB /* get_cluster_state.cpp */,
 				2133317B1A773FAD00DB41AB /* get_network_state.cpp */,
 				2133317C1A773FAD00DB41AB /* get_node_state.cpp */,
@@ -1024,6 +1027,7 @@
 				21D8E2E31A60E1E200E8A63F /* UPnPNodeFinder.cpp in Sources */,
 				21D8E2D31A60E1E200E8A63F /* Properties.cpp in Sources */,
 				21D8E2EA1A60E1E200E8A63F /* Node.cpp in Sources */,
+				213331811A77411200DB41AB /* get_node_config.cpp in Sources */,
 				21D7A5A51A6BF4A500D43061 /* quit.cpp in Sources */,
 				21D8E2E41A60E1E200E8A63F /* UPnPServerNode.cpp in Sources */,
 				21B911B91A6B5F4300C791FD /* SystemMethodResponse.cpp in Sources */,

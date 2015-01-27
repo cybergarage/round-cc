@@ -229,6 +229,17 @@ private:
   mutable SystemNodeInfoDict nodeInfoDict;
 };
 
+// get_node_config
+  
+class get_node_config : public system_method {
+public:
+  static const std::string NAME;
+public:
+  get_node_config();
+  ~get_node_config();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
+};
+  
 // get_cluster_state
 
 class get_cluster_state : public system_method {
