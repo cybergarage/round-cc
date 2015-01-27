@@ -285,7 +285,8 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
     setError(RPC::JSON::ErrorCodeInvalidParams, error);
     return false;
   }
-  bool                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               isDestHash = nodeReq->isDestHash();
+  
+  bool isDestHash = nodeReq->isDestHash();
   if (isDestHash) {
     std::string nodeHash;
     if (nodeReq->getDest(&nodeHash)) {
@@ -308,8 +309,9 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
   }
   
   // Exec Method (One node)
-  
-  if (isDestHash) {
+
+  bool isDestOne = nodeReq->isDestOne();
+  if (isDestOne) {
     return execMethod(nodeReq, nodeRes, error);
   }
   
