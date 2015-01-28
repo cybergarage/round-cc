@@ -22,6 +22,7 @@
 		21526C8B1A6682F900CF3D12 /* RPCMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21526C861A6682F900CF3D12 /* RPCMessage.cpp */; };
 		21526C8C1A6682F900CF3D12 /* RPCRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21526C871A6682F900CF3D12 /* RPCRequest.cpp */; };
 		21526C8D1A6682F900CF3D12 /* RPCResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21526C881A6682F900CF3D12 /* RPCResponse.cpp */; };
+		216CAAD81A78834800396ED8 /* LocalRouteEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216CAAD71A78834800396ED8 /* LocalRouteEngine.cpp */; };
 		217342FD1A6CB3C000ADA1C8 /* question.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217342FC1A6CB3C000ADA1C8 /* question.cpp */; };
 		219CE2761A6DD8F2008A6CBD /* RQLRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 219CE2751A6DD8F2008A6CBD /* RQLRequest.cpp */; };
 		219EA4371A6BB0BD00F3D89B /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 219EA4361A6BB0BD00F3D89B /* Input.cpp */; };
@@ -229,6 +230,7 @@
 		21526C861A6682F900CF3D12 /* RPCMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCMessage.cpp; sourceTree = "<group>"; };
 		21526C871A6682F900CF3D12 /* RPCRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCRequest.cpp; sourceTree = "<group>"; };
 		21526C881A6682F900CF3D12 /* RPCResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCResponse.cpp; sourceTree = "<group>"; };
+		216CAAD71A78834800396ED8 /* LocalRouteEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalRouteEngine.cpp; sourceTree = "<group>"; };
 		217342FC1A6CB3C000ADA1C8 /* question.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = question.cpp; sourceTree = "<group>"; };
 		219CE2751A6DD8F2008A6CBD /* RQLRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RQLRequest.cpp; sourceTree = "<group>"; };
 		219EA4361A6BB0BD00F3D89B /* Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Input.cpp; sourceTree = "<group>"; };
@@ -514,13 +516,14 @@
 		21B911911A6B5E5400C791FD /* local */ = {
 			isa = PBXGroup;
 			children = (
-				21B9119E1A6B5F4300C791FD /* method */,
 				21B911921A6B5E5400C791FD /* LocalConfig.cpp */,
 				21B911931A6B5E5400C791FD /* LocalMemory.cpp */,
 				21B911941A6B5E5400C791FD /* LocalNativeMethodManager.cpp */,
+				216CAAD71A78834800396ED8 /* LocalRouteEngine.cpp */,
 				21B911951A6B5E5400C791FD /* LocalScriptManager.cpp */,
 				21B911961A6B5E5400C791FD /* LocalStaticMethodManager.cpp */,
 				21B911971A6B5E5400C791FD /* LocalWorker.cpp */,
+				21B9119E1A6B5F4300C791FD /* method */,
 			);
 			path = local;
 			sourceTree = "<group>";
@@ -1075,6 +1078,7 @@
 				2133317D1A773FAD00DB41AB /* get_cluster_state.cpp in Sources */,
 				21FA93E11A6E90040067314A /* use.cpp in Sources */,
 				21D8E3011A60E1E200E8A63F /* JavaScriptEngine.cpp in Sources */,
+				216CAAD81A78834800396ED8 /* LocalRouteEngine.cpp in Sources */,
 				21B9119B1A6B5E5400C791FD /* LocalScriptManager.cpp in Sources */,
 				21526C8D1A6682F900CF3D12 /* RPCResponse.cpp in Sources */,
 				21D8E2DA1A60E1E200E8A63F /* Settings.cpp in Sources */,

@@ -443,19 +443,45 @@ bool Round::LocalNode::execMethod(const NodeRequest *nodeReq, NodeResponse *node
     return false;
   }
   
+  bool isMethodExecuted = false;
+  
   if (isStaticMethod(name)) {
-    return execStaticMethod(nodeReq, nodeRes, error);
+    isMethodExecuted = execStaticMethod(nodeReq, nodeRes, error);
   }
   
   if (isDynamicMethod(name)) {
-    return execDynamicMethod(nodeReq, nodeRes, error);
+    isMethodExecuted = execDynamicMethod(nodeReq, nodeRes, error);
   }
   
   if (isNativeMethod(name)) {
-    return execNativeMethod(nodeReq, nodeRes, error);
+    isMethodExecuted = execNativeMethod(nodeReq, nodeRes, error);
+  }
+
+  if (!isMethodExecuted) {
+    setError(RPC::JSON::ErrorCodeMethodNotFound, error);
+    return false;
   }
   
-  setError(RPC::JSON::ErrorCodeMethodNotFound, error);
+  if (!hasRounte(name))
+    return true;
   
+  NodeResponse routeNodeRes;
+  if (!execRoute(name, nodeRes, &routeNodeRes, error))
+    return false;
+  
+  nodeRes->set(&routeNodeRes);
+  
+  return true;
+}
+
+////////////////////////////////////////////////
+// Exce Route
+////////////////////////////////////////////////
+
+bool Round::LocalNode::hasRounte(const std::string &name) {
+  return false;
+}
+
+bool Round::LocalNode::execRoute(const std::string &name, const NodeResponse *prevNodeRes, NodeResponse *nodeRes, Error *error) {
   return false;
 }

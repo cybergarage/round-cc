@@ -46,7 +46,7 @@ bool Round::RouteList::setRoute(const std::string &name, const std::string &srcO
   Route *route = getRouteByName(name);
   if (route) {
     lock();
-    erase(route);
+    remove(route);
     unlock();
   }
   
@@ -89,7 +89,6 @@ Round::Route *Round::RouteList::getRouteBySouceObject(const std::string &srcObje
   unlock();
   
   return foundRuote;
-  
 }
 
 Round::Route *Round::RouteList::getRouteBySouceMethod(const std::string &srcMethod) const {
@@ -109,5 +108,4 @@ Round::Route *Round::RouteList::getRouteBySouceMethod(const std::string &srcMeth
   unlock();
   
   return foundRuote;
-  
 }

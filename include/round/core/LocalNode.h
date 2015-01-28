@@ -18,6 +18,7 @@
 #include <round/core/NodeFinder.h>
 #include <round/core/Script.h>
 #include <round/core/Method.h>
+#include <round/core/Route.h>
 
 namespace Round {
 
@@ -76,6 +77,17 @@ public:
   bool getKey(const std::string &key, std::string *value) const;
 };
 
+class LocalRouteEngine: public RouteEngine {
+    
+public:
+    
+  LocalRouteEngine();
+  ~LocalRouteEngine();
+
+private:
+  void init();
+};
+  
 class LocalConfig : public Config {
  public:
   
@@ -182,6 +194,9 @@ private:
   bool isNativeMethod(const std::string &method);
   bool execNativeMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
 
+  bool hasRounte(const std::string &name);
+  bool execRoute(const std::string &name, const NodeResponse *prevNodeRes, NodeResponse *nodeRes, Error *error);
+  
 private:
 
   NodeGraph               nodeGraph;
@@ -195,6 +210,7 @@ private:
   LocalStaticMethodManager  staticMethodMgr;
   LocalNativeMethodManager  sysMethodMgr;
   LocalMemory               memory;
+  LocalRouteEngine          routeEngine;
 };
 
 }

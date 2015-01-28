@@ -207,9 +207,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21A7F6091A6960A400FAC15B /* libusql++.a in Frameworks */,
 				210E578C1A29A73E000B60FC /* JavaVM.framework in Frameworks */,
 				21B854081A60EF31009E6ECB /* Tcl.framework in Frameworks */,
+				21A7F6091A6960A400FAC15B /* libusql++.a in Frameworks */,
 				21F349921A5EDE670099B5B6 /* liblibmupnp++.a in Frameworks */,
 				21AD42AF1A13B88C00741A08 /* liblibround++.a in Frameworks */,
 				21CD1BC6192DC94E00452ADF /* libuhttp++.a in Frameworks */,
