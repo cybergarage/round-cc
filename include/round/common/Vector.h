@@ -14,31 +14,148 @@
 #include <vector>
 #include <stdlib.h>
 
+#include <round/common/types.h>
 #include <round/common/Mutex.h>
 
 namespace Round {
 
-template <typename T> class Vector : public std::vector<T*> {
-private:
+////////////////////////////////////////
+// Vector (Shared)
+////////////////////////////////////////
+  
+template <typename T> class SharedVector : public std::vector< round_shared_ptr<T> > {
 
- public:
+public:
     
-  Vector() {
-    setWeekContainer(false);
+  SharedVector() {
+  }
+    
+  ~SharedVector() {
+  }
+    
+  // add
+    
+  bool add(T *obj) {
+    if (!obj)
+      return false;
+    if (0 <= indexOf(obj))
+      return false;
+    round_shared_ptr<T> sobj(obj);
+    std::vector< round_shared_ptr<T> >::push_back(sobj);
+    return true;
+  }
+    
+  // insertAt
+    
+  bool insertAt(T *obj, size_t index) {
+    if (!obj)
+      return false;
+    if (0 <= indexOf(obj))
+      return false;
+    round_shared_ptr<T> sobj(obj);
+    std::vector< round_shared_ptr<T> >::insert((std::vector< round_shared_ptr<T> >::begin() + index), sobj);
+    return true;
+  }
+    
+  // get
+    
+  round_shared_ptr<T> get(size_t index) {
+    if (std::vector< round_shared_ptr<T> >::size() < (index+1))
+      return round_shared_ptr<T>((T*)NULL);
+    return std::vector< round_shared_ptr<T> >::at(index);
+  }
+    
+  // exists
+    
+  bool exists(round_shared_ptr<T> obj) {
+    return (0 <= indexOf(obj)) ? true : false;
+  }
+    
+  bool exists(T *obj) {
+    return (0 <= indexOf(obj)) ? true : false;
+  }
+    
+  // indexOf
+    
+  ssize_t indexOf(round_shared_ptr<T> obj) {
+    if (!obj)
+      return -1;
+    size_t cnt = std::vector< round_shared_ptr<T> >::size();
+    for (size_t n = 0; n < cnt; n++) {
+      if (obj == std::vector< round_shared_ptr<T> >::at(n))
+        return n;
+    }
+    return -1;
+  }
+    
+  ssize_t indexOf(T *obj) {
+    if (!obj)
+      return -1;
+    size_t cnt = std::vector< round_shared_ptr<T> >::size();
+    for (size_t n = 0; n < cnt; n++) {
+      round_shared_ptr<T> sobj = std::vector< round_shared_ptr<T> >::at(n);
+      if (obj == sobj.get())
+        return n;
+    }
+    return -1;
+  }
+    
+  // remove
+    
+  bool remove(size_t idx) {
+    size_t size = std::vector< round_shared_ptr<T> >::size();
+    if ((size <= 0) || (size < (idx+1)))
+      return false;
+    typename std::vector< round_shared_ptr<T> >::iterator objIt = std::vector< round_shared_ptr<T> >::begin() + idx;
+    std::vector< round_shared_ptr<T> >::erase(objIt);
+    return true;
+  }
+    
+  bool remove(round_shared_ptr<T> obj) {
+    if (!obj)
+      return false;
+    return remove(indexOf(obj));
+  }
+    
+  bool remove(T *obj) {
+    if (!obj)
+      return false;
+    return remove(indexOf(obj));
   }
 
-  ~Vector() {
-    clear();
+  // lock
+  
+  void lock() const {
+    this->mutex.lock();
   }
   
-  void setWeekContainer(bool flag) {
-    this->weekContainerFlag = flag;
+  // unlock
+  
+  void unlock() const  {
+    this->mutex.lock();
   }
   
-  bool isWeekContainer() {
-    return this->weekContainerFlag;
-  }
+private:
   
+  mutable Mutex mutex;
+};
+  
+////////////////////////////////////////
+// Vector (Weak)
+////////////////////////////////////////
+  
+template <typename T> class WeakVector : public std::vector<T*> {
+    
+public:
+  
+  WeakVector() {
+  }
+    
+  ~WeakVector() {
+  }
+    
+  // add
+    
   bool add(T *obj) {
     if (!obj)
       return false;
@@ -47,32 +164,34 @@ private:
     std::vector<T*>::push_back(obj);
     return true;
   }
-
-  bool remove(T *obj) {
+    
+  // insertAt
+    
+  bool insertAt(T *obj, size_t index) {
     if (!obj)
       return false;
-    ssize_t idx = indexOf(obj);
-    if (idx < 0)
+    if (0 <= indexOf(obj))
       return false;
-    typename std::vector<T*>::iterator objIt = std::vector<T*>::begin() + idx;
-    if (!isWeekContainer()) {
-      delete *objIt;
-    }
-    std::vector<T*>::erase(objIt);
+    std::vector<T*>::insert(std::vector<T*>::begin() + index, obj);
     return true;
   }
-  
-  bool erase(T *obj) {
-    if (!obj)
-      return false;
-    ssize_t idx = indexOf(obj);
-    if (idx < 0)
-      return false;
-    typename std::vector<T*>::iterator objIt = std::vector<T*>::begin() + idx;
-    std::vector<T*>::erase(objIt);
-    return true;
+    
+  // get
+    
+  T *get(size_t index) {
+    if (std::vector<T*>::size() < (index+1))
+      return NULL;
+    return std::vector<T*>::at(index);
   }
-  
+    
+  // exists
+    
+  bool exists(void *obj) {
+    return (0 <= indexOf(obj)) ? true : false;
+  }
+    
+  // indexOf
+    
   ssize_t indexOf(void *obj) {
     if (!obj)
       return -1;
@@ -83,28 +202,75 @@ private:
     }
     return -1;
   }
-
-  bool exists(void *obj) {
-    return (0 <= indexOf(obj)) ? true : false;
-  }
-
-  T *get(size_t index) {
-    if (std::vector<T*>::size() < (index+1))
-      return NULL;
-    return std::vector<T*>::at(index);
-  }
-
-  bool insertAt(T *obj, size_t index) {
+    
+  // remove
+    
+  bool remove(T *obj) {
     if (!obj)
       return false;
-    if (0 <= indexOf(obj))
+    ssize_t idx = indexOf(obj);
+    if (idx < 0)
       return false;
-    std::vector<T*>::insert(std::vector<T*>::begin() + index, obj);
+    typename std::vector<T*>::iterator objIt = std::vector<T*>::begin() + idx;
+    std::vector<T*>::erase(objIt);
     return true;
   }
-
-  bool clear()
-  {
+  
+  // lock
+  
+  void lock() const {
+    this->mutex.lock();
+  }
+  
+  // unlock
+  
+  void unlock() const {
+    this->mutex.lock();
+  }
+  
+private:
+  
+  mutable Mutex mutex;
+};
+  
+////////////////////////////////////////
+// Vector
+////////////////////////////////////////
+  
+template <typename T> class Vector : public WeakVector<T> {
+    
+public:
+    
+  Vector() {
+    setWeekContainer(false);
+  }
+    
+  ~Vector() {
+    clear();
+  }
+    
+  void setWeekContainer(bool flag) {
+    this->weekContainerFlag = flag;
+  }
+    
+  bool isWeekContainer() {
+    return this->weekContainerFlag;
+  }
+    
+  // remove
+    
+  bool remove(T *obj) {
+    if (!WeakVector<T>::remove(obj))
+      return false;
+    if (!isWeekContainer()) {
+      delete obj;
+    }
+    return true;
+  }
+    
+  // clear
+    
+  bool clear() {
     if (!isWeekContainer()) {
       for (typename std::vector<T*>::iterator objIt = std::vector<T*>::begin() ; objIt != std::vector<T*>::end(); ++objIt) {
         T* obj = dynamic_cast<T*>(*objIt);
@@ -116,19 +282,9 @@ private:
     std::vector<T*>::clear();
     return true;
   }
-
-  bool lock() const {
-    return this->mutex.lock();
-  }
-  
-  bool unlock() const {
-    return this->mutex.unlock();
-  }
-
+    
 private:
-  
   bool weekContainerFlag;
-  mutable Mutex mutex;
 };
 
 }
