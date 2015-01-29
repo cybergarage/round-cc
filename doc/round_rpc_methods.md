@@ -7,7 +7,7 @@ Round node has some embedded system methods which are added using native or dyna
 ## System Methods
 
 In the system methods, there are two kind of types: the static and dynamic. The static method can't be overriden by developers, but the dynamic method can can be overriden using 'set_method'.
-
+Â
 ### Static Methods
 
 Round has the following static methods as default. The methods are implemented using the native programming language, developers can't redefine the static methods.
@@ -36,19 +36,14 @@ If the code parameter isn't specified, the method is removed.
 #### set_route
 
 ```
-set_route := "{" name source destnation [params] [type] [cond]"}"
+set_route := "{" name source destnation  [type] [cond] [params] "}"
 
-name       = "name" ":" TOKEN
-source     = "src" ":" source-object
-destnation = "dest" ":" destnation-object
-params     = "{" *(param) "}"
-type       = "type" ":" ("pipe" | "event")
-cond       = "cond" ":" JS_SCRIPT
-
-param                = (src-out-param-name | src-param-script) ":" in-param-name
-src-out-param-name   = TOKEN
-src-out-param-script = JS_SCRIPT
-in-param-name        = TOKEN
+name       = "name"   ":" TOKEN
+source     = "src"    ":" source-object
+destnation = "dest"   ":" destnation-object
+type       = "type"   ":" ("pipe" | "event")
+cond       = "cond"   ":" JS_SCRIPT
+params     = "params" ":" "{" *(param) "}"
 
 source-object     = [cluster "."] [node "."] (trigger-name | method-name)
 destnation-object = [cluster "."] [node "."] (method-name)
@@ -58,6 +53,10 @@ cluster-name      = TOKEN
 hash-code         = NODE_HASH
 trigger-name      = TOKEN
 method-name       = TOKEN
+
+param                      = dest-in-param-name ":" dest-in-param-value-script
+dest-in-param-name         = TOKEN
+dest-in-param-value-script = JS_SCRIPT
 ```
 
 #### set_timer

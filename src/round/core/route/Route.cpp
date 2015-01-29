@@ -22,6 +22,8 @@ const std::string Round::Route::CLUSTER_DEFALUT = CLUSTER_LOCAL;
 const std::string Round::Route::CLUSTER_LOCAL = "local";
 
 const std::string Round::Route::METHOD_DEFALUT = "";
+const std::string Round::Route::TYPE_EVENT = "event";
+const std::string Round::Route::TYPE_PIPE = "pipe";
 
 Round::Route::Route() {
 }
@@ -52,17 +54,49 @@ bool Round::Route::isValid() {
     return false;
   if (!this->destObjects.isValid())
     return false;
+  if (!isValidType())
+    return false;
   return true;
 }
+
+// Source
 
 bool Round::Route::setSource(const std::string &value) {
   return this->srcObjects.parse(value);
 }
 
+// Destination
+
 bool Round::Route::setDestination(const std::string &value) {
   return this->destObjects.parse(value);
 }
 
+// Type
+
+bool Round::Route::setType(const std::string &value) {
+  this->type = value;
+  return true;
+}
+
+bool Round::Route::isPipe() {
+  return (this->type.compare(TYPE_PIPE) == 0);
+}
+
+bool Round::Route::isEvent() {
+  return (this->type.compare(TYPE_EVENT) == 0);
+}
+
+bool Round::Route::isValidType() {
+  if (!hasType())
+    return true;
+  if (isPipe())
+    return true;
+  if (isEvent())
+    return true;
+  return false;
+}
+
+// equals
 bool Round::Route::equals(const Route *otherRoute) const {
   if (!otherRoute)
     return false;

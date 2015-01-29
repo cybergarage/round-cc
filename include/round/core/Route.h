@@ -74,33 +74,31 @@ public:
   
   static const std::string METHOD_DEFALUT;
 
+  static const std::string TYPE_EVENT;
+  static const std::string TYPE_PIPE;
+  
 public:
   Route();
   virtual ~Route();
 
   bool isValid();
+
+  // Name
   
   bool setName(const std::string &value);
   bool getName(std::string *value) const;
   bool isName(const std::string &value) const;
   
-  bool setSource(const std::string &value);
-  bool setDestination(const std::string &value);
+  // Source
   
+  bool setSource(const std::string &value);
+
   const RouteObjects &getSourceObjects() const {
     return this->srcObjects;
   }
   
-  const RouteObjects &getDestinationObjects() const {
-    return this->destObjects;
-  }
-  
   bool isSource(const std::string &value) const {
     return this->srcObjects.equals(value);
-  }
-  
-  bool isSourceMethod(const std::string &value) const {
-    return this->srcObjects.isMethod(value);
   }
   
   bool getSourceMethod(std::string *value) const {
@@ -110,11 +108,23 @@ public:
   bool getSourceNode(std::string *value) const {
     return this->srcObjects.getNode(value);
   }
-
+  
   bool getSourceCluster(std::string *value) const {
     return this->srcObjects.getCluster(value);
   }
-
+  
+  bool isSourceMethod(const std::string &value) const {
+    return this->srcObjects.isMethod(value);
+  }
+  
+  // Destination
+  
+  bool setDestination(const std::string &value);
+  
+  const RouteObjects &getDestinationObjects() const {
+    return this->destObjects;
+  }
+  
   bool isDestination(const std::string &value) const {
     return this->destObjects.equals(value);
   }
@@ -132,12 +142,29 @@ public:
   }
   
   bool equals(const Route *otherRoute) const;
+
+  // Type
   
+  bool setType(const std::string &value);
+
+  bool hasType() {
+    return (0 < this->type.length());
+  }
+
+  const std::string *getType() {
+    return &this->type;
+  }
+  
+  bool isPipe();
+  bool isEvent();
+  bool isValidType();
+
 private:
   
   std::string  name;
   RouteObjects srcObjects;
   RouteObjects destObjects;
+  std::string type;
 };
 
 class RouteList : public Vector<Route> {

@@ -220,6 +220,27 @@ BOOST_AUTO_TEST_CASE(RouteTest) {
   BOOST_CHECK_EQUAL(route.getDestinationMethod(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_DEST_METHOD), 0);
 
+  // type
+  
+  BOOST_CHECK_EQUAL(route.isValidType(), true);
+  BOOST_CHECK_EQUAL(route.isPipe(), false);
+  BOOST_CHECK_EQUAL(route.isEvent(), false);
+  
+  BOOST_CHECK_EQUAL(route.setType("balidtype"), true);
+  BOOST_CHECK_EQUAL(route.isValidType(), false);
+  BOOST_CHECK_EQUAL(route.isPipe(), false);
+  BOOST_CHECK_EQUAL(route.isEvent(), false);
+  
+  BOOST_CHECK_EQUAL(route.setType(Route::TYPE_EVENT), true);
+  BOOST_CHECK_EQUAL(route.isValidType(), true);
+  BOOST_CHECK_EQUAL(route.isPipe(), false);
+  BOOST_CHECK_EQUAL(route.isEvent(), true);
+  
+  BOOST_CHECK_EQUAL(route.setType(Route::TYPE_PIPE), true);
+  BOOST_CHECK_EQUAL(route.isValidType(), true);
+  BOOST_CHECK_EQUAL(route.isPipe(), true);
+  BOOST_CHECK_EQUAL(route.isEvent(), false);
+  
   // Last Check
   
   BOOST_CHECK_EQUAL(route.isValid(), true);
@@ -240,6 +261,9 @@ BOOST_AUTO_TEST_CASE(RouteTest) {
   BOOST_CHECK_EQUAL(object.compare(TEST_DEST_NODE), 0);
   BOOST_CHECK_EQUAL(route.getDestinationMethod(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_DEST_METHOD), 0);
+
+  BOOST_CHECK_EQUAL(route.isPipe(), true);
+  BOOST_CHECK_EQUAL(route.isEvent(), false);
 }
 
 BOOST_AUTO_TEST_CASE(RouteEqualsTest) {

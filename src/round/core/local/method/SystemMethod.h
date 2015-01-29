@@ -69,9 +69,16 @@ class set_method : public system_method {
 // set_route
   
 class set_route : public system_method {
-  public:
-    static const std::string NAME;
-  public:
+public:
+  static const std::string NAME;
+  static const std::string ROUTE_NAME;
+  static const std::string ROUTE_SRC;
+  static const std::string ROUTE_DEST;
+  static const std::string ROUTE_TYPE;
+  static const std::string ROUTE_PIPE;
+  static const std::string ROUTE_EVENT;
+  static const std::string ROUTE_COND;
+public:
     set_route();
     ~set_route();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
