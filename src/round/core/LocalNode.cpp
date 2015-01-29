@@ -175,15 +175,15 @@ bool Round::LocalNode::setScript(const std::string &method, const std::string &l
 }
 
 ////////////////////////////////////////////////
-// Memory
+// Registry
 ////////////////////////////////////////////////
 
 bool Round::LocalNode::setKey(const std::string &key, const std::string &value) {
-  return this->memory.setKey(key, value);
+  return this->registry.set(key, value);
 }
 
 bool Round::LocalNode::getKey(const std::string &key, std::string *value) const {
-  return this->memory.getKey(key, value);
+  return this->registry.get(key, value);
 }
 
 ////////////////////////////////////////////////

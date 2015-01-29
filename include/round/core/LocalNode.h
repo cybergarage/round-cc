@@ -66,15 +66,15 @@ class LocalNativeMethodManager : public MethodManager {
     void init();
 };
 
-class LocalMemory : public std::map<std::string, std::string> {
+class LocalRegistry : public std::map<std::string, std::string> {
     
 public:
     
-  LocalMemory();
-  ~LocalMemory();
+  LocalRegistry();
+  ~LocalRegistry();
   
-  bool setKey(const std::string &key, const std::string &value);
-  bool getKey(const std::string &key, std::string *value) const;
+  bool set(const std::string &key, const std::string &value);
+  bool get(const std::string &key, std::string *value) const;
 };
 
 class LocalRouteEngine: public RouteEngine {
@@ -209,7 +209,7 @@ private:
   LocalScriptManager        scriptMgr;
   LocalStaticMethodManager  staticMethodMgr;
   LocalNativeMethodManager  sysMethodMgr;
-  LocalMemory               memory;
+  LocalRegistry             registry;
   LocalRouteEngine          routeEngine;
 };
 

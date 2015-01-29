@@ -10,14 +10,14 @@
 
 #include <round/core/LocalNode.h>
 
-Round::LocalMemory::LocalMemory() {
+Round::LocalRegistry::LocalRegistry() {
 }
 
-Round::LocalMemory::~LocalMemory() {
+Round::LocalRegistry::~LocalRegistry() {
 }
 
-bool Round::LocalMemory::setKey(const std::string &key, const std::string &value) {
-  LocalMemory::iterator valueIt = find(key);
+bool Round::LocalRegistry::set(const std::string &key, const std::string &value) {
+  LocalRegistry::iterator valueIt = find(key);
   if (valueIt != end()) {
     erase(valueIt);
   }
@@ -27,8 +27,8 @@ bool Round::LocalMemory::setKey(const std::string &key, const std::string &value
   return true;
 }
 
-bool Round::LocalMemory::getKey(const std::string &key, std::string *value) const {
-  LocalMemory::const_iterator valueIt = find(key);
+bool Round::LocalRegistry::get(const std::string &key, std::string *value) const {
+  LocalRegistry::const_iterator valueIt = find(key);
   if (valueIt == end())
     return false;
 

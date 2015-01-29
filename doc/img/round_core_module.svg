@@ -225,9 +225,9 @@
      inkscape:pageshadow="2"
      inkscape:zoom="2.1841286"
      inkscape:cx="248.50216"
-     inkscape:cy="43.95622"
+     inkscape:cy="123.01356"
      inkscape:document-units="px"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer1"
      showgrid="true"
      showguides="false"
      inkscape:window-width="1366"
@@ -660,13 +660,13 @@
        sodipodi:linespacing="125%"
        id="text3092"
        y="496.36218"
-       x="359"
+       x="379"
        style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
        xml:space="preserve"><tspan
          sodipodi:role="line"
-         id="tspan3108"
-         x="359"
-         y="496.36218">Memory Manager</tspan></text>
+         id="tspan3107"
+         x="379"
+         y="496.36218">Registry</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"

@@ -37,7 +37,7 @@
 		21B854041A60E470009E6ECB /* TclEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B854031A60E470009E6ECB /* TclEngine.cpp */; };
 		21B854061A60E4B1009E6ECB /* Tcl.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B854051A60E4B1009E6ECB /* Tcl.h */; };
 		21B911981A6B5E5400C791FD /* LocalConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911921A6B5E5400C791FD /* LocalConfig.cpp */; };
-		21B911991A6B5E5400C791FD /* LocalMemory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911931A6B5E5400C791FD /* LocalMemory.cpp */; };
+		21B911991A6B5E5400C791FD /* LocalRegistry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911931A6B5E5400C791FD /* LocalRegistry.cpp */; };
 		21B9119A1A6B5E5400C791FD /* LocalNativeMethodManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911941A6B5E5400C791FD /* LocalNativeMethodManager.cpp */; };
 		21B9119B1A6B5E5400C791FD /* LocalScriptManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911951A6B5E5400C791FD /* LocalScriptManager.cpp */; };
 		21B9119C1A6B5E5400C791FD /* LocalStaticMethodManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911961A6B5E5400C791FD /* LocalStaticMethodManager.cpp */; };
@@ -246,7 +246,7 @@
 		21B854031A60E470009E6ECB /* TclEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TclEngine.cpp; sourceTree = "<group>"; };
 		21B854051A60E4B1009E6ECB /* Tcl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tcl.h; sourceTree = "<group>"; };
 		21B911921A6B5E5400C791FD /* LocalConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalConfig.cpp; sourceTree = "<group>"; };
-		21B911931A6B5E5400C791FD /* LocalMemory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalMemory.cpp; sourceTree = "<group>"; };
+		21B911931A6B5E5400C791FD /* LocalRegistry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalRegistry.cpp; sourceTree = "<group>"; };
 		21B911941A6B5E5400C791FD /* LocalNativeMethodManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalNativeMethodManager.cpp; sourceTree = "<group>"; };
 		21B911951A6B5E5400C791FD /* LocalScriptManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalScriptManager.cpp; sourceTree = "<group>"; };
 		21B911961A6B5E5400C791FD /* LocalStaticMethodManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalStaticMethodManager.cpp; sourceTree = "<group>"; };
@@ -517,7 +517,7 @@
 			isa = PBXGroup;
 			children = (
 				21B911921A6B5E5400C791FD /* LocalConfig.cpp */,
-				21B911931A6B5E5400C791FD /* LocalMemory.cpp */,
+				21B911931A6B5E5400C791FD /* LocalRegistry.cpp */,
 				21B911941A6B5E5400C791FD /* LocalNativeMethodManager.cpp */,
 				216CAAD71A78834800396ED8 /* LocalRouteEngine.cpp */,
 				21B911951A6B5E5400C791FD /* LocalScriptManager.cpp */,
@@ -1097,7 +1097,7 @@
 				21D8E2E91A60E1E200E8A63F /* Logger.cpp in Sources */,
 				21D8E2D11A60E1E200E8A63F /* NotificationCenter.cpp in Sources */,
 				21B911B41A6B5F4300C791FD /* set_key.cpp in Sources */,
-				21B911991A6B5E5400C791FD /* LocalMemory.cpp in Sources */,
+				21B911991A6B5E5400C791FD /* LocalRegistry.cpp in Sources */,
 				21D8CA7A1A6B7781002CBDC3 /* system_method.cpp in Sources */,
 				21D8E2D21A60E1E200E8A63F /* NotificationObserver.cpp in Sources */,
 				21D8E2C51A60E1E200E8A63F /* JSONBoolean.cpp in Sources */,
