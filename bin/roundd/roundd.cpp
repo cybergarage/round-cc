@@ -99,6 +99,10 @@ int main(int argc, char *argv[]) {
     if (setsid() < 0)
       exit(EXIT_FAILURE);
 
+    if ( chdir("/") < 0 ) {
+      exit(EXIT_FAILURE);
+    }
+    
     umask(0);
   
     close(STDIN_FILENO);
