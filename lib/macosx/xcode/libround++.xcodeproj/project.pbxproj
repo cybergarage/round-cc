@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		210189731A7E33B4007541B6 /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210189721A7E33B4007541B6 /* Server.cpp */; };
+		2101897A1A7E3BE0007541B6 /* Program.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210189791A7E3BE0007541B6 /* Program.cpp */; };
 		21062D191A73D0EC00FCA587 /* rpm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21062D181A73D0EC00FCA587 /* rpm.cpp */; };
 		210A64C11A6A317900E8F61D /* Method.h in Headers */ = {isa = PBXBuildFile; fileRef = 210A64C01A6A317900E8F61D /* Method.h */; };
 		210E5FE21A5EDFDA005667CB /* liblibmupnp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 210E5FDF1A5EDFC9005667CB /* liblibmupnp++.a */; };
@@ -215,6 +217,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		210189721A7E33B4007541B6 /* Server.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Server.cpp; sourceTree = "<group>"; };
+		210189791A7E3BE0007541B6 /* Program.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Program.cpp; sourceTree = "<group>"; };
 		21062D181A73D0EC00FCA587 /* rpm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rpm.cpp; sourceTree = "<group>"; };
 		210A64C01A6A317900E8F61D /* Method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Method.h; sourceTree = "<group>"; };
 		210E5FDA1A5EDFC9005667CB /* libmupnp++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libmupnp++.xcodeproj"; path = "../../../../mupnp/lib/macosx/xcode/libmupnp++.xcodeproj"; sourceTree = "<group>"; };
@@ -482,6 +486,8 @@
 		21B329371A6B82CA0077C313 /* console */ = {
 			isa = PBXGroup;
 			children = (
+				210189791A7E3BE0007541B6 /* Program.cpp */,
+				210189721A7E33B4007541B6 /* Server.cpp */,
 				21B329381A6B82CA0077C313 /* Client.cpp */,
 				21B329421A6B939D0077C313 /* cmd */,
 				21B329391A6B82CA0077C313 /* Command.cpp */,
@@ -1009,6 +1015,7 @@
 				21D8E2F01A60E1E200E8A63F /* NodeGraph.cpp in Sources */,
 				21D8E2D91A60E1E200E8A63F /* Semaphore.cpp in Sources */,
 				21B911B11A6B5F4300C791FD /* Method.cpp in Sources */,
+				210189731A7E33B4007541B6 /* Server.cpp in Sources */,
 				21E1EB161A64FE2800FEABF6 /* NodeRequest.cpp in Sources */,
 				21D7A5991A6BE1E400D43061 /* shell.cpp in Sources */,
 				21B854041A60E470009E6ECB /* TclEngine.cpp in Sources */,
@@ -1092,6 +1099,7 @@
 				21D8E2C21A60E1E200E8A63F /* JSONParserJansson.cpp in Sources */,
 				21F4CE6B1A63F0BA00E7F0CC /* Script.cpp in Sources */,
 				21D8E2CD1A60E1E200E8A63F /* Message.cpp in Sources */,
+				2101897A1A7E3BE0007541B6 /* Program.cpp in Sources */,
 				21D8E2C01A60E1E200E8A63F /* Error.cpp in Sources */,
 				21D8E2AF1A60E1E200E8A63F /* Client.cpp in Sources */,
 				21D8E2E91A60E1E200E8A63F /* Logger.cpp in Sources */,

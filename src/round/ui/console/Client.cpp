@@ -23,26 +23,14 @@ Round::Console::Client::Client() {
 Round::Console::Client::~Client() {
 }
 
-void Round::Console::Client::init() {
-  initOptions();
-  initCommands();
-}
-
 void Round::Console::Client::initOptions() {
   
 }
-
-void Round::Console::Client::initCommands() {
-  
-}
-
 void Round::Console::Client::setProgramNameFromArgument(const std::string &argValue)
 {
-  this->promptName = argValue;
-  size_t lastPathIndex = this->promptName.find_last_of("/");
-  if (lastPathIndex != std::string::npos)
-    this->promptName = this->promptName.substr((lastPathIndex + 1));
-  this->promptName = this->promptName;
+  Program::setProgramNameFromArgument(argValue);
+  
+  this->promptName = this->programName;
   this->promptName.append("> ");
 }
 
@@ -69,11 +57,6 @@ const char *Round::Console::Client::getBootMessage(std::string &buffer)
   std::transform(buffer.begin(), buffer.end(), buffer.begin(), roundcc_tocapital());
 
   return buffer.c_str();
-}
-
-const char *Round::Console::Client::getProgramName()
-{
-  return promptName.c_str();
 }
 
 const char *Round::Console::Client::getPromptName()
@@ -114,19 +97,15 @@ bool Round::Console::Client::execRPCCommand(const Input &input, Message *msg, Er
   return cmd->exec(this, &input, msg, err);
 }
 
-bool Round::Console::Client::usage() {
-  Command *help = this->commands.getCommand(Round::Console::help::NAME);
-  if (!help)
-    return false;
-
+void Round::Console::Client::usage() {
   std::cout << "Usage: " << getProgramName() << " [-options] <command>" << std::endl;
   std::cout << std::endl;
-  help->exec(this, NULL, NULL, NULL);
-  std::cout << std::endl;
-  for (Options::iterator optIt=options.begin(); optIt != options.end(); optIt++) {
-    Option *opt = optIt->second;
-    std::cout << "-" << opt->getId() << Command::TAB << opt->getDescription() << std::endl;
+  
+  Command *help = this->commands.getCommand(Round::Console::help::NAME);
+  if (help) {
+    help->exec(this, NULL, NULL, NULL);
+    std::cout << std::endl;
   }
   
-  return true;
+  printOptions();
 }

@@ -8,18 +8,23 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDCC_CONSOLE_CLIENT_H_
-#define _ROUNDCC_CONSOLE_CLIENT_H_
+#ifndef _ROUNDCC_CONSOLE_H_
+#define _ROUNDCC_CONSOLE_H_
 
 #include <map>
 #include <string>
 
 #include <round/Client.h>
+#include <round/Server.h>
 #include <round/common/Vector.h>
 
 namespace Round {
 
 namespace Console {
+
+////////////////////////////////////////
+// Program
+////////////////////////////////////////
 
 class Option : public std::string {
  public:
@@ -51,6 +56,34 @@ private:
   void clear();
 };
 
+class Program : public Round::Server
+{
+public:
+    
+  Options options;
+    
+public:
+    
+  Program();
+  ~Program();
+    
+  void setProgramNameFromArgument(const std::string &argValue);
+  const char *getProgramName();
+  
+  void init();
+  void initOptions();
+    
+  void printOptions();
+  
+protected:
+    
+  std::string programName;
+};
+
+////////////////////////////////////////
+// Client
+////////////////////////////////////////
+  
 typedef const std::string Param;
 
 class Params : public std::vector<std::string> {
@@ -131,11 +164,10 @@ private:
   bool isNonExecutedCommand(const Input *input) const;
 };
   
-class Client : public Round::Client
+class Client : public Round::Client, public Program
 {
 public:
   
-  Options options;
   Commands commands;
 
 public:
@@ -145,7 +177,6 @@ public:
   
   void setProgramNameFromArgument(const std::string &argValue);
   const char *getBootMessage(std::string &buffer);
-  const char *getProgramName();
   const char *getPromptName();
 
   bool isQuitCommand(const Input &input);
@@ -156,20 +187,29 @@ public:
   bool execConsoleCommand(const Input &input, Message *msg, Error *err);
   bool execRPCCommand(const Input &input, Message *msg, Error *err);
   
-  bool usage();
-  
-private:
-
-  void init();
   void initOptions();
-  void initCommands();
-  
+  void usage();
+    
 private:
 
-  std::string programtName;
   std::string promptName;
 };
 
+////////////////////////////////////////
+// Server
+////////////////////////////////////////
+  
+class Server : public Round::Server, public Program
+{
+public:
+    
+  Server();
+  ~Server();
+    
+  void initOptions();
+  void usage();
+};
+  
 }
 
 }

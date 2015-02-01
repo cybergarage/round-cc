@@ -118,11 +118,11 @@ int main(int argc, char *argv[]) {
       exit(EXIT_FAILURE);
   }
 
-    /*
-  if (hasPortParameter)
-    nodeServer->setHttpdPort(httpdPort);
-*/
-    
+  if (hasPortParameter) {
+    //nodeServer-
+    //(httpdPort);
+  }
+  
   Round::Logger *nodeServerLogger = nodeServer->getLogger();
   nodeServerLogger->setLevel((verboseMode ? Round::LoggerLevel::TRACE : Round::LoggerLevel::INFO));
 
