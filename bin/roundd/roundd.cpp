@@ -19,39 +19,27 @@
 #include <signal.h>
 
 #include <round/Round.h>
+#include <round/ui/Console.h>
 
 typedef std::map<std::string,std::string> RounddOptionsDictionary;
 
-void usage(char *argv[]) {
-  std::string programName = argv[0];
-  size_t lastPathIndex = programName.find_last_of("/");
-  if (lastPathIndex != std::string::npos)
-    programName = programName.substr((lastPathIndex + 1));
-  
-  std::cout << "Usage: " << programName << " [-options]" << std::endl;
-  
-  RounddOptionsDictionary options;
-
-  options["f"] = "Runs in foreground mode";
-  options["v"] = "Enables verbose output";
-  options["h"] = "Prints this help message";
-  options["p <port number>"] = "Runs HTTP server on given port";
-  options["c <filename>"] = "Specifies a configuration file";
-  
-  for (RounddOptionsDictionary::iterator option=options.begin(); option != options.end(); option++) {
-    std::string optionParam = option->first;
-    std::string optionDesc = option->second;
-    std::cout << "\t-" << optionParam << "\t\t" << optionDesc << std::endl;
-  }
-}
-
 int main(int argc, char *argv[]) {
+  Round::Error err;
+
+  // Option parameters
+  
   std::string configFilename = "";
   bool deamonMode = true;
   bool verboseMode = false;
-  bool hasPortParameter = false;
-  int httpdPort = 0;//Round::Server::DEFAULT_HTTPD_PORT;
+  int httpdPort = 0;
 
+  // Setup Server
+  
+  Round::Console::Server server;
+  server.setFirstArgument(argv[0]);
+  
+  // Parse options
+  
   int ch;
   while ((ch = getopt(argc, argv, "fhvp:c:")) != -1) {
     switch (ch) {
@@ -67,7 +55,6 @@ int main(int argc, char *argv[]) {
       break;
     case 'p':
       {
-        hasPortParameter = true;
         httpdPort = atoi(optarg);
       }
       break;
@@ -80,14 +67,17 @@ int main(int argc, char *argv[]) {
     case '?':
     default:
       {
-        usage(argv);
+        server.usage();
         exit(EXIT_SUCCESS);
       }
     }
    }
+  
   argc -= optind;
   argv += optind;
 
+  // Setup deamon
+  
   if (deamonMode) {
     int pid = fork();
     if (pid < 0)
@@ -109,26 +99,25 @@ int main(int argc, char *argv[]) {
     close(STDOUT_FILENO);
     close(STDERR_FILENO);
   }
- 
-  Round::Error err;
-  Round::Server *nodeServer = new Round::Server();
-  
+
+  // Setup configuration
+
   if (0 < configFilename.length()) {
-    if (nodeServer->loadConfigFromString(configFilename, &err))
+    if (server.loadConfigFromString(configFilename, &err))
       exit(EXIT_FAILURE);
   }
 
-  if (hasPortParameter) {
+  if (0 < httpdPort) {
     //nodeServer-
     //(httpdPort);
   }
   
-  Round::Logger *nodeServerLogger = nodeServer->getLogger();
+  Round::Logger *nodeServerLogger = server.getLogger();
   nodeServerLogger->setLevel((verboseMode ? Round::LoggerLevel::TRACE : Round::LoggerLevel::INFO));
 
   if (deamonMode) {
     std::string logFilename;
-    if (nodeServer->getLogFilename(&logFilename, &err)) {
+    if (server.getLogFilename(&logFilename, &err)) {
       Round::LoggerFileTarget *fileTarget = new Round::LoggerStdFileTarget();
       if (fileTarget->open(logFilename)) {
         nodeServerLogger->addTarget(fileTarget);
@@ -142,20 +131,17 @@ int main(int argc, char *argv[]) {
     nodeServerLogger->addTarget(new Round::LoggerStderrTarget());
   }
 
-
-  //RoundLogInfo("Starting fractald ..... ");
-
-  if (nodeServer->start(&err) == false) {
+  if (server.start(&err) == false) {
     //Round::RoundLog(err);
     exit(EXIT_FAILURE);
   }
   
-  RoundLogInfo("Done");
+  RoundLogInfo("Started");
 
   sigset_t sigSet;
   if (sigfillset(&sigSet) != 0)
     exit(EXIT_FAILURE);
-
+    
   bool isRunnging = true;
   
   while (isRunnging) {
@@ -167,13 +153,13 @@ int main(int argc, char *argv[]) {
     case SIGINT:
     case SIGKILL:
       {
-        nodeServer->stop(&err);
+        server.stop(&err);
         isRunnging = false;
       }
       break;
     case SIGHUP:
       {
-        if (nodeServer->start(&err) == false) {
+        if (server.start(&err) == false) {
           Round::RoundLog(err);
           exit(EXIT_FAILURE);
         }
@@ -181,8 +167,6 @@ int main(int argc, char *argv[]) {
       break;
     }
   }
-    
-  delete nodeServer;
   
   return EXIT_SUCCESS;
 }

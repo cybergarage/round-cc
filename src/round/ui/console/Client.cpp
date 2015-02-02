@@ -23,12 +23,33 @@ Round::Console::Client::Client() {
 Round::Console::Client::~Client() {
 }
 
-void Round::Console::Client::initOptions() {
+void Round::Console::Client::initCommands() {
+  // real commands
+  addCommand(new Round::Console::shell());
+  addCommand(new Round::Console::help());
+  addCommand(new Round::Console::list());
+  addCommand(new Round::Console::search());
+  addCommand(new Round::Console::update());
+  addCommand(new Round::Console::version());
+  addCommand(new Round::Console::quit());
+  addCommand(new Round::Console::verbose());
+  addCommand(new Round::Console::use());
+  addCommand(new Round::Console::rpm());
   
+  // alias commands
+  addCommand(new Round::Console::exit());
+  addCommand(new Round::Console::question());
+  
+  // RPC method
+  addCommand(new Round::Console::method());
 }
-void Round::Console::Client::setProgramNameFromArgument(const std::string &argValue)
+
+void Round::Console::Client::initOptions() {
+  addOption(new Option('h', "", "Prints this help message"));
+}
+void Round::Console::Client::setFirstArgument(const std::string &argValue)
 {
-  Program::setProgramNameFromArgument(argValue);
+  Program::setFirstArgument(argValue);
   
   this->promptName = this->programName;
   this->promptName.append("> ");

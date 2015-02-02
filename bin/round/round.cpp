@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
   
   Round::Console::Client client;
   gConsoleClient = &client;
-  client.setProgramNameFromArgument(argv[0]);
+  client.setFirstArgument(argv[0]);
 
   // Parse command line options
   

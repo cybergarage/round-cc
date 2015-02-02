@@ -22,24 +22,6 @@ Round::Console::Commands::~Commands()
 }
 
 void Round::Console::Commands::init() {
-  // real commands
-  addCommand(new shell());
-  addCommand(new help());
-  addCommand(new list());
-  addCommand(new search());
-  addCommand(new update());
-  addCommand(new version());
-  addCommand(new quit());
-  addCommand(new verbose());
-  addCommand(new use());
-  addCommand(new rpm());
-
-  // alias commands
-  addCommand(new exit());
-  addCommand(new question());
-
-  // RPC method
-  addCommand(new method());
 }
 
 void Round::Console::Commands::clear() {

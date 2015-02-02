@@ -30,3 +30,10 @@ void Round::Console::Options::clear() {
   }
   std::map<char, Option*>::clear();
 }
+
+bool Round::Console::Options::addOption(Option *opt) {
+  char type = opt->getId();
+  insert(std::pair<char, Option *>(type, opt));
+  return true;
+}
+

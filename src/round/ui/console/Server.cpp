@@ -23,13 +23,11 @@ Round::Console::Server::~Server() {
 }
 
 void Round::Console::Server::initOptions() {
-  /*
-  options["f"] = "Runs in foreground mode";
-  options["v"] = "Enables verbose output";
-  options["h"] = "Prints this help message";
-  options["p <port number>"] = "Runs HTTP server on given port";
-  options["c <filename>"] = "Specifies a configuration file";
-  */
+  addOption(new Option('f', "", "Runs in foreground mode"));
+  addOption(new Option('v', "", "Enables verbose output"));
+  addOption(new Option('h', "", "Prints this help message"));
+  addOption(new Option('p', "<port number>", "Runs HTTP server on given port"));
+  addOption(new Option('c', "<filename>", "Specifies a configuration file"));
 }
 
 void Round::Console::Server::usage() {

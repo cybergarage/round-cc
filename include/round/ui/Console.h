@@ -26,14 +26,18 @@ namespace Console {
 // Program
 ////////////////////////////////////////
 
-class Option : public std::string {
+class Option {
  public:
   char type;
+  std::string option;
+  std::string description;
   
  public:
     
-  Option(char c) {
+  Option(char c, const std::string &opt, const std::string &desc) {
     this->type = c;
+    this->option = opt;
+    this->description = desc;
   }
   
   virtual ~Option() {}
@@ -42,7 +46,13 @@ class Option : public std::string {
     return this->type;
   }
 
-  virtual const std::string getDescription() const = 0;
+  const std::string &getOption() {
+    return this->option;
+  }
+  
+  const std::string &getDescription() {
+    return this->description;
+  }
 };
   
 class Options : public std::map<char, Option*> {
@@ -51,12 +61,14 @@ class Options : public std::map<char, Option*> {
   Options();
   ~Options();
 
+  bool addOption(Option *opt);
+  
 private:
   void init();
   void clear();
 };
 
-class Program : public Round::Server
+class Program
 {
 public:
     
@@ -67,12 +79,16 @@ public:
   Program();
   ~Program();
     
-  void setProgramNameFromArgument(const std::string &argValue);
+  void setFirstArgument(const std::string &argValue);
   const char *getProgramName();
   
   void init();
   void initOptions();
     
+  bool addOption(Option *opt) {
+    return this->options.addOption(opt);
+  }
+
   void printOptions();
   
 protected:
@@ -175,10 +191,14 @@ public:
   Client();
   ~Client();
   
-  void setProgramNameFromArgument(const std::string &argValue);
+  void setFirstArgument(const std::string &argValue);
   const char *getBootMessage(std::string &buffer);
   const char *getPromptName();
 
+  bool addCommand(Command *cmd) {
+    return this->commands.addCommand(cmd);
+  }
+  
   bool isQuitCommand(const Input &input);
   bool isShellCommand(const Input &input);
   bool isConsoleCommand(const Input &input);
@@ -187,6 +207,7 @@ public:
   bool execConsoleCommand(const Input &input, Message *msg, Error *err);
   bool execRPCCommand(const Input &input, Message *msg, Error *err);
   
+  void initCommands();
   void initOptions();
   void usage();
     

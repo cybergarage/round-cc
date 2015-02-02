@@ -31,7 +31,7 @@ void Round::Console::Program::initOptions() {
   
 }
 
-void Round::Console::Program::setProgramNameFromArgument(const std::string &argValue)
+void Round::Console::Program::setFirstArgument(const std::string &argValue)
 {
   this->programName = argValue;
   size_t lastPathIndex = this->programName.find_last_of("/");
@@ -45,8 +45,22 @@ const char *Round::Console::Program::getProgramName()
 }
 
 void Round::Console::Program::printOptions() {
+  size_t optMaxHeaderLen = 0;
   for (Options::iterator optIt=options.begin(); optIt != options.end(); optIt++) {
     Option *opt = optIt->second;
-    std::cout << "-" << opt->getId() << Command::TAB << opt->getDescription() << std::endl;
+    size_t optHeaderLen = opt->getOption().length();
+    if (optMaxHeaderLen < optHeaderLen) {
+      optMaxHeaderLen = optHeaderLen;
+    }
+  }
+  
+  for (Options::iterator optIt=options.begin(); optIt != options.end(); optIt++) {
+    Option *opt = optIt->second;
+    size_t optHeaderLen = opt->getOption().length();
+    std::cout << "-" << opt->getId() << " ";
+    for (size_t n=0; n<(optMaxHeaderLen - optHeaderLen); n++) {
+      std::cout << " ";
+    }
+    std::cout << " " << opt->getDescription() << std::endl;
   }
 }
