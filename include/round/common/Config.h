@@ -34,17 +34,20 @@ class Config {
   bool loadFromString(const std::string &string, Error *err);
   bool loadFromFile(const std::string &filename, Error *err);
 
-  bool getStringByPath(const std::string &pathString, std::string *value, Error *err) const;
   bool getObjectByPath(const std::string &pathString, JSONObject **jsonObj, Error *err) const;
+  bool getStringByPath(const std::string &pathString, std::string *value, Error *err) const;
   bool getIntegerByPath(const std::string &pathString, int *value, Error *err) const;
 
+  bool setStringByPath(const std::string &pathString, const std::string &value, Error *err);
+  bool setIntegerByPath(const std::string &pathString, int value, Error *err);
+  
 protected:
 
   bool init();
   bool clear();
   
   bool loadFromStream(std::istream &in, Error *err);
-  
+  bool addObjectByPath(const std::string &pathString, JSONObject *jsonObj, Error *err);
   void setErrorMessage(const std::string &message, Error *error) const;
   
 private:

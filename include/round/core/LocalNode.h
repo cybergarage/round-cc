@@ -114,6 +114,10 @@ class LocalConfig : public Config {
   bool getCluster(std::string *value, Error *error) const;
   bool getLogFilename(std::string *value, Error *error) const;
 
+  bool setBindAddress(const std::string &value, Error *error);
+  bool setBindPort(int value, Error *error);
+  bool setCluster(const std::string &value, Error *error);
+  bool setLogFilename(const std::string &value, Error *error);  
 };
   
 /**

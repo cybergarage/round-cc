@@ -35,6 +35,10 @@ bool Round::LocalConfig::isValid(Error *error) {
   return true;
 }
 
+////////////////////////////////////////
+// Getter
+////////////////////////////////////////
+
 bool Round::LocalConfig::getBindAddress(std::string *value, Error *error) const {
   if (getStringByPath(BIND_ADDR, value, error) == false)
     *value = AUTO;
@@ -70,4 +74,22 @@ bool Round::LocalConfig::getLogFilename(std::string *value, Error *error) const 
   return getStringByPath(LOG_FILE, value, error);
 }
 
+////////////////////////////////////////
+// Setter
+////////////////////////////////////////
 
+bool Round::LocalConfig::setBindAddress(const std::string &value, Error *error) {
+  return setStringByPath(BIND_ADDR, value, error);
+}
+
+bool Round::LocalConfig::setBindPort(int value, Error *error) {
+  return setIntegerByPath(BIND_PORT, value, error);
+}
+
+bool Round::LocalConfig::setCluster(const std::string &value, Error *error) {
+  return setStringByPath(CLUSTER, value, error);
+}
+
+bool Round::LocalConfig::setLogFilename(const std::string &value, Error *error) {
+  return setStringByPath(LOG_FILE, value, error);
+}
