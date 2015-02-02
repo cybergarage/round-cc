@@ -160,6 +160,18 @@ class LocalNode : public Node, public NodeFinderObserver {
     return &this->nodeConfig;
   }
 
+  bool setBindAddress(const std::string &value, Error *error) {
+    return this->nodeConfig.setBindAddress(value, error);
+  }
+  
+  bool setBindPort(int value, Error *error) {
+    return this->nodeConfig.setBindPort(value, error);
+  }
+  
+  bool setCluster(const std::string &value, Error *error) {
+    return this->nodeConfig.setCluster(value, error);
+  }
+  
   NodeGraph *getNodeGraph() {
     return &this->nodeGraph;
   }

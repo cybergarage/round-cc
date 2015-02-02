@@ -28,10 +28,12 @@ int main(int argc, char *argv[]) {
 
   // Option parameters
   
-  std::string configFilename = "";
   bool deamonMode = true;
   bool verboseMode = false;
-  int httpdPort = 0;
+  std::string configFilename = "";
+  std::string bindAddr = "";
+  std::string bindCluster = "";
+  int bindPort = 0;
 
   // Setup Server
   
@@ -41,7 +43,7 @@ int main(int argc, char *argv[]) {
   // Parse options
   
   int ch;
-  while ((ch = getopt(argc, argv, "fhvp:c:")) != -1) {
+  while ((ch = getopt(argc, argv, "fhvc:i:p:s:")) != -1) {
     switch (ch) {
     case 'v':
       {
@@ -53,18 +55,27 @@ int main(int argc, char *argv[]) {
         deamonMode = false;
       }
       break;
-    case 'p':
+    case 'c':
       {
-        httpdPort = atoi(optarg);
+        bindCluster = optarg;
       }
       break;
-    case 'c':
+    case 'i':
+      {
+        bindAddr = optarg;
+      }
+      break;
+    case 'p':
+      {
+        bindPort = atoi(optarg);
+      }
+      break;
+    case 's':
       {
         configFilename = optarg;
       }
       break;
     case 'h':
-    case '?':
     default:
       {
         server.usage();
@@ -103,14 +114,26 @@ int main(int argc, char *argv[]) {
   // Setup configuration
 
   if (0 < configFilename.length()) {
-    if (server.loadConfigFromString(configFilename, &err))
+    if (!server.loadConfigFromString(configFilename, &err))
       exit(EXIT_FAILURE);
   }
 
-  if (0 < httpdPort) {
-    //nodeServer-
-    //(httpdPort);
+  if (0 < bindAddr.length()) {
+    if (!server.setBindAddress(bindAddr, &err))
+        exit(EXIT_FAILURE);
   }
+  
+  if (0 < bindPort) {
+    if (!server.setBindPort(bindPort, &err))
+      exit(EXIT_FAILURE);
+  }
+
+  if (0 < bindCluster.length()) {
+    if (!server.setCluster(bindCluster, &err))
+      exit(EXIT_FAILURE);
+  }
+  
+  // Setup Logger
   
   Round::Logger *nodeServerLogger = server.getLogger();
   nodeServerLogger->setLevel((verboseMode ? Round::LoggerLevel::TRACE : Round::LoggerLevel::INFO));
@@ -139,8 +162,9 @@ int main(int argc, char *argv[]) {
   RoundLogInfo("Started");
 
   sigset_t sigSet;
-  if (sigfillset(&sigSet) != 0)
+  if (sigfillset(&sigSet) != 0) {
     exit(EXIT_FAILURE);
+  }
     
   bool isRunnging = true;
   

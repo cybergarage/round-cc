@@ -26,8 +26,10 @@ void Round::Console::Server::initOptions() {
   addOption(new Option('f', "", "Runs in foreground mode"));
   addOption(new Option('v', "", "Enables verbose output"));
   addOption(new Option('h', "", "Prints this help message"));
-  addOption(new Option('p', "<port number>", "Runs HTTP server on given port"));
-  addOption(new Option('c', "<filename>", "Specifies a configuration file"));
+  addOption(new Option('c', "<cluster>", "Runs node on given cluster"));
+  addOption(new Option('i', "<ifaddr>", "Runs node on given interface"));
+  addOption(new Option('p', "<port>", "Runs node on given port"));
+  addOption(new Option('s', "<filename>", "Specifies a configuration file"));
 }
 
 void Round::Console::Server::usage() {

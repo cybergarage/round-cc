@@ -672,13 +672,13 @@
 		21D8E1E01A60E1E200E8A63F /* round */ = {
 			isa = PBXGroup;
 			children = (
-				21B329311A6B82CA0077C313 /* ui */,
 				21D8E1E71A60E1E200E8A63F /* Client.cpp */,
 				21D8E1E81A60E1E200E8A63F /* common */,
 				21D8E2541A60E1E200E8A63F /* core */,
 				21D8E2A01A60E1E200E8A63F /* Finder.cpp */,
 				21D8E2A11A60E1E200E8A63F /* script */,
 				21D8E2A61A60E1E200E8A63F /* Server.cpp */,
+				21B329311A6B82CA0077C313 /* ui */,
 			);
 			name = round;
 			path = ../../../src/round;
