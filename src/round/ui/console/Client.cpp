@@ -128,11 +128,11 @@ void Round::Console::Client::usage() {
   std::cout << "Usage: " << getProgramName() << " [-options] <command>" << std::endl;
   std::cout << std::endl;
   
+  printOptions();
+  
   Command *help = this->commands.getCommand(Round::Console::help::NAME);
   if (help) {
-    help->exec(this, NULL, NULL, NULL);
     std::cout << std::endl;
+    help->exec(this, NULL, NULL, NULL);
   }
-  
-  printOptions();
 }

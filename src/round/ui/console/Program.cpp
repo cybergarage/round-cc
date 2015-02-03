@@ -28,7 +28,6 @@ void Round::Console::Program::init() {
 }
 
 void Round::Console::Program::initOptions() {
-  
 }
 
 void Round::Console::Program::setFirstArgument(const std::string &argValue)
