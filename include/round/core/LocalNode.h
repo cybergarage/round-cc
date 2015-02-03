@@ -156,7 +156,7 @@ class LocalNode : public Node, public NodeFinderObserver {
   
   bool restart(Error *error);
   
-  LocalConfig *getNodeConfig() {
+  LocalConfig *getConfig() {
     return &this->nodeConfig;
   }
 

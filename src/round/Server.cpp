@@ -25,5 +25,5 @@ Round::Server::~Server() {
 }
 
 bool Round::Server::getLogFilename(std::string *value, Round::Error *error) {
-  return getNodeConfig()->getLogFilename(value, error);
+  return getConfig()->getLogFilename(value, error);
 }

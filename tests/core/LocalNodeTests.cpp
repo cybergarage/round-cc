@@ -67,7 +67,7 @@ static const std::string ROUND_CONFIG_SAMPLE = \
 "  \"log_file\": \"/var/log/round.log\"\n"\
 "}\n";
 
-BOOST_AUTO_TEST_CASE(LocalConfigTest) {
+BOOST_AUTO_TEST_CASE(LocalConfigGetterTest) {
   LocalConfig nodeConfig;
   
   Error err;
@@ -87,6 +87,26 @@ BOOST_AUTO_TEST_CASE(LocalConfigTest) {
 
   BOOST_CHECK_EQUAL(nodeConfig.getLogFilename(&value, &err), true);
   BOOST_CHECK_EQUAL(value.compare("/var/log/round.log"), 0);
+}
+
+BOOST_AUTO_TEST_CASE(LocalNodeConfigSetterTest) {
+  TestLocalNode node;
+  
+  Error err;
+  std::string value;
+  int ivalue;
+  
+  BOOST_CHECK_EQUAL(node.setBindAddress("127.0.0.1", &err), true);
+  BOOST_CHECK_EQUAL(node.getConfig()->getBindAddress(&value, &err), true);
+  BOOST_CHECK_EQUAL(value.compare("127.0.0.1"), 0);
+  
+  BOOST_CHECK_EQUAL(node.setBindPort(4649, &err), true);
+  BOOST_CHECK_EQUAL(node.getConfig()->getBindPort(&ivalue, &err), true);
+  BOOST_CHECK_EQUAL(ivalue, 4649);
+  
+  BOOST_CHECK_EQUAL(node.setCluster("test", &err), true);
+  BOOST_CHECK_EQUAL(node.getConfig()->getCluster(&value, &err), true);
+  BOOST_CHECK_EQUAL(value.compare("test"), 0);
 }
 
 BOOST_AUTO_TEST_CASE(LocalNodMemoryTest) {

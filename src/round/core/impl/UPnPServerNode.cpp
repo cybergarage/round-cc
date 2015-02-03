@@ -130,11 +130,11 @@ bool Round::UPnPServerNode::start(Error *error) {
   // Config
   
   std::string localAddress;
-  if (!getNodeConfig()->getBindAddress(&localAddress, error))
+  if (!getConfig()->getBindAddress(&localAddress, error))
     return false;
 
   int localPort;
-  if (!getNodeConfig()->getBindPort(&localPort, error))
+  if (!getConfig()->getBindPort(&localPort, error))
     return false;
   
   Device::setHTTPPort(localPort);
