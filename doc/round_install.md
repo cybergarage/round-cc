@@ -4,9 +4,11 @@
 
 Official binary distributions are available for Linux and Mac OS X. If a binary distribution is not available for your combination of operating system and architecture, try installing from source.
 
-## Linux
+## Getting Round
 
-### Docker
+### Linux
+
+#### Docker
 
 To get started with Docker on Linux, run the following in a terminal:
 
@@ -14,19 +16,23 @@ To get started with Docker on Linux, run the following in a terminal:
 docker run cybergarage/round:<version>
 ```
 
-## MacOSX
+### MacOSX
 
 First, you have to install the following package on MacOSX.
 
 - [Java for OS X 2014-001](http://support.apple.com/kb/DL1572)
 
-### Homebrew
+#### Homebrew
 
 To get started on MacOSX, run the following in a terminal:
 
 ```
 brew install round++
 ```
+
+### Installing from source
+
+Round is an open source project, distributed under a [BSD-style license](../LICENSE). If you want to  build from source, follow [the source installation instructions](./round_install_from_source.md).
 
 ## Running Round
 
@@ -39,5 +45,9 @@ roundd
 Next, let's start the client utility command:
 
 ```
-round
+round shell
 ```
+
+## Next Steps
+
+- [Tour of Round](./round_tour)
