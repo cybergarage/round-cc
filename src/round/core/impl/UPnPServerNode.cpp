@@ -16,6 +16,7 @@
 
 #include <uhttp/net/URL.h>
 #include <round/common/Random.h>
+#include <round/core/Log.h>
 #include <round/core/impl/UPnPServerNode.h>
 
 
@@ -164,6 +165,8 @@ bool Round::UPnPServerNode::start(Error *error) {
   // State
   setState(NodeStatus::ACTIVE);
 
+  RoundLogInfo("Node (%s:%d) is started", localAddress.c_str(), httpPort);
+  
   return true;
 }
 
@@ -185,6 +188,8 @@ bool Round::UPnPServerNode::stop(Error *error) {
   if (isSuccess == true)
     setState(NodeStatus::STOP);
 
+  RoundLogInfo("Node is stopped");
+  
   return isSuccess;
 }
 

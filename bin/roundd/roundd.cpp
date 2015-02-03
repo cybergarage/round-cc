@@ -111,67 +111,75 @@ int main(int argc, char *argv[]) {
     close(STDERR_FILENO);
   }
 
-  // Setup configuration
-
-  if (0 < configFilename.length()) {
-    if (!server.loadConfigFromString(configFilename, &err))
-      exit(EXIT_FAILURE);
-  }
-
-  if (0 < bindAddr.length()) {
-    if (!server.setBindAddress(bindAddr, &err))
-        exit(EXIT_FAILURE);
-  }
-  
-  if (0 < bindPort) {
-    if (!server.setBindPort(bindPort, &err))
-      exit(EXIT_FAILURE);
-  }
-
-  if (0 < bindCluster.length()) {
-    if (!server.setCluster(bindCluster, &err))
-      exit(EXIT_FAILURE);
-  }
-  
   // Setup Logger
   
-  Round::Logger *nodeServerLogger = server.getLogger();
-  nodeServerLogger->setLevel((verboseMode ? Round::LoggerLevel::TRACE : Round::LoggerLevel::INFO));
+  Round::Logger *logger = server.getLogger();
+  logger->setLevel((verboseMode ? Round::LoggerLevel::TRACE : Round::LoggerLevel::INFO));
 
   if (deamonMode) {
     std::string logFilename;
     if (server.getLogFilename(&logFilename, &err)) {
       Round::LoggerFileTarget *fileTarget = new Round::LoggerStdFileTarget();
       if (fileTarget->open(logFilename)) {
-        nodeServerLogger->addTarget(fileTarget);
+        logger->addTarget(fileTarget);
       }
       else
         delete fileTarget;
     }
   }
   else {
-    nodeServerLogger->addTarget(new Round::LoggerStdoutTarget());
-    nodeServerLogger->addTarget(new Round::LoggerStderrTarget());
+    logger->addTarget(new Round::LoggerStdoutTarget());
+    logger->addTarget(new Round::LoggerStderrTarget());
   }
 
+  // Setup configuration
+  
+  if (0 < configFilename.length()) {
+    if (!server.loadConfigFromString(configFilename, &err)) {
+      Round::RoundLog(err);
+      exit(EXIT_FAILURE);
+    }
+  }
+  
+  if (0 < bindAddr.length()) {
+    if (!server.setBindAddress(bindAddr, &err)) {
+      Round::RoundLog(err);
+      exit(EXIT_FAILURE);
+    }
+  }
+  
+  if (0 < bindPort) {
+    if (!server.setBindPort(bindPort, &err)) {
+      Round::RoundLog(err);
+      exit(EXIT_FAILURE);
+    }
+  }
+  
+  if (0 < bindCluster.length()) {
+    if (!server.setCluster(bindCluster, &err)) {
+      Round::RoundLog(err);
+      exit(EXIT_FAILURE);
+    }
+  }
+
+  // Start server
+  
   if (server.start(&err) == false) {
-    //Round::RoundLog(err);
+    Round::RoundLog(err);
     exit(EXIT_FAILURE);
   }
   
-  RoundLogInfo("Started");
-
-  sigset_t sigSet;
-  if (sigfillset(&sigSet) != 0) {
-    exit(EXIT_FAILURE);
-  }
-    
   bool isRunnging = true;
   
   while (isRunnging) {
+    sigset_t sigSet;
+    if (sigfillset(&sigSet) != 0)
+      break;
+    
     int sigNo;
     if (sigwait(&sigSet, &sigNo) != 0)
       break;
+    
     switch (sigNo) {
     case SIGTERM:
     case SIGINT:
