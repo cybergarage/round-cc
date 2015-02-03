@@ -220,3 +220,20 @@ bool Round::ClientCore::updateClusterFromRemoteNode(const std::string &ipaddr, i
   RemoteNode remoteNode(ipaddr, port);
   return updateClusterFromRemoteNode(&remoteNode, error);
 }
+
+bool Round::ClientCore::updateClusterFromRemoteNode(const std::string &host, Error *error) {
+  std::vector<std::string> hosts;
+  boost::split(hosts, host, boost::is_any_of(":"));
+
+  std::string ipaddr;
+  if (1 <= hosts.size()) {
+    ipaddr = hosts.at(0);
+  }
+    
+  int port = 0;
+  if (2 <= hosts.size()) {
+    port = atoi(hosts.at(1).c_str());
+  }
+  
+  return updateClusterFromRemoteNode(ipaddr, port, error);
+}

@@ -51,6 +51,7 @@ public:
 
   bool updateClusterFromRemoteNode(RemoteNode *remoteNode, Error *error);
   bool updateClusterFromRemoteNode(const std::string &ipaddr, int port, Error *error);
+  bool updateClusterFromRemoteNode(const std::string &host, Error *error);
 
 protected:
 

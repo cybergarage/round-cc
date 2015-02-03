@@ -23,6 +23,11 @@ Round::Console::Client::Client() {
 Round::Console::Client::~Client() {
 }
 
+void Round::Console::Client::init() {
+  initCommands();
+  initOptions();
+}
+
 void Round::Console::Client::initCommands() {
   // real commands
   addCommand(new Round::Console::shell());
@@ -45,6 +50,7 @@ void Round::Console::Client::initCommands() {
 }
 
 void Round::Console::Client::initOptions() {
+  addOption(new Option('r', "<ipaddr:port>", "Update cluster on given host"));
   addOption(new Option('h', "", "Prints this help message"));
 }
 void Round::Console::Client::setFirstArgument(const std::string &argValue)

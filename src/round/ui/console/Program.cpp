@@ -61,6 +61,7 @@ void Round::Console::Program::printOptions() {
     for (size_t n=0; n<(optMaxHeaderLen - optHeaderLen); n++) {
       std::cout << " ";
     }
+    std::cout << opt->getOption();
     std::cout << " " << opt->getDescription() << std::endl;
   }
 }

@@ -207,6 +207,7 @@ public:
   bool execConsoleCommand(const Input &input, Message *msg, Error *err);
   bool execRPCCommand(const Input &input, Message *msg, Error *err);
   
+  void init();
   void initCommands();
   void initOptions();
   void usage();

@@ -83,23 +83,17 @@ int main(int argc, char *argv[])
 
   // Parse command line options
   
-  std::string nodeHost;
-  int nodePort = 0;
+  std::string remoteHost;
   
   int ch;
-  while ((ch = getopt(argc, argv, "h:p:?")) != -1) {
+  while ((ch = getopt(argc, argv, "r:h")) != -1) {
     switch (ch) {
+      case 'r':
+        {
+          remoteHost = optarg;
+        }
+        break;
       case 'h':
-        {
-          nodeHost = optarg;
-        }
-        break;
-      case 'p':
-        {
-          nodePort = atoi(optarg);
-        }
-        break;
-      case '?':
       default:
         {
           client.usage();
@@ -123,6 +117,10 @@ int main(int argc, char *argv[])
   
   if (!client.start(&error)) {
     exit(EXIT_FAILURE);
+  }
+  
+  if (0 < remoteHost.length()) {
+    client.updateClusterFromRemoteNode(remoteHost, &error);
   }
   
   // Execute command
