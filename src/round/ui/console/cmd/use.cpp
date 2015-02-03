@@ -22,13 +22,19 @@ const std::string Round::Console::use::getDescription() const {
 }
 
 const std::string Round::Console::use::getOptionDescription() const {
-  return "<cluster>";
+  return "[cluster]";
 }
 
 bool Round::Console::use::exec(Round::Console::Client *client, const Input *input, Message *msg, Error *err) const {
   if (input->params.size() <= 0) {
-    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
-    err->setDetailMessage(ERROR_CLUSTER_NOTSPECFIED);
+    Cluster *targetCluster = client->getTargetCluster();
+    if (!targetCluster) {
+      RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
+      err->setDetailMessage(ERROR_CLUSTER_NOTSPECFIED);
+      return false;
+    }
+    std::cout << targetCluster->getName() << std::endl;
+    return true;
   }
 
   if (!client->setTargetCluster(input->params[0])) {
