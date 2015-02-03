@@ -14,8 +14,6 @@ Round node is a programmable RPC ([Remote Procedure Call](http://en.wikipedia.or
 
 The RPC engine receives [JSON-RPC][json-rpc] messages from clients and othe nodes over HTTP or HTTPU. The HTTP server is implemented using [uHTTP for C++][uhttp].
 
-RQL (Round Query Language) is a DSL (Domain specific language) for Round. RQL supports to call RPC methods more easily. RQL is similar to SQL, and its engine is implemented using [uSQL for C++][usql].
-
 #### Zeroconf Engine
 
 The Zeroconf engine watches other node activities in the network. Its engine is implemented using [mUPnP for C++][mupnp].

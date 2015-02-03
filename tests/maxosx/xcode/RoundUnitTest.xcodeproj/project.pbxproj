@@ -27,7 +27,6 @@
 		2184F21F1A19B9A0007F1326 /* NodeReuestTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F21C1A19B9A0007F1326 /* NodeReuestTests.cpp */; };
 		2184F2201A19B9A0007F1326 /* NodeResponseTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F21D1A19B9A0007F1326 /* NodeResponseTests.cpp */; };
 		219EA4351A6BAD3700F3D89B /* ConsoleTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 219EA4341A6BAD3700F3D89B /* ConsoleTests.cpp */; };
-		21A7F6091A6960A400FAC15B /* libusql++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21A7F6061A69609500FAC15B /* libusql++.a */; };
 		21ACE9901A5D596600568779 /* RPCTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21ACE98F1A5D596600568779 /* RPCTests.cpp */; };
 		21AD429D1A13B7FC00741A08 /* BitOptionTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD428B1A13B7FC00741A08 /* BitOptionTests.cpp */; };
 		21AD429E1A13B7FC00741A08 /* ClockTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD428C1A13B7FC00741A08 /* ClockTests.cpp */; };
@@ -78,20 +77,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 21A9FFAA154014F300BDFCDC;
 			remoteInfo = "libround++";
-		};
-		21A7F6051A69609500FAC15B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 21A7F6011A69609500FAC15B /* libusql++.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2147B0C1192DC16E00F06DB4;
-			remoteInfo = "libusql++";
-		};
-		21A7F6071A69609E00FAC15B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 21A7F6011A69609500FAC15B /* libusql++.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 2147B0C0192DC16E00F06DB4;
-			remoteInfo = "libusql++";
 		};
 		21CD1BBE192DC91D00452ADF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -163,7 +148,6 @@
 		2184F21C1A19B9A0007F1326 /* NodeReuestTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeReuestTests.cpp; sourceTree = "<group>"; };
 		2184F21D1A19B9A0007F1326 /* NodeResponseTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeResponseTests.cpp; sourceTree = "<group>"; };
 		219EA4341A6BAD3700F3D89B /* ConsoleTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleTests.cpp; sourceTree = "<group>"; };
-		21A7F6011A69609500FAC15B /* libusql++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libusql++.xcodeproj"; path = "../../../../usql/lib/macosx/xcode/libusql++.xcodeproj"; sourceTree = "<group>"; };
 		21ACE98F1A5D596600568779 /* RPCTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCTests.cpp; sourceTree = "<group>"; };
 		21AD428B1A13B7FC00741A08 /* BitOptionTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BitOptionTests.cpp; sourceTree = "<group>"; };
 		21AD428C1A13B7FC00741A08 /* ClockTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClockTests.cpp; sourceTree = "<group>"; };
@@ -209,7 +193,6 @@
 			files = (
 				210E578C1A29A73E000B60FC /* JavaVM.framework in Frameworks */,
 				21B854081A60EF31009E6ECB /* Tcl.framework in Frameworks */,
-				21A7F6091A6960A400FAC15B /* libusql++.a in Frameworks */,
 				21F349921A5EDE670099B5B6 /* liblibmupnp++.a in Frameworks */,
 				21AD42AF1A13B88C00741A08 /* liblibround++.a in Frameworks */,
 				21CD1BC6192DC94E00452ADF /* libuhttp++.a in Frameworks */,
@@ -250,7 +233,6 @@
 		215C7EF31540266E00762EEC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				21A7F6011A69609500FAC15B /* libusql++.xcodeproj */,
 				21B854071A60EF31009E6ECB /* Tcl.framework */,
 				213E910C1A4AAAB7001C2ED9 /* SecurityFoundation.framework */,
 				210E578A1A29A73E000B60FC /* JavaVM.framework */,
@@ -286,14 +268,6 @@
 				217727811A2CE5E4001B4CE0 /* RPCMessageTests.cpp */,
 			);
 			path = rpc;
-			sourceTree = "<group>";
-		};
-		21A7F6021A69609500FAC15B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				21A7F6061A69609500FAC15B /* libusql++.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		21AD42771A13B7FC00741A08 /* common */ = {
@@ -388,7 +362,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				21A7F6081A69609E00FAC15B /* PBXTargetDependency */,
 				21F349911A5EDE610099B5B6 /* PBXTargetDependency */,
 				210E578E1A29A793000B60FC /* PBXTargetDependency */,
 				21CD1BC5192DC94100452ADF /* PBXTargetDependency */,
@@ -429,10 +402,6 @@
 					ProductGroup = 21CD1BBB192DC91D00452ADF /* Products */;
 					ProjectRef = 21CD1BBA192DC91D00452ADF /* libuhttp.xcodeproj */;
 				},
-				{
-					ProductGroup = 21A7F6021A69609500FAC15B /* Products */;
-					ProjectRef = 21A7F6011A69609500FAC15B /* libusql++.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -447,13 +416,6 @@
 			fileType = archive.ar;
 			path = "liblibround++.a";
 			remoteRef = 215C20B71A13B6A000CE71E2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		21A7F6061A69609500FAC15B /* libusql++.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libusql++.a";
-			remoteRef = 21A7F6051A69609500FAC15B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		21CD1BBF192DC91D00452ADF /* libuhttp++.a */ = {
@@ -536,11 +498,6 @@
 			isa = PBXTargetDependency;
 			name = "libround++";
 			targetProxy = 210E578D1A29A793000B60FC /* PBXContainerItemProxy */;
-		};
-		21A7F6081A69609E00FAC15B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "libusql++";
-			targetProxy = 21A7F6071A69609E00FAC15B /* PBXContainerItemProxy */;
 		};
 		21CD1BC5192DC94100452ADF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

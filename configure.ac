@@ -22,9 +22,9 @@ JNI_VERSION=1.6.0
 V8_VERSION=3.14
 JS_VERSION=1.8.5
 TCL_VERSION=8.5.0
+
 UHTTP_VERSION=0.6.0
 MUPNPCC_VERSION=3.0.0
-USQL_VERSION=0.6.0
 
 ##############################
 # Checks for programs.
@@ -328,7 +328,6 @@ AC_DEFINE([HAVE_BOOST_UNITTEST_LOGLEVEL],1,[boost::unit_test])],
 
 AC_CHECK_LIB([uhttp++],[main],,[AC_MSG_ERROR(Round for C++ needs libuhttp++ $UHTTP_VERSION later)])
 AC_CHECK_LIB([mupnp++],[main],,[AC_MSG_ERROR(Round for C++ needs libclink++ $MUPNPCC_VERSION later)])
-AC_CHECK_LIB([usql++],[main],,[AC_MSG_ERROR(Round for C++ needs libusql++ $USQL_VERSION later)])
 
 ##############################
 # Checks for test options.

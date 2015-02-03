@@ -224,7 +224,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.1841286"
-     inkscape:cx="248.50216"
+     inkscape:cx="167.46298"
      inkscape:cy="123.01356"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -434,12 +434,12 @@
     <rect
        style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:2.5956521;stroke-opacity:1;stroke-dasharray:none"
        id="rect4578"
-       width="80"
-       height="65.000008"
-       x="-61.000004"
-       y="179.00005" />
+       width="80.233139"
+       height="50.581993"
+       x="-61.116573"
+       y="184.88348" />
     <rect
-       y="189.00005"
+       y="195.00005"
        x="-51.000004"
        height="15"
        width="60"
@@ -451,14 +451,7 @@
        width="60"
        height="15"
        x="-51.000004"
-       y="204.00005" />
-    <rect
-       y="219.00002"
-       x="-51.000004"
-       height="15"
-       width="60"
-       id="rect4608"
-       style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:2.5956521;stroke-opacity:1;stroke-dasharray:none" />
+       y="210.00005" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#TriangleOutM)"
        d="m 319,284.00003 0,-30"
@@ -703,47 +696,36 @@
     <text
        xml:space="preserve"
        style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-       x="138"
-       y="372.36221"
+       x="140"
+       y="377.36227"
        id="text4586"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3914"
-         x="138"
-         y="372.36221">RPC Engine</tspan></text>
+         x="140"
+         y="377.36227">RPC Engine</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text4590"
-       y="397.36221"
+       y="403.36221"
        x="140"
        style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
        xml:space="preserve"><tspan
          sodipodi:role="line"
          id="tspan4604"
          x="140"
-         y="397.36221">HTTP Server</tspan></text>
+         y="403.36221">HTTP Server</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
        x="143"
-       y="412.36221"
+       y="418.36221"
        id="text4594"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4614"
          x="143"
-         y="412.36221">JSON Parser</tspan></text>
-    <text
-       sodipodi:linespacing="125%"
-       id="text4610"
-       y="427.36221"
-       x="143"
-       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-       xml:space="preserve"><tspan
-         y="427.36221"
-         x="143"
-         id="tspan4612"
-         sodipodi:role="line">RQL Parser</tspan></text>
+         y="418.36221">JSON Parser</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#TriangleOutM)"
        d="m 210,397.3622 33,0"
