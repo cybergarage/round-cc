@@ -27,8 +27,8 @@ public:
   bool stop(Error *error);
   bool search(Error *error);
 
-  void setFinderEnabled(bool flag) {
-    this->finder.setEnabled(flag);
+  bool setFinderEnabled(bool flag) {
+    return this->finder.setEnabled(flag);
   }
   
   bool finderEnabled() {

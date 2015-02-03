@@ -194,3 +194,29 @@ bool Round::ClientCore::nodeRemoved(Round::Node *node)  {
 
   return isNodeRemoved;
 }
+
+bool Round::ClientCore::updateClusterFromRemoteNode(RemoteNode *remoteNode, Error *error) {
+  Cluster remoteCluster;
+  NodeGraph remoteNodeGraph;
+  
+  if (!remoteNode->getCluster(&remoteCluster, error))
+    return false;
+  
+  std::string remoteClusterName = remoteCluster.getName();
+  if (!addCluster(remoteClusterName))
+    return false;
+  
+  Cluster *targetCluster = getCluster(remoteClusterName);
+  if (!targetCluster)
+    return false;
+  
+  if (!remoteNode->getCluster(targetCluster, error))
+    return false;
+  
+  return true;
+}
+
+bool Round::ClientCore::updateClusterFromRemoteNode(const std::string &ipaddr, int port, Error *error) {
+  RemoteNode remoteNode(ipaddr, port);
+  return updateClusterFromRemoteNode(&remoteNode, error);
+}
