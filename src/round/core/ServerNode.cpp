@@ -101,15 +101,24 @@ Round::HttpStatusCode Round::ServerNode::httpRpcRequestReceived(uHTTP::HTTPReque
       return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeParserError);
     }
     
-    NodeRequest *nodeReq = dynamic_cast<NodeRequest *>(jsonParser.popRootObject());
+    rootObject = jsonParser.popRootObject();
+    
+    NodeRequest *nodeReq = dynamic_cast<NodeRequest *>(rootObject);
     if (nodeReq) {
-      nodeReq->setHttpRequest(httpReq);
       rpcReq = nodeReq;
+    }
+    else {
+      NodeBatchRequest *nodeBatchReq = dynamic_cast<NodeBatchRequest *>(rootObject);
+      if (nodeBatchReq) {
+        rpcReq = nodeBatchReq;
+      }
+      else {
+        delete rootObject;
+      }
     }
   } else if (httpReq->isGetRequest()) {
     NodeRequest *nodeReq = NodeRequest::CreateFromHTTPGetRequest(httpReq);
     if (nodeReq) {
-      nodeReq->setHttpRequest(httpReq);
       rpcReq = nodeReq;
     }
   }
@@ -119,6 +128,7 @@ Round::HttpStatusCode Round::ServerNode::httpRpcRequestReceived(uHTTP::HTTPReque
   
   // Post RPC Request
   
+  rpcReq->setHttpRequest(httpReq);
   if (!postRpcRequest(httpReq, rpcReq))
     return postRpcErrorResponse(httpReq, RPC::JSON::ErrorCodeInternalError);
   

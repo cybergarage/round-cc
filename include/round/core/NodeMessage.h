@@ -51,19 +51,6 @@ public:
   bool isAsync() const {
     return !isSync();
   }
-  
-  bool setHttpRequest(uHTTP::HTTPRequest *httpReq);
-  
-  uHTTP::HTTPRequest *getHttpRequest() const {
-    return this->httpReq;
-  }
-  
- private:
-  
-  void init();
-  bool close();
-  
-  mutable uHTTP::HTTPRequest *httpReq;
 };
 
 class NodeBatchRequest : public RPC::JSON::BatchRequest {
