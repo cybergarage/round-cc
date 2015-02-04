@@ -23,7 +23,7 @@ To check nodes in the clusters, use 'list' command as the following:
 list
 ```
 
-To show all commands, use 'help' command as sthe following.
+To show all commands, use 'help' command as the following.
 
 ```
 help

@@ -13,17 +13,17 @@
 
 #include <round/core/local/method/SystemMethod.h>
 
-const std::string Round::set_key::NAME   = "set_key";
-const std::string Round::set_key::KEY    = "key";
-const std::string Round::set_key::VALUE  = "value";
+const std::string Round::set_reg::NAME   = "set_reg";
+const std::string Round::set_reg::KEY    = "key";
+const std::string Round::set_reg::VALUE  = "value";
 
-Round::set_key::set_key() : system_method(NAME) {
+Round::set_reg::set_reg() : system_method(NAME) {
 }
 
-Round::set_key::~set_key() {
+Round::set_reg::~set_reg() {
 }
 
-bool Round::set_key::exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const {
+bool Round::set_reg::exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const {
   std::string key;
   if (!nodeReq->get(KEY, &key))
     return false;
