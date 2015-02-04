@@ -56,6 +56,11 @@
 		21D50A9B1A819F39005C1F51 /* exec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50A9A1A819F39005C1F51 /* exec.cpp */; };
 		21D50AA21A82322F005C1F51 /* get_reg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50AA01A82322F005C1F51 /* get_reg.cpp */; };
 		21D50AA31A82322F005C1F51 /* set_reg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50AA11A82322F005C1F51 /* set_reg.cpp */; };
+		21D50AA51A8249E5005C1F51 /* Alias.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D50AA41A8249E5005C1F51 /* Alias.h */; };
+		21D50AAB1A824A9C005C1F51 /* Alias.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50AA71A824A9C005C1F51 /* Alias.cpp */; };
+		21D50AAC1A824A9C005C1F51 /* AliasEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50AA81A824A9C005C1F51 /* AliasEngine.cpp */; };
+		21D50AAD1A824A9C005C1F51 /* AliasList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50AA91A824A9C005C1F51 /* AliasList.cpp */; };
+		21D50AAE1A824A9C005C1F51 /* AliasManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50AAA1A824A9C005C1F51 /* AliasManager.cpp */; };
 		21D7A5961A6BDE7C00D43061 /* help.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7A5931A6BDE7C00D43061 /* help.cpp */; };
 		21D7A5971A6BDE7C00D43061 /* search.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7A5941A6BDE7C00D43061 /* search.cpp */; };
 		21D7A5991A6BE1E400D43061 /* shell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7A5981A6BE1E400D43061 /* shell.cpp */; };
@@ -267,6 +272,11 @@
 		21D50A9A1A819F39005C1F51 /* exec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exec.cpp; sourceTree = "<group>"; };
 		21D50AA01A82322F005C1F51 /* get_reg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = get_reg.cpp; sourceTree = "<group>"; };
 		21D50AA11A82322F005C1F51 /* set_reg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = set_reg.cpp; sourceTree = "<group>"; };
+		21D50AA41A8249E5005C1F51 /* Alias.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alias.h; sourceTree = "<group>"; };
+		21D50AA71A824A9C005C1F51 /* Alias.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Alias.cpp; sourceTree = "<group>"; };
+		21D50AA81A824A9C005C1F51 /* AliasEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AliasEngine.cpp; sourceTree = "<group>"; };
+		21D50AA91A824A9C005C1F51 /* AliasList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AliasList.cpp; sourceTree = "<group>"; };
+		21D50AAA1A824A9C005C1F51 /* AliasManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AliasManager.cpp; sourceTree = "<group>"; };
 		21D7A5931A6BDE7C00D43061 /* help.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = help.cpp; sourceTree = "<group>"; };
 		21D7A5941A6BDE7C00D43061 /* search.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = search.cpp; sourceTree = "<group>"; };
 		21D7A5981A6BE1E400D43061 /* shell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shell.cpp; sourceTree = "<group>"; };
@@ -568,6 +578,17 @@
 			name = Libraries;
 			sourceTree = "<group>";
 		};
+		21D50AA61A824A9C005C1F51 /* alias */ = {
+			isa = PBXGroup;
+			children = (
+				21D50AA71A824A9C005C1F51 /* Alias.cpp */,
+				21D50AA81A824A9C005C1F51 /* AliasEngine.cpp */,
+				21D50AA91A824A9C005C1F51 /* AliasList.cpp */,
+				21D50AAA1A824A9C005C1F51 /* AliasManager.cpp */,
+			);
+			path = alias;
+			sourceTree = "<group>";
+		};
 		21D8E1701A60E19300E8A63F /* round */ = {
 			isa = PBXGroup;
 			children = (
@@ -616,6 +637,7 @@
 		21D8E1891A60E19300E8A63F /* core */ = {
 			isa = PBXGroup;
 			children = (
+				21D50AA41A8249E5005C1F51 /* Alias.h */,
 				21D8E18A1A60E19300E8A63F /* ClientCore.h */,
 				21D8E18B1A60E19300E8A63F /* Cluster.h */,
 				21D8E18C1A60E19300E8A63F /* ErrorNo.h */,
@@ -782,6 +804,7 @@
 		21D8E2541A60E1E200E8A63F /* core */ = {
 			isa = PBXGroup;
 			children = (
+				21D50AA61A824A9C005C1F51 /* alias */,
 				21D8E2751A60E1E200E8A63F /* ClientCore.cpp */,
 				21D8E2761A60E1E200E8A63F /* Cluster.cpp */,
 				21D8E2771A60E1E200E8A63F /* ClusterList.cpp */,
@@ -897,6 +920,7 @@
 				21D8E1CB1A60E19300E8A63F /* Log.h in Headers */,
 				21D8E1BB1A60E19300E8A63F /* RPC.h in Headers */,
 				21D8E1CD1A60E19300E8A63F /* LoggerTarget.h in Headers */,
+				21D50AA51A8249E5005C1F51 /* Alias.h in Headers */,
 				21D8E1B51A60E19300E8A63F /* Message.h in Headers */,
 				21D8E2BF1A60E1E200E8A63F /* URL.h in Headers */,
 				21D8E1B71A60E19300E8A63F /* Notification.h in Headers */,
@@ -1027,6 +1051,7 @@
 				21D7A5971A6BDE7C00D43061 /* search.cpp in Sources */,
 				21B911B51A6B5F4300C791FD /* SystemClusterInfoDict.cpp in Sources */,
 				21D8E2B01A60E1E200E8A63F /* BitOption.cpp in Sources */,
+				21D50AAE1A824A9C005C1F51 /* AliasManager.cpp in Sources */,
 				21F4CE6C1A63F0BA00E7F0CC /* ScriptEngine.cpp in Sources */,
 				21D8E2B11A60E1E200E8A63F /* Clock.cpp in Sources */,
 				21D8E2E31A60E1E200E8A63F /* UPnPNodeFinder.cpp in Sources */,
@@ -1086,6 +1111,7 @@
 				21F4CE691A63F0BA00E7F0CC /* RouteList.cpp in Sources */,
 				2133317D1A773FAD00DB41AB /* get_cluster_state.cpp in Sources */,
 				21FA93E11A6E90040067314A /* use.cpp in Sources */,
+				21D50AAB1A824A9C005C1F51 /* Alias.cpp in Sources */,
 				21D8E3011A60E1E200E8A63F /* JavaScriptEngine.cpp in Sources */,
 				216CAAD81A78834800396ED8 /* LocalRouteEngine.cpp in Sources */,
 				21B9119B1A6B5E5400C791FD /* LocalScriptManager.cpp in Sources */,
@@ -1122,6 +1148,7 @@
 				21D8E2B71A60E1E200E8A63F /* DictionaryKeyList.cpp in Sources */,
 				21D8E2B81A60E1E200E8A63F /* MD5.cpp in Sources */,
 				21E1EB171A64FE2800FEABF6 /* NodeResponse.cpp in Sources */,
+				21D50AAC1A824A9C005C1F51 /* AliasEngine.cpp in Sources */,
 				21B911BC1A6B61CC00C791FD /* set_method.cpp in Sources */,
 				21D8E2CA1A60E1E200E8A63F /* JSONParser.cpp in Sources */,
 				21D8E2CC1A60E1E200E8A63F /* JSONString.cpp in Sources */,
@@ -1129,6 +1156,7 @@
 				219CE2761A6DD8F2008A6CBD /* RQLRequest.cpp in Sources */,
 				21D8E2B41A60E1E200E8A63F /* ConsistentHashNode.cpp in Sources */,
 				21D7A5A11A6BF1E900D43061 /* update.cpp in Sources */,
+				21D50AAD1A824A9C005C1F51 /* AliasList.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

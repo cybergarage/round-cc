@@ -50,6 +50,7 @@
 		21B51EC91A4E38C0003BBA3C /* VectorTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B51EC81A4E38C0003BBA3C /* VectorTests.cpp */; };
 		21B854081A60EF31009E6ECB /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B854071A60EF31009E6ECB /* Tcl.framework */; };
 		21CD1BC6192DC94E00452ADF /* libuhttp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CD1BBF192DC91D00452ADF /* libuhttp++.a */; };
+		21D50AB01A824BC8005C1F51 /* AliasTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50AAF1A824BC8005C1F51 /* AliasTests.cpp */; };
 		21D9C9111A355961008008B3 /* ScriptManagerTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D9C9101A355961008008B3 /* ScriptManagerTests.cpp */; };
 		21DA08AB1A174A4900D3DCE0 /* ClusterListTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08981A174A4900D3DCE0 /* ClusterListTests.cpp */; };
 		21DA08AC1A174A4900D3DCE0 /* ClusterTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08991A174A4900D3DCE0 /* ClusterTests.cpp */; };
@@ -170,6 +171,7 @@
 		21B51EC81A4E38C0003BBA3C /* VectorTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VectorTests.cpp; sourceTree = "<group>"; };
 		21B854071A60EF31009E6ECB /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = System/Library/Frameworks/Tcl.framework; sourceTree = SDKROOT; };
 		21CD1BBA192DC91D00452ADF /* libuhttp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuhttp.xcodeproj; path = ../../../../uhttp/lib/macosx/xcode/libuhttp.xcodeproj; sourceTree = "<group>"; };
+		21D50AAF1A824BC8005C1F51 /* AliasTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AliasTests.cpp; sourceTree = "<group>"; };
 		21D9C9101A355961008008B3 /* ScriptManagerTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptManagerTests.cpp; sourceTree = "<group>"; };
 		21DA08981A174A4900D3DCE0 /* ClusterListTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClusterListTests.cpp; sourceTree = "<group>"; };
 		21DA08991A174A4900D3DCE0 /* ClusterTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClusterTests.cpp; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 		21DA08931A174A4900D3DCE0 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				21D50AAF1A824BC8005C1F51 /* AliasTests.cpp */,
 				219EA4341A6BAD3700F3D89B /* ConsoleTests.cpp */,
 				2184F2111A1993B4007F1326 /* ClientCoreTests.cpp */,
 				2184F1FF1A18E359007F1326 /* ClientTests.cpp */,
@@ -457,6 +460,7 @@
 				21F4CE5B1A63CF0E00E7F0CC /* RouteTests.cpp in Sources */,
 				21AD42A31A13B7FC00741A08 /* HashObjectTests.cpp in Sources */,
 				219EA4351A6BAD3700F3D89B /* ConsoleTests.cpp in Sources */,
+				21D50AB01A824BC8005C1F51 /* AliasTests.cpp in Sources */,
 				21688A541A38C87E00908890 /* NodeTestController.cpp in Sources */,
 				21DA08AB1A174A4900D3DCE0 /* ClusterListTests.cpp in Sources */,
 				214FC0EF1A4AEED700456552 /* JavaTests.cpp in Sources */,
