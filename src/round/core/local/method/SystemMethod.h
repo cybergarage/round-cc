@@ -386,6 +386,19 @@ public:
     set(get_key::KEY, value);
   }
 };
+
+// exec
+  
+class execp : public system_method {
+public:
+  static const std::string NAME;
+  static const std::string CMD;
+  static const std::string ARGS;
+public:
+  execp();
+  ~execp();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
+};
   
 }
 

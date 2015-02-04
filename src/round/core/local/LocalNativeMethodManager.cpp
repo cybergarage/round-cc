@@ -27,4 +27,5 @@ void Round::LocalNativeMethodManager::init() {
   addMethod(new get_network_state());
   addMethod(new set_key());
   addMethod(new get_key());
+  addMethod(new execp());
 }
