@@ -100,6 +100,22 @@ bool Round::JSONDictionary::get(const std::string &key, std::string *value) cons
   return true;
 }
 
+bool Round::JSONDictionary::get(const std::string &key, JSONDictionary **value) const {
+  JSONObject *jsonObj;
+  if (!get(key, &jsonObj))
+    return false;
+  *value = dynamic_cast<JSONDictionary *>(jsonObj);
+  return (*value) ? true : false;
+}
+
+bool Round::JSONDictionary::get(const std::string &key, JSONArray **value) const {
+  JSONObject *jsonObj;
+  if (!get(key, &jsonObj))
+    return false;
+  *value = dynamic_cast<JSONArray *>(jsonObj);
+  return (*value) ? true : false;
+}
+
 bool Round::JSONDictionary::get(const std::string &key, JSONString **value) const {
   JSONObject *jsonObj;
   if (!get(key, &jsonObj))

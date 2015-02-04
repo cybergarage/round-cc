@@ -171,6 +171,8 @@ public:
   bool set(const std::string &key, size_t value);
   bool set(const std::string &key, double value);
 
+  bool get(const std::string &key, JSONDictionary **value) const;
+  bool get(const std::string &key, JSONArray **value) const;
   bool get(const std::string &key, JSONString **value) const;
   bool get(const std::string &key, std::string *value) const;
   bool get(const std::string &key, int *value) const;

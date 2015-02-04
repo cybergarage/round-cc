@@ -325,6 +325,18 @@ BOOST_AUTO_TEST_CASE(RoundJSONDictionaryGetterDefaultTest) {
   BOOST_CHECK_EQUAL(dict.get(key, defaultBoolValue), defaultBoolValue);
   BOOST_CHECK(dict.set(key, boolValue));
   BOOST_CHECK_EQUAL(dict.get(key, defaultBoolValue), boolValue);
+
+  JSONDictionary *jsonDict = new JSONDictionary();
+  JSONDictionary *jsonDictBuf;
+  BOOST_CHECK(!dict.get(key, &jsonDictBuf));
+  BOOST_CHECK(dict.set(key, jsonDict));
+  BOOST_CHECK(dict.get(key, &jsonDictBuf));
+
+  JSONArray *jsonArray = new JSONArray();
+  JSONArray *jsonArrayBuf;
+  BOOST_CHECK(!dict.get(key, &jsonArrayBuf));
+  BOOST_CHECK(dict.set(key, jsonArray));
+  BOOST_CHECK(dict.get(key, &jsonArrayBuf));
 }
 
 BOOST_AUTO_TEST_CASE(RoundJSONDictionaryStringSetterTest) {
