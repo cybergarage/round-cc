@@ -30,6 +30,7 @@ const std::string Round::Console::method::getOptionDescription() const {
 }
 
 bool Round::Console::method::exec(Round::Console::Client *client, const Input *input, Message *msg, Error *err) const {
+
   RQLRequest rqlReq;
   if (!rqlReq.parseQuery(input->line,err))
     return false;

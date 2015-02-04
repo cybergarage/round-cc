@@ -1,6 +1,6 @@
 /******************************************************************
 *
-* uSQL for C++
+* Round for C++
 *
 * Copyright (C) Satoshi Konno 2012
 *
@@ -47,6 +47,6 @@ bool Round::RQLRequest::parseRpcQuery(const std::string &query, Error *err) {
   setMethod(method);
   setDest(object);
   setParams(params);
-  
+
   return true;
 }
