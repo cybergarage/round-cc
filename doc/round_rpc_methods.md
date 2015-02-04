@@ -17,6 +17,7 @@ Round has the following static methods as default. The methods are implemented u
 | set_method | Set a new script method |
 | set_route | Set a new route |
 | set_timer | Set a new timer |
+| set_alias | Set a alias for the other method |
 
 #### set_method
 
@@ -70,6 +71,21 @@ stop_time      = "stop_time" ":" INTEGER
 cycle_interval = "cycle_interval" ":" INTEGER
 loop           = "loop" ":" BOOL
 ```
+
+#### set_alias
+
+```
+set_alias := "{" name [method] [defaults]"}"
+
+name     = "name" ":" TOKEN
+method   = "method" ":" TOKEN
+defaults = (json-rpc-default | json-rpc-params-default)*
+
+json-rpc-default        = ("dest" | "quorum" | "cond" | "type") ":" TOKEN
+json-rpc-params-default = "params".TOKEN ":" TOKEN
+```
+
+If the code method isn't specified, the alias is removed.
 
 ### Native Methods
 
