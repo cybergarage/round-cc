@@ -43,6 +43,7 @@ class ConsistentHashGraph : public std::vector<ConsistentHashNode *> {
   bool removeNode(const ConsistentHashNode *node);
 
   bool hasNode(const ConsistentHashNode *node) const;
+  bool isLastNode(const ConsistentHashNode *node) const;
 
   ssize_t getNodeIndex(const ConsistentHashNode *node) const;
   

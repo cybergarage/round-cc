@@ -86,10 +86,12 @@ BOOST_AUTO_TEST_CASE(RoundConsistentHashGraphAddSameNodeTest) {
   BOOST_CHECK_EQUAL(coHashGraph.addNode(cosNode), true);
   BOOST_CHECK_EQUAL(coHashGraph.hasNode(cosNode), true);
   BOOST_CHECK_EQUAL(coHashGraph.size(), 1);
+  BOOST_CHECK_EQUAL(coHashGraph.isLastNode(cosNode), true);
 
   BOOST_CHECK_EQUAL(coHashGraph.addNode(cosNode), false);
   BOOST_CHECK_EQUAL(coHashGraph.hasNode(cosNode), true);
   BOOST_CHECK_EQUAL(coHashGraph.size(), 1);
+  BOOST_CHECK_EQUAL(coHashGraph.isLastNode(cosNode), true);
   
   delete cosNode;
 }
@@ -108,17 +110,19 @@ BOOST_AUTO_TEST_CASE(RoundConsistentHashGraphAddTest) {
     BOOST_CHECK_EQUAL(coHashGraph.hasNode(cosNodes[n]), false);
     BOOST_CHECK_EQUAL(coHashGraph.getNodeIndex(cosNodes[n]), -1);
     
-    BOOST_CHECK(coHashGraph.addNode(cosNodes[n]));
+    BOOST_CHECK_EQUAL(coHashGraph.addNode(cosNodes[n]), true);
     BOOST_CHECK_EQUAL(coHashGraph.hasNode(cosNodes[n]), true);
     BOOST_CHECK_EQUAL(coHashGraph.size(), (n+1));
     BOOST_CHECK_EQUAL(coHashGraph.getNodeIndex(cosNodes[n]), n);
+    BOOST_CHECK_EQUAL(coHashGraph.isLastNode(cosNodes[n]), true);
   }
 
   coHashGraph.clear();
   BOOST_CHECK_EQUAL(coHashGraph.size(), 0);
   for (int n=(conNodeCount-1); 0<=n; n--) {
     BOOST_CHECK_EQUAL(coHashGraph.getNodeIndex(cosNodes[n]), -1);
-    coHashGraph.addNode(cosNodes[n]);
+    BOOST_CHECK_EQUAL(coHashGraph.addNode(cosNodes[n]), true);
+    BOOST_CHECK_EQUAL(coHashGraph.isLastNode(cosNodes[conNodeCount-1]), true);
   }
   BOOST_CHECK_EQUAL(coHashGraph.size(), conNodeCount);
   for (int n = 0; n < conNodeCount; n++) {

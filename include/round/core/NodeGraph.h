@@ -33,6 +33,8 @@ class NodeGraph : public ConsistentHashGraph {
   Node *getRandomNode() const;
 
   bool hasNode(const Node *node) const;
+  bool isLeaderNode(const Node *node) const;
+  
   Node *getOffsetNode(const Node *node, off_t offset) const;
   Node *getNextNode(const Node *node) const;
   Node *getPrevNode(const Node *node) const;

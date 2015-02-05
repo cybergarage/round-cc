@@ -109,6 +109,7 @@ BOOST_AUTO_TEST_CASE(RoundNodGraphAddTest) {
       size_t nextNodeIdx = (n+1) % nodeGraph->size();
       BOOST_CHECK_EQUAL(nodes[nextNodeIdx], nextNode);
     }
+    BOOST_CHECK(nodeGraph->isLeaderNode(thisNode));
   }
   BOOST_CHECK_EQUAL(nodeGraph->size(), nodeCount);
 
@@ -131,11 +132,14 @@ BOOST_AUTO_TEST_CASE(RoundNodGraphReAddTest) {
 
   for (size_t n = 0; n < nodeCount; n++) {
     BOOST_CHECK(nodeGraph->addNode(nodes[n]));
+    BOOST_CHECK(nodeGraph->isLeaderNode(nodes[n]));
   }
   BOOST_CHECK_EQUAL(nodeGraph->size(), nodeCount);
 
-  for (size_t n = 0; n < nodeCount; n++)
+  for (size_t n = 0; n < nodeCount; n++) {
     nodeGraph->addNode(nodes[n]);
+    BOOST_CHECK(nodeGraph->isLeaderNode(nodes[nodeCount-1]));
+  }
   BOOST_CHECK_EQUAL(nodeGraph->size(), nodeCount);
 
   delete nodeGraph;

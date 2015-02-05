@@ -87,6 +87,10 @@ bool Round::NodeGraph::hasNode(const Round::Node *node) const {
   return ConsistentHashGraph::hasNode(node);
 }
 
+bool Round::NodeGraph::isLeaderNode(const Node *node) const {
+  return ConsistentHashGraph::isLastNode(node);
+}
+
 Round::Node *Round::NodeGraph::getOffsetNode(const Node *node, off_t offset) const {
   return static_cast<Node *>(ConsistentHashGraph::getOffsetNode(node, offset));
 }

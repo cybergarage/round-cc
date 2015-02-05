@@ -40,6 +40,13 @@ bool Round::Node::isAlive(Error *error) {
   return (currClockStr.compare(echoResult) == 0) ? true : false;
 }
 
+bool Round::Node::isLeader(Error *error) {
+  Cluster cluster;
+  if (!getCluster(&cluster, error))
+    return false;
+  return cluster.isLeaderNode(this);
+}
+
 bool Round::Node::getStatus(NodeStatus *status, Error *error) {
   return true;
 }

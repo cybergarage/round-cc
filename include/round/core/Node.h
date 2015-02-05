@@ -36,6 +36,7 @@ class Node : public NodeCore, public Cloneable<Node> {
  public:
   
   bool isAlive(Error *error);
+  bool isLeader(Error *error);
   
   bool getStatus(NodeStatus *status, Error *error);
   bool getCluster(Cluster *cluster, Error *error);
