@@ -17,6 +17,16 @@ Round::JSONInteger::JSONInteger(int value) {
   set(value);
 }
 
+bool Round::JSONInteger::copy(JSONObject **newObj) const {
+  JSONInteger *dstObj = new JSONInteger();
+  if (dstObj->set(this)) {
+    *newObj = dstObj;
+    return true;
+  }
+  delete dstObj;
+  return false;
+}
+
 const char *Round::JSONInteger::toJSONString(std::string *stringBuf) const {
   *stringBuf = this->c_str();
   return stringBuf->c_str();

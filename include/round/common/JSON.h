@@ -88,6 +88,7 @@ class JSONNull : public JSONString {
  public:
   JSONNull();
   int getType() const {return NIL;}
+  bool copy(JSONObject **newObj) const;
 };
   
 class JSONInteger : public JSONString {
@@ -96,6 +97,7 @@ class JSONInteger : public JSONString {
   JSONInteger(int value);
 
   int getType() const {return INTEGER;}
+  bool copy(JSONObject **newObj) const;
   const char *toJSONString(std::string *stringBuf) const;
 };
 
@@ -105,6 +107,7 @@ class JSONReal : public JSONString {
   JSONReal(double value);
     
   int getType() const {return REAL;}
+  bool copy(JSONObject **newObj) const;
   const char *toJSONString(std::string *stringBuf) const;
 };
   
