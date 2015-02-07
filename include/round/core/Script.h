@@ -20,6 +20,7 @@
 #include <round/common/Error.h>
 #include <round/common/RPC.h>
 #include <round/common/Mutex.h>
+#include <round/common/JSON.h>
 
 namespace Round {
 
@@ -82,6 +83,10 @@ class Script {
     return true;
   }
   
+  const bool hasEncording() const {
+    return (0 < this->codeEncoding) ? true : false;
+  }
+  
   int getEncording() const {
     return this->codeEncoding;
   }
@@ -98,7 +103,9 @@ class Script {
     return !isEncoding(ENCODING_NONE);
   }
   
- private:
+  bool toJSONDictionary(JSONDictionary **jsonDict);
+
+private:
   std::string language;
   std::string name;
   byte        *code;
@@ -117,6 +124,8 @@ public:
   const Script *getScript(const std::string &name) const;
 
   void clear();
+
+  bool toJSONArray(JSONArray **jsonArray);
 };
 
 enum ScriptEngineStatus {
