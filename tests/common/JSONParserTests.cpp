@@ -115,21 +115,6 @@ BOOST_AUTO_TEST_CASE(JSONParseAStringWithSpaceArrayTest) {
   BOOST_CHECK_EQUAL(value.compare("John Smith"), 0);
 }
 
-BOOST_AUTO_TEST_CASE(JSONParseArraySerialize) {
-  const char *testString = "[\"milk\",\"bread\",\"eggs\"]";
-  Error error;
-  JSONParser jsonParser;
-  BOOST_CHECK(jsonParser.parse(testString, &error));
-  BOOST_CHECK(jsonParser.getRootObject());
-  BOOST_CHECK(jsonParser.getRootObject()->isArray());
-  JSONArray *jsonArray = dynamic_cast<JSONArray *>(jsonParser.getRootObject());
-  BOOST_CHECK(jsonArray);
-  string value;
-  jsonArray->toJSONString(&value);
-  //cout << value << endl;
-  BOOST_CHECK_EQUAL(value.compare(testString), 0);
-}
-
 ////////////////////////////////////////////////////////////
 // For Dictionary
 ////////////////////////////////////////////////////////////
@@ -168,21 +153,6 @@ BOOST_AUTO_TEST_CASE(JSONParseStringDictionaryTest) {
   BOOST_CHECK_EQUAL(value.compare("32"), 0);
   BOOST_CHECK(jsonDict->get("age", &intValue));
   BOOST_CHECK_EQUAL(intValue, 32);
-}
-
-BOOST_AUTO_TEST_CASE(JSONParseDictionarySerialize) {
-  Error error;
-  const char *testString = "{\"age\":\"32\",\"name\":\"John Smith\"}";
-  JSONParser jsonParser;
-  BOOST_CHECK(jsonParser.parse(testString, &error));
-  BOOST_CHECK(jsonParser.getRootObject());
-  BOOST_CHECK(jsonParser.getRootObject()->isDictionary());
-  JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(jsonParser.getRootObject());
-  BOOST_CHECK(jsonDict);
-  string value;
-  jsonDict->toJSONString(&value);
-  //cout << value << endl;
-  BOOST_CHECK_EQUAL(value.compare(testString), 0);
 }
 
 ////////////////////////////////////////////////////////////
@@ -309,6 +279,121 @@ BOOST_AUTO_TEST_CASE(RoundJSONDictionaryParserTest) {
   std::string jsonString;
   jsonValueDict->toJSONString(&jsonString);
   BOOST_CHECK_EQUAL(jsonString.compare(testJSONValue), 0);
+}
+
+////////////////////////////////////////////////////////////
+// For Serialization
+////////////////////////////////////////////////////////////
+
+BOOST_AUTO_TEST_CASE(JSONParseArraySerialize) {
+  const char *testString = "[\"milk\",\"bread\",\"eggs\"]";
+
+  JSONParser jsonParser;
+  JSONArray *jsonArray;
+  string value;
+  Error error;
+  
+  BOOST_CHECK(jsonParser.parse(testString, &error));
+  BOOST_CHECK(jsonParser.getRootObject());
+  BOOST_CHECK(jsonParser.getRootObject()->isArray());
+  
+  // Serialize
+  
+  jsonArray = dynamic_cast<JSONArray *>(jsonParser.getRootObject());
+  BOOST_CHECK(jsonArray);
+  jsonArray->toJSONString(&value);
+  BOOST_CHECK_EQUAL(value.compare(testString), 0);
+
+  // Reload Serialized string
+  
+  BOOST_CHECK(jsonParser.parse(value, &error));
+  BOOST_CHECK(jsonParser.getRootObject());
+  BOOST_CHECK(jsonParser.getRootObject()->isArray());
+  
+  jsonArray = dynamic_cast<JSONArray *>(jsonParser.getRootObject());
+  BOOST_CHECK(jsonArray);
+  BOOST_CHECK(jsonArray->getString(0, &value));
+  BOOST_CHECK_EQUAL(value.compare("milk"), 0);
+  BOOST_CHECK(jsonArray->getString(1, &value));
+  BOOST_CHECK_EQUAL(value.compare("bread"), 0);
+  BOOST_CHECK(jsonArray->getString(2, &value));
+  BOOST_CHECK_EQUAL(value.compare("eggs"), 0);
+}
+
+
+BOOST_AUTO_TEST_CASE(JSONParseDictionarySerialization) {
+  const char *testString = "{\"age\":\"32\",\"name\":\"John Smith\"}";
+  
+  Error error;
+  JSONDictionary *jsonDict;
+  string value;
+  int intValue;
+  
+  JSONParser jsonParser;
+  BOOST_CHECK(jsonParser.parse(testString, &error));
+  BOOST_CHECK(jsonParser.getRootObject());
+  BOOST_CHECK(jsonParser.getRootObject()->isDictionary());
+
+  // Serialize
+  
+  jsonDict = dynamic_cast<JSONDictionary *>(jsonParser.getRootObject());
+  BOOST_CHECK(jsonDict);
+  jsonDict->toJSONString(&value);
+  BOOST_CHECK_EQUAL(value.compare(testString), 0);
+
+  // Reload Serialized string
+  
+  BOOST_CHECK(jsonParser.parse(value, &error));
+  BOOST_CHECK(jsonParser.getRootObject());
+  BOOST_CHECK(jsonParser.getRootObject()->isDictionary());
+  
+  jsonDict = dynamic_cast<JSONDictionary *>(jsonParser.getRootObject());
+  BOOST_CHECK(jsonDict);
+  BOOST_CHECK_EQUAL(jsonDict->size(), 2);
+  BOOST_CHECK(jsonDict->get("name", &value));
+  BOOST_CHECK_EQUAL(value.compare("John Smith"), 0);
+  BOOST_CHECK(jsonDict->get("age", &value));
+  BOOST_CHECK_EQUAL(value.compare("32"), 0);
+  BOOST_CHECK(jsonDict->get("age", &intValue));
+  BOOST_CHECK_EQUAL(intValue, 32);
+}
+
+BOOST_AUTO_TEST_CASE(JSONParseEscapedArraySerialize) {
+  const char *testString = "[\"\\\"\\\"\",\"{}\"]";
+  
+  JSONParser jsonParser;
+  JSONArray *jsonArray;
+  string value;
+  Error error;
+  
+  BOOST_CHECK(jsonParser.parse(testString, &error));
+  BOOST_CHECK(jsonParser.getRootObject());
+  BOOST_CHECK(jsonParser.getRootObject()->isArray());
+  
+  jsonArray = dynamic_cast<JSONArray *>(jsonParser.getRootObject());
+  BOOST_CHECK(jsonArray);
+  BOOST_CHECK(jsonArray->getString(0, &value));
+  BOOST_CHECK_EQUAL(value.compare("\"\""), 0);
+  BOOST_CHECK(jsonArray->getString(1, &value));
+  BOOST_CHECK_EQUAL(value.compare("{}"), 0);
+  
+  // Serialize
+  
+  jsonArray->toJSONString(&value);
+  BOOST_CHECK_EQUAL(value.compare(testString), 0);
+  
+  // Reload Serialized string
+  
+  BOOST_CHECK(jsonParser.parse(value, &error));
+  BOOST_CHECK(jsonParser.getRootObject());
+  BOOST_CHECK(jsonParser.getRootObject()->isArray());
+  
+  jsonArray = dynamic_cast<JSONArray *>(jsonParser.getRootObject());
+  BOOST_CHECK(jsonArray);
+  BOOST_CHECK(jsonArray->getString(0, &value));
+  BOOST_CHECK_EQUAL(value.compare("\"\""), 0);
+  BOOST_CHECK(jsonArray->getString(1, &value));
+  BOOST_CHECK_EQUAL(value.compare("{}"), 0);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
