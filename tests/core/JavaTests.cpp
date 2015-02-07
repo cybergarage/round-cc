@@ -55,6 +55,7 @@ BOOST_AUTO_TEST_CASE(JavaEngineClassLoaderBase64Test) {
   size_t nTestCodeCnt = classNames.size();
   for (size_t n=0; n<nTestCodeCnt; n++) {
     Script *testScript = new Script(JavaEngine::LANGUAGE, classNames.at(n), classCodes.at(n), classCodeLengths.at(n));
+    BOOST_CHECK(!testScript->isBinaryCode());
     testScript->setEncording(classCodeEncords.at(n));
     BOOST_CHECK(javaEngine.compile(testScript));
     delete testScript;

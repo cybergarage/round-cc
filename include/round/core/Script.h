@@ -59,6 +59,8 @@ class Script {
   bool setCode(const byte *code, size_t codeLen);
   bool setCode(const std::string code);
 
+  bool isBinaryCode();
+  
   const byte *getCode() const {
     return this->code;
   }

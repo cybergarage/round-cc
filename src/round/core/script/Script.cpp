@@ -65,3 +65,13 @@ bool Round::Script::setCode(const byte *code, size_t codeLen) {
 bool Round::Script::setCode(const std::string code) {
   return setCode((const byte *)code.c_str(), (code.length() + 1));
 }
+
+bool Round::Script::isBinaryCode() {
+  for (size_t n=0; n<this->codeLen; n++) {
+    byte c = this->code[n];
+    if ((c < 0x20) || (0x7E < c)) {
+      return true;
+    }
+  }
+  return false;
+}
