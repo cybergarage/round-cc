@@ -29,6 +29,9 @@ bool Round::RQLRequest::parseRpcQuery(const std::string &query, Error *err) {
     if (paramSepIdx != std::string::npos) {
       paramEndIdx = query.find_first_of(Console::method::PARAM_END, paramSepIdx);
     }
+    else {
+      paramEndIdx = query.find_first_of(Console::method::PARAM_END, paramBeginIdx);
+    }
   }
   
   if (paramEndIdx == std::string::npos) {
@@ -37,16 +40,35 @@ bool Round::RQLRequest::parseRpcQuery(const std::string &query, Error *err) {
   }
   
   std::string method = query.substr(0, paramBeginIdx);
-  std::string object = query.substr((paramBeginIdx+1), (paramSepIdx - paramBeginIdx - 1));
-  std::string params = query.substr((paramSepIdx+1), (paramEndIdx - paramSepIdx - 1));
+  
+  std::string object;
+  if (paramSepIdx != std::string::npos) {
+    object = query.substr((paramBeginIdx+1), (paramSepIdx - paramBeginIdx - 1));
+  }
+  else {
+    object = query.substr((paramBeginIdx+1), (paramEndIdx - paramBeginIdx - 1));
+  }
+  
+  std::string params;
+  if (paramSepIdx != std::string::npos) {
+    params = query.substr((paramSepIdx+1), (paramEndIdx - paramSepIdx - 1));
+  }
   
   boost::trim(method);
   boost::trim(object);
   boost::trim(params);
 
-  setMethod(method);
-  setDest(object);
-  setParams(params);
+  if (0 < method.length()) {
+    setMethod(method);
+  }
+  
+  if (0 < object.length()) {
+    setDest(object);
+  }
 
+  if (0 < params.length()) {
+    setParams(params);
+  }
+  
   return true;
 }

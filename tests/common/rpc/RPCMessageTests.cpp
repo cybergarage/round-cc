@@ -65,8 +65,10 @@ BOOST_AUTO_TEST_CASE(RPCRequestMethodTest) {
   
   const std::string TEST_PARAMS = "{\"value\":1}";
   std::string params;
+  BOOST_CHECK(!rpcMsg.hasParams());
   BOOST_CHECK(!rpcMsg.getParams(&params));
   BOOST_CHECK(rpcMsg.setParams(TEST_PARAMS));
+  BOOST_CHECK(rpcMsg.hasParams());
   BOOST_CHECK(rpcMsg.getParams(&params));
   BOOST_CHECK_EQUAL(params.compare(TEST_PARAMS), 0);
   
