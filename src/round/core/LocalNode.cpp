@@ -55,6 +55,44 @@ bool Round::LocalNode::getClusterName(std::string *name, Error *error) {
   return this->nodeConfig.getCluster(name, error);
 }
 
+bool Round::LocalNode::getConfig(JSONDictionary *jsonDict, Error *error) {
+  std::string value;
+  int ivalue;
+
+  // bind_addr
+  if (this->nodeConfig.getBindAddress(&value, error)) {
+    jsonDict->set(LocalConfig::BIND_ADDR, value);
+ }
+ 
+  // bind_port
+  if (this->nodeConfig.getBindPort(&ivalue, error)) {
+    jsonDict->set(LocalConfig::BIND_PORT, ivalue);
+  }
+  
+  // cluster
+  if (getClusterName(&value, error)) {
+    jsonDict->set(LocalConfig::CLUSTER, value);
+  }
+  
+  // log_file
+  if (this->nodeConfig.getLogFilename(&value, error)) {
+    jsonDict->set(LocalConfig::LOG_FILE, value);
+  }
+  
+  // methods
+  JSONArray *methods = new JSONArray();
+  if (methods) {
+    if (this->scriptMgr.toJSONArray(methods, error)) {
+      jsonDict->set(LocalConfig::METHODS, methods);
+    }
+    else {
+      delete methods;
+    }
+  }
+
+  return true;
+}
+
 ////////////////////////////////////////////////
 // Thread
 ////////////////////////////////////////////////

@@ -95,6 +95,7 @@ class LocalConfig : public Config {
   static const std::string BIND_PORT;
   static const std::string CLUSTER;
   static const std::string LOG_FILE;
+  static const std::string METHODS;
 
   static const std::string DEFALUT_CLUSTER;
   static const std::string AUTO;
@@ -143,6 +144,7 @@ class LocalNode : public Node, public NodeFinderObserver {
   bool loadConfigFromString(const std::string &string, Error *error);
   bool loadConfigFromFile(const std::string &filename, Error *error);
   bool isConfigValid(Error *error);
+  bool getConfig(JSONDictionary *jsonDict, Error *error);
   
   bool nodeAdded(Node *node);
   bool nodeRemoved(Node *node);

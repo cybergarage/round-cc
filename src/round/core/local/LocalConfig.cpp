@@ -19,6 +19,7 @@ const std::string Round::LocalConfig::BIND_ADDR = "bind_addr";
 const std::string Round::LocalConfig::BIND_PORT = "bind_port";
 const std::string Round::LocalConfig::CLUSTER = "cluster";
 const std::string Round::LocalConfig::LOG_FILE = "log_file";
+const std::string Round::LocalConfig::METHODS = "methods";
 
 const std::string Round::LocalConfig::AUTO = "auto";
 const std::string Round::LocalConfig::DEFALUT_CLUSTER = ROUNDCC_PRODUCT_NAME;

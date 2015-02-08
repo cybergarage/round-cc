@@ -124,3 +124,9 @@ bool Round::ScriptManager::run(const std::string &name, const std::string &param
   
   return scriptEngine->run(script, params, results, error);
 }
+
+bool Round::ScriptManager::toJSONArray(JSONArray *jsonArray, Error *error) {
+  this->scripts.toJSONArray(jsonArray);
+  return true;
+}
+

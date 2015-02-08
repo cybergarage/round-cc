@@ -546,18 +546,18 @@
 		21B9119E1A6B5F4300C791FD /* method */ = {
 			isa = PBXGroup;
 			children = (
-				21D50AA01A82322F005C1F51 /* get_reg.cpp */,
-				21D50AA11A82322F005C1F51 /* set_reg.cpp */,
 				21D50A9A1A819F39005C1F51 /* exec.cpp */,
-				213331801A77411200DB41AB /* get_node_config.cpp */,
 				2133317A1A773FAD00DB41AB /* get_cluster_state.cpp */,
 				2133317B1A773FAD00DB41AB /* get_network_state.cpp */,
+				213331801A77411200DB41AB /* get_node_config.cpp */,
 				2133317C1A773FAD00DB41AB /* get_node_state.cpp */,
+				21D50AA01A82322F005C1F51 /* get_reg.cpp */,
 				21B911A31A6B5F4300C791FD /* Method.cpp */,
 				21B911A41A6B5F4300C791FD /* MethodManager.cpp */,
 				21B911A51A6B5F4300C791FD /* MethodMap.cpp */,
 				21D8CA761A6B7284002CBDC3 /* set_alias.cpp */,
 				21B911BB1A6B61CC00C791FD /* set_method.cpp */,
+				21D50AA11A82322F005C1F51 /* set_reg.cpp */,
 				21D8CA721A6B70FC002CBDC3 /* set_route.cpp */,
 				21D8CA731A6B70FC002CBDC3 /* set_timer.cpp */,
 				21D8CA791A6B7781002CBDC3 /* system_method.cpp */,

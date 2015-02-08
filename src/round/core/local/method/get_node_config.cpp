@@ -22,4 +22,9 @@ Round::get_node_config::~get_node_config() {
 }
 
 bool Round::get_node_config::exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const {
+  Error error;
+  JSONDictionary configDict;
+  if (!node->getConfig(&configDict, &error))
+    return false;
+  return nodeRes->setResult(&configDict);
 }

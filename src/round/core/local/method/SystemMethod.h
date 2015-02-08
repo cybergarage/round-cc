@@ -62,6 +62,7 @@ class set_method : public system_method {
   static const std::string METHOD_ENCODE_BASE64;
  public:
   set_method();
+  
   ~set_method();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };

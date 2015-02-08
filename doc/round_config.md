@@ -13,7 +13,11 @@
   "cluster": "<name>",
   "log_file": "file name",
   "methods": [
-
+      <method_name> : {
+        "language" : <supported-language>
+        "code" : <code>
+        "encoding" : ("none" | "base64")
+      }
     ]
 }
 ```

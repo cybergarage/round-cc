@@ -125,7 +125,7 @@ public:
 
   void clear();
 
-  bool toJSONArray(JSONArray **jsonArray);
+  bool toJSONArray(JSONArray *jsonArray);
 };
 
 enum ScriptEngineStatus {
@@ -203,6 +203,8 @@ class ScriptManager {
   }
   
   bool run(const std::string &name, const std::string &params, std::string *results, Error *error);
+  
+  bool toJSONArray(JSONArray *jsonArray, Error *error);
   
  private:
 

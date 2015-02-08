@@ -9,6 +9,7 @@
 ******************************************************************/
 
 #include <round/core/Script.h>
+#include <round/core/local/method/SystemMethod.h>
 
 #include <string.h>
 
@@ -74,4 +75,15 @@ bool Round::Script::isBinaryCode() {
     }
   }
   return false;
+}
+
+bool Round::Script::toJSONDictionary(JSONDictionary **jsonDict) {
+  JSONDictionary *scriptDict = new JSONDictionary();
+  scriptDict->set(set_method::METHOD_LANGUAGE, getLanguage());
+  scriptDict->set(set_method::METHOD_CODE, getCode());
+  if (hasEncording()) {
+    scriptDict->set(set_method::METHOD_ENCODE, getEncording());
+  }
+  (*jsonDict)->set(set_method::METHOD_NAME, scriptDict);
+  return true;
 }
