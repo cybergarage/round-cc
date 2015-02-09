@@ -254,6 +254,10 @@ class Request : public Message {
     return get(PARAMS, value);
   }
   
+  bool hasParams() const {
+    return hasKey(PARAMS);
+  }
+  
   void toHTTPPostRequest(uHTTP::HTTPRequest *httpReq) const;
   void toHTTPGetRequest(uHTTP::HTTPRequest *httpReq, bool jsonRpcEncodeEnable) const;
 };

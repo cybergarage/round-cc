@@ -17,6 +17,7 @@ Round::RQLRequest::RQLRequest() {
 }
 
 bool Round::RQLRequest::parseQuery(const std::string &query, Error *err) {
+  clear();
   return parseRpcQuery(query, err);
 }
 
@@ -58,13 +59,15 @@ bool Round::RQLRequest::parseRpcQuery(const std::string &query, Error *err) {
   boost::trim(object);
   boost::trim(params);
 
-  if (0 < method.length()) {
-    setMethod(method);
+  if (method.length() <= 0) {
+    return false;
   }
+  setMethod(method);
   
-  if (0 < object.length()) {
-    setDest(object);
+  if (object.length() <= 0) {
+    return false;
   }
+  setDest(object);
 
   if (0 < params.length()) {
     setParams(params);
