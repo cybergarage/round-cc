@@ -2,9 +2,9 @@
 
 # Tour of Round
 
-The tour explains main functions of Round using the the client utility command.
+The tour explains main functions of Round using a client utility command, `round`.
 
-First, start a single node of round:
+To use the utility, start a single node of Round at first:
 
 ```
 roundd
@@ -15,24 +15,32 @@ Next, let's start the client utility command:
 ```
 round shell
 ```
-## Basic Commands
 
-To check nodes in the clusters, use 'list' command as the following:
-
-```
-list
-```
-
-To show all commands, use 'help' command as the following.
+To show all commands of `round`, use `help` command:
 
 ```
-help
+round> help
+```
+
+## Nodes
+
+To check nodes in the clusters, use `list` command:
+
+```
+round> list
+[round]                   # --> cluster name
+  [0] 192.168.100.26:7476 # --> node ipaddr:port
 ```
 
 ## Methods
 
-Each node of Round is a programmable node using some programming languages. In this tour, set a simple 'echo' method which returns the given parameters as it is using JavaScript.
+In this section, add a simple `echo` method which returns the given parameters as it is using JavaScript.
+
+Each node of Round is a programmable node using some programming languages such JavaScript and Lua. To create the `echo` method, use `set_method` as the following:
 
 ```
-set_method(*, {"lang":"js", "code"="function _echo(params) {return params;}"})
+round> set_method(*, { "lang":"js", "code":"function echo(params) {return params;}" })
+round> OK
 ```
+
+The `set_method` is a embedded method to add new methods by developers. To confirm whether the `echo` method is added, use `get_config` method:

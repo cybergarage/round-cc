@@ -27,6 +27,7 @@ First, you have to install the following package on MacOSX.
 To get started on MacOSX, run the following in a terminal:
 
 ```
+brew tap cybergarage/brew
 brew install round++
 ```
 
@@ -49,5 +50,7 @@ round shell
 ```
 
 ## Next Steps
+
+Let's try the following tour to know functions of Round in more detail.
 
 - [Tour of Round](./round_tour)

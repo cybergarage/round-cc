@@ -2,7 +2,22 @@
 
 English [Japanese](round_conversions_jp.md)
 
-# Other Consensus Services
+# Features
+
+## Single Programming Model
+
+In the current distributed programming, there are some programming models such as [Chubby \[1\]][1], [MapReduce \[2\]][2] and [Storm \[3\]][3]. The programming models are divided into each distributed applications, and the developer have to study each programming models.
+
+Round is designed to develop any distributed applications using the single programming model. The programming model is a computer which has some programmable engines with a memory, and it can receive and send messages with other nodes and clients.
+
+![Round Programming Model](img/round_programming_model.png)
+
+## Autonomous
+
+Programming model of existing consensus services, like [Chubby \[1\]][1] and [Zookeeper \[4\]][4], has a simple shared key value store and notifies some provided network events. The programming codes which handles the provided events are separated the consensus services.
+
+Against the existing consensus service is a passive programming model, Round is a autonomous programming model like [Game of Life \[3\]][3]. Round includes programming codes in the node. The node can handle the provided events and occur original events itself.
+
 
 ## Conversion
 
@@ -18,9 +33,19 @@ English [Japanese](round_conversions_jp.md)
 
 ## Refrences
 
-\[1\] : [Apache ZooKeeper][1]
+- \[1\] : [Mike Burrows, Chubby Distributed Lock Service, OSDI'06, 2006][1]
+- \[2\] : [Jeffrey Dean and Sanjay Ghemawat, MapReduce: Simplified Data Processing on Large Clusters, OSDI'04, 2004][2]
+- \[3\] : [Apache Storm][3]
+- \[4\] : [Apache ZooKeeper][1]
+- \[5\] : [Conway's Game of Life][5]
 
-[1]: http://zookeeper.apache.org/
+[1]: http://research.google.com/archive/chubby.html
+[2]: http://research.google.com/archive/mapreduce.html
+[3]: https://storm.apache.org/
+[4]: http://zookeeper.apache.org/
+[5]: http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+
+
 [raft]: https://raftconsensus.github.io/
 [raft-consul]: http://www.consul.io/docs/internals/consensus.html
 [gossip-consul]: http://www.consul.io/docs/internals/gossip.html
