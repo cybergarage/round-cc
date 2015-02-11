@@ -6,7 +6,7 @@ English [Japanese](round_conversions_jp.md)
 
 ## Single Programming Model
 
-In the current distributed programming, there are some programming models such as [Chubby \[1\]][1], [MapReduce \[2\]][2] and [Storm \[3\]][3]. The programming models are divided into each distributed applications, and the developer have to study each programming models.
+In the existing distributed programming, there are some programming models such as [Chubby \[1\]][1], [MapReduce \[2\]][2] and [Storm \[3\]][3]. The programming models are divided into each distributed applications, and the developer have to study each programming models.
 
 Round is designed to develop any distributed applications using the single programming model. The programming model is a computer which has some programmable engines with a memory, and it can receive and send messages with other nodes and clients.
 
@@ -18,6 +18,23 @@ Programming model of existing consensus services, like [Chubby \[1\]][1] and [Zo
 
 Against the existing consensus service is a passive programming model, Round is a autonomous programming model like [Game of Life \[3\]][3]. Round includes programming codes in the node. The node can handle the provided events and occur original events itself.
 
+## Dynamics
+
+In the typical distributed programming, developers create the distributed applications as static using some static programming languages such as Java and C.
+
+In Round, developers can create the applications using dynamic programming languages, and update the programming codes in the nodes dynamically. Developers can select the favorite programming language to create the applications because Round supports many dynamic and static programming languages such Java, JavaScript, Lua and C++.
+
+## Simplicity
+
+Generally, it is difficult to maintain distributed applications because developers have to understand the distributed framework and applications for updating the functions.
+
+In Round, developer can update the functions easily without understanding the distributed framework and applications because the all methods are defined as RPC. To update the function, developer have to understand only the method input and output interfaces.
+
+Round recommends to create the methods simply. To create complex functions, connect the simple methods using the route function like [Unix pipelines \[5\]][5].
+
+## Code reuse
+
+Developers can distribute the methods which are created dynamic programming languages, and the other developer can import the methods easily. For example, a developer releases programming codes of their methods on Github, the other developers can import the methods easily using rpm command.
 
 ## Conversion
 
@@ -38,13 +55,14 @@ Against the existing consensus service is a passive programming model, Round is 
 - \[3\] : [Apache Storm][3]
 - \[4\] : [Apache ZooKeeper][1]
 - \[5\] : [Conway's Game of Life][5]
+- \[6\] : [Pipeline (Unix)][6]
 
 [1]: http://research.google.com/archive/chubby.html
 [2]: http://research.google.com/archive/mapreduce.html
 [3]: https://storm.apache.org/
 [4]: http://zookeeper.apache.org/
 [5]: http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
-
+[6]: http://en.wikipedia.org/wiki/Pipeline_%28Unix%29
 
 [raft]: https://raftconsensus.github.io/
 [raft-consul]: http://www.consul.io/docs/internals/consensus.html
