@@ -19,6 +19,7 @@ const std::string Round::SystemNodeInfoDict::PORT     = "port";
 const std::string Round::SystemNodeInfoDict::HASH     = "hash";
 const std::string Round::SystemNodeInfoDict::VER      = "version";
 const std::string Round::SystemNodeInfoDict::CLUSTER  = "cluster";
+const std::string Round::SystemNodeInfoDict::STATE  = "state";
 
 bool Round::SystemNodeInfoDict::setNode(Node *node) {
   Error error;

@@ -20,9 +20,8 @@ class NodeStatus {
     STOP,
     ACTIVATING,
     ACTIVE,
-    REPAIRING,
-    OPTIMIZING,
-    FINALIZING,
+    PROMICE,
+    TERMINATING,
     STATE_MAX,
   } State;
 

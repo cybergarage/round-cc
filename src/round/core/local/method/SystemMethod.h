@@ -126,6 +126,7 @@ public:
   static const std::string HASH;
   static const std::string VER;
   static const std::string CLUSTER;
+  static const std::string STATE;
   
 public:
   SystemNodeInfoDict() {
@@ -173,6 +174,14 @@ public:
   
   bool getHash(std::string *value) const {
     return (this->jsonDict) ? this->jsonDict->get(HASH, value) : false;
+  }
+  
+  bool setState(const std::string &value) {
+    return (this->jsonDict) ? this->jsonDict->set(STATE, value) : false;
+  }
+  
+  bool getState(std::string *value) const {
+    return (this->jsonDict) ? this->jsonDict->get(STATE, value) : false;
   }
   
 private:
