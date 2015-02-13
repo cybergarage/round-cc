@@ -19,7 +19,7 @@ const std::string Round::SystemNodeInfoDict::PORT     = "port";
 const std::string Round::SystemNodeInfoDict::HASH     = "hash";
 const std::string Round::SystemNodeInfoDict::VER      = "version";
 const std::string Round::SystemNodeInfoDict::CLUSTER  = "cluster";
-const std::string Round::SystemNodeInfoDict::STATE  = "state";
+const std::string Round::SystemNodeInfoDict::STATE    = "state";
 
 bool Round::SystemNodeInfoDict::setNode(Node *node) {
   Error error;
@@ -48,7 +48,13 @@ bool Round::SystemNodeInfoDict::setNode(Node *node) {
   setPort(nodePort);
   setCluster(nodeCluster);
   setHash(nodeHash);
-  
+
+  LocalNode *localNode = dynamic_cast<LocalNode *>(node);
+  if (localNode) {
+    std::string stateString = localNode->getStateString();
+    setState(stateString);
+  };
+
   return true;
 }
 

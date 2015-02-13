@@ -187,14 +187,18 @@ class LocalNode : public Node, public NodeFinderObserver {
 
   bool isStaticMethod(const std::string &method);
 
+  NodeStatus::State getState() const {
+    return this->nodeStatus.getState();
+  }
+  
+  const char *getStateString() const {
+    return this->nodeStatus.getStateString();
+  }
+  
 protected:
 
   void setState(NodeStatus::State value) {
     this->nodeStatus.setState(value);
-  }
-
-  NodeStatus::State getState() {
-    return this->nodeStatus.getState();
   }
 
 private:
