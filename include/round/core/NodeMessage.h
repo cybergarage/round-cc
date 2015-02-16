@@ -67,7 +67,7 @@ public:
   virtual ~NodeResponse();
 };
   
-class NodeRequestParser : public JSONParser {
+class NodeRequestParser : public RPC::JSON::Parser {
     
  public:
   NodeRequestParser() {

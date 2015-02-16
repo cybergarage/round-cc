@@ -265,22 +265,11 @@ BOOST_AUTO_TEST_CASE(RPCRequestExtentionMethodTest) {
   BOOST_CHECK(!rpcMsg.isDestOne());
 }
 
-class TestMessageParser : public JSONParser {
-  
-public:
-  
-  TestMessageParser() {
-  }
-
-  JSONDictionary *createJSONDictionary() {
-    return new RPC::JSON::Request();
-  }
-};
-
-BOOST_AUTO_TEST_CASE(RPCRequestTest) {
+BOOST_AUTO_TEST_CASE(RPCRequestParserTest) {
   Error error;
-  TestMessageParser jsonParser;
+  RPC::JSON::Parser jsonParser;
   RPC::JSON::Request *req;
+  RPC::JSON::BatchRequest *batchReq;
   std::string inputStr, jsonStr;
   
   // rpc call with positional parameters:
@@ -337,6 +326,21 @@ BOOST_AUTO_TEST_CASE(RPCRequestTest) {
   BOOST_CHECK(jsonParser.parse(inputStr, &error));
   req = dynamic_cast<RPC::JSON::Request *>(jsonParser.getRootObject());
   BOOST_CHECK(!req);
+
+  // rpc call Batch:
+  inputStr =
+    "[" \
+      "{\"jsonrpc\": \"2.0\", \"method\": \"sum\", \"params\": [1,2,4], \"id\": \"1\"}," \
+      "{\"jsonrpc\": \"2.0\", \"method\": \"notify_hello\", \"params\": [7]}," \
+      "{\"jsonrpc\": \"2.0\", \"method\": \"subtract\", \"params\": [42,23], \"id\": \"2\"}," \
+      "{\"foo\": \"boo\"}," \
+      "{\"jsonrpc\": \"2.0\", \"method\": \"foo.get\", \"params\": {\"name\": \"myself\"}, \"id\": \"5\"}," \
+      "{\"jsonrpc\": \"2.0\", \"method\": \"get_data\", \"id\": \"9\"}" \
+      "]";
+
+  BOOST_CHECK(jsonParser.parse(inputStr, &error));
+  batchReq = dynamic_cast<RPC::JSON::BatchRequest *>(jsonParser.getRootObject());
+  BOOST_CHECK(batchReq);
 }
 
 BOOST_AUTO_TEST_CASE(RPCErrorMethodTest) {

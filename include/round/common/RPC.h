@@ -305,6 +305,23 @@ class Response : public Message {
   void toHTTPResponse(uHTTP::HTTPResponse *httpRes) const;
 };
 
+class Parser : public JSONParser {
+    
+  public:
+    
+  Parser();
+  virtual ~Parser();
+  
+  virtual JSONDictionary *createJSONDictionary() {
+    return new RPC::JSON::Request();
+  }
+    
+  virtual JSONArray *createJSONArray() {
+    return new RPC::JSON::BatchRequest();
+  }
+};
+  
+  
 }
   
 }
