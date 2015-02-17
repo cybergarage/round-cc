@@ -13,8 +13,8 @@
 
 #include <round/core/NodeMessage.h>
 
-Round::NodeBatchRequest::NodeBatchRequest() {
+Round::NodeBatchResponse::NodeBatchResponse() {
 }
 
-Round::NodeBatchRequest::~NodeBatchRequest() {
+Round::NodeBatchResponse::~NodeBatchResponse() {
 }

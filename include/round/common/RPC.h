@@ -305,6 +305,13 @@ class Response : public Message {
   void toHTTPResponse(uHTTP::HTTPResponse *httpRes) const;
 };
 
+class BatchResponse : public JSONArray {
+    
+public:
+  BatchResponse();
+  virtual ~BatchResponse();
+};
+
 class Parser : public JSONParser {
     
   public:

@@ -203,6 +203,8 @@
 		21F4CE711A63F45500E7F0CC /* RouteObjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4CE701A63F45500E7F0CC /* RouteObjects.cpp */; };
 		21FA93DD1A6E8FF10067314A /* method.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FA93DC1A6E8FF10067314A /* method.cpp */; };
 		21FA93E11A6E90040067314A /* use.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FA93E01A6E90040067314A /* use.cpp */; };
+		21FB6D7F1A93642F004D219B /* NodeBatchResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FB6D7E1A93642F004D219B /* NodeBatchResponse.cpp */; };
+		21FB6D811A9364E1004D219B /* RPCBatchResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FB6D801A9364E1004D219B /* RPCBatchResponse.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -420,6 +422,8 @@
 		21F4CE701A63F45500E7F0CC /* RouteObjects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RouteObjects.cpp; sourceTree = "<group>"; };
 		21FA93DC1A6E8FF10067314A /* method.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = method.cpp; sourceTree = "<group>"; };
 		21FA93E01A6E90040067314A /* use.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = use.cpp; sourceTree = "<group>"; };
+		21FB6D7E1A93642F004D219B /* NodeBatchResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeBatchResponse.cpp; sourceTree = "<group>"; };
+		21FB6D801A9364E1004D219B /* RPCBatchResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCBatchResponse.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -794,6 +798,7 @@
 		21D8E2431A60E1E200E8A63F /* rpc */ = {
 			isa = PBXGroup;
 			children = (
+				21FB6D801A9364E1004D219B /* RPCBatchResponse.cpp */,
 				2147F29A1A91A3B5009A8275 /* RPCParser.cpp */,
 				21526C841A6682F900CF3D12 /* RPC.cpp */,
 				21526C851A6682F900CF3D12 /* RPCBatchRequest.cpp */,
@@ -858,6 +863,7 @@
 		21E1EB111A64FE2800FEABF6 /* rpc */ = {
 			isa = PBXGroup;
 			children = (
+				21FB6D7E1A93642F004D219B /* NodeBatchResponse.cpp */,
 				21E1EB121A64FE2800FEABF6 /* NodeBatchRequest.cpp */,
 				21E1EB131A64FE2800FEABF6 /* NodeRequest.cpp */,
 				21E1EB141A64FE2800FEABF6 /* NodeResponse.cpp */,
@@ -1047,12 +1053,14 @@
 				21E1EB161A64FE2800FEABF6 /* NodeRequest.cpp in Sources */,
 				21D50A9B1A819F39005C1F51 /* exec.cpp in Sources */,
 				21D7A5991A6BE1E400D43061 /* shell.cpp in Sources */,
+				21FB6D7F1A93642F004D219B /* NodeBatchResponse.cpp in Sources */,
 				21B854041A60E470009E6ECB /* TclEngine.cpp in Sources */,
 				217342FD1A6CB3C000ADA1C8 /* question.cpp in Sources */,
 				21526C8B1A6682F900CF3D12 /* RPCMessage.cpp in Sources */,
 				21A1572B1A6D4FAC0024B627 /* verbose.cpp in Sources */,
 				21D7A5971A6BDE7C00D43061 /* search.cpp in Sources */,
 				21B911B51A6B5F4300C791FD /* SystemClusterInfoDict.cpp in Sources */,
+				21FB6D811A9364E1004D219B /* RPCBatchResponse.cpp in Sources */,
 				21D8E2B01A60E1E200E8A63F /* BitOption.cpp in Sources */,
 				21D50AAE1A824A9C005C1F51 /* AliasManager.cpp in Sources */,
 				21F4CE6C1A63F0BA00E7F0CC /* ScriptEngine.cpp in Sources */,

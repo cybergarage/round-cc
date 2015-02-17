@@ -66,6 +66,14 @@ public:
   NodeResponse();
   virtual ~NodeResponse();
 };
+
+class NodeBatchResponse : public RPC::JSON::BatchResponse {
+    
+public:
+    
+  NodeBatchResponse();
+  virtual ~NodeBatchResponse();
+};
   
 class NodeRequestParser : public RPC::JSON::Parser {
     

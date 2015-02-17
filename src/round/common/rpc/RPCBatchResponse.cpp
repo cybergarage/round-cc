@@ -8,13 +8,10 @@
 *
 ******************************************************************/
 
-#include <string.h>
-#include <sstream>
+#include <round/common/RPC.h>
 
-#include <round/core/NodeMessage.h>
-
-Round::NodeBatchRequest::NodeBatchRequest() {
+Round::RPC::JSON::BatchResponse::BatchResponse() {
 }
 
-Round::NodeBatchRequest::~NodeBatchRequest() {
+Round::RPC::JSON::BatchResponse::~BatchResponse() {
 }
