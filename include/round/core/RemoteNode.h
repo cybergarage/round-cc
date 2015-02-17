@@ -40,6 +40,8 @@ class RemoteNode : public Node {
   }
 
   bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  bool postMessage(const NodeBatchRequest *nodeReq, NodeBatchResponse *nodeRes, Error *error);
+  
   bool getMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error, bool jsonRpcEncodeEnable);
   bool postRPC(const std::string &s , Error *error);
 

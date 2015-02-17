@@ -138,6 +138,10 @@ bool Round::RemoteNode::postMessage(uHTTP::HTTPRequest *httpReq, NodeResponse *n
   return isSuccess;
 }
 
+bool Round::RemoteNode::postMessage(const NodeBatchRequest *nodeReq, NodeBatchResponse *nodeRes, Error *error) {
+  return false;
+}
+
 bool Round::RemoteNode::setUpdatedNodeStatusParameters(const NodeRequest *nodeReq) {
     if (!nodeReq)
       return false;

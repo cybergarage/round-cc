@@ -140,6 +140,7 @@ class LocalNode : public Node, public NodeFinderObserver {
   bool getRegistry(const std::string &key, std::string *value) const;
   
   bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  bool postMessage(const NodeBatchRequest *nodeReq, NodeBatchResponse *nodeRes, Error *error);
   
   bool loadConfigFromString(const std::string &string, Error *error);
   bool loadConfigFromFile(const std::string &filename, Error *error);
