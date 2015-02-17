@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE(ServerRequestTest) {
   
   RemoteNode remoteNode(httpHost, httpPort);
   NodeTestController nodeTestController;
-  nodeTestController.runUserMethodTest(&remoteNode);
+  nodeTestController.runRpcTest(&remoteNode);
   
   // Stop Server
   

@@ -280,7 +280,10 @@ void NodeTestController::runSystemMethodTest(Round::Node *node) {
   runSystemKeyMethodsTest(node);
 }
 
-void NodeTestController::runUserMethodTest(Round::Node *node) {
+void NodeTestController::runRpcTest(Round::Node *node) {
+  // echo (Add)
+  runSetEchoMethodTest(node);
+  
   // echo (POST)
   runPostEchoMethodTest(node);
   
@@ -291,7 +294,7 @@ void NodeTestController::runUserMethodTest(Round::Node *node) {
   }
 }
 
-void NodeTestController::runPostEchoMethodTest(Round::Node *node) {
+void NodeTestController::runSetEchoMethodTest(Round::Node *node) {
   Error err;
   
   BOOST_CHECK(node->isAlive(&err));
@@ -313,12 +316,51 @@ void NodeTestController::runPostEchoMethodTest(Round::Node *node) {
   BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &err));
   postClock = node->getLocalClock();
   BOOST_CHECK(prevClock < postClock);
+}
+
+void NodeTestController::runPostEchoMethodTest(Round::Node *node) {
+  Error err;
+  
+  BOOST_CHECK(node->isAlive(&err));
   
   // Post Node Message (Run 'echo' method)
+  
+  NodeRequestParser reqParser;
+  NodeRequest *nodeReq;
+  NodeResponse nodeRes;
+  clock_t prevClock, postClock;
+  std::string result;
   
   BOOST_CHECK(reqParser.parse(Test::RPC_RUN_ECHO, &err));
   BOOST_CHECK(reqParser.getRootObject()->isDictionary());
   nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
+  BOOST_CHECK(nodeReq);
+  
+  prevClock = node->getLocalClock();
+  BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &err));
+  postClock = node->getLocalClock();
+  BOOST_CHECK(prevClock < postClock);
+  
+  BOOST_CHECK(nodeRes.getResult(&result));
+  BOOST_CHECK_EQUAL(result.compare(RPC_SET_ECHO_PARAMS), 0);
+}
+
+void NodeTestController::runPostBatchEchoMethodTest(Round::Node *node) {
+  Error err;
+  
+  BOOST_CHECK(node->isAlive(&err));
+  
+  // Post Node Message (Run 'echo' method)
+  
+  NodeRequestParser reqParser;
+  NodeBatchRequest *nodeReq;
+  NodeResponse nodeRes;
+  clock_t prevClock, postClock;
+  std::string result;
+  
+  BOOST_CHECK(reqParser.parse(Test::RPC_RUN_BATCH_ECHO, &err));
+  BOOST_CHECK(reqParser.getRootObject()->isArray());
+  nodeReq = dynamic_cast<NodeBatchRequest *>(reqParser.getRootObject());
   BOOST_CHECK(nodeReq);
   
   prevClock = node->getLocalClock();

@@ -110,6 +110,18 @@ const std::string RPC_RUN_ECHO = \
    "\"params\": " RPC_SET_ECHO_PARAMS "," \
    "\"id\": 1}";
 
+const std::string RPC_RUN_BATCH_ECHO = \
+  "[" \
+  "{\"jsonrpc\": \"2.0\"," \
+  "\"method\": \"" RPC_SET_ECHO_NAME "\"," \
+  "\"params\": " RPC_SET_ECHO_PARAMS "," \
+  "\"id\": 1},"
+  "{\"jsonrpc\": \"2.0\"," \
+  "\"method\": \"" RPC_SET_ECHO_NAME "\"," \
+  "\"params\": " RPC_SET_ECHO_PARAMS "," \
+  "\"id\": 1}" \
+  "]";
+  
 const std::string RPC_SET_SETMETHOD = \
   "{\"jsonrpc\": \"2.0\"," \
   "\"method\": \"set_method\","

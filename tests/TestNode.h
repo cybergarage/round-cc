@@ -102,7 +102,7 @@ class NodeTestController {
 
   void runScriptManagerTest(Round::Node *node);
   void runSystemMethodTest(Round::Node *node);
-  void runUserMethodTest(Round::Node *node);
+  void runRpcTest(Round::Node *node);
   void runRpcTest(Round::Node **nodes, size_t nodeCnt);
 
   void runGetEchoMethodTest(Round::RemoteNode *node, bool isJsonRpcEncodeEnabled);
@@ -114,7 +114,9 @@ class NodeTestController {
   void runSystemGetNetworkInfoTest(Round::Node *node);
   void runSystemKeyMethodsTest(Round::Node *node);
 
+  void runSetEchoMethodTest(Round::Node *node);
   void runPostEchoMethodTest(Round::Node *node);
+  void runPostBatchEchoMethodTest(Round::Node *node);
   
   void runRpcHashTest(Round::Node **nodes, size_t nodeCnt);
 };
