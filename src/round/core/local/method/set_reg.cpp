@@ -32,5 +32,5 @@ bool Round::set_reg::exec(LocalNode *node, const NodeRequest *nodeReq, NodeRespo
   if (!nodeReq->get(VALUE, &value))
     return false;
   
-  return node->setKey(key, value);
+  return node->setRegistry(key, value);
 }

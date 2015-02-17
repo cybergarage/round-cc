@@ -359,13 +359,13 @@ class set_reg : public system_method {
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
-class SystemSetKeyRequest : public SystemMethodRequest {
+class SystemSetRegistryRequest : public SystemMethodRequest {
  public:
-  SystemSetKeyRequest() {
+  SystemSetRegistryRequest() {
     setMethod(set_reg::NAME);
   }
   
-  void setKey(const std::string &value) {
+  void setRegistry(const std::string &value) {
     set(set_reg::KEY, value);
   }
 
@@ -386,13 +386,13 @@ public:
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
-class SystemGetKeyRequest : public SystemMethodRequest {
+class SystemGetRegistryRequest : public SystemMethodRequest {
 public:
-  SystemGetKeyRequest() {
+  SystemGetRegistryRequest() {
     setMethod(get_reg::NAME);
   }
 
-  void setKey(const std::string &value) {
+  void setRegistry(const std::string &value) {
     set(get_reg::KEY, value);
   }
 };

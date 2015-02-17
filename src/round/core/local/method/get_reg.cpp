@@ -28,7 +28,7 @@ bool Round::get_reg::exec(LocalNode *node, const NodeRequest *nodeReq, NodeRespo
     return false;
   
   std::string value;
-  if (!node->getKey(key, &value))
+  if (!node->getRegistry(key, &value))
     return false;
 
   return nodeRes->setResult(value);

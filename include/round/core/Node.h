@@ -42,8 +42,8 @@ class Node : public NodeCore, public Cloneable<Node> {
   bool getCluster(Cluster *cluster, Error *error);
   bool getClusterList(ClusterList *clusterList, Error *error);
   
-  bool setKey(const std::string &key, const std::string &value, Error *error);
-  bool getKey(const std::string &key, std::string *value, Error *error);
+  bool setRegistry(const std::string &key, const std::string &value, Error *error);
+  bool getRegistry(const std::string &key, std::string *value, Error *error);
 
 public:
 

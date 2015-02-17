@@ -250,16 +250,16 @@ void NodeTestController::runSystemKeyMethodsTest(Round::Node *node) {
   string value;
   string valueBuf;
   
-  BOOST_CHECK_EQUAL(node->getKey(key, &valueBuf, &err), false);
+  BOOST_CHECK_EQUAL(node->getRegistry(key, &valueBuf, &err), false);
   
   value = "hello";
-  BOOST_CHECK(node->setKey(key, value, &err));
-  BOOST_CHECK_EQUAL(node->getKey(key, &valueBuf, &err), true);
+  BOOST_CHECK(node->setRegistry(key, value, &err));
+  BOOST_CHECK_EQUAL(node->getRegistry(key, &valueBuf, &err), true);
   BOOST_CHECK_EQUAL(valueBuf.compare(value), 0);
   
   value = "world";
-  BOOST_CHECK(node->setKey(key, value, &err));
-  BOOST_CHECK_EQUAL(node->getKey(key, &valueBuf, &err), true);
+  BOOST_CHECK(node->setRegistry(key, value, &err));
+  BOOST_CHECK_EQUAL(node->getRegistry(key, &valueBuf, &err), true);
   BOOST_CHECK_EQUAL(valueBuf.compare(value), 0);
 }
 

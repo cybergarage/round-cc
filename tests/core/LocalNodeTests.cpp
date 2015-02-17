@@ -116,16 +116,16 @@ BOOST_AUTO_TEST_CASE(LocalNodMemoryTest) {
   string value;
   string valueBuf;
   
-  BOOST_CHECK_EQUAL(node.getKey(key, &valueBuf), false);
+  BOOST_CHECK_EQUAL(node.getRegistry(key, &valueBuf), false);
   
   value = "hello";
-  BOOST_CHECK(node.setKey(key, value));
-  BOOST_CHECK_EQUAL(node.getKey(key, &valueBuf), true);
+  BOOST_CHECK(node.setRegistry(key, value));
+  BOOST_CHECK_EQUAL(node.getRegistry(key, &valueBuf), true);
   BOOST_CHECK_EQUAL(valueBuf.compare(value), 0);
   
   value = "world";
-  BOOST_CHECK(node.setKey(key, value));
-  BOOST_CHECK_EQUAL(node.getKey(key, &valueBuf), true);
+  BOOST_CHECK(node.setRegistry(key, value));
+  BOOST_CHECK_EQUAL(node.getRegistry(key, &valueBuf), true);
   BOOST_CHECK_EQUAL(valueBuf.compare(value), 0);
 }
 

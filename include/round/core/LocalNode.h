@@ -136,8 +136,8 @@ class LocalNode : public Node, public NodeFinderObserver {
   bool addMethod(Method *method);
   bool setScript(const std::string &method, const std::string &lang, const std::string &script, int encodeType, Error *error);
   
-  bool setKey(const std::string &key, const std::string &value);
-  bool getKey(const std::string &key, std::string *value) const;
+  bool setRegistry(const std::string &key, const std::string &value);
+  bool getRegistry(const std::string &key, std::string *value) const;
   
   bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
   
