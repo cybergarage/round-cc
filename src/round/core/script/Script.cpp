@@ -78,12 +78,11 @@ bool Round::Script::isBinaryCode() {
 }
 
 bool Round::Script::toJSONDictionary(JSONDictionary **jsonDict) {
-  JSONDictionary *scriptDict = new JSONDictionary();
-  scriptDict->set(set_method::METHOD_LANGUAGE, getLanguage());
-  scriptDict->set(set_method::METHOD_CODE, getCode());
+  (*jsonDict)->set(set_method::METHOD_NAME, getName());
+  (*jsonDict)->set(set_method::METHOD_LANGUAGE, getLanguage());
+  (*jsonDict)->set(set_method::METHOD_CODE, (const char *)(getCode()));
   if (hasEncording()) {
-    scriptDict->set(set_method::METHOD_ENCODE, getEncording());
+    (*jsonDict)->set(set_method::METHOD_ENCODE, getEncording());
   }
-  (*jsonDict)->set(set_method::METHOD_NAME, scriptDict);
   return true;
 }

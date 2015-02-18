@@ -23,8 +23,10 @@ Round::get_node_config::~get_node_config() {
 
 bool Round::get_node_config::exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const {
   Error error;
-  JSONDictionary configDict;
-  if (!node->getConfig(&configDict, &error))
+  JSONDictionary *configDict = new JSONDictionary();
+  if (!node->getConfig(configDict, &error)) {
+    delete configDict;
     return false;
-  return nodeRes->setResult(&configDict);
+  }
+  return nodeRes->setResult(configDict);
 }
