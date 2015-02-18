@@ -33,6 +33,7 @@ class LocalWorkder : public Thread<LocalNode> {
   
  private:
   void post(uHTTP::HTTPRequest *httpReq, const NodeResponse *nodeRes);
+  void post(uHTTP::HTTPRequest *httpReq, const NodeBatchResponse *nodeBatchRes);
 };
 
 class LocalScriptManager : public ScriptManager {

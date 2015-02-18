@@ -31,6 +31,16 @@ void Round::LocalWorkder::post(uHTTP::HTTPRequest *httpReq, const NodeResponse *
   httpReq->post(&httpRes);
 }
 
+void Round::LocalWorkder::post(uHTTP::HTTPRequest *httpReq, const NodeBatchResponse *nodeBatchRes) {
+  int statusCode = uHTTP::HTTP::OK_REQUEST;
+  
+  uHTTP::HTTPResponse httpRes;
+  httpRes.setStatusCode(statusCode);
+  nodeBatchRes->toHTTPResponse(&httpRes);
+  
+  httpReq->post(&httpRes);
+}
+
 void Round::LocalWorkder::run() {
   LocalNode *node = getObject();
   if (!node)
@@ -44,6 +54,8 @@ void Round::LocalWorkder::run() {
     if (!nodeMsg)
       break;
 
+    // NodeRequest
+    
     const NodeRequest *nodeReq = dynamic_cast<const NodeRequest *>(nodeMsg);
     if (nodeReq) {
       std::string reqStr;
@@ -73,6 +85,8 @@ void Round::LocalWorkder::run() {
       continue;
     }
     
+    // NodeBatchRequest
+    
     const NodeBatchRequest *nodeBatchReq = dynamic_cast<const NodeBatchRequest *>(nodeMsg);
     if (nodeBatchReq) {
       std::string reqStr;
@@ -81,7 +95,9 @@ void Round::LocalWorkder::run() {
       
       Error err;
       NodeBatchResponse nodeBatchRes;
-      node->execMessage(nodeBatchReq, &nodeBatchRes, &err);
+      if (!node->execMessage(nodeBatchReq, &nodeBatchRes, &err)) {
+        continue;
+      }
       
       std::string resStr;
       nodeBatchRes.toJSONString(&resStr);
@@ -96,6 +112,8 @@ void Round::LocalWorkder::run() {
       
       continue;
     }
+    
+    // Invalid Request
     
     delete nodeMsg;
   }

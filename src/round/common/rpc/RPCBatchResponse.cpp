@@ -15,3 +15,12 @@ Round::RPC::JSON::BatchResponse::BatchResponse() {
 
 Round::RPC::JSON::BatchResponse::~BatchResponse() {
 }
+
+void Round::RPC::JSON::BatchResponse::toHTTPResponse(uHTTP::HTTPResponse *httpRes) const {
+  if (!httpRes)
+    return;
+  
+  std::string resContent;
+  toJSONString(&resContent);
+  httpRes->setContent(resContent);
+}

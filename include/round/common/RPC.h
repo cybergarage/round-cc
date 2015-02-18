@@ -310,6 +310,8 @@ class BatchResponse : public JSONArray {
 public:
   BatchResponse();
   virtual ~BatchResponse();
+
+  void toHTTPResponse(uHTTP::HTTPResponse *httpRes) const;
 };
 
 class Parser : public JSONParser {
