@@ -151,8 +151,9 @@ class LocalNode : public Node, public NodeFinderObserver {
   bool nodeRemoved(Node *node);
 
   bool pushMessage(const Message *nodeReq);
-  bool waitMessage(const NodeRequest **nodeReq);
+  bool waitMessage(const Message **nodeReq);
   bool execMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  bool execMessage(const NodeBatchRequest *nodeReq, NodeBatchResponse *nodeRes, Error *error);
   
   virtual bool start(Error *error);
   virtual bool stop(Error *error);

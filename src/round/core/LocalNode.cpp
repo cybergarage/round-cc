@@ -244,13 +244,10 @@ bool Round::LocalNode::pushMessage(const Message *nodeReq) {
   return this->nodeMsgMgr.pushMessage(nodeReq);
 }
 
-bool Round::LocalNode::waitMessage(const NodeRequest **nodeReq) {
-  *nodeReq = NULL;
-  const Message *nodeMsg = NULL;
-  if (!this->nodeMsgMgr.waitMessage(&nodeMsg))
+bool Round::LocalNode::waitMessage(const Message **nodeReq) {
+  if (!this->nodeMsgMgr.waitMessage(nodeReq))
     return false;
-  *nodeReq = dynamic_cast<const NodeRequest *>(nodeMsg);
-  return (*nodeReq) ? true : false;
+  return true;
 }
 
 ////////////////////////////////////////////////
@@ -380,6 +377,10 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
   }
 
   return true;
+}
+
+bool Round::LocalNode::execMessage(const NodeBatchRequest *nodeReq, NodeBatchResponse *nodeRes, Error *error) {
+  
 }
 
 ////////////////////////////////////////////////
