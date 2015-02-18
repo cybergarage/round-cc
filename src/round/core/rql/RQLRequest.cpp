@@ -27,12 +27,7 @@ bool Round::RQLRequest::parseRpcQuery(const std::string &query, Error *err) {
   size_t paramEndIdx = std::string::npos;
   if (paramBeginIdx != std::string::npos) {
     paramSepIdx = query.find_first_of(Console::method::PARAM_SEP, paramBeginIdx);
-    if (paramSepIdx != std::string::npos) {
-      paramEndIdx = query.find_first_of(Console::method::PARAM_END, paramSepIdx);
-    }
-    else {
-      paramEndIdx = query.find_first_of(Console::method::PARAM_END, paramBeginIdx);
-    }
+    paramEndIdx = query.find_last_of(Console::method::PARAM_END);
   }
   
   if (paramEndIdx == std::string::npos) {

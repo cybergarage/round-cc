@@ -39,7 +39,7 @@ In this section, add a simple `echo` method which returns the given parameters a
 Each node of Round is a programmable node using some programming languages such JavaScript and Lua. To create the `echo` method, use `set_method` as the following:
 
 ```
-round> set_method(*, { "lang":"js", "code":"function echo(params) {return params;}" })
+round> set_method(0, { "lang":"js", "code":"function echo(params) {return params;}" })
 round> OK
 ```
 

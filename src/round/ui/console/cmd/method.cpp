@@ -36,13 +36,13 @@ bool Round::Console::method::exec(Round::Console::Client *client, const Input *i
     return false;
 
   NodeResponse nodeRes;
-  if (client->postMessage(&rqlReq, &nodeRes, err)) {
-    std::string result;
-    if (nodeRes.getResult(&result)) {
-      *msg = result;
-    }
-    return true;
+  if (!client->postMessage(&rqlReq, &nodeRes, err))
+    return false;
+
+  std::string result;
+  if (nodeRes.getResult(&result)) {
+    *msg = result;
   }
   
-  return false;
+  return true;
 }
