@@ -16,6 +16,7 @@
 
 #include <round/common/Cloneable.h>
 #include <round/common/Error.h>
+#include <round/common/Mutex.h>
 #include <round/core/NodeCore.h>
 #include <round/core/NodeStatus.h>
 #include <round/core/Cluster.h>
@@ -55,9 +56,18 @@ public:
     return this->weakFlag;
   }
   
+  void lock() {
+    this->mutex.lock();
+  }
+  
+  void unlock() {
+    this->mutex.lock();
+  }
+  
 private:
   
   bool weakFlag;
+  Mutex mutex;
 };
 
 class NodeList : public std::vector<Node *> {
