@@ -61,7 +61,7 @@ public:
   }
   
   void unlock() {
-    this->mutex.lock();
+    this->mutex.unlock();
   }
   
 private:
