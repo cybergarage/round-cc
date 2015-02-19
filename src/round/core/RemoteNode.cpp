@@ -85,7 +85,7 @@ bool Round::RemoteNode::getClusterName(std::string *name, Error *error) {
   return true;
 }
 
-bool Round::RemoteNode::postMessage(uHTTP::HTTPRequest *httpReq, NodeResponse *nodeRes, Error *error) {
+bool Round::RemoteNode::postMessage(uHTTP::HTTPRequest *httpReq, JSONObject **rootObj, Error *error) {
   // HTTP Request
   
   std::string requestAddr;
@@ -98,25 +98,55 @@ bool Round::RemoteNode::postMessage(uHTTP::HTTPRequest *httpReq, NodeResponse *n
   uHTTP::HTTPResponse httpRes;
   httpReq->post(requestAddr, requestPort, &httpRes);
   
+  // Set error code and message
+  
   int statusCode = httpRes.getStatusCode();
-  bool isSuccess = uHTTP::HTTP::IsStatusCodeSuccess(statusCode);
+  if (!uHTTP::HTTP::IsStatusCodeSuccess(statusCode)) {
+    error->setCode(statusCode);
+    error->setMessage(uHTTP::HTTP::StatusCodeToString(statusCode));
+    return false;
+  }
   
   std::string httpContent = httpRes.getContent();
-  if (httpContent.length() <= 0)
-    return isSuccess;
+  if (httpContent.length() <= 0) {
+    statusCode = uHTTP::HTTP::NOT_FOUND;
+    error->setCode(statusCode);
+    error->setMessage(uHTTP::HTTP::StatusCodeToString(statusCode));
+    return false;
+  }
   
   JSONParser jsonParser;
-  if (jsonParser.parse(httpContent, error) == false)
+  if (jsonParser.parse(httpContent, error) == false) {
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeParserError, error);
+    return false;
+  }
+  
+  *rootObj = jsonParser.popRootObject();
+  if (!(*rootObj)) {
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeParserError, error);
+    return false;
+  }
+
+  return true;
+}
+
+bool Round::RemoteNode::postMessage(uHTTP::HTTPRequest *httpReq, NodeResponse *nodeRes, Error *error) {
+  // HTTP Request
+  
+  JSONObject *rootObj = NULL;
+  if (!postMessage(httpReq, &rootObj, error))
     return false;
   
-  JSONObject *rootObj = jsonParser.getRootObject();
-  if (!rootObj)
-    return isSuccess;
-  if (rootObj->isDictionary() == false)
-    return isSuccess;
+  if (rootObj->isDictionary() == false) {
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeParserError, error);
+    return false;
+  }
+  
   JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(rootObj);
-  if (!jsonDict)
-    return isSuccess;
+  if (!jsonDict) {
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeParserError, error);
+    return false;
+  }
   
   nodeRes->set(jsonDict);
   
@@ -127,19 +157,7 @@ bool Round::RemoteNode::postMessage(uHTTP::HTTPRequest *httpReq, NodeResponse *n
     setRemoteClock(remoteTs);
   }
   
-  // Set error code and message
-  
-  if (!isSuccess) {
-    nodeRes->getError(error);
-    error->setCode(statusCode);
-    error->setMessage(uHTTP::HTTP::StatusCodeToString(statusCode));
-  }
-  
-  return isSuccess;
-}
-
-bool Round::RemoteNode::postMessage(const NodeBatchRequest *nodeReq, NodeBatchResponse *nodeRes, Error *error) {
-  return false;
+  return true;
 }
 
 bool Round::RemoteNode::setUpdatedNodeStatusParameters(const NodeRequest *nodeReq) {
@@ -166,6 +184,10 @@ bool Round::RemoteNode::postMessage(const NodeRequest *nodeReq, NodeResponse *no
   nodeReq->toHTTPPostRequest(&httpReq);
 
   return postMessage(&httpReq, nodeRes, error);
+}
+
+bool Round::RemoteNode::postMessage(const NodeBatchRequest *nodeReq, NodeBatchResponse *nodeRes, Error *error) {
+  return false;
 }
 
 bool Round::RemoteNode::getMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error, bool jsonRpcEncodeEnable) {

@@ -55,6 +55,7 @@ private:
 
   bool setUpdatedNodeStatusParameters(const NodeRequest *nodeReq);
   bool postMessage(uHTTP::HTTPRequest *httpReq, NodeResponse *nodeRes, Error *error);
+  bool postMessage(uHTTP::HTTPRequest *httpReq, JSONObject **rootObj, Error *error);
 
 private:
 
