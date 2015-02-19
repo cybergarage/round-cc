@@ -24,7 +24,7 @@ bool Round::Console::list::exec(Round::Console::Client *client, const Input *inp
   size_t clusterCnt = 0;
   for (ClusterList::const_iterator cluster = clusters->begin(); cluster != clusters->end(); cluster++) {
     
-    std::cout << "[" << clusterCnt << "] " << (*cluster)->getName() << std::endl;
+    std::cout << "[" << (*cluster)->getName() << "]" << std::endl;
     
     const NodeGraph *nodeGraph = (*cluster)->getNodeGraph();
     size_t nodeCnt = 0;

@@ -24,12 +24,18 @@ round> help
 
 ## Nodes
 
-To check nodes in the clusters, use `list` command:
+To know clusters in the network, use `list` command:
 
 ```
 round> list
 [round]                   # --> cluster name
   [0] 192.168.100.26:7476 # --> node ipaddr:port
+```
+
+When the `list` command outputs only a cluster, Round uses the cluster as default. Otherwise use `use` commad to select a target cluster:
+
+```
+round> use <cluster name>
 ```
 
 ## Methods
@@ -43,8 +49,9 @@ round> set_method(0, { "language":"js", "name":"echo", "code":"function echo(par
 round> OK
 ```
 
-The `set_method` is a embedded method to add new methods by developers. To confirm whether the `echo` method is added, use `get_config` method:
+The `set_method` is a embedded method to add new methods by developers. To confirm whether the `echo` method is added, call `echo` method:
 
 ```
-round> get_node_config(0)
+round> echo(0, "hello")
+hello
 ```
