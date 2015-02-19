@@ -85,6 +85,22 @@ bool Round::RemoteNode::getClusterName(std::string *name, Error *error) {
   return true;
 }
 
+bool Round::RemoteNode::setUpdatedNodeStatusParameters(const NodeRequest *nodeReq) {
+  if (!nodeReq)
+    return false;
+  
+  // Set id and ts parameter
+  
+  lock();
+  
+  incrementLocalClock();
+  (const_cast<NodeRequest *>(nodeReq))->setSourceNodeParameters(this);
+  
+  unlock();
+  
+  return true;
+}
+
 bool Round::RemoteNode::postMessage(uHTTP::HTTPRequest *httpReq, JSONObject **rootObj, Error *error) {
   // HTTP Request
   
@@ -160,18 +176,6 @@ bool Round::RemoteNode::postMessage(uHTTP::HTTPRequest *httpReq, NodeResponse *n
   return true;
 }
 
-bool Round::RemoteNode::setUpdatedNodeStatusParameters(const NodeRequest *nodeReq) {
-    if (!nodeReq)
-      return false;
-  
-  // Set id and ts parameter
-  
-  incrementLocalClock();
-  (const_cast<NodeRequest *>(nodeReq))->setSourceNodeParameters(this);
-
-  return true;
-}
-
 bool Round::RemoteNode::postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
   // Set id and ts parameter
 
@@ -186,7 +190,21 @@ bool Round::RemoteNode::postMessage(const NodeRequest *nodeReq, NodeResponse *no
   return postMessage(&httpReq, nodeRes, error);
 }
 
-bool Round::RemoteNode::postMessage(const NodeBatchRequest *nodeReq, NodeBatchResponse *nodeRes, Error *error) {
+bool Round::RemoteNode::postMessage(const NodeBatchRequest *nodeBatchReq, NodeBatchResponse *nodeBatchRes, Error *error) {
+  // Set id and ts parameter
+  
+  for (NodeBatchRequest::const_iterator jsonObj = nodeBatchReq->begin(); jsonObj != nodeBatchReq->end(); jsonObj++) {
+    const NodeRequest *nodeReq = dynamic_cast<const NodeRequest *>(*jsonObj);
+    if (!nodeReq)
+      continue;
+    setUpdatedNodeStatusParameters(nodeReq);
+  }
+  
+  // HTTP Request
+  
+  uHTTP::HTTPRequest httpReq;
+  nodeBatchReq->toHTTPPostRequest(&httpReq);
+  
   return false;
 }
 
