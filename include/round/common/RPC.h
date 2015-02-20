@@ -268,6 +268,8 @@ class BatchRequest : public ::Round::BatchRequest {
     
   BatchRequest();
   ~BatchRequest();
+
+  void toHTTPPostRequest(uHTTP::HTTPRequest *httpReq) const;
 };
 
 class Response : public Message {
