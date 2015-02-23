@@ -379,8 +379,16 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
   return true;
 }
 
-bool Round::LocalNode::execMessage(const NodeBatchRequest *nodeReq, NodeBatchResponse *nodeRes, Error *error) {
-  
+bool Round::LocalNode::execMessage(const NodeBatchRequest *nodeBatchReq, NodeBatchResponse *nodeBatchRes, Error *error) {
+  for (NodeBatchRequest::const_iterator jsonObj = nodeBatchReq->begin(); jsonObj != nodeBatchReq->end(); jsonObj++) {
+    const NodeRequest *nodeReq = (dynamic_cast<NodeRequest *>(*jsonObj));
+    if (!nodeReq)
+      continue;
+    NodeResponse *nodeRes = new NodeResponse();
+    execMessage(nodeReq, nodeRes, error);
+    nodeBatchRes->add(nodeRes);
+  }
+  return true;
 }
 
 ////////////////////////////////////////////////
