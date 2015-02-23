@@ -23,8 +23,21 @@ Round::get_reg::~get_reg() {
 }
 
 bool Round::get_reg::exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const {
+  std::string params;
+  if (!nodeReq->getParams(&params))
+    return false;
+  
+  JSONParser jsonParser;
+  Error error;
+  if (!jsonParser.parse(params, &error))
+    return false;
+  
+  JSONDictionary *paramDict = dynamic_cast<JSONDictionary *>(jsonParser.getRootObject());
+  if (!paramDict)
+    return false;
+  
   std::string key;
-  if (!nodeReq->get(KEY, &key))
+  if (!paramDict->get(KEY, &key))
     return false;
   
   std::string value;

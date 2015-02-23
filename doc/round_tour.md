@@ -46,12 +46,26 @@ Each node of Round is a programmable node using some programming languages such 
 
 ```
 round> set_method(0, { "language":"js", "name":"echo", "code":"function echo(params) {return params;}" })
-round> OK
 ```
 
 The `set_method` is a embedded method to add new methods by developers. To confirm whether the `echo` method is added, call `echo` method:
 
 ```
 round> echo(0, "hello")
+"hello"
+```
+
+## Registry
+
+In this section, use registry function. To set a value into the registry, use `set_reg` method:
+
+```
+round> set_reg(0, {"key":"test", "value":"hello"})
+```
+
+To confirm whether the `set_reg` method is success, call `get_reg` method:
+
+```
+round> get_reg(0, {"key":"test"})
 hello
 ```

@@ -24,12 +24,25 @@ Round::set_reg::~set_reg() {
 }
 
 bool Round::set_reg::exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const {
+  std::string params;
+  if (!nodeReq->getParams(&params))
+    return false;
+  
+  JSONParser jsonParser;
+  Error error;
+  if (!jsonParser.parse(params, &error))
+    return false;
+  
+  JSONDictionary *paramDict = dynamic_cast<JSONDictionary *>(jsonParser.getRootObject());
+  if (!paramDict)
+    return false;
+  
   std::string key;
-  if (!nodeReq->get(KEY, &key))
+  if (!paramDict->get(KEY, &key))
     return false;
   
   std::string value;
-  if (!nodeReq->get(VALUE, &value))
+  if (!paramDict->get(VALUE, &value))
     return false;
   
   return node->setRegistry(key, value);
