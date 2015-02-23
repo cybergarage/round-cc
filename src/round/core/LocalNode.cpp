@@ -495,23 +495,30 @@ bool Round::LocalNode::execMethod(const NodeRequest *nodeReq, NodeResponse *node
   }
   
   bool isMethodExecuted = false;
+  bool isMethodSuccess = false;
   
   if (isStaticMethod(name)) {
-    isMethodExecuted = execStaticMethod(nodeReq, nodeRes, error);
+    isMethodExecuted = true;
+    isMethodSuccess = execStaticMethod(nodeReq, nodeRes, error);
   }
   
   if (isDynamicMethod(name)) {
-    isMethodExecuted = execDynamicMethod(nodeReq, nodeRes, error);
+    isMethodExecuted = true;
+    isMethodSuccess = execDynamicMethod(nodeReq, nodeRes, error);
   }
   
   if (isNativeMethod(name)) {
-    isMethodExecuted = execNativeMethod(nodeReq, nodeRes, error);
+    isMethodExecuted = true;
+    isMethodSuccess = execNativeMethod(nodeReq, nodeRes, error);
   }
 
   if (!isMethodExecuted) {
     setError(RPC::JSON::ErrorCodeMethodNotFound, error);
     return false;
   }
+
+  if (!isMethodSuccess)
+    return false;
   
   if (!hasRounte(name))
     return true;
