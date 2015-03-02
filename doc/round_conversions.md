@@ -24,6 +24,8 @@ Asymmetric network topology is not always efficient ...
 
 In the existing distributed programming, there are some programming models such as [Chubby \[1\]][1], [MapReduce \[2\]][2] and [Storm \[3\]][3]. The programming models are divided into each distributed applications, and the developer have to study each programming models.
 
+![Chubby Programming Model](img/chubby_programming_model.png)
+
 Round is designed to develop any distributed applications using the single programming model. The programming model is a computer which has some programmable engines with a memory, and it can receive and send messages with other nodes and clients.
 
 ![Round Programming Model](img/round_programming_model.png)
