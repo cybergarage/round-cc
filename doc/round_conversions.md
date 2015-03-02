@@ -4,7 +4,23 @@ English [Japanese](round_conversions_jp.md)
 
 # Features
 
-## Single Programming Model
+## Network Topology
+
+Programming model of existing consensus services, like [Chubby \[1\]][1] and [Zookeeper \[4\]][4], are typical client server model.
+
+![Chubby Network Topology](img/chubby_network_topology.png)
+
+[MapReduce \[2\]][2] ...
+
+![MapReduce Network Topology](img/mr_network_topology.png)
+
+Round ...
+
+![Round Network Topology](img/round_network_topology.png)
+
+Asymmetric network topology is not always efficient ...
+
+## Programming Model
 
 In the existing distributed programming, there are some programming models such as [Chubby \[1\]][1], [MapReduce \[2\]][2] and [Storm \[3\]][3]. The programming models are divided into each distributed applications, and the developer have to study each programming models.
 
