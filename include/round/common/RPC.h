@@ -11,6 +11,7 @@
 #ifndef _ROUNDCC_RPC_H_
 #define _ROUNDCC_RPC_H_
 
+#include <round/Const.h>
 #include <round/common/types.h>
 #include <round/common/Error.h>
 #include <round/common/Message.h>
@@ -54,8 +55,8 @@ bool IsServerErrorCode(int jsonErrorCode);
 void ErrorCodeToError(int jsonErrorCode, Error *error);
 
 namespace HTTP {
-  static const std::string ENDPOINT     = "/rpc";
-  static const std::string CONTENT_TYPE = "application/json";
+  static const std::string ENDPOINT     = ROUNDCC_RPC_HTTP_ENDPOINT;
+  static const std::string CONTENT_TYPE = ROUNDCC_RPC_HTTP_CONTENT_TYPE;
   static const std::string METHOD       = uHTTP::HTTP::POST;
   static const std::string GET_METHOD   = uHTTP::HTTP::GET;
   static const std::string ACCEPT       = CONTENT_TYPE;

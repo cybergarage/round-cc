@@ -14,10 +14,11 @@ print<<HEADER;
 #define _ROUNDCC_CONST_H_
 
 HEADER
-my @consts = `curl -s https://raw.githubusercontent.com/cybergarage/round-common/master/src/constants.csv | awk '/./' | awk '\$0 !~ /^#/{print \$0}'`;
-foreach $const (@consts) {
-  $go_const = join(" ", split(/,/, $const));
-  print "#define ROUNDCC_" . $go_const;
+@const_lines = `curl -s https://raw.githubusercontent.com/cybergarage/round-common/master/src/constants.csv | awk '/./' | awk '\$0 !~ /^#/{print \$0}'`;
+foreach $const_line (@const_lines) {
+  @const = split(/,/, $const_line);
+  $const[0] =~ s/([a-z])/\u$1/g;
+  print "#define ROUNDCC_" . $const[0] . " " . $const[1];
 }
 print<<FOTTER;
 

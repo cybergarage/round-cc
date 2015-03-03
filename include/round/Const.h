@@ -11,6 +11,7 @@
 #ifndef _ROUNDCC_CONST_H_
 #define _ROUNDCC_CONST_H_
 
-#define ROUNDCC_HTTP_RPC_URI "/rpc"
+#define ROUNDCC_RPC_HTTP_ENDPOINT "/rpc"
+#define ROUNDCC_RPC_HTTP_CONTENT_TYPE "application/json"
 
 #endif
