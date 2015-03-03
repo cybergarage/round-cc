@@ -1,0 +1,25 @@
+#!/usr/bin/perl
+print<<HEADER;
+/******************************************************************
+ *
+ * Round for C++
+ *
+ * Copyright (C) Satoshi Konno 2015
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
+
+#ifndef _ROUNDCC_CONST_H_
+#define _ROUNDCC_CONST_H_
+
+HEADER
+my @consts = `curl -s https://raw.githubusercontent.com/cybergarage/round-common/master/src/constants.csv | awk '/./' | awk '\$0 !~ /^#/{print \$0}'`;
+foreach $const (@consts) {
+  $go_const = join(" ", split(/,/, $const));
+  print "#define ROUNDCC_" . $go_const;
+}
+print<<FOTTER;
+
+#endif
+FOTTER
