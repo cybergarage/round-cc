@@ -104,7 +104,8 @@ class NodeTestController {
   void runSystemMethodTest(Round::Node *node);
   void runRpcTest(Round::Node *node);
   void runRpcTest(Round::Node **nodes, size_t nodeCnt);
-
+  void runRpcBatchTest(Round::Node *node);
+  
   void runGetEchoMethodTest(Round::RemoteNode *node, bool isJsonRpcEncodeEnabled);
   
  private:

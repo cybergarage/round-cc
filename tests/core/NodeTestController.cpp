@@ -294,6 +294,11 @@ void NodeTestController::runRpcTest(Round::Node *node) {
   }
 }
 
+void NodeTestController::runRpcBatchTest(Round::Node *node) {
+  // echo (Add)
+  runPostBatchEchoMethodTest(node);
+}
+
 void NodeTestController::runSetEchoMethodTest(Round::Node *node) {
   Error err;
   

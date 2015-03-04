@@ -151,6 +151,31 @@ BOOST_AUTO_TEST_CASE(LocalNodeSystemMethodTest) {
   BOOST_CHECK(node.stop(&err));
 }
 
+BOOST_AUTO_TEST_CASE(LocalNodeRpcTest) {
+  Error err;
+  TestLocalNode node;
+  
+  BOOST_CHECK(node.start(&err));
+  
+  NodeTestController nodeTestController;
+  nodeTestController.runRpcTest(&node);
+  
+  BOOST_CHECK(node.stop(&err));
+}
+
+BOOST_AUTO_TEST_CASE(LocalNodeBatchRpcTest) {
+  Error err;
+  TestLocalNode node;
+  
+  BOOST_CHECK(node.start(&err));
+  
+  NodeTestController nodeTestController;
+  nodeTestController.runRpcBatchTest(&node);
+  
+  BOOST_CHECK(node.stop(&err));
+}
+
+
 namespace Round {
 
 static TestLocalNode **LocalNodeTestCreateNodes(size_t nodeCnt) {
