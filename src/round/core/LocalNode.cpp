@@ -236,8 +236,8 @@ bool Round::LocalNode::postMessage(const NodeRequest *nodeReq, NodeResponse *nod
   return execMessage(nodeReq, nodeRes, error);
 }
 
-bool Round::LocalNode::postMessage(const NodeBatchRequest *nodeReq, NodeBatchResponse *nodeRes, Error *error) {
-  return false;
+bool Round::LocalNode::postMessage(const NodeBatchRequest *nodeBatchReq, NodeBatchResponse *nodeBatchRes, Error *error) {
+  return execMessage(nodeBatchReq, nodeBatchRes, error);
 }
 
 bool Round::LocalNode::pushMessage(const Message *nodeReq) {
