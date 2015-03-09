@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE(ServerRequestTest) {
   int httpPort;
   BOOST_CHECK(nodeServer->getRequestPort(&httpPort, &err));
   BOOST_CHECK(0 < httpPort);
-  
+
   BOOST_MESSAGE("Server : " << httpHost << ":" << httpPort);
 
   // Check Server
@@ -48,7 +48,8 @@ BOOST_AUTO_TEST_CASE(ServerRequestTest) {
   RemoteNode remoteNode(httpHost, httpPort);
   NodeTestController nodeTestController;
   nodeTestController.runRpcTest(&remoteNode);
-  
+  nodeTestController.runRpcBatchTest(&remoteNode);
+
   // Stop Server
   
   BOOST_CHECK(nodeServer->stop(&err));
