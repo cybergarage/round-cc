@@ -153,7 +153,7 @@ bool Round::RemoteNode::postMessage(uHTTP::HTTPRequest *httpReq, NodeResponse *n
   if (!postMessage(httpReq, &rootObj, error))
     return false;
   
-  if (rootObj->isDictionary() == false) {
+  if (!rootObj->isDictionary()) {
     RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeParserError, error);
     return false;
   }
@@ -173,6 +173,41 @@ bool Round::RemoteNode::postMessage(uHTTP::HTTPRequest *httpReq, NodeResponse *n
     setRemoteClock(remoteTs);
   }
   
+  return true;
+}
+
+bool Round::RemoteNode::postMessage(uHTTP::HTTPRequest *httpReq, NodeBatchResponse *nodeBatchRes, Error *error) {
+  // HTTP Request
+  
+  JSONObject *rootObj = NULL;
+  if (!postMessage(httpReq, &rootObj, error))
+    return false;
+  
+  if (rootObj->isArray()) {
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeParserError, error);
+    return false;
+  }
+  
+  JSONArray *jsonArray = dynamic_cast<JSONArray *>(rootObj);
+  if (!jsonArray) {
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeParserError, error);
+    return false;
+  }
+  
+  nodeBatchRes->set(jsonArray);
+  
+  // Update local clock
+
+  for (NodeBatchResponse::iterator jsonObj = nodeBatchRes->begin(); jsonObj != nodeBatchRes->end(); jsonObj++) {
+    NodeResponse *nodeRes = dynamic_cast<NodeResponse *>(*jsonObj);
+    if (!nodeRes)
+      continue;
+    clock_t remoteTs;
+    if (!nodeRes->getTimestamp(&remoteTs))
+      continue;
+    setRemoteClock(remoteTs);
+  }
+    
   return true;
 }
 
@@ -205,7 +240,7 @@ bool Round::RemoteNode::postMessage(const NodeBatchRequest *nodeBatchReq, NodeBa
   uHTTP::HTTPRequest httpReq;
   nodeBatchReq->toHTTPPostRequest(&httpReq);
   
-  return false;
+  return postMessage(&httpReq, nodeBatchRes, error);
 }
 
 bool Round::RemoteNode::getMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error, bool jsonRpcEncodeEnable) {

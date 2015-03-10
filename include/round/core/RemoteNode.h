@@ -54,8 +54,9 @@ class RemoteNode : public Node {
 private:
 
   bool setUpdatedNodeStatusParameters(const NodeRequest *nodeReq);
-  bool postMessage(uHTTP::HTTPRequest *httpReq, NodeResponse *nodeRes, Error *error);
   bool postMessage(uHTTP::HTTPRequest *httpReq, JSONObject **rootObj, Error *error);
+  bool postMessage(uHTTP::HTTPRequest *httpReq, NodeResponse *nodeRes, Error *error);
+  bool postMessage(uHTTP::HTTPRequest *httpReq, NodeBatchResponse *nodeRes, Error *error);
 
 private:
 
