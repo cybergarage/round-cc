@@ -103,12 +103,12 @@ void Round::LocalWorkder::run() {
       nodeBatchRes.toJSONString(&resStr);
       RoundLogTrace(resStr.c_str());
       
-      uHTTP::HTTPRequest *httpReq = nodeReq->getHttpRequest();
+      uHTTP::HTTPRequest *httpReq = nodeBatchReq->getHttpRequest();
       if (httpReq) {
         post(httpReq, &nodeBatchRes);
       }
       
-      delete nodeReq;
+      delete nodeBatchReq;
       
       continue;
     }
