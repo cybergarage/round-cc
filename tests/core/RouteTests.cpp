@@ -79,7 +79,6 @@ BOOST_AUTO_TEST_CASE(RouteObjectsConstructorTest) {
   const std::string TEST_NODE = "node";
   const std::string TEST_CLUSTER = "cluster";
   
-  
   // "cluster.node.method"
   
   RouteObjects routeObjs(TEST_CLUSTER + "." + TEST_NODE + "." + TEST_METHOD);

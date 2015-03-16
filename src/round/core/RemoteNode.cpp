@@ -183,7 +183,7 @@ bool Round::RemoteNode::postMessage(uHTTP::HTTPRequest *httpReq, NodeBatchRespon
   if (!postMessage(httpReq, &rootObj, error))
     return false;
   
-  if (rootObj->isArray()) {
+  if (!rootObj->isArray()) {
     RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeParserError, error);
     return false;
   }
@@ -199,11 +199,13 @@ bool Round::RemoteNode::postMessage(uHTTP::HTTPRequest *httpReq, NodeBatchRespon
   // Update local clock
 
   for (NodeBatchResponse::iterator jsonObj = nodeBatchRes->begin(); jsonObj != nodeBatchRes->end(); jsonObj++) {
-    NodeResponse *nodeRes = dynamic_cast<NodeResponse *>(*jsonObj);
-    if (!nodeRes)
+    JSONDictionary *jsonDict = dynamic_cast<JSONDictionary *>(*jsonObj);
+    if (!jsonDict)
       continue;
+    NodeResponse nodeRes;
+    nodeRes.set(jsonDict);
     clock_t remoteTs;
-    if (!nodeRes->getTimestamp(&remoteTs))
+    if (!nodeRes.getTimestamp(&remoteTs))
       continue;
     setRemoteClock(remoteTs);
   }
