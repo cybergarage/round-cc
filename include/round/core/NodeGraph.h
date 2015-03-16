@@ -34,6 +34,7 @@ class NodeGraph : public ConsistentHashGraph {
 
   bool hasNode(const Node *node) const;
   bool isLeaderNode(const Node *node) const;
+  Node *getLeaderNode() const;
   
   Node *getOffsetNode(const Node *node, off_t offset) const;
   Node *getNextNode(const Node *node) const;
