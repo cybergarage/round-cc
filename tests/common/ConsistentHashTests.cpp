@@ -87,11 +87,13 @@ BOOST_AUTO_TEST_CASE(RoundConsistentHashGraphAddSameNodeTest) {
   BOOST_CHECK_EQUAL(coHashGraph.hasNode(cosNode), true);
   BOOST_CHECK_EQUAL(coHashGraph.size(), 1);
   BOOST_CHECK_EQUAL(coHashGraph.isLastNode(cosNode), true);
+  BOOST_CHECK_EQUAL(coHashGraph.getLastNode(), cosNode);
 
   BOOST_CHECK_EQUAL(coHashGraph.addNode(cosNode), false);
   BOOST_CHECK_EQUAL(coHashGraph.hasNode(cosNode), true);
   BOOST_CHECK_EQUAL(coHashGraph.size(), 1);
   BOOST_CHECK_EQUAL(coHashGraph.isLastNode(cosNode), true);
+  BOOST_CHECK_EQUAL(coHashGraph.getLastNode(), cosNode);
   
   delete cosNode;
 }
