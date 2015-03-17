@@ -13,7 +13,7 @@
 #include <round/core/NodeStatus.h>
 
 Round::NodeStatus::NodeStatus() {
-  setState(UNKNOWN);
+  setState(STOP);
 }
 
 Round::NodeStatus::~NodeStatus() {
