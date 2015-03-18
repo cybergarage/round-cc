@@ -17,6 +17,11 @@
 // Static
 ////////////////////////////////////////////////
 
+static JSFunctionSpec JS_SM_FUNCTIONS[] = {
+  JS_FN("get_nodegraph", js_sm_get_nodegraph, 0, 0),
+  JS_FS_END
+};
+
 static void RoundJSReportError(JSContext *cx, const char *message, JSErrorReport *report)
 {
   fprintf(stderr, "%s:%u:%s\n",

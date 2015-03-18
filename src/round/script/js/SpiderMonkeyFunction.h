@@ -15,9 +15,4 @@
 
 JSBool js_sm_get_nodegraph(JSContext *cx, unsigned argc, jsval *vp);
 
-JSFunctionSpec JS_SM_FUNCTIONS[] = {
-  JS_FN("get_nodegraph", js_sm_get_nodegraph, 0, 0),
-  JS_FS_END
-};
-
 #endif
