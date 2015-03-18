@@ -24,6 +24,8 @@
 		21526C8B1A6682F900CF3D12 /* RPCMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21526C861A6682F900CF3D12 /* RPCMessage.cpp */; };
 		21526C8C1A6682F900CF3D12 /* RPCRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21526C871A6682F900CF3D12 /* RPCRequest.cpp */; };
 		21526C8D1A6682F900CF3D12 /* RPCResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21526C881A6682F900CF3D12 /* RPCResponse.cpp */; };
+		2155C4381AB928F900A5E55C /* SpiderMonkeyFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2155C4361AB928F900A5E55C /* SpiderMonkeyFunction.cpp */; };
+		2155C4391AB928F900A5E55C /* SpiderMonkeyFunction.h in Headers */ = {isa = PBXBuildFile; fileRef = 2155C4371AB928F900A5E55C /* SpiderMonkeyFunction.h */; };
 		215F6FD21AA6448D00CBDAB9 /* Const.h in Headers */ = {isa = PBXBuildFile; fileRef = 215F6FD11AA6448D00CBDAB9 /* Const.h */; };
 		216CAAD81A78834800396ED8 /* LocalRouteEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216CAAD71A78834800396ED8 /* LocalRouteEngine.cpp */; };
 		217342FD1A6CB3C000ADA1C8 /* question.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217342FC1A6CB3C000ADA1C8 /* question.cpp */; };
@@ -243,6 +245,8 @@
 		21526C861A6682F900CF3D12 /* RPCMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCMessage.cpp; sourceTree = "<group>"; };
 		21526C871A6682F900CF3D12 /* RPCRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCRequest.cpp; sourceTree = "<group>"; };
 		21526C881A6682F900CF3D12 /* RPCResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCResponse.cpp; sourceTree = "<group>"; };
+		2155C4361AB928F900A5E55C /* SpiderMonkeyFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpiderMonkeyFunction.cpp; sourceTree = "<group>"; };
+		2155C4371AB928F900A5E55C /* SpiderMonkeyFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpiderMonkeyFunction.h; sourceTree = "<group>"; };
 		215F6FD11AA6448D00CBDAB9 /* Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 		216CAAD71A78834800396ED8 /* LocalRouteEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalRouteEngine.cpp; sourceTree = "<group>"; };
 		217342FC1A6CB3C000ADA1C8 /* question.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = question.cpp; sourceTree = "<group>"; };
@@ -454,6 +458,15 @@
 				219CE2751A6DD8F2008A6CBD /* RQLRequest.cpp */,
 			);
 			path = rql;
+			sourceTree = "<group>";
+		};
+		2155C4351AB928F900A5E55C /* js */ = {
+			isa = PBXGroup;
+			children = (
+				2155C4361AB928F900A5E55C /* SpiderMonkeyFunction.cpp */,
+				2155C4371AB928F900A5E55C /* SpiderMonkeyFunction.h */,
+			);
+			path = js;
 			sourceTree = "<group>";
 		};
 		21A41AB01540235B008085EB /* Headers */ = {
@@ -854,6 +867,7 @@
 		21D8E2A11A60E1E200E8A63F /* script */ = {
 			isa = PBXGroup;
 			children = (
+				2155C4351AB928F900A5E55C /* js */,
 				21B854031A60E470009E6ECB /* TclEngine.cpp */,
 				21D8E2A21A60E1E200E8A63F /* JavaEngine.cpp */,
 				21D8E2A31A60E1E200E8A63F /* JavaScriptEngine.cpp */,
@@ -943,6 +957,7 @@
 				21B329461A6B939D0077C313 /* Command.h in Headers */,
 				21D8E1D01A60E19300E8A63F /* NodeCore.h in Headers */,
 				21D8E1C41A60E19300E8A63F /* ErrorNo.h in Headers */,
+				2155C4391AB928F900A5E55C /* SpiderMonkeyFunction.h in Headers */,
 				21D8E1B11A60E19300E8A63F /* Dictionary.h in Headers */,
 				21D8E1D71A60E19300E8A63F /* ServerNode.h in Headers */,
 				21D8E1C81A60E19300E8A63F /* UPnPServerNode.h in Headers */,
@@ -1047,6 +1062,7 @@
 				21D7A59F1A6BF1E100D43061 /* version.cpp in Sources */,
 				21D8E2D01A60E1E200E8A63F /* Mutex.cpp in Sources */,
 				21D8E2CE1A60E1E200E8A63F /* MessageManager.cpp in Sources */,
+				2155C4381AB928F900A5E55C /* SpiderMonkeyFunction.cpp in Sources */,
 				21B911B21A6B5F4300C791FD /* MethodManager.cpp in Sources */,
 				21F4CE6D1A63F0BA00E7F0CC /* ScriptEngineMap.cpp in Sources */,
 				21D8E2CB1A60E1E200E8A63F /* JSONReal.cpp in Sources */,

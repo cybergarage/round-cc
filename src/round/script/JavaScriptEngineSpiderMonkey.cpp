@@ -9,6 +9,7 @@
 ******************************************************************/
 
 #include <round/script/JavaScript.h>
+#include <round/script/js/SpiderMonkeyFunction.h>
 
 #if defined(ROUND_SUPPORT_JS_SM)
 
@@ -59,6 +60,8 @@ void Round::JavaScriptEngine::init() {
     return;
     
   JS_InitStandardClasses(cx, glob);
+  JS_DefineFunctions(cx, glob, JS_SM_FUNCTIONS);
+  
 }
 
 ////////////////////////////////////////////////
