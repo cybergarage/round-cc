@@ -24,6 +24,6 @@ print join(" \\\n", @include_files) . "\n";
 
 print<<FOTTER;
 
-nobase_include_HEADERS = \
+nobase_include_HEADERS = \\
 	\$(roundcc_headers)
 FOTTER
