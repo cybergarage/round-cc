@@ -38,9 +38,6 @@ class TclEngine : public ScriptEngine {
   bool run(const Script *script, const std::string &params, std::string *results, Error *error) const;
 
 private:
-  bool run(const std::string &source, std::string *results, Error *error) const;
-
-private:
   struct Tcl_Interp *interp;
 };
   
