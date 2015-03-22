@@ -34,8 +34,6 @@ class LuaEngine : public ScriptEngine {
 private:
   
   lua_State *luaState;
-  
-  bool getSourceCode(const Script *script, const std::string &params, std::string *sourceCode) const;
 };
   
 }
