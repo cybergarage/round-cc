@@ -22,6 +22,7 @@ JNI_VERSION=1.6.0
 V8_VERSION=3.14
 JS_VERSION=1.8.5
 TCL_VERSION=8.5.0
+LUA_VERSION=5.2.3
 
 UHTTP_VERSION=0.6.0
 MUPNPCC_VERSION=3.0.0
@@ -230,6 +231,29 @@ AC_CHECK_HEADERS([tcl.h],,
 	AC_DEFINE([ROUND_SUPPORT_TCL],1,[Tcl])
 fi
 
+# Lua 
+
+AC_ARG_ENABLE(
+	[script-lua],
+	[  --enable-script-lua	enable Lua support [default=yes]],
+	[
+		if test $enableval = yes; then
+			ROUND_SUPPORT_LUA=yes
+		else
+			ROUND_SUPPORT_LUA=no
+		fi
+	],[
+		ROUND_SUPPORT_LUA=yes
+	]
+)
+if [ test $ROUND_SUPPORT_LUA = yes ]; then
+AC_CHECK_HEADERS([lua.h],,
+	[AC_CHECK_HEADERS([lua.h],,[AC_MSG_ERROR(Round for C++ needs LUA $LUA_VERSION later)])])
+	AC_CHECK_LIB([lua],[main],,[AC_MSG_ERROR(Round for C++ needs LUA $LUA_VERSION later)])
+	AC_DEFINE([ROUND_SUPPORT_LUA],1,[Lua])
+fi
+
+##############################
 ##############################
 # Checks for JSON Libraries
 ##############################

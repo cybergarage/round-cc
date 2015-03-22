@@ -672,8 +672,8 @@
 				21D8E1921A60E19300E8A63F /* LocalNode.h */,
 				21D8E1941A60E19300E8A63F /* Log.h */,
 				21D8E1951A60E19300E8A63F /* Logger.h */,
-				21D8E1961A60E19300E8A63F /* LoggerTarget.h */,
 				210A64C01A6A317900E8F61D /* Method.h */,
+				21D8E1961A60E19300E8A63F /* LoggerTarget.h */,
 				21D8E1971A60E19300E8A63F /* Node.h */,
 				21D8E1991A60E19300E8A63F /* NodeCore.h */,
 				21D8E19A1A60E19300E8A63F /* NodeFinder.h */,
@@ -872,9 +872,9 @@
 		21D8E2A11A60E1E200E8A63F /* script */ = {
 			isa = PBXGroup;
 			children = (
-				21A0E7D61ABE523F009FA687 /* LuaEngine.cpp */,
 				2155C4351AB928F900A5E55C /* js */,
 				21B854031A60E470009E6ECB /* TclEngine.cpp */,
+				21A0E7D61ABE523F009FA687 /* LuaEngine.cpp */,
 				21D8E2A21A60E1E200E8A63F /* JavaEngine.cpp */,
 				21D8E2A31A60E1E200E8A63F /* JavaScriptEngine.cpp */,
 				21D8E2A41A60E1E200E8A63F /* JavaScriptEngineSpiderMonkey.cpp */,

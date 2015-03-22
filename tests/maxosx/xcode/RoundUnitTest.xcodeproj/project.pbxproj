@@ -571,6 +571,7 @@
 					"-lssl",
 					"-lcrypto",
 					"-lmozjs185",
+					"-llua",
 				);
 				SDKROOT = macosx;
 				VALID_ARCHS = "i386 x86_64";
@@ -622,6 +623,7 @@
 					"-lssl",
 					"-lcrypto",
 					"-lmozjs185",
+					"-llua",
 				);
 				SDKROOT = macosx;
 				VALID_ARCHS = "i386 x86_64";
@@ -654,6 +656,7 @@
 					"-lssl",
 					"-lcrypto",
 					"-lmozjs185",
+					"-llua",
 				);
 				PRODUCT_NAME = RoundUnitTest;
 				SDKROOT = macosx;
@@ -686,6 +689,7 @@
 					"-lssl",
 					"-lcrypto",
 					"-lmozjs185",
+					"-llua",
 				);
 				PRODUCT_NAME = RoundUnitTest;
 				SDKROOT = macosx;

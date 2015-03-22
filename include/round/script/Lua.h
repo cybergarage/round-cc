@@ -12,6 +12,9 @@
 #define _ROUNDCC_SCRIPT_LUA_H_
 
 #include <round/core/Script.h>
+#include <lua.h>
+#include <lualib.h>
+#include <lauxlib.h>
 
 namespace Round {
 
@@ -27,6 +30,12 @@ class LuaEngine : public ScriptEngine {
   
   bool compile(const Script *script) const;
   bool run(const Script *script, const std::string &params, std::string *results, Error *error) const;
+
+private:
+  
+  lua_State *luaState;
+  
+  bool getSourceCode(const Script *script, const std::string &params, std::string *sourceCode) const;
 };
   
 }
