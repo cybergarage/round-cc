@@ -27,7 +27,7 @@ BOOST_AUTO_TEST_CASE(LuaEngineEchoTest) {
   BOOST_CHECK(scriptMgr.setEngine(new LuaEngine()));
   BOOST_CHECK(scriptMgr.hasEngine(LuaEngine::LANGUAGE));
   
-  BOOST_CHECK(scriptMgr.setScript(Test::SCRIPT_ECHO_NAME, LuaEngine::LANGUAGE, Round::Test::JS_ECHO_CODE, Script::ENCODING_NONE, &err));
+  BOOST_CHECK(scriptMgr.setScript(Test::SCRIPT_ECHO_NAME, LuaEngine::LANGUAGE, Round::Test::LUA_ECHO_CODE, Script::ENCODING_NONE, &err));
   BOOST_CHECK(scriptMgr.hasScript(Test::SCRIPT_ECHO_NAME));
   
   Test::ScriptTestController scriptTestController;
@@ -38,7 +38,7 @@ BOOST_AUTO_TEST_CASE(LuaEngineSumTest) {
   
   ScriptManager scriptMgr;
   
-  BOOST_CHECK(scriptMgr.setScript(new Script(LuaEngine::LANGUAGE, Test::SCRIPT_SUM_NAME, Test::JS_SUM_CODE)));
+  BOOST_CHECK(scriptMgr.setScript(new Script(LuaEngine::LANGUAGE, Test::SCRIPT_SUM_NAME, Test::LUA_SUM_CODE)));
   BOOST_CHECK(scriptMgr.hasScript(Test::SCRIPT_SUM_NAME));
   
   BOOST_CHECK(scriptMgr.setEngine(new LuaEngine()));

@@ -26,6 +26,10 @@ const std::string SCRIPT_SETCOUNTER_NAME = "set_counter";
 const std::string SCRIPT_INCCOUNTER_NAME = "inc_counter";
 const std::string SCRIPT_GETCOUNTER_NAME = "get_counter";
 
+////////////////////////////////////////////////////////////
+// JavaScript
+////////////////////////////////////////////////////////////
+
 const std::string JS_ECHO_CODE = \
   "function echo(params) {"\
   "  return params;"\
@@ -60,6 +64,10 @@ const std::string JS_GETCOUNTER_CODE = \
   "  return global.counter;"\
   "}";
   
+////////////////////////////////////////////////////////////
+// Java
+////////////////////////////////////////////////////////////
+
 const std::string JAVA_ECHO_SOURCE = "round/tests/scripts/echo.java";
 const std::string JAVA_ECHO_CODE = "yv66vgAAADIADwoAAwAMBwANBwAOAQAGPGluaXQ+AQADKClWAQAEQ29kZQEAD0xpbmVOdW1iZXJUYWJsZQEADnByb2Nlc3NNZXNzYWdlAQAmKExqYXZhL2xhbmcvU3RyaW5nOylMamF2YS9sYW5nL1N0cmluZzsBAApTb3VyY2VGaWxlAQAJZWNoby5qYXZhDAAEAAUBAARlY2hvAQAQamF2YS9sYW5nL09iamVjdAAhAAIAAwAAAAAAAgABAAQABQABAAYAAAAhAAEAAQAAAAUqtwABsQAAAAEABwAAAAoAAgAAAAIABAADAAEACAAJAAEABgAAABoAAQACAAAAAiuwAAAAAQAHAAAABgABAAAABQABAAoAAAACAAs=";
 
@@ -77,6 +85,28 @@ const std::string JAVA_GETCOUNTER_CODE = "yv66vgAAADIAGwoABQAOCQAPABAKABEAEgcAEw
 
 const std::string JAVA_INCCOUNTER_SOURCE = "round/tests/scripts/inc_counter.java";
 const std::string JAVA_INCCOUNTER_CODE = "yv66vgAAADIAGwoABQAOCQAPABAKABEAEgcAEwcAFAEABjxpbml0PgEAAygpVgEABENvZGUBAA9MaW5lTnVtYmVyVGFibGUBAA5wcm9jZXNzTWVzc2FnZQEAJihMamF2YS9sYW5nL1N0cmluZzspTGphdmEvbGFuZy9TdHJpbmc7AQAKU291cmNlRmlsZQEAEGluY19jb3VudGVyLmphdmEMAAYABwcAFQwAFgAXBwAYDAAZABoBAAtpbmNfY291bnRlcgEAEGphdmEvbGFuZy9PYmplY3QBAAdDb3VudGVyAQAFdmFsdWUBAAFJAQAQamF2YS9sYW5nL1N0cmluZwEAB3ZhbHVlT2YBABUoSSlMamF2YS9sYW5nL1N0cmluZzsAIQAEAAUAAAAAAAIAAQAGAAcAAQAIAAAAIQABAAEAAAAFKrcAAbEAAAABAAkAAAAKAAIAAAAFAAQABgABAAoACwABAAgAAAArAAIAAgAAAA+yAAIEYLMAArIAArgAA7AAAAABAAkAAAAKAAIAAAAJAAgACgABAAwAAAACAA0=";
+
+////////////////////////////////////////////////////////////
+// Lua
+////////////////////////////////////////////////////////////
+
+const std::string LUA_ECHO_CODE = \
+"function echo(params)"\
+"  return params"\
+"end";
+  
+const std::string LUA_SUM_CODE = \
+"function sum(params) "\
+"  local sum = 0"\
+"  for i, value in pairs(params) {"\
+"    sum += value"\
+"  }"\
+"  return sum"\
+"end";
+  
+////////////////////////////////////////////////////////////
+// Method Requests
+////////////////////////////////////////////////////////////
 
 const std::string JS_INVALID_FUNCTION = \
   "function echo(params) {"\
