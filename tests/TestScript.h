@@ -91,18 +91,18 @@ const std::string JAVA_INCCOUNTER_CODE = "yv66vgAAADIAGwoABQAOCQAPABAKABEAEgcAEw
 ////////////////////////////////////////////////////////////
 
 const std::string LUA_ECHO_CODE = \
-"function echo(params)"\
-"  return params"\
+"function echo(params)\n"\
+"  return params\n"\
 "end";
   
 const std::string LUA_SUM_CODE = \
-"function sum(params) "\
-"  local sum = 0"\
-"  for i, value in pairs(params) {"\
-"    sum += value"\
-"  }"\
-"  return sum"\
-"end";
+"function sum(params)\n"\
+"  local sum = 0\n"\
+"  for i, value in pairs(params) {\n"\
+"    sum += value\n"\
+"  }\n"\
+"  return sum\n"\
+"end\n";
   
 ////////////////////////////////////////////////////////////
 // Method Requests

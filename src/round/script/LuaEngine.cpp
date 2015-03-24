@@ -60,17 +60,18 @@ bool Round::LuaEngine::run(const Script *luaScript, const std::string &params, s
   lua_getglobal(this->luaState, luaScript->getName().c_str());
   lua_pushstring(this->luaState, params.c_str());
 
-  if (lua_pcall(this->luaState, 1, 1, 0) != 0) {
+  int callResult = lua_pcall(this->luaState, 1, 1, 0);
+  if (callResult == 0) {
+    *results = lua_tostring(this->luaState, -1);
+  }
+  else {
     RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInternalError, error);
     error->setMessage(lua_tostring(this->luaState, -1));
-    lua_settop(this->luaState, 0);
-    return false;
   }
-
-  *results = lua_tostring(this->luaState, -1);
-  lua_settop(this->luaState, 0);
   
-  return true;
+  lua_pop(this->luaState, 2);
+  
+  return (callResult == 0) ? true : false;
 }
 
 #endif

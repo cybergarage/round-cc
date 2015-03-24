@@ -12,9 +12,12 @@
 #define _ROUNDCC_SCRIPT_LUA_H_
 
 #include <round/core/Script.h>
+
+extern "C" {
 #include <lua.h>
 #include <lualib.h>
 #include <lauxlib.h>
+}
 
 namespace Round {
 
