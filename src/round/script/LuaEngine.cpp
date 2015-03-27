@@ -55,16 +55,22 @@ bool Round::LuaEngine::run(const Script *luaScript, const std::string &params, s
   int nStack = lua_gettop(this->luaState);
   
   if (luaL_loadstring(this->luaState, (const char *)luaScript->getCode()) != 0) {
+    nStack = lua_gettop(this->luaState);
     RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInternalError, error);
+    error->setMessage(lua_tostring(this->luaState, -1));
+    lua_pop(this->luaState, 1);
+    nStack = lua_gettop(this->luaState);
     return false;
   }
 
   nStack = lua_gettop(this->luaState);
   
   if(lua_pcall(this->luaState, 0, 0, 0) != 0) {
+    nStack = lua_gettop(this->luaState);
     RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInternalError, error);
     error->setMessage(lua_tostring(this->luaState, -1));
     lua_pop(this->luaState, 1);
+    nStack = lua_gettop(this->luaState);
     return false;
   }
   

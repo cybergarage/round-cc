@@ -96,13 +96,15 @@ const std::string LUA_ECHO_CODE = \
 "end";
   
 const std::string LUA_SUM_CODE = \
-"function sum(params)\n"\
+"function sum(jsonParams)\n"\
+"  local json = require(\"json\")\n"\
+"  local params = json.decode(jsonParams)\n"\
 "  local sum = 0\n"\
-"  for i, value in pairs(params) {\n"\
-"    sum += value\n"\
-"  }\n"\
+"  for i, value in pairs(params) do\n"\
+"  sum = sum + value\n"\
+"  end\n"\
 "  return sum\n"\
-"end\n";
+"  end\n";
   
 ////////////////////////////////////////////////////////////
 // Method Requests
