@@ -173,14 +173,7 @@ class ScriptEngineMap : public std::map<std::string, ScriptEngine *> {
   void clear();
 };
 
-class ScriptEngineList : public Vector<ScriptEngine> {
-    
- public:
-    
-  ScriptEngineList() {
-    setWeekContainer(true);
-  }
-};
+class Node;
   
 class ScriptManager {
     
@@ -205,13 +198,22 @@ class ScriptManager {
   bool run(const std::string &name, const std::string &params, std::string *results, Error *error);
   
   bool toJSONArray(JSONArray *jsonArray, Error *error);
-  
+
+  void setNode(Node *node) {
+    this->node = node;
+  }
+
+  Node *getNode() {
+    return this->node;
+  }
+
  private:
 
   bool removeScript(const std::string &method, const std::string &lang, Error *error);
   
   ScriptMap       scripts;
   ScriptEngineMap engines;
+  Node            *node;
 };
 
 }
