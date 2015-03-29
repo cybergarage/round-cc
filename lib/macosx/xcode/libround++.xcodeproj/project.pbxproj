@@ -58,6 +58,8 @@
 		21B911B91A6B5F4300C791FD /* SystemMethodResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911AB1A6B5F4300C791FD /* SystemMethodResponse.cpp */; };
 		21B911BA1A6B5F4300C791FD /* SystemNodeInfoDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911AC1A6B5F4300C791FD /* SystemNodeInfoDict.cpp */; };
 		21B911BC1A6B61CC00C791FD /* set_method.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911BB1A6B61CC00C791FD /* set_method.cpp */; };
+		21C2236A1AC5264200209C1F /* LuaFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C223681AC5264200209C1F /* LuaFunction.cpp */; };
+		21C2236B1AC5264200209C1F /* LuaFunction.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C223691AC5264200209C1F /* LuaFunction.h */; };
 		21D03AD41A63C4A60098122A /* Route.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D03AD31A63C4A60098122A /* Route.h */; };
 		21D50A9B1A819F39005C1F51 /* exec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50A9A1A819F39005C1F51 /* exec.cpp */; };
 		21D50AA21A82322F005C1F51 /* get_reg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50AA01A82322F005C1F51 /* get_reg.cpp */; };
@@ -282,6 +284,8 @@
 		21B911AB1A6B5F4300C791FD /* SystemMethodResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemMethodResponse.cpp; sourceTree = "<group>"; };
 		21B911AC1A6B5F4300C791FD /* SystemNodeInfoDict.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemNodeInfoDict.cpp; sourceTree = "<group>"; };
 		21B911BB1A6B61CC00C791FD /* set_method.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = set_method.cpp; sourceTree = "<group>"; };
+		21C223681AC5264200209C1F /* LuaFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaFunction.cpp; sourceTree = "<group>"; };
+		21C223691AC5264200209C1F /* LuaFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaFunction.h; sourceTree = "<group>"; };
 		21D03AD31A63C4A60098122A /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
 		21D50A9A1A819F39005C1F51 /* exec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exec.cpp; sourceTree = "<group>"; };
 		21D50AA01A82322F005C1F51 /* get_reg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = get_reg.cpp; sourceTree = "<group>"; };
@@ -595,6 +599,15 @@
 			path = method;
 			sourceTree = "<group>";
 		};
+		21C223671AC5264200209C1F /* lua */ = {
+			isa = PBXGroup;
+			children = (
+				21C223681AC5264200209C1F /* LuaFunction.cpp */,
+				21C223691AC5264200209C1F /* LuaFunction.h */,
+			);
+			path = lua;
+			sourceTree = "<group>";
+		};
 		21CD1B95192DC7E000452ADF /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -872,6 +885,7 @@
 		21D8E2A11A60E1E200E8A63F /* script */ = {
 			isa = PBXGroup;
 			children = (
+				21C223671AC5264200209C1F /* lua */,
 				2155C4351AB928F900A5E55C /* js */,
 				21B854031A60E470009E6ECB /* TclEngine.cpp */,
 				21A0E7D61ABE523F009FA687 /* LuaEngine.cpp */,
@@ -936,6 +950,7 @@
 				21D8E1BD1A60E19300E8A63F /* Settings.h in Headers */,
 				21D8E1D61A60E19300E8A63F /* Script.h in Headers */,
 				21D8E1DC1A60E19300E8A63F /* JavaScript.h in Headers */,
+				21C2236B1AC5264200209C1F /* LuaFunction.h in Headers */,
 				21D8E1C11A60E19300E8A63F /* Vector.h in Headers */,
 				21D8E1DB1A60E19300E8A63F /* Java.h in Headers */,
 				21D8E1B91A60E19300E8A63F /* Properties.h in Headers */,
@@ -1114,6 +1129,7 @@
 				21D8E2FF1A60E1E200E8A63F /* Finder.cpp in Sources */,
 				21D8E2F51A60E1E200E8A63F /* RemoteNode.cpp in Sources */,
 				21D8CA741A6B70FC002CBDC3 /* set_route.cpp in Sources */,
+				21C2236A1AC5264200209C1F /* LuaFunction.cpp in Sources */,
 				2147F29B1A91A3B5009A8275 /* RPCParser.cpp in Sources */,
 				21D8E2D41A60E1E200E8A63F /* Random.cpp in Sources */,
 				21D8E2DD1A60E1E200E8A63F /* ThreadList.cpp in Sources */,

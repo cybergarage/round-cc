@@ -21,6 +21,7 @@
 #include <round/common/RPC.h>
 #include <round/common/Mutex.h>
 #include <round/common/JSON.h>
+#include <round/core/Node.h>
 
 namespace Round {
 
@@ -104,13 +105,22 @@ class Script {
   }
   
   bool toJSONDictionary(JSONDictionary **jsonDict);
-
+/*
+  void setNode(Node *node) {
+    this->node = node;
+  }
+  
+  Node *getNode() {
+    return this->node;
+  }
+*/
 private:
   std::string language;
   std::string name;
   byte        *code;
   size_t      codeLen;
   int         codeEncoding;
+  //Node        *node;
 };
 
 class ScriptMap : public std::map<std::string, Script *> {
@@ -173,8 +183,6 @@ class ScriptEngineMap : public std::map<std::string, ScriptEngine *> {
   void clear();
 };
 
-class Node;
-  
 class ScriptManager {
     
  public:
@@ -198,22 +206,22 @@ class ScriptManager {
   bool run(const std::string &name, const std::string &params, std::string *results, Error *error);
   
   bool toJSONArray(JSONArray *jsonArray, Error *error);
-
+/*
   void setNode(Node *node) {
     this->node = node;
   }
-
+  
   Node *getNode() {
     return this->node;
   }
-
+*/
  private:
 
   bool removeScript(const std::string &method, const std::string &lang, Error *error);
   
   ScriptMap       scripts;
   ScriptEngineMap engines;
-  Node            *node;
+  //Node            *node;
 };
 
 }

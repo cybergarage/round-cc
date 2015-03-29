@@ -11,9 +11,12 @@
 #include <sstream>
 #include <boost/algorithm/string/replace.hpp>
 
+#include <round/Const.h>
 #include <round/common/encoding/Base64.h>
 #include <round/core/Log.h>
 #include <round/script/Lua.h>
+#include <round/script/Lua.h>
+#include <round/script/lua/LuaFunction.h>
 
 #if defined(ROUND_SUPPORT_TCL)
 
@@ -25,7 +28,15 @@ const std::string Round::LuaEngine::LANGUAGE = "lua";
 
 Round::LuaEngine::LuaEngine() : ScriptEngine(LANGUAGE) {
   this->luaState = luaL_newstate();
+
   luaL_openlibs(this->luaState);
+
+  lua_register(this->luaState, ROUNDCC_SCRIPT_GET_NETWORK_STATE, round_lua_get_network_state);
+  lua_register(this->luaState, ROUNDCC_SCRIPT_GET_CLUSTER_STATE, round_lua_get_cluster_state);
+  lua_register(this->luaState, ROUNDCC_SCRIPT_GET_NODE_STATE, round_lua_get_node_state);
+  lua_register(this->luaState, ROUNDCC_SCRIPT_SET_REG, round_lua_set_reg);
+  lua_register(this->luaState, ROUNDCC_SCRIPT_GET_REG, round_lua_get_reg);
+  lua_register(this->luaState, ROUNDCC_SCRIPT_POST_METHOD, round_lua_post_method);
 }
 
 ////////////////////////////////////////////////
