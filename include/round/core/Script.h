@@ -105,7 +105,7 @@ class Script {
   }
   
   bool toJSONDictionary(JSONDictionary **jsonDict);
-/*
+
   void setNode(Node *node) {
     this->node = node;
   }
@@ -113,14 +113,18 @@ class Script {
   Node *getNode() {
     return this->node;
   }
-*/
+
+private:
+  
+  void init();
+  
 private:
   std::string language;
   std::string name;
   byte        *code;
   size_t      codeLen;
   int         codeEncoding;
-  //Node        *node;
+  Node        *node;
 };
 
 class ScriptMap : public std::map<std::string, Script *> {

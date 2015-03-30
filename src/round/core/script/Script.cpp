@@ -17,28 +17,30 @@ const int Round::Script::ENCODING_NONE = 0;
 const int Round::Script::ENCODING_BASE64 = 1;
 
 Round::Script::Script(const std::string &lang) {
+  init();
   this->language = lang;
-  this->code = NULL;
-  this->codeLen = 0;
-  setEncording(ENCODING_NONE);
 }
 
 Round::Script::Script(const std::string &lang, const std::string &name, const std::string &code) {
+  init();
   this->language = lang;
-  this->code = NULL;
-  this->codeLen = 0;
   setName(name);
   setCode(code);
-  setEncording(ENCODING_NONE);
 }
 
 Round::Script::Script(const std::string &lang, const std::string &name, const byte *code, size_t codeLen) {
+  init();
   this->language = lang;
-  this->code = NULL;
-  this->codeLen = 0;
   setName(name);
   setCode(code, codeLen);
+}
+
+void Round::Script::init() {
+  this->language = "";
+  this->code = NULL;
+  this->codeLen = 0;
   setEncording(ENCODING_NONE);
+  setNode(NULL);
 }
 
 Round::Script::~Script() {
