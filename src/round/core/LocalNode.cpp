@@ -28,6 +28,7 @@ Round::LocalNode::~LocalNode() {
 }
 
 void Round::LocalNode::init() {
+  this->scriptMgr.setNode(this);
   setState(NodeStatus::STOP);
 }
 

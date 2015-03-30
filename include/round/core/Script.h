@@ -110,8 +110,12 @@ class Script {
     this->node = node;
   }
   
-  Node *getNode() {
+  Node *getNode() const {
     return this->node;
+  }
+  
+  bool hasNode() const {
+    return (this->node) ? true : false;
   }
 
 private:
@@ -210,22 +214,26 @@ class ScriptManager {
   bool run(const std::string &name, const std::string &params, std::string *results, Error *error);
   
   bool toJSONArray(JSONArray *jsonArray, Error *error);
-/*
+  
   void setNode(Node *node) {
     this->node = node;
   }
   
-  Node *getNode() {
+  Node *getNode() const {
     return this->node;
   }
-*/
+
+  bool hasNode() const {
+    return (this->node) ? true : false;
+  }
+  
  private:
 
   bool removeScript(const std::string &method, const std::string &lang, Error *error);
   
   ScriptMap       scripts;
   ScriptEngineMap engines;
-  //Node            *node;
+  Node            *node;
 };
 
 }

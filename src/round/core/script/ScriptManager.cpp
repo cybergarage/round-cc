@@ -11,6 +11,7 @@
 #include <round/core/Script.h>
 
 Round::ScriptManager::ScriptManager() {
+  setNode(NULL);
 }
 
 Round::ScriptManager::~ScriptManager() {
@@ -31,6 +32,7 @@ bool Round::ScriptManager::setScript(Script *script) {
   }
   
   this->scripts[name] = script;
+  script->setNode(hasNode() ? getNode() : NULL);
   
   return true;
 }
