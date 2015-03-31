@@ -28,16 +28,27 @@ int round_lua_get_node_state(lua_State* L)
 
 int round_lua_set_reg(lua_State* L)
 {
-  const char *key = luaL_checkstring(L, -2);
-  const char *value = luaL_checkstring(L, -1);
+  const char *key = luaL_checkstring(L, 1);
+  const char *val = luaL_checkstring(L, 2);
+  //lua_pushlightuserdata
+  bool isSuccess = false;
+  
+  lua_pushboolean(L, isSuccess);
+  
   return 1;
 }
 
 int round_lua_get_reg(lua_State* L)
 {
-  const char *key = luaL_checkstring(L, -2);
-  const char *value = luaL_checkstring(L, -1);
-  lua_pushstring(L, "");
+  std::string val = "";
+  
+  std::string key = luaL_checkstring(L, 1);
+  if (0 < key.length()) {
+    
+  }
+  
+  lua_pushstring(L, val.c_str());
+
   return 1;
 }
 
