@@ -30,7 +30,9 @@ int round_lua_getnetworkstate(lua_State* L)
   if (node) {
     Round::NodeResponse nodeRes;
     Round::SystemGetNetworkInfoResponse sysRes(&nodeRes);
-    sysRes.setClusters(node);
+    if (sysRes.setClusters(node)) {
+      nodeRes.getResult(&json);
+    }
   }
   
   return 1;
