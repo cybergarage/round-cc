@@ -11,40 +11,67 @@
 #include <round/script/lua/LuaFunction.h>
 #include <round/core/local/method/SystemMethod.h>
 
-int round_lua_get_network_state(lua_State* L)
-{
-  return 1;
+// FIXME : Update not to use the global variable
+static Round::Node *gRoundLuaEngineLocalNode = NULL;
+
+void round_lua_setlocalnode(Round::Node *node) {
+  gRoundLuaEngineLocalNode = node;
 }
 
-int round_lua_get_cluster_state(lua_State* L)
-{
-  return 1;
+Round::Node *round_lua_getlocalnode() {
+  return gRoundLuaEngineLocalNode;
 }
 
-int round_lua_get_node_state(lua_State* L)
+int round_lua_getnetworkstate(lua_State* L)
 {
-  return 1;
-}
-
-int round_lua_set_reg(lua_State* L)
-{
-  const char *key = luaL_checkstring(L, 1);
-  const char *val = luaL_checkstring(L, 2);
-  //lua_pushlightuserdata
-  bool isSuccess = false;
+  std::string json = "";
   
+  Round::LocalNode *node = dynamic_cast<Round::LocalNode *>(round_lua_getlocalnode());
+  if (node) {
+    Round::NodeResponse nodeRes;
+    Round::SystemGetNetworkInfoResponse sysRes(&nodeRes);
+    sysRes.setClusters(node);
+  }
+  
+  return 1;
+}
+
+int round_lua_getclusterstate(lua_State* L)
+{
+  return 1;
+}
+
+int round_lua_getnodestate(lua_State* L)
+{
+  return 1;
+}
+
+int round_lua_setregistry(lua_State* L)
+{
+  Round::Node *node = round_lua_getlocalnode();
+  std::string key = luaL_checkstring(L, 1);
+  std::string val = luaL_checkstring(L, 2);
+
+  bool isSuccess = false;
+  if (!node && (0 < key.length())) {
+    Round::Error err;
+    isSuccess = node->setRegistry(key, val, &err);
+  }
+
   lua_pushboolean(L, isSuccess);
   
   return 1;
 }
 
-int round_lua_get_reg(lua_State* L)
+int round_lua_getregistry(lua_State* L)
 {
   std::string val = "";
   
+  Round::Node *node = round_lua_getlocalnode();
   std::string key = luaL_checkstring(L, 1);
-  if (0 < key.length()) {
-    
+  if (!node && (0 < key.length())) {
+    Round::Error err;
+    node->getRegistry(key, &val, &err);
   }
   
   lua_pushstring(L, val.c_str());
@@ -52,7 +79,7 @@ int round_lua_get_reg(lua_State* L)
   return 1;
 }
 
-int round_lua_post_method(lua_State* L)
+int round_lua_postmethod(lua_State* L)
 {
   return 1;
 }

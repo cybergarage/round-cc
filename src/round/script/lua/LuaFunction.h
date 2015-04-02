@@ -13,11 +13,14 @@
 
 #include <round/script/Lua.h>
 
-int round_lua_get_network_state(lua_State* L);
-int round_lua_get_cluster_state(lua_State* L);
-int round_lua_get_node_state(lua_State* L);
-int round_lua_set_reg(lua_State* L);
-int round_lua_get_reg(lua_State* L);
-int round_lua_post_method(lua_State* L);
+int round_lua_getnetworkstate(lua_State* L);
+int round_lua_getclusterstate(lua_State* L);
+int round_lua_getnodestate(lua_State* L);
+int round_lua_setregistry(lua_State* L);
+int round_lua_getregistry(lua_State* L);
+int round_lua_postmethod(lua_State* L);
+
+void round_lua_setlocalnode(Round::Node *);
+Round::Node *round_lua_getlocalnode();
 
 #endif

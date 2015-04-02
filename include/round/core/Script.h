@@ -172,10 +172,27 @@ public:
     mutex.unlock();
   }
   
+  void setNode(Node *node) {
+    this->node = node;
+  }
+  
+  Node *getNode() const {
+    return this->node;
+  }
+  
+  bool hasNode() const {
+    return (this->node) ? true : false;
+  }
+  
+private:
+  
+  void init();
+  
 private:
   
   std::string  language;
   mutable Mutex mutex;
+  Node          *node;
 };
 
 class ScriptEngineMap : public std::map<std::string, ScriptEngine *> {
@@ -189,6 +206,14 @@ class ScriptEngineMap : public std::map<std::string, ScriptEngine *> {
   const ScriptEngine *getEngine(const std::string &lang) const;
     
   void clear();
+
+private:
+  
+  void init();
+
+private:
+  
+  Node            *node;
 };
 
 class ScriptManager {

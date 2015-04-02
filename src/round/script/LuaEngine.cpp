@@ -31,12 +31,12 @@ Round::LuaEngine::LuaEngine() : ScriptEngine(LANGUAGE) {
 
   luaL_openlibs(this->luaState);
 
-  lua_register(this->luaState, ROUNDCC_SCRIPT_GET_NETWORK_STATE, round_lua_get_network_state);
-  lua_register(this->luaState, ROUNDCC_SCRIPT_GET_CLUSTER_STATE, round_lua_get_cluster_state);
-  lua_register(this->luaState, ROUNDCC_SCRIPT_GET_NODE_STATE, round_lua_get_node_state);
-  lua_register(this->luaState, ROUNDCC_SCRIPT_SET_REG, round_lua_set_reg);
-  lua_register(this->luaState, ROUNDCC_SCRIPT_GET_REG, round_lua_get_reg);
-  lua_register(this->luaState, ROUNDCC_SCRIPT_POST_METHOD, round_lua_post_method);
+  lua_register(this->luaState, ROUNDCC_SCRIPT_GET_NETWORK_STATE, round_lua_getnetworkstate);
+  lua_register(this->luaState, ROUNDCC_SCRIPT_GET_CLUSTER_STATE, round_lua_getclusterstate);
+  lua_register(this->luaState, ROUNDCC_SCRIPT_GET_NODE_STATE, round_lua_getnodestate);
+  lua_register(this->luaState, ROUNDCC_SCRIPT_SET_REG, round_lua_setregistry);
+  lua_register(this->luaState, ROUNDCC_SCRIPT_GET_REG, round_lua_getregistry);
+  lua_register(this->luaState, ROUNDCC_SCRIPT_POST_METHOD, round_lua_postmethod);
 }
 
 ////////////////////////////////////////////////
@@ -63,6 +63,10 @@ bool Round::LuaEngine::compile(const Script *luaScript) const {
 ////////////////////////////////////////////////
 
 bool Round::LuaEngine::run(const Script *luaScript, const std::string &params, std::string *results, Error *error) const {
+  lock();
+  
+  round_lua_setlocalnode(hasNode() ? getNode() : NULL);
+  
   int nStack = lua_gettop(this->luaState);
   
   if (luaL_loadstring(this->luaState, (const char *)luaScript->getCode()) != 0) {
@@ -71,6 +75,10 @@ bool Round::LuaEngine::run(const Script *luaScript, const std::string &params, s
     error->setMessage(lua_tostring(this->luaState, -1));
     lua_pop(this->luaState, 1);
     nStack = lua_gettop(this->luaState);
+
+    round_lua_setlocalnode(NULL);
+    unlock();
+    
     return false;
   }
 
@@ -82,6 +90,10 @@ bool Round::LuaEngine::run(const Script *luaScript, const std::string &params, s
     error->setMessage(lua_tostring(this->luaState, -1));
     lua_pop(this->luaState, 1);
     nStack = lua_gettop(this->luaState);
+    
+    round_lua_setlocalnode(NULL);
+    unlock();
+    
     return false;
   }
   
@@ -107,6 +119,9 @@ bool Round::LuaEngine::run(const Script *luaScript, const std::string &params, s
   
   nStack = lua_gettop(this->luaState);
  
+  round_lua_setlocalnode(NULL);
+  unlock();
+
   return (callResult == 0) ? true : false;
 }
 
