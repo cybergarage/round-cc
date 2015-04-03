@@ -34,8 +34,9 @@ int round_lua_getnetworkstate(lua_State* L)
   if (node) {
     Round::NodeResponse nodeRes;
     Round::SystemGetNetworkInfoResponse sysRes(&nodeRes);
-    sysRes.setClusters(node);
-    nodeRes.getResult(&json);
+    if (sysRes.setClusters(node)) {
+      nodeRes.getResult(&json);
+    }
   }
   
   lua_pushstring(L, json.c_str());
@@ -51,8 +52,9 @@ int round_lua_getclusterstate(lua_State* L)
   if (node) {
     Round::NodeResponse nodeRes;
     Round::SystemGetClusterInfoResponse sysRes(&nodeRes);
-    sysRes.setCluster(node);
-    nodeRes.getResult(&json);
+    if (sysRes.setCluster(node)) {
+      nodeRes.getResult(&json);
+    }
   }
   
   lua_pushstring(L, json.c_str());
@@ -68,8 +70,9 @@ int round_lua_getnodestate(lua_State* L)
   if (node) {
     Round::NodeResponse nodeRes;
     Round::SystemGetNodeInfoResponse sysRes(&nodeRes);
-    sysRes.setNode(node);
-    nodeRes.getResult(&json);
+    if (sysRes.setNode(node)) {
+        nodeRes.getResult(&json);
+    }
   }
   
   lua_pushstring(L, json.c_str());
