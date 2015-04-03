@@ -22,5 +22,6 @@ int round_lua_postmethod(lua_State* L);
 
 void round_lua_setlocalnode(Round::Node *);
 Round::Node *round_lua_getlocalnode();
+bool round_lua_haslocalnode();
 
 #endif

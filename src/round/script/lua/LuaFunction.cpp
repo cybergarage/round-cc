@@ -22,6 +22,10 @@ Round::Node *round_lua_getlocalnode() {
   return gRoundLuaEngineLocalNode;
 }
 
+bool round_lua_haslocalnode() {
+  return (gRoundLuaEngineLocalNode != NULL) ? true : false;
+}
+
 int round_lua_getnetworkstate(lua_State* L)
 {
   std::string json = "";
@@ -31,18 +35,45 @@ int round_lua_getnetworkstate(lua_State* L)
     Round::NodeResponse nodeRes;
     Round::SystemGetNetworkInfoResponse sysRes(&nodeRes);
     sysRes.setClusters(node);
+    nodeRes.getResult(&json);
   }
+  
+  lua_pushstring(L, json.c_str());
   
   return 1;
 }
 
 int round_lua_getclusterstate(lua_State* L)
 {
+  std::string json = "";
+  
+  Round::LocalNode *node = dynamic_cast<Round::LocalNode *>(round_lua_getlocalnode());
+  if (node) {
+    Round::NodeResponse nodeRes;
+    Round::SystemGetClusterInfoResponse sysRes(&nodeRes);
+    sysRes.setCluster(node);
+    nodeRes.getResult(&json);
+  }
+  
+  lua_pushstring(L, json.c_str());
+  
   return 1;
 }
 
 int round_lua_getnodestate(lua_State* L)
 {
+  std::string json = "";
+  
+  Round::LocalNode *node = dynamic_cast<Round::LocalNode *>(round_lua_getlocalnode());
+  if (node) {
+    Round::NodeResponse nodeRes;
+    Round::SystemGetNodeInfoResponse sysRes(&nodeRes);
+    sysRes.setNode(node);
+    nodeRes.getResult(&json);
+  }
+  
+  lua_pushstring(L, json.c_str());
+  
   return 1;
 }
 
