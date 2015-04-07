@@ -15,6 +15,7 @@
 		214FC0F11A4AF1AD00456552 /* ScriptTestController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214FC0F01A4AF1AD00456552 /* ScriptTestController.cpp */; };
 		215C20BB1A13B6C000CE71E2 /* RoundTestMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215C20BA1A13B6C000CE71E2 /* RoundTestMain.cpp */; };
 		21688A541A38C87E00908890 /* NodeTestController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21688A531A38C87E00908890 /* NodeTestController.cpp */; };
+		216B580F1AD38CE900846C32 /* RegistryTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216B580E1AD38CE900846C32 /* RegistryTests.cpp */; };
 		217727821A2CE5E4001B4CE0 /* RPCMessageTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217727811A2CE5E4001B4CE0 /* RPCMessageTests.cpp */; };
 		2184F2041A18E359007F1326 /* ClientTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F1FF1A18E359007F1326 /* ClientTests.cpp */; };
 		2184F2051A18E359007F1326 /* NodeFinderTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2001A18E359007F1326 /* NodeFinderTests.cpp */; };
@@ -136,6 +137,7 @@
 		215C20B91A13B6C000CE71E2 /* RoundTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoundTest.h; path = ../../RoundTest.h; sourceTree = "<group>"; };
 		215C20BA1A13B6C000CE71E2 /* RoundTestMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RoundTestMain.cpp; path = ../../RoundTestMain.cpp; sourceTree = "<group>"; };
 		21688A531A38C87E00908890 /* NodeTestController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeTestController.cpp; sourceTree = "<group>"; };
+		216B580E1AD38CE900846C32 /* RegistryTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RegistryTests.cpp; sourceTree = "<group>"; };
 		217727811A2CE5E4001B4CE0 /* RPCMessageTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCMessageTests.cpp; sourceTree = "<group>"; };
 		2184F1FF1A18E359007F1326 /* ClientTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClientTests.cpp; sourceTree = "<group>"; };
 		2184F2001A18E359007F1326 /* NodeFinderTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeFinderTests.cpp; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 		21DA08931A174A4900D3DCE0 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				216B580E1AD38CE900846C32 /* RegistryTests.cpp */,
 				21D50AAF1A824BC8005C1F51 /* AliasTests.cpp */,
 				2184F2111A1993B4007F1326 /* ClientCoreTests.cpp */,
 				2184F1FF1A18E359007F1326 /* ClientTests.cpp */,
@@ -486,6 +489,7 @@
 				2184F2201A19B9A0007F1326 /* NodeResponseTests.cpp in Sources */,
 				2184F2061A18E359007F1326 /* RemoteNodeTests.cpp in Sources */,
 				21F49B121ABEE72700A932CC /* JavaScriptTests.cpp in Sources */,
+				216B580F1AD38CE900846C32 /* RegistryTests.cpp in Sources */,
 				2184F2121A1993B4007F1326 /* ClientCoreTests.cpp in Sources */,
 				21AD42A41A13B7FC00741A08 /* JSONParserTests.cpp in Sources */,
 				213862DC1A45711100311FAE /* JSONRPCParserTests.cpp in Sources */,
