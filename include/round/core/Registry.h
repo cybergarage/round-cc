@@ -43,12 +43,15 @@ private:
   time_t      lts;
 };
 
-class RegistryMap : public std::map<std::string, std::string> {
+class RegistryMap : public std::map<std::string, Registry> {
     
  public:
   
   RegistryMap();
   ~RegistryMap();
+
+  bool set(const Registry reg);
+  bool get(const std::string &key, Registry *reg) const;
 };
 
 class RegistryManager : public RegistryMap {
