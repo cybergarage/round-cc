@@ -70,3 +70,50 @@ bool Round::Registry::getLogicalTimestamp(time_t &value) const {
   return  true;
 }
 
+bool Round::Registry::equals(const Registry &otherReg) const {
+  return equals(&otherReg);
+}
+
+bool Round::Registry::equals(const Registry *otherReg) const {
+  if (!otherReg)
+    return false;
+  
+  std::string otherKey;
+  if (!otherReg->getKey(&otherKey))
+    return false;
+  if (this->key.compare(otherKey) != 0)
+    return false;
+
+  std::string otherVal;
+  if (!otherReg->getValue(&otherVal))
+    return false;
+  if (this->value.compare(otherVal) != 0)
+    return false;
+  
+  return true;
+}
+
+bool Round::Registry::equalsWithTimestamp(const Registry &otherReg) const {
+  return equalsWithTimestamp(&otherReg);
+}
+
+bool Round::Registry::equalsWithTimestamp(const Registry *otherReg) const {
+  if (!equals(otherReg))
+    return false;
+  if (!otherReg)
+    return false;
+ 
+  time_t otherTs;
+  
+  if (!otherReg->getTimestamp(otherTs))
+    return false;
+  if (this->ts != otherTs)
+    return false;
+  
+  if (!otherReg->getLogicalTimestamp(otherTs))
+    return false;
+  if (this->lts != otherTs)
+    return false;
+  
+  return true;
+}

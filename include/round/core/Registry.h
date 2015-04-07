@@ -35,6 +35,11 @@ public:
   bool setLogicalTimestamp(const time_t value);
   bool getLogicalTimestamp(time_t &value) const;
   
+  bool equals(const Registry &reg) const;
+  bool equals(const Registry *reg) const;
+  bool equalsWithTimestamp(const Registry &reg) const;
+  bool equalsWithTimestamp(const Registry *reg) const;
+  
 private:
   
   std::string key;
