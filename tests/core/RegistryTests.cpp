@@ -53,8 +53,6 @@ BOOST_AUTO_TEST_CASE(RQLRregistryBasicMethodTest) {
   BOOST_CHECK_EQUAL(tval, ts);
 }
 
-  
-
 BOOST_AUTO_TEST_CASE(RQLRregistryEqualsTest) {
   std::string val;
   time_t ts;
@@ -85,12 +83,11 @@ BOOST_AUTO_TEST_CASE(RQLRregistryEqualsTest) {
   BOOST_CHECK_EQUAL(reg01.equalsWithTimestamp(reg02), true);
 }
 
-BOOST_AUTO_TEST_CASE(RQLRregistryMapMethodTest) {
+BOOST_AUTO_TEST_CASE(RQLRregistryMapBasicMethodTest) {
   RegistryMap regMap;
   BOOST_CHECK_EQUAL(regMap.size(), 0);
   
   for (int n=0; n<10; n++) {
-  
     std::stringstream ss;
     time_t ts;
     
@@ -116,6 +113,32 @@ BOOST_AUTO_TEST_CASE(RQLRregistryMapMethodTest) {
     
     BOOST_CHECK_EQUAL(inReg.equals(inReg), true);
     BOOST_CHECK_EQUAL(inReg.equalsWithTimestamp(inReg), true);
+  }
+}
+
+BOOST_AUTO_TEST_CASE(RQLRregistryMapSimpleMethodTest) {
+  RegistryMap regMap;
+  BOOST_CHECK_EQUAL(regMap.size(), 0);
+    
+  for (int n=0; n<10; n++) {
+      
+    std::stringstream ss;
+    time_t ts;
+      
+    time(&ts); ts += rand(); ss << ts;
+    std::string key = "key" + ss.str();
+    std::string val = "val" + ss.str();
+      
+    BOOST_CHECK_EQUAL(regMap.size(), n);
+    BOOST_CHECK_EQUAL(regMap.get(key, &val), false);
+      
+    BOOST_CHECK_EQUAL(regMap.set(key, val), true);
+    BOOST_CHECK_EQUAL(regMap.size(), (n+1));
+      
+    std::string outVal;
+      
+    BOOST_CHECK_EQUAL(regMap.get(key, &val), true);
+    BOOST_CHECK_EQUAL(val.compare(outVal), 0);
   }
 }
   
