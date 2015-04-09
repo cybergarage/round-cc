@@ -32,25 +32,57 @@ BOOST_AUTO_TEST_CASE(RQLRregistryBasicMethodTest) {
   BOOST_CHECK_EQUAL(reg.getTimestamp(tval), false);
   BOOST_CHECK_EQUAL(reg.getLogicalTimestamp(tval), false);
 
-  time(&ts); ss << ts; val = ss.str();
+  time(&ts); ss << "key" << ts; val = ss.str();
   BOOST_CHECK_EQUAL(reg.setKey(val), true);
   BOOST_CHECK_EQUAL(reg.getKey(&sval), true);
   BOOST_CHECK_EQUAL(val.compare(sval), 0);
   
-  time(&ts); ss << ts; val = ss.str();
+  time(&ts); ss << "val" << ts; val = ss.str();
   BOOST_CHECK_EQUAL(reg.setValue(val), true);
   BOOST_CHECK_EQUAL(reg.getValue(&sval), true);
   BOOST_CHECK_EQUAL(val.compare(sval), 0);
   
-  time(&ts);
+  time(&ts); ts += rand();
   BOOST_CHECK_EQUAL(reg.setTimestamp(ts), true);
   BOOST_CHECK_EQUAL(reg.getTimestamp(tval), true);
   BOOST_CHECK_EQUAL(tval, ts);
 
-  time(&ts);
+  time(&ts); ts += rand();
   BOOST_CHECK_EQUAL(reg.setLogicalTimestamp(ts), true);
   BOOST_CHECK_EQUAL(reg.getLogicalTimestamp(tval), true);
   BOOST_CHECK_EQUAL(tval, ts);
+}
+
+  
+
+BOOST_AUTO_TEST_CASE(RQLRregistryEqualsTest) {
+  std::string val;
+  time_t ts;
+  std::stringstream ss;
+  std::string sval;
+  
+  Registry reg01;
+  
+  time(&ts); ss << "key" << ts; val = ss.str();
+  BOOST_CHECK_EQUAL(reg01.setKey(val), true);
+  
+  time(&ts); ss << "val" << ts; val = ss.str();
+  BOOST_CHECK_EQUAL(reg01.setValue(val), true);
+
+  time(&ts); ts += rand();
+  BOOST_CHECK_EQUAL(reg01.setTimestamp(ts), true);
+  
+  time(&ts); ts += rand();
+  BOOST_CHECK_EQUAL(reg01.setLogicalTimestamp(ts), true);
+
+  Registry reg02;
+  
+  BOOST_CHECK_EQUAL(reg01.equals(reg02), false);
+  BOOST_CHECK_EQUAL(reg01.equalsWithTimestamp(reg02), false);
+  
+  reg02 = reg01;
+  BOOST_CHECK_EQUAL(reg01.equals(reg02), true);
+  BOOST_CHECK_EQUAL(reg01.equalsWithTimestamp(reg02), true);
 }
 
 BOOST_AUTO_TEST_CASE(RQLRregistryMapMethodTest) {
