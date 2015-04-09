@@ -74,8 +74,18 @@ public:
     
   LocalRegistry();
   ~LocalRegistry();
+
+  void setNode(LocalNode *node);
+
+  bool set(const Registry reg) {
+    return RegistryMap::set(reg);
+  }
   
   bool set(const std::string &key, const std::string &value);
+
+private:
+  
+  LocalNode *node;
 };
 
 class LocalRouteEngine: public RouteEngine {
@@ -140,6 +150,9 @@ class LocalNode : public Node, public NodeFinderObserver {
   bool setRegistry(const std::string &key, const std::string &value);
   bool getRegistry(const std::string &key, std::string *value) const;
   
+  bool setRegistry(const Registry reg);
+  bool getRegistry(const std::string &key, Registry *reg) const;
+
   bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
   bool postMessage(const NodeBatchRequest *nodeReq, NodeBatchResponse *nodeRes, Error *error);
   
@@ -234,7 +247,7 @@ private:
   LocalScriptManager        scriptMgr;
   LocalStaticMethodManager  staticMethodMgr;
   LocalNativeMethodManager  sysMethodMgr;
-  LocalRegistry             registry;
+  LocalRegistry             nodeReg;
   LocalRouteEngine          routeEngine;
 };
 

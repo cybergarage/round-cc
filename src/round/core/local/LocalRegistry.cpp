@@ -11,14 +11,30 @@
 #include <round/core/LocalNode.h>
 
 Round::LocalRegistry::LocalRegistry() {
+  setNode(NULL);
 }
 
 Round::LocalRegistry::~LocalRegistry() {
+  setNode(NULL);
+}
+
+void Round::LocalRegistry::setNode(LocalNode *node) {
+  this->node = node;
 }
 
 bool Round::LocalRegistry::set(const std::string &key, const std::string &value) {
   Registry reg;
+  
   reg.setKey(key);
   reg.setValue(value);
-  return set(reg);
+  
+  time_t ts;
+  reg.setTimestamp(time(&ts));
+  
+  if (this->node) {
+    Clock nodeClode;
+    reg.setLogicalTimestamp(this->node->getLocalClock());
+  }
+
+  return RegistryMap::set(reg);
 }

@@ -28,6 +28,7 @@ Round::LocalNode::~LocalNode() {
 }
 
 void Round::LocalNode::init() {
+  this->nodeReg.setNode(this);
   this->scriptMgr.setNode(this);
   setState(NodeStatus::STOP);
 }
@@ -218,11 +219,19 @@ bool Round::LocalNode::setScript(const std::string &method, const std::string &l
 ////////////////////////////////////////////////
 
 bool Round::LocalNode::setRegistry(const std::string &key, const std::string &value) {
-  return this->registry.set(key, value);
+  return this->nodeReg.set(key, value);
 }
 
 bool Round::LocalNode::getRegistry(const std::string &key, std::string *value) const {
-  return this->registry.get(key, value);
+  return this->nodeReg.get(key, value);
+}
+
+bool Round::LocalNode::setRegistry(const Registry reg) {
+  return this->nodeReg.set(reg);
+}
+
+bool Round::LocalNode::getRegistry(const std::string &key, Registry *reg) const {
+  return this->nodeReg.get(key, reg);
 }
 
 ////////////////////////////////////////////////

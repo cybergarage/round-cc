@@ -111,8 +111,9 @@ BOOST_AUTO_TEST_CASE(RQLRregistryMapBasicMethodTest) {
     
     Registry outReg;
     
-    BOOST_CHECK_EQUAL(inReg.equals(inReg), true);
-    BOOST_CHECK_EQUAL(inReg.equalsWithTimestamp(inReg), true);
+    BOOST_CHECK_EQUAL(regMap.get(key, &outReg), true);
+    BOOST_CHECK_EQUAL(inReg.equals(outReg), true);
+    BOOST_CHECK_EQUAL(inReg.equalsWithTimestamp(outReg), true);
   }
 }
 
@@ -137,7 +138,7 @@ BOOST_AUTO_TEST_CASE(RQLRregistryMapSimpleMethodTest) {
       
     std::string outVal;
       
-    BOOST_CHECK_EQUAL(regMap.get(key, &val), true);
+    BOOST_CHECK_EQUAL(regMap.get(key, &outVal), true);
     BOOST_CHECK_EQUAL(val.compare(outVal), 0);
   }
 }

@@ -109,7 +109,34 @@ BOOST_AUTO_TEST_CASE(LocalNodeConfigSetterTest) {
   BOOST_CHECK_EQUAL(value.compare("test"), 0);
 }
 
-BOOST_AUTO_TEST_CASE(LocalNodMemoryTest) {
+BOOST_AUTO_TEST_CASE(LocalNodRegistoryBasicTest) {
+  TestLocalNode node;
+
+  std::stringstream ss;
+  time_t ts;
+  
+  Round::Registry inReg;
+  
+  time(&ts); ts += rand(); ss << ts;
+  std::string key = "key" + ss.str();
+  std::string val = "val" + ss.str();
+  BOOST_CHECK_EQUAL(inReg.setKey(key), true);
+  BOOST_CHECK_EQUAL(inReg.setValue(val), true);
+  time(&ts); ts += rand();
+  BOOST_CHECK_EQUAL(inReg.setTimestamp(ts), true);
+  time(&ts); ts += rand();
+  BOOST_CHECK_EQUAL(inReg.setLogicalTimestamp(ts), true);
+  
+  BOOST_CHECK_EQUAL(node.setRegistry(inReg), true);
+  
+  Registry outReg;
+  
+  BOOST_CHECK_EQUAL(node.getRegistry(key, &outReg), true);
+  BOOST_CHECK_EQUAL(inReg.equals(outReg), true);
+  BOOST_CHECK_EQUAL(inReg.equalsWithTimestamp(outReg), true);
+}
+
+BOOST_AUTO_TEST_CASE(LocalNodRegistorySimpleTest) {
   TestLocalNode node;
   
   string key = "key";

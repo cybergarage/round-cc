@@ -57,7 +57,7 @@ bool Round::RegistryMap::get(const std::string &key, std::string *value) const {
   Registry reg;
   if (!get(key, &reg))
     return false;
-  if (reg.getValue(value))
+  if (!reg.getValue(value))
     return false;
   return true;
 }
