@@ -19,6 +19,7 @@
 #include <round/core/Script.h>
 #include <round/core/Method.h>
 #include <round/core/Route.h>
+#include <round/core/Registry.h>
 
 namespace Round {
 
@@ -67,7 +68,7 @@ class LocalNativeMethodManager : public MethodManager {
     void init();
 };
 
-class LocalRegistry : public std::map<std::string, std::string> {
+class LocalRegistry : public RegistryMap {
     
 public:
     
@@ -75,7 +76,6 @@ public:
   ~LocalRegistry();
   
   bool set(const std::string &key, const std::string &value);
-  bool get(const std::string &key, std::string *value) const;
 };
 
 class LocalRouteEngine: public RouteEngine {
