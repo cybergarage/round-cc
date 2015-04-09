@@ -93,15 +93,19 @@ BOOST_AUTO_TEST_CASE(RQLRregistryMapMethodTest) {
   
     std::stringstream ss;
     time_t ts;
-    time(&ts); ss << ts;
-    
-    std::string key = "key" + ss.str();
-    std::string val = "val" + ss.str();
     
     Registry inReg;
+    
+    time(&ts); ts += rand(); ss << ts;
+    std::string key = "key" + ss.str();
+    std::string val = "val" + ss.str();
     BOOST_CHECK_EQUAL(inReg.setKey(key), true);
     BOOST_CHECK_EQUAL(inReg.setValue(val), true);
+    
+    time(&ts); ts += rand();
     BOOST_CHECK_EQUAL(inReg.setTimestamp(ts), true);
+    
+    time(&ts); ts += rand();
     BOOST_CHECK_EQUAL(inReg.setLogicalTimestamp(ts), true);
     
     BOOST_CHECK_EQUAL(regMap.size(), n);
@@ -109,6 +113,7 @@ BOOST_AUTO_TEST_CASE(RQLRregistryMapMethodTest) {
     BOOST_CHECK_EQUAL(regMap.size(), (n+1));
     
     Registry outReg;
+    
     BOOST_CHECK_EQUAL(inReg.equals(inReg), true);
     BOOST_CHECK_EQUAL(inReg.equalsWithTimestamp(inReg), true);
   }
