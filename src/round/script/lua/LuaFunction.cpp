@@ -99,18 +99,28 @@ int round_lua_setregistry(lua_State* L)
 
 int round_lua_getregistry(lua_State* L)
 {
+  bool isSuccess = false;
   std::string val = "";
+  time_t ts = 0;
+  time_t lts = 0;
   
   Round::Node *node = round_lua_getlocalnode();
   std::string key = luaL_checkstring(L, 1);
   if (!node && (0 < key.length())) {
     Round::Error err;
-    node->getRegistry(key, &val, &err);
+    Round::Registry reg;
+    isSuccess = node->getRegistry(key, &reg, &err);
+    if (isSuccess) {
+      reg/
+    }
   }
   
+  lua_pushboolean(L, isSuccess);
   lua_pushstring(L, val.c_str());
+  lua_pushinteger(L, ts);
+  lua_pushinteger(L, lts);
 
-  return 1;
+  return 4;
 }
 
 int round_lua_postmethod(lua_State* L)

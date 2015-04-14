@@ -13,8 +13,11 @@
 
 #include <round/core/local/method/SystemMethod.h>
 
-const std::string Round::get_reg::NAME   = "get_reg";
+const std::string Round::get_reg::NAME   = ROUNDCC_SCRIPT_GET_REG;
 const std::string Round::get_reg::KEY    = "key";
+const std::string Round::get_reg::VALUE  = "value";
+const std::string Round::get_reg::TS     = "ts";
+const std::string Round::get_reg::LTS    = "lts";
 
 Round::get_reg::get_reg() : system_method(NAME) {
 }
@@ -39,9 +42,10 @@ bool Round::get_reg::exec(LocalNode *node, const NodeRequest *nodeReq, NodeRespo
   std::string key;
   if (!paramDict->get(KEY, &key))
     return false;
-  
+
+  Registry reg;
   std::string value;
-  if (!node->getRegistry(key, &value))
+  if (!node->getRegistry(key, &reg))
     return false;
 
   return nodeRes->setResult(value);

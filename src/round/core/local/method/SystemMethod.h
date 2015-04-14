@@ -380,6 +380,9 @@ class get_reg : public system_method {
 public:
   static const std::string NAME;
   static const std::string KEY;
+  static const std::string VALUE;
+  static const std::string TS;
+  static const std::string LTS;
 public:
   get_reg();
   ~get_reg();
@@ -397,6 +400,14 @@ public:
   }
 };
 
+class SystemGetRegistryResponse : public SystemMethodResponse {
+  public:
+    SystemGetRegistryResponse(NodeResponse *nodeRes) : SystemMethodResponse(nodeRes) {
+    }
+  
+    void setRegistry(const Registry reg);
+};
+  
 // exec
   
 class execp : public system_method {

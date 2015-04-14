@@ -36,6 +36,8 @@ bool Round::RegistryMap::set(const Registry reg) {
 }
 
 bool Round::RegistryMap::get(const std::string &key, Registry *reg) const {
+  reg->setKey(key);
+  
   RegistryMap::const_iterator valueIt = find(key);
   if (valueIt == end())
     return false;

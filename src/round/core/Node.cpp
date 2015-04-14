@@ -83,4 +83,3 @@ bool Round::Node::getRegistry(const std::string &key, std::string *value, Error 
   
   return nodeRes.getResult(value);
 }
-
