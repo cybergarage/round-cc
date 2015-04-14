@@ -44,9 +44,9 @@ bool Round::get_reg::exec(LocalNode *node, const NodeRequest *nodeReq, NodeRespo
     return false;
 
   Registry reg;
-  std::string value;
   if (!node->getRegistry(key, &reg))
     return false;
 
-  return nodeRes->setResult(value);
+  SystemGetRegistryResponse regRes(nodeRes);
+  return regRes.setRegistry(reg);
 }

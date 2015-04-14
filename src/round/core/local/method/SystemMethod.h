@@ -405,7 +405,7 @@ class SystemGetRegistryResponse : public SystemMethodResponse {
     SystemGetRegistryResponse(NodeResponse *nodeRes) : SystemMethodResponse(nodeRes) {
     }
   
-    void setRegistry(const Registry reg);
+    bool setRegistry(const Registry reg);
 };
   
 // exec

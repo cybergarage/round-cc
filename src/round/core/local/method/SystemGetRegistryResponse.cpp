@@ -17,14 +17,25 @@
 // SystemGetRegistryResponse
 ////////////////////////////////////////
 
-void Round::SystemGetRegistryResponse::setRegistry(const Registry reg) {
-  std::string key;
-  if (reg.getKey(&key)) {
-    nodeRes->set(get_reg::KEY, key);
+bool Round::SystemGetRegistryResponse::setRegistry(const Registry reg) {
+  std::string sval;
+  time_t tval;
+  
+  if (reg.getKey(&sval)) {
+    nodeRes->set(get_reg::KEY, sval);
   }
 
-  std::string value;
-  if (reg.getValue(&value)) {
-    nodeRes->set(get_reg::VALUE, value);
+  if (reg.getValue(&sval)) {
+    nodeRes->set(get_reg::VALUE, sval);
   }
+
+  if (reg.getTimestamp(tval)) {
+    nodeRes->set(get_reg::TS, tval);
+  }
+
+  if (reg.getLogicalTimestamp(tval)) {
+    nodeRes->set(get_reg::LTS, tval);
+  }
+
+  return true;
 }
