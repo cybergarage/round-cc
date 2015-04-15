@@ -34,6 +34,10 @@ bool Round::Registry::getKey(std::string *value) const {
   return  true;
 }
 
+const std::string Round::Registry::getKey() const {
+  return this->key;
+}
+
 bool Round::Registry::setValue(const std::string &value) {
   this->value = value;
   return true;
@@ -44,6 +48,11 @@ bool Round::Registry::getValue(std::string *value) const {
     return false;
   *value = this->value;
   return  true;
+}
+
+
+const std::string Round::Registry::getValue() const {
+  return this->value;
 }
 
 bool Round::Registry::setTimestamp(const time_t value) {
@@ -58,6 +67,10 @@ bool Round::Registry::getTimestamp(time_t &value) const {
   return  true;
 }
 
+time_t Round::Registry::getTimestamp() const {
+  return this->ts;
+}
+
 bool Round::Registry::setLogicalTimestamp(const time_t value) {
   this->lts = value;
   return true;
@@ -68,6 +81,10 @@ bool Round::Registry::getLogicalTimestamp(time_t &value) const {
     return false;
   value = this->lts;
   return  true;
+}
+
+time_t Round::Registry::getLogicalTimestamp() const {
+  return this->lts;
 }
 
 bool Round::Registry::equals(const Registry &otherReg) const {

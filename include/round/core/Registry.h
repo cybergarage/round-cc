@@ -25,15 +25,19 @@ public:
 
   bool setKey(const std::string &value);
   bool getKey(std::string *value) const;
+  const std::string getKey() const;
   
   bool setValue(const std::string &value);
   bool getValue(std::string *value) const;
+  const std::string getValue() const;
   
   bool setTimestamp(const time_t value);
   bool getTimestamp(time_t &value) const;
+  time_t getTimestamp() const;
 
   bool setLogicalTimestamp(const time_t value);
   bool getLogicalTimestamp(time_t &value) const;
+  time_t getLogicalTimestamp() const;
   
   bool equals(const Registry &reg) const;
   bool equals(const Registry *reg) const;

@@ -36,20 +36,28 @@ BOOST_AUTO_TEST_CASE(RQLRregistryBasicMethodTest) {
   BOOST_CHECK_EQUAL(reg.setKey(val), true);
   BOOST_CHECK_EQUAL(reg.getKey(&sval), true);
   BOOST_CHECK_EQUAL(val.compare(sval), 0);
+  sval = reg.getKey();
+  BOOST_CHECK_EQUAL(val.compare(sval), 0);
   
   time(&ts); ss << "val" << ts; val = ss.str();
   BOOST_CHECK_EQUAL(reg.setValue(val), true);
   BOOST_CHECK_EQUAL(reg.getValue(&sval), true);
+  BOOST_CHECK_EQUAL(val.compare(sval), 0);
+  sval = reg.getValue();
   BOOST_CHECK_EQUAL(val.compare(sval), 0);
   
   time(&ts); ts += rand();
   BOOST_CHECK_EQUAL(reg.setTimestamp(ts), true);
   BOOST_CHECK_EQUAL(reg.getTimestamp(tval), true);
   BOOST_CHECK_EQUAL(tval, ts);
+  tval = reg.getTimestamp();
+  BOOST_CHECK_EQUAL(tval, ts);
 
   time(&ts); ts += rand();
   BOOST_CHECK_EQUAL(reg.setLogicalTimestamp(ts), true);
   BOOST_CHECK_EQUAL(reg.getLogicalTimestamp(tval), true);
+  BOOST_CHECK_EQUAL(tval, ts);
+  tval = reg.getLogicalTimestamp();
   BOOST_CHECK_EQUAL(tval, ts);
 }
 
