@@ -111,7 +111,9 @@ int round_lua_getregistry(lua_State* L)
     Round::Registry reg;
     isSuccess = node->getRegistry(key, &reg, &err);
     if (isSuccess) {
-      reg/
+      val = reg.getValue();
+      ts = reg.getTimestamp();
+      lts = reg.getLogicalTimestamp();
     }
   }
   
