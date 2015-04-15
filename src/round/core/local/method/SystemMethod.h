@@ -365,13 +365,15 @@ class SystemSetRegistryRequest : public SystemMethodRequest {
     setMethod(set_reg::NAME);
   }
   
-  void setRegistry(const std::string &value) {
+  void setKey(const std::string &value) {
     set(set_reg::KEY, value);
   }
 
   void setValue(const std::string &value) {
     set(set_reg::VALUE, value);
   }
+
+  void setRegistry(const Registry reg);
 };
 
 // get_reg
@@ -395,7 +397,7 @@ public:
     setMethod(get_reg::NAME);
   }
 
-  void setRegistry(const std::string &value) {
+  void setKey(const std::string &value) {
     set(get_reg::KEY, value);
   }
 };

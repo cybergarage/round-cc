@@ -63,6 +63,7 @@
 		21B911BA1A6B5F4300C791FD /* SystemNodeInfoDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911AC1A6B5F4300C791FD /* SystemNodeInfoDict.cpp */; };
 		21B911BC1A6B61CC00C791FD /* set_method.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B911BB1A6B61CC00C791FD /* set_method.cpp */; };
 		21C0E1DF1ADCCCE6002ABF65 /* SystemGetRegistryResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C0E1DE1ADCCCE6002ABF65 /* SystemGetRegistryResponse.cpp */; };
+		21C0E1E11ADE172B002ABF65 /* SystemSetRegistryRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C0E1E01ADE172B002ABF65 /* SystemSetRegistryRequest.cpp */; };
 		21C2236A1AC5264200209C1F /* LuaFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C223681AC5264200209C1F /* LuaFunction.cpp */; };
 		21C2236B1AC5264200209C1F /* LuaFunction.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C223691AC5264200209C1F /* LuaFunction.h */; };
 		21D03AD41A63C4A60098122A /* Route.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D03AD31A63C4A60098122A /* Route.h */; };
@@ -294,6 +295,7 @@
 		21B911AC1A6B5F4300C791FD /* SystemNodeInfoDict.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemNodeInfoDict.cpp; sourceTree = "<group>"; };
 		21B911BB1A6B61CC00C791FD /* set_method.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = set_method.cpp; sourceTree = "<group>"; };
 		21C0E1DE1ADCCCE6002ABF65 /* SystemGetRegistryResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemGetRegistryResponse.cpp; sourceTree = "<group>"; };
+		21C0E1E01ADE172B002ABF65 /* SystemSetRegistryRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemSetRegistryRequest.cpp; sourceTree = "<group>"; };
 		21C223681AC5264200209C1F /* LuaFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaFunction.cpp; sourceTree = "<group>"; };
 		21C223691AC5264200209C1F /* LuaFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaFunction.h; sourceTree = "<group>"; };
 		21D03AD31A63C4A60098122A /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
@@ -616,6 +618,7 @@
 				21B911AA1A6B5F4300C791FD /* SystemMethodRequest.cpp */,
 				21B911AB1A6B5F4300C791FD /* SystemMethodResponse.cpp */,
 				21B911AC1A6B5F4300C791FD /* SystemNodeInfoDict.cpp */,
+				21C0E1E01ADE172B002ABF65 /* SystemSetRegistryRequest.cpp */,
 			);
 			path = method;
 			sourceTree = "<group>";
@@ -1145,6 +1148,7 @@
 				21526C8A1A6682F900CF3D12 /* RPCBatchRequest.cpp in Sources */,
 				21D50AA21A82322F005C1F51 /* get_reg.cpp in Sources */,
 				21D8E2BA1A60E1E200E8A63F /* SHA.cpp in Sources */,
+				21C0E1E11ADE172B002ABF65 /* SystemSetRegistryRequest.cpp in Sources */,
 				21D8E2DF1A60E1E200E8A63F /* ClientCore.cpp in Sources */,
 				21D8E2FB1A60E1E200E8A63F /* ServerNode.cpp in Sources */,
 				21D8E2B51A60E1E200E8A63F /* ConsistentHashObject.cpp in Sources */,

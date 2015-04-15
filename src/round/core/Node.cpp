@@ -66,7 +66,7 @@ bool Round::Node::getClusterList(ClusterList *clusterList, Error *error) {
 
 bool Round::Node::setRegistry(const std::string &key, const std::string &value, Error *error) {
   SystemSetRegistryRequest nodeReq;
-  nodeReq.setRegistry(key);
+  nodeReq.setKey(key);
   nodeReq.setValue(value);
   
   NodeResponse nodeRes;
@@ -75,11 +75,19 @@ bool Round::Node::setRegistry(const std::string &key, const std::string &value, 
 
 bool Round::Node::getRegistry(const std::string &key, std::string *value, Error *error) {
   SystemGetRegistryRequest nodeReq;
-  nodeReq.setRegistry(key);
+  nodeReq.setKey(key);
   
   NodeResponse nodeRes;
   if (!postMessage(&nodeReq, &nodeRes, error))
     return false;
   
   return nodeRes.getResult(value);
+}
+
+bool Round::Node::setRegistry(const Registry reg, Error *error) {
+  return false;
+}
+
+bool Round::Node::getRegistry(const std::string &key, Registry *reg, Error *error) {
+  return false;
 }
