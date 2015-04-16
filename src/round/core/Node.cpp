@@ -48,7 +48,8 @@ bool Round::Node::isLeader(Error *error) {
 }
 
 bool Round::Node::getStatus(NodeStatus *status, Error *error) {
-  return true;
+  // TODO Not yet implemented
+  return false;
 }
 
 bool Round::Node::getCluster(Cluster *cluster, Error *error) {
@@ -61,6 +62,23 @@ bool Round::Node::getCluster(Cluster *cluster, Error *error) {
 }
 
 bool Round::Node::getClusterList(ClusterList *clusterList, Error *error) {
+  SystemGetNetworkInfoRequest nodeReq;
+  NodeResponse nodeRes;
+  if (!postMessage(&nodeReq, &nodeRes, error))
+    return false;
+  SystemGetNetworkInfoResponse sysRes(&nodeRes);
+  return sysRes.getClusters(clusterList);
+}
+
+bool Round::Node::findNode(const std::string &nodeHash, Node **node, Error *error) {
+  Cluster cluster;
+  if (!getCluster(&cluster, error))
+    return false;
+  *node = cluster.getNodeByHashCode(nodeHash);
+  if (!node) {
+    // TODO Set error code
+    return false;
+  }
   return true;
 }
 

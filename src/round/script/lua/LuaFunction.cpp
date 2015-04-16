@@ -127,5 +127,13 @@ int round_lua_getregistry(lua_State* L)
 
 int round_lua_postmethod(lua_State* L)
 {
+  bool isSuccess = false;
+
+  Round::Node *node = round_lua_getlocalnode();
+  
+  std::string obj = luaL_checkstring(L, 1);
+  std::string method = luaL_checkstring(L, 2);
+  std::string param = luaL_checkstring(L, 3);
+    
   return 1;
 }
