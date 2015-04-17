@@ -82,30 +82,33 @@ bool Round::Node::findNode(const std::string &nodeHash, Node **node, Error *erro
   return true;
 }
 
-bool Round::Node::setRegistry(const std::string &key, const std::string &value, Error *error) {
+bool Round::Node::setRegistry(const Registry reg, Error *error) {
   SystemSetRegistryRequest nodeReq;
-  nodeReq.setKey(key);
-  nodeReq.setValue(value);
-  
+  nodeReq.set(reg);
   NodeResponse nodeRes;
   return postMessage(&nodeReq, &nodeRes, error);
 }
 
-bool Round::Node::getRegistry(const std::string &key, std::string *value, Error *error) {
+bool Round::Node::getRegistry(const std::string &key, Registry *reg, Error *error) {
   SystemGetRegistryRequest nodeReq;
   nodeReq.setKey(key);
-  
   NodeResponse nodeRes;
   if (!postMessage(&nodeReq, &nodeRes, error))
     return false;
-  
-  return nodeRes.getResult(value);
+  SystemGetRegistryResponse regRes(&nodeRes);
+  return regRes.getRegistry(reg);
 }
 
-bool Round::Node::setRegistry(const Registry reg, Error *error) {
-  return false;
+bool Round::Node::setRegistry(const std::string &key, const std::string &value, Error *error) {
+  Registry reg;
+  reg.setKey(key);
+  reg.setValue(value);
+  return setRegistry(reg, error);
 }
 
-bool Round::Node::getRegistry(const std::string &key, Registry *reg, Error *error) {
-  return false;
+bool Round::Node::getRegistry(const std::string &key, std::string *value, Error *error) {
+  Registry reg;
+  if (!getRegistry(key, &reg, error))
+    return false;
+  return reg.getValue(value);
 }

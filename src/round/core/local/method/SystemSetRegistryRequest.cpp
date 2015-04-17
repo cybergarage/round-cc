@@ -17,7 +17,7 @@
 // SystemGetRegistryResponse
 ////////////////////////////////////////
 
-void Round::SystemSetRegistryRequest::setRegistry(const Registry reg) {
+void Round::SystemSetRegistryRequest::set(const Registry reg) {
   std::string sval;
   
   if (reg.getKey(&sval)) {
