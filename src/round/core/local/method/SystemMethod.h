@@ -373,7 +373,7 @@ class SystemSetRegistryRequest : public SystemMethodRequest {
     set(set_reg::VALUE, value);
   }
 
-  void setRegistry(const Registry reg);
+  void set(const Registry reg);
 };
 
 // get_reg
@@ -408,6 +408,7 @@ class SystemGetRegistryResponse : public SystemMethodResponse {
     }
   
     bool setRegistry(const Registry reg);
+    bool getRegistry(Registry *reg);
 };
   
 // exec

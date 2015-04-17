@@ -39,3 +39,26 @@ bool Round::SystemGetRegistryResponse::setRegistry(const Registry reg) {
 
   return true;
 }
+
+bool Round::SystemGetRegistryResponse::getRegistry(Registry *reg) {
+  std::string sval;
+  time_t tval;
+
+  if (nodeRes->get(get_reg::KEY, &sval)) {
+    reg->setKey(sval);
+  }
+
+  if (nodeRes->get(get_reg::VALUE, &sval)) {
+    reg->setValue(sval);
+  }
+
+  if (nodeRes->get(get_reg::TS, &tval)) {
+    reg->setTimestamp(tval);
+  }
+  
+  if (nodeRes->get(get_reg::LTS, &tval)) {
+    reg->setLogicalTimestamp(tval);
+  }
+
+  return true;
+}
