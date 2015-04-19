@@ -24,6 +24,19 @@ Round::Node::Node() {
 Round::Node::~Node() {
 }
 
+bool Round::Node::postMessage(const std::string &method, const std::string &params, std::string *result) {
+  NodeRequest nodeReq;
+  nodeReq.setMethod(method);
+  nodeReq.setParams(params);
+  
+  NodeResponse nodeRes;
+  Error error;
+  bool isSuccess = postMessage(&nodeReq, &nodeRes, &error);
+  nodeRes.getResult(result);
+  
+  return isSuccess;
+}
+
 bool Round::Node::isAlive(Error *error) {
   std::string currClockStr = boost::lexical_cast<std::string>(getLocalClock());
   SystemEchoRequest nodeReq;
@@ -84,7 +97,7 @@ bool Round::Node::findNode(const std::string &nodeHash, Node **node, Error *erro
 
 bool Round::Node::setRegistry(const Registry reg, Error *error) {
   SystemSetRegistryRequest nodeReq;
-  nodeReq.set(reg);
+  nodeReq.setRegistry(reg);
   NodeResponse nodeRes;
   return postMessage(&nodeReq, &nodeRes, error);
 }

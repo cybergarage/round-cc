@@ -44,6 +44,10 @@ class Node : public NodeCore, public Cloneable<Node> {
   bool getCluster(Cluster *cluster, Error *error);
   bool getClusterList(ClusterList *clusterList, Error *error);
   
+  virtual bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) = 0;
+  virtual bool postMessage(const NodeBatchRequest *nodeReq, NodeBatchResponse *nodeRes, Error *error) = 0;
+  
+  bool postMessage(const std::string &method, const std::string &params, std::string *result);
   bool findNode(const std::string &nodeHash, Node **node, Error *error);
   
   bool setRegistry(const Registry reg, Error *error);
