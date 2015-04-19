@@ -82,14 +82,14 @@ int round_lua_getnodestate(lua_State* L)
 
 int round_lua_setregistry(lua_State* L)
 {
-  Round::Node *node = round_lua_getlocalnode();
+  Round::Node *localNode = round_lua_getlocalnode();
   std::string key = luaL_checkstring(L, 1);
   std::string val = luaL_checkstring(L, 2);
 
   bool isSuccess = false;
-  if (!node && (0 < key.length())) {
+  if (localNode && (0 < key.length())) {
     Round::Error err;
-    isSuccess = node->setRegistry(key, val, &err);
+    isSuccess = localNode->setRegistry(key, val, &err);
   }
 
   lua_pushboolean(L, isSuccess);
@@ -104,12 +104,12 @@ int round_lua_getregistry(lua_State* L)
   time_t ts = 0;
   time_t lts = 0;
   
-  Round::Node *node = round_lua_getlocalnode();
+  Round::Node *localNode = round_lua_getlocalnode();
   std::string key = luaL_checkstring(L, 1);
-  if (!node && (0 < key.length())) {
+  if (localNode && (0 < key.length())) {
     Round::Error err;
     Round::Registry reg;
-    isSuccess = node->getRegistry(key, &reg, &err);
+    isSuccess = localNode->getRegistry(key, &reg, &err);
     if (isSuccess) {
       val = reg.getValue();
       ts = reg.getTimestamp();
@@ -128,12 +128,23 @@ int round_lua_getregistry(lua_State* L)
 int round_lua_postmethod(lua_State* L)
 {
   bool isSuccess = false;
-
-  Round::Node *node = round_lua_getlocalnode();
+  std::string result;
   
   std::string obj = luaL_checkstring(L, 1);
   std::string method = luaL_checkstring(L, 2);
-  std::string param = luaL_checkstring(L, 3);
-    
-  return 1;
+  std::string params = luaL_checkstring(L, 3);
+  
+  Round::Node *localNode = round_lua_getlocalnode();
+  if (localNode) {
+    Round::Node *targetNode;
+    Round::Error error;
+    if (localNode->findNode(obj, &targetNode, &error)) {
+      isSuccess = targetNode->postMessage(method, params, &result);
+    }
+  }
+  
+  lua_pushboolean(L, isSuccess);
+  lua_pushstring(L, result.c_str());
+  
+  return 2;
 }
