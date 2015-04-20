@@ -14,11 +14,13 @@ Round is designed to develop any distributed applications using the single progr
 
 The existing distributed consensus service such as [Chubby \[1\]][1], [ZooKeeper \[2\]][2] supports the only following basic functions to build distributed applications.
 
-![Chubby Programming Model](img/chubby_programming_model.png)
+![Chubby Programming Model](img/chubby_distributed_programming.png)
 
-### Lock Service
+### Functions
 
-### Event
+#### Lock Service
+
+#### Event
 
 The event service sends only the following notifications when other node status is changed.
 
@@ -29,17 +31,18 @@ The event service sends only the following notifications when other node status 
 
 The events are limited and static. In contrast, Round supports more useful events, developer can add user events easily.
 
-### Registry
+#### Registry
+
+### Round Functions
+
+![Chubby Programming Model](img/round_distributed_programming.png)
 
 ## Existing Genaral Distributed Framework
 
 In the existing distributed framework such as [MapReduce \[2\]][2] and [Storm \[4\]][4] ....
 
 [MapReduce \[2\]][2] ....
-
-
 [Storm \[4\]][4] ....
-
 
 ## Existing Distributed Service Framework
 
