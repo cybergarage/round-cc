@@ -18,7 +18,11 @@ The existing distributed consensus service such as [Chubby \[1\]][1], [ZooKeeper
 
 ### Functions
 
-#### Lock Service
+Consensus service provides only two simple services, registry and event. Developer have to handle other functions such as request handlers with client and other nodes.
+
+#### Structured Registry
+
+Consensus service provides a structured registry which developer can access atomicity. The registry has a sequential number to access atomicity, then developer can use the registry as as mutex to handle critical section.
 
 #### Event
 
@@ -31,37 +35,26 @@ The event service sends only the following notifications when other node status 
 
 The events are limited and static. In contrast, Round supports more useful events, developer can add user events easily.
 
-#### Registry
-
 ### Round Functions
+
+In constract, Round supports all basic functions to develop distributed application, then eveloper only have to write application scripts.
 
 ![Chubby Programming Model](img/round_distributed_programming.png)
 
-## Existing Genaral Distributed Framework
+## Existing General Distributed Framework
 
-In the existing distributed framework such as [MapReduce \[2\]][2] and [Storm \[4\]][4] ....
+In the existing distributed framework such as [MapReduce \[2\]][2] and [Storm \[4\]][4] assumes some a specific execution model to develop distributed application easily.
 
-[MapReduce \[2\]][2] ....
-[Storm \[4\]][4] ....
-
-## Existing Distributed Service Framework
-
-
-## Network Topology
-
-Programming model of existing consensus services, like [Chubby \[1\]][1] and [Zookeeper \[4\]][4], are typical client server model.
-
-![Chubby Network Topology](img/chubby_network_topology.png)
-
-[MapReduce \[2\]][2] ...
+[MapReduce \[2\]][2] assumes .... the programming code is static.
 
 ![MapReduce Network Topology](img/mr_network_topology.png)
 
-Round ...
+[Storm \[4\]][4] ....
 
-![Round Network Topology](img/round_network_topology.png)
+## Existing Service Framework Framework
 
-Asymmetric network topology is not always efficient ...
+..... the function is static, and it is difficult to change the algorithm.
+
 
 # Conversion
 
