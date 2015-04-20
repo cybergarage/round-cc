@@ -13,6 +13,8 @@
 
 #include <js/jsapi.h>
 
-JSBool js_sm_get_nodegraph(JSContext *cx, unsigned argc, jsval *vp);
+JSBool js_sm_getnodegraph(JSContext *cx, unsigned argc, jsval *vp);
+JSBool js_sm_setregistry(JSContext *cx, unsigned argc, jsval *vp);
+JSBool js_sm_getregistry(JSContext *cx, unsigned argc, jsval *vp);
 
 #endif

@@ -10,7 +10,7 @@
 
 #include <round/script/js/SpiderMonkeyFunction.h>
 
-JSBool js_sm_get_nodegraph(JSContext *cx, unsigned argc, jsval *vp) {
+JSBool js_sm_getnodegraph(JSContext *cx, unsigned argc, jsval *vp) {
   JS_ASSERT(argc == 1);
   jsval *argv = JS_ARGV(cx, vp);
   JS_ASSERT(JSVAL_IS_STRING(argv[0]));
@@ -46,5 +46,27 @@ JSBool js_sm_post(JSContext *cx, unsigned argc, jsval *vp) {
   
   JS_EndRequest(cx);
   
+  return JS_TRUE;
+}
+
+
+JSBool js_sm_setregistry(JSContext *cx, unsigned argc, jsval *vp) {
+  if (argc < 2)
+    return JS_FALSE;
+  
+  jsval *argv = JS_ARGV(cx, vp);
+  JSString *key = JSVAL_TO_STRING(argv[0]);
+  JSString *val = JSVAL_TO_STRING(argv[1]);
+  
+  return JS_TRUE;
+}
+
+JSBool js_sm_getregistry(JSContext *cx, unsigned argc, jsval *vp) {
+  if (argc < 1)
+    return JS_FALSE;
+  
+  jsval *argv = JS_ARGV(cx, vp);
+  JSString *key = JSVAL_TO_STRING(argv[0]);
+
   return JS_TRUE;
 }

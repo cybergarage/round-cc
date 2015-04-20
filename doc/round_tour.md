@@ -69,3 +69,12 @@ To confirm whether the `set_reg` method is success, call `get_reg` method:
 round> get_reg(0, {"key":"test"})
 hello
 ```
+
+## Route
+
+In this section, use route function.
+
+
+```
+round> set_method(0, { "language":"js", "name":"echo", "code":"function echo(params) {return params;}" })
+```

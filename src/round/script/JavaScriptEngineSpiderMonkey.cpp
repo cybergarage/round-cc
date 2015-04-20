@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////
 
 static JSFunctionSpec JS_SM_FUNCTIONS[] = {
-  JS_FN("get_nodegraph", js_sm_get_nodegraph, 0, 0),
+  JS_FN("get_nodegraph", js_sm_getnodegraph, 0, 0),
   JS_FS_END
 };
 
