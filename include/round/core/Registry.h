@@ -15,6 +15,8 @@
 #include <string>
 #include <map>
 
+#include <round/common/JSON.h>
+
 namespace Round {
 
 class Registry {
@@ -43,6 +45,8 @@ public:
   bool equals(const Registry *reg) const;
   bool equalsWithTimestamp(const Registry &reg) const;
   bool equalsWithTimestamp(const Registry *reg) const;
+  
+  bool toJSONDictionary(JSONDictionary *jsonDir);
   
 private:
   
