@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////
 
 static JSFunctionSpec JS_SM_FUNCTIONS[] = {
-  JS_FN("get_nodegraph", js_sm_getnodegraph, 0, 0),
+  JS_FN("get_nodegraph", round_js_sm_getnodegraph, 0, 0),
   JS_FS_END
 };
 
@@ -49,6 +49,8 @@ JSClass RoundJSGlobalClass = {
 ////////////////////////////////////////////////
 
 void Round::JavaScriptEngine::init() {
+  JS_SetCStringsAreUTF8();
+  JS_SetCStringsAreUTF8
   rt = JS_NewRuntime(8L * 1024L * 1024L);
   if (!rt)
     return;
@@ -89,7 +91,7 @@ bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *resu
 
   lock();
   
-  js_sm_setlocalnode(hasNode() ? getNode() : NULL);
+  round_js_sm_setlocalnode(hasNode() ? getNode() : NULL);
   
   jsval rval;
   JSBool ok = JS_EvaluateScript(cx, glob, jsSource.c_str(), (uintN)jsSource.length(), "", 0, &rval);
@@ -101,7 +103,7 @@ bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *resu
     }
   }
   
-  js_sm_setlocalnode(NULL);
+  round_js_sm_setlocalnode(NULL);
   
   unlock();
   
