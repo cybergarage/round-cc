@@ -10,6 +10,16 @@
 
 #include <round/script/js/SpiderMonkeyFunction.h>
 
+static Round::Node *gRoundSpiderMonkeyEngineLocalNode = NULL;
+
+void js_sm_setlocalnode(Round::Node *node) {
+  gRoundSpiderMonkeyEngineLocalNode = node;
+}
+
+Round::Node *js_sm_getlocalnode() {
+  return gRoundSpiderMonkeyEngineLocalNode;
+}
+
 JSBool js_sm_getnodegraph(JSContext *cx, unsigned argc, jsval *vp) {
   JS_ASSERT(argc == 1);
   jsval *argv = JS_ARGV(cx, vp);
@@ -53,6 +63,10 @@ JSBool js_sm_post(JSContext *cx, unsigned argc, jsval *vp) {
 JSBool js_sm_setregistry(JSContext *cx, unsigned argc, jsval *vp) {
   if (argc < 2)
     return JS_FALSE;
+  
+  Round::LocalNode *localNode = js_sm_getlocalnode();
+  if (!localNode)
+    return FALSE;
   
   jsval *argv = JS_ARGV(cx, vp);
   JSString *key = JSVAL_TO_STRING(argv[0]);

@@ -86,6 +86,10 @@ void Round::JavaScriptEngine::finalize() {
 bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *results, Error *error) const {
   if (!rt || !cx || !glob)
     return false;
+
+  lock();
+  
+  js_sm_setlocalnode(hasNode() ? getNode() : NULL);
   
   jsval rval;
   JSBool ok = JS_EvaluateScript(cx, glob, jsSource.c_str(), (uintN)jsSource.length(), "", 0, &rval);
@@ -96,6 +100,10 @@ bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *resu
       *results = JS_EncodeString(cx, rstr);
     }
   }
+  
+  js_sm_setlocalnode(NULL);
+  
+  unlock();
   
   return ok;
 }
