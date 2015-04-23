@@ -107,7 +107,19 @@ JSBool round_js_sm_getregistry(JSContext *cx, unsigned argc, jsval *vp) {
     return JS_FALSE;
 
   jsval *argv = JS_ARGV(cx, vp);
-  JSString *key = JSVAL_TO_STRING(argv[0]);
+
+  std::string key;
+  JSString *jsKey = JSVAL_TO_STRING(argv[0]);
+  if (jsKey) {
+    JSSTRING_TO_STDSTRING(cx, jsKey, &key);
+  }
+
+  std::string keyDir;
+  
+  Round::Registry reg;
+  if (node->getRegistry(key, &reg)) {
+    
+  }
 
   return JS_TRUE;
 }
