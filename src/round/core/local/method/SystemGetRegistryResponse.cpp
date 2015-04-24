@@ -22,19 +22,19 @@ bool Round::SystemGetRegistryResponse::setRegistry(const Registry reg) {
   time_t tval;
   
   if (reg.getKey(&sval)) {
-    nodeRes->set(get_reg::KEY, sval);
+    nodeRes->set(Registry::KEY, sval);
   }
 
   if (reg.getValue(&sval)) {
-    nodeRes->set(get_reg::VALUE, sval);
+    nodeRes->set(Registry::VALUE, sval);
   }
 
   if (reg.getTimestamp(tval)) {
-    nodeRes->set(get_reg::TS, tval);
+    nodeRes->set(Registry::TS, tval);
   }
 
   if (reg.getLogicalTimestamp(tval)) {
-    nodeRes->set(get_reg::LTS, tval);
+    nodeRes->set(Registry::LTS, tval);
   }
 
   return true;
@@ -44,19 +44,19 @@ bool Round::SystemGetRegistryResponse::getRegistry(Registry *reg) {
   std::string sval;
   time_t tval;
 
-  if (nodeRes->get(get_reg::KEY, &sval)) {
+  if (nodeRes->get(Registry::KEY, &sval)) {
     reg->setKey(sval);
   }
 
-  if (nodeRes->get(get_reg::VALUE, &sval)) {
+  if (nodeRes->get(Registry::VALUE, &sval)) {
     reg->setValue(sval);
   }
 
-  if (nodeRes->get(get_reg::TS, &tval)) {
+  if (nodeRes->get(Registry::TS, &tval)) {
     reg->setTimestamp(tval);
   }
   
-  if (nodeRes->get(get_reg::LTS, &tval)) {
+  if (nodeRes->get(Registry::LTS, &tval)) {
     reg->setLogicalTimestamp(tval);
   }
 

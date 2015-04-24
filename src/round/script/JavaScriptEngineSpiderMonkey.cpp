@@ -50,7 +50,7 @@ JSClass RoundJSGlobalClass = {
 
 void Round::JavaScriptEngine::init() {
   JS_SetCStringsAreUTF8();
-  JS_SetCStringsAreUTF8
+  
   rt = JS_NewRuntime(8L * 1024L * 1024L);
   if (!rt)
     return;

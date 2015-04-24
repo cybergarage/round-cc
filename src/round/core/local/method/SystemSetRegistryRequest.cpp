@@ -21,10 +21,10 @@ void Round::SystemSetRegistryRequest::setRegistry(const Registry reg) {
   std::string sval;
   
   if (reg.getKey(&sval)) {
-    set(get_reg::KEY, sval);
+    set(Registry::KEY, sval);
   }
 
   if (reg.getValue(&sval)) {
-    set(get_reg::VALUE, sval);
+    set(Registry::VALUE, sval);
   }
 }

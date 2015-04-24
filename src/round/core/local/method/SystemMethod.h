@@ -14,6 +14,7 @@
 #include <round/core/Method.h>
 #include <round/core/LocalNode.h>
 #include <round/core/RemoteNode.h>
+#include <round/core/Registry.h>
 
 namespace Round {
 
@@ -351,8 +352,6 @@ class SystemGetNetworkInfoRequest : public SystemMethodRequest {
 class set_reg : public system_method {
  public:
   static const std::string NAME;
-  static const std::string KEY;
-  static const std::string VALUE;
  public:
   set_reg();
   ~set_reg();
@@ -366,11 +365,11 @@ class SystemSetRegistryRequest : public SystemMethodRequest {
   }
   
   void setKey(const std::string &value) {
-    set(set_reg::KEY, value);
+    set(Registry::KEY, value);
   }
 
   void setValue(const std::string &value) {
-    set(set_reg::VALUE, value);
+    set(Registry::VALUE, value);
   }
 
   void setRegistry(const Registry reg);
@@ -381,10 +380,6 @@ class SystemSetRegistryRequest : public SystemMethodRequest {
 class get_reg : public system_method {
 public:
   static const std::string NAME;
-  static const std::string KEY;
-  static const std::string VALUE;
-  static const std::string TS;
-  static const std::string LTS;
 public:
   get_reg();
   ~get_reg();
@@ -398,7 +393,7 @@ public:
   }
 
   void setKey(const std::string &value) {
-    set(get_reg::KEY, value);
+    set(Registry::KEY, value);
   }
 };
 

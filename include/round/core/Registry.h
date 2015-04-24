@@ -22,6 +22,14 @@ namespace Round {
 class Registry {
   
 public:
+
+  static const std::string NAME;
+  static const std::string KEY;
+  static const std::string VALUE;
+  static const std::string TS;
+  static const std::string LTS;
+
+public:
   Registry();
   virtual ~Registry();
 

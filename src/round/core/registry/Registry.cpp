@@ -14,6 +14,11 @@
 
 #include <round/core/Registry.h>
 
+const std::string Round::Registry::KEY    = "key";
+const std::string Round::Registry::VALUE  = "value";
+const std::string Round::Registry::TS     = "ts";
+const std::string Round::Registry::LTS    = "lts";
+
 Round::Registry::Registry() {
   setTimestamp(0);
   setLogicalTimestamp(0);
@@ -134,3 +139,14 @@ bool Round::Registry::equalsWithTimestamp(const Registry *otherReg) const {
   
   return true;
 }
+
+bool Round::Registry::toJSONDictionary(JSONDictionary *jsonDir) {
+  
+  jsonDir->set(KEY, this->key);
+  jsonDir->set(VALUE, this->value);
+  jsonDir->set(TS, this->ts);
+  jsonDir->set(LTS, this->lts);
+  
+  return true;
+}
+
