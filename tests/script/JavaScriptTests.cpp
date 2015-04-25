@@ -14,11 +14,16 @@
 #include <round/script/JavaScript.h>
 
 #include "TestScript.h"
+#include "TestNode.h"
 
 using namespace std;
 using namespace Round;
 
 BOOST_AUTO_TEST_SUITE(script)
+
+////////////////////////////////////////////////////////////
+// JavaScript Engine
+////////////////////////////////////////////////////////////
 
 BOOST_AUTO_TEST_CASE(JavaScriptEngineEchoTest) {
   Error err;
@@ -68,5 +73,17 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineCounterTest) {
   scriptTestController.runCounterMethodTest(&scriptMgr);
 }
 
-BOOST_AUTO_TEST_SUITE_END()
+////////////////////////////////////////////////////////////
+// JavaScript Function
+////////////////////////////////////////////////////////////
 
+BOOST_AUTO_TEST_CASE(JavaScriptMethodTest) {
+
+  TestLocalNode node;
+  Error err;
+  
+  BOOST_CHECK(node.start(&err));
+  BOOST_CHECK(node.stop(&err));
+}
+
+BOOST_AUTO_TEST_SUITE_END()
