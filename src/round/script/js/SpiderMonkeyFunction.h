@@ -14,11 +14,12 @@
 #include <js/jsapi.h>
 #include <round/core/LocalNode.h>
 
-JSBool round_js_sm_getnodegraph(JSContext *cx, unsigned argc, jsval *vp);
-JSBool round_js_sm_setregistry(JSContext *cx, unsigned argc, jsval *vp);
-JSBool round_js_sm_getregistry(JSContext *cx, unsigned argc, jsval *vp);
-
 void round_js_sm_setlocalnode(Round::Node *node);
 Round::Node *round_js_sm_getlocalnode();
+
+JSBool round_js_sm_getnodegraph(JSContext *cx, unsigned argc, jsval *vp);
+JSBool round_js_sm_post(JSContext *cx, unsigned argc, jsval *vp);
+JSBool round_js_sm_setregistry(JSContext *cx, unsigned argc, jsval *vp);
+JSBool round_js_sm_getregistry(JSContext *cx, unsigned argc, jsval *vp);
 
 #endif
