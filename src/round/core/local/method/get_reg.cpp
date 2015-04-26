@@ -13,7 +13,7 @@
 
 #include <round/core/local/method/SystemMethod.h>
 
-const std::string Round::get_reg::NAME   = ROUNDCC_SCRIPT_GET_REG;
+const std::string Round::get_reg::NAME   = ROUNDCC_SYSTEM_METHOD_GET_REG;
 
 Round::get_reg::get_reg() : system_method(NAME) {
 }

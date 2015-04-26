@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDCC_SCRIPT_JS_SM_FUNCTION_H_
-#define _ROUNDCC_SCRIPT_JS_SM_FUNCTION_H_
+#ifndef _ROUNDCC_SYSTEM_METHOD_JS_SM_FUNCTION_H_
+#define _ROUNDCC_SYSTEM_METHOD_JS_SM_FUNCTION_H_
 
 #include <js/jsapi.h>
 #include <round/core/LocalNode.h>

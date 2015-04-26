@@ -13,7 +13,7 @@
 
 #include <round/core/local/method/SystemMethod.h>
 
-const std::string Round::get_cluster_state::NAME = ROUNDCC_SCRIPT_GET_CLUSTER_STATE;
+const std::string Round::get_cluster_state::NAME = ROUNDCC_SYSTEM_METHOD_GET_CLUSTER_STATE;
 
 Round::get_cluster_state::get_cluster_state() : system_method(NAME) {
 }

@@ -214,6 +214,11 @@ bool Round::LocalNode::setScript(const std::string &method, const std::string &l
   return this->scriptMgr.setScript(method, lang, code, encodeType, error);
 }
 
+bool Round::LocalNode::execJob(const std::string &lang, const std::string &script, int encodeType, Error *error) {
+  return false;
+}
+
+
 ////////////////////////////////////////////////
 // Registry
 ////////////////////////////////////////////////

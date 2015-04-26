@@ -13,7 +13,7 @@
 
 #include <round/core/local/method/SystemMethod.h>
 
-const std::string Round::get_node_state::NAME = ROUNDCC_SCRIPT_GET_NODE_STATE;
+const std::string Round::get_node_state::NAME = ROUNDCC_SYSTEM_METHOD_GET_NODE_STATE;
 
 Round::get_node_state::get_node_state() : system_method(NAME) {
 }

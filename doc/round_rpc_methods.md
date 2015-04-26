@@ -27,9 +27,23 @@ set_method := "{" name language code encoding "}"
 name     = "name" ":" TOKEN
 language = "language" ":" supported-language
 code     = "code" ":" TOKEN
-encoding = "code" ":" ("none" | "base64")
+encoding = "encoding" ":" ("none" | "base64")
 
-supported-language = ("js" | "java" | "tcl")
+supported-language = ("js" | "java" | "tcl" | "lua")
+```
+
+If the code parameter isn't specified, the method is removed.
+
+#### post_job
+
+```
+post_job := "{" language code encoding "}"
+
+language = "language" ":" supported-language
+code     = "code" ":" TOKEN
+encoding = "encoding" ":" ("none" | "base64")
+
+supported-language = ("js" | "java" | "tcl" | "lua")
 ```
 
 If the code parameter isn't specified, the method is removed.

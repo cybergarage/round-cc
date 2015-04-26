@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _ROUNDCC_SCRIPT_TCL_H_
-#define _ROUNDCC_SCRIPT_TCL_H_
+#ifndef _ROUNDCC_SYSTEM_METHOD_TCL_H_
+#define _ROUNDCC_SYSTEM_METHOD_TCL_H_
 
 #include <round/core/Script.h>
 

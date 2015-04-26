@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _ROUNDCC_SCRIPT_JAVA_H_
-#define _ROUNDCC_SCRIPT_JAVA_H_
+#ifndef _ROUNDCC_SYSTEM_METHOD_JAVA_H_
+#define _ROUNDCC_SYSTEM_METHOD_JAVA_H_
 
 #include <round/core/Script.h>
 

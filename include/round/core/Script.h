@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _ROUNDCC_SCRIPT_H_
-#define _ROUNDCC_SCRIPT_H_
+#ifndef _ROUNDCC_SYSTEM_METHOD_H_
+#define _ROUNDCC_SYSTEM_METHOD_H_
 
 #include <string>
 #include <map>

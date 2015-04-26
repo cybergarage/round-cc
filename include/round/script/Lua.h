@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _ROUNDCC_SCRIPT_LUA_H_
-#define _ROUNDCC_SCRIPT_LUA_H_
+#ifndef _ROUNDCC_SYSTEM_METHOD_LUA_H_
+#define _ROUNDCC_SYSTEM_METHOD_LUA_H_
 
 #include <round/core/Script.h>
 
