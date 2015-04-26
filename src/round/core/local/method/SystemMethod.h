@@ -63,8 +63,23 @@ class set_method : public system_method {
   static const std::string METHOD_ENCODE_BASE64;
  public:
   set_method();
-  
   ~set_method();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
+};
+
+// post_method
+  
+class post_job : public system_method {
+public:
+  static const std::string NAME;
+  static const std::string METHOD_LANGUAGE;
+  static const std::string METHOD_NAME;
+  static const std::string METHOD_CODE;
+  static const std::string METHOD_ENCODE;
+  static const std::string METHOD_ENCODE_BASE64;
+public:
+  post_job();
+  ~post_job();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
