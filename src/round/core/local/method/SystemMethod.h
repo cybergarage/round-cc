@@ -11,6 +11,7 @@
 #ifndef _ROUNDCC_SYSTEMMETHOD_H_
 #define _ROUNDCC_SYSTEMMETHOD_H_
 
+#include <round/Const.h>
 #include <round/core/Method.h>
 #include <round/core/LocalNode.h>
 #include <round/core/RemoteNode.h>

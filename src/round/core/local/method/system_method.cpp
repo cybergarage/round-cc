@@ -13,7 +13,7 @@
 
 #include <round/core/local/method/SystemMethod.h>
 
-const std::string Round::system_method::ECHO = "_echo";
+const std::string Round::system_method::ECHO = ROUNDCC_SYSTEM_METHOD_ECHO;
 
 Round::system_method::system_method(const std::string &name) : Method(name) {
 }

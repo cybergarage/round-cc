@@ -13,7 +13,7 @@
 
 #include <round/core/local/method/SystemMethod.h>
 
-const std::string Round::set_alias::NAME = "set_alias";
+const std::string Round::set_alias::NAME = ROUNDCC_SYSTEM_METHOD_SET_ALIAS;
 
 Round::set_alias::set_alias() : system_method(NAME) {
 }

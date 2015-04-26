@@ -13,7 +13,7 @@
 
 #include <round/core/local/method/SystemMethod.h>
 
-const std::string Round::get_network_state::NAME  = "get_network_state";
+const std::string Round::get_network_state::NAME  = ROUNDCC_SCRIPT_GET_NETWORK_STATE;
 
 Round::get_network_state::get_network_state() : system_method(NAME) {
 }

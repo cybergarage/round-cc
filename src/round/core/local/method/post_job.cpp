@@ -13,12 +13,12 @@
 
 #include <round/core/local/method/SystemMethod.h>
 
-const std::string Round::post_job::NAME   = "post_job";
-const std::string Round::post_job::METHOD_LANGUAGE      = "language";
-const std::string Round::post_job::METHOD_NAME          = "name";
-const std::string Round::post_job::METHOD_CODE          = "code";
-const std::string Round::post_job::METHOD_ENCODE        = "encode";
-const std::string Round::post_job::METHOD_ENCODE_BASE64 = "base64";
+const std::string Round::post_job::NAME   = ROUNDCC_SYSTEM_METHOD_POST_JOB;
+const std::string Round::post_job::METHOD_LANGUAGE      = ROUNDCC_SYSTEM_METHOD_PARAM_LANGUAGE;
+const std::string Round::post_job::METHOD_NAME          = ROUNDCC_SYSTEM_METHOD_PARAM_NAME;
+const std::string Round::post_job::METHOD_CODE          = ROUNDCC_SYSTEM_METHOD_PARAM_CODE;
+const std::string Round::post_job::METHOD_ENCODE        = ROUNDCC_SYSTEM_METHOD_PARAM_ENCODE;
+const std::string Round::post_job::METHOD_ENCODE_BASE64 = ROUNDCC_SYSTEM_METHOD_PARAM_BASE64;
 
 
 Round::post_job::post_job() : system_method(NAME) {

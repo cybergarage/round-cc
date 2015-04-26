@@ -13,7 +13,7 @@
 
 #include <round/core/local/method/SystemMethod.h>
 
-const std::string Round::set_timer::NAME   = "set_timer";
+const std::string Round::set_timer::NAME   = ROUNDCC_SYSTEM_METHOD_SET_TIMER;
 
 Round::set_timer::set_timer() : system_method(NAME) {
 }

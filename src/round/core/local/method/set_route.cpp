@@ -13,12 +13,12 @@
 
 #include <round/core/local/method/SystemMethod.h>
 
-const std::string Round::set_route::NAME   = "set_route";
-const std::string Round::set_route::ROUTE_NAME          = "name";
-const std::string Round::set_route::ROUTE_SRC           = "src";
-const std::string Round::set_route::ROUTE_DEST          = "dest";
-const std::string Round::set_route::ROUTE_TYPE          = "type";
-const std::string Round::set_route::ROUTE_COND          = "cond";
+const std::string Round::set_route::NAME   = ROUNDCC_SYSTEM_METHOD_SET_ROUTE;
+const std::string Round::set_route::ROUTE_NAME          = ROUNDCC_SYSTEM_METHOD_PARAM_NAME;
+const std::string Round::set_route::ROUTE_SRC           = ROUNDCC_SYSTEM_METHOD_PARAM_SRC;
+const std::string Round::set_route::ROUTE_DEST          = ROUNDCC_SYSTEM_METHOD_PARAM_DEST;
+const std::string Round::set_route::ROUTE_TYPE          = ROUNDCC_SYSTEM_METHOD_PARAM_TYPE;
+const std::string Round::set_route::ROUTE_COND          = ROUNDCC_SYSTEM_METHOD_PARAM_COND;
 
 Round::set_route::set_route() : system_method(NAME) {
 }
