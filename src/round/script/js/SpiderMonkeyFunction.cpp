@@ -21,6 +21,20 @@ Round::Node *round_js_sm_getlocalnode() {
   return gRoundSpiderMonkeyEngineLocalNode;
 }
 
+
+static bool JSSTRING_TO_STDSTRING(JSContext *cx, JSString *jsStr, std::string *stdStr) {
+  if (!jsStr)
+    return false;
+
+  char buffer[1024];
+  size_t bufferLen = JS_EncodeStringToBuffer(jsStr, buffer, (sizeof(buffer)-1));
+  buffer[bufferLen] = '\0';
+  
+  *stdStr = buffer;
+
+  return true;
+}
+
 JSBool round_js_sm_getnodegraph(JSContext *cx, unsigned argc, jsval *vp) {
   Round::LocalNode *node = dynamic_cast<Round::LocalNode *>(round_js_sm_getlocalnode());
   if (!node)
@@ -85,10 +99,18 @@ JSBool round_js_sm_setregistry(JSContext *cx, unsigned argc, jsval *vp) {
 
   JS_BeginRequest(cx);
   
-  const char *key, *val;
-  if (!JS_ConvertArguments(cx, argc, JS_ARGV(cx, vp), "ss", &key, &val)) {
-    JS_EndRequest(cx);
-    return JS_FALSE;
+  jsval *argv = JS_ARGV(cx, vp);
+
+  std::string key;
+  JSString *jsKey = JSVAL_TO_STRING(argv[0]);
+  if (jsKey) {
+    JSSTRING_TO_STDSTRING(cx, jsKey, &key);
+  }
+  
+  std::string val;
+  JSString *jsVal = JSVAL_TO_STRING(argv[1]);
+  if (jsVal) {
+    JSSTRING_TO_STDSTRING(cx, jsVal, &val);
   }
   
   bool isSuccess = node->setRegistry(key, val);
@@ -110,10 +132,12 @@ JSBool round_js_sm_getregistry(JSContext *cx, unsigned argc, jsval *vp) {
   
   JS_BeginRequest(cx);
 
-  const char *key;
-  if (!JS_ConvertArguments(cx, argc, JS_ARGV(cx, vp), "s", &key)) {
-    JS_EndRequest(cx);
-    return JS_FALSE;
+  jsval *argv = JS_ARGV(cx, vp);
+  
+  std::string key;
+  JSString *jsKey = JSVAL_TO_STRING(argv[0]);
+  if (jsKey) {
+    JSSTRING_TO_STDSTRING(cx, jsKey, &key);
   }
   
   std::string result;
