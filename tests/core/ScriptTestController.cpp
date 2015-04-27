@@ -57,7 +57,7 @@ void Round::Test::ScriptTestController::runEchoMethodTest(Round::ScriptManager *
   Error error;
   for (std::vector<std::string>::iterator echoParamIt = params.begin(); echoParamIt != params.end(); echoParamIt++) {
     std::string &echoParam = *echoParamIt;
-    BOOST_CHECK(scriptMgr->run(Test::SCRIPT_ECHO_NAME, echoParam, &results, &error));
+    BOOST_CHECK(scriptMgr->execMethod(Test::SCRIPT_ECHO_NAME, echoParam, &results, &error));
     BOOST_CHECK_EQUAL(echoParam.compare(results), 0);
   }
 }
@@ -94,7 +94,7 @@ void Round::Test::ScriptTestController::runSumMethodTest(Round::ScriptManager *s
   for (size_t n = 0; n < nParams; n++) {
     std::string result;
     Error error;
-    BOOST_CHECK(scriptMgr->run(Test::SCRIPT_SUM_NAME, params[n], &result, &error));
+    BOOST_CHECK(scriptMgr->execMethod(Test::SCRIPT_SUM_NAME, params[n], &result, &error));
     BOOST_CHECK_EQUAL(result.compare(results[n]), 0);
   }
 }
@@ -107,15 +107,15 @@ void Round::Test::ScriptTestController::runCounterMethodTest(Round::ScriptManage
 
   // set_counter, get_counter
   for (size_t n=0; n<=TEST_LOOP_COUNT; n++) {
-    BOOST_CHECK(scriptMgr->run(Test::SCRIPT_SETCOUNTER_NAME, boost::lexical_cast<std::string>(n), &result, &error));
-    BOOST_CHECK(scriptMgr->run(Test::SCRIPT_GETCOUNTER_NAME, "", &result, &error));
+    BOOST_CHECK(scriptMgr->execMethod(Test::SCRIPT_SETCOUNTER_NAME, boost::lexical_cast<std::string>(n), &result, &error));
+    BOOST_CHECK(scriptMgr->execMethod(Test::SCRIPT_GETCOUNTER_NAME, "", &result, &error));
     BOOST_CHECK_EQUAL(boost::lexical_cast<int>(result), n);
   }
 
   // set_counter, inc_counter, get_counter
   for (size_t n=0; n<=TEST_LOOP_COUNT; n++) {
-    BOOST_CHECK(scriptMgr->run(Test::SCRIPT_INCCOUNTER_NAME, "", &result, &error));
-    BOOST_CHECK(scriptMgr->run(Test::SCRIPT_GETCOUNTER_NAME, "", &result, &error));
+    BOOST_CHECK(scriptMgr->execMethod(Test::SCRIPT_INCCOUNTER_NAME, "", &result, &error));
+    BOOST_CHECK(scriptMgr->execMethod(Test::SCRIPT_GETCOUNTER_NAME, "", &result, &error));
     BOOST_CHECK_EQUAL(boost::lexical_cast<int>(result), (n + TEST_LOOP_COUNT + 1));
   }
 }

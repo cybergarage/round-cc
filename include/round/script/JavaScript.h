@@ -31,13 +31,13 @@ class JavaScriptEngine : public ScriptEngine {
   
   bool compile(const Script *script) const;
   bool run(const Script *script, const std::string &params, std::string *results, Error *error) const;
+  bool run(const std::string &script, std::string *result, Error *error) const;
 
  private:
 
   void init();
   void finalize();
   bool getSourceCode(const Script *script, const std::string &params, std::string *sourceCode) const;
-  bool run(const std::string &source, std::string *results, Error *error) const;
 
 #if defined(ROUND_SUPPORT_JS_SM)
   JSRuntime *rt;

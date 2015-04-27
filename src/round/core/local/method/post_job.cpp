@@ -61,5 +61,11 @@ bool Round::post_job::exec(LocalNode *node, const NodeRequest *nodeReq, NodeResp
     }
   }
   
-  return node->execJob(scriptLang, scriptCode, encodeType, &err);
+  std::string result;
+  if (!node->execJob(scriptLang, scriptCode, encodeType, &result, &err))
+    return false;
+  
+  nodeRes->setResult(result);
+  
+  return true;
 }

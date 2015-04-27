@@ -103,7 +103,17 @@ bool Round::ScriptManager::removeScript(const std::string &method, const std::st
   return (this->scripts.erase(method) == 1) ? true : false;
 }
 
-bool Round::ScriptManager::run(const std::string &name, const std::string &params, std::string *results, Error *error) {
+bool Round::ScriptManager::execScript(const std::string &lang, const std::string &script, int encodeType, std::string *result, Error *error) {
+  const ScriptEngine *scriptEngine = this->engines.getEngine(lang);
+  if (!scriptEngine) {
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeScriptEngineInternalError, error);
+    return false;
+  }
+  
+  return scriptEngine->run(script, result, error);
+}
+
+bool Round::ScriptManager::execMethod(const std::string &name, const std::string &params, std::string *results, Error *error) {
   error->setCode(ScriptEngineStatusOk);
   
   const Script *script = this->scripts.getScript(name);

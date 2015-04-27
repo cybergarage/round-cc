@@ -163,6 +163,7 @@ public:
   
   virtual bool compile(const Script *script) const = 0;
   virtual bool run(const Script *script, const std::string &params, std::string *results, Error *error) const = 0;
+  virtual bool run(const std::string &script, std::string *result, Error *error) const = 0;
 
   void lock() const {
     mutex.lock();
@@ -236,7 +237,8 @@ class ScriptManager {
     return this->engines.hasEngine(lang);
   }
   
-  bool run(const std::string &name, const std::string &params, std::string *results, Error *error);
+  bool execMethod(const std::string &name, const std::string &params, std::string *result, Error *error);
+  bool execScript(const std::string &lang, const std::string &script, int encodeType, std::string *result, Error *error);
   
   bool toJSONArray(JSONArray *jsonArray, Error *error);
   

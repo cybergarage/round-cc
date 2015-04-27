@@ -214,8 +214,8 @@ bool Round::LocalNode::setScript(const std::string &method, const std::string &l
   return this->scriptMgr.setScript(method, lang, code, encodeType, error);
 }
 
-bool Round::LocalNode::execJob(const std::string &lang, const std::string &script, int encodeType, Error *error) {
-  return false;
+bool Round::LocalNode::execJob(const std::string &lang, const std::string &script, int encodeType, std::string *result, Error *error) {
+  return this->scriptMgr.execScript(lang, script, encodeType, result, error);
 }
 
 
@@ -427,7 +427,7 @@ bool Round::LocalNode::execDynamicMethod(const NodeRequest *nodeReq, NodeRespons
   nodeReq->getParams(&params);
   
   std::string result;
-  bool isSuccess = this->scriptMgr.run(method, params, &result, error);
+  bool isSuccess = this->scriptMgr.execMethod(method, params, &result, error);
   if (isSuccess) {
     nodeRes->setResult(result);
   }

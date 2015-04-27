@@ -49,7 +49,11 @@ bool Round::TclEngine::compile(const Script *script) const {
 ////////////////////////////////////////////////
 
 bool Round::TclEngine::run(const Script *tclScript, const std::string &params, std::string *results, Error *error) const {
-  return true;
+  return false;
+}
+
+bool Round::TclEngine::run(const std::string &script, std::string *result, Error *error) const {
+  return false;
 }
 
 #endif

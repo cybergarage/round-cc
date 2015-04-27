@@ -125,4 +125,9 @@ bool Round::LuaEngine::run(const Script *luaScript, const std::string &params, s
   return (callResult == 0) ? true : false;
 }
 
+bool Round::LuaEngine::run(const std::string &script, std::string *result, Error *error) const {
+  // TODO : Not Supported yet
+  return false;
+}
+
 #endif
