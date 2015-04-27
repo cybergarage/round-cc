@@ -53,7 +53,7 @@ JSBool round_js_sm_post(JSContext *cx, unsigned argc, jsval *vp) {
   
   JS_BeginRequest(cx);
   
-  char *obj, *method, *params;
+  const char *obj, *method, *params;
   if (!JS_ConvertArguments(cx, argc, JS_ARGV(cx, vp), "sss", &obj, &method, &params)) {
     JS_EndRequest(cx);
     return JS_FALSE;
@@ -75,7 +75,6 @@ JSBool round_js_sm_post(JSContext *cx, unsigned argc, jsval *vp) {
   return JS_TRUE;
 }
 
-
 JSBool round_js_sm_setregistry(JSContext *cx, unsigned argc, jsval *vp) {
   if (argc < 2)
     return JS_FALSE;
@@ -86,7 +85,7 @@ JSBool round_js_sm_setregistry(JSContext *cx, unsigned argc, jsval *vp) {
 
   JS_BeginRequest(cx);
   
-  char *key, *val;
+  const char *key, *val;
   if (!JS_ConvertArguments(cx, argc, JS_ARGV(cx, vp), "ss", &key, &val)) {
     JS_EndRequest(cx);
     return JS_FALSE;
@@ -111,7 +110,7 @@ JSBool round_js_sm_getregistry(JSContext *cx, unsigned argc, jsval *vp) {
   
   JS_BeginRequest(cx);
 
-  char *key;
+  const char *key;
   if (!JS_ConvertArguments(cx, argc, JS_ARGV(cx, vp), "s", &key)) {
     JS_EndRequest(cx);
     return JS_FALSE;

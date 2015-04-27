@@ -17,6 +17,13 @@ Round::ScriptManager::ScriptManager() {
 Round::ScriptManager::~ScriptManager() {
 }
 
+void Round::ScriptManager::setNode(Node *node) {
+  this->node = node;
+  for (ScriptEngineMap::iterator engine = engines.begin(); engine != engines.end(); engine++) {
+    engine->second->setNode(node);
+  }
+}
+
 bool Round::ScriptManager::setScript(Script *script) {
   if (!script)
     return false;
@@ -52,6 +59,7 @@ bool Round::ScriptManager::setEngine(ScriptEngine *engine) {
   }
   
   this->engines[engineLang] = engine;
+  engine->setNode(getNode());
 
   return true;
 }

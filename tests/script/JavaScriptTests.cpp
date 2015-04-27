@@ -77,12 +77,37 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineCounterTest) {
 // JavaScript Function
 ////////////////////////////////////////////////////////////
 
+#define JS_JOB_SCRIPT_BUF 1024
+#define JS_JOB_SETREGISTORY "set_registry(\"%s\", \"%s\");\nget_registry(\"%s\");"
+
 BOOST_AUTO_TEST_CASE(JavaScriptMethodTest) {
 
   TestLocalNode node;
   Error err;
   
   BOOST_CHECK(node.start(&err));
+  
+  char script[JS_JOB_SCRIPT_BUF+1];
+  for (int n=0; n<10; n++) {
+    time_t ts;
+    
+    Registry inReg;
+    
+    std::stringstream ss;
+    time(&ts); ts += rand(); ss << ts;
+    std::string key = "key" + ss.str();
+    std::string val = "val" + ss.str();
+    
+    snprintf(script, JS_JOB_SCRIPT_BUF,
+             JS_JOB_SETREGISTORY,
+             key.c_str(),
+             val.c_str(),
+             key.c_str());
+  
+    std::string result;
+    BOOST_CHECK(node.execJob(JavaScriptEngine::LANGUAGE, script, Round::Script::ENCODING_NONE, &result, &err));
+
+  }
   BOOST_CHECK(node.stop(&err));
 }
 

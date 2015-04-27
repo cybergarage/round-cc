@@ -242,9 +242,7 @@ class ScriptManager {
   
   bool toJSONArray(JSONArray *jsonArray, Error *error);
   
-  void setNode(Node *node) {
-    this->node = node;
-  }
+  void setNode(Node *node);
   
   Node *getNode() const {
     return this->node;
