@@ -21,7 +21,15 @@ Round::Node *round_js_sm_getlocalnode() {
   return gRoundSpiderMonkeyEngineLocalNode;
 }
 
-static bool JSSTRING_TO_STDSTRING(JSContext *cx, JSString *jsStr, std::string *stdStr) {
+static bool JSSTRING_TO_STDSTRING(JSContext *cx, jsval *vp, size_t argn, std::string *stdStr) {
+  jsval *argv = JS_ARGV(cx, vp);
+  
+  jsval arg = argv[argn];
+  if (!JSVAL_IS_STRING(arg))
+    return false;
+  
+  JSString *jsStr = JSVAL_TO_STRING(arg);
+  
   if (!jsStr)
     return false;
 
@@ -34,19 +42,26 @@ static bool JSSTRING_TO_STDSTRING(JSContext *cx, JSString *jsStr, std::string *s
   return true;
 }
 
+static bool JS_SET_STDSTRING_RVAL(JSContext *cx, jsval *vp, const std::string &result) {
+  JSString *jsResult = JS_NewStringCopyZ(cx, result.c_str());
+  JS_SET_RVAL(cx, vp, STRING_TO_JSVAL(jsResult));
+  return true;
+}
+
+static bool JS_SET_NODERESPONSE_RVAL(JSContext *cx, jsval *vp, Round::NodeResponse &nodeRes) {
+  std::string result;
+  nodeRes.getResult(&result);
+  return JS_SET_STDSTRING_RVAL(cx, vp, result);
+}
+
 JSBool round_js_sm_print(JSContext *cx, unsigned argc, jsval *vp) {
   if (argc < 1)
     return JS_FALSE;
   
   JS_BeginRequest(cx);
   
-  jsval *argv = JS_ARGV(cx, vp);
-  
   std::string msg;
-  JSString *jsMsg = JSVAL_TO_STRING(argv[0]);
-  if (jsMsg) {
-    JSSTRING_TO_STDSTRING(cx, jsMsg, &msg);
-  }
+  JSSTRING_TO_STDSTRING(cx, vp, 0, &msg);
   
   std::cout << msg << std::endl;
   
@@ -64,19 +79,15 @@ JSBool round_js_sm_getnodegraph(JSContext *cx, unsigned argc, jsval *vp) {
   Round::SystemGetClusterInfoResponse sysRes(&nodeRes);
   sysRes.setCluster(node);
 
-  std::string result;
-  nodeRes.getResult(&result);
-  
-  JSString *jsResult = JS_NewStringCopyZ(cx, result.c_str());
-  JS_SET_RVAL(cx, vp, STRING_TO_JSVAL(jsResult));
+  JS_SET_NODERESPONSE_RVAL(cx, vp, nodeRes);
   
   JS_EndRequest(cx);
   
   return JS_TRUE;
 }
 
-JSBool round_js_sm_post(JSContext *cx, unsigned argc, jsval *vp) {
-  if (argc < 3)
+JSBool round_js_sm_post_method(JSContext *cx, unsigned argc, jsval *vp) {
+  if (argc < 2)
     return JS_FALSE;
 
   Round::LocalNode *node = dynamic_cast<Round::LocalNode *>(round_js_sm_getlocalnode());
@@ -85,10 +96,11 @@ JSBool round_js_sm_post(JSContext *cx, unsigned argc, jsval *vp) {
   
   JS_BeginRequest(cx);
   
-  const char *obj, *method, *params;
-  if (!JS_ConvertArguments(cx, argc, JS_ARGV(cx, vp), "sss", &obj, &method, &params)) {
-    JS_EndRequest(cx);
-    return JS_FALSE;
+  std::string method, params, obj;
+  JSSTRING_TO_STDSTRING(cx, vp, 0, &method);
+  JSSTRING_TO_STDSTRING(cx, vp, 1, &params);
+  if (3 <= argc) {
+    JSSTRING_TO_STDSTRING(cx, vp, 2, &obj);
   }
   
   Round::Node *targetNode;
@@ -99,8 +111,7 @@ JSBool round_js_sm_post(JSContext *cx, unsigned argc, jsval *vp) {
     targetNode->postMessage(method, params, &result);
   }
   
-  JSString *jsResult = JS_NewStringCopyZ(cx, result.c_str());
-  JS_SET_RVAL(cx, vp, STRING_TO_JSVAL(jsResult));
+  JS_SET_STDSTRING_RVAL(cx, vp, result);
   
   JS_EndRequest(cx);
   
@@ -117,19 +128,9 @@ JSBool round_js_sm_setregistry(JSContext *cx, unsigned argc, jsval *vp) {
 
   JS_BeginRequest(cx);
   
-  jsval *argv = JS_ARGV(cx, vp);
-
-  std::string key;
-  JSString *jsKey = JSVAL_TO_STRING(argv[0]);
-  if (jsKey) {
-    JSSTRING_TO_STDSTRING(cx, jsKey, &key);
-  }
-  
-  std::string val;
-  JSString *jsVal = JSVAL_TO_STRING(argv[1]);
-  if (jsVal) {
-    JSSTRING_TO_STDSTRING(cx, jsVal, &val);
-  }
+  std::string key, val;
+  JSSTRING_TO_STDSTRING(cx, vp, 0, &key);
+  JSSTRING_TO_STDSTRING(cx, vp, 1, &val);
   
   bool isSuccess = node->setRegistry(key, val);
 
@@ -150,13 +151,8 @@ JSBool round_js_sm_getregistry(JSContext *cx, unsigned argc, jsval *vp) {
   
   JS_BeginRequest(cx);
 
-  jsval *argv = JS_ARGV(cx, vp);
-  
   std::string key;
-  JSString *jsKey = JSVAL_TO_STRING(argv[0]);
-  if (jsKey) {
-    JSSTRING_TO_STDSTRING(cx, jsKey, &key);
-  }
+  JSSTRING_TO_STDSTRING(cx, vp, 0, &key);
   
   std::string result;
   
@@ -168,8 +164,7 @@ JSBool round_js_sm_getregistry(JSContext *cx, unsigned argc, jsval *vp) {
     }
   }
 
-  JSString *jsResult = JS_NewStringCopyZ(cx, result.c_str());
-  JS_SET_RVAL(cx, vp, STRING_TO_JSVAL(jsResult));
+  JS_SET_STDSTRING_RVAL(cx, vp, result);
   
   JS_EndRequest(cx);
   

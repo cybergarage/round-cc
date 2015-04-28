@@ -77,8 +77,9 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineCounterTest) {
 // JavaScript Function
 ////////////////////////////////////////////////////////////
 
-#define JS_JOB_SCRIPT_BUF 1024
-#define JS_JOB_SETREGISTORY \
+#define JS_JOB_SCRIPT_BUF_SIZE 1024
+
+#define JS_TEST_JOB_SETREGISTORY \
   "var key = \"%s\";\n" \
   "var val = \"%s\";\n" \
   ROUNDCC_SYSTEM_METHOD_SET_REGISTRY "(key, val);\n" \
@@ -89,14 +90,14 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineCounterTest) {
   "}\n" \
   "(val == jsonReg.value);\n"
 
-BOOST_AUTO_TEST_CASE(JavaScriptMethodTest) {
+BOOST_AUTO_TEST_CASE(JavaScriptRegistryMethodTest) {
 
   TestLocalNode node;
   Error err;
   
   BOOST_CHECK(node.start(&err));
   
-  char script[JS_JOB_SCRIPT_BUF+1];
+  char script[JS_JOB_SCRIPT_BUF_SIZE+1];
   for (int n=0; n<10; n++) {
     time_t ts;
     
@@ -108,11 +109,57 @@ BOOST_AUTO_TEST_CASE(JavaScriptMethodTest) {
     std::string val = "val" + ss.str();
     
     snprintf(script,
-             JS_JOB_SCRIPT_BUF,
-             JS_JOB_SETREGISTORY,
+             JS_JOB_SCRIPT_BUF_SIZE,
+             JS_TEST_JOB_SETREGISTORY,
              key.c_str(),
              val.c_str());
   
+    std::string result;
+    BOOST_CHECK(node.execJob(JavaScriptEngine::LANGUAGE, script, Round::Script::ENCODING_NONE, &result, &err));
+    BOOST_CHECK_EQUAL(result.compare("true"), 0);
+  }
+  BOOST_CHECK(node.stop(&err));
+}
+
+#define JS_TEST_JOB_POSTMETHOD \
+  "var key = \"%s\";\n" \
+  "var val = \"%s\";\n" \
+  ROUNDCC_SYSTEM_METHOD_SET_REGISTRY "(key, val);\n" \
+  "var result = " ROUNDCC_SCRIPT_POST_METHOD "(\"" ROUNDCC_SYSTEM_METHOD_GET_REGISTRY "\", \"{\\\"key\\\": \\\"%s\\\"}\");\n" \
+  "var jsonReg = JSON.parse(result);\n" \
+  "if (val != jsonReg.value) {\n" \
+  "  print(jsonReg.value);\n" \
+  "}\n" \
+  "(val == jsonReg.value);\n"
+
+#define JS_TEST_JOB_POSTMETHOD_PARAM \
+  ""
+
+BOOST_AUTO_TEST_CASE(JavaScriptPostMethodTest) {
+  TestLocalNode node;
+  Error err;
+  
+  BOOST_CHECK(node.start(&err));
+  
+  char script[JS_JOB_SCRIPT_BUF_SIZE+1];
+
+  for (int n=0; n<10; n++) {
+    time_t ts;
+    
+    Registry inReg;
+    
+    std::stringstream ss;
+    time(&ts); ts += rand(); ss << ts;
+    std::string key = "key" + ss.str();
+    std::string val = "val" + ss.str();
+    
+    snprintf(script,
+             JS_JOB_SCRIPT_BUF_SIZE,
+             JS_TEST_JOB_POSTMETHOD,
+             key.c_str(),
+             val.c_str(),
+             key.c_str());
+    
     std::string result;
     BOOST_CHECK(node.execJob(JavaScriptEngine::LANGUAGE, script, Round::Script::ENCODING_NONE, &result, &err));
     BOOST_CHECK_EQUAL(result.compare("true"), 0);
