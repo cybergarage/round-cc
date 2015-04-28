@@ -57,16 +57,16 @@ round> echo(0, "hello")
 
 ## Registry
 
-In this section, use registry function. To set a value into the registry, use `set_reg` method:
+In this section, use registry function. To set a value into the registry, use `set_registry` method:
 
 ```
-round> set_reg(0, {"key":"test", "value":"hello"})
+round> set_registry(0, {"key":"test", "value":"hello"})
 ```
 
-To confirm whether the `set_reg` method is success, call `get_reg` method:
+To confirm whether the `set_registry` method is success, call `get_registry` method:
 
 ```
-round> get_reg(0, {"key":"test"})
+round> get_registry(0, {"key":"test"})
 hello
 ```
 

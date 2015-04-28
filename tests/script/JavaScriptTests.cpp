@@ -81,8 +81,8 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineCounterTest) {
 #define JS_JOB_SETREGISTORY \
   "var key = \"%s\";\n" \
   "var val = \"%s\";\n" \
-  "set_registry(key, val);\n" \
-  "var reg = get_registry(key);\n" \
+  ROUNDCC_SYSTEM_METHOD_SET_REGISTRY "(key, val);\n" \
+  "var reg = " ROUNDCC_SYSTEM_METHOD_GET_REGISTRY "(key);\n" \
   "var jsonReg = JSON.parse(reg);\n" \
   "if (val != jsonReg.value) {\n" \
   "  print(jsonReg.value);\n" \

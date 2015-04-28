@@ -25,7 +25,7 @@ void Round::LocalNativeMethodManager::init() {
   addMethod(new get_node_config());
   addMethod(new get_cluster_state());
   addMethod(new get_network_state());
-  addMethod(new set_reg());
-  addMethod(new get_reg());
+  addMethod(new set_registry());
+  addMethod(new get_registry());
   addMethod(new execp());
 }

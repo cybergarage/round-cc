@@ -276,7 +276,7 @@ void NodeTestController::runSystemMethodTest(Round::Node *node) {
   // get_network_state()
   runSystemGetNetworkInfoTest(node);
 
-  // set_reg() and get_reg()
+  // set_registry() and get_registry()
   runSystemKeyMethodsTest(node);
 }
 

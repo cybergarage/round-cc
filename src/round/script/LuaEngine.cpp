@@ -34,8 +34,8 @@ Round::LuaEngine::LuaEngine() : ScriptEngine(LANGUAGE) {
   lua_register(this->luaState, ROUNDCC_SYSTEM_METHOD_GET_NETWORK_STATE, round_lua_getnetworkstate);
   lua_register(this->luaState, ROUNDCC_SYSTEM_METHOD_GET_CLUSTER_STATE, round_lua_getclusterstate);
   lua_register(this->luaState, ROUNDCC_SYSTEM_METHOD_GET_NODE_STATE, round_lua_getnodestate);
-  lua_register(this->luaState, ROUNDCC_SYSTEM_METHOD_SET_REG, round_lua_setregistry);
-  lua_register(this->luaState, ROUNDCC_SYSTEM_METHOD_GET_REG, round_lua_getregistry);
+  lua_register(this->luaState, ROUNDCC_SYSTEM_METHOD_SET_REGISTRY, round_lua_setregistry);
+  lua_register(this->luaState, ROUNDCC_SYSTEM_METHOD_GET_REGISTRY, round_lua_getregistry);
   lua_register(this->luaState, ROUNDCC_SCRIPT_POST_METHOD, round_lua_postmethod);
 }
 

@@ -362,21 +362,21 @@ class SystemGetNetworkInfoRequest : public SystemMethodRequest {
   }
 };
   
-// set_reg
+// set_registry
 
-class set_reg : public system_method {
+class set_registry : public system_method {
  public:
   static const std::string NAME;
  public:
-  set_reg();
-  ~set_reg();
+  set_registry();
+  ~set_registry();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
 class SystemSetRegistryRequest : public SystemMethodRequest {
  public:
   SystemSetRegistryRequest() {
-    setMethod(set_reg::NAME);
+    setMethod(set_registry::NAME);
   }
   
   void setKey(const std::string &value) {
@@ -390,21 +390,21 @@ class SystemSetRegistryRequest : public SystemMethodRequest {
   void setRegistry(const Registry reg);
 };
 
-// get_reg
+// get_registry
 
-class get_reg : public system_method {
+class get_registry : public system_method {
 public:
   static const std::string NAME;
 public:
-  get_reg();
-  ~get_reg();
+  get_registry();
+  ~get_registry();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
 class SystemGetRegistryRequest : public SystemMethodRequest {
 public:
   SystemGetRegistryRequest() {
-    setMethod(get_reg::NAME);
+    setMethod(get_registry::NAME);
   }
 
   void setKey(const std::string &value) {

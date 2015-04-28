@@ -21,8 +21,8 @@ static JSFunctionSpec JS_SM_FUNCTIONS[] = {
   JS_FN(ROUNDCC_SCRIPT_PRINT_METHOD, round_js_sm_print, 0, 0),
   JS_FN("get_nodegraph", round_js_sm_getnodegraph, 0, 0),
   JS_FN(ROUNDCC_SCRIPT_POST_METHOD, round_js_sm_post, 0, 0),
-  JS_FN("set_registry", round_js_sm_setregistry, 0, 0),
-  JS_FN("get_registry", round_js_sm_getregistry, 0, 0),
+  JS_FN(ROUNDCC_SYSTEM_METHOD_SET_REGISTRY, round_js_sm_setregistry, 0, 0),
+  JS_FN(ROUNDCC_SYSTEM_METHOD_GET_REGISTRY, round_js_sm_getregistry, 0, 0),
   JS_FS_END
 };
 

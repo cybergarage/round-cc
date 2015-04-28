@@ -13,15 +13,15 @@
 
 #include <round/core/local/method/SystemMethod.h>
 
-const std::string Round::set_reg::NAME   = ROUNDCC_SYSTEM_METHOD_SET_REG;
+const std::string Round::set_registry::NAME   = ROUNDCC_SYSTEM_METHOD_SET_REGISTRY;
 
-Round::set_reg::set_reg() : system_method(NAME) {
+Round::set_registry::set_registry() : system_method(NAME) {
 }
 
-Round::set_reg::~set_reg() {
+Round::set_registry::~set_registry() {
 }
 
-bool Round::set_reg::exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const {
+bool Round::set_registry::exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const {
   std::string params;
   if (!nodeReq->getParams(&params))
     return false;
