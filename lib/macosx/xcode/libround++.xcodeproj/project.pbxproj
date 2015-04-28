@@ -69,8 +69,8 @@
 		21C2236B1AC5264200209C1F /* LuaFunction.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C223691AC5264200209C1F /* LuaFunction.h */; };
 		21D03AD41A63C4A60098122A /* Route.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D03AD31A63C4A60098122A /* Route.h */; };
 		21D50A9B1A819F39005C1F51 /* exec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50A9A1A819F39005C1F51 /* exec.cpp */; };
-		21D50AA21A82322F005C1F51 /* get_reg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50AA01A82322F005C1F51 /* get_reg.cpp */; };
-		21D50AA31A82322F005C1F51 /* set_reg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50AA11A82322F005C1F51 /* set_reg.cpp */; };
+		21D50AA21A82322F005C1F51 /* get_registry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50AA01A82322F005C1F51 /* get_registry.cpp */; };
+		21D50AA31A82322F005C1F51 /* set_registry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50AA11A82322F005C1F51 /* set_registry.cpp */; };
 		21D50AA51A8249E5005C1F51 /* Alias.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D50AA41A8249E5005C1F51 /* Alias.h */; };
 		21D50AAB1A824A9C005C1F51 /* Alias.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50AA71A824A9C005C1F51 /* Alias.cpp */; };
 		21D50AAC1A824A9C005C1F51 /* AliasEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50AA81A824A9C005C1F51 /* AliasEngine.cpp */; };
@@ -302,8 +302,8 @@
 		21C223691AC5264200209C1F /* LuaFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaFunction.h; sourceTree = "<group>"; };
 		21D03AD31A63C4A60098122A /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
 		21D50A9A1A819F39005C1F51 /* exec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exec.cpp; sourceTree = "<group>"; };
-		21D50AA01A82322F005C1F51 /* get_reg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = get_reg.cpp; sourceTree = "<group>"; };
-		21D50AA11A82322F005C1F51 /* set_reg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = set_reg.cpp; sourceTree = "<group>"; };
+		21D50AA01A82322F005C1F51 /* get_registry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = get_registry.cpp; sourceTree = "<group>"; };
+		21D50AA11A82322F005C1F51 /* set_registry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = set_registry.cpp; sourceTree = "<group>"; };
 		21D50AA41A8249E5005C1F51 /* Alias.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alias.h; sourceTree = "<group>"; };
 		21D50AA71A824A9C005C1F51 /* Alias.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Alias.cpp; sourceTree = "<group>"; };
 		21D50AA81A824A9C005C1F51 /* AliasEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AliasEngine.cpp; sourceTree = "<group>"; };
@@ -604,14 +604,14 @@
 				2133317B1A773FAD00DB41AB /* get_network_state.cpp */,
 				213331801A77411200DB41AB /* get_node_config.cpp */,
 				2133317C1A773FAD00DB41AB /* get_node_state.cpp */,
-				21D50AA01A82322F005C1F51 /* get_reg.cpp */,
+				21D50AA01A82322F005C1F51 /* get_registry.cpp */,
 				21B911A31A6B5F4300C791FD /* Method.cpp */,
 				21B911A41A6B5F4300C791FD /* MethodManager.cpp */,
 				21B911A51A6B5F4300C791FD /* MethodMap.cpp */,
 				218B34411AECD4C3009BE65F /* post_job.cpp */,
 				21D8CA761A6B7284002CBDC3 /* set_alias.cpp */,
 				21B911BB1A6B61CC00C791FD /* set_method.cpp */,
-				21D50AA11A82322F005C1F51 /* set_reg.cpp */,
+				21D50AA11A82322F005C1F51 /* set_registry.cpp */,
 				21D8CA721A6B70FC002CBDC3 /* set_route.cpp */,
 				21D8CA731A6B70FC002CBDC3 /* set_timer.cpp */,
 				21D8CA791A6B7781002CBDC3 /* system_method.cpp */,
@@ -1110,7 +1110,7 @@
 				21D8E2C41A60E1E200E8A63F /* JSONArray.cpp in Sources */,
 				21D8E2EF1A60E1E200E8A63F /* NodeFinderObserver.cpp in Sources */,
 				21B3293D1A6B82CA0077C313 /* Client.cpp in Sources */,
-				21D50AA31A82322F005C1F51 /* set_reg.cpp in Sources */,
+				21D50AA31A82322F005C1F51 /* set_registry.cpp in Sources */,
 				21D7A59F1A6BF1E100D43061 /* version.cpp in Sources */,
 				21D8E2D01A60E1E200E8A63F /* Mutex.cpp in Sources */,
 				21D8E2CE1A60E1E200E8A63F /* MessageManager.cpp in Sources */,
@@ -1149,7 +1149,7 @@
 				21D8E2C11A60E1E200E8A63F /* HashObject.cpp in Sources */,
 				2133317F1A773FAD00DB41AB /* get_node_state.cpp in Sources */,
 				21526C8A1A6682F900CF3D12 /* RPCBatchRequest.cpp in Sources */,
-				21D50AA21A82322F005C1F51 /* get_reg.cpp in Sources */,
+				21D50AA21A82322F005C1F51 /* get_registry.cpp in Sources */,
 				21D8E2BA1A60E1E200E8A63F /* SHA.cpp in Sources */,
 				21C0E1E11ADE172B002ABF65 /* SystemSetRegistryRequest.cpp in Sources */,
 				21D8E2DF1A60E1E200E8A63F /* ClientCore.cpp in Sources */,

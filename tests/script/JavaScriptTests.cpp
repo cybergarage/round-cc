@@ -125,10 +125,10 @@ BOOST_AUTO_TEST_CASE(JavaScriptRegistryMethodTest) {
   "var key = \"%s\";\n" \
   "var val = \"%s\";\n" \
   ROUNDCC_SYSTEM_METHOD_SET_REGISTRY "(key, val);\n" \
-  "var result = " ROUNDCC_SCRIPT_POST_METHOD "(\"" ROUNDCC_SYSTEM_METHOD_GET_REGISTRY "\", \"{\\\"key\\\": \\\"%s\\\"}\");\n" \
+  "var result = " ROUNDCC_SCRIPT_POST_METHOD "('" ROUNDCC_SYSTEM_METHOD_GET_REGISTRY "', '{\"key\": \"%s\"}');\n" \
   "var jsonReg = JSON.parse(result);\n" \
   "if (val != jsonReg.value) {\n" \
-  "  print(jsonReg.value);\n" \
+  "  print(result);\n" \
   "}\n" \
   "(val == jsonReg.value);\n"
 
