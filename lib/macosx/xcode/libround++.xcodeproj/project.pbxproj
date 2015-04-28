@@ -12,8 +12,8 @@
 		21062D191A73D0EC00FCA587 /* rpm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21062D181A73D0EC00FCA587 /* rpm.cpp */; };
 		210A64C11A6A317900E8F61D /* Method.h in Headers */ = {isa = PBXBuildFile; fileRef = 210A64C01A6A317900E8F61D /* Method.h */; };
 		210E5FE21A5EDFDA005667CB /* liblibmupnp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 210E5FDF1A5EDFC9005667CB /* liblibmupnp++.a */; };
-		2133317D1A773FAD00DB41AB /* get_cluster_state.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2133317A1A773FAD00DB41AB /* get_cluster_state.cpp */; };
-		2133317E1A773FAD00DB41AB /* get_network_state.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2133317B1A773FAD00DB41AB /* get_network_state.cpp */; };
+		2133317D1A773FAD00DB41AB /* get_nodes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2133317A1A773FAD00DB41AB /* get_nodes.cpp */; };
+		2133317E1A773FAD00DB41AB /* get_clusters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2133317B1A773FAD00DB41AB /* get_clusters.cpp */; };
 		2133317F1A773FAD00DB41AB /* get_node_state.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2133317C1A773FAD00DB41AB /* get_node_state.cpp */; };
 		213331811A77411200DB41AB /* get_node_config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213331801A77411200DB41AB /* get_node_config.cpp */; };
 		213331831A7794E500DB41AB /* Config.h in Headers */ = {isa = PBXBuildFile; fileRef = 213331821A7794E500DB41AB /* Config.h */; };
@@ -244,8 +244,8 @@
 		21062D181A73D0EC00FCA587 /* rpm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rpm.cpp; sourceTree = "<group>"; };
 		210A64C01A6A317900E8F61D /* Method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Method.h; sourceTree = "<group>"; };
 		210E5FDA1A5EDFC9005667CB /* libmupnp++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libmupnp++.xcodeproj"; path = "../../../../mupnp/lib/macosx/xcode/libmupnp++.xcodeproj"; sourceTree = "<group>"; };
-		2133317A1A773FAD00DB41AB /* get_cluster_state.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = get_cluster_state.cpp; sourceTree = "<group>"; };
-		2133317B1A773FAD00DB41AB /* get_network_state.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = get_network_state.cpp; sourceTree = "<group>"; };
+		2133317A1A773FAD00DB41AB /* get_nodes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = get_nodes.cpp; sourceTree = "<group>"; };
+		2133317B1A773FAD00DB41AB /* get_clusters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = get_clusters.cpp; sourceTree = "<group>"; };
 		2133317C1A773FAD00DB41AB /* get_node_state.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = get_node_state.cpp; sourceTree = "<group>"; };
 		213331801A77411200DB41AB /* get_node_config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = get_node_config.cpp; sourceTree = "<group>"; };
 		213331821A7794E500DB41AB /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
@@ -600,8 +600,8 @@
 			isa = PBXGroup;
 			children = (
 				21D50A9A1A819F39005C1F51 /* exec.cpp */,
-				2133317A1A773FAD00DB41AB /* get_cluster_state.cpp */,
-				2133317B1A773FAD00DB41AB /* get_network_state.cpp */,
+				2133317A1A773FAD00DB41AB /* get_nodes.cpp */,
+				2133317B1A773FAD00DB41AB /* get_clusters.cpp */,
 				213331801A77411200DB41AB /* get_node_config.cpp */,
 				2133317C1A773FAD00DB41AB /* get_node_state.cpp */,
 				21D50AA01A82322F005C1F51 /* get_registry.cpp */,
@@ -1155,7 +1155,7 @@
 				21D8E2DF1A60E1E200E8A63F /* ClientCore.cpp in Sources */,
 				21D8E2FB1A60E1E200E8A63F /* ServerNode.cpp in Sources */,
 				21D8E2B51A60E1E200E8A63F /* ConsistentHashObject.cpp in Sources */,
-				2133317E1A773FAD00DB41AB /* get_network_state.cpp in Sources */,
+				2133317E1A773FAD00DB41AB /* get_clusters.cpp in Sources */,
 				21D8E2F11A60E1E200E8A63F /* NodeList.cpp in Sources */,
 				21B9119D1A6B5E5400C791FD /* LocalWorker.cpp in Sources */,
 				21D8E2FF1A60E1E200E8A63F /* Finder.cpp in Sources */,
@@ -1201,7 +1201,7 @@
 				21526C8C1A6682F900CF3D12 /* RPCRequest.cpp in Sources */,
 				213332591A77950300DB41AB /* Config.cpp in Sources */,
 				21F4CE691A63F0BA00E7F0CC /* RouteList.cpp in Sources */,
-				2133317D1A773FAD00DB41AB /* get_cluster_state.cpp in Sources */,
+				2133317D1A773FAD00DB41AB /* get_nodes.cpp in Sources */,
 				21FA93E11A6E90040067314A /* use.cpp in Sources */,
 				21D50AAB1A824A9C005C1F51 /* Alias.cpp in Sources */,
 				21D8E3011A60E1E200E8A63F /* JavaScriptEngine.cpp in Sources */,

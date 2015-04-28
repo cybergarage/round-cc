@@ -19,8 +19,9 @@ Round::Node *round_js_sm_getlocalnode();
 
 JSBool round_js_sm_print(JSContext *cx, unsigned argc, jsval *vp);
 
-JSBool round_js_sm_getnodegraph(JSContext *cx, unsigned argc, jsval *vp);
-JSBool round_js_sm_post_method(JSContext *cx, unsigned argc, jsval *vp);
+JSBool round_js_sm_getclusters(JSContext *cx, unsigned argc, jsval *vp);
+JSBool round_js_sm_getnodes(JSContext *cx, unsigned argc, jsval *vp);
+JSBool round_js_sm_postmethod(JSContext *cx, unsigned argc, jsval *vp);
 JSBool round_js_sm_setregistry(JSContext *cx, unsigned argc, jsval *vp);
 JSBool round_js_sm_getregistry(JSContext *cx, unsigned argc, jsval *vp);
 

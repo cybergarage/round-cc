@@ -273,14 +273,14 @@ public:
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
   
-// get_cluster_state
+// get_nodes
 
-class get_cluster_state : public system_method {
+class get_nodes : public system_method {
 public:
   static const std::string NAME;
 public:
-  get_cluster_state();
-  ~get_cluster_state();
+  get_nodes();
+  ~get_nodes();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
@@ -314,7 +314,7 @@ public:
 class SystemGetClusterInfoRequest : public SystemMethodRequest {
 public:
   SystemGetClusterInfoRequest() {
-    setMethod(get_cluster_state::NAME);
+    setMethod(get_nodes::NAME);
   }
 };
   
@@ -344,21 +344,21 @@ class SystemGetNetworkInfoResponse : public SystemMethodResponse {
   JSONArray *getResultClusterArray();
 };
 
-// get_network_state
+// get_clusters
 
-class get_network_state : public system_method {
+class get_clusters : public system_method {
 public:
   static const std::string NAME;
 public:
-  get_network_state();
-  ~get_network_state();
+  get_clusters();
+  ~get_clusters();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
 class SystemGetNetworkInfoRequest : public SystemMethodRequest {
  public:
   SystemGetNetworkInfoRequest() {
-    setMethod(get_network_state::NAME);
+    setMethod(get_clusters::NAME);
   }
 };
   

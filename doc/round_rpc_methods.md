@@ -107,8 +107,8 @@ Round adds the following default native methods. The methods are implemented usi
 
 | Method Name | Description | Params | Outputs | Default |
 | --- | --- | --- | --- | --- |
-| get_network_state | Gat a cluster list which the spcecified node knows | - | - | - |
-| get_cluster_state | Gat a cluster information which the specified node is belong | - | - | - |
+| get_clusters | Gat a cluster list which the specified node knows | - | - | - |
+| get_nodes | Gat a node list in the specified cluster | - | - | - |
 | get_node_state | Get a node infomation | (none) | {"name" : (string), "ip" : (address), "port" : (number),  "hash" : (string) } | - |
 | get_node_config | Get the node configuration | (none) | - | - |
 | get_node_stats | Get the node statistics | (none) | - | - |

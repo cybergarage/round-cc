@@ -68,7 +68,25 @@ JSBool round_js_sm_print(JSContext *cx, unsigned argc, jsval *vp) {
   return JS_TRUE;
 }
 
-JSBool round_js_sm_getnodegraph(JSContext *cx, unsigned argc, jsval *vp) {
+JSBool round_js_sm_getclusters(JSContext *cx, unsigned argc, jsval *vp) {
+  Round::LocalNode *node = dynamic_cast<Round::LocalNode *>(round_js_sm_getlocalnode());
+  if (!node)
+    return JS_FALSE;
+  
+  JS_BeginRequest(cx);
+
+  Round::NodeResponse nodeRes;
+  Round::SystemGetNetworkInfoResponse sysRes(&nodeRes);
+  sysRes.setClusters(node);
+
+  JS_SET_NODERESPONSE_RVAL(cx, vp, nodeRes);
+  
+  JS_EndRequest(cx);
+  
+  return JS_TRUE;
+}
+
+JSBool round_js_sm_getnodes(JSContext *cx, unsigned argc, jsval *vp) {
   Round::LocalNode *node = dynamic_cast<Round::LocalNode *>(round_js_sm_getlocalnode());
   if (!node)
     return JS_FALSE;
@@ -78,7 +96,7 @@ JSBool round_js_sm_getnodegraph(JSContext *cx, unsigned argc, jsval *vp) {
   Round::NodeResponse nodeRes;
   Round::SystemGetClusterInfoResponse sysRes(&nodeRes);
   sysRes.setCluster(node);
-
+  
   JS_SET_NODERESPONSE_RVAL(cx, vp, nodeRes);
   
   JS_EndRequest(cx);
@@ -86,7 +104,7 @@ JSBool round_js_sm_getnodegraph(JSContext *cx, unsigned argc, jsval *vp) {
   return JS_TRUE;
 }
 
-JSBool round_js_sm_post_method(JSContext *cx, unsigned argc, jsval *vp) {
+JSBool round_js_sm_postmethod(JSContext *cx, unsigned argc, jsval *vp) {
   if (argc < 2)
     return JS_FALSE;
 
