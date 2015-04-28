@@ -83,8 +83,11 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineCounterTest) {
   "var val = \"%s\";\n" \
   "set_registry(key, val);\n" \
   "var reg = get_registry(key);\n" \
-  "var jsonReg = JSON.parse(reg)\n" \
-  "val == jsonReg.value\n"
+  "var jsonReg = JSON.parse(reg);\n" \
+  "if (val != jsonReg.value) {\n" \
+  "  print(jsonReg.value);\n" \
+  "}\n" \
+  "(val == jsonReg.value);\n"
 
 BOOST_AUTO_TEST_CASE(JavaScriptMethodTest) {
 

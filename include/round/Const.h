@@ -41,5 +41,6 @@
 #define ROUNDCC_SYSTEM_METHOD_PARAM_TYPE "type"
 #define ROUNDCC_SYSTEM_METHOD_PARAM_COND "cond"
 #define ROUNDCC_SCRIPT_POST_METHOD "post_method"
+#define ROUNDCC_SCRIPT_PRINT_METHOD "print"
 
 #endif

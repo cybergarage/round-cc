@@ -21,7 +21,6 @@ Round::Node *round_js_sm_getlocalnode() {
   return gRoundSpiderMonkeyEngineLocalNode;
 }
 
-
 static bool JSSTRING_TO_STDSTRING(JSContext *cx, JSString *jsStr, std::string *stdStr) {
   if (!jsStr)
     return false;
@@ -33,6 +32,25 @@ static bool JSSTRING_TO_STDSTRING(JSContext *cx, JSString *jsStr, std::string *s
   *stdStr = buffer;
 
   return true;
+}
+
+JSBool round_js_sm_print(JSContext *cx, unsigned argc, jsval *vp) {
+  if (argc < 1)
+    return JS_FALSE;
+  
+  JS_BeginRequest(cx);
+  
+  jsval *argv = JS_ARGV(cx, vp);
+  
+  std::string msg;
+  JSString *jsMsg = JSVAL_TO_STRING(argv[0]);
+  if (jsMsg) {
+    JSSTRING_TO_STDSTRING(cx, jsMsg, &msg);
+  }
+  
+  std::cout << msg << std::endl;
+  
+  return JS_TRUE;
 }
 
 JSBool round_js_sm_getnodegraph(JSContext *cx, unsigned argc, jsval *vp) {
