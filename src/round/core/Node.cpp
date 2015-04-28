@@ -84,6 +84,11 @@ bool Round::Node::getClusterList(ClusterList *clusterList, Error *error) {
 }
 
 bool Round::Node::findNode(const std::string &nodeHash, Node **node, Error *error) {
+  if (nodeHash.length() <= 0) {
+    *node = this;
+    return true;
+  }
+  
   Cluster cluster;
   if (!getCluster(&cluster, error))
     return false;
