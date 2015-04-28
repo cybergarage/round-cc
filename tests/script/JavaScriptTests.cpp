@@ -78,7 +78,13 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineCounterTest) {
 ////////////////////////////////////////////////////////////
 
 #define JS_JOB_SCRIPT_BUF 1024
-#define JS_JOB_SETREGISTORY "set_registry(\"%s\", \"%s\");\nget_registry(\"%s\");"
+#define JS_JOB_SETREGISTORY \
+  "var key = \"%s\";\n" \
+  "var val = \"%s\";\n" \
+  "set_registry(key, val);\n" \
+  "var reg = get_registry(key);\n" \
+  "var jsonReg = JSON.parse(reg)\n" \
+  "val == jsonReg.value\n"
 
 BOOST_AUTO_TEST_CASE(JavaScriptMethodTest) {
 
@@ -98,15 +104,15 @@ BOOST_AUTO_TEST_CASE(JavaScriptMethodTest) {
     std::string key = "key" + ss.str();
     std::string val = "val" + ss.str();
     
-    snprintf(script, JS_JOB_SCRIPT_BUF,
+    snprintf(script,
+             JS_JOB_SCRIPT_BUF,
              JS_JOB_SETREGISTORY,
              key.c_str(),
-             val.c_str(),
-             key.c_str());
+             val.c_str());
   
     std::string result;
     BOOST_CHECK(node.execJob(JavaScriptEngine::LANGUAGE, script, Round::Script::ENCODING_NONE, &result, &err));
-
+    BOOST_CHECK_EQUAL(result.compare("true"), 0);
   }
   BOOST_CHECK(node.stop(&err));
 }
