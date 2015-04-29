@@ -26,7 +26,7 @@ bool round_lua_haslocalnode() {
   return (gRoundLuaEngineLocalNode != NULL) ? true : false;
 }
 
-int round_lua_getclusters(lua_State* L)
+int round_lua_getnetworkstate(lua_State* L)
 {
   std::string json = "";
   
@@ -44,7 +44,7 @@ int round_lua_getclusters(lua_State* L)
   return 1;
 }
 
-int round_lua_getnodes(lua_State* L)
+int round_lua_getclusterstate(lua_State* L)
 {
   std::string json = "";
   

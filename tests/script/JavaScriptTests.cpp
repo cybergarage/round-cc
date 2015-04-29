@@ -80,7 +80,7 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineCounterTest) {
 #define JS_JOB_SCRIPT_BUF_SIZE 1024
 
 #define JS_TEST_JOB_GETCLUSTERS \
-  "var result = " ROUNDCC_SYSTEM_METHOD_GET_CLUSTERS "();\n" \
+  "var result = " ROUNDCC_SYSTEM_METHOD_GET_NETWORK_STATE "();\n" \
   "//print(result);\n" \
   "var jsonResult = JSON.parse(result);\n" \
   "jsonResult.clusters.length;\n"
@@ -100,7 +100,7 @@ BOOST_AUTO_TEST_CASE(JavaScriptGetClustersMethodTest) {
 }
 
 #define JS_TEST_JOB_GETNODES \
-  "var result = " ROUNDCC_SYSTEM_METHOD_GET_NODES "();\n" \
+  "var result = " ROUNDCC_SYSTEM_METHOD_GET_CLUSTER_STATE "();\n" \
   "//print(result);\n" \
   "var jsonResult = JSON.parse(result);\n" \
   "jsonResult.cluster.nodes.length;\n"

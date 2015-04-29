@@ -270,10 +270,10 @@ void NodeTestController::runSystemMethodTest(Round::Node *node) {
   // get_node_state()
   runSystemGetNodeInfoTest(node);
   
-  // get_nodes()
+  // get_cluster_state()
   runSystemGetClusterInfoTest(node);
 
-  // get_clusters()
+  // get_network_state()
   runSystemGetNetworkInfoTest(node);
 
   // set_registry() and get_registry()

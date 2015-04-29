@@ -25,3 +25,4 @@ bool Round::get_node_state::exec(LocalNode *node, const NodeRequest *nodeReq, No
   SystemGetNodeInfoResponse sysRes(nodeRes);
   return sysRes.setNode(node);
 }
+  

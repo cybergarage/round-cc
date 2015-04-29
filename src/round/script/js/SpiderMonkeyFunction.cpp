@@ -68,7 +68,7 @@ JSBool round_js_sm_print(JSContext *cx, unsigned argc, jsval *vp) {
   return JS_TRUE;
 }
 
-JSBool round_js_sm_getclusters(JSContext *cx, unsigned argc, jsval *vp) {
+JSBool round_js_sm_getnetworkstate(JSContext *cx, unsigned argc, jsval *vp) {
   Round::LocalNode *node = dynamic_cast<Round::LocalNode *>(round_js_sm_getlocalnode());
   if (!node)
     return JS_FALSE;
@@ -86,7 +86,7 @@ JSBool round_js_sm_getclusters(JSContext *cx, unsigned argc, jsval *vp) {
   return JS_TRUE;
 }
 
-JSBool round_js_sm_getnodes(JSContext *cx, unsigned argc, jsval *vp) {
+JSBool round_js_sm_getclusterstate(JSContext *cx, unsigned argc, jsval *vp) {
   Round::LocalNode *node = dynamic_cast<Round::LocalNode *>(round_js_sm_getlocalnode());
   if (!node)
     return JS_FALSE;

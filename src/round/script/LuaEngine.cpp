@@ -31,8 +31,8 @@ Round::LuaEngine::LuaEngine() : ScriptEngine(LANGUAGE) {
 
   luaL_openlibs(this->luaState);
 
-  lua_register(this->luaState, ROUNDCC_SYSTEM_METHOD_GET_CLUSTERS, round_lua_getclusters);
-  lua_register(this->luaState, ROUNDCC_SYSTEM_METHOD_GET_NODES, round_lua_getnodes);
+  lua_register(this->luaState, ROUNDCC_SYSTEM_METHOD_GET_NETWORK_STATE, round_lua_getnetworkstate);
+  lua_register(this->luaState, ROUNDCC_SYSTEM_METHOD_GET_CLUSTER_STATE, round_lua_getclusterstate);
   lua_register(this->luaState, ROUNDCC_SYSTEM_METHOD_GET_NODE_STATE, round_lua_getnodestate);
   lua_register(this->luaState, ROUNDCC_SYSTEM_METHOD_SET_REGISTRY, round_lua_setregistry);
   lua_register(this->luaState, ROUNDCC_SYSTEM_METHOD_GET_REGISTRY, round_lua_getregistry);
