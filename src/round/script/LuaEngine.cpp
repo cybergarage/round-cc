@@ -126,6 +126,8 @@ bool Round::LuaEngine::run(const Script *luaScript, const std::string &params, s
 }
 
 bool Round::LuaEngine::run(const std::string &script, std::string *results, Error *error) const {
+  lock();
+  
   int nStack = lua_gettop(this->luaState);
 
   int callResult = luaL_dostring (this->luaState, script.c_str());
@@ -142,6 +144,8 @@ bool Round::LuaEngine::run(const std::string &script, std::string *results, Erro
   lua_pop(this->luaState, 1);
   
   nStack = lua_gettop(this->luaState);
+  
+  unlock();
   
   return (callResult == 0) ? true : false;
 }
