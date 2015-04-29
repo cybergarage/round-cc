@@ -81,6 +81,7 @@ bool Round::LuaEngine::run(const Script *luaScript, const std::string &params, s
     nStack = lua_gettop(this->luaState);
 
     round_lua_setlocalnode(NULL);
+    
     unlock();
     
     return false;
@@ -100,6 +101,7 @@ bool Round::LuaEngine::run(const Script *luaScript, const std::string &params, s
     nStack = lua_gettop(this->luaState);
     
     round_lua_setlocalnode(NULL);
+    
     unlock();
     
     return false;
@@ -134,6 +136,7 @@ bool Round::LuaEngine::run(const Script *luaScript, const std::string &params, s
   nStack = lua_gettop(this->luaState);
  
   round_lua_setlocalnode(NULL);
+  
   unlock();
 
   return (callResult == 0) ? true : false;
@@ -141,6 +144,8 @@ bool Round::LuaEngine::run(const Script *luaScript, const std::string &params, s
 
 bool Round::LuaEngine::run(const std::string &script, std::string *results, Error *error) const {
   lock();
+  
+  round_lua_setlocalnode(hasNode() ? getNode() : NULL);
   
   int nStack = lua_gettop(this->luaState);
 
@@ -164,6 +169,8 @@ bool Round::LuaEngine::run(const std::string &script, std::string *results, Erro
   
   nStack = lua_gettop(this->luaState);
   
+  round_lua_setlocalnode(NULL);
+
   unlock();
   
   return (callResult == 0) ? true : false;
