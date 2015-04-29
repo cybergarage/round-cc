@@ -11,6 +11,7 @@
 		2101897A1A7E3BE0007541B6 /* Program.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210189791A7E3BE0007541B6 /* Program.cpp */; };
 		21062D191A73D0EC00FCA587 /* rpm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21062D181A73D0EC00FCA587 /* rpm.cpp */; };
 		210A64C11A6A317900E8F61D /* Method.h in Headers */ = {isa = PBXBuildFile; fileRef = 210A64C01A6A317900E8F61D /* Method.h */; };
+		210CC5781AF1176B0010599C /* SystemGetRegistryRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210CC5771AF1176B0010599C /* SystemGetRegistryRequest.cpp */; };
 		210E5FE21A5EDFDA005667CB /* liblibmupnp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 210E5FDF1A5EDFC9005667CB /* liblibmupnp++.a */; };
 		2133317D1A773FAD00DB41AB /* get_cluster_state.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2133317A1A773FAD00DB41AB /* get_cluster_state.cpp */; };
 		2133317E1A773FAD00DB41AB /* get_network_state.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2133317B1A773FAD00DB41AB /* get_network_state.cpp */; };
@@ -243,6 +244,7 @@
 		210189791A7E3BE0007541B6 /* Program.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Program.cpp; sourceTree = "<group>"; };
 		21062D181A73D0EC00FCA587 /* rpm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rpm.cpp; sourceTree = "<group>"; };
 		210A64C01A6A317900E8F61D /* Method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Method.h; sourceTree = "<group>"; };
+		210CC5771AF1176B0010599C /* SystemGetRegistryRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemGetRegistryRequest.cpp; sourceTree = "<group>"; };
 		210E5FDA1A5EDFC9005667CB /* libmupnp++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libmupnp++.xcodeproj"; path = "../../../../mupnp/lib/macosx/xcode/libmupnp++.xcodeproj"; sourceTree = "<group>"; };
 		2133317A1A773FAD00DB41AB /* get_cluster_state.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = get_cluster_state.cpp; sourceTree = "<group>"; };
 		2133317B1A773FAD00DB41AB /* get_network_state.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = get_network_state.cpp; sourceTree = "<group>"; };
@@ -616,6 +618,7 @@
 				21D8CA731A6B70FC002CBDC3 /* set_timer.cpp */,
 				21D8CA791A6B7781002CBDC3 /* system_method.cpp */,
 				21B911A71A6B5F4300C791FD /* SystemClusterInfoDict.cpp */,
+				210CC5771AF1176B0010599C /* SystemGetRegistryRequest.cpp */,
 				21C0E1DE1ADCCCE6002ABF65 /* SystemGetRegistryResponse.cpp */,
 				21B911A91A6B5F4300C791FD /* SystemMethod.h */,
 				21B911AA1A6B5F4300C791FD /* SystemMethodRequest.cpp */,
@@ -1173,6 +1176,7 @@
 				21D8E2DE1A60E1E200E8A63F /* ThreadManager.cpp in Sources */,
 				21D7A5961A6BDE7C00D43061 /* help.cpp in Sources */,
 				21D8E2E51A60E1E200E8A63F /* LocalNode.cpp in Sources */,
+				210CC5781AF1176B0010599C /* SystemGetRegistryRequest.cpp in Sources */,
 				21D7A59B1A6BE47F00D43061 /* Options.cpp in Sources */,
 				21E1EB151A64FE2800FEABF6 /* NodeBatchRequest.cpp in Sources */,
 				21B911B81A6B5F4300C791FD /* SystemMethodRequest.cpp in Sources */,

@@ -14,21 +14,13 @@
 #include <round/core/local/method/SystemMethod.h>
 
 ////////////////////////////////////////
-// SystemGetRegistryResponse
+// SystemGetRegistryRequest
 ////////////////////////////////////////
 
-void Round::SystemSetRegistryRequest::setRegistry(const Registry reg) {
-
+void Round::SystemGetRegistryRequest::setKey(const std::string &value) {
   JSONDictionary paramDict;
-  
-  std::string sval;
-  if (reg.getKey(&sval)) {
-    paramDict.set(Registry::KEY, sval);
-  }
-  if (reg.getValue(&sval)) {
-    paramDict.set(Registry::VALUE, sval);
-  }
-  
+  paramDict.set(Registry::KEY, value);
+
   std::string paramsStr;
   paramDict.toJSONString(&paramsStr);
   setParams(paramsStr);

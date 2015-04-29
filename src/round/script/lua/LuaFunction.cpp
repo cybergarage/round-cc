@@ -130,9 +130,9 @@ int round_lua_postmethod(lua_State* L)
   bool isSuccess = false;
   std::string result;
   
-  std::string obj = luaL_checkstring(L, 1);
-  std::string method = luaL_checkstring(L, 2);
-  std::string params = luaL_checkstring(L, 3);
+  std::string method = luaL_checkstring(L, 1);
+  std::string params = luaL_checkstring(L, 2);
+  std::string obj = luaL_checkstring(L, 3);
   
   Round::Node *localNode = round_lua_getlocalnode();
   if (localNode) {

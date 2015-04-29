@@ -407,9 +407,7 @@ public:
     setMethod(get_registry::NAME);
   }
 
-  void setKey(const std::string &value) {
-    set(Registry::KEY, value);
-  }
+  void setKey(const std::string &value);
 };
 
 class SystemGetRegistryResponse : public SystemMethodResponse {

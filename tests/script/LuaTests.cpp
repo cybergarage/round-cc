@@ -61,7 +61,7 @@ BOOST_AUTO_TEST_CASE(LuaEngineSumTest) {
 
 #define LUA_TEST_JOB_HELLO "hello"
 #define LUA_TEST_JOB_HELLO_SCRIPT \
-"return \"" LUA_TEST_JOB_HELLO "\""
+  "return \"" LUA_TEST_JOB_HELLO "\""
    
 BOOST_AUTO_TEST_CASE(LuaHelloTest) {
   
@@ -73,6 +73,160 @@ BOOST_AUTO_TEST_CASE(LuaHelloTest) {
   std::string result;
   BOOST_CHECK(node.execJob(LuaEngine::LANGUAGE, LUA_TEST_JOB_HELLO_SCRIPT, Round::Script::ENCODING_NONE, &result, &err));
   BOOST_CHECK_EQUAL(result.compare(LUA_TEST_JOB_HELLO), 0);
+  
+  BOOST_CHECK(node.stop(&err));
+}
+
+#define LUA_TEST_JOB_GETNETWORKSTATE \
+  "json = require(\"json\")\n" \
+  "result = " ROUNDCC_SYSTEM_METHOD_GET_NETWORK_STATE "()\n" \
+  "-- print(result)\n" \
+  "jsonResult = json.decode(result)" \
+  "return #jsonResult[\"clusters\"]\n"
+
+BOOST_AUTO_TEST_CASE(LuaGetNetworkStateMethodTest) {
+  
+  TestLocalNode node;
+  Error err;
+  
+  BOOST_CHECK(node.start(&err));
+  
+  std::string result;
+  BOOST_CHECK(node.execJob(LuaEngine::LANGUAGE, LUA_TEST_JOB_GETNETWORKSTATE, Round::Script::ENCODING_NONE, &result, &err));
+  BOOST_CHECK_EQUAL(result.compare("1"), 0);
+  
+  BOOST_CHECK(node.stop(&err));
+}
+
+#define LUA_TEST_JOB_GETCLUSTERSTATE \
+  "json = require(\"json\")\n" \
+  "result = " ROUNDCC_SYSTEM_METHOD_GET_CLUSTER_STATE "()\n" \
+  "-- print(result)\n" \
+  "jsonResult = json.decode(result)" \
+  "return #jsonResult[\"cluster\"][\"nodes\"]\n"
+
+BOOST_AUTO_TEST_CASE(LuaGetClusterStateMethodTest) {
+  
+  TestLocalNode node;
+  Error err;
+  
+  BOOST_CHECK(node.start(&err));
+  
+  std::string result;
+  BOOST_CHECK(node.execJob(LuaEngine::LANGUAGE, LUA_TEST_JOB_GETCLUSTERSTATE, Round::Script::ENCODING_NONE, &result, &err));
+  BOOST_CHECK_EQUAL(result.compare("1"), 0);
+  
+  BOOST_CHECK(node.stop(&err));
+}
+
+#define LUA_TEST_JOB_GETNODESTATE \
+  "json = require(\"json\")\n" \
+  "result = " ROUNDCC_SYSTEM_METHOD_GET_NODE_STATE "()\n" \
+  "-- print(result)\n" \
+  "jsonResult = json.decode(result)\n" \
+  "return jsonResult[\"hash\"]\n"
+
+BOOST_AUTO_TEST_CASE(LuaGetNodeMethodTest) {
+  
+  TestLocalNode node;
+  Error err;
+  
+  BOOST_CHECK(node.start(&err));
+  
+  std::string result;
+  BOOST_CHECK(node.execJob(LuaEngine::LANGUAGE, LUA_TEST_JOB_GETNODESTATE, Round::Script::ENCODING_NONE, &result, &err));
+  
+  std::string nodeHash;
+  node.getHashCode(&nodeHash);
+  
+  BOOST_CHECK_EQUAL(result.compare(nodeHash), 0);
+  
+  BOOST_CHECK(node.stop(&err));
+}
+
+#define LUA_TEST_JOB_SETREGISTORY \
+  "json = require(\"json\")\n" \
+  "key = \"%s\"\n" \
+  "val = \"%s\"\n" \
+  ROUNDCC_SYSTEM_METHOD_SET_REGISTRY "(key, val)\n" \
+  "ok, regVal = " ROUNDCC_SYSTEM_METHOD_GET_REGISTRY "(key)\n" \
+  "-- print(regVal)\n" \
+  "return regVal\n"
+
+BOOST_AUTO_TEST_CASE(LuaRegistryMethodTest) {
+  
+  TestLocalNode node;
+  Error err;
+  
+  BOOST_CHECK(node.start(&err));
+  
+  char script[LUA_JOB_SCRIPT_BUF_SIZE+1];
+  for (int n=0; n<10; n++) {
+    time_t ts;
+    
+    Registry inReg;
+    
+    std::stringstream ss;
+    time(&ts); ts += rand(); ss << ts;
+    std::string key = "key" + ss.str();
+    std::string val = "val" + ss.str();
+    
+    snprintf(script,
+             LUA_JOB_SCRIPT_BUF_SIZE,
+             LUA_TEST_JOB_SETREGISTORY,
+             key.c_str(),
+             val.c_str());
+    
+    std::string result;
+    BOOST_CHECK(node.execJob(LuaEngine::LANGUAGE, script, Round::Script::ENCODING_NONE, &result, &err));
+    BOOST_CHECK_EQUAL(result.compare(val), 0);
+  }
+  
+  BOOST_CHECK(node.stop(&err));
+}
+
+#define LUA_TEST_JOB_POSTMETHOD \
+  "json = require(\"json\")\n" \
+  "key = \"%s\"\n" \
+  "val = \"%s\"\n" \
+  ROUNDCC_SYSTEM_METHOD_SET_REGISTRY "(key, val);\n" \
+  "ok, result = " ROUNDCC_SCRIPT_POST_METHOD "('" ROUNDCC_SYSTEM_METHOD_GET_REGISTRY "', '{\"key\": \"%s\"}', '');\n" \
+  "jsonResult = json.decode(result)\n" \
+  "regVal = jsonResult[\"value\"]\n" \
+  "return regVal\n"
+
+#define LUA_TEST_JOB_POSTMETHOD_PARAM \
+""
+
+BOOST_AUTO_TEST_CASE(LuaPostMethodTest) {
+  TestLocalNode node;
+  Error err;
+  
+  BOOST_CHECK(node.start(&err));
+  
+  char script[LUA_JOB_SCRIPT_BUF_SIZE+1];
+  
+  for (int n=0; n<10; n++) {
+    time_t ts;
+    
+    Registry inReg;
+    
+    std::stringstream ss;
+    time(&ts); ts += rand(); ss << ts;
+    std::string key = "key" + ss.str();
+    std::string val = "val" + ss.str();
+    
+    snprintf(script,
+             LUA_JOB_SCRIPT_BUF_SIZE,
+             LUA_TEST_JOB_POSTMETHOD,
+             key.c_str(),
+             val.c_str(),
+             key.c_str());
+    
+    std::string result;
+    BOOST_CHECK(node.execJob(LuaEngine::LANGUAGE, script, Round::Script::ENCODING_NONE, &result, &err));
+    BOOST_CHECK_EQUAL(result.compare(val), 0);
+  }
   
   BOOST_CHECK(node.stop(&err));
 }

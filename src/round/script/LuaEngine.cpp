@@ -115,17 +115,14 @@ bool Round::LuaEngine::run(const Script *luaScript, const std::string &params, s
   nStack = lua_gettop(this->luaState);
   
   int callResult = lua_pcall(this->luaState, 1, 1, 0);
+  nStack = lua_gettop(this->luaState);
   if (callResult == 0) {
-    nStack = lua_gettop(this->luaState);
-
     if (0 < nStack) {
       *results = lua_tostring(this->luaState, -1);
       lua_pop(this->luaState, 1);
     }
   }
   else {
-    nStack = lua_gettop(this->luaState);
-
     if (0 < nStack) {
       RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInternalError, error);
       error->setMessage(lua_tostring(this->luaState, -1));
@@ -152,14 +149,12 @@ bool Round::LuaEngine::run(const std::string &script, std::string *results, Erro
   int callResult = luaL_dostring (this->luaState, script.c_str());
   nStack = lua_gettop(this->luaState);
   if (callResult == 0) {
-    nStack = lua_gettop(this->luaState);
     if (0 < nStack) {
       *results = lua_tostring(this->luaState, -1);
       lua_pop(this->luaState, 1);
     }
   }
   else {
-    nStack = lua_gettop(this->luaState);
     if (0 < nStack) {
       RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInternalError, error);
       error->setMessage(lua_tostring(this->luaState, -1));
