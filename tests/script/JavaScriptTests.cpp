@@ -79,6 +79,24 @@ BOOST_AUTO_TEST_CASE(JavaScriptEngineCounterTest) {
 
 #define JS_JOB_SCRIPT_BUF_SIZE 1024
 
+#define JS_TEST_JOB_HELLO "hello"
+#define JS_TEST_JOB_HELLO_SCRIPT \
+  "\"" JS_TEST_JOB_HELLO "\";"
+
+BOOST_AUTO_TEST_CASE(JavaScriptHelloTest) {
+  
+  TestLocalNode node;
+  Error err;
+  
+  BOOST_CHECK(node.start(&err));
+  
+  std::string result;
+  BOOST_CHECK(node.execJob(JavaScriptEngine::LANGUAGE, JS_TEST_JOB_HELLO_SCRIPT, Round::Script::ENCODING_NONE, &result, &err));
+  BOOST_CHECK_EQUAL(result.compare(JS_TEST_JOB_HELLO), 0);
+  
+  BOOST_CHECK(node.stop(&err));
+}
+
 #define JS_TEST_JOB_GETNETWORKSTATE \
   "var result = " ROUNDCC_SYSTEM_METHOD_GET_NETWORK_STATE "();\n" \
   "//print(result);\n" \
