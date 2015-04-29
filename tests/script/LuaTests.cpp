@@ -14,11 +14,16 @@
 #include <round/script/Lua.h>
 
 #include "TestScript.h"
+#include "TestNode.h"
 
 using namespace std;
 using namespace Round;
 
 BOOST_AUTO_TEST_SUITE(script)
+
+////////////////////////////////////////////////////////////
+// Lua Engine
+////////////////////////////////////////////////////////////
 
 BOOST_AUTO_TEST_CASE(LuaEngineEchoTest) {
   Error err;
@@ -48,5 +53,50 @@ BOOST_AUTO_TEST_CASE(LuaEngineSumTest) {
   scriptTestController.runSumMethodTest(&scriptMgr);
 }
 
-BOOST_AUTO_TEST_SUITE_END()
+////////////////////////////////////////////////////////////
+// Lua Function
+////////////////////////////////////////////////////////////
 
+#define LUA_JOB_SCRIPT_BUF_SIZE 1024
+
+#define LUA_TEST_JOB_HELLO "hello"
+#define LUA_TEST_JOB_HELLO_SCRIPT \
+"\"" LUA_TEST_JOB_HELLO "\";"
+   
+BOOST_AUTO_TEST_CASE(LuaHelloTest) {
+  
+  TestLocalNode node;
+  Error err;
+  
+  BOOST_CHECK(node.start(&err));
+  
+  std::string result;
+  BOOST_CHECK(node.execJob(LuaEngine::LANGUAGE, LUA_TEST_JOB_HELLO_SCRIPT, Round::Script::ENCODING_NONE, &result, &err));
+  BOOST_CHECK_EQUAL(result.compare(LUA_TEST_JOB_HELLO), 0);
+  
+  BOOST_CHECK(node.stop(&err));
+}
+
+/*
+#define LUA_TEST_JOB_HELLO \
+"var result = " ROUNDCC_SYSTEM_METHOD_GET_NETWORK_STATE "();\n" \
+"//print(result);\n" \
+"var jsonResult = JSON.parse(result);\n" \
+"jsonResult.clusters.length;\n"
+
+BOOST_AUTO_TEST_CASE(JavaScriptGetNetworkStateMethodTest) {
+  
+  TestLocalNode node;
+  Error err;
+  
+  BOOST_CHECK(node.start(&err));
+  
+  std::string result;
+  BOOST_CHECK(node.execJob(LuaEngine::LANGUAGE, JS_TEST_JOB_GETNETWORKSTATE, Round::Script::ENCODING_NONE, &result, &err));
+  BOOST_CHECK_EQUAL(result.compare("1"), 0);
+  
+  BOOST_CHECK(node.stop(&err));
+}
+*/
+
+BOOST_AUTO_TEST_SUITE_END()

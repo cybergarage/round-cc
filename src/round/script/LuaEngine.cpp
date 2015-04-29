@@ -125,9 +125,25 @@ bool Round::LuaEngine::run(const Script *luaScript, const std::string &params, s
   return (callResult == 0) ? true : false;
 }
 
-bool Round::LuaEngine::run(const std::string &script, std::string *result, Error *error) const {
-  // TODO : Not Supported yet
-  return false;
+bool Round::LuaEngine::run(const std::string &script, std::string *results, Error *error) const {
+  int nStack = lua_gettop(this->luaState);
+
+  int callResult = luaL_dostring (this->luaState, script.c_str());
+  if (callResult == 0) {
+    *results = lua_tostring(this->luaState, -1);
+  }
+  else {
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInternalError, error);
+    error->setMessage(lua_tostring(this->luaState, -1));
+  }
+  
+  nStack = lua_gettop(this->luaState);
+  
+  lua_pop(this->luaState, 1);
+  
+  nStack = lua_gettop(this->luaState);
+  
+  return (callResult == 0) ? true : false;
 }
 
 #endif
