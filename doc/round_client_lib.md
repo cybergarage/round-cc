@@ -15,27 +15,79 @@ The libraries handles the RPC responses and updates local information of Client.
 
 ## JavaScript
 
-### set_registry(key, value)
+Round supports JavaScript using [SpilderMonky](https://developer.mozilla.org/ja/docs/SpiderMonkey). Currently Round provides the following special functions.
 
-The set_registry function sets
+### Functions
 
-### get_registry(key)
+#### set_registry(key, value)
 
-The get_registry function gets
+The set_registry function sets the specified key and value into the local node registry.
 
-### post_method(method, params, obj)
+##### Parameters
+
+- key : string
+- value : string
+
+##### Return value
+
+- true or false
+
+##### Example
+
+The following code shows how to use the set_registry function.
+
+```
+var key = "name";
+var val = "Satoshi Konno";
+var ok = set_registry(key, val);
+```
+
+#### get_registry(key)
+
+The get_registry function returns a registry by the specified key from the local node registry.
+
+##### Parameters
+
+- key : string
+
+##### Return value
+
+- a specified registry JSON string, or false when the specified registry is not found.
+
+```
+{
+  "key"  : <string value>
+  "value": <string value>,
+  "ts"   : <integer value>
+  "lts"  : <integer value>
+}
+```
+
+##### Example
+
+The following code shows how to use the get_registry function.
+
+```
+var result = get_registry("name");
+if (result != false) {
+  var jsonReg = JSON.parse(result);
+  var jsonReg.value);
+}
+```
+
+#### post_method(method, params, obj)
 
 The post_method
 
-### get_network_state()
+#### get_network_state()
 
 The get_network_state function
 
-### get_cluster_state()
+#### get_cluster_state()
 
 The get_cluster_state function
 
-### get_network_state ()
+#### get_network_state ()
 
 The get_network_state function
 
