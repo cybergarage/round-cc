@@ -13,6 +13,32 @@ The libraries handles the RPC responses and updates local information of Client.
 - Nodes in clusters
 - Timestamp (Lamport Timestamp)
 
+## JavaScript
+
+### set_registry(key, value)
+
+The set_registry function sets
+
+### get_registry(key)
+
+The get_registry function gets
+
+### post_method(method, params, obj)
+
+The post_method
+
+### get_network_state()
+
+The get_network_state function
+
+### get_cluster_state()
+
+The get_cluster_state function
+
+### get_network_state ()
+
+The get_network_state function
+
 ## C++
 
 Under Development :wink:
