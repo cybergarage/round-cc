@@ -52,7 +52,7 @@ The get_registry function returns a registry by the specified key from the local
 
 ##### Return value
 
-- a specified registry JSON string, or false when the specified registry is not found.
+- a JSON object of the specified registry, or false when the specified registry is not found.
 
 ```
 {
@@ -87,6 +87,7 @@ The post_method posts a RPC message to the specified node.
 
 ##### Return value
 
+- a JSON object of the specified method result, or false when the specified registry is not found.
 
 ##### Example
 
@@ -100,15 +101,71 @@ var result = post_method('set_registry', ''{"key": "Satoshi Konno"}', '');
 
 #### get_network_state()
 
-The get_network_state function
+The get_network_state function returns all clusters and nodes which the local node knows.
+
+##### Parameters
+
+This function has no parameter.
+
+##### Return value
+
+- a JSON object of the network state.
+
+Please check `get_network_state` of [RPC Methods](round_rpc_methods.md) to know the response object in more detail.
+
+##### Example
+
+```
+"var result = get_network_state();
+"var jsonResult = JSON.parse(result);
+"var clusterCount = jsonResult.clusters.length;
+```
 
 #### get_cluster_state()
 
-The get_cluster_state function
+The get_cluster_state function returns all nodes which the local node knows in the same cluster.
 
-#### get_network_state ()
+##### Parameters
 
-The get_network_state function
+This function has no parameter.
+
+##### Return value
+
+- a JSON object of the cluster state.
+
+Please check `get_cluster_state` of [RPC Methods](round_rpc_methods.md) to know the response object in more detail.
+
+##### Example
+
+```
+"var result = get_cluster_state();
+"var jsonResult = JSON.parse(result);
+"var nodeCount = jsonResult.cluster.nodes.length;
+```
+
+#### get_node_state()
+
+The get_node_state function returns the local node status.
+
+##### Parameters
+
+This function has no parameter.
+
+##### Return value
+
+- a JSON object of the node state.
+
+Please check `get_node_state` of [RPC Methods](round_rpc_methods.md) to know the response object in more detail.
+
+##### Example
+
+```
+"var result = get_network_state();
+"var jsonResult = JSON.parse(result);
+"var nodeAddr = jsonResult.addr;
+"var nodePort = jsonResult.port;
+"var nodeHash = jsonResult.hash;
+```
 
 ## C++
 
