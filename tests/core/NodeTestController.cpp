@@ -157,7 +157,7 @@ void NodeTestController::runSystemGetNodeInfoTest(Round::Node *node) {
   SystemGetNodeInfoResponse sysRes(&nodeRes);
   
   std::string resIp;
-  BOOST_CHECK(sysRes.getIp(&resIp));
+  BOOST_CHECK(sysRes.getAddress(&resIp));
   
   int resPort;
   BOOST_CHECK(sysRes.getPort(&resPort));

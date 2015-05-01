@@ -137,7 +137,7 @@ public:
 class SystemNodeInfoDict {
 public:
   static const std::string NAME;
-  static const std::string IP;
+  static const std::string ADDR;
   static const std::string PORT;
   static const std::string HASH;
   static const std::string VER;
@@ -160,12 +160,12 @@ public:
   bool setNode(Node *node);
   bool getNode(RemoteNode *node);
   
-  bool setIp(const std::string &value) {
-    return (this->jsonDict) ? this->jsonDict->set(IP, value) : false;
+  bool setAddress(const std::string &value) {
+    return (this->jsonDict) ? this->jsonDict->set(ADDR, value) : false;
   }
   
-  bool getIp(std::string *value) const {
-    return (this->jsonDict) ? this->jsonDict->get(IP, value) : false;
+  bool getAddress(std::string *value) const {
+    return (this->jsonDict) ? this->jsonDict->get(ADDR, value) : false;
   }
   
   bool setPort(int value) {
@@ -220,12 +220,12 @@ class SystemGetNodeInfoResponse : public SystemMethodResponse {
     return getNodeInfoDict()->setNode(node);
   }
   
-  bool setIp(const std::string &value) {
-    return getNodeInfoDict()->setIp(value);
+  bool setAddress(const std::string &value) {
+    return getNodeInfoDict()->setAddress(value);
   }
   
-  bool getIp(std::string *value) const {
-    return getNodeInfoDict()->getIp(value);
+  bool getAddress(std::string *value) const {
+    return getNodeInfoDict()->getAddress(value);
   }
   
   bool setPort(int value) {
