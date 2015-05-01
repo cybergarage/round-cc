@@ -51,8 +51,8 @@ bool Round::JSONDictionary::hasKey(const std::string &key) const {
 }
 
 bool Round::JSONDictionary::set(const std::string &key, const std::string &value) {
-  JSONString *jsonString = new JSONString(value);
-  return set(key, jsonString);
+  JSONString *jsonObj = new JSONString(value);
+  return set(key, jsonObj);
 }
 
 bool Round::JSONDictionary::set(const std::string &key, const char *value) {
@@ -65,23 +65,23 @@ bool Round::JSONDictionary::set(const std::string &key, size_t value) {
 }
 
 bool Round::JSONDictionary::set(const std::string &key, int value) {
-  std::string strValue = boost::lexical_cast<std::string>(value);
-  return set(key, strValue);
+  JSONInteger *jsonObj = new JSONInteger(value);
+  return set(key, jsonObj);
 }
 
 bool Round::JSONDictionary::set(const std::string &key, long value) {
-  std::string strValue = boost::lexical_cast<std::string>(value);
-  return set(key, strValue);
+  JSONInteger *jsonObj = new JSONInteger((int)value);
+  return set(key, jsonObj);
 }
 
 bool Round::JSONDictionary::set(const std::string &key, bool value) {
-  int intValue = value ? 1 : 0;
-  return set(key, intValue);
+  JSONBoolean *jsonObj = new JSONBoolean(value);
+  return set(key, jsonObj);
 }
 
 bool Round::JSONDictionary::set(const std::string &key, double value) {
-  std::string strValue = boost::lexical_cast<std::string>(value);
-  return set(key, strValue);
+  JSONReal *jsonObj = new JSONReal(value);
+  return set(key, jsonObj);
 }
 
 bool Round::JSONDictionary::get(const std::string &key, std::string *value) const {

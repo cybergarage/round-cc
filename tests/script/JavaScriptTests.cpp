@@ -166,6 +166,7 @@ BOOST_AUTO_TEST_CASE(JavaScriptGetNodeMethodTest) {
   "var val = \"%s\";\n" \
   ROUNDCC_SYSTEM_METHOD_SET_REGISTRY "(key, val);\n" \
   "var reg = " ROUNDCC_SYSTEM_METHOD_GET_REGISTRY "(key);\n" \
+  "//print(reg);\n" \
   "var jsonReg = JSON.parse(reg);\n" \
   "if (val != jsonReg.value) {\n" \
   "  print(jsonReg.value);\n" \
