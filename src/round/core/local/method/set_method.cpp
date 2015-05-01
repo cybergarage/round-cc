@@ -13,7 +13,7 @@
 
 #include <round/core/local/method/SystemMethod.h>
 
-const std::string Round::set_method::NAME   = ROUNDCC_SYSTEM_METHOD_SET_METHOD;
+const std::string Round::set_method::NAME                 = ROUNDCC_SYSTEM_METHOD_SET_METHOD;
 const std::string Round::set_method::METHOD_LANGUAGE      = ROUNDCC_SYSTEM_METHOD_PARAM_LANGUAGE;
 const std::string Round::set_method::METHOD_NAME          = ROUNDCC_SYSTEM_METHOD_PARAM_NAME;
 const std::string Round::set_method::METHOD_CODE          = ROUNDCC_SYSTEM_METHOD_PARAM_CODE;

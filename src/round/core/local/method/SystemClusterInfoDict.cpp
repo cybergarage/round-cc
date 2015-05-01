@@ -13,9 +13,9 @@
 
 #include <round/core/local/method/SystemMethod.h>
 
-const std::string Round::SystemClusterInfoDict::NAME     = "name";
-const std::string Round::SystemClusterInfoDict::NODES    = "nodes";
-const std::string Round::SystemClusterInfoDict::CLUSTER  = "cluster";
+const std::string Round::SystemClusterInfoDict::NAME     = ROUNDCC_SYSTEM_METHOD_PARAM_NAME;
+const std::string Round::SystemClusterInfoDict::NODES    = ROUNDCC_SYSTEM_METHOD_PARAM_NODES;
+const std::string Round::SystemClusterInfoDict::CLUSTER  = ROUNDCC_SYSTEM_METHOD_PARAM_CLUSTER;
 
 Round::JSONArray *Round::SystemClusterInfoDict::getNodeArray() {
   JSONObject *jsonObj = NULL;
