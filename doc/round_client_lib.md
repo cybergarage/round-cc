@@ -77,7 +77,26 @@ if (result != false) {
 
 #### post_method(method, params, obj)
 
-The post_method
+The post_method posts a RPC message to the specified node.
+
+##### Parameters
+
+- method : string
+- params : string or JSON string
+- obj : node hash or the local node is selected when the parameter is not specified or ''
+
+##### Return value
+
+
+##### Example
+
+The following code shows how to use the post_method function.
+
+```
+var key = "name";
+var val = "Satoshi Konno";
+var result = post_method('set_registry', ''{"key": "Satoshi Konno"}', '');
+```
 
 #### get_network_state()
 
