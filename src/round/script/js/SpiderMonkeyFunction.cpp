@@ -142,12 +142,18 @@ JSBool round_js_sm_postmethod(JSContext *cx, unsigned argc, jsval *vp) {
   Round::Node *targetNode;
   Round::Error error;
   std::string result;
+  bool isSuccess = false;
   
   if (node->findNode(obj, &targetNode, &error)) {
-    targetNode->postMessage(method, params, &result);
+    isSuccess = targetNode->postMessage(method, params, &result);
   }
   
-  JS_SET_STDSTRING_RVAL(cx, vp, result);
+  if (isSuccess) {
+    JS_SET_STDSTRING_RVAL(cx, vp, result);
+  }
+  else {
+    JS_SET_RVAL(cx, vp, BOOLEAN_TO_JSVAL(JSBool(JS_FALSE)));
+  }
   
   JS_EndRequest(cx);
   
@@ -190,17 +196,17 @@ JSBool round_js_sm_getregistry(JSContext *cx, unsigned argc, jsval *vp) {
   std::string key;
   JSSTRING_TO_STDSTRING(cx, vp, 0, &key);
   
-  std::string result;
-  
   Round::Registry reg;
   if (node->getRegistry(key, &reg)) {
     Round::JSONDictionary jsonDict;
-    if (reg.toJSONDictionary(&jsonDict)) {
-      jsonDict.toJSONString(&result);
-    }
+    std::string result;
+    reg.toJSONDictionary(&jsonDict);
+    jsonDict.toJSONString(&result);
+    JS_SET_STDSTRING_RVAL(cx, vp, result);
   }
-
-  JS_SET_STDSTRING_RVAL(cx, vp, result);
+  else {
+    JS_SET_RVAL(cx, vp, BOOLEAN_TO_JSVAL(JSBool(JS_FALSE)));
+  }
   
   JS_EndRequest(cx);
   

@@ -204,6 +204,25 @@ BOOST_AUTO_TEST_CASE(JavaScriptRegistryMethodTest) {
   BOOST_CHECK(node.stop(&err));
 }
 
+#define JS_TEST_JOB_GETREGISTORY_ERROR \
+"var key = \"error_key\";\n" \
+"var reg = " ROUNDCC_SYSTEM_METHOD_GET_REGISTRY "(key);\n" \
+"reg;\n"
+
+BOOST_AUTO_TEST_CASE(JavaScriptRegistryErrorMethodTest) {
+  
+  TestLocalNode node;
+  Error err;
+  
+  BOOST_CHECK(node.start(&err));
+  
+  std::string result;
+  BOOST_CHECK(node.execJob(JavaScriptEngine::LANGUAGE, JS_TEST_JOB_GETREGISTORY_ERROR, Round::Script::ENCODING_NONE, &result, &err));
+  BOOST_CHECK_EQUAL(result.compare("false"), 0);
+  
+  BOOST_CHECK(node.stop(&err));
+}
+
 #define JS_TEST_JOB_POSTMETHOD \
   "var key = \"%s\";\n" \
   "var val = \"%s\";\n" \
@@ -214,9 +233,6 @@ BOOST_AUTO_TEST_CASE(JavaScriptRegistryMethodTest) {
   "  print(result);\n" \
   "}\n" \
   "(val == jsonReg.value);\n"
-
-#define JS_TEST_JOB_POSTMETHOD_PARAM \
-  ""
 
 BOOST_AUTO_TEST_CASE(JavaScriptPostMethodTest) {
   TestLocalNode node;
@@ -247,6 +263,23 @@ BOOST_AUTO_TEST_CASE(JavaScriptPostMethodTest) {
     BOOST_CHECK(node.execJob(JavaScriptEngine::LANGUAGE, script, Round::Script::ENCODING_NONE, &result, &err));
     BOOST_CHECK_EQUAL(result.compare("true"), 0);
   }
+  
+  BOOST_CHECK(node.stop(&err));
+}
+
+#define JS_TEST_JOB_POSTMETHOD_ERROR \
+"var result = " ROUNDCC_SCRIPT_POST_METHOD "('error_method', '');\n" \
+"result;\n"
+
+BOOST_AUTO_TEST_CASE(JavaScriptPostMethodErrorTest) {
+  TestLocalNode node;
+  Error err;
+  
+  BOOST_CHECK(node.start(&err));
+  
+  std::string result;
+  BOOST_CHECK(node.execJob(JavaScriptEngine::LANGUAGE, JS_TEST_JOB_POSTMETHOD_ERROR, Round::Script::ENCODING_NONE, &result, &err));
+  BOOST_CHECK_EQUAL(result.compare("false"), 0);
   
   BOOST_CHECK(node.stop(&err));
 }
