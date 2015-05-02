@@ -27,5 +27,6 @@ void Round::LocalNativeMethodManager::init() {
   addMethod(new get_network_state());
   addMethod(new set_registry());
   addMethod(new get_registry());
+  addMethod(new post_job());
   addMethod(new execp());
 }

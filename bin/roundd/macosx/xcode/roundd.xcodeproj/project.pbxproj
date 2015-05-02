@@ -370,6 +370,7 @@
 					"-ljansson",
 					"-lssl",
 					"-lcrypto",
+					"-llua",
 				);
 				SDKROOT = macosx;
 			};
@@ -420,6 +421,7 @@
 					"-ljansson",
 					"-lssl",
 					"-lcrypto",
+					"-llua",
 				);
 				SDKROOT = macosx;
 			};
