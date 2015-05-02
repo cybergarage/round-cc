@@ -38,6 +38,15 @@ When the `list` command outputs only a cluster, Round uses the cluster as defaul
 round> use <cluster name>
 ```
 
+## Jobs
+
+In this section, post a simple job which returns a current date using JavaScript.
+
+```
+rounc > post_job(0, { "language":"js", "code":"var now = new Date();now.toString();" })
+Sat May 02 2015 17:30:17 GMT+0900 (JST)
+```
+
 ## Methods
 
 In this section, add a simple `echo` method which returns the given parameters as it is using JavaScript.
@@ -67,7 +76,7 @@ To confirm whether the `set_registry` method is success, call `get_registry` met
 
 ```
 round> get_registry(0, {"key":"test"})
-hello
+{"key":"test","lts":xxxxx,"ts":xxxxx,"value":"hello"}
 ```
 
 ## Route
