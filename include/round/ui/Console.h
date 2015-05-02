@@ -159,6 +159,9 @@ class Command {
   virtual bool exec(Client *client, const Input *input, Message *msg, Error *err) const = 0;
   virtual const std::string getDescription() const = 0;
   virtual const std::string getOptionDescription() const {return "";};
+  
+  void sleep(int msec) const ;
+  void waitAnimation(int msec) const ;
 };
 
 class Commands : public std::map<std::string, Command*> {

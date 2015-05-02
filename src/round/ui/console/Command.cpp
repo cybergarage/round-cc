@@ -9,6 +9,7 @@
  ******************************************************************/
 
 #include <boost/algorithm/string.hpp>
+#include <boost/thread.hpp>
 #include <round/ui/Console.h>
 
 const std::string Round::Console::Command::TAB = "    ";
@@ -43,4 +44,30 @@ bool Round::Console::Command::IsQuit(const Input *input) {
 
 bool Round::Console::Command::IsShell(const Input *input) {
   return IsCommand(SHELL, input);
+}
+
+void Round::Console::Command::sleep(int msec) const {
+  boost::this_thread::sleep(boost::posix_time::milliseconds(msec));
+}
+
+void Round::Console::Command::waitAnimation(int msec) const {
+  const int WAIT_SLEEP = 100;
+  char waitChars[] = "-\\|/-\\|/";
+  
+  int loopCount = (msec / (WAIT_SLEEP * sizeof(waitChars))) + 1;
+  for (int i=0; i<loopCount; i++) {
+    std::string countHeader;
+    for (int n=0; n<i; n++) {
+      countHeader += ".";
+    }
+    for (int j=0; j<sizeof(waitChars); j++) {
+      std::cout << "\r" << countHeader << waitChars[j] << std::flush; sleep(WAIT_SLEEP);
+    }
+  }
+  
+  std::string countHeader;
+  for (int n=0; n<(loopCount+1); n++) {
+    countHeader += ".";
+  }
+  std::cout << "\r" << countHeader << std::endl;
 }
