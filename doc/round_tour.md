@@ -24,7 +24,13 @@ round> help
 
 ## Nodes
 
-To know clusters in the network, use `list` command:
+Immediately after the `round` command is started, the command don't know other nodes in the network. To find other nodes in the network, use `search` command at first:
+
+```
+round> search
+```
+
+To show the found nodes in the network, use `list` command:
 
 ```
 round> list
@@ -32,7 +38,7 @@ round> list
   [0] 192.168.100.26:7476 # --> node ipaddr:port
 ```
 
-When the `list` command outputs only a cluster, Round uses the cluster as default. Otherwise use `use` commad to select a target cluster:
+The `list` command outputs only a current cluster. Round uses the cluster name, `round`, as default.　Otherwise use `use` command to select a other target cluster:
 
 ```
 round> use <cluster name>
@@ -82,7 +88,6 @@ round> get_registry(0, {"key":"test"})
 ## Route
 
 In this section, use route function.
-
 
 ```
 round> set_method(0, { "language":"js", "name":"echo", "code":"function echo(params) {return params;}" })
