@@ -8,6 +8,7 @@
  *
  ******************************************************************/
 
+#include <iostream>
 #include <round/ui/console/Command.h>
 
 const std::string Round::Console::search::NAME = "search";
@@ -17,5 +18,7 @@ const std::string Round::Console::search::getDescription() const {
 }
 
 bool Round::Console::search::exec(Round::Console::Client *client, const Input *input, Message *msg, Error *err) const {
-  return client->search(err);
+  bool isSuccess = client->search(err);
+  waitAnimation(5000);
+  return isSuccess;
 }
