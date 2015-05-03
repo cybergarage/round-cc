@@ -137,6 +137,7 @@ class Command {
   static const std::string QUIT;
   static const std::string EXIT;
   static const std::string SHELL;
+  static const std::string DONE;
   
  public:
   std::string name;
@@ -161,7 +162,7 @@ class Command {
   virtual const std::string getOptionDescription() const {return "";};
   
   void sleep(int msec) const ;
-  void waitAnimation(int msec) const ;
+  void waitAnimation(int msec, const std::string &desc = "", const std::string &done = ROUNDCC_MESSAGE_DONE) const ;
 };
 
 class Commands : public std::map<std::string, Command*> {

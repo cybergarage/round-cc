@@ -50,7 +50,7 @@ void Round::Console::Command::sleep(int msec) const {
   boost::this_thread::sleep(boost::posix_time::milliseconds(msec));
 }
 
-void Round::Console::Command::waitAnimation(int msec) const {
+void Round::Console::Command::waitAnimation(int msec, const std::string &desc, const std::string &done) const {
   const int WAIT_SLEEP = 100;
   char waitChars[] = "-\\|/-\\|/";
   
@@ -61,7 +61,11 @@ void Round::Console::Command::waitAnimation(int msec) const {
       countHeader += ".";
     }
     for (int j=0; j<sizeof(waitChars); j++) {
-      std::cout << "\r" << countHeader << waitChars[j] << std::flush; sleep(WAIT_SLEEP);
+      std::cout << "\r";
+      if (0 < desc.length()) {
+        std::cout << desc << " ";
+      }
+      std::cout << countHeader << waitChars[j] << std::flush; sleep(WAIT_SLEEP);
     }
   }
   
@@ -69,5 +73,9 @@ void Round::Console::Command::waitAnimation(int msec) const {
   for (int n=0; n<(loopCount+1); n++) {
     countHeader += ".";
   }
-  std::cout << "\r" << countHeader << std::endl;
+  std::cout << "\r";
+  if (0 < desc.length()) {
+    std::cout << desc << " ";
+  }
+  std::cout << countHeader << " " << done << std::endl;
 }
