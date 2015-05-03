@@ -100,9 +100,7 @@ int round_lua_setregistry(lua_State* L)
 int round_lua_getregistry(lua_State* L)
 {
   bool isSuccess = false;
-  std::string val = "";
-  time_t ts = 0;
-  time_t lts = 0;
+  std::string result = "";
   
   Round::Node *localNode = round_lua_getlocalnode();
   std::string key = luaL_checkstring(L, 1);
@@ -110,19 +108,18 @@ int round_lua_getregistry(lua_State* L)
     Round::Error err;
     Round::Registry reg;
     isSuccess = localNode->getRegistry(key, &reg, &err);
+    
     if (isSuccess) {
-      val = reg.getValue();
-      ts = reg.getTimestamp();
-      lts = reg.getLogicalTimestamp();
+      Round::JSONDictionary jsonDict;
+      reg.toJSONDictionary(&jsonDict);
+      jsonDict.toJSONString(&result);
     }
   }
   
   lua_pushboolean(L, isSuccess);
-  lua_pushstring(L, val.c_str());
-  lua_pushinteger(L, ts);
-  lua_pushinteger(L, lts);
+  lua_pushstring(L, result.c_str());
 
-  return 4;
+  return 2;
 }
 
 int round_lua_postmethod(lua_State* L)

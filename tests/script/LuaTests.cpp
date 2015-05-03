@@ -149,8 +149,9 @@ BOOST_AUTO_TEST_CASE(LuaGetNodeMethodTest) {
   "key = \"%s\"\n" \
   "val = \"%s\"\n" \
   ROUNDCC_SYSTEM_METHOD_SET_REGISTRY "(key, val)\n" \
-  "ok, regVal = " ROUNDCC_SYSTEM_METHOD_GET_REGISTRY "(key)\n" \
-  "-- print(regVal)\n" \
+  "ok, result = " ROUNDCC_SYSTEM_METHOD_GET_REGISTRY "(key)\n" \
+  "jsonResult = json.decode(result)\n" \
+  "regVal = jsonResult[\"value\"]\n" \
   "return regVal\n"
 
 BOOST_AUTO_TEST_CASE(LuaRegistryMethodTest) {
@@ -189,8 +190,8 @@ BOOST_AUTO_TEST_CASE(LuaRegistryMethodTest) {
   "json = require(\"json\")\n" \
   "key = \"%s\"\n" \
   "val = \"%s\"\n" \
-  ROUNDCC_SYSTEM_METHOD_SET_REGISTRY "(key, val);\n" \
-  "ok, result = " ROUNDCC_SCRIPT_POST_METHOD "('" ROUNDCC_SYSTEM_METHOD_GET_REGISTRY "', '{\"key\": \"%s\"}', '');\n" \
+  ROUNDCC_SYSTEM_METHOD_SET_REGISTRY "(key, val)\n" \
+  "ok, result = " ROUNDCC_SCRIPT_POST_METHOD "('" ROUNDCC_SYSTEM_METHOD_GET_REGISTRY "', '{\"key\": \"%s\"}', '')\n" \
   "jsonResult = json.decode(result)\n" \
   "regVal = jsonResult[\"value\"]\n" \
   "return regVal\n"
