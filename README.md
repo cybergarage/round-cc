@@ -18,16 +18,23 @@ The name "Round" derives from "[Knights of the Round Table](http://en.wikipedia.
 
 - [Overview](doc/round_internals.md)
 - [Algorithms](doc/round_distributed_algorithms.md)
-- [Coversions](doc/round_conversions.md)
+<!-- - [Coversions](doc/round_conversions.md) -->
+
+## Specification
+
+- [Configuration](doc/round_config.md)
+- [RPC](doc/round_rpc_spec.md)
+  - [Methods](doc/round_rpc_methods.md)
+  - [Scripts](doc/round_script.md)
+      - [JavaScript](doc/round_script_js.md)
+      - [Java](doc/round_script_java.md)
+      - [Lua](doc/round_script_lua.md)
+      - [TCL](doc/round_script_tcl.md)
+- HTTP
+    - [Round-RPC over HTTP](doc/round_rpc_http.md)
 
 ## API and Libraries
 
-- [Configuration](doc/round_config.md)
-- Round-RPC
-    - [Specification](doc/round_rpc_spec.md)
-    - [Methods](doc/round_rpc_methods.md)
-- HTTP
-    - [Round-RPC over HTTP](doc/round_rpc_http.md)
 - Client
     - [Libraries](doc/round_client_lib.md)
     - [RPM (Round Package Manager)](doc/round_rpm.md)
