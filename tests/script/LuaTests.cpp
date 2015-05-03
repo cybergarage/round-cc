@@ -78,7 +78,7 @@ BOOST_AUTO_TEST_CASE(LuaHelloTest) {
 }
 
 #define LUA_TEST_JOB_GETNETWORKSTATE \
-  "json = require(\"json\")\n" \
+  "json = require(\"json\") -- JSON4Lua\n" \
   "result = " ROUNDCC_SYSTEM_METHOD_GET_NETWORK_STATE "()\n" \
   "-- print(result)\n" \
   "jsonResult = json.decode(result)" \
@@ -99,7 +99,7 @@ BOOST_AUTO_TEST_CASE(LuaGetNetworkStateMethodTest) {
 }
 
 #define LUA_TEST_JOB_GETCLUSTERSTATE \
-  "json = require(\"json\")\n" \
+  "json = require(\"json\") -- JSON4Lua\n" \
   "result = " ROUNDCC_SYSTEM_METHOD_GET_CLUSTER_STATE "()\n" \
   "-- print(result)\n" \
   "jsonResult = json.decode(result)" \
@@ -120,7 +120,7 @@ BOOST_AUTO_TEST_CASE(LuaGetClusterStateMethodTest) {
 }
 
 #define LUA_TEST_JOB_GETNODESTATE \
-  "json = require(\"json\")\n" \
+  "json = require(\"json\") -- JSON4Lua\n" \
   "result = " ROUNDCC_SYSTEM_METHOD_GET_NODE_STATE "()\n" \
   "-- print(result)\n" \
   "jsonResult = json.decode(result)\n" \
@@ -145,7 +145,7 @@ BOOST_AUTO_TEST_CASE(LuaGetNodeMethodTest) {
 }
 
 #define LUA_TEST_JOB_SETREGISTORY \
-  "json = require(\"json\")\n" \
+  "json = require(\"json\") -- JSON4Lua\n" \
   "key = \"%s\"\n" \
   "val = \"%s\"\n" \
   ROUNDCC_SYSTEM_METHOD_SET_REGISTRY "(key, val)\n" \
@@ -187,7 +187,7 @@ BOOST_AUTO_TEST_CASE(LuaRegistryMethodTest) {
 }
 
 #define LUA_TEST_JOB_POSTMETHOD \
-  "json = require(\"json\")\n" \
+  "json = require(\"json\") -- JSON4Lua -- JSON4Lua\n" \
   "key = \"%s\"\n" \
   "val = \"%s\"\n" \
   ROUNDCC_SYSTEM_METHOD_SET_REGISTRY "(key, val)\n" \

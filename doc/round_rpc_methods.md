@@ -39,7 +39,7 @@ supported-language = ("js" | "java" | "tcl" | "lua")
 
 If the code parameter isn't specified, the method is removed.
 
-##### Return value
+##### Return values
 
 The set_method method doesn't return anything when the method is success, otherwise a error object.
 
@@ -59,7 +59,7 @@ encoding = "encoding" ":" ("none" | "base64")
 supported-language = ("js" | "java" | "tcl" | "lua")
 ```
 
-##### Return value
+##### Return values
 
 The post_job method returns a job result, otherwise a error object.
 
@@ -93,7 +93,7 @@ dest-in-param-name         = TOKEN
 dest-in-param-value-script = JS_SCRIPT
 ```
 
-##### Return value
+##### Return values
 
 The set_route method doesn't return anything when the method is success, otherwise a error object.
 
@@ -113,7 +113,7 @@ cycle_interval = "cycle_interval" ":" INTEGER
 loop           = "loop" ":" BOOL
 ```
 
-##### Return value
+##### Return values
 
 The set_timer method doesn't return anything when the method is success, otherwise a error object.
 
@@ -136,7 +136,7 @@ json-rpc-params-default = "params".TOKEN ":" TOKEN
 
 If the code method isn't specified, the alias is removed.
 
-##### Return value
+##### Return values
 
 The set_alias method doesn't return anything when the method is success, otherwise a error object.
 
@@ -167,7 +167,7 @@ key   = "key" ":" TOKEN
 value = "value" ":" TOKEN
 ```
 
-##### Return value
+##### Return values
 
 The set_registry method doesn't return anything when the method is success, otherwise a error object.
 
@@ -183,9 +183,9 @@ get_registry = "{" key "}"
 key = "key" ":" TOKEN
 ```
 
-##### Return value
+##### Return values
 
-The get_registry method a following JSON object, otherwise a error object.
+The get_registry method a following JSON string, otherwise a error object.
 
 ```
 result = "{" key value timestamp logical_timestamp"}"
@@ -204,9 +204,9 @@ The get_network_state method returns a cluster list which the local node knows.
 
 This method has no parameter.
 
-##### Return value
+##### Return values
 
-The get_network_state method returns a following JSON object, otherwise a error object.
+The get_network_state method returns a following JSON string, otherwise a error object.
 
 ```
 result = { network-state }
@@ -235,9 +235,9 @@ The get_cluster_state method returns all nodes which the local node knows in the
 
 This method has no parameter.
 
-##### Return value
+##### Return values
 
-The get_cluster_state method returns a following JSON object, otherwise a error object.
+The get_cluster_state method returns a following JSON string, otherwise a error object.
 
 ```
 result = { cluster-state }
@@ -264,9 +264,9 @@ The get_node_state method returns the local node status.
 
 This method has no parameter.
 
-##### Return value
+##### Return values
 
-The get_node_state method returns a following JSON object, otherwise a error object.
+The get_node_state method returns a following JSON string, otherwise a error object.
 
 ```
 result = "{" cluster hash ip port state "}"
