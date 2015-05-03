@@ -1,6 +1,8 @@
 ![round_logo](./img/round_logo.png)
 
-# Supported Script
+# Script Languages
+
+Round supports the following programming languages in the RPC methods.
 
 - [JavaScript](roud_script.js.md)
 - [Java](round_script_java.md)

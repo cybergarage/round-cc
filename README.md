@@ -25,7 +25,7 @@ The name "Round" derives from "[Knights of the Round Table](http://en.wikipedia.
 - [Configuration](doc/round_config.md)
 - [RPC](doc/round_rpc_spec.md)
   - [Methods](doc/round_rpc_methods.md)
-  - [Scripts](doc/round_script.md)
+  - [Script Languages](doc/round_script.md)
       - [JavaScript](doc/round_script_js.md)
       - [Java](doc/round_script_java.md)
       - [Lua](doc/round_script_lua.md)
