@@ -22,9 +22,11 @@ To show all commands of `round`, use `help` command:
 round> help
 ```
 
-## Nodes
+## Finding Nodes
 
-Immediately after the `round` command is started, the command don't know other nodes in the network. To find other nodes in the network, use `search` command at first:
+Immediately after the `round` command is started, the command don't know other nodes in the network.
+
+To find other nodes in the network, use `search` command at first:
 
 ```
 round> search
@@ -44,20 +46,22 @@ The `list` command outputs only a current cluster. Round uses the cluster name, 
 round> use <cluster name>
 ```
 
-## Jobs
+## Executing Jobs
 
-In this section, post a simple job which returns a current date using JavaScript.
+The node is running as a RPC node, and the node can execute any jobs to use `post_job` method. Using the method, the developers can execute any jobs on the node.
+
+In this section, post a simple job which returns a current date using JavaScript:
 
 ```
 rounc > post_job(0, { "language":"js", "code":"var now = new Date();now.toString();" })
 Sat May 02 2015 17:30:17 GMT+0900 (JST)
 ```
 
-## Methods
+## Adding Methods
 
-In this section, add a simple `echo` method which returns the given parameters as it is using JavaScript.
+The node is running as a programmable RPC node. The node has some embedded default methods such as `post_job`, and the developers can add new methods using `set_method` method.
 
-Each node of Round is a programmable node using some programming languages such JavaScript and Lua. To create the `echo` method, use `set_method` as the following:
+In this section, add a simple `echo` method which returns the given parameters as it is using JavaScript. To add the `echo` method, use `set_method`:
 
 ```
 round> set_method(0, { "language":"js", "name":"echo", "code":"function echo(params) {return params;}" })
@@ -72,7 +76,9 @@ round> echo(0, "hello")
 
 ## Registry
 
-In this section, use registry function. To set a value into the registry, use `set_registry` method:
+The node has a local registry to store any key values in the node.
+
+In this section, use the registry function. To set a key value into the registry, use `set_registry` method:
 
 ```
 round> set_registry(0, {"key":"test", "value":"hello"})
@@ -85,10 +91,16 @@ round> get_registry(0, {"key":"test"})
 {"key":"test","lts":xxxxx,"ts":xxxxx,"value":"hello"}
 ```
 
-## Route
+## Routing
+
+The node has a route function. Using the route function, the developer can connect some methods like Unix pipes.
 
 In this section, use route function.
 
 ```
 round> set_method(0, { "language":"js", "name":"echo", "code":"function echo(params) {return params;}" })
 ```
+
+## Creating Triggers
+
+The node has some embedded default triggers.
