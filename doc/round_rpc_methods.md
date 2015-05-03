@@ -70,7 +70,7 @@ The set_route method sets a new route into the local node.
 ##### Parameters
 
 ```
-set_route = "{" name source destnation  [type] [cond] [params] "}"
+set_route = "{" source destnation [name] [type] [cond] [params] "}"
 
 name       = "name"   ":" TOKEN
 source     = "src"    ":" source-object
@@ -79,7 +79,7 @@ type       = "type"   ":" ("pipe" | "event")
 cond       = "cond"   ":" JS_SCRIPT
 params     = "params" ":" "{" *(param) "}"
 
-source-object     = [cluster "."] [node "."] (trigger-name | method-name)
+source-object     = (trigger-name | method-name)
 destnation-object = [cluster "."] [node "."] (method-name)
 cluster           = ("local" | cluster-name)
 node              = ("local" | "all" | "*" | hash-code)
