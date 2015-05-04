@@ -49,7 +49,7 @@ bool Round::set_method::exec(LocalNode *node, const NodeRequest *nodeReq, NodeRe
   if (!jsonDict->get(METHOD_NAME, &scriptMethod) || (scriptMethod.length() <= 0))
     return false;
   
-  // Couldn't override 'set_method'
+  // Couldn't override static methods
   if (node->isStaticMethod(scriptMethod))
     return false;
   

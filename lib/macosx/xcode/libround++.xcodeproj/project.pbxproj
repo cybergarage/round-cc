@@ -68,6 +68,11 @@
 		21C0E1E11ADE172B002ABF65 /* SystemSetRegistryRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C0E1E01ADE172B002ABF65 /* SystemSetRegistryRequest.cpp */; };
 		21C2236A1AC5264200209C1F /* LuaFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C223681AC5264200209C1F /* LuaFunction.cpp */; };
 		21C2236B1AC5264200209C1F /* LuaFunction.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C223691AC5264200209C1F /* LuaFunction.h */; };
+		21C366361AF6E8D4001CB74F /* remove_alias.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C366311AF6E8D4001CB74F /* remove_alias.cpp */; };
+		21C366371AF6E8D4001CB74F /* remove_method.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C366321AF6E8D4001CB74F /* remove_method.cpp */; };
+		21C366381AF6E8D4001CB74F /* remove_registry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C366331AF6E8D4001CB74F /* remove_registry.cpp */; };
+		21C366391AF6E8D4001CB74F /* remove_route.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C366341AF6E8D4001CB74F /* remove_route.cpp */; };
+		21C3663A1AF6E8D4001CB74F /* remove_timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C366351AF6E8D4001CB74F /* remove_timer.cpp */; };
 		21D03AD41A63C4A60098122A /* Route.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D03AD31A63C4A60098122A /* Route.h */; };
 		21D50A9B1A819F39005C1F51 /* exec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50A9A1A819F39005C1F51 /* exec.cpp */; };
 		21D50AA21A82322F005C1F51 /* get_registry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50AA01A82322F005C1F51 /* get_registry.cpp */; };
@@ -302,6 +307,11 @@
 		21C0E1E01ADE172B002ABF65 /* SystemSetRegistryRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemSetRegistryRequest.cpp; sourceTree = "<group>"; };
 		21C223681AC5264200209C1F /* LuaFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaFunction.cpp; sourceTree = "<group>"; };
 		21C223691AC5264200209C1F /* LuaFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaFunction.h; sourceTree = "<group>"; };
+		21C366311AF6E8D4001CB74F /* remove_alias.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = remove_alias.cpp; sourceTree = "<group>"; };
+		21C366321AF6E8D4001CB74F /* remove_method.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = remove_method.cpp; sourceTree = "<group>"; };
+		21C366331AF6E8D4001CB74F /* remove_registry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = remove_registry.cpp; sourceTree = "<group>"; };
+		21C366341AF6E8D4001CB74F /* remove_route.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = remove_route.cpp; sourceTree = "<group>"; };
+		21C366351AF6E8D4001CB74F /* remove_timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = remove_timer.cpp; sourceTree = "<group>"; };
 		21D03AD31A63C4A60098122A /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
 		21D50A9A1A819F39005C1F51 /* exec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exec.cpp; sourceTree = "<group>"; };
 		21D50AA01A82322F005C1F51 /* get_registry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = get_registry.cpp; sourceTree = "<group>"; };
@@ -611,6 +621,11 @@
 				21B911A41A6B5F4300C791FD /* MethodManager.cpp */,
 				21B911A51A6B5F4300C791FD /* MethodMap.cpp */,
 				218B34411AECD4C3009BE65F /* post_job.cpp */,
+				21C366311AF6E8D4001CB74F /* remove_alias.cpp */,
+				21C366321AF6E8D4001CB74F /* remove_method.cpp */,
+				21C366331AF6E8D4001CB74F /* remove_registry.cpp */,
+				21C366341AF6E8D4001CB74F /* remove_route.cpp */,
+				21C366351AF6E8D4001CB74F /* remove_timer.cpp */,
 				21D8CA761A6B7284002CBDC3 /* set_alias.cpp */,
 				21B911BB1A6B61CC00C791FD /* set_method.cpp */,
 				21D50AA11A82322F005C1F51 /* set_registry.cpp */,
@@ -1114,6 +1129,7 @@
 				21D8E2EF1A60E1E200E8A63F /* NodeFinderObserver.cpp in Sources */,
 				21B3293D1A6B82CA0077C313 /* Client.cpp in Sources */,
 				21D50AA31A82322F005C1F51 /* set_registry.cpp in Sources */,
+				21C366381AF6E8D4001CB74F /* remove_registry.cpp in Sources */,
 				21D7A59F1A6BF1E100D43061 /* version.cpp in Sources */,
 				21D8E2D01A60E1E200E8A63F /* Mutex.cpp in Sources */,
 				21D8E2CE1A60E1E200E8A63F /* MessageManager.cpp in Sources */,
@@ -1168,6 +1184,7 @@
 				218B34421AECD4C3009BE65F /* post_job.cpp in Sources */,
 				21C2236A1AC5264200209C1F /* LuaFunction.cpp in Sources */,
 				21C0E1DF1ADCCCE6002ABF65 /* SystemGetRegistryResponse.cpp in Sources */,
+				21C366371AF6E8D4001CB74F /* remove_method.cpp in Sources */,
 				2147F29B1A91A3B5009A8275 /* RPCParser.cpp in Sources */,
 				21D8E2D41A60E1E200E8A63F /* Random.cpp in Sources */,
 				21D8E2DD1A60E1E200E8A63F /* ThreadList.cpp in Sources */,
@@ -1226,9 +1243,11 @@
 				21D8E2C01A60E1E200E8A63F /* Error.cpp in Sources */,
 				21D8E2AF1A60E1E200E8A63F /* Client.cpp in Sources */,
 				21D8E2E91A60E1E200E8A63F /* Logger.cpp in Sources */,
+				21C366361AF6E8D4001CB74F /* remove_alias.cpp in Sources */,
 				21D8E2D11A60E1E200E8A63F /* NotificationCenter.cpp in Sources */,
 				21B911991A6B5E5400C791FD /* LocalRegistry.cpp in Sources */,
 				21D8CA7A1A6B7781002CBDC3 /* system_method.cpp in Sources */,
+				21C366391AF6E8D4001CB74F /* remove_route.cpp in Sources */,
 				21D8E2D21A60E1E200E8A63F /* NotificationObserver.cpp in Sources */,
 				21D8E2C51A60E1E200E8A63F /* JSONBoolean.cpp in Sources */,
 				21D8E2EE1A60E1E200E8A63F /* NodeFinderNotification.cpp in Sources */,
@@ -1253,6 +1272,7 @@
 				21D8E2B41A60E1E200E8A63F /* ConsistentHashNode.cpp in Sources */,
 				21D7A5A11A6BF1E900D43061 /* update.cpp in Sources */,
 				21D50AAD1A824A9C005C1F51 /* AliasList.cpp in Sources */,
+				21C3663A1AF6E8D4001CB74F /* remove_timer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

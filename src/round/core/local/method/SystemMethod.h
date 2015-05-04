@@ -68,6 +68,18 @@ class set_method : public system_method {
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
+// remove_method
+
+class remove_method : public system_method {
+public:
+  static const std::string NAME;
+  static const std::string METHOD_NAME;
+public:
+  remove_method();
+  ~remove_method();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
+};
+  
 // post_job
   
 class post_job : public system_method {
@@ -101,6 +113,20 @@ public:
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
+// remove_route
+
+class remove_route : public system_method {
+public:
+  static const std::string NAME;
+  static const std::string ROUTE_NAME;
+  static const std::string ROUTE_SRC;
+  static const std::string ROUTE_DEST;
+public:
+  remove_route();
+  ~remove_route();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
+};
+  
 // set_timer
   
 class set_timer : public system_method {
@@ -112,6 +138,17 @@ public:
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
+// remove_timer
+
+class remove_timer : public system_method {
+public:
+  static const std::string NAME;
+public:
+  remove_timer();
+  ~remove_timer();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
+};
+  
 // set_alias
   
 class set_alias : public system_method {
@@ -120,6 +157,17 @@ class set_alias : public system_method {
  public:
   set_alias();
   ~set_alias();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
+};
+
+// remove_alias
+
+class remove_alias : public system_method {
+public:
+  static const std::string NAME;
+public:
+  remove_alias();
+  ~remove_alias();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
   
@@ -417,6 +465,17 @@ class SystemGetRegistryResponse : public SystemMethodResponse {
   
     bool setRegistry(const Registry reg);
     bool getRegistry(Registry *reg);
+};
+
+// remove_registry
+
+class remove_registry : public system_method {
+public:
+  static const std::string NAME;
+public:
+  remove_registry();
+  ~remove_registry();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
   
 // exec

@@ -146,6 +146,7 @@ class LocalNode : public Node, public NodeFinderObserver {
   
   bool addMethod(Method *method);
   bool setScript(const std::string &method, const std::string &lang, const std::string &script, int encodeType, Error *error);
+  bool removeScript(const std::string &method, Error *error);
   
   bool execJob(const std::string &lang, const std::string &script, int encodeType, std::string *result, Error *error);
   

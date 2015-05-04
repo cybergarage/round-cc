@@ -19,7 +19,7 @@ BOOST_AUTO_TEST_SUITE(node)
 
 BOOST_AUTO_TEST_CASE(RoundNodStatusDefaultTest) {
   NodeStatus nodeStatus;
-  BOOST_CHECK_EQUAL(nodeStatus.getState(), NodeStatus::UNKNOWN);
+  BOOST_CHECK_EQUAL(nodeStatus.getState(), NodeStatus::STOP);
 }
 
 BOOST_AUTO_TEST_CASE(RoundNodStatusStringTest) {
