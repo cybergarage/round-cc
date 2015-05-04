@@ -122,20 +122,9 @@ bool Round::LuaEngine::run(const Script *luaScript, const std::string &params, s
   nStack = lua_gettop(this->luaState);
   
   if(lua_pcall(this->luaState, 0, 0, 0) != 0) {
-    nStack = lua_gettop(this->luaState);
-    
-    if (0 < nStack) {
-      RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInternalError, error);
-      error->setMessage(lua_tostring(this->luaState, -1));
-      lua_pop(this->luaState, 1);
-    }
-    
-    nStack = lua_gettop(this->luaState);
-    
+    popError(error);
     round_lua_setlocalnode(NULL);
-    
     unlock();
-    
     return false;
   }
   
