@@ -39,9 +39,5 @@ bool Round::remove_registry::exec(LocalNode *node, const NodeRequest *nodeReq, N
   if (!paramDict->get(Registry::KEY, &key))
     return false;
   
-  std::string value;
-  if (!paramDict->get(Registry::VALUE, &value))
-    return false;
-  
-  return node->setRegistry(key, value);
+  return node->removeRegistry(key);
 }

@@ -62,3 +62,7 @@ bool Round::RegistryMap::get(const std::string &key, std::string *value) const {
     return false;
   return true;
 }
+
+bool Round::RegistryMap::remove(const std::string &key) {
+  return (0 < erase(key)) ? true : false;
+}

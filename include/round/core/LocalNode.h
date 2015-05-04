@@ -68,7 +68,7 @@ class LocalNativeMethodManager : public MethodManager {
     void init();
 };
 
-class LocalRegistry : public RegistryMap {
+class LocalRegistry : public RegistryManager {
     
 public:
     
@@ -77,10 +77,7 @@ public:
 
   void setNode(LocalNode *node);
 
-  bool set(const Registry reg) {
-    return RegistryMap::set(reg);
-  }
-  
+  bool set(const Registry reg);
   bool set(const std::string &key, const std::string &value);
 
 private:
@@ -155,6 +152,7 @@ class LocalNode : public Node, public NodeFinderObserver {
   
   bool setRegistry(const Registry reg);
   bool getRegistry(const std::string &key, Registry *reg) const;
+  bool removeRegistry(const std::string &key);
 
   bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
   bool postMessage(const NodeBatchRequest *nodeReq, NodeBatchResponse *nodeRes, Error *error);

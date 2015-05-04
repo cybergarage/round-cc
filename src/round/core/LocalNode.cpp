@@ -243,6 +243,10 @@ bool Round::LocalNode::getRegistry(const std::string &key, Registry *reg) const 
   return this->nodeReg.get(key, reg);
 }
 
+bool Round::LocalNode::removeRegistry(const std::string &key) {
+  return this->nodeReg.remove(key);
+}
+
 ////////////////////////////////////////////////
 // Message
 ////////////////////////////////////////////////

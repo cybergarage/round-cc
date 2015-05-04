@@ -76,6 +76,8 @@ class RegistryMap : public std::map<std::string, Registry> {
 
   bool set(const std::string &key, const std::string &value);
   bool get(const std::string &key, std::string *value) const;
+
+  bool remove(const std::string &key);
 };
 
 class RegistryManager : public RegistryMap {

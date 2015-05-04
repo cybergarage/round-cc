@@ -18,7 +18,7 @@ using namespace Round;
 
 BOOST_AUTO_TEST_SUITE(registry)
 
-BOOST_AUTO_TEST_CASE(RQLRregistryBasicMethodTest) {
+BOOST_AUTO_TEST_CASE(RregistryBasicMethodTest) {
   std::string val;
   time_t ts;
   std::stringstream ss;
@@ -61,7 +61,7 @@ BOOST_AUTO_TEST_CASE(RQLRregistryBasicMethodTest) {
   BOOST_CHECK_EQUAL(tval, ts);
 }
 
-BOOST_AUTO_TEST_CASE(RQLRregistryEqualsTest) {
+BOOST_AUTO_TEST_CASE(RregistryEqualsTest) {
   std::string val;
   time_t ts;
   std::stringstream ss;
@@ -91,7 +91,7 @@ BOOST_AUTO_TEST_CASE(RQLRregistryEqualsTest) {
   BOOST_CHECK_EQUAL(reg01.equalsWithTimestamp(reg02), true);
 }
 
-BOOST_AUTO_TEST_CASE(RQLRregistryMapBasicMethodTest) {
+BOOST_AUTO_TEST_CASE(RregistryMapBasicMethodTest) {
   RegistryMap regMap;
   BOOST_CHECK_EQUAL(regMap.size(), 0);
   
@@ -125,7 +125,7 @@ BOOST_AUTO_TEST_CASE(RQLRregistryMapBasicMethodTest) {
   }
 }
 
-BOOST_AUTO_TEST_CASE(RQLRregistryMapSimpleMethodTest) {
+BOOST_AUTO_TEST_CASE(RregistryMapSimpleMethodTest) {
   RegistryMap regMap;
   BOOST_CHECK_EQUAL(regMap.size(), 0);
     
@@ -150,5 +150,35 @@ BOOST_AUTO_TEST_CASE(RQLRregistryMapSimpleMethodTest) {
     BOOST_CHECK_EQUAL(val.compare(outVal), 0);
   }
 }
+
+BOOST_AUTO_TEST_CASE(RregistryMapRemoveMethodTest) {
+  RegistryMap regMap;
+  BOOST_CHECK_EQUAL(regMap.size(), 0);
   
+  for (int n=0; n<10; n++) {
+    
+    std::stringstream ss;
+    time_t ts;
+    
+    time(&ts); ts += rand(); ss << ts;
+    std::string key = "key" + ss.str();
+    std::string val = "val" + ss.str();
+    
+    BOOST_CHECK_EQUAL(regMap.size(), 0);
+    BOOST_CHECK_EQUAL(regMap.get(key, &val), false);
+    
+    BOOST_CHECK_EQUAL(regMap.set(key, val), true);
+    BOOST_CHECK_EQUAL(regMap.size(), 1);
+    
+    std::string outVal;
+    
+    BOOST_CHECK_EQUAL(regMap.get(key, &outVal), true);
+    BOOST_CHECK_EQUAL(val.compare(outVal), 0);
+
+    BOOST_CHECK_EQUAL(regMap.size(), 1);
+    BOOST_CHECK_EQUAL(regMap.remove(key), true);
+    BOOST_CHECK_EQUAL(regMap.size(), 0);
+  }
+}
+
 BOOST_AUTO_TEST_SUITE_END()

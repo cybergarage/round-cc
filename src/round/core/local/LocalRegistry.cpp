@@ -22,6 +22,10 @@ void Round::LocalRegistry::setNode(LocalNode *node) {
   this->node = node;
 }
 
+bool Round::LocalRegistry::set(const Registry reg) {
+  return RegistryMap::set(reg);
+}
+
 bool Round::LocalRegistry::set(const std::string &key, const std::string &value) {
   Registry reg;
   
