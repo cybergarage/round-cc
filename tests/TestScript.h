@@ -130,9 +130,8 @@ const std::string RPC_SET_ECHO = \
 
 const std::string RPC_REMOVE_ECHO = \
   "{\"jsonrpc\": \"2.0\"," \
-  "\"method\": \"set_method\","
+  "\"method\": \"remove_method\","
   "\"params\": {" \
-  "\"language\": \"" RPC_SET_ECHO_LANG "\", " \
   "\"name\": \"" RPC_SET_ECHO_NAME "\"" \
   "}, \"id\": 1}";
   
