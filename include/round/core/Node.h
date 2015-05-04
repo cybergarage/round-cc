@@ -54,6 +54,7 @@ class Node : public NodeCore, public Cloneable<Node> {
   bool setRegistry(const std::string &key, const std::string &value, Error *error);
   bool getRegistry(const std::string &key, Registry *reg, Error *error);
   bool getRegistry(const std::string &key, std::string *value, Error *error);
+  bool removeRegistry(const std::string &key, Error *error);
 
 public:
 

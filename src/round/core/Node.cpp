@@ -130,3 +130,10 @@ bool Round::Node::getRegistry(const std::string &key, std::string *value, Error 
     return false;
   return reg.getValue(value);
 }
+
+bool Round::Node::removeRegistry(const std::string &key, Error *error) {
+  SystemRemoveRegistryRequest nodeReq;
+  nodeReq.setKey(key);
+  NodeResponse nodeRes;
+  return postMessage(&nodeReq, &nodeRes, error);
+}

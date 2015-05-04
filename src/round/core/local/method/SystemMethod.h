@@ -427,14 +427,6 @@ class SystemSetRegistryRequest : public SystemMethodRequest {
     setMethod(set_registry::NAME);
   }
   
-  void setKey(const std::string &value) {
-    set(Registry::KEY, value);
-  }
-
-  void setValue(const std::string &value) {
-    set(Registry::VALUE, value);
-  }
-
   void setRegistry(const Registry reg);
 };
 
@@ -478,6 +470,15 @@ public:
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
   
+class SystemRemoveRegistryRequest : public SystemMethodRequest {
+public:
+  SystemRemoveRegistryRequest() {
+    setMethod(remove_registry::NAME);
+  }
+  
+  void setKey(const std::string &value);
+};
+
 // exec
   
 class execp : public system_method {

@@ -73,6 +73,7 @@
 		21C366381AF6E8D4001CB74F /* remove_registry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C366331AF6E8D4001CB74F /* remove_registry.cpp */; };
 		21C366391AF6E8D4001CB74F /* remove_route.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C366341AF6E8D4001CB74F /* remove_route.cpp */; };
 		21C3663A1AF6E8D4001CB74F /* remove_timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C366351AF6E8D4001CB74F /* remove_timer.cpp */; };
+		21C3663C1AF76C78001CB74F /* SystemRemoveRegistryRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C3663B1AF76C78001CB74F /* SystemRemoveRegistryRequest.cpp */; };
 		21D03AD41A63C4A60098122A /* Route.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D03AD31A63C4A60098122A /* Route.h */; };
 		21D50A9B1A819F39005C1F51 /* exec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50A9A1A819F39005C1F51 /* exec.cpp */; };
 		21D50AA21A82322F005C1F51 /* get_registry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50AA01A82322F005C1F51 /* get_registry.cpp */; };
@@ -312,6 +313,7 @@
 		21C366331AF6E8D4001CB74F /* remove_registry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = remove_registry.cpp; sourceTree = "<group>"; };
 		21C366341AF6E8D4001CB74F /* remove_route.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = remove_route.cpp; sourceTree = "<group>"; };
 		21C366351AF6E8D4001CB74F /* remove_timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = remove_timer.cpp; sourceTree = "<group>"; };
+		21C3663B1AF76C78001CB74F /* SystemRemoveRegistryRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemRemoveRegistryRequest.cpp; sourceTree = "<group>"; };
 		21D03AD31A63C4A60098122A /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
 		21D50A9A1A819F39005C1F51 /* exec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exec.cpp; sourceTree = "<group>"; };
 		21D50AA01A82322F005C1F51 /* get_registry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = get_registry.cpp; sourceTree = "<group>"; };
@@ -639,6 +641,7 @@
 				21B911AA1A6B5F4300C791FD /* SystemMethodRequest.cpp */,
 				21B911AB1A6B5F4300C791FD /* SystemMethodResponse.cpp */,
 				21B911AC1A6B5F4300C791FD /* SystemNodeInfoDict.cpp */,
+				21C3663B1AF76C78001CB74F /* SystemRemoveRegistryRequest.cpp */,
 				21C0E1E01ADE172B002ABF65 /* SystemSetRegistryRequest.cpp */,
 			);
 			path = method;
@@ -1133,6 +1136,7 @@
 				21D7A59F1A6BF1E100D43061 /* version.cpp in Sources */,
 				21D8E2D01A60E1E200E8A63F /* Mutex.cpp in Sources */,
 				21D8E2CE1A60E1E200E8A63F /* MessageManager.cpp in Sources */,
+				21C3663C1AF76C78001CB74F /* SystemRemoveRegistryRequest.cpp in Sources */,
 				2155C4381AB928F900A5E55C /* SpiderMonkeyFunction.cpp in Sources */,
 				21B911B21A6B5F4300C791FD /* MethodManager.cpp in Sources */,
 				21F4CE6D1A63F0BA00E7F0CC /* ScriptEngineMap.cpp in Sources */,
