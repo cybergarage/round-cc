@@ -25,5 +25,6 @@ JSBool round_js_sm_getnodestate(JSContext *cx, unsigned argc, jsval *vp);
 JSBool round_js_sm_postmethod(JSContext *cx, unsigned argc, jsval *vp);
 JSBool round_js_sm_setregistry(JSContext *cx, unsigned argc, jsval *vp);
 JSBool round_js_sm_getregistry(JSContext *cx, unsigned argc, jsval *vp);
+JSBool round_js_sm_removeregistry(JSContext *cx, unsigned argc, jsval *vp);
 
 #endif

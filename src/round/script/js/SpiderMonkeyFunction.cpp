@@ -212,3 +212,24 @@ JSBool round_js_sm_getregistry(JSContext *cx, unsigned argc, jsval *vp) {
   
   return JS_TRUE;
 }
+
+JSBool round_js_sm_removeregistry(JSContext *cx, unsigned argc, jsval *vp) {
+  if (argc < 1)
+    return JS_FALSE;
+  
+  Round::LocalNode *node = dynamic_cast<Round::LocalNode *>(round_js_sm_getlocalnode());
+  if (!node)
+    return JS_FALSE;
+  
+  JS_BeginRequest(cx);
+  
+  std::string key;
+  JSSTRING_TO_STDSTRING(cx, vp, 0, &key);
+  
+  bool isSuccess = node->removeRegistry(key);
+  JS_SET_RVAL(cx, vp, BOOLEAN_TO_JSVAL(JSBool(isSuccess)));
+  
+  JS_EndRequest(cx);
+  
+  return JS_TRUE;
+}
