@@ -154,7 +154,7 @@ BOOST_AUTO_TEST_CASE(LuaGetNodeMethodTest) {
   "regVal = jsonResult[\"value\"]\n" \
   "return regVal\n"
 
-BOOST_AUTO_TEST_CASE(LuaRegistryMethodTest) {
+BOOST_AUTO_TEST_CASE(LuaRegistryBasicMethodTest) {
   
   TestLocalNode node;
   Error err;
@@ -181,6 +181,47 @@ BOOST_AUTO_TEST_CASE(LuaRegistryMethodTest) {
     std::string result;
     BOOST_CHECK(node.execJob(LuaEngine::LANGUAGE, script, Round::Script::ENCODING_NONE, &result, &err));
     BOOST_CHECK_EQUAL(result.compare(val), 0);
+  }
+  
+  BOOST_CHECK(node.stop(&err));
+}
+
+#define LUA_TEST_JOB_REMOVEREGISTORY \
+  "json = require(\"json\") -- JSON4Lua\n" \
+  "key = \"%s\"\n" \
+  "val = \"%s\"\n" \
+  ROUNDCC_SYSTEM_METHOD_SET_REGISTRY "(key, val)\n" \
+  "result = " ROUNDCC_SYSTEM_METHOD_REMOVE_REGISTRY "(key)\n" \
+  "-- print(result)\n" \
+  "return result\n"
+
+BOOST_AUTO_TEST_CASE(LuaRegistryRemoveMethodTest) {
+  
+  TestLocalNode node;
+  Error err;
+  
+  BOOST_CHECK(node.start(&err));
+  
+  char script[LUA_JOB_SCRIPT_BUF_SIZE+1];
+  for (int n=0; n<10; n++) {
+    time_t ts;
+    
+    Registry inReg;
+    
+    std::stringstream ss;
+    time(&ts); ts += rand(); ss << ts;
+    std::string key = "key" + ss.str();
+    std::string val = "val" + ss.str();
+    
+    snprintf(script,
+             LUA_JOB_SCRIPT_BUF_SIZE,
+             LUA_TEST_JOB_REMOVEREGISTORY,
+             key.c_str(),
+             val.c_str());
+    
+    std::string result;
+    BOOST_CHECK(node.execJob(LuaEngine::LANGUAGE, script, Round::Script::ENCODING_NONE, &result, &err));
+    BOOST_CHECK_EQUAL(result.compare("true"), 0);
   }
   
   BOOST_CHECK(node.stop(&err));

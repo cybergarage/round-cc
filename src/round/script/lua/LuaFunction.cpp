@@ -122,6 +122,22 @@ int round_lua_getregistry(lua_State* L)
   return 2;
 }
 
+int round_lua_removeregistry(lua_State* L)
+{
+  bool isSuccess = false;
+  
+  Round::Node *localNode = round_lua_getlocalnode();
+  std::string key = luaL_checkstring(L, 1);
+  if (localNode && (0 < key.length())) {
+    Round::Error err;
+    isSuccess = localNode->removeRegistry(key, &err);
+  }
+  
+  lua_pushboolean(L, isSuccess);
+  
+  return 1;
+}
+
 int round_lua_postmethod(lua_State* L)
 {
   bool isSuccess = false;
