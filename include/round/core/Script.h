@@ -231,6 +231,8 @@ class ScriptManager {
     return this->scripts.hasScript(name);
   }
   
+  bool removeScript(const std::string &method, Error *error);
+  
   bool setEngine(ScriptEngine *engine);
   
   bool hasEngine(const std::string &lang) const {
@@ -254,8 +256,6 @@ class ScriptManager {
   
  private:
 
-  bool removeScript(const std::string &method, const std::string &lang, Error *error);
-  
   ScriptMap       scripts;
   ScriptEngineMap engines;
   Node            *node;

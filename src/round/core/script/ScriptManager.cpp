@@ -72,7 +72,7 @@ bool Round::ScriptManager::setScript(const std::string &method, const std::strin
   }
 
   if (code.length() <= 0)
-    return removeScript(method, lang, error);
+    return removeScript(method, error);
   
   Script *script = new Script(lang, method, code);
   if (!script) {
@@ -96,14 +96,9 @@ bool Round::ScriptManager::setScript(const std::string &method, const std::strin
   return true;
 }
 
-bool Round::ScriptManager::removeScript(const std::string &method, const std::string &lang, Error *error) {
+bool Round::ScriptManager::removeScript(const std::string &method, Error *error) {
   const Script *script = this->scripts.getScript(method);
   if (!script) {
-    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeMethodNotFound, error);
-    return false;
-  }
-  
-  if (!script->isLanguage(lang)) {
     RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeMethodNotFound, error);
     return false;
   }
