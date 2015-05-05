@@ -384,6 +384,8 @@ BOOST_AUTO_TEST_CASE(RouteListTest) {
   BOOST_CHECK_EQUAL(route->isDestination(TEST_01_DEST_OBJ), true);
 }
 
+BOOST_AUTO_TEST_CASE(RouteMapTest) {
+  RouteMap reouteMap;
+}
 
 BOOST_AUTO_TEST_SUITE_END()
-

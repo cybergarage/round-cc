@@ -85,12 +85,12 @@ private:
   LocalNode *node;
 };
 
-class LocalRouteEngine: public RouteEngine {
+class LocalRouteManager: public RouteManager {
     
 public:
     
-  LocalRouteEngine();
-  ~LocalRouteEngine();
+  LocalRouteManager();
+  ~LocalRouteManager();
 
 private:
   void init();
@@ -249,7 +249,7 @@ private:
   LocalStaticMethodManager  staticMethodMgr;
   LocalNativeMethodManager  sysMethodMgr;
   LocalRegistry             nodeReg;
-  LocalRouteEngine          routeEngine;
+  LocalRouteManager         routeMgr;
 };
 
 }

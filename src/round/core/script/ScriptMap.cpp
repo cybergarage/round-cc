@@ -32,8 +32,9 @@ const Round::Script *Round::ScriptMap::getScript(const std::string &name) const 
 void Round::ScriptMap::clear() {
   for (ScriptMap::iterator scriptIt = begin(); scriptIt != end(); scriptIt++) {
     Script *script = scriptIt->second;
-    if (script)
+    if (script) {
       delete script;
+    }
   }
   std::map<std::string, Script *>::clear();
 }

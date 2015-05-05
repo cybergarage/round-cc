@@ -10,12 +10,12 @@
 
 #include <round/core/LocalNode.h>
 
-Round::LocalRouteEngine::LocalRouteEngine() {
+Round::LocalRouteManager::LocalRouteManager() {
   init();
 }
 
-Round::LocalRouteEngine::~LocalRouteEngine() {
+Round::LocalRouteManager::~LocalRouteManager() {
 }
 
-void Round::LocalRouteEngine::init() {
+void Round::LocalRouteManager::init() {
 }

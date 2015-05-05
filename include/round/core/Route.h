@@ -182,20 +182,47 @@ class RouteList : public Vector<Route> {
   Route *getRouteBySouceMethod(const std::string &srcMethod) const ;
 };
 
+class RouteMap : public std::map<std::string, RouteList *> {
+  
+public:
+  
+  RouteMap();
+  ~RouteMap();
+
+  bool addRoute(const Route route);
+  
+  void clear();
+};
+  
 class RouteEngine : public RouteList {
     
 public:
     
   RouteEngine();
   virtual ~RouteEngine();
-};
 
-class RouteManager : public RouteEngine {
+  bool execRoute(const std::string &src, const std::string &params);
+  
+};
+  
+class RouteManager : public RouteMap {
     
  public:
   
   RouteManager();
   virtual ~RouteManager();
+
+  void lock() {
+    mutex.lock();
+  }
+  
+  void unlock() {
+    mutex.unlock();
+  }
+  
+private:
+  
+  Mutex mutex;
 };
 
 }

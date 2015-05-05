@@ -27,5 +27,39 @@ Round::set_route::~set_route() {
 }
 
 bool Round::set_route::exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const {
+  std::string params;
+  if (!nodeReq->getParams(&params))
+    return false;
+  
+  JSONParser jsonParser;
+  Error error;
+  if (!jsonParser.parse(params, &error))
+    return false;
+  
+  JSONDictionary *paramDict = dynamic_cast<JSONDictionary *>(jsonParser.getRootObject());
+  if (!paramDict)
+    return false;
+  
+  // Essential Parameters
+  
+  std::string src, dest;
+  
+  if (!paramDict->get(ROUTE_SRC, &src))
+    return false;
+  
+  if (!paramDict->get(ROUTE_DEST, &dest))
+    return false;
+
+  if ((src.length() <= 0) || (dest.length() <= 0))
+    return false;
+  
+  // Optional Parameters
+  
+  std::string name, type, cond;
+
+  paramDict->get(ROUTE_NAME, &name);
+  paramDict->get(ROUTE_TYPE, &type);
+  paramDict->get(ROUTE_COND, &cond);
+
   return false;
 }
