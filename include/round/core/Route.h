@@ -194,17 +194,6 @@ public:
   void clear();
 };
   
-class RouteEngine : public RouteList {
-    
-public:
-    
-  RouteEngine();
-  virtual ~RouteEngine();
-
-  bool execRoute(const std::string &src, const std::string &params);
-  
-};
-  
 class RouteManager : public RouteMap {
     
  public:

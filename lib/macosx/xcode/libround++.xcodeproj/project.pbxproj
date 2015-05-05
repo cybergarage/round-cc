@@ -214,7 +214,6 @@
 		21E1EB161A64FE2800FEABF6 /* NodeRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E1EB131A64FE2800FEABF6 /* NodeRequest.cpp */; };
 		21E1EB171A64FE2800FEABF6 /* NodeResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E1EB141A64FE2800FEABF6 /* NodeResponse.cpp */; };
 		21F4CE671A63F0BA00E7F0CC /* Route.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4CE5D1A63F0BA00E7F0CC /* Route.cpp */; };
-		21F4CE681A63F0BA00E7F0CC /* RouteEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4CE5E1A63F0BA00E7F0CC /* RouteEngine.cpp */; };
 		21F4CE691A63F0BA00E7F0CC /* RouteList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4CE5F1A63F0BA00E7F0CC /* RouteList.cpp */; };
 		21F4CE6A1A63F0BA00E7F0CC /* RouteManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4CE601A63F0BA00E7F0CC /* RouteManager.cpp */; };
 		21F4CE6B1A63F0BA00E7F0CC /* Script.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4CE621A63F0BA00E7F0CC /* Script.cpp */; };
@@ -455,7 +454,6 @@
 		21E1EB131A64FE2800FEABF6 /* NodeRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeRequest.cpp; sourceTree = "<group>"; };
 		21E1EB141A64FE2800FEABF6 /* NodeResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeResponse.cpp; sourceTree = "<group>"; };
 		21F4CE5D1A63F0BA00E7F0CC /* Route.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Route.cpp; sourceTree = "<group>"; };
-		21F4CE5E1A63F0BA00E7F0CC /* RouteEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RouteEngine.cpp; sourceTree = "<group>"; };
 		21F4CE5F1A63F0BA00E7F0CC /* RouteList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RouteList.cpp; sourceTree = "<group>"; };
 		21F4CE601A63F0BA00E7F0CC /* RouteManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RouteManager.cpp; sourceTree = "<group>"; };
 		21F4CE621A63F0BA00E7F0CC /* Script.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Script.cpp; sourceTree = "<group>"; };
@@ -964,7 +962,6 @@
 			isa = PBXGroup;
 			children = (
 				21F4CE5D1A63F0BA00E7F0CC /* Route.cpp */,
-				21F4CE5E1A63F0BA00E7F0CC /* RouteEngine.cpp */,
 				21F4CE5F1A63F0BA00E7F0CC /* RouteList.cpp */,
 				21F4CE601A63F0BA00E7F0CC /* RouteManager.cpp */,
 				21C3663D1AF8DACC001CB74F /* RouteMap.cpp */,
@@ -1212,7 +1209,6 @@
 				21D8E2B31A60E1E200E8A63F /* ConsistentHashGraph.cpp in Sources */,
 				21062D191A73D0EC00FCA587 /* rpm.cpp in Sources */,
 				21D8E2E01A60E1E200E8A63F /* Cluster.cpp in Sources */,
-				21F4CE681A63F0BA00E7F0CC /* RouteEngine.cpp in Sources */,
 				21D8E2CF1A60E1E200E8A63F /* MessageQueue.cpp in Sources */,
 				21D8E2F41A60E1E200E8A63F /* NodeStatus.cpp in Sources */,
 				21D8E2DB1A60E1E200E8A63F /* StringTokenizer.cpp in Sources */,
