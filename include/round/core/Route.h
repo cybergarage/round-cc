@@ -27,7 +27,7 @@ private:
 
 public:
   
-  static const int METHOD;
+  static const int TARGET;
   static const int NODE;
   static const int CLUSTER;
   
@@ -41,8 +41,8 @@ public:
 
   bool getObject(int objIdx, std::string *value) const;
 
-  bool getMethod(std::string *value) const {
-    return getObject(METHOD, value);
+  bool getTarget(std::string *value) const {
+    return getObject(TARGET, value);
   }
   
   bool getNode(std::string *value) const {
@@ -59,6 +59,8 @@ public:
   
   bool equals(const RouteObjects &otherObj) const;
   bool equals(const std::string &otherRoute) const;
+  
+  void toString(std::string *value);
 };
   
 class Route {
@@ -101,8 +103,8 @@ public:
     return this->srcObjects.equals(value);
   }
   
-  bool getSourceMethod(std::string *value) const {
-    return this->srcObjects.getMethod(value);
+  bool getSourceTarget(std::string *value) const {
+    return this->srcObjects.getTarget(value);
   }
   
   bool getSourceNode(std::string *value) const {
@@ -129,8 +131,8 @@ public:
     return this->destObjects.equals(value);
   }
   
-  bool getDestinationMethod(std::string *value) const {
-    return this->destObjects.getMethod(value);
+  bool getDestinationTarget(std::string *value) const {
+    return this->destObjects.getTarget(value);
   }
   
   bool getDestinationNode(std::string *value) const {

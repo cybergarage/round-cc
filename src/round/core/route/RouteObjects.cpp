@@ -19,7 +19,7 @@
 const std::string Round::RouteObjects::OBJECT_SEP = ".";
 const int Round::RouteObjects::OBJECT_NUM = 3;
 
-const int Round::RouteObjects::METHOD = 0;
+const int Round::RouteObjects::TARGET = 0;
 const int Round::RouteObjects::NODE = 1;
 const int Round::RouteObjects::CLUSTER = 2;
 
@@ -52,7 +52,7 @@ bool Round::RouteObjects::parse(const std::string &value) {
   if ((objectSize < 1) || (3 < objectSize))
     return false;
   
-  this->insert(std::pair<int, std::string>(METHOD, Route::METHOD_DEFALUT));
+  this->insert(std::pair<int, std::string>(TARGET, Route::METHOD_DEFALUT));
   this->insert(std::pair<int, std::string>(NODE, Route::NODE_DEFALUT));
   this->insert(std::pair<int, std::string>(CLUSTER, Route::CLUSTER_DEFALUT));
 
@@ -96,7 +96,7 @@ bool Round::RouteObjects::equals(const RouteObjects &otherObj) const {
 
 bool Round::RouteObjects::isMethod(const std::string &value) const {
   std::string thisValue;
-  if (!getMethod(&thisValue))
+  if (!getTarget(&thisValue))
     return false;
   return (thisValue.compare(value) == 0) ? true : false;
 }
@@ -118,4 +118,8 @@ bool Round::RouteObjects::isCluster(const std::string &value) const {
 bool Round::RouteObjects::equals(const std::string &otherRoute) const {
   RouteObjects otherRouteObjs(otherRoute);
   return equals(otherRouteObjs);
+}
+
+void Round::RouteObjects::toString(std::string *value) {
+  
 }

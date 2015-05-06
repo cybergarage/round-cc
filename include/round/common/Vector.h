@@ -225,7 +225,7 @@ public:
   // unlock
   
   void unlock() const {
-    this->mutex.lock();
+    this->mutex.unlock();
   }
   
 private:

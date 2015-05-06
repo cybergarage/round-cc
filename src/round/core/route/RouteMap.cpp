@@ -30,4 +30,3 @@ void Round::RouteMap::clear() {
 bool Round::RouteMap::addRoute(const Route route) {
   return false;
 }
-

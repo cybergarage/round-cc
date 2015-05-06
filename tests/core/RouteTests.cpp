@@ -30,7 +30,7 @@ BOOST_AUTO_TEST_CASE(RouteObjectsParseTest) {
   BOOST_CHECK_EQUAL(routeObjs.isValid(), false);
   BOOST_CHECK_EQUAL(routeObjs.getCluster(&object), false);
   BOOST_CHECK_EQUAL(routeObjs.getNode(&object), false);
-  BOOST_CHECK_EQUAL(routeObjs.getMethod(&object), false);
+  BOOST_CHECK_EQUAL(routeObjs.getTarget(&object), false);
   
   // Parse null object
   
@@ -38,7 +38,7 @@ BOOST_AUTO_TEST_CASE(RouteObjectsParseTest) {
   BOOST_CHECK_EQUAL(routeObjs.isValid(), false);
   BOOST_CHECK_EQUAL(routeObjs.getCluster(&object), false);
   BOOST_CHECK_EQUAL(routeObjs.getNode(&object), false);
-  BOOST_CHECK_EQUAL(routeObjs.getMethod(&object), false);
+  BOOST_CHECK_EQUAL(routeObjs.getTarget(&object), false);
   
   // "method" (Src)
   
@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE(RouteObjectsParseTest) {
   BOOST_CHECK_EQUAL(object.compare(Route::CLUSTER_DEFALUT), 0);
   BOOST_CHECK_EQUAL(routeObjs.getNode(&object), true);
   BOOST_CHECK_EQUAL(object.compare(Route::NODE_DEFALUT), 0);
-  BOOST_CHECK_EQUAL(routeObjs.getMethod(&object), true);
+  BOOST_CHECK_EQUAL(routeObjs.getTarget(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_METHOD), 0);
   
   // "node.method" (Src)
@@ -59,7 +59,7 @@ BOOST_AUTO_TEST_CASE(RouteObjectsParseTest) {
   BOOST_CHECK_EQUAL(object.compare(Route::CLUSTER_DEFALUT), 0);
   BOOST_CHECK_EQUAL(routeObjs.getNode(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_NODE), 0);
-  BOOST_CHECK_EQUAL(routeObjs.getMethod(&object), true);
+  BOOST_CHECK_EQUAL(routeObjs.getTarget(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_METHOD), 0);
   
   // "cluster.node.method" (Src)
@@ -70,7 +70,7 @@ BOOST_AUTO_TEST_CASE(RouteObjectsParseTest) {
   BOOST_CHECK_EQUAL(object.compare(TEST_CLUSTER), 0);
   BOOST_CHECK_EQUAL(routeObjs.getNode(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_NODE), 0);
-  BOOST_CHECK_EQUAL(routeObjs.getMethod(&object), true);
+  BOOST_CHECK_EQUAL(routeObjs.getTarget(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_METHOD), 0);
 }
 
@@ -89,7 +89,7 @@ BOOST_AUTO_TEST_CASE(RouteObjectsConstructorTest) {
   BOOST_CHECK_EQUAL(object.compare(TEST_CLUSTER), 0);
   BOOST_CHECK_EQUAL(routeObjs.getNode(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_NODE), 0);
-  BOOST_CHECK_EQUAL(routeObjs.getMethod(&object), true);
+  BOOST_CHECK_EQUAL(routeObjs.getTarget(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_METHOD), 0);
 }
 
@@ -141,10 +141,10 @@ BOOST_AUTO_TEST_CASE(RouteTest) {
   BOOST_CHECK_EQUAL(route.getName(&name), false);
   BOOST_CHECK_EQUAL(route.getSourceCluster(&object), false);
   BOOST_CHECK_EQUAL(route.getSourceNode(&object), false);
-  BOOST_CHECK_EQUAL(route.getSourceMethod(&object), false);
+  BOOST_CHECK_EQUAL(route.getSourceTarget(&object), false);
   BOOST_CHECK_EQUAL(route.getDestinationCluster(&object), false);
   BOOST_CHECK_EQUAL(route.getDestinationNode(&object), false);
-  BOOST_CHECK_EQUAL(route.getDestinationMethod(&object), false);
+  BOOST_CHECK_EQUAL(route.getDestinationTarget(&object), false);
 
   // "name"
 
@@ -161,7 +161,7 @@ BOOST_AUTO_TEST_CASE(RouteTest) {
   BOOST_CHECK_EQUAL(object.compare(Route::CLUSTER_DEFALUT), 0);
   BOOST_CHECK_EQUAL(route.getSourceNode(&object), true);
   BOOST_CHECK_EQUAL(object.compare(Route::NODE_DEFALUT), 0);
-  BOOST_CHECK_EQUAL(route.getSourceMethod(&object), true);
+  BOOST_CHECK_EQUAL(route.getSourceTarget(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_SRC_METHOD), 0);
 
   // "method" (Dest)
@@ -172,7 +172,7 @@ BOOST_AUTO_TEST_CASE(RouteTest) {
   BOOST_CHECK_EQUAL(object.compare(Route::CLUSTER_DEFALUT), 0);
   BOOST_CHECK_EQUAL(route.getDestinationNode(&object), true);
   BOOST_CHECK_EQUAL(object.compare(Route::NODE_DEFALUT), 0);
-  BOOST_CHECK_EQUAL(route.getDestinationMethod(&object), true);
+  BOOST_CHECK_EQUAL(route.getDestinationTarget(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_DEST_METHOD), 0);
 
   // "node.method" (Src)
@@ -183,7 +183,7 @@ BOOST_AUTO_TEST_CASE(RouteTest) {
   BOOST_CHECK_EQUAL(object.compare(Route::CLUSTER_DEFALUT), 0);
   BOOST_CHECK_EQUAL(route.getSourceNode(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_SRC_NODE), 0);
-  BOOST_CHECK_EQUAL(route.getSourceMethod(&object), true);
+  BOOST_CHECK_EQUAL(route.getSourceTarget(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_SRC_METHOD), 0);
   
   // "node.method" (Dest)
@@ -194,7 +194,7 @@ BOOST_AUTO_TEST_CASE(RouteTest) {
   BOOST_CHECK_EQUAL(object.compare(Route::CLUSTER_DEFALUT), 0);
   BOOST_CHECK_EQUAL(route.getDestinationNode(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_DEST_NODE), 0);
-  BOOST_CHECK_EQUAL(route.getDestinationMethod(&object), true);
+  BOOST_CHECK_EQUAL(route.getDestinationTarget(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_DEST_METHOD), 0);
 
   // "cluster.node.method" (Src)
@@ -205,7 +205,7 @@ BOOST_AUTO_TEST_CASE(RouteTest) {
   BOOST_CHECK_EQUAL(object.compare(TEST_SRC_CLUSTER), 0);
   BOOST_CHECK_EQUAL(route.getSourceNode(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_SRC_NODE), 0);
-  BOOST_CHECK_EQUAL(route.getSourceMethod(&object), true);
+  BOOST_CHECK_EQUAL(route.getSourceTarget(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_SRC_METHOD), 0);
   
   // "cluster.node.method" (Dest)
@@ -216,7 +216,7 @@ BOOST_AUTO_TEST_CASE(RouteTest) {
   BOOST_CHECK_EQUAL(object.compare(TEST_DEST_CLUSTER), 0);
   BOOST_CHECK_EQUAL(route.getDestinationNode(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_DEST_NODE), 0);
-  BOOST_CHECK_EQUAL(route.getDestinationMethod(&object), true);
+  BOOST_CHECK_EQUAL(route.getDestinationTarget(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_DEST_METHOD), 0);
 
   // type
@@ -251,14 +251,14 @@ BOOST_AUTO_TEST_CASE(RouteTest) {
   BOOST_CHECK_EQUAL(object.compare(TEST_SRC_CLUSTER), 0);
   BOOST_CHECK_EQUAL(route.getSourceNode(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_SRC_NODE), 0);
-  BOOST_CHECK_EQUAL(route.getSourceMethod(&object), true);
+  BOOST_CHECK_EQUAL(route.getSourceTarget(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_SRC_METHOD), 0);
   
   BOOST_CHECK_EQUAL(route.getDestinationCluster(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_DEST_CLUSTER), 0);
   BOOST_CHECK_EQUAL(route.getDestinationNode(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_DEST_NODE), 0);
-  BOOST_CHECK_EQUAL(route.getDestinationMethod(&object), true);
+  BOOST_CHECK_EQUAL(route.getDestinationTarget(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_DEST_METHOD), 0);
 
   BOOST_CHECK_EQUAL(route.isPipe(), true);
