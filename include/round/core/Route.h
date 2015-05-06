@@ -60,7 +60,7 @@ public:
   bool equals(const RouteObjects &otherObj) const;
   bool equals(const std::string &otherRoute) const;
   
-  void toString(std::string *value);
+  bool toString(std::string *value);
 };
   
 class Route {

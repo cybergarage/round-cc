@@ -49,7 +49,7 @@ bool Round::RouteObjects::parse(const std::string &value) {
   boost::split(objectList, value, boost::is_any_of(OBJECT_SEP));
 
   size_t objectSize = objectList.size();
-  if ((objectSize < 1) || (3 < objectSize))
+  if ((objectSize < 1) || (OBJECT_NUM < objectSize))
     return false;
   
   this->insert(std::pair<int, std::string>(TARGET, Route::METHOD_DEFALUT));
@@ -120,6 +120,19 @@ bool Round::RouteObjects::equals(const std::string &otherRoute) const {
   return equals(otherRouteObjs);
 }
 
-void Round::RouteObjects::toString(std::string *value) {
+bool Round::RouteObjects::toString(std::string *value) {
+  if (!value)
+    return false;
   
+  *value = "";
+  for (int n=(OBJECT_NUM-1); 0<=n; n--) {
+    std::string objStr;
+    if (!getObject(n, &objStr))
+      continue;
+    if (0 < (*value).length()) {
+      *value += OBJECT_SEP;
+    }
+    *value += objStr;
+  }
+  return true;
 }

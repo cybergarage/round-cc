@@ -23,7 +23,7 @@ BOOST_AUTO_TEST_CASE(RouteObjectsParseTest) {
   const std::string TEST_CLUSTER = "cluster";
   
   RouteObjects routeObjs;
-  std::string name, object;
+  std::string name, object, path;
   
   // Initialize node
   
@@ -50,6 +50,8 @@ BOOST_AUTO_TEST_CASE(RouteObjectsParseTest) {
   BOOST_CHECK_EQUAL(object.compare(Route::NODE_DEFALUT), 0);
   BOOST_CHECK_EQUAL(routeObjs.getTarget(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_METHOD), 0);
+  BOOST_CHECK_EQUAL(routeObjs.toString(&path), true);
+  BOOST_CHECK_EQUAL(path.compare(TEST_METHOD), 0);
   
   // "node.method" (Src)
   
@@ -61,6 +63,8 @@ BOOST_AUTO_TEST_CASE(RouteObjectsParseTest) {
   BOOST_CHECK_EQUAL(object.compare(TEST_NODE), 0);
   BOOST_CHECK_EQUAL(routeObjs.getTarget(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_METHOD), 0);
+  BOOST_CHECK_EQUAL(routeObjs.toString(&path), true);
+  BOOST_CHECK_EQUAL(path.compare(TEST_NODE + "." + TEST_METHOD), 0);
   
   // "cluster.node.method" (Src)
   
@@ -72,6 +76,8 @@ BOOST_AUTO_TEST_CASE(RouteObjectsParseTest) {
   BOOST_CHECK_EQUAL(object.compare(TEST_NODE), 0);
   BOOST_CHECK_EQUAL(routeObjs.getTarget(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_METHOD), 0);
+  BOOST_CHECK_EQUAL(routeObjs.toString(&path), true);
+  BOOST_CHECK_EQUAL(path.compare(TEST_CLUSTER + "." + TEST_NODE + "." + TEST_METHOD), 0);
 }
 
 BOOST_AUTO_TEST_CASE(RouteObjectsConstructorTest) {
