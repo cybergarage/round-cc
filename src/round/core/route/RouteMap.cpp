@@ -27,11 +27,8 @@ void Round::RouteMap::clear() {
   std::map<std::string, RouteList *>::clear();
 }
 
-Round::RouteList *Round::RouteMap::getRouteListBySourcePath(const std::string &srcPath) {
-  RouteMap::iterator routeMapIt = find(srcPath);
-  if (routeMapIt == end())
-    return NULL;
-  return routeMapIt->second;
+bool Round::RouteMap::setRoute(const std::string &name, const std::string &srcObj, const std::string &destObj) {
+  return false;
 }
 
 bool Round::RouteMap::addRoute(Route *route) {
@@ -51,4 +48,11 @@ bool Round::RouteMap::addRoute(Route *route) {
   mapRouteList->add(route);
   
   return false;
+}
+
+Round::RouteList *Round::RouteMap::getRouteListBySourcePath(const std::string &srcPath) {
+  RouteMap::iterator routeMapIt = find(srcPath);
+  if (routeMapIt == end())
+    return NULL;
+  return routeMapIt->second;
 }

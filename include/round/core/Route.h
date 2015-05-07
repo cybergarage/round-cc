@@ -80,7 +80,10 @@ public:
   static const std::string TYPE_PIPE;
   
 public:
+  
   Route();
+  Route(const std::string &name, const std::string &srcObj, const std::string &destObj);
+  
   virtual ~Route();
 
   bool isValid();
@@ -177,12 +180,16 @@ class RouteList : public Vector<Route> {
   RouteList();
   ~RouteList();
   
-  bool addRoute(const std::string &name, const std::string &srcObject, const std::string &destObject);
-  bool setRoute(const std::string &name, const std::string &srcObject, const std::string &destObject);
+  bool addRoute(Route *route);
+  bool setRoute(Route *route);
 
-  Route *getRouteByName(const std::string &name) const ;
-  Route *getRouteBySouceObject(const std::string &srcObject) const ;
-  Route *getRouteBySouceMethod(const std::string &srcMethod) const ;
+  bool addRoute(const std::string &name, const std::string &srcObj, const std::string &destObj);
+  bool setRoute(const std::string &name, const std::string &srcObj, const std::string &destObj);
+  
+  Route *findSameRoute(const Route *otherRoute) const ;
+  Route *findRouteByName(const std::string &name) const ;
+  Route *findRouteBySouceObject(const std::string &srcObj) const ;
+  Route *findRouteBySouceMethod(const std::string &srcMethod) const ;
 };
 
 class RouteMap : public std::map<std::string, RouteList *> {
@@ -192,10 +199,15 @@ public:
   RouteMap();
   ~RouteMap();
 
-  bool addRoute(Route *route);
-  RouteList *getRouteListBySourcePath(const std::string &srcPath);
+  bool setRoute(const std::string &name, const std::string &srcObj, const std::string &destObj);
   
   void clear();
+
+private:
+  
+  bool addRoute(Route *route);
+  
+  RouteList *getRouteListBySourcePath(const std::string &srcPath);
 };
   
 class RouteManager : public RouteMap {

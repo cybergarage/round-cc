@@ -28,6 +28,12 @@ const std::string Round::Route::TYPE_PIPE = "pipe";
 Round::Route::Route() {
 }
 
+Round::Route::Route(const std::string &name, const std::string &srcObj, const std::string &destObj) {
+  setName(name);
+  setSource(srcObj);
+  setDestination(destObj);  
+}
+
 Round::Route::~Route() {
 }
 
@@ -52,14 +58,19 @@ bool Round::Route::hasName() const {
 }
 
 bool Round::Route::isValid() {
+  /* Doesn't check name
   if (this->name.length() <= 0)
     return false;
+  */
+  
   if (!this->srcObjects.isValid())
     return false;
   if (!this->destObjects.isValid())
     return false;
+
   if (!isValidType())
     return false;
+  
   return true;
 }
 

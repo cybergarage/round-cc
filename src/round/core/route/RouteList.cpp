@@ -17,43 +17,90 @@ Round::RouteList::~RouteList() {
 }
 
 bool Round::RouteList::addRoute(const std::string &name, const std::string &srcObj, const std::string &destObj) {
-  if (getRouteByName(name))
+  Route *route = new Route(name, srcObj, destObj);
+  if (!route)
     return false;
+
+  bool isSuccess = addRoute(route);
+  if (!isSuccess) {
+    delete route;
+  }
   
-  Route *route = new Route();
+  return isSuccess;
+}
+
+bool Round::RouteList::setRoute(const std::string &name, const std::string &srcObj, const std::string &destObj) {
+  Route *route = new Route(name, srcObj, destObj);
   if (!route)
     return false;
   
-  route->setName(name);
-  route->setSource(srcObj);
-  route->setDestination(destObj);
-  
-  if (!route->isValid()) {
+  bool isSuccess = setRoute(route);
+  if (!isSuccess) {
     delete route;
+  }
+  
+  return isSuccess;
+}
+
+bool Round::RouteList::addRoute(Route *route) {
+  if (!route->isValid())
     return false;
+  
+  if (findSameRoute(route))
+    return false;
+
+  std::string routeName;
+  if (route->getName(&routeName)) {
+    if (findRouteByName(routeName))
+      return false;
   }
 
   lock();
   
   bool isSuccess = add(route);
-
+  
   unlock();
-
+  
   return isSuccess;
 }
 
-bool Round::RouteList::setRoute(const std::string &name, const std::string &srcObj, const std::string &destObj) {
-  Route *route = getRouteByName(name);
-  if (route) {
+bool Round::RouteList::setRoute(Route *route) {
+  Route *sameRoute = findSameRoute(route);
+  if (!sameRoute) {
+    std::string routeName;
+    if (route->getName(&routeName)) {
+      sameRoute = findRouteByName(routeName);
+    }
+  }
+  
+  if (sameRoute) {
     lock();
-    remove(route);
+    remove(sameRoute);
     unlock();
   }
   
-  return addRoute(name, srcObj, destObj);
+  return addRoute(route);
 }
 
-Round::Route *Round::RouteList::getRouteByName(const std::string &name) const {
+Round::Route *Round::RouteList::findSameRoute(const Route *otherRoute) const {
+  lock();
+  
+  Route *foundRuote = NULL;
+  
+  for (RouteList::const_iterator routeIt = begin(); routeIt != end(); routeIt++) {
+    Route *route = *routeIt;
+    if (route->equals(otherRoute)) {
+      foundRuote = route;
+      break;
+    }
+  }
+  
+  unlock();
+  
+  return foundRuote;
+}
+
+Round::Route *Round::RouteList::findRouteByName(const std::string &name) const {
 
   lock();
   
@@ -72,7 +119,7 @@ Round::Route *Round::RouteList::getRouteByName(const std::string &name) const {
   return foundRuote;
 }
 
-Round::Route *Round::RouteList::getRouteBySouceObject(const std::string &srcObject) const {
+Round::Route *Round::RouteList::findRouteBySouceObject(const std::string &srcObject) const {
   lock();
   
   Route *foundRuote = NULL;
@@ -91,7 +138,7 @@ Round::Route *Round::RouteList::getRouteBySouceObject(const std::string &srcObje
   return foundRuote;
 }
 
-Round::Route *Round::RouteList::getRouteBySouceMethod(const std::string &srcMethod) const {
+Round::Route *Round::RouteList::findRouteBySouceMethod(const std::string &srcMethod) const {
   lock();
   
   Route *foundRuote = NULL;
