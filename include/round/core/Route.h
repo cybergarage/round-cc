@@ -60,7 +60,7 @@ public:
   bool equals(const RouteObjects &otherObj) const;
   bool equals(const std::string &otherRoute) const;
   
-  bool toString(std::string *value);
+  bool toString(std::string *value) const;
 };
   
 class Route {
@@ -191,7 +191,8 @@ public:
   RouteMap();
   ~RouteMap();
 
-  bool addRoute(const Route route);
+  bool addRoute(Route *route);
+  RouteList *getRouteListBySourcePath(const std::string &srcPath);
   
   void clear();
 };

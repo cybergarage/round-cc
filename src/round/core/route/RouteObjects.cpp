@@ -120,7 +120,7 @@ bool Round::RouteObjects::equals(const std::string &otherRoute) const {
   return equals(otherRouteObjs);
 }
 
-bool Round::RouteObjects::toString(std::string *value) {
+bool Round::RouteObjects::toString(std::string *value) const {
   if (!value)
     return false;
   

@@ -97,15 +97,18 @@ bool Round::Route::isValidType() {
 }
 
 // equals
+
 bool Round::Route::equals(const Route *otherRoute) const {
   if (!otherRoute)
     return false;
   
+  /* Doesn't check name
   std::string otherRouteName;
   if (!otherRoute->getName(&otherRouteName))
     return false;
   if (!this->isName(otherRouteName))
     return false;
+  */
   
   if (!this->srcObjects.equals(otherRoute->getSourceObjects()))
     return false;

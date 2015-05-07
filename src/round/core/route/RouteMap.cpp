@@ -18,8 +18,8 @@ Round::RouteMap::~RouteMap() {
 }
 
 void Round::RouteMap::clear() {
-  for (RouteMap::iterator routeListIt = begin(); routeListIt != end(); routeListIt++) {
-    RouteList *routeList = routeListIt->second;
+  for (RouteMap::iterator routeMapIt = begin(); routeMapIt != end(); routeMapIt++) {
+    RouteList *routeList = routeMapIt->second;
     if (routeList) {
       delete routeList;
     }
@@ -27,6 +27,28 @@ void Round::RouteMap::clear() {
   std::map<std::string, RouteList *>::clear();
 }
 
-bool Round::RouteMap::addRoute(const Route route) {
+Round::RouteList *Round::RouteMap::getRouteListBySourcePath(const std::string &srcPath) {
+  RouteMap::iterator routeMapIt = find(srcPath);
+  if (routeMapIt == end())
+    return NULL;
+  return routeMapIt->second;
+}
+
+bool Round::RouteMap::addRoute(Route *route) {
+  if (!route)
+    return false;
+  
+  std::string srcPath;
+  const RouteObjects &srcObjs = route->getSourceObjects();
+  srcObjs.toString(&srcPath);
+  
+  RouteList *mapRouteList = getRouteListBySourcePath(srcPath);
+  if (!mapRouteList) {
+    mapRouteList = new RouteList();
+    insert(std::pair<std::string, RouteList *>(srcPath, mapRouteList));
+  }
+  
+  mapRouteList->add(route);
+  
   return false;
 }
