@@ -158,6 +158,7 @@ BOOST_AUTO_TEST_CASE(RouteTest) {
   BOOST_CHECK_EQUAL(route.isValid(), false);
   BOOST_CHECK_EQUAL(route.getName(&name), true);
   BOOST_CHECK_EQUAL(name.compare(TEST_NAME), 0);
+  BOOST_CHECK_EQUAL(route.hasName(), true);
   
   // "method" (Src)
   

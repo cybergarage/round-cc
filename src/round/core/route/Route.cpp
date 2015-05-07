@@ -47,6 +47,10 @@ bool Round::Route::isName(const std::string &value) const {
   return (this->name.compare(value) == 0) ? true : false;
 }
 
+bool Round::Route::hasName() const {
+  return (0 < this->name.length()) ? true : false;
+}
+
 bool Round::Route::isValid() {
   if (this->name.length() <= 0)
     return false;

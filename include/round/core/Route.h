@@ -90,6 +90,7 @@ public:
   bool setName(const std::string &value);
   bool getName(std::string *value) const;
   bool isName(const std::string &value) const;
+  bool hasName() const;
   
   // Source
   
