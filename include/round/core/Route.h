@@ -199,15 +199,15 @@ public:
   RouteMap();
   ~RouteMap();
 
-  bool setRoute(const std::string &name, const std::string &srcObj, const std::string &destObj);
+  bool addRoute(Route *route);
+  bool setRoute(Route *route);
   
   void clear();
 
 private:
   
-  bool addRoute(Route *route);
-  
   RouteList *getRouteListBySourcePath(const std::string &srcPath);
+  RouteList *getRouteListByRoute(Route *route);
 };
   
 class RouteManager : public RouteMap {
