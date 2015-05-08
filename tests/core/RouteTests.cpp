@@ -392,7 +392,27 @@ BOOST_AUTO_TEST_CASE(RouteListTest) {
 }
 
 BOOST_AUTO_TEST_CASE(RouteMapTest) {
-  RouteMap reouteMap;
+  const std::string TEST_01_NAME = "sname01";
+  const std::string TEST_01_SRC_METHOD = "smethod01";
+  const std::string TEST_01_SRC_NODE = "snode01";
+  const std::string TEST_01_SRC_CLUSTER = "scluster01";
+  const std::string TEST_01_SRC_OBJ = TEST_01_SRC_CLUSTER + "." + TEST_01_SRC_NODE + "." + TEST_01_SRC_METHOD;
+  const std::string TEST_01_DEST_METHOD = "dmethod01";
+  const std::string TEST_01_DEST_NODE = "dnode01";
+  const std::string TEST_01_DEST_CLUSTER = "dcluster01";
+  const std::string TEST_01_DEST_OBJ = TEST_01_DEST_CLUSTER + "." + TEST_01_DEST_NODE + "." + TEST_01_DEST_METHOD;
+  
+  RouteMap routeMap;
+  Route *route;
+
+  BOOST_CHECK_EQUAL(routeMap.size(), 0);
+  BOOST_CHECK_EQUAL(routeMap.count(), 0);
+
+  // addRoute
+  
+  BOOST_CHECK_EQUAL(routeMap.addRoute(TEST_01_NAME, TEST_01_SRC_OBJ, TEST_01_DEST_OBJ), true);
+  route = routeMap.findRouteByName(TEST_01_NAME);
+  BOOST_CHECK_EQUAL(route->isName(TEST_01_NAME), true);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

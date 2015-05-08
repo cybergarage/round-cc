@@ -27,30 +27,63 @@ void Round::RouteMap::clear() {
   std::map<std::string, RouteList *>::clear();
 }
 
+size_t Round::RouteMap::count() {
+  size_t totalCount = 0;
+  
+  for (RouteMap::iterator routeMapIt = begin(); routeMapIt != end(); routeMapIt++) {
+    RouteList *routeList = routeMapIt->second;
+    totalCount += routeList->size();
+  }
+  
+  return totalCount;
+}
+
 bool Round::RouteMap::addRoute(Route *route) {
   if (!route)
     return false;
   
-  std::string srcPath;
-  const RouteObjects &srcObjs = route->getSourceObjects();
-  srcObjs.toString(&srcPath);
+  RouteList *mapRouteList = getRouteListByRoute(route);
+  if (!mapRouteList)
+    return false;
   
-  RouteList *mapRouteList = getRouteListBySourcePath(srcPath);
-  if (!mapRouteList) {
-    mapRouteList = new RouteList();
-    insert(std::pair<std::string, RouteList *>(srcPath, mapRouteList));
-  }
-  
-  mapRouteList->add(route);
-  
-  return true;
+  return mapRouteList->addRoute(route);
 }
 
 bool Round::RouteMap::setRoute(Route *route) {
   if (!route)
     return false;
   
-  return true;
+  RouteList *mapRouteList = getRouteListByRoute(route);
+  if (!mapRouteList)
+    return false;
+  
+  return mapRouteList->setRoute(route);
+}
+
+bool Round::RouteMap::addRoute(const std::string &name, const std::string &srcObj, const std::string &destObj) {
+  Route *route = new Route(name, srcObj, destObj);
+  if (!route)
+    return false;
+  
+  bool isSuccess = addRoute(route);
+  if (!isSuccess) {
+    delete route;
+  }
+  
+  return isSuccess;
+}
+
+bool Round::RouteMap::setRoute(const std::string &name, const std::string &srcObj, const std::string &destObj) {
+  Route *route = new Route(name, srcObj, destObj);
+  if (!route)
+    return false;
+  
+  bool isSuccess = setRoute(route);
+  if (!isSuccess) {
+    delete route;
+  }
+  
+  return isSuccess;
 }
 
 Round::RouteList *Round::RouteMap::getRouteListByRoute(Route *route) {
@@ -67,7 +100,21 @@ Round::RouteList *Round::RouteMap::getRouteListByRoute(Route *route) {
 
 Round::RouteList *Round::RouteMap::getRouteListBySourcePath(const std::string &srcPath) {
   RouteMap::iterator routeMapIt = find(srcPath);
-  if (routeMapIt == end())
-    return NULL;
-  return routeMapIt->second;
+  if (routeMapIt != end())
+    return routeMapIt->second;
+
+  RouteList *mapRouteList = new RouteList();
+  insert(std::pair<std::string, RouteList *>(srcPath, mapRouteList));
+  return mapRouteList;
 }
+
+Round::Route *Round::RouteMap::findRouteByName(const std::string &name) const {
+  for (RouteMap::const_iterator routeMapIt = begin(); routeMapIt != end(); routeMapIt++) {
+    RouteList *routeList = routeMapIt->second;
+    Route *route = routeList->findRouteByName(name);
+    if (route)
+      return route;
+  }
+  return NULL;
+}
+

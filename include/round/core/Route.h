@@ -202,8 +202,15 @@ public:
   bool addRoute(Route *route);
   bool setRoute(Route *route);
   
+  bool addRoute(const std::string &name, const std::string &srcObj, const std::string &destObj);
+  bool setRoute(const std::string &name, const std::string &srcObj, const std::string &destObj);
+  
+  Route *findRouteByName(const std::string &name) const ;
+  
   void clear();
-
+  
+  size_t count();
+  
 private:
   
   RouteList *getRouteListBySourcePath(const std::string &srcPath);
