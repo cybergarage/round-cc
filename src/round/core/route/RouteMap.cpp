@@ -144,3 +144,20 @@ Round::Route *Round::RouteMap::findRouteByName(const std::string &name) const {
   }
   return NULL;
 }
+
+bool Round::RouteMap::removeSameRoute(const Route *otherRoute) {
+  RouteList *routeList = findRouteListByRoute(otherRoute);
+  if (!routeList)
+    return NULL;
+  return routeList->removeSameRoute(otherRoute);
+}
+
+bool Round::RouteMap::removeRouteByName(const std::string &name) {
+  for (RouteMap::const_iterator routeMapIt = begin(); routeMapIt != end(); routeMapIt++) {
+    RouteList *routeList = routeMapIt->second;
+    if (routeList->removeRouteByName(name))
+      return true;
+  }
+  
+  return false;
+}

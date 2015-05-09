@@ -156,3 +156,11 @@ Round::Route *Round::RouteList::findRouteBySouceMethod(const std::string &srcMet
   
   return foundRuote;
 }
+
+bool Round::RouteList::removeSameRoute(const Route *otherRoute) {
+  
+}
+
+bool Round::RouteList::removeRouteByName(const std::string &name) {
+  
+}

@@ -190,6 +190,9 @@ class RouteList : public Vector<Route> {
   Route *findRouteByName(const std::string &name) const ;
   Route *findRouteBySouceObject(const std::string &srcObj) const ;
   Route *findRouteBySouceMethod(const std::string &srcMethod) const ;
+
+  bool removeSameRoute(const Route *otherRoute);
+  bool removeRouteByName(const std::string &name);
 };
 
 class RouteMap : public std::map<std::string, RouteList *> {
@@ -207,6 +210,9 @@ public:
   
   Route *findSameRoute(const Route *otherRoute) const ;
   Route *findRouteByName(const std::string &name) const ;
+  
+  bool removeSameRoute(const Route *otherRoute);
+  bool removeRouteByName(const std::string &name);
   
   void clear();
   
