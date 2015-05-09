@@ -117,4 +117,3 @@ Round::Route *Round::RouteMap::findRouteByName(const std::string &name) const {
   }
   return NULL;
 }
-

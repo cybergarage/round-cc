@@ -18,7 +18,7 @@ using namespace Round;
 
 BOOST_AUTO_TEST_SUITE(common)
 
-BOOST_AUTO_TEST_CASE(StringUtilTokenizerTests) {
+BOOST_AUTO_TEST_CASE(StringUtilTokenizerTest) {
   StringTokenizer *strToken;
   const char *token[] = { "abcde", "test", "skonno" };
   char tokenStr[128];

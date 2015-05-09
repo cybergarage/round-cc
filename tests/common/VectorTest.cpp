@@ -28,7 +28,7 @@ public:
   }
 };
 
-BOOST_AUTO_TEST_CASE(VectorTests)
+BOOST_AUTO_TEST_CASE(VectorTest)
 {
   const size_t TEST_VECTOR_OBJECT_NUM = 10;
   

@@ -7,64 +7,64 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2104C9C31A21BED40049DA92 /* ScriptTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2104C9C21A21BED40049DA92 /* ScriptTests.cpp */; };
+		2104C9C31A21BED40049DA92 /* ScriptTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2104C9C21A21BED40049DA92 /* ScriptTest.cpp */; };
 		210E578C1A29A73E000B60FC /* JavaVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 210E578A1A29A73E000B60FC /* JavaVM.framework */; };
-		2111D83A1A5AC2F0007DCF40 /* URLTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2111D8391A5AC2F0007DCF40 /* URLTests.cpp */; };
-		213862DC1A45711100311FAE /* JSONRPCParserTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213862DB1A45711100311FAE /* JSONRPCParserTests.cpp */; };
-		213E910B1A4AA707001C2ED9 /* Base64Tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213E910A1A4AA707001C2ED9 /* Base64Tests.cpp */; };
+		2111D83A1A5AC2F0007DCF40 /* URLTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2111D8391A5AC2F0007DCF40 /* URLTest.cpp */; };
+		213862DC1A45711100311FAE /* JSONRPCParserTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213862DB1A45711100311FAE /* JSONRPCParserTest.cpp */; };
+		213E910B1A4AA707001C2ED9 /* Base64Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213E910A1A4AA707001C2ED9 /* Base64Test.cpp */; };
 		214FC0F11A4AF1AD00456552 /* ScriptTestController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214FC0F01A4AF1AD00456552 /* ScriptTestController.cpp */; };
 		215C20BB1A13B6C000CE71E2 /* RoundTestMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215C20BA1A13B6C000CE71E2 /* RoundTestMain.cpp */; };
 		21688A541A38C87E00908890 /* NodeTestController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21688A531A38C87E00908890 /* NodeTestController.cpp */; };
-		216B580F1AD38CE900846C32 /* RegistryTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216B580E1AD38CE900846C32 /* RegistryTests.cpp */; };
-		217727821A2CE5E4001B4CE0 /* RPCMessageTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217727811A2CE5E4001B4CE0 /* RPCMessageTests.cpp */; };
-		2184F2041A18E359007F1326 /* ClientTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F1FF1A18E359007F1326 /* ClientTests.cpp */; };
-		2184F2051A18E359007F1326 /* NodeFinderTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2001A18E359007F1326 /* NodeFinderTests.cpp */; };
-		2184F2061A18E359007F1326 /* RemoteNodeTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2011A18E359007F1326 /* RemoteNodeTests.cpp */; };
-		2184F2071A18E359007F1326 /* ServerNodeTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2021A18E359007F1326 /* ServerNodeTests.cpp */; };
-		2184F2081A18E359007F1326 /* ServerTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2031A18E359007F1326 /* ServerTests.cpp */; };
-		2184F2121A1993B4007F1326 /* ClientCoreTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2111A1993B4007F1326 /* ClientCoreTests.cpp */; };
-		2184F21F1A19B9A0007F1326 /* NodeReuestTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F21C1A19B9A0007F1326 /* NodeReuestTests.cpp */; };
-		2184F2201A19B9A0007F1326 /* NodeResponseTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F21D1A19B9A0007F1326 /* NodeResponseTests.cpp */; };
-		219B12161A874A3200644AFC /* RQLTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 219B12151A874A3200644AFC /* RQLTests.cpp */; };
-		219EA4351A6BAD3700F3D89B /* ConsoleTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 219EA4341A6BAD3700F3D89B /* ConsoleTests.cpp */; };
-		21ACE9901A5D596600568779 /* RPCTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21ACE98F1A5D596600568779 /* RPCTests.cpp */; };
-		21AD429D1A13B7FC00741A08 /* BitOptionTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD428B1A13B7FC00741A08 /* BitOptionTests.cpp */; };
-		21AD429E1A13B7FC00741A08 /* ClockTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD428C1A13B7FC00741A08 /* ClockTests.cpp */; };
-		21AD429F1A13B7FC00741A08 /* ConfigTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD428D1A13B7FC00741A08 /* ConfigTests.cpp */; };
-		21AD42A01A13B7FC00741A08 /* ConsistentHashTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD428E1A13B7FC00741A08 /* ConsistentHashTests.cpp */; };
-		21AD42A11A13B7FC00741A08 /* DictionaryTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD428F1A13B7FC00741A08 /* DictionaryTests.cpp */; };
-		21AD42A21A13B7FC00741A08 /* ErrorTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42901A13B7FC00741A08 /* ErrorTests.cpp */; };
-		21AD42A31A13B7FC00741A08 /* HashObjectTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42911A13B7FC00741A08 /* HashObjectTests.cpp */; };
-		21AD42A41A13B7FC00741A08 /* JSONParserTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42921A13B7FC00741A08 /* JSONParserTests.cpp */; };
-		21AD42A51A13B7FC00741A08 /* JSONTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42931A13B7FC00741A08 /* JSONTests.cpp */; };
-		21AD42A61A13B7FC00741A08 /* MessageTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42941A13B7FC00741A08 /* MessageTests.cpp */; };
-		21AD42A71A13B7FC00741A08 /* MutexTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42951A13B7FC00741A08 /* MutexTests.cpp */; };
-		21AD42A81A13B7FC00741A08 /* NotificationTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42961A13B7FC00741A08 /* NotificationTests.cpp */; };
-		21AD42AA1A13B7FC00741A08 /* PropertiesTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42981A13B7FC00741A08 /* PropertiesTests.cpp */; };
+		216B580F1AD38CE900846C32 /* RegistryTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216B580E1AD38CE900846C32 /* RegistryTest.cpp */; };
+		217727821A2CE5E4001B4CE0 /* RPCMessageTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217727811A2CE5E4001B4CE0 /* RPCMessageTest.cpp */; };
+		2184F2041A18E359007F1326 /* ClientTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F1FF1A18E359007F1326 /* ClientTest.cpp */; };
+		2184F2051A18E359007F1326 /* NodeFinderTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2001A18E359007F1326 /* NodeFinderTest.cpp */; };
+		2184F2061A18E359007F1326 /* RemoteNodeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2011A18E359007F1326 /* RemoteNodeTest.cpp */; };
+		2184F2071A18E359007F1326 /* ServerNodeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2021A18E359007F1326 /* ServerNodeTest.cpp */; };
+		2184F2081A18E359007F1326 /* ServerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2031A18E359007F1326 /* ServerTest.cpp */; };
+		2184F2121A1993B4007F1326 /* ClientCoreTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2111A1993B4007F1326 /* ClientCoreTest.cpp */; };
+		2184F21F1A19B9A0007F1326 /* NodeReuestTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F21C1A19B9A0007F1326 /* NodeReuestTest.cpp */; };
+		2184F2201A19B9A0007F1326 /* NodeResponseTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F21D1A19B9A0007F1326 /* NodeResponseTest.cpp */; };
+		219B12161A874A3200644AFC /* RQLTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 219B12151A874A3200644AFC /* RQLTest.cpp */; };
+		219EA4351A6BAD3700F3D89B /* ConsoleTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 219EA4341A6BAD3700F3D89B /* ConsoleTest.cpp */; };
+		21ACE9901A5D596600568779 /* RPCTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21ACE98F1A5D596600568779 /* RPCTest.cpp */; };
+		21AD429D1A13B7FC00741A08 /* BitOptionTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD428B1A13B7FC00741A08 /* BitOptionTest.cpp */; };
+		21AD429E1A13B7FC00741A08 /* ClockTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD428C1A13B7FC00741A08 /* ClockTest.cpp */; };
+		21AD429F1A13B7FC00741A08 /* ConfigTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD428D1A13B7FC00741A08 /* ConfigTest.cpp */; };
+		21AD42A01A13B7FC00741A08 /* ConsistentHashTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD428E1A13B7FC00741A08 /* ConsistentHashTest.cpp */; };
+		21AD42A11A13B7FC00741A08 /* DictionaryTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD428F1A13B7FC00741A08 /* DictionaryTest.cpp */; };
+		21AD42A21A13B7FC00741A08 /* ErrorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42901A13B7FC00741A08 /* ErrorTest.cpp */; };
+		21AD42A31A13B7FC00741A08 /* HashObjectTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42911A13B7FC00741A08 /* HashObjectTest.cpp */; };
+		21AD42A41A13B7FC00741A08 /* JSONParserTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42921A13B7FC00741A08 /* JSONParserTest.cpp */; };
+		21AD42A51A13B7FC00741A08 /* JSONTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42931A13B7FC00741A08 /* JSONTest.cpp */; };
+		21AD42A61A13B7FC00741A08 /* MessageTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42941A13B7FC00741A08 /* MessageTest.cpp */; };
+		21AD42A71A13B7FC00741A08 /* MutexTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42951A13B7FC00741A08 /* MutexTest.cpp */; };
+		21AD42A81A13B7FC00741A08 /* NotificationTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42961A13B7FC00741A08 /* NotificationTest.cpp */; };
+		21AD42AA1A13B7FC00741A08 /* PropertiesTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42981A13B7FC00741A08 /* PropertiesTest.cpp */; };
 		21AD42AB1A13B7FC00741A08 /* RandomTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD42991A13B7FC00741A08 /* RandomTest.cpp */; };
-		21AD42AC1A13B7FC00741A08 /* SemaphoreTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD429A1A13B7FC00741A08 /* SemaphoreTests.cpp */; };
-		21AD42AD1A13B7FC00741A08 /* StringTokenizerTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD429B1A13B7FC00741A08 /* StringTokenizerTests.cpp */; };
-		21AD42AE1A13B7FC00741A08 /* ThreadTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD429C1A13B7FC00741A08 /* ThreadTests.cpp */; };
+		21AD42AC1A13B7FC00741A08 /* SemaphoreTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD429A1A13B7FC00741A08 /* SemaphoreTest.cpp */; };
+		21AD42AD1A13B7FC00741A08 /* StringTokenizerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD429B1A13B7FC00741A08 /* StringTokenizerTest.cpp */; };
+		21AD42AE1A13B7FC00741A08 /* ThreadTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AD429C1A13B7FC00741A08 /* ThreadTest.cpp */; };
 		21AD42AF1A13B88C00741A08 /* liblibround++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 215C20B81A13B6A000CE71E2 /* liblibround++.a */; };
-		21B1DF061A32E6590070B65D /* RPCMethodTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B1DF051A32E6590070B65D /* RPCMethodTests.cpp */; };
-		21B51EC91A4E38C0003BBA3C /* VectorTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B51EC81A4E38C0003BBA3C /* VectorTests.cpp */; };
+		21B1DF061A32E6590070B65D /* RPCMethodTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B1DF051A32E6590070B65D /* RPCMethodTest.cpp */; };
+		21B51EC91A4E38C0003BBA3C /* VectorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B51EC81A4E38C0003BBA3C /* VectorTest.cpp */; };
 		21B854081A60EF31009E6ECB /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B854071A60EF31009E6ECB /* Tcl.framework */; };
 		21CD1BC6192DC94E00452ADF /* libuhttp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CD1BBF192DC91D00452ADF /* libuhttp++.a */; };
-		21D50AB01A824BC8005C1F51 /* AliasTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50AAF1A824BC8005C1F51 /* AliasTests.cpp */; };
-		21D9C9111A355961008008B3 /* ScriptManagerTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D9C9101A355961008008B3 /* ScriptManagerTests.cpp */; };
-		21DA08AB1A174A4900D3DCE0 /* ClusterListTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08981A174A4900D3DCE0 /* ClusterListTests.cpp */; };
-		21DA08AC1A174A4900D3DCE0 /* ClusterTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08991A174A4900D3DCE0 /* ClusterTests.cpp */; };
-		21DA08B01A174A4900D3DCE0 /* LocalNodeTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA089D1A174A4900D3DCE0 /* LocalNodeTests.cpp */; };
-		21DA08B31A174A4900D3DCE0 /* NodeGraphTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08A01A174A4900D3DCE0 /* NodeGraphTests.cpp */; };
-		21DA08B71A174A4900D3DCE0 /* NodeStatusTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08A41A174A4900D3DCE0 /* NodeStatusTests.cpp */; };
-		21DA08B91A174A4900D3DCE0 /* NodeTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08A71A174A4900D3DCE0 /* NodeTests.cpp */; };
-		21DA08BC1A174BB700D3DCE0 /* NodeListTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08BB1A174BB700D3DCE0 /* NodeListTests.cpp */; };
-		21EBA0891A50205F0077A79A /* HashTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EBA0881A50205F0077A79A /* HashTests.cpp */; };
+		21D50AB01A824BC8005C1F51 /* AliasTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50AAF1A824BC8005C1F51 /* AliasTest.cpp */; };
+		21D9C9111A355961008008B3 /* ScriptManagerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D9C9101A355961008008B3 /* ScriptManagerTest.cpp */; };
+		21DA08AB1A174A4900D3DCE0 /* ClusterListTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08981A174A4900D3DCE0 /* ClusterListTest.cpp */; };
+		21DA08AC1A174A4900D3DCE0 /* ClusterTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08991A174A4900D3DCE0 /* ClusterTest.cpp */; };
+		21DA08B01A174A4900D3DCE0 /* LocalNodeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA089D1A174A4900D3DCE0 /* LocalNodeTest.cpp */; };
+		21DA08B31A174A4900D3DCE0 /* NodeGraphTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08A01A174A4900D3DCE0 /* NodeGraphTest.cpp */; };
+		21DA08B71A174A4900D3DCE0 /* NodeStatusTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08A41A174A4900D3DCE0 /* NodeStatusTest.cpp */; };
+		21DA08B91A174A4900D3DCE0 /* NodeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08A71A174A4900D3DCE0 /* NodeTest.cpp */; };
+		21DA08BC1A174BB700D3DCE0 /* NodeListTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08BB1A174BB700D3DCE0 /* NodeListTest.cpp */; };
+		21EBA0891A50205F0077A79A /* HashTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EBA0881A50205F0077A79A /* HashTest.cpp */; };
 		21F349921A5EDE670099B5B6 /* liblibmupnp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F3498F1A5EDE540099B5B6 /* liblibmupnp++.a */; };
-		21F49B121ABEE72700A932CC /* JavaScriptTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F49B071ABEE72700A932CC /* JavaScriptTests.cpp */; };
-		21F49B131ABEE72700A932CC /* JavaTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F49B081ABEE72700A932CC /* JavaTests.cpp */; };
-		21F49B141ABEE72700A932CC /* LuaTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F49B091ABEE72700A932CC /* LuaTests.cpp */; };
-		21F4CE5B1A63CF0E00E7F0CC /* RouteTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4CE5A1A63CF0D00E7F0CC /* RouteTests.cpp */; };
+		21F49B121ABEE72700A932CC /* JavaScriptTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F49B071ABEE72700A932CC /* JavaScriptTest.cpp */; };
+		21F49B131ABEE72700A932CC /* JavaTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F49B081ABEE72700A932CC /* JavaTest.cpp */; };
+		21F49B141ABEE72700A932CC /* LuaTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F49B091ABEE72700A932CC /* LuaTest.cpp */; };
+		21F4CE5B1A63CF0E00E7F0CC /* RouteTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4CE5A1A63CF0D00E7F0CC /* RouteTest.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,11 +125,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2104C9C21A21BED40049DA92 /* ScriptTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptTests.cpp; sourceTree = "<group>"; };
+		2104C9C21A21BED40049DA92 /* ScriptTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptTest.cpp; sourceTree = "<group>"; };
 		210E578A1A29A73E000B60FC /* JavaVM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaVM.framework; path = System/Library/Frameworks/JavaVM.framework; sourceTree = SDKROOT; };
-		2111D8391A5AC2F0007DCF40 /* URLTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = URLTests.cpp; sourceTree = "<group>"; };
-		213862DB1A45711100311FAE /* JSONRPCParserTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONRPCParserTests.cpp; sourceTree = "<group>"; };
-		213E910A1A4AA707001C2ED9 /* Base64Tests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Base64Tests.cpp; sourceTree = "<group>"; };
+		2111D8391A5AC2F0007DCF40 /* URLTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = URLTest.cpp; sourceTree = "<group>"; };
+		213862DB1A45711100311FAE /* JSONRPCParserTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONRPCParserTest.cpp; sourceTree = "<group>"; };
+		213E910A1A4AA707001C2ED9 /* Base64Test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Base64Test.cpp; sourceTree = "<group>"; };
 		213E910C1A4AAAB7001C2ED9 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
 		2143143C15401BEE009CC3FA /* RoundUnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RoundUnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		214FC0F01A4AF1AD00456552 /* ScriptTestController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptTestController.cpp; sourceTree = "<group>"; };
@@ -137,61 +137,61 @@
 		215C20B91A13B6C000CE71E2 /* RoundTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoundTest.h; path = ../../RoundTest.h; sourceTree = "<group>"; };
 		215C20BA1A13B6C000CE71E2 /* RoundTestMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RoundTestMain.cpp; path = ../../RoundTestMain.cpp; sourceTree = "<group>"; };
 		21688A531A38C87E00908890 /* NodeTestController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeTestController.cpp; sourceTree = "<group>"; };
-		216B580E1AD38CE900846C32 /* RegistryTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RegistryTests.cpp; sourceTree = "<group>"; };
-		217727811A2CE5E4001B4CE0 /* RPCMessageTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCMessageTests.cpp; sourceTree = "<group>"; };
-		2184F1FF1A18E359007F1326 /* ClientTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClientTests.cpp; sourceTree = "<group>"; };
-		2184F2001A18E359007F1326 /* NodeFinderTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeFinderTests.cpp; sourceTree = "<group>"; };
-		2184F2011A18E359007F1326 /* RemoteNodeTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RemoteNodeTests.cpp; sourceTree = "<group>"; };
-		2184F2021A18E359007F1326 /* ServerNodeTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ServerNodeTests.cpp; sourceTree = "<group>"; };
-		2184F2031A18E359007F1326 /* ServerTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ServerTests.cpp; sourceTree = "<group>"; };
+		216B580E1AD38CE900846C32 /* RegistryTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RegistryTest.cpp; sourceTree = "<group>"; };
+		217727811A2CE5E4001B4CE0 /* RPCMessageTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCMessageTest.cpp; sourceTree = "<group>"; };
+		2184F1FF1A18E359007F1326 /* ClientTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClientTest.cpp; sourceTree = "<group>"; };
+		2184F2001A18E359007F1326 /* NodeFinderTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeFinderTest.cpp; sourceTree = "<group>"; };
+		2184F2011A18E359007F1326 /* RemoteNodeTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RemoteNodeTest.cpp; sourceTree = "<group>"; };
+		2184F2021A18E359007F1326 /* ServerNodeTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ServerNodeTest.cpp; sourceTree = "<group>"; };
+		2184F2031A18E359007F1326 /* ServerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ServerTest.cpp; sourceTree = "<group>"; };
 		2184F20A1A18E550007F1326 /* TestClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestClient.h; path = ../../TestClient.h; sourceTree = "<group>"; };
 		2184F20B1A18E550007F1326 /* TestFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestFinder.h; path = ../../TestFinder.h; sourceTree = "<group>"; };
 		2184F20C1A18E550007F1326 /* TestServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestServer.h; path = ../../TestServer.h; sourceTree = "<group>"; };
-		2184F2111A1993B4007F1326 /* ClientCoreTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClientCoreTests.cpp; sourceTree = "<group>"; };
-		2184F21C1A19B9A0007F1326 /* NodeReuestTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeReuestTests.cpp; sourceTree = "<group>"; };
-		2184F21D1A19B9A0007F1326 /* NodeResponseTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeResponseTests.cpp; sourceTree = "<group>"; };
-		219B12151A874A3200644AFC /* RQLTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RQLTests.cpp; sourceTree = "<group>"; };
-		219EA4341A6BAD3700F3D89B /* ConsoleTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleTests.cpp; sourceTree = "<group>"; };
-		21ACE98F1A5D596600568779 /* RPCTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCTests.cpp; sourceTree = "<group>"; };
-		21AD428B1A13B7FC00741A08 /* BitOptionTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BitOptionTests.cpp; sourceTree = "<group>"; };
-		21AD428C1A13B7FC00741A08 /* ClockTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClockTests.cpp; sourceTree = "<group>"; };
-		21AD428D1A13B7FC00741A08 /* ConfigTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConfigTests.cpp; sourceTree = "<group>"; };
-		21AD428E1A13B7FC00741A08 /* ConsistentHashTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsistentHashTests.cpp; sourceTree = "<group>"; };
-		21AD428F1A13B7FC00741A08 /* DictionaryTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DictionaryTests.cpp; sourceTree = "<group>"; };
-		21AD42901A13B7FC00741A08 /* ErrorTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ErrorTests.cpp; sourceTree = "<group>"; };
-		21AD42911A13B7FC00741A08 /* HashObjectTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HashObjectTests.cpp; sourceTree = "<group>"; };
-		21AD42921A13B7FC00741A08 /* JSONParserTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONParserTests.cpp; sourceTree = "<group>"; };
-		21AD42931A13B7FC00741A08 /* JSONTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONTests.cpp; sourceTree = "<group>"; };
-		21AD42941A13B7FC00741A08 /* MessageTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MessageTests.cpp; sourceTree = "<group>"; };
-		21AD42951A13B7FC00741A08 /* MutexTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MutexTests.cpp; sourceTree = "<group>"; };
-		21AD42961A13B7FC00741A08 /* NotificationTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NotificationTests.cpp; sourceTree = "<group>"; };
-		21AD42981A13B7FC00741A08 /* PropertiesTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PropertiesTests.cpp; sourceTree = "<group>"; };
+		2184F2111A1993B4007F1326 /* ClientCoreTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClientCoreTest.cpp; sourceTree = "<group>"; };
+		2184F21C1A19B9A0007F1326 /* NodeReuestTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeReuestTest.cpp; sourceTree = "<group>"; };
+		2184F21D1A19B9A0007F1326 /* NodeResponseTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeResponseTest.cpp; sourceTree = "<group>"; };
+		219B12151A874A3200644AFC /* RQLTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RQLTest.cpp; sourceTree = "<group>"; };
+		219EA4341A6BAD3700F3D89B /* ConsoleTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleTest.cpp; sourceTree = "<group>"; };
+		21ACE98F1A5D596600568779 /* RPCTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCTest.cpp; sourceTree = "<group>"; };
+		21AD428B1A13B7FC00741A08 /* BitOptionTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BitOptionTest.cpp; sourceTree = "<group>"; };
+		21AD428C1A13B7FC00741A08 /* ClockTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClockTest.cpp; sourceTree = "<group>"; };
+		21AD428D1A13B7FC00741A08 /* ConfigTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConfigTest.cpp; sourceTree = "<group>"; };
+		21AD428E1A13B7FC00741A08 /* ConsistentHashTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsistentHashTest.cpp; sourceTree = "<group>"; };
+		21AD428F1A13B7FC00741A08 /* DictionaryTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DictionaryTest.cpp; sourceTree = "<group>"; };
+		21AD42901A13B7FC00741A08 /* ErrorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ErrorTest.cpp; sourceTree = "<group>"; };
+		21AD42911A13B7FC00741A08 /* HashObjectTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HashObjectTest.cpp; sourceTree = "<group>"; };
+		21AD42921A13B7FC00741A08 /* JSONParserTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONParserTest.cpp; sourceTree = "<group>"; };
+		21AD42931A13B7FC00741A08 /* JSONTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONTest.cpp; sourceTree = "<group>"; };
+		21AD42941A13B7FC00741A08 /* MessageTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MessageTest.cpp; sourceTree = "<group>"; };
+		21AD42951A13B7FC00741A08 /* MutexTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MutexTest.cpp; sourceTree = "<group>"; };
+		21AD42961A13B7FC00741A08 /* NotificationTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NotificationTest.cpp; sourceTree = "<group>"; };
+		21AD42981A13B7FC00741A08 /* PropertiesTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PropertiesTest.cpp; sourceTree = "<group>"; };
 		21AD42991A13B7FC00741A08 /* RandomTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RandomTest.cpp; sourceTree = "<group>"; };
-		21AD429A1A13B7FC00741A08 /* SemaphoreTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SemaphoreTests.cpp; sourceTree = "<group>"; };
-		21AD429B1A13B7FC00741A08 /* StringTokenizerTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringTokenizerTests.cpp; sourceTree = "<group>"; };
-		21AD429C1A13B7FC00741A08 /* ThreadTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadTests.cpp; sourceTree = "<group>"; };
-		21B1DF051A32E6590070B65D /* RPCMethodTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCMethodTests.cpp; sourceTree = "<group>"; };
-		21B51EC81A4E38C0003BBA3C /* VectorTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VectorTests.cpp; sourceTree = "<group>"; };
+		21AD429A1A13B7FC00741A08 /* SemaphoreTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SemaphoreTest.cpp; sourceTree = "<group>"; };
+		21AD429B1A13B7FC00741A08 /* StringTokenizerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringTokenizerTest.cpp; sourceTree = "<group>"; };
+		21AD429C1A13B7FC00741A08 /* ThreadTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadTest.cpp; sourceTree = "<group>"; };
+		21B1DF051A32E6590070B65D /* RPCMethodTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCMethodTest.cpp; sourceTree = "<group>"; };
+		21B51EC81A4E38C0003BBA3C /* VectorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VectorTest.cpp; sourceTree = "<group>"; };
 		21B854071A60EF31009E6ECB /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = System/Library/Frameworks/Tcl.framework; sourceTree = SDKROOT; };
 		21CD1BBA192DC91D00452ADF /* libuhttp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuhttp.xcodeproj; path = ../../../../uhttp/lib/macosx/xcode/libuhttp.xcodeproj; sourceTree = "<group>"; };
-		21D50AAF1A824BC8005C1F51 /* AliasTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AliasTests.cpp; sourceTree = "<group>"; };
-		21D9C9101A355961008008B3 /* ScriptManagerTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptManagerTests.cpp; sourceTree = "<group>"; };
-		21DA08981A174A4900D3DCE0 /* ClusterListTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClusterListTests.cpp; sourceTree = "<group>"; };
-		21DA08991A174A4900D3DCE0 /* ClusterTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClusterTests.cpp; sourceTree = "<group>"; };
-		21DA089D1A174A4900D3DCE0 /* LocalNodeTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalNodeTests.cpp; sourceTree = "<group>"; };
-		21DA08A01A174A4900D3DCE0 /* NodeGraphTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeGraphTests.cpp; sourceTree = "<group>"; };
-		21DA08A41A174A4900D3DCE0 /* NodeStatusTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeStatusTests.cpp; sourceTree = "<group>"; };
-		21DA08A71A174A4900D3DCE0 /* NodeTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeTests.cpp; sourceTree = "<group>"; };
-		21DA08BB1A174BB700D3DCE0 /* NodeListTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeListTests.cpp; sourceTree = "<group>"; };
+		21D50AAF1A824BC8005C1F51 /* AliasTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AliasTest.cpp; sourceTree = "<group>"; };
+		21D9C9101A355961008008B3 /* ScriptManagerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptManagerTest.cpp; sourceTree = "<group>"; };
+		21DA08981A174A4900D3DCE0 /* ClusterListTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClusterListTest.cpp; sourceTree = "<group>"; };
+		21DA08991A174A4900D3DCE0 /* ClusterTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClusterTest.cpp; sourceTree = "<group>"; };
+		21DA089D1A174A4900D3DCE0 /* LocalNodeTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalNodeTest.cpp; sourceTree = "<group>"; };
+		21DA08A01A174A4900D3DCE0 /* NodeGraphTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeGraphTest.cpp; sourceTree = "<group>"; };
+		21DA08A41A174A4900D3DCE0 /* NodeStatusTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeStatusTest.cpp; sourceTree = "<group>"; };
+		21DA08A71A174A4900D3DCE0 /* NodeTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeTest.cpp; sourceTree = "<group>"; };
+		21DA08BB1A174BB700D3DCE0 /* NodeListTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeListTest.cpp; sourceTree = "<group>"; };
 		21DA08BD1A174C1300D3DCE0 /* TestNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestNode.h; path = ../../TestNode.h; sourceTree = "<group>"; };
 		21DE0ECF155B9EBA00A08E1F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		21EBA0881A50205F0077A79A /* HashTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HashTests.cpp; sourceTree = "<group>"; };
+		21EBA0881A50205F0077A79A /* HashTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HashTest.cpp; sourceTree = "<group>"; };
 		21EC22FE1A33E5C00074289E /* TestScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestScript.h; path = ../../TestScript.h; sourceTree = "<group>"; };
 		21F3498A1A5EDE540099B5B6 /* libmupnp++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libmupnp++.xcodeproj"; path = "../../../../mupnp/lib/macosx/xcode/libmupnp++.xcodeproj"; sourceTree = "<group>"; };
-		21F49B071ABEE72700A932CC /* JavaScriptTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JavaScriptTests.cpp; sourceTree = "<group>"; };
-		21F49B081ABEE72700A932CC /* JavaTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JavaTests.cpp; sourceTree = "<group>"; };
-		21F49B091ABEE72700A932CC /* LuaTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaTests.cpp; sourceTree = "<group>"; };
-		21F4CE5A1A63CF0D00E7F0CC /* RouteTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RouteTests.cpp; sourceTree = "<group>"; };
+		21F49B071ABEE72700A932CC /* JavaScriptTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JavaScriptTest.cpp; sourceTree = "<group>"; };
+		21F49B081ABEE72700A932CC /* JavaTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JavaTest.cpp; sourceTree = "<group>"; };
+		21F49B091ABEE72700A932CC /* LuaTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaTest.cpp; sourceTree = "<group>"; };
+		21F4CE5A1A63CF0D00E7F0CC /* RouteTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RouteTest.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,9 +272,9 @@
 		217727801A2CE5E4001B4CE0 /* rpc */ = {
 			isa = PBXGroup;
 			children = (
-				21ACE98F1A5D596600568779 /* RPCTests.cpp */,
-				21B1DF051A32E6590070B65D /* RPCMethodTests.cpp */,
-				217727811A2CE5E4001B4CE0 /* RPCMessageTests.cpp */,
+				21ACE98F1A5D596600568779 /* RPCTest.cpp */,
+				21B1DF051A32E6590070B65D /* RPCMethodTest.cpp */,
+				217727811A2CE5E4001B4CE0 /* RPCMessageTest.cpp */,
 			);
 			path = rpc;
 			sourceTree = "<group>";
@@ -282,28 +282,28 @@
 		21AD42771A13B7FC00741A08 /* common */ = {
 			isa = PBXGroup;
 			children = (
-				2111D8391A5AC2F0007DCF40 /* URLTests.cpp */,
-				213E910A1A4AA707001C2ED9 /* Base64Tests.cpp */,
-				21AD428B1A13B7FC00741A08 /* BitOptionTests.cpp */,
-				21AD428C1A13B7FC00741A08 /* ClockTests.cpp */,
-				21AD428D1A13B7FC00741A08 /* ConfigTests.cpp */,
-				21AD428E1A13B7FC00741A08 /* ConsistentHashTests.cpp */,
-				21AD428F1A13B7FC00741A08 /* DictionaryTests.cpp */,
-				21AD42901A13B7FC00741A08 /* ErrorTests.cpp */,
-				21AD42911A13B7FC00741A08 /* HashObjectTests.cpp */,
-				21EBA0881A50205F0077A79A /* HashTests.cpp */,
-				21AD42921A13B7FC00741A08 /* JSONParserTests.cpp */,
-				213862DB1A45711100311FAE /* JSONRPCParserTests.cpp */,
-				21AD42931A13B7FC00741A08 /* JSONTests.cpp */,
-				21AD42941A13B7FC00741A08 /* MessageTests.cpp */,
-				21AD42951A13B7FC00741A08 /* MutexTests.cpp */,
-				21AD42961A13B7FC00741A08 /* NotificationTests.cpp */,
-				21AD42981A13B7FC00741A08 /* PropertiesTests.cpp */,
+				2111D8391A5AC2F0007DCF40 /* URLTest.cpp */,
+				213E910A1A4AA707001C2ED9 /* Base64Test.cpp */,
+				21AD428B1A13B7FC00741A08 /* BitOptionTest.cpp */,
+				21AD428C1A13B7FC00741A08 /* ClockTest.cpp */,
+				21AD428D1A13B7FC00741A08 /* ConfigTest.cpp */,
+				21AD428E1A13B7FC00741A08 /* ConsistentHashTest.cpp */,
+				21AD428F1A13B7FC00741A08 /* DictionaryTest.cpp */,
+				21AD42901A13B7FC00741A08 /* ErrorTest.cpp */,
+				21AD42911A13B7FC00741A08 /* HashObjectTest.cpp */,
+				21EBA0881A50205F0077A79A /* HashTest.cpp */,
+				21AD42921A13B7FC00741A08 /* JSONParserTest.cpp */,
+				213862DB1A45711100311FAE /* JSONRPCParserTest.cpp */,
+				21AD42931A13B7FC00741A08 /* JSONTest.cpp */,
+				21AD42941A13B7FC00741A08 /* MessageTest.cpp */,
+				21AD42951A13B7FC00741A08 /* MutexTest.cpp */,
+				21AD42961A13B7FC00741A08 /* NotificationTest.cpp */,
+				21AD42981A13B7FC00741A08 /* PropertiesTest.cpp */,
 				21AD42991A13B7FC00741A08 /* RandomTest.cpp */,
-				21AD429A1A13B7FC00741A08 /* SemaphoreTests.cpp */,
-				21AD429B1A13B7FC00741A08 /* StringTokenizerTests.cpp */,
-				21AD429C1A13B7FC00741A08 /* ThreadTests.cpp */,
-				21B51EC81A4E38C0003BBA3C /* VectorTests.cpp */,
+				21AD429A1A13B7FC00741A08 /* SemaphoreTest.cpp */,
+				21AD429B1A13B7FC00741A08 /* StringTokenizerTest.cpp */,
+				21AD429C1A13B7FC00741A08 /* ThreadTest.cpp */,
+				21B51EC81A4E38C0003BBA3C /* VectorTest.cpp */,
 				217727801A2CE5E4001B4CE0 /* rpc */,
 			);
 			name = common;
@@ -321,30 +321,30 @@
 		21DA08931A174A4900D3DCE0 /* core */ = {
 			isa = PBXGroup;
 			children = (
-				216B580E1AD38CE900846C32 /* RegistryTests.cpp */,
-				21D50AAF1A824BC8005C1F51 /* AliasTests.cpp */,
-				2184F2111A1993B4007F1326 /* ClientCoreTests.cpp */,
-				2184F1FF1A18E359007F1326 /* ClientTests.cpp */,
-				21DA08981A174A4900D3DCE0 /* ClusterListTests.cpp */,
-				21DA08991A174A4900D3DCE0 /* ClusterTests.cpp */,
-				219EA4341A6BAD3700F3D89B /* ConsoleTests.cpp */,
-				21DA089D1A174A4900D3DCE0 /* LocalNodeTests.cpp */,
-				2184F2001A18E359007F1326 /* NodeFinderTests.cpp */,
-				21DA08A01A174A4900D3DCE0 /* NodeGraphTests.cpp */,
-				21DA08BB1A174BB700D3DCE0 /* NodeListTests.cpp */,
-				2184F21D1A19B9A0007F1326 /* NodeResponseTests.cpp */,
-				2184F21C1A19B9A0007F1326 /* NodeReuestTests.cpp */,
-				21DA08A41A174A4900D3DCE0 /* NodeStatusTests.cpp */,
+				216B580E1AD38CE900846C32 /* RegistryTest.cpp */,
+				21D50AAF1A824BC8005C1F51 /* AliasTest.cpp */,
+				2184F2111A1993B4007F1326 /* ClientCoreTest.cpp */,
+				2184F1FF1A18E359007F1326 /* ClientTest.cpp */,
+				21DA08981A174A4900D3DCE0 /* ClusterListTest.cpp */,
+				21DA08991A174A4900D3DCE0 /* ClusterTest.cpp */,
+				219EA4341A6BAD3700F3D89B /* ConsoleTest.cpp */,
+				21DA089D1A174A4900D3DCE0 /* LocalNodeTest.cpp */,
+				2184F2001A18E359007F1326 /* NodeFinderTest.cpp */,
+				21DA08A01A174A4900D3DCE0 /* NodeGraphTest.cpp */,
+				21DA08BB1A174BB700D3DCE0 /* NodeListTest.cpp */,
+				2184F21D1A19B9A0007F1326 /* NodeResponseTest.cpp */,
+				2184F21C1A19B9A0007F1326 /* NodeReuestTest.cpp */,
+				21DA08A41A174A4900D3DCE0 /* NodeStatusTest.cpp */,
 				21688A531A38C87E00908890 /* NodeTestController.cpp */,
-				21DA08A71A174A4900D3DCE0 /* NodeTests.cpp */,
-				2184F2011A18E359007F1326 /* RemoteNodeTests.cpp */,
-				21F4CE5A1A63CF0D00E7F0CC /* RouteTests.cpp */,
-				219B12151A874A3200644AFC /* RQLTests.cpp */,
-				21D9C9101A355961008008B3 /* ScriptManagerTests.cpp */,
+				21DA08A71A174A4900D3DCE0 /* NodeTest.cpp */,
+				2184F2011A18E359007F1326 /* RemoteNodeTest.cpp */,
+				21F4CE5A1A63CF0D00E7F0CC /* RouteTest.cpp */,
+				219B12151A874A3200644AFC /* RQLTest.cpp */,
+				21D9C9101A355961008008B3 /* ScriptManagerTest.cpp */,
 				214FC0F01A4AF1AD00456552 /* ScriptTestController.cpp */,
-				2104C9C21A21BED40049DA92 /* ScriptTests.cpp */,
-				2184F2021A18E359007F1326 /* ServerNodeTests.cpp */,
-				2184F2031A18E359007F1326 /* ServerTests.cpp */,
+				2104C9C21A21BED40049DA92 /* ScriptTest.cpp */,
+				2184F2021A18E359007F1326 /* ServerNodeTest.cpp */,
+				2184F2031A18E359007F1326 /* ServerTest.cpp */,
 			);
 			name = core;
 			path = ../../core;
@@ -361,9 +361,9 @@
 		21F49AFF1ABEE72700A932CC /* script */ = {
 			isa = PBXGroup;
 			children = (
-				21F49B071ABEE72700A932CC /* JavaScriptTests.cpp */,
-				21F49B081ABEE72700A932CC /* JavaTests.cpp */,
-				21F49B091ABEE72700A932CC /* LuaTests.cpp */,
+				21F49B071ABEE72700A932CC /* JavaScriptTest.cpp */,
+				21F49B081ABEE72700A932CC /* JavaTest.cpp */,
+				21F49B091ABEE72700A932CC /* LuaTest.cpp */,
 			);
 			name = script;
 			path = ../../script;
@@ -461,58 +461,58 @@
 			buildActionMask = 2147483647;
 			files = (
 				21AD42AB1A13B7FC00741A08 /* RandomTest.cpp in Sources */,
-				2111D83A1A5AC2F0007DCF40 /* URLTests.cpp in Sources */,
-				21AD429E1A13B7FC00741A08 /* ClockTests.cpp in Sources */,
-				21F49B141ABEE72700A932CC /* LuaTests.cpp in Sources */,
-				21AD42A51A13B7FC00741A08 /* JSONTests.cpp in Sources */,
-				213E910B1A4AA707001C2ED9 /* Base64Tests.cpp in Sources */,
-				21AD42A01A13B7FC00741A08 /* ConsistentHashTests.cpp in Sources */,
-				21F49B131ABEE72700A932CC /* JavaTests.cpp in Sources */,
-				21B51EC91A4E38C0003BBA3C /* VectorTests.cpp in Sources */,
-				2184F2071A18E359007F1326 /* ServerNodeTests.cpp in Sources */,
-				2184F2051A18E359007F1326 /* NodeFinderTests.cpp in Sources */,
-				21DA08B01A174A4900D3DCE0 /* LocalNodeTests.cpp in Sources */,
-				21DA08AC1A174A4900D3DCE0 /* ClusterTests.cpp in Sources */,
-				21D9C9111A355961008008B3 /* ScriptManagerTests.cpp in Sources */,
-				21AD42AA1A13B7FC00741A08 /* PropertiesTests.cpp in Sources */,
-				2184F2081A18E359007F1326 /* ServerTests.cpp in Sources */,
-				21F4CE5B1A63CF0E00E7F0CC /* RouteTests.cpp in Sources */,
-				21AD42A31A13B7FC00741A08 /* HashObjectTests.cpp in Sources */,
-				219EA4351A6BAD3700F3D89B /* ConsoleTests.cpp in Sources */,
-				21D50AB01A824BC8005C1F51 /* AliasTests.cpp in Sources */,
-				219B12161A874A3200644AFC /* RQLTests.cpp in Sources */,
+				2111D83A1A5AC2F0007DCF40 /* URLTest.cpp in Sources */,
+				21AD429E1A13B7FC00741A08 /* ClockTest.cpp in Sources */,
+				21F49B141ABEE72700A932CC /* LuaTest.cpp in Sources */,
+				21AD42A51A13B7FC00741A08 /* JSONTest.cpp in Sources */,
+				213E910B1A4AA707001C2ED9 /* Base64Test.cpp in Sources */,
+				21AD42A01A13B7FC00741A08 /* ConsistentHashTest.cpp in Sources */,
+				21F49B131ABEE72700A932CC /* JavaTest.cpp in Sources */,
+				21B51EC91A4E38C0003BBA3C /* VectorTest.cpp in Sources */,
+				2184F2071A18E359007F1326 /* ServerNodeTest.cpp in Sources */,
+				2184F2051A18E359007F1326 /* NodeFinderTest.cpp in Sources */,
+				21DA08B01A174A4900D3DCE0 /* LocalNodeTest.cpp in Sources */,
+				21DA08AC1A174A4900D3DCE0 /* ClusterTest.cpp in Sources */,
+				21D9C9111A355961008008B3 /* ScriptManagerTest.cpp in Sources */,
+				21AD42AA1A13B7FC00741A08 /* PropertiesTest.cpp in Sources */,
+				2184F2081A18E359007F1326 /* ServerTest.cpp in Sources */,
+				21F4CE5B1A63CF0E00E7F0CC /* RouteTest.cpp in Sources */,
+				21AD42A31A13B7FC00741A08 /* HashObjectTest.cpp in Sources */,
+				219EA4351A6BAD3700F3D89B /* ConsoleTest.cpp in Sources */,
+				21D50AB01A824BC8005C1F51 /* AliasTest.cpp in Sources */,
+				219B12161A874A3200644AFC /* RQLTest.cpp in Sources */,
 				21688A541A38C87E00908890 /* NodeTestController.cpp in Sources */,
-				21DA08AB1A174A4900D3DCE0 /* ClusterListTests.cpp in Sources */,
-				2184F2041A18E359007F1326 /* ClientTests.cpp in Sources */,
-				21AD42AC1A13B7FC00741A08 /* SemaphoreTests.cpp in Sources */,
-				21ACE9901A5D596600568779 /* RPCTests.cpp in Sources */,
-				2184F2201A19B9A0007F1326 /* NodeResponseTests.cpp in Sources */,
-				2184F2061A18E359007F1326 /* RemoteNodeTests.cpp in Sources */,
-				21F49B121ABEE72700A932CC /* JavaScriptTests.cpp in Sources */,
-				216B580F1AD38CE900846C32 /* RegistryTests.cpp in Sources */,
-				2184F2121A1993B4007F1326 /* ClientCoreTests.cpp in Sources */,
-				21AD42A41A13B7FC00741A08 /* JSONParserTests.cpp in Sources */,
-				213862DC1A45711100311FAE /* JSONRPCParserTests.cpp in Sources */,
-				21AD429D1A13B7FC00741A08 /* BitOptionTests.cpp in Sources */,
-				21AD42A21A13B7FC00741A08 /* ErrorTests.cpp in Sources */,
-				21DA08B71A174A4900D3DCE0 /* NodeStatusTests.cpp in Sources */,
-				21DA08B31A174A4900D3DCE0 /* NodeGraphTests.cpp in Sources */,
-				2104C9C31A21BED40049DA92 /* ScriptTests.cpp in Sources */,
-				21AD42AD1A13B7FC00741A08 /* StringTokenizerTests.cpp in Sources */,
-				21DA08BC1A174BB700D3DCE0 /* NodeListTests.cpp in Sources */,
-				21AD42AE1A13B7FC00741A08 /* ThreadTests.cpp in Sources */,
-				2184F21F1A19B9A0007F1326 /* NodeReuestTests.cpp in Sources */,
-				21AD42A61A13B7FC00741A08 /* MessageTests.cpp in Sources */,
-				21AD429F1A13B7FC00741A08 /* ConfigTests.cpp in Sources */,
-				21EBA0891A50205F0077A79A /* HashTests.cpp in Sources */,
-				21DA08B91A174A4900D3DCE0 /* NodeTests.cpp in Sources */,
-				21AD42A71A13B7FC00741A08 /* MutexTests.cpp in Sources */,
+				21DA08AB1A174A4900D3DCE0 /* ClusterListTest.cpp in Sources */,
+				2184F2041A18E359007F1326 /* ClientTest.cpp in Sources */,
+				21AD42AC1A13B7FC00741A08 /* SemaphoreTest.cpp in Sources */,
+				21ACE9901A5D596600568779 /* RPCTest.cpp in Sources */,
+				2184F2201A19B9A0007F1326 /* NodeResponseTest.cpp in Sources */,
+				2184F2061A18E359007F1326 /* RemoteNodeTest.cpp in Sources */,
+				21F49B121ABEE72700A932CC /* JavaScriptTest.cpp in Sources */,
+				216B580F1AD38CE900846C32 /* RegistryTest.cpp in Sources */,
+				2184F2121A1993B4007F1326 /* ClientCoreTest.cpp in Sources */,
+				21AD42A41A13B7FC00741A08 /* JSONParserTest.cpp in Sources */,
+				213862DC1A45711100311FAE /* JSONRPCParserTest.cpp in Sources */,
+				21AD429D1A13B7FC00741A08 /* BitOptionTest.cpp in Sources */,
+				21AD42A21A13B7FC00741A08 /* ErrorTest.cpp in Sources */,
+				21DA08B71A174A4900D3DCE0 /* NodeStatusTest.cpp in Sources */,
+				21DA08B31A174A4900D3DCE0 /* NodeGraphTest.cpp in Sources */,
+				2104C9C31A21BED40049DA92 /* ScriptTest.cpp in Sources */,
+				21AD42AD1A13B7FC00741A08 /* StringTokenizerTest.cpp in Sources */,
+				21DA08BC1A174BB700D3DCE0 /* NodeListTest.cpp in Sources */,
+				21AD42AE1A13B7FC00741A08 /* ThreadTest.cpp in Sources */,
+				2184F21F1A19B9A0007F1326 /* NodeReuestTest.cpp in Sources */,
+				21AD42A61A13B7FC00741A08 /* MessageTest.cpp in Sources */,
+				21AD429F1A13B7FC00741A08 /* ConfigTest.cpp in Sources */,
+				21EBA0891A50205F0077A79A /* HashTest.cpp in Sources */,
+				21DA08B91A174A4900D3DCE0 /* NodeTest.cpp in Sources */,
+				21AD42A71A13B7FC00741A08 /* MutexTest.cpp in Sources */,
 				215C20BB1A13B6C000CE71E2 /* RoundTestMain.cpp in Sources */,
-				21B1DF061A32E6590070B65D /* RPCMethodTests.cpp in Sources */,
-				217727821A2CE5E4001B4CE0 /* RPCMessageTests.cpp in Sources */,
-				21AD42A81A13B7FC00741A08 /* NotificationTests.cpp in Sources */,
+				21B1DF061A32E6590070B65D /* RPCMethodTest.cpp in Sources */,
+				217727821A2CE5E4001B4CE0 /* RPCMessageTest.cpp in Sources */,
+				21AD42A81A13B7FC00741A08 /* NotificationTest.cpp in Sources */,
 				214FC0F11A4AF1AD00456552 /* ScriptTestController.cpp in Sources */,
-				21AD42A11A13B7FC00741A08 /* DictionaryTests.cpp in Sources */,
+				21AD42A11A13B7FC00741A08 /* DictionaryTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

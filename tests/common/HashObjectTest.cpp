@@ -43,7 +43,7 @@ private:
 
 BOOST_AUTO_TEST_SUITE(common)
 
-BOOST_AUTO_TEST_CASE(HashObjectTests) {
+BOOST_AUTO_TEST_CASE(HashObjectTest) {
   size_t hashCodeLength = HashObject::GetHashCodeLength();
   BOOST_CHECK(0 < hashCodeLength);
   BOOST_CHECK(0 < SHA256::DIGEST_STRING_LENGTH);
@@ -67,7 +67,7 @@ BOOST_AUTO_TEST_CASE(HashObjectTests) {
   BOOST_CHECK_EQUAL(endtKey.length(), hashCodeLength);
 }
 
-BOOST_AUTO_TEST_CASE(HashObjectCompareTests) {
+BOOST_AUTO_TEST_CASE(HashObjectCompareTest) {
   TestHashObject testHash0('0');
   TestHashObject testHash1('1');
   TestHashObject testHashA('A');
@@ -88,7 +88,7 @@ BOOST_AUTO_TEST_CASE(HashObjectCompareTests) {
   BOOST_CHECK(testHashA.compare(testHashF) < 0);
 }
 
-BOOST_AUTO_TEST_CASE(HashObjectEqualsTests) {
+BOOST_AUTO_TEST_CASE(HashObjectEqualsTest) {
   TestHashObject testHash0('0');
   TestHashObject testHash1('1');
   TestHashObject testHashA('A');

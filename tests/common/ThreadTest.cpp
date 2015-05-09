@@ -33,7 +33,7 @@ class TestThread : public Thread<int> {
 
 BOOST_AUTO_TEST_SUITE(common)
 
-BOOST_AUTO_TEST_CASE(ThreadTests) {
+BOOST_AUTO_TEST_CASE(ThreadTest) {
   TestThread *thread = new TestThread();
   BOOST_CHECK_EQUAL (thread->start(), true);
   while (thread->value != THREAD_TEST_LOOP_NUM)
@@ -44,7 +44,7 @@ BOOST_AUTO_TEST_CASE(ThreadTests) {
   delete thread;
 }
 
-BOOST_AUTO_TEST_CASE(ThreadManagerTests) {
+BOOST_AUTO_TEST_CASE(ThreadManagerTest) {
   TestThread *thread = new TestThread();
 
   ThreadManager threadMgr;
