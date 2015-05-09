@@ -86,7 +86,27 @@ bool Round::RouteMap::setRoute(const std::string &name, const std::string &srcOb
   return isSuccess;
 }
 
-Round::RouteList *Round::RouteMap::getRouteListByRoute(Route *route) {
+Round::RouteList *Round::RouteMap::findRouteListByRoute(const Route *route) const {
+  if (!route)
+    return NULL;
+  
+  std::string srcPath;
+  const RouteObjects &srcObjs = route->getSourceObjects();
+  if (!srcObjs.toString(&srcPath))
+    return NULL;
+  
+  return findRouteListBySourcePath(srcPath);
+}
+
+Round::RouteList *Round::RouteMap::findRouteListBySourcePath(const std::string &srcPath) const {
+  RouteMap::const_iterator routeMapIt = find(srcPath);
+  if (routeMapIt != end())
+    return routeMapIt->second;
+
+  return NULL;
+}
+
+Round::RouteList *Round::RouteMap::getRouteListByRoute(const Route *route) {
   if (!route)
     return NULL;
   
@@ -106,6 +126,13 @@ Round::RouteList *Round::RouteMap::getRouteListBySourcePath(const std::string &s
   RouteList *mapRouteList = new RouteList();
   insert(std::pair<std::string, RouteList *>(srcPath, mapRouteList));
   return mapRouteList;
+}
+
+Round::Route *Round::RouteMap::findSameRoute(const Route *otherRoute) const {
+  RouteList *routeList = findRouteListByRoute(otherRoute);
+  if (!routeList)
+    return NULL;
+  return routeList->findSameRoute(otherRoute);
 }
 
 Round::Route *Round::RouteMap::findRouteByName(const std::string &name) const {

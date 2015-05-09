@@ -170,7 +170,7 @@ private:
   std::string  name;
   RouteObjects srcObjects;
   RouteObjects destObjects;
-  std::string type;
+   std::string type;
 };
 
 class RouteList : public Vector<Route> {
@@ -205,6 +205,7 @@ public:
   bool addRoute(const std::string &name, const std::string &srcObj, const std::string &destObj);
   bool setRoute(const std::string &name, const std::string &srcObj, const std::string &destObj);
   
+  Route *findSameRoute(const Route *otherRoute) const ;
   Route *findRouteByName(const std::string &name) const ;
   
   void clear();
@@ -213,8 +214,11 @@ public:
   
 private:
   
+  RouteList *findRouteListBySourcePath(const std::string &srcPath) const;
+  RouteList *findRouteListByRoute(const Route *route) const;
+  
   RouteList *getRouteListBySourcePath(const std::string &srcPath);
-  RouteList *getRouteListByRoute(Route *route);
+  RouteList *getRouteListByRoute(const Route *route);
 };
   
 class RouteManager : public RouteMap {

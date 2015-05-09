@@ -411,6 +411,25 @@ BOOST_AUTO_TEST_CASE(RouteMapTest) {
   // addRoute
   
   BOOST_CHECK_EQUAL(routeMap.addRoute(TEST_01_NAME, TEST_01_SRC_OBJ, TEST_01_DEST_OBJ), true);
+  BOOST_CHECK_EQUAL(routeMap.size(), 1);
+  BOOST_CHECK_EQUAL(routeMap.count(), 1);
+  
+  route = routeMap.findRouteByName(TEST_01_NAME);
+  BOOST_CHECK_EQUAL(route->isName(TEST_01_NAME), true);
+
+  BOOST_CHECK_EQUAL(routeMap.addRoute(TEST_01_NAME, TEST_01_SRC_OBJ, TEST_01_DEST_OBJ), false);
+  BOOST_CHECK_EQUAL(routeMap.size(), 1);
+  BOOST_CHECK_EQUAL(routeMap.count(), 1);
+
+  route = routeMap.findRouteByName(TEST_01_NAME);
+  BOOST_CHECK_EQUAL(route->isName(TEST_01_NAME), true);
+
+  // setRoute
+  
+  BOOST_CHECK_EQUAL(routeMap.setRoute(TEST_01_NAME, TEST_01_SRC_OBJ, TEST_01_DEST_OBJ), true);
+  BOOST_CHECK_EQUAL(routeMap.size(), 1);
+  BOOST_CHECK_EQUAL(routeMap.count(), 1);
+  
   route = routeMap.findRouteByName(TEST_01_NAME);
   BOOST_CHECK_EQUAL(route->isName(TEST_01_NAME), true);
 }
