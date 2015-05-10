@@ -107,6 +107,10 @@ public:
     return this->srcObjects.equals(value);
   }
   
+  bool getSourcePath(std::string *value) const {
+    return this->srcObjects.toString(value);
+  }
+  
   bool getSourceTarget(std::string *value) const {
     return this->srcObjects.getTarget(value);
   }
@@ -133,6 +137,10 @@ public:
   
   bool isDestination(const std::string &value) const {
     return this->destObjects.equals(value);
+  }
+  
+  bool getDestinationPath(std::string *value) const {
+    return this->destObjects.toString(value);
   }
   
   bool getDestinationTarget(std::string *value) const {

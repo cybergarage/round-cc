@@ -391,7 +391,7 @@ BOOST_AUTO_TEST_CASE(RouteListTest) {
   BOOST_CHECK_EQUAL(route->isDestination(TEST_01_DEST_OBJ), true);
 }
 
-BOOST_AUTO_TEST_CASE(RouteMapTest) {
+BOOST_AUTO_TEST_CASE(RouteMapByNameTest) {
   const std::string TEST_01_NAME = "sname01";
   const std::string TEST_01_SRC_METHOD = "smethod01";
   const std::string TEST_01_SRC_NODE = "snode01";
@@ -432,6 +432,62 @@ BOOST_AUTO_TEST_CASE(RouteMapTest) {
   
   route = routeMap.findRouteByName(TEST_01_NAME);
   BOOST_CHECK_EQUAL(route->isName(TEST_01_NAME), true);
+
+  // removeRoute
+  
+  BOOST_CHECK_EQUAL(routeMap.removeRouteByName(TEST_01_NAME), true);
+  BOOST_CHECK_EQUAL(routeMap.size(), 0);
+  BOOST_CHECK_EQUAL(routeMap.count(), 0);
+}
+
+BOOST_AUTO_TEST_CASE(RouteMapByRouteTest) {
+  const std::string TEST_01_NAME = "sname01";
+  const std::string TEST_01_SRC_METHOD = "smethod01";
+  const std::string TEST_01_SRC_NODE = "snode01";
+  const std::string TEST_01_SRC_CLUSTER = "scluster01";
+  const std::string TEST_01_SRC_OBJ = TEST_01_SRC_CLUSTER + "." + TEST_01_SRC_NODE + "." + TEST_01_SRC_METHOD;
+  const std::string TEST_01_DEST_METHOD = "dmethod01";
+  const std::string TEST_01_DEST_NODE = "dnode01";
+  const std::string TEST_01_DEST_CLUSTER = "dcluster01";
+  const std::string TEST_01_DEST_OBJ = TEST_01_DEST_CLUSTER + "." + TEST_01_DEST_NODE + "." + TEST_01_DEST_METHOD;
+  
+  RouteMap routeMap;
+  Route *route;
+  Route route01(TEST_01_NAME, TEST_01_SRC_OBJ, TEST_01_DEST_OBJ);
+  
+  BOOST_CHECK_EQUAL(routeMap.size(), 0);
+  BOOST_CHECK_EQUAL(routeMap.count(), 0);
+  
+  // addRoute
+  
+  BOOST_CHECK_EQUAL(routeMap.addRoute(TEST_01_NAME, TEST_01_SRC_OBJ, TEST_01_DEST_OBJ), true);
+  BOOST_CHECK_EQUAL(routeMap.size(), 1);
+  BOOST_CHECK_EQUAL(routeMap.count(), 1);
+  
+  route = routeMap.findSameRoute(&route01);
+  BOOST_CHECK_EQUAL(route->isName(TEST_01_NAME), true);
+  
+  BOOST_CHECK_EQUAL(routeMap.addRoute(TEST_01_NAME, TEST_01_SRC_OBJ, TEST_01_DEST_OBJ), false);
+  BOOST_CHECK_EQUAL(routeMap.size(), 1);
+  BOOST_CHECK_EQUAL(routeMap.count(), 1);
+  
+  route = routeMap.findSameRoute(&route01);
+  BOOST_CHECK_EQUAL(route->isName(TEST_01_NAME), true);
+  
+  // setRoute
+  
+  BOOST_CHECK_EQUAL(routeMap.setRoute(TEST_01_NAME, TEST_01_SRC_OBJ, TEST_01_DEST_OBJ), true);
+  BOOST_CHECK_EQUAL(routeMap.size(), 1);
+  BOOST_CHECK_EQUAL(routeMap.count(), 1);
+  
+  route = routeMap.findSameRoute(&route01);
+  BOOST_CHECK_EQUAL(route->isName(TEST_01_NAME), true);
+  
+  // removeRoute
+  
+  BOOST_CHECK_EQUAL(routeMap.removeSameRoute(&route01), true);
+  BOOST_CHECK_EQUAL(routeMap.size(), 0);
+  BOOST_CHECK_EQUAL(routeMap.count(), 0);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

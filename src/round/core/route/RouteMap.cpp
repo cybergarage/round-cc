@@ -91,8 +91,7 @@ Round::RouteList *Round::RouteMap::findRouteListByRoute(const Route *route) cons
     return NULL;
   
   std::string srcPath;
-  const RouteObjects &srcObjs = route->getSourceObjects();
-  if (!srcObjs.toString(&srcPath))
+  if (!route->getSourcePath(&srcPath))
     return NULL;
   
   return findRouteListBySourcePath(srcPath);
@@ -111,8 +110,7 @@ Round::RouteList *Round::RouteMap::getRouteListByRoute(const Route *route) {
     return NULL;
   
   std::string srcPath;
-  const RouteObjects &srcObjs = route->getSourceObjects();
-  if (!srcObjs.toString(&srcPath))
+  if (!route->getSourcePath(&srcPath))
     return NULL;
   
   return getRouteListBySourcePath(srcPath);
@@ -149,14 +147,26 @@ bool Round::RouteMap::removeSameRoute(const Route *otherRoute) {
   RouteList *routeList = findRouteListByRoute(otherRoute);
   if (!routeList)
     return NULL;
-  return routeList->removeSameRoute(otherRoute);
+   if (!routeList->removeSameRoute(otherRoute))
+     return false;
+  if (routeList->size() <= 0) {
+    std::string srcPath;
+    if (otherRoute->getSourcePath(&srcPath)) {
+      erase(srcPath);
+    }
+  }
+  return true;
 }
 
 bool Round::RouteMap::removeRouteByName(const std::string &name) {
   for (RouteMap::const_iterator routeMapIt = begin(); routeMapIt != end(); routeMapIt++) {
     RouteList *routeList = routeMapIt->second;
-    if (routeList->removeRouteByName(name))
+    if (routeList->removeRouteByName(name)) {
+      if (routeList->size() <= 0) {
+        erase(routeMapIt);
+      }
       return true;
+    }
   }
   
   return false;
