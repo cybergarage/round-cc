@@ -623,6 +623,7 @@ bool Round::LocalNode::execRoute(const std::string &name, const NodeResponse *pr
   for (RouteList::const_iterator routeIt = routeList->begin(); routeIt != routeList->end(); routeIt++) {
     Route *route = *routeIt;
     
+    // TODO Check cluser.node too.
     std::string target;
     if (!route->getDestinationTarget(&target))
       continue;
