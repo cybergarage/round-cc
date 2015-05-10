@@ -12,13 +12,17 @@ In the system methods, there are two kind of types: the static and dynamic. The 
 
 Round has the following static methods as default. The methods are implemented using the native programming language, developers can't redefine the static methods.
 
-| Method Name | Description |
-| --- | --- |
-| set_method | Set a new script method |
-| post_job | Post a job |
-| set_route | Set a new route |
-| set_timer | Set a new timer |
-| set_alias | Set a alias for the other method |
+| Type | Name | Description |
+| --- | --- | --- |
+| Method | set_method | Set a new script method |
+| | remove_method | Remove the specified method |
+| Route | set_route | Set a new route |
+| | remove_route | Remove the specified route |
+| Timer | set_timer | Set a new timer |
+| | remove_timer | Remove the specified timer |
+| Alias | set_alias | Set a alias for the other method |
+| | remove_alias | Remove the specified alias |
+| Job | post_job | Post a job |
 
 #### set_method
 
@@ -37,31 +41,25 @@ encoding = "encoding" ":" ("none" | "base64")
 supported-language = ("js" | "java" | "tcl" | "lua")
 ```
 
-If the code parameter isn't specified, the method is removed.
-
 ##### Return values
 
 The set_method method doesn't return anything when the method is success, otherwise a error object.
 
-#### post_job
+#### remove_method
 
-The post_job method exec the specified code in the local node, and returns a result.
+The remove_method method removes the specified method from the local node.
 
 ##### Parameters
 
 ```
-post_job = "{" language code encoding "}"
+remove_method = "{" name "}"
 
-language = "language" ":" supported-language
-code     = "code" ":" TOKEN
-encoding = "encoding" ":" ("none" | "base64")
-
-supported-language = ("js" | "java" | "tcl" | "lua")
+name     = "name" ":" TOKEN
 ```
 
 ##### Return values
 
-The post_job method returns a job result, otherwise a error object.
+The remove_method method doesn't return anything when the method is success, otherwise a error object.
 
 #### set_route
 
@@ -96,6 +94,33 @@ dest-in-param-value-script = JS_SCRIPT
 ##### Return values
 
 The set_route method doesn't return anything when the method is success, otherwise a error object.
+
+#### remove_route
+
+The remove_route method removes the specified route from the local node.
+
+##### Parameters
+
+```
+set_route = "{" name | (source destnation) "}"
+
+name       = "name"   ":" TOKEN
+source     = "src"    ":" source-object
+destnation = "dest"   ":" destnation-object
+
+source-object     = (trigger-name | method-name)
+destnation-object = [cluster "."] [node "."] (method-name)
+cluster           = ("local" | cluster-name)
+node              = ("local" | "all" | "*" | hash-code)
+cluster-name      = TOKEN
+hash-code         = NODE_HASH
+trigger-name      = TOKEN
+method-name       = TOKEN
+```
+
+##### Return values
+
+The remove_route method doesn't return anything when the method is success, otherwise a error object.
 
 #### set_timer
 
@@ -139,6 +164,26 @@ If the code method isn't specified, the alias is removed.
 ##### Return values
 
 The set_alias method doesn't return anything when the method is success, otherwise a error object.
+
+#### post_job
+
+The post_job method exec the specified code in the local node, and returns a result.
+
+##### Parameters
+
+```
+post_job = "{" language code encoding "}"
+
+language = "language" ":" supported-language
+code     = "code" ":" TOKEN
+encoding = "encoding" ":" ("none" | "base64")
+
+supported-language = ("js" | "java" | "tcl" | "lua")
+```
+
+##### Return values
+
+The post_job method returns a job result, otherwise a error object.
 
 ### Native Methods
 

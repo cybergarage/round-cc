@@ -169,6 +169,10 @@ class LocalNode : public Node, public NodeFinderObserver {
   bool waitMessage(const Message **nodeReq);
   bool execMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
   bool execMessage(const NodeBatchRequest *nodeReq, NodeBatchResponse *nodeRes, Error *error);
+
+  bool setRoute(Route *route);
+  bool removeSameRoute(const Route *route);
+  bool removeRouteByName(const std::string &name);
   
   virtual bool start(Error *error);
   virtual bool stop(Error *error);

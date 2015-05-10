@@ -274,6 +274,40 @@ bool Round::LocalNode::waitMessage(const Message **nodeReq) {
 }
 
 ////////////////////////////////////////////////
+// Route
+////////////////////////////////////////////////
+
+bool Round::LocalNode::setRoute(Route *route) {
+  this->routeMgr.lock();
+  
+  bool isSuccess = this->routeMgr.setRoute(route);
+  
+  this->routeMgr.unlock();
+
+  return isSuccess;
+}
+
+bool Round::LocalNode::removeSameRoute(const Route *route) {
+  this->routeMgr.lock();
+  
+  bool isSuccess = this->routeMgr.removeSameRoute(route);
+  
+  this->routeMgr.unlock();
+  
+  return isSuccess;
+}
+
+bool Round::LocalNode::removeRouteByName(const std::string &name) {
+  this->routeMgr.lock();
+  
+  bool isSuccess = this->routeMgr.removeRouteByName(name);
+  
+  this->routeMgr.unlock();
+  
+  return isSuccess;
+}
+
+////////////////////////////////////////////////
 // get*Nodes
 ////////////////////////////////////////////////
 

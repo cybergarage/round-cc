@@ -60,6 +60,23 @@ bool Round::set_route::exec(LocalNode *node, const NodeRequest *nodeReq, NodeRes
   paramDict->get(ROUTE_NAME, &name);
   paramDict->get(ROUTE_TYPE, &type);
   paramDict->get(ROUTE_COND, &cond);
-
-  return false;
+  
+  // Set route
+  
+  Route *route = new Route();
+  if (!route)
+    return false;
+  
+  route->setName(name);
+  route->setSource(src);
+  route->setDestination(dest);
+  route->setType(type);
+  route->setCondition(cond);
+  
+  if (!node->setRoute(route)) {
+    delete route;
+    return false;
+  }
+  
+  return true;
 }
