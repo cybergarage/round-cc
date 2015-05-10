@@ -347,7 +347,7 @@ BOOST_AUTO_TEST_CASE(RouteListTest) {
   BOOST_CHECK_EQUAL(routeList.size(), 0);
 
   // addRoute
-  
+
   BOOST_CHECK_EQUAL(routeList.addRoute(TEST_01_NAME, TEST_01_SRC_OBJ, TEST_01_DEST_OBJ), true);
   route = routeList.findRouteByName(TEST_01_NAME);
   BOOST_CHECK_EQUAL(route->isName(TEST_01_NAME), true);
@@ -423,10 +423,13 @@ BOOST_AUTO_TEST_CASE(RouteMapByNameTest) {
   
   RouteMap routeMap;
   Route *route;
-
+  
   BOOST_CHECK_EQUAL(routeMap.size(), 0);
   BOOST_CHECK_EQUAL(routeMap.count(), 0);
 
+  BOOST_CHECK_EQUAL(routeMap.hasRoute(TEST_01_SRC_OBJ), false);
+  BOOST_CHECK_EQUAL(routeMap.hasRoute(TEST_02_SRC_OBJ), false);
+  
   // addRoute
   
   BOOST_CHECK_EQUAL(routeMap.addRoute(TEST_01_NAME, TEST_01_SRC_OBJ, TEST_01_DEST_OBJ), true);
@@ -457,6 +460,9 @@ BOOST_AUTO_TEST_CASE(RouteMapByNameTest) {
   route = routeMap.findRouteByName(TEST_02_NAME);
   BOOST_CHECK_EQUAL(route->isName(TEST_02_NAME), true);
   
+  BOOST_CHECK_EQUAL(routeMap.hasRoute(TEST_01_SRC_OBJ), true);
+  BOOST_CHECK_EQUAL(routeMap.hasRoute(TEST_02_SRC_OBJ), true);
+  
   // setRoute
   
   BOOST_CHECK_EQUAL(routeMap.setRoute(TEST_01_NAME, TEST_01_SRC_OBJ, TEST_01_DEST_OBJ), true);
@@ -473,15 +479,27 @@ BOOST_AUTO_TEST_CASE(RouteMapByNameTest) {
   route = routeMap.findRouteByName(TEST_02_NAME);
   BOOST_CHECK_EQUAL(route->isName(TEST_02_NAME), true);
   
+  BOOST_CHECK_EQUAL(routeMap.hasRoute(TEST_01_SRC_OBJ), true);
+  BOOST_CHECK_EQUAL(routeMap.hasRoute(TEST_02_SRC_OBJ), true);
+  
   // removeRoute
+  
+  BOOST_CHECK_EQUAL(routeMap.hasRoute(TEST_01_SRC_OBJ), true);
+  BOOST_CHECK_EQUAL(routeMap.hasRoute(TEST_02_SRC_OBJ), true);
   
   BOOST_CHECK_EQUAL(routeMap.removeRouteByName(TEST_01_NAME), true);
   BOOST_CHECK_EQUAL(routeMap.size(), 1);
   BOOST_CHECK_EQUAL(routeMap.count(), 1);
 
+  BOOST_CHECK_EQUAL(routeMap.hasRoute(TEST_01_SRC_OBJ), false);
+  BOOST_CHECK_EQUAL(routeMap.hasRoute(TEST_02_SRC_OBJ), true);
+  
   BOOST_CHECK_EQUAL(routeMap.removeRouteByName(TEST_02_NAME), true);
   BOOST_CHECK_EQUAL(routeMap.size(), 0);
   BOOST_CHECK_EQUAL(routeMap.count(), 0);
+
+  BOOST_CHECK_EQUAL(routeMap.hasRoute(TEST_01_SRC_OBJ), false);
+  BOOST_CHECK_EQUAL(routeMap.hasRoute(TEST_02_SRC_OBJ), false);
 }
 
 BOOST_AUTO_TEST_CASE(RouteMapByRouteTest) {

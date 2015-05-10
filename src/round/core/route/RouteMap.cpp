@@ -101,7 +101,6 @@ Round::RouteList *Round::RouteMap::findRouteListBySourcePath(const std::string &
   RouteMap::const_iterator routeMapIt = find(srcPath);
   if (routeMapIt != end())
     return routeMapIt->second;
-
   return NULL;
 }
 
@@ -170,4 +169,12 @@ bool Round::RouteMap::removeRouteByName(const std::string &name) {
   }
   
   return false;
+}
+
+bool Round::RouteMap::hasRoute(const std::string &src) const {
+  return findRouteListBySourcePath(src) ? true  : false;
+}
+
+Round::RouteList *Round::RouteMap::getRouteList(const std::string &src) const {
+  return findRouteListBySourcePath(src);
 }

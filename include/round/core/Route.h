@@ -235,8 +235,10 @@ public:
   bool removeSameRoute(const Route *otherRoute);
   bool removeRouteByName(const std::string &name);
   
+  bool hasRoute(const std::string &src) const;
+  RouteList *getRouteList(const std::string &src) const;
+
   void clear();
-  
   size_t count();
   
 private:
