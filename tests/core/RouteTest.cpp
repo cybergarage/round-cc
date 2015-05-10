@@ -402,6 +402,16 @@ BOOST_AUTO_TEST_CASE(RouteMapByNameTest) {
   const std::string TEST_01_DEST_CLUSTER = "dcluster01";
   const std::string TEST_01_DEST_OBJ = TEST_01_DEST_CLUSTER + "." + TEST_01_DEST_NODE + "." + TEST_01_DEST_METHOD;
   
+  const std::string TEST_02_NAME = "sname02";
+  const std::string TEST_02_SRC_METHOD = "smethod02";
+  const std::string TEST_02_SRC_NODE = "snode02";
+  const std::string TEST_02_SRC_CLUSTER = "scluster02";
+  const std::string TEST_02_SRC_OBJ = TEST_02_SRC_CLUSTER + "." + TEST_02_SRC_NODE + "." + TEST_02_SRC_METHOD;
+  const std::string TEST_02_DEST_METHOD = "dmethod02";
+  const std::string TEST_02_DEST_NODE = "dnode02";
+  const std::string TEST_02_DEST_CLUSTER = "dcluster02";
+  const std::string TEST_02_DEST_OBJ = TEST_02_DEST_CLUSTER + "." + TEST_02_DEST_NODE + "." + TEST_02_DEST_METHOD;
+  
   RouteMap routeMap;
   Route *route;
 
@@ -424,18 +434,43 @@ BOOST_AUTO_TEST_CASE(RouteMapByNameTest) {
   route = routeMap.findRouteByName(TEST_01_NAME);
   BOOST_CHECK_EQUAL(route->isName(TEST_01_NAME), true);
 
+  BOOST_CHECK_EQUAL(routeMap.addRoute(TEST_02_NAME, TEST_02_SRC_OBJ, TEST_02_DEST_OBJ), true);
+  BOOST_CHECK_EQUAL(routeMap.size(), 2);
+  BOOST_CHECK_EQUAL(routeMap.count(), 2);
+  
+  route = routeMap.findRouteByName(TEST_02_NAME);
+  BOOST_CHECK_EQUAL(route->isName(TEST_02_NAME), true);
+  
+  BOOST_CHECK_EQUAL(routeMap.addRoute(TEST_02_NAME, TEST_02_SRC_OBJ, TEST_02_DEST_OBJ), false);
+  BOOST_CHECK_EQUAL(routeMap.size(), 2);
+  BOOST_CHECK_EQUAL(routeMap.count(), 2);
+  
+  route = routeMap.findRouteByName(TEST_02_NAME);
+  BOOST_CHECK_EQUAL(route->isName(TEST_02_NAME), true);
+  
   // setRoute
   
   BOOST_CHECK_EQUAL(routeMap.setRoute(TEST_01_NAME, TEST_01_SRC_OBJ, TEST_01_DEST_OBJ), true);
-  BOOST_CHECK_EQUAL(routeMap.size(), 1);
-  BOOST_CHECK_EQUAL(routeMap.count(), 1);
+  BOOST_CHECK_EQUAL(routeMap.size(), 2);
+  BOOST_CHECK_EQUAL(routeMap.count(), 2);
   
   route = routeMap.findRouteByName(TEST_01_NAME);
   BOOST_CHECK_EQUAL(route->isName(TEST_01_NAME), true);
 
+  BOOST_CHECK_EQUAL(routeMap.setRoute(TEST_02_NAME, TEST_02_SRC_OBJ, TEST_02_DEST_OBJ), true);
+  BOOST_CHECK_EQUAL(routeMap.size(), 2);
+  BOOST_CHECK_EQUAL(routeMap.count(), 2);
+  
+  route = routeMap.findRouteByName(TEST_02_NAME);
+  BOOST_CHECK_EQUAL(route->isName(TEST_02_NAME), true);
+  
   // removeRoute
   
   BOOST_CHECK_EQUAL(routeMap.removeRouteByName(TEST_01_NAME), true);
+  BOOST_CHECK_EQUAL(routeMap.size(), 1);
+  BOOST_CHECK_EQUAL(routeMap.count(), 1);
+
+  BOOST_CHECK_EQUAL(routeMap.removeRouteByName(TEST_02_NAME), true);
   BOOST_CHECK_EQUAL(routeMap.size(), 0);
   BOOST_CHECK_EQUAL(routeMap.count(), 0);
 }
@@ -451,9 +486,21 @@ BOOST_AUTO_TEST_CASE(RouteMapByRouteTest) {
   const std::string TEST_01_DEST_CLUSTER = "dcluster01";
   const std::string TEST_01_DEST_OBJ = TEST_01_DEST_CLUSTER + "." + TEST_01_DEST_NODE + "." + TEST_01_DEST_METHOD;
   
+  const std::string TEST_02_NAME = "sname02";
+  const std::string TEST_02_SRC_METHOD = "smethod02";
+  const std::string TEST_02_SRC_NODE = "snode02";
+  const std::string TEST_02_SRC_CLUSTER = "scluster02";
+  const std::string TEST_02_SRC_OBJ = TEST_02_SRC_CLUSTER + "." + TEST_02_SRC_NODE + "." + TEST_02_SRC_METHOD;
+  const std::string TEST_02_DEST_METHOD = "dmethod02";
+  const std::string TEST_02_DEST_NODE = "dnode02";
+  const std::string TEST_02_DEST_CLUSTER = "dcluster02";
+  const std::string TEST_02_DEST_OBJ = TEST_02_DEST_CLUSTER + "." + TEST_02_DEST_NODE + "." + TEST_02_DEST_METHOD;
+
   RouteMap routeMap;
   Route *route;
+
   Route route01(TEST_01_NAME, TEST_01_SRC_OBJ, TEST_01_DEST_OBJ);
+  Route route02(TEST_02_NAME, TEST_02_SRC_OBJ, TEST_02_DEST_OBJ);
   
   BOOST_CHECK_EQUAL(routeMap.size(), 0);
   BOOST_CHECK_EQUAL(routeMap.count(), 0);
@@ -474,18 +521,43 @@ BOOST_AUTO_TEST_CASE(RouteMapByRouteTest) {
   route = routeMap.findSameRoute(&route01);
   BOOST_CHECK_EQUAL(route->isName(TEST_01_NAME), true);
   
+  BOOST_CHECK_EQUAL(routeMap.addRoute(TEST_02_NAME, TEST_02_SRC_OBJ, TEST_02_DEST_OBJ), true);
+  BOOST_CHECK_EQUAL(routeMap.size(), 2);
+  BOOST_CHECK_EQUAL(routeMap.count(), 2);
+  
+  route = routeMap.findSameRoute(&route02);
+  BOOST_CHECK_EQUAL(route->isName(TEST_02_NAME), true);
+  
+  BOOST_CHECK_EQUAL(routeMap.addRoute(TEST_02_NAME, TEST_02_SRC_OBJ, TEST_02_DEST_OBJ), false);
+  BOOST_CHECK_EQUAL(routeMap.size(), 2);
+  BOOST_CHECK_EQUAL(routeMap.count(), 2);
+  
+  route = routeMap.findSameRoute(&route02);
+  BOOST_CHECK_EQUAL(route->isName(TEST_02_NAME), true);
+  
   // setRoute
   
   BOOST_CHECK_EQUAL(routeMap.setRoute(TEST_01_NAME, TEST_01_SRC_OBJ, TEST_01_DEST_OBJ), true);
-  BOOST_CHECK_EQUAL(routeMap.size(), 1);
-  BOOST_CHECK_EQUAL(routeMap.count(), 1);
+  BOOST_CHECK_EQUAL(routeMap.size(), 2);
+  BOOST_CHECK_EQUAL(routeMap.count(), 2);
   
   route = routeMap.findSameRoute(&route01);
   BOOST_CHECK_EQUAL(route->isName(TEST_01_NAME), true);
   
+  BOOST_CHECK_EQUAL(routeMap.setRoute(TEST_02_NAME, TEST_02_SRC_OBJ, TEST_02_DEST_OBJ), true);
+  BOOST_CHECK_EQUAL(routeMap.size(), 2);
+  BOOST_CHECK_EQUAL(routeMap.count(), 2);
+  
+  route = routeMap.findSameRoute(&route02);
+  BOOST_CHECK_EQUAL(route->isName(TEST_02_NAME), true);
+  
   // removeRoute
   
   BOOST_CHECK_EQUAL(routeMap.removeSameRoute(&route01), true);
+  BOOST_CHECK_EQUAL(routeMap.size(), 1);
+  BOOST_CHECK_EQUAL(routeMap.count(), 1);
+
+  BOOST_CHECK_EQUAL(routeMap.removeSameRoute(&route02), true);
   BOOST_CHECK_EQUAL(routeMap.size(), 0);
   BOOST_CHECK_EQUAL(routeMap.count(), 0);
 }
