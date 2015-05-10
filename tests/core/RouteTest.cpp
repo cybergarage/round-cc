@@ -138,8 +138,10 @@ BOOST_AUTO_TEST_CASE(RouteTest) {
   const std::string TEST_DEST_NODE = "dnode";
   const std::string TEST_DEST_CLUSTER = "dcluster";
   
+  const std::string TEST_COND = "true;";
+  
   Route route;
-  std::string name, object;
+  std::string name, object, cond;
   
   // initialize node
   
@@ -246,6 +248,13 @@ BOOST_AUTO_TEST_CASE(RouteTest) {
   BOOST_CHECK_EQUAL(route.isValidType(), true);
   BOOST_CHECK_EQUAL(route.isPipe(), true);
   BOOST_CHECK_EQUAL(route.isEvent(), false);
+  
+  // condition
+
+  BOOST_CHECK_EQUAL(route.hasCondition(), false);
+  BOOST_CHECK_EQUAL(route.setCondition(TEST_COND), true);
+  BOOST_CHECK_EQUAL(route.hasCondition(), true);
+  BOOST_CHECK_EQUAL(TEST_COND.compare(*route.getCondition()), 0);
   
   // Last Check
   

@@ -173,12 +173,25 @@ public:
   bool isEvent();
   bool isValidType();
 
+  // Type
+  
+  bool setCondition(const std::string &value);
+  
+  bool hasCondition() {
+    return (0 < this->cond.length());
+  }
+  
+  const std::string *getCondition() {
+    return &this->cond;
+  }
+  
 private:
   
   std::string  name;
   RouteObjects srcObjects;
   RouteObjects destObjects;
-   std::string type;
+  std::string type;
+  std::string cond;
 };
 
 class RouteList : public Vector<Route> {

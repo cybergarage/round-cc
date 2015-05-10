@@ -111,6 +111,11 @@ bool Round::Route::isValidType() {
   return false;
 }
 
+bool Round::Route::setCondition(const std::string &value) {
+  this->cond = value;
+  return true;
+}
+
 // equals
 
 bool Round::Route::equals(const Route *otherRoute) const {
