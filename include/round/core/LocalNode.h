@@ -173,6 +173,7 @@ class LocalNode : public Node, public NodeFinderObserver {
   bool setRoute(Route *route);
   bool removeSameRoute(const Route *route);
   bool removeRouteByName(const std::string &name);
+  bool execRoute(const std::string &src, const std::string &params);
   
   virtual bool start(Error *error);
   virtual bool stop(Error *error);
@@ -237,7 +238,7 @@ private:
   bool isNativeMethod(const std::string &method);
   bool execNativeMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
 
-  bool hasRounte(const std::string &name);
+  bool hasRoute(const std::string &name);
   bool execRoute(const std::string &name, const NodeResponse *prevNodeRes, NodeResponse *nodeRes, Error *error);
   
 private:

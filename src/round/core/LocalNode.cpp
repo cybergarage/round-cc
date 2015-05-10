@@ -577,7 +577,7 @@ bool Round::LocalNode::execMethod(const NodeRequest *nodeReq, NodeResponse *node
   if (!isMethodSuccess)
     return false;
   
-  if (!hasRounte(name))
+  if (!hasRoute(name))
     return true;
   
   NodeResponse routeNodeRes;
@@ -593,10 +593,58 @@ bool Round::LocalNode::execMethod(const NodeRequest *nodeReq, NodeResponse *node
 // Exce Route
 ////////////////////////////////////////////////
 
-bool Round::LocalNode::hasRounte(const std::string &name) {
-  return false;
+bool Round::LocalNode::hasRoute(const std::string &name) {
+  this->routeMgr.lock();
+
+  bool hasRoute = this->routeMgr.hasRoute(name);
+  
+  this->routeMgr.unlock();
+
+  return hasRoute;
 }
 
 bool Round::LocalNode::execRoute(const std::string &name, const NodeResponse *prevNodeRes, NodeResponse *nodeRes, Error *error) {
-  return false;
+  this->routeMgr.lock();
+  
+  RouteList *routeList = this->routeMgr.getRouteList(name);
+  if (!routeList) {
+    this->routeMgr.unlock();
+    return false;
+  }
+
+  std::string params;
+  prevNodeRes->getResult(&params);
+  
+  // Set prev response if all route types are event.
+  nodeRes->setResult(params);
+  
+  bool isSuccess = true;
+  
+  for (RouteList::const_iterator routeIt = routeList->begin(); routeIt != routeList->end(); routeIt++) {
+    Route *route = *routeIt;
+    
+    std::string target;
+    if (!route->getDestinationTarget(&target))
+      continue;
+    
+    NodeRequest nodeReq;
+    nodeReq.setMethod(target);
+    nodeReq.setParams(params);
+
+    if (route->isEvent()) {
+      NodeResponse eventRes;
+      if (!execMethod(&nodeReq, &eventRes, error)) {
+        isSuccess = false;
+      }
+    }
+    else if (route->isPipe()) {
+      if (!execMethod(&nodeReq, nodeRes, error)) {
+        isSuccess = false;
+      }
+    }
+  }
+  
+  this->routeMgr.unlock();
+  
+  return isSuccess;
 }
