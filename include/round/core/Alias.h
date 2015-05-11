@@ -33,33 +33,28 @@ public:
   bool getName(std::string *value) const;
   bool isName(const std::string &value) const;
   
+  // Source
+  
+  bool setObject(const std::string &value);
+  bool getObject(std::string *value) const;
+
 private:
   
   std::string  name;
+  std::string  object;
 };
 
-class AliasList : public Vector<Alias> {
-    
- public:
+class AliasMap : public std::map<std::string, Alias *> {
   
-  AliasList();
-  ~AliasList();
-  
-  bool addAlias(const std::string &name, const std::string &srcObject, const std::string &destObject);
-  bool setAlias(const std::string &name, const std::string &srcObject, const std::string &destObject);
-
-  Alias *getAliasByName(const std::string &name) const ;
-};
-
-class AliasEngine : public AliasList {
-    
 public:
-    
-  AliasEngine();
-  virtual ~AliasEngine();
+  
+  AliasMap();
+  ~AliasMap();
+  
+  void clear();
 };
 
-class AliasManager : public AliasEngine {
+class AliasManager : public AliasMap {
     
  public:
   

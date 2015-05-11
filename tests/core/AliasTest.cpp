@@ -18,14 +18,8 @@ using namespace Round;
 BOOST_AUTO_TEST_SUITE(alias)
 
 BOOST_AUTO_TEST_CASE(AliasTest) {
-  const std::string TEST_NAME = "rname";
-  const std::string TEST_SRC_METHOD = "smethod";
-  const std::string TEST_SRC_NODE = "snode";
-  const std::string TEST_SRC_CLUSTER = "scluster";
-  
-  const std::string TEST_DEST_METHOD = "dmethod";
-  const std::string TEST_DEST_NODE = "dnode";
-  const std::string TEST_DEST_CLUSTER = "dcluster";
+  const std::string TEST_NAME = "tname";
+  const std::string TEST_OBJECT = "tsource";
   
   Alias alias;
   std::string name, object;
@@ -34,12 +28,21 @@ BOOST_AUTO_TEST_CASE(AliasTest) {
   
   BOOST_CHECK_EQUAL(alias.isValid(), false);
   BOOST_CHECK_EQUAL(alias.getName(&name), false);
+  BOOST_CHECK_EQUAL(alias.getObject(&object), false);
 
   // "name"
 
   BOOST_CHECK_EQUAL(alias.setName(TEST_NAME), true);
-  BOOST_CHECK_EQUAL(alias.isValid(), true);
+  BOOST_CHECK_EQUAL(alias.isValid(), false);
   BOOST_CHECK_EQUAL(alias.getName(&name), true);
+  BOOST_CHECK_EQUAL(name.compare(TEST_NAME), 0);
+
+  // "object"
+  
+  BOOST_CHECK_EQUAL(alias.setObject(TEST_OBJECT), true);
+  BOOST_CHECK_EQUAL(alias.isValid(), true);
+  BOOST_CHECK_EQUAL(alias.getObject(&object), true);
+  BOOST_CHECK_EQUAL(object.compare(TEST_OBJECT), 0);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

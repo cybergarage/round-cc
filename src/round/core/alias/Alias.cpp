@@ -23,6 +23,8 @@ Round::Alias::~Alias() {
 bool Round::Alias::isValid() {
   if (this->name.length() <= 0)
     return false;
+  if (this->object.length() <= 0)
+    return false;
   return true;
 }
 
@@ -40,4 +42,16 @@ bool Round::Alias::getName(std::string *value) const {
 
 bool Round::Alias::isName(const std::string &value) const {
   return (this->name.compare(value) == 0) ? true : false;
+}
+
+bool Round::Alias::setObject(const std::string &value) {
+  this->object = value;
+  return true;
+}
+
+bool Round::Alias::getObject(std::string *value) const {
+  if (this->object.length() <= 0)
+    return false;
+  *value = this->object;
+  return  true;
 }

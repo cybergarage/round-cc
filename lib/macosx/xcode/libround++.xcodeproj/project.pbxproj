@@ -75,14 +75,13 @@
 		21C3663A1AF6E8D4001CB74F /* remove_timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C366351AF6E8D4001CB74F /* remove_timer.cpp */; };
 		21C3663C1AF76C78001CB74F /* SystemRemoveRegistryRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C3663B1AF76C78001CB74F /* SystemRemoveRegistryRequest.cpp */; };
 		21C3663E1AF8DACC001CB74F /* RouteMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C3663D1AF8DACC001CB74F /* RouteMap.cpp */; };
+		21CBBAAD1B005C0F00C778F0 /* AliasMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21CBBAAC1B005C0F00C778F0 /* AliasMap.cpp */; };
 		21D03AD41A63C4A60098122A /* Route.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D03AD31A63C4A60098122A /* Route.h */; };
 		21D50A9B1A819F39005C1F51 /* exec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50A9A1A819F39005C1F51 /* exec.cpp */; };
 		21D50AA21A82322F005C1F51 /* get_registry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50AA01A82322F005C1F51 /* get_registry.cpp */; };
 		21D50AA31A82322F005C1F51 /* set_registry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50AA11A82322F005C1F51 /* set_registry.cpp */; };
 		21D50AA51A8249E5005C1F51 /* Alias.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D50AA41A8249E5005C1F51 /* Alias.h */; };
 		21D50AAB1A824A9C005C1F51 /* Alias.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50AA71A824A9C005C1F51 /* Alias.cpp */; };
-		21D50AAC1A824A9C005C1F51 /* AliasEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50AA81A824A9C005C1F51 /* AliasEngine.cpp */; };
-		21D50AAD1A824A9C005C1F51 /* AliasList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50AA91A824A9C005C1F51 /* AliasList.cpp */; };
 		21D50AAE1A824A9C005C1F51 /* AliasManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50AAA1A824A9C005C1F51 /* AliasManager.cpp */; };
 		21D7A5961A6BDE7C00D43061 /* help.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7A5931A6BDE7C00D43061 /* help.cpp */; };
 		21D7A5971A6BDE7C00D43061 /* search.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7A5941A6BDE7C00D43061 /* search.cpp */; };
@@ -315,14 +314,13 @@
 		21C366351AF6E8D4001CB74F /* remove_timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = remove_timer.cpp; sourceTree = "<group>"; };
 		21C3663B1AF76C78001CB74F /* SystemRemoveRegistryRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemRemoveRegistryRequest.cpp; sourceTree = "<group>"; };
 		21C3663D1AF8DACC001CB74F /* RouteMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RouteMap.cpp; sourceTree = "<group>"; };
+		21CBBAAC1B005C0F00C778F0 /* AliasMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AliasMap.cpp; sourceTree = "<group>"; };
 		21D03AD31A63C4A60098122A /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
 		21D50A9A1A819F39005C1F51 /* exec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exec.cpp; sourceTree = "<group>"; };
 		21D50AA01A82322F005C1F51 /* get_registry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = get_registry.cpp; sourceTree = "<group>"; };
 		21D50AA11A82322F005C1F51 /* set_registry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = set_registry.cpp; sourceTree = "<group>"; };
 		21D50AA41A8249E5005C1F51 /* Alias.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alias.h; sourceTree = "<group>"; };
 		21D50AA71A824A9C005C1F51 /* Alias.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Alias.cpp; sourceTree = "<group>"; };
-		21D50AA81A824A9C005C1F51 /* AliasEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AliasEngine.cpp; sourceTree = "<group>"; };
-		21D50AA91A824A9C005C1F51 /* AliasList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AliasList.cpp; sourceTree = "<group>"; };
 		21D50AAA1A824A9C005C1F51 /* AliasManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AliasManager.cpp; sourceTree = "<group>"; };
 		21D7A5931A6BDE7C00D43061 /* help.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = help.cpp; sourceTree = "<group>"; };
 		21D7A5941A6BDE7C00D43061 /* search.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = search.cpp; sourceTree = "<group>"; };
@@ -667,9 +665,8 @@
 		21D50AA61A824A9C005C1F51 /* alias */ = {
 			isa = PBXGroup;
 			children = (
+				21CBBAAC1B005C0F00C778F0 /* AliasMap.cpp */,
 				21D50AA71A824A9C005C1F51 /* Alias.cpp */,
-				21D50AA81A824A9C005C1F51 /* AliasEngine.cpp */,
-				21D50AA91A824A9C005C1F51 /* AliasList.cpp */,
 				21D50AAA1A824A9C005C1F51 /* AliasManager.cpp */,
 			);
 			path = alias;
@@ -1241,6 +1238,7 @@
 				21D8E2C61A60E1E200E8A63F /* JSONDictionary.cpp in Sources */,
 				21D8E3031A60E1E200E8A63F /* JavaScriptEngineV8.cpp in Sources */,
 				21D8E2C21A60E1E200E8A63F /* JSONParserJansson.cpp in Sources */,
+				21CBBAAD1B005C0F00C778F0 /* AliasMap.cpp in Sources */,
 				21F4CE6B1A63F0BA00E7F0CC /* Script.cpp in Sources */,
 				21D8E2CD1A60E1E200E8A63F /* Message.cpp in Sources */,
 				2101897A1A7E3BE0007541B6 /* Program.cpp in Sources */,
@@ -1267,7 +1265,6 @@
 				21D8E2B71A60E1E200E8A63F /* DictionaryKeyList.cpp in Sources */,
 				21D8E2B81A60E1E200E8A63F /* MD5.cpp in Sources */,
 				21E1EB171A64FE2800FEABF6 /* NodeResponse.cpp in Sources */,
-				21D50AAC1A824A9C005C1F51 /* AliasEngine.cpp in Sources */,
 				21B911BC1A6B61CC00C791FD /* set_method.cpp in Sources */,
 				21D8E2CA1A60E1E200E8A63F /* JSONParser.cpp in Sources */,
 				21D8E2CC1A60E1E200E8A63F /* JSONString.cpp in Sources */,
@@ -1275,7 +1272,6 @@
 				219CE2761A6DD8F2008A6CBD /* RQLRequest.cpp in Sources */,
 				21D8E2B41A60E1E200E8A63F /* ConsistentHashNode.cpp in Sources */,
 				21D7A5A11A6BF1E900D43061 /* update.cpp in Sources */,
-				21D50AAD1A824A9C005C1F51 /* AliasList.cpp in Sources */,
 				21C3663A1AF6E8D4001CB74F /* remove_timer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
