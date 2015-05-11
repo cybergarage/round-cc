@@ -45,5 +45,49 @@ BOOST_AUTO_TEST_CASE(AliasTest) {
   BOOST_CHECK_EQUAL(object.compare(TEST_OBJECT), 0);
 }
 
+BOOST_AUTO_TEST_CASE(AliasMapTest) {
+  const std::string TEST_NAME = "tname";
+  const std::string TEST_OBJECT = "tsource";
+  
+  AliasMap aliasMap;
+  Alias *alias;
+  
+  // initialize node
+  
+  BOOST_CHECK_EQUAL(aliasMap.size(), 0);
+  BOOST_CHECK_EQUAL(aliasMap.hasAlias(TEST_NAME), false);
+  
+  // addAlias
+
+  alias = new Alias();
+  BOOST_CHECK_EQUAL(alias->setName(TEST_NAME), true);
+  BOOST_CHECK_EQUAL(alias->setObject(TEST_NAME), true);
+  
+  BOOST_CHECK_EQUAL(aliasMap.addAlias(alias), true);
+  BOOST_CHECK_EQUAL(aliasMap.size(), 1);
+  BOOST_CHECK_EQUAL(aliasMap.hasAlias(TEST_NAME), true);
+  
+  BOOST_CHECK_EQUAL(aliasMap.addAlias(alias), false);
+  BOOST_CHECK_EQUAL(aliasMap.size(), 1);
+  BOOST_CHECK_EQUAL(aliasMap.hasAlias(TEST_NAME), true);
+
+  // setAlias
+  
+  alias = new Alias();
+  BOOST_CHECK_EQUAL(alias->setName(TEST_NAME), true);
+  BOOST_CHECK_EQUAL(alias->setObject(TEST_NAME), true);
+  BOOST_CHECK_EQUAL(aliasMap.hasAlias(TEST_NAME), true);
+  
+  BOOST_CHECK_EQUAL(aliasMap.setAlias(alias), true);
+  BOOST_CHECK_EQUAL(aliasMap.size(), 1);
+  BOOST_CHECK_EQUAL(aliasMap.hasAlias(TEST_NAME), true);
+  
+  // removeAlias
+  
+  BOOST_CHECK_EQUAL(aliasMap.removeAliasByName(TEST_NAME), true);
+  BOOST_CHECK_EQUAL(aliasMap.size(), 0);
+  BOOST_CHECK_EQUAL(aliasMap.hasAlias(TEST_NAME), false);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 

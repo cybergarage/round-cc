@@ -51,6 +51,12 @@ public:
   AliasMap();
   ~AliasMap();
   
+  bool hasAlias(const std::string &name) const;
+  
+  bool addAlias(Alias *alias);
+  bool setAlias(Alias *alias);
+  bool removeAliasByName(const std::string &name);
+  
   void clear();
 };
 
