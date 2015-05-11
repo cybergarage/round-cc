@@ -15,13 +15,13 @@ Round has the following static methods as default. The methods are implemented u
 | Type | Name | Description |
 | --- | --- | --- |
 | Method | set_method | Set a new script method |
-| | remove_method | Remove the specified method |
+| | remove_method | Remove a specified method |
 | Route | set_route | Set a new route |
-| | remove_route | Remove the specified route |
+| | remove_route | Remove a specified route |
 | Timer | set_timer | Set a new timer |
-| | remove_timer | Remove the specified timer |
+| | remove_timer | Remove a specified timer |
 | Alias | set_alias | Set a alias for the other method |
-| | remove_alias | Remove the specified alias |
+| | remove_alias | Remove a specified alias |
 | Job | post_job | Post a job |
 
 #### set_method
@@ -47,7 +47,7 @@ The set_method method doesn't return anything when the method is success, otherw
 
 #### remove_method
 
-The remove_method method removes the specified method from the local node.
+The remove_method method removes a specified method from the local node.
 
 ##### Parameters
 
@@ -97,7 +97,7 @@ The set_route method doesn't return anything when the method is success, otherwi
 
 #### remove_route
 
-The remove_route method removes the specified route from the local node.
+The remove_route method removes a specified route from the local node.
 
 ##### Parameters
 
@@ -149,7 +149,7 @@ The set_alias method sets a new alias of a local method of the local node.
 ##### Parameters
 
 ```
-set_alias = "{" name [method] [defaults]"}"
+set_alias = "{" name method [defaults]"}"
 
 name     = "name" ":" TOKEN
 method   = "method" ":" TOKEN
@@ -165,9 +165,25 @@ If the code method isn't specified, the alias is removed.
 
 The set_alias method doesn't return anything when the method is success, otherwise a error object.
 
+#### remove_alias
+
+The remove_alias method remove a specified alias in the local node.
+
+##### Parameters
+
+```
+remove_alias = "{" name "}"
+
+name     = "name" ":" TOKEN
+```
+
+##### Return values
+
+The remove_alias method doesn't return anything when the method is success, otherwise a error object.
+
 #### post_job
 
-The post_job method exec the specified code in the local node, and returns a result.
+The post_job method exec a specified code in the local node, and returns a result.
 
 ##### Parameters
 
@@ -193,15 +209,15 @@ Round adds the following default native methods. The methods are implemented usi
 | --- | --- |
 | set_registry | Set a new registry into the local node |
 | get_registry | Get a registory from the local node |
-| get_network_state | Get a cluster list which the specified node knows |
-| get_cluster_state | Get a node list which the specified node is belong |
+| get_network_state | Get a cluster list which a specified node knows |
+| get_cluster_state | Get a node list which a specified node is belong |
 | get_node_state | Get a node information |
 | get_node_config | Get the node configuration |
 | get_node_stats | Get the node statistics |
 
 #### set_registry
 
-The set_registry method sets the specified key and value into the local node registry.
+The set_registry method setsa specified  key and value into the local node registry.
 
 ##### Parameters
 
@@ -218,7 +234,7 @@ The set_registry method doesn't return anything when the method is success, othe
 
 #### get_registry
 
-The get_registry method returns a registry by the specified key from the local node registry.
+The get_registry method returns a registry by a specified key from the local node registry.
 
 ##### Parameters
 

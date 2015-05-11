@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _ROUNDCC_ROUTE_H_
-#define _ROUNDCC_ROUTE_H_
+#ifndef _ROUNDCC_ALIAS_H_
+#define _ROUNDCC_ALIAS_H_
 
 #include <string>
 #include <map>
@@ -33,15 +33,21 @@ public:
   bool getName(std::string *value) const;
   bool isName(const std::string &value) const;
   
-  // Source
+  // Object
   
   bool setObject(const std::string &value);
   bool getObject(std::string *value) const;
+
+  // Default parameters
+  
+  bool setDefaults(const std::string &value);
+  bool getDefaults(std::string *value) const;
 
 private:
   
   std::string  name;
   std::string  object;
+  std::string  defaults;
 };
 
 class AliasMap : public std::map<std::string, Alias *> {

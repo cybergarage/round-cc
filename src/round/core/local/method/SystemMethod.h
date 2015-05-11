@@ -154,6 +154,9 @@ public:
 class set_alias : public system_method {
  public:
   static const std::string NAME;
+  static const std::string ALIAS_NAME;
+  static const std::string ALIAS_METHOD;
+  static const std::string ALIAS_DEFAULTS;
  public:
   set_alias();
   ~set_alias();
@@ -165,6 +168,7 @@ class set_alias : public system_method {
 class remove_alias : public system_method {
 public:
   static const std::string NAME;
+  static const std::string ALIAS_NAME;
 public:
   remove_alias();
   ~remove_alias();

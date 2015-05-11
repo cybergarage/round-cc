@@ -20,6 +20,7 @@
 #include <round/core/Method.h>
 #include <round/core/Route.h>
 #include <round/core/Registry.h>
+#include <round/core/Alias.h>
 
 namespace Round {
 
@@ -174,6 +175,9 @@ class LocalNode : public Node, public NodeFinderObserver {
   bool removeSameRoute(const Route *route);
   bool removeRouteByName(const std::string &name);
   bool execRoute(const std::string &src, const std::string &params);
+  
+  bool setAlias(Alias *alias);
+  bool removeAliasByName(const std::string &name);
   
   virtual bool start(Error *error);
   virtual bool stop(Error *error);

@@ -222,6 +222,17 @@ bool Round::LocalNode::execJob(const std::string &lang, const std::string &scrip
   return this->scriptMgr.execScript(lang, script, encodeType, result, error);
 }
 
+////////////////////////////////////////////////
+// Alias
+////////////////////////////////////////////////
+
+bool Round::LocalNode::setAlias(Alias *alias) {
+  return this->setAlias(alias);
+}
+
+bool Round::LocalNode::removeAliasByName(const std::string &name) {
+  return this->removeAliasByName(name);
+}
 
 ////////////////////////////////////////////////
 // Registry

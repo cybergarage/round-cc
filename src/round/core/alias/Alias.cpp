@@ -55,3 +55,15 @@ bool Round::Alias::getObject(std::string *value) const {
   *value = this->object;
   return  true;
 }
+
+bool Round::Alias::setDefaults(const std::string &value) {
+  this->defaults = value;
+  return true;
+}
+
+bool Round::Alias::getDefaults(std::string *value) const {
+  if (this->defaults.length() <= 0)
+    return false;
+  *value = this->defaults;
+  return  true;
+}

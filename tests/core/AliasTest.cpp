@@ -18,31 +18,40 @@ using namespace Round;
 BOOST_AUTO_TEST_SUITE(alias)
 
 BOOST_AUTO_TEST_CASE(AliasTest) {
-  const std::string TEST_NAME = "tname";
-  const std::string TEST_OBJECT = "tsource";
+  const std::string TEST_NAME = "aname";
+  const std::string TEST_OBJECT = "asource";
+  const std::string TEST_DEFAULTS = "adefaults";
   
   Alias alias;
-  std::string name, object;
+  std::string name, object, params;
   
   // initialize node
   
   BOOST_CHECK_EQUAL(alias.isValid(), false);
   BOOST_CHECK_EQUAL(alias.getName(&name), false);
   BOOST_CHECK_EQUAL(alias.getObject(&object), false);
+  BOOST_CHECK_EQUAL(alias.getDefaults(&params), false);
 
-  // "name"
+  // name
 
   BOOST_CHECK_EQUAL(alias.setName(TEST_NAME), true);
   BOOST_CHECK_EQUAL(alias.isValid(), false);
   BOOST_CHECK_EQUAL(alias.getName(&name), true);
   BOOST_CHECK_EQUAL(name.compare(TEST_NAME), 0);
 
-  // "object"
+  // object
   
   BOOST_CHECK_EQUAL(alias.setObject(TEST_OBJECT), true);
   BOOST_CHECK_EQUAL(alias.isValid(), true);
   BOOST_CHECK_EQUAL(alias.getObject(&object), true);
   BOOST_CHECK_EQUAL(object.compare(TEST_OBJECT), 0);
+
+  // default params
+  
+  BOOST_CHECK_EQUAL(alias.setDefaults(TEST_DEFAULTS), true);
+  BOOST_CHECK_EQUAL(alias.isValid(), true);
+  BOOST_CHECK_EQUAL(alias.getDefaults(&params), true);
+  BOOST_CHECK_EQUAL(params.compare(TEST_DEFAULTS), 0);
 }
 
 BOOST_AUTO_TEST_CASE(AliasMapTest) {
