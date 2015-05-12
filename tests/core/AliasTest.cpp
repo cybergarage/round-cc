@@ -70,7 +70,7 @@ BOOST_AUTO_TEST_CASE(AliasMapTest) {
 
   alias = new Alias();
   BOOST_CHECK_EQUAL(alias->setName(TEST_NAME), true);
-  BOOST_CHECK_EQUAL(alias->setObject(TEST_NAME), true);
+  BOOST_CHECK_EQUAL(alias->setObject(TEST_OBJECT), true);
   
   BOOST_CHECK_EQUAL(aliasMap.addAlias(alias), true);
   BOOST_CHECK_EQUAL(aliasMap.size(), 1);
@@ -90,6 +90,12 @@ BOOST_AUTO_TEST_CASE(AliasMapTest) {
   BOOST_CHECK_EQUAL(aliasMap.setAlias(alias), true);
   BOOST_CHECK_EQUAL(aliasMap.size(), 1);
   BOOST_CHECK_EQUAL(aliasMap.hasAlias(TEST_NAME), true);
+
+  // findAlias
+  
+  Alias *foundAlias = aliasMap.findAlias(TEST_NAME);
+  BOOST_CHECK(foundAlias);
+  BOOST_CHECK_EQUAL(foundAlias->equals(alias), true);
   
   // removeAlias
   
@@ -99,4 +105,3 @@ BOOST_AUTO_TEST_CASE(AliasMapTest) {
 }
 
 BOOST_AUTO_TEST_SUITE_END()
-

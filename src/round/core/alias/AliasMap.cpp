@@ -31,6 +31,20 @@ bool Round::AliasMap::hasAlias(const std::string &name) const {
   return (find(name) != end()) ? true  : false;
 }
 
+Round::Alias *Round::AliasMap::findAlias(const std::string &name) const {
+  AliasMap::const_iterator valueIt = find(name);
+  if (valueIt == end())
+    return NULL;
+  return valueIt->second;
+}
+
+bool Round::AliasMap::getSourceObjects(const std::string &name, std::string *object) const {
+  Alias *alias = findAlias(name);
+  if (!alias)
+    return NULL;
+  return alias->getObject(object);
+}
+
 bool Round::AliasMap::addAlias(Alias *alias) {
   std::string name;
   if (!alias->getName(&name))
