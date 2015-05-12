@@ -558,9 +558,9 @@ bool Round::LocalNode::isAliasMethod(const std::string &method) {
   return isAlias;
 }
 
-bool Round::LocalNode::execAliasMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+bool Round::LocalNode::execAliasMethod(const NodeRequest *aliasReq, NodeResponse *nodeRes, Error *error) {
   std::string reqMethod;
-  nodeReq->getMethod(&reqMethod);
+  aliasReq->getMethod(&reqMethod);
   
   this->aliasMgr.lock();
   
@@ -578,7 +578,8 @@ bool Round::LocalNode::execAliasMethod(const NodeRequest *nodeReq, NodeResponse 
   
   this->aliasMgr.unlock();
   
-  return true;
+  NodeRequest nodeReq(aliasReq);
+  return execMethod(&nodeReq, nodeRes, error);
 }
 
 ////////////////////////////////////////////////
