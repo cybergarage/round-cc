@@ -32,6 +32,8 @@ public:
   
   NodeRequest();
   NodeRequest(const std::string &method);
+  NodeRequest(const NodeRequest *nodeReq);
+  
   virtual ~NodeRequest();
    
   void setSourceNodeParameters(const Node *node);

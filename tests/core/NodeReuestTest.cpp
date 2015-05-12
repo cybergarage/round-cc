@@ -60,5 +60,18 @@ BOOST_AUTO_TEST_CASE(NodeRequestOptionTest) {
   BOOST_CHECK_EQUAL(nodeReq.isAsync(), false);
 }
 
+BOOST_AUTO_TEST_CASE(NodeRequestCopyTest) {
+  Error error;
+  NodeRequestParser jsonParser;
+  BOOST_CHECK(jsonParser.parse("{\"name\": \"John Smith\", \"age\": 33}", &error));
+  BOOST_CHECK(jsonParser.getRootObject());
+  BOOST_CHECK(jsonParser.getRootObject()->isDictionary());
+  NodeRequest *nodeReq = static_cast<NodeRequest *>(jsonParser.getRootObject());
+  BOOST_CHECK(nodeReq);
+
+  NodeRequest copyNodeReq(nodeReq);
+  BOOST_CHECK(copyNodeReq.equals(nodeReq));
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 

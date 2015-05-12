@@ -27,6 +27,10 @@ Round::NodeRequest::NodeRequest(const std::string &method) {
   setMethod(method);
 }
 
+Round::NodeRequest::NodeRequest(const NodeRequest *nodeReq) {
+  JSONDictionary::set(nodeReq);
+}
+
 Round::NodeRequest::~NodeRequest() {
 }
 
