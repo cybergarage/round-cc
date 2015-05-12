@@ -227,11 +227,17 @@ bool Round::LocalNode::execJob(const std::string &lang, const std::string &scrip
 ////////////////////////////////////////////////
 
 bool Round::LocalNode::setAlias(Alias *alias) {
-  return this->setAlias(alias);
+  this->aliasMgr.lock();
+  bool isSuccess = this->aliasMgr.setAlias(alias);
+  this->aliasMgr.unlock();
+  return isSuccess;
 }
 
 bool Round::LocalNode::removeAliasByName(const std::string &name) {
-  return this->removeAliasByName(name);
+  this->aliasMgr.lock();
+  bool isSuccess = this->aliasMgr.removeAliasByName(name);
+  this->aliasMgr.unlock();
+  return isSuccess;
 }
 
 ////////////////////////////////////////////////
@@ -542,6 +548,40 @@ bool Round::LocalNode::execNativeMethod(const NodeRequest *nodeReq, NodeResponse
 }
 
 ////////////////////////////////////////////////
+// Alias Method
+////////////////////////////////////////////////
+
+bool Round::LocalNode::isAliasMethod(const std::string &method) {
+  this->aliasMgr.lock();
+  bool isAlias = this->aliasMgr.hasAlias(method);
+  this->aliasMgr.unlock();
+  return isAlias;
+}
+
+bool Round::LocalNode::execAliasMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) {
+  std::string reqMethod;
+  nodeReq->getMethod(&reqMethod);
+  
+  this->aliasMgr.lock();
+  
+  Alias *alias = this->aliasMgr.findAlias(reqMethod);
+  if (!alias) {
+    this->aliasMgr.unlock();
+    return false;
+  }
+
+  std::string sourceMethod;
+  if (!alias->getObject(&sourceMethod)) {
+    this->aliasMgr.unlock();
+    return false;
+  }
+  
+  this->aliasMgr.unlock();
+  
+  return true;
+}
+
+////////////////////////////////////////////////
 // Exce Method
 ////////////////////////////////////////////////
 
@@ -580,6 +620,11 @@ bool Round::LocalNode::execMethod(const NodeRequest *nodeReq, NodeResponse *node
     isMethodSuccess = execNativeMethod(nodeReq, nodeRes, error);
   }
 
+  if (isAliasMethod(name)) {
+    isMethodExecuted = true;
+    isMethodSuccess = execAliasMethod(nodeReq, nodeRes, error);
+  }
+  
   if (!isMethodExecuted) {
     setError(RPC::JSON::ErrorCodeMethodNotFound, error);
     return false;

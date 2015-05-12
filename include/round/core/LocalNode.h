@@ -96,7 +96,15 @@ public:
 private:
   void init();
 };
+
+class LocalAliasManager: public AliasManager {
   
+public:
+  
+  LocalAliasManager();
+  ~LocalAliasManager();
+};
+
 class LocalConfig : public Config {
  public:
   
@@ -242,6 +250,9 @@ private:
   bool isNativeMethod(const std::string &method);
   bool execNativeMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
 
+  bool isAliasMethod(const std::string &method);
+  bool execAliasMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  
   bool hasRoute(const std::string &name);
   bool execRoute(const std::string &name, const NodeResponse *prevNodeRes, NodeResponse *nodeRes, Error *error);
   
@@ -259,6 +270,7 @@ private:
   LocalNativeMethodManager  sysMethodMgr;
   LocalRegistry             nodeReg;
   LocalRouteManager         routeMgr;
+  LocalAliasManager         aliasMgr;
 };
 
 }

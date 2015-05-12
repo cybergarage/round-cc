@@ -32,9 +32,10 @@
 		216B58091AD38B6C00846C32 /* Registry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216B58081AD38B6C00846C32 /* Registry.cpp */; };
 		216B580C1AD38C8600846C32 /* RegistryManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216B580A1AD38C8600846C32 /* RegistryManager.cpp */; };
 		216B580D1AD38C8600846C32 /* RegistryMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216B580B1AD38C8600846C32 /* RegistryMap.cpp */; };
-		216CAAD81A78834800396ED8 /* LocalRouteEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216CAAD71A78834800396ED8 /* LocalRouteEngine.cpp */; };
+		216CAAD81A78834800396ED8 /* LocalRouteManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216CAAD71A78834800396ED8 /* LocalRouteManager.cpp */; };
 		217342FD1A6CB3C000ADA1C8 /* question.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217342FC1A6CB3C000ADA1C8 /* question.cpp */; };
 		218B34421AECD4C3009BE65F /* post_job.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218B34411AECD4C3009BE65F /* post_job.cpp */; };
+		219911131B01FA9600A6C5D6 /* LocalAliasManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 219911121B01FA9600A6C5D6 /* LocalAliasManager.cpp */; };
 		219CE2761A6DD8F2008A6CBD /* RQLRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 219CE2751A6DD8F2008A6CBD /* RQLRequest.cpp */; };
 		219EA4371A6BB0BD00F3D89B /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 219EA4361A6BB0BD00F3D89B /* Input.cpp */; };
 		21A0E7D71ABE523F009FA687 /* LuaEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A0E7D61ABE523F009FA687 /* LuaEngine.cpp */; };
@@ -270,9 +271,10 @@
 		216B58081AD38B6C00846C32 /* Registry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Registry.cpp; sourceTree = "<group>"; };
 		216B580A1AD38C8600846C32 /* RegistryManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RegistryManager.cpp; sourceTree = "<group>"; };
 		216B580B1AD38C8600846C32 /* RegistryMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RegistryMap.cpp; sourceTree = "<group>"; };
-		216CAAD71A78834800396ED8 /* LocalRouteEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalRouteEngine.cpp; sourceTree = "<group>"; };
+		216CAAD71A78834800396ED8 /* LocalRouteManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalRouteManager.cpp; sourceTree = "<group>"; };
 		217342FC1A6CB3C000ADA1C8 /* question.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = question.cpp; sourceTree = "<group>"; };
 		218B34411AECD4C3009BE65F /* post_job.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = post_job.cpp; sourceTree = "<group>"; };
+		219911121B01FA9600A6C5D6 /* LocalAliasManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalAliasManager.cpp; sourceTree = "<group>"; };
 		219CE2751A6DD8F2008A6CBD /* RQLRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RQLRequest.cpp; sourceTree = "<group>"; };
 		219EA4361A6BB0BD00F3D89B /* Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Input.cpp; sourceTree = "<group>"; };
 		21A0E7D61ABE523F009FA687 /* LuaEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaEngine.cpp; sourceTree = "<group>"; };
@@ -596,10 +598,11 @@
 		21B911911A6B5E5400C791FD /* local */ = {
 			isa = PBXGroup;
 			children = (
+				219911121B01FA9600A6C5D6 /* LocalAliasManager.cpp */,
 				21B911921A6B5E5400C791FD /* LocalConfig.cpp */,
 				21B911931A6B5E5400C791FD /* LocalRegistry.cpp */,
 				21B911941A6B5E5400C791FD /* LocalNativeMethodManager.cpp */,
-				216CAAD71A78834800396ED8 /* LocalRouteEngine.cpp */,
+				216CAAD71A78834800396ED8 /* LocalRouteManager.cpp */,
 				21B911951A6B5E5400C791FD /* LocalScriptManager.cpp */,
 				21B911961A6B5E5400C791FD /* LocalStaticMethodManager.cpp */,
 				21B911971A6B5E5400C791FD /* LocalWorker.cpp */,
@@ -1200,6 +1203,7 @@
 				21E1EB151A64FE2800FEABF6 /* NodeBatchRequest.cpp in Sources */,
 				21B911B81A6B5F4300C791FD /* SystemMethodRequest.cpp in Sources */,
 				21D8E2C71A60E1E200E8A63F /* JSONInterger.cpp in Sources */,
+				219911131B01FA9600A6C5D6 /* LocalAliasManager.cpp in Sources */,
 				21D8E2EC1A60E1E200E8A63F /* NodeCore.cpp in Sources */,
 				21FA93DD1A6E8FF10067314A /* method.cpp in Sources */,
 				21D8E3001A60E1E200E8A63F /* JavaEngine.cpp in Sources */,
@@ -1227,7 +1231,7 @@
 				21FA93E11A6E90040067314A /* use.cpp in Sources */,
 				21D50AAB1A824A9C005C1F51 /* Alias.cpp in Sources */,
 				21D8E3011A60E1E200E8A63F /* JavaScriptEngine.cpp in Sources */,
-				216CAAD81A78834800396ED8 /* LocalRouteEngine.cpp in Sources */,
+				216CAAD81A78834800396ED8 /* LocalRouteManager.cpp in Sources */,
 				21B9119B1A6B5E5400C791FD /* LocalScriptManager.cpp in Sources */,
 				21526C8D1A6682F900CF3D12 /* RPCResponse.cpp in Sources */,
 				21D8E2DA1A60E1E200E8A63F /* Settings.cpp in Sources */,

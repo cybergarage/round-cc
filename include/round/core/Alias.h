@@ -79,6 +79,18 @@ class AliasManager : public AliasMap {
   
   AliasManager();
   virtual ~AliasManager();
+
+  void lock() {
+    mutex.lock();
+  }
+  
+  void unlock() {
+    mutex.unlock();
+  }
+  
+private:
+  
+  Mutex mutex;
 };
 
 }
