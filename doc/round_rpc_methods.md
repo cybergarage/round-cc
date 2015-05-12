@@ -153,13 +153,13 @@ set_alias = "{" name method [defaults]"}"
 
 name     = "name" ":" TOKEN
 method   = "method" ":" TOKEN
-defaults = (json-rpc-default | json-rpc-params-default)*
+default-params = (json-rpc-default | json-rpc-params-default)*
 
 json-rpc-default        = ("dest" | "quorum" | "cond" | "type") ":" TOKEN
 json-rpc-params-default = "params".TOKEN ":" TOKEN
 ```
 
-If the code method isn't specified, the alias is removed.
+The `default-params` are passed into the original method. If the alias is posted with new parameters, the new parameters are added or overrided into the default parameters.
 
 ##### Return values
 
