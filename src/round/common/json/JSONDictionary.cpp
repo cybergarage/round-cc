@@ -216,6 +216,15 @@ bool Round::JSONDictionary::set(const JSONDictionary *srcDict) {
   if (!srcDict)
     return false;
 
+  clear();
+  
+  return add(srcDict);
+}
+
+bool Round::JSONDictionary::add(const JSONDictionary *srcDict) {
+  if (!srcDict)
+    return false;
+
   for (JSONDictionary::const_iterator dict = srcDict->begin(); dict != srcDict->end(); dict++) {
     JSONObject *valueObj = dict->second;
     if (!valueObj)

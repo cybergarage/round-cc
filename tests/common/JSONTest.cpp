@@ -381,13 +381,59 @@ BOOST_AUTO_TEST_CASE(RoundJSONArrayCopyTest) {
 BOOST_AUTO_TEST_CASE(RoundJSONDictionaryCopyTest) {
   const std::string testKey = "testKey";
   const std::string testValue = "testValue";
-
+  
   JSONDictionary srcDist;
   srcDist.set(testKey, testValue);
-
+  
   JSONDictionary *dstDict;
   BOOST_CHECK(srcDist.copy(&dstDict));
   BOOST_CHECK(srcDist.equals(dstDict));
+}
+
+BOOST_AUTO_TEST_CASE(RoundJSONDictionarySetTest) {
+  const std::string testKey01 = "testKey01";
+  const std::string testValue01 = "testValue01";
+  const std::string testKey02 = "testKey02";
+  const std::string testValue02 = "testValue02";
+
+  JSONDictionary srcDist01;
+  srcDist01.set(testKey01, testValue01);
+
+  JSONDictionary dstDict;
+
+  BOOST_CHECK(dstDict.set(&srcDist01));
+  BOOST_CHECK(dstDict.hasKey(testKey01));
+  BOOST_CHECK(!dstDict.hasKey(testKey02));
+
+  JSONDictionary srcDist02;
+  srcDist02.set(testKey02, testValue02);
+  
+  BOOST_CHECK(dstDict.set(&srcDist02));
+  BOOST_CHECK(!dstDict.hasKey(testKey01));
+  BOOST_CHECK(dstDict.hasKey(testKey02));
+}
+
+BOOST_AUTO_TEST_CASE(RoundJSONDictionaryAddTest) {
+  const std::string testKey01 = "testKey01";
+  const std::string testValue01 = "testValue01";
+  const std::string testKey02 = "testKey02";
+  const std::string testValue02 = "testValue02";
+  
+  JSONDictionary srcDist01;
+  srcDist01.set(testKey01, testValue01);
+  
+  JSONDictionary dstDict;
+  
+  BOOST_CHECK(dstDict.add(&srcDist01));
+  BOOST_CHECK(dstDict.hasKey(testKey01));
+  BOOST_CHECK(!dstDict.hasKey(testKey02));
+  
+  JSONDictionary srcDist02;
+  srcDist02.set(testKey02, testValue02);
+  
+  BOOST_CHECK(dstDict.add(&srcDist02));
+  BOOST_CHECK(dstDict.hasKey(testKey01));
+  BOOST_CHECK(dstDict.hasKey(testKey02));
 }
 
 BOOST_AUTO_TEST_CASE(RoundJSONDictionaryGetDirectoryTest) {

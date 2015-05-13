@@ -161,6 +161,7 @@ public:
   const char *toJSONString(std::string *stringBuf) const;
 
   bool set(const JSONDictionary *jsonObj);
+  bool add(const JSONDictionary *jsonObj);
 
   bool set(const std::string &key, JSONObject *value);
   bool get(const std::string &key, JSONObject **value) const;
