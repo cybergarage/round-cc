@@ -33,6 +33,7 @@ public:
   NodeRequest();
   NodeRequest(const std::string &method);
   NodeRequest(const NodeRequest *nodeReq);
+  NodeRequest(const NodeRequest *nodeReq, const std::string &defaultParams);
   
   virtual ~NodeRequest();
    
@@ -53,6 +54,10 @@ public:
   bool isAsync() const {
     return !isSync();
   }
+
+private:
+  
+  bool setParamsWithDefault(const NodeRequest *nodeReq, const std::string &defaultParams);
 };
 
 class NodeBatchRequest : public RPC::JSON::BatchRequest {

@@ -31,6 +31,10 @@ Round::NodeRequest::NodeRequest(const NodeRequest *nodeReq) {
   JSONDictionary::set(nodeReq);
 }
 
+Round::NodeRequest::NodeRequest(const NodeRequest *nodeReq, const std::string &defaultParams) {
+  setParamsWithDefault(nodeReq, defaultParams);
+}
+
 Round::NodeRequest::~NodeRequest() {
 }
 
@@ -38,6 +42,10 @@ void Round::NodeRequest::setSourceNodeParameters(const Node *node) {
   clock_t localTs = node->getLocalClock();
   setId(localTs);
   setTimestamp(localTs);
+}
+
+bool Round::NodeRequest::setParamsWithDefault(const NodeRequest *nodeReq, const std::string &defaultParams) {
+  return false;
 }
 
 Round::NodeRequest *Round::NodeRequest::CreateFromHTTPGetRequest(uHTTP::HTTPRequest *httpReq) {
