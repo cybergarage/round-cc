@@ -576,9 +576,15 @@ bool Round::LocalNode::execAliasMethod(const NodeRequest *aliasReq, NodeResponse
     return false;
   }
   
+  std::string defaultParams;
+  if (!alias->getDefaults(&defaultParams)) {
+    this->aliasMgr.unlock();
+    return false;
+  }
+  
   this->aliasMgr.unlock();
   
-  NodeRequest nodeReq(aliasReq);
+  NodeRequest nodeReq(aliasReq, defaultParams);
   return execMethod(&nodeReq, nodeRes, error);
 }
 

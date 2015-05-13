@@ -68,8 +68,6 @@ bool Round::Alias::setDefaults(const std::string &value) {
 }
 
 bool Round::Alias::getDefaults(std::string *value) const {
-  if (this->defaults.length() <= 0)
-    return false;
   *value = this->defaults;
   return  true;
 }
