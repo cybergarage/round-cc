@@ -198,6 +198,85 @@ BOOST_AUTO_TEST_CASE(RoundJSONStringSetterTest) {
 }
 
 ////////////////////////////////////////////////////////////
+// JSONArray
+////////////////////////////////////////////////////////////
+
+BOOST_AUTO_TEST_CASE(RoundJSONArrayCopyTest) {
+  const int testValueCnt = 3;
+  
+  JSONArray srcArray;
+  for (int n = 0; n < testValueCnt; n++) {
+    ostringstream os;
+    os << "testValue" << n;
+    JSONString *srcString = new JSONString();
+    srcString->set(os.str());
+    srcArray.add(srcString);
+  }
+  
+  JSONArray *dstArray;
+  BOOST_CHECK(srcArray.copy(&dstArray));
+  BOOST_CHECK(srcArray.equals(dstArray));
+}
+
+BOOST_AUTO_TEST_CASE(RoundJSONArraySetTest) {
+  const int testValueCnt = 3;
+  
+  JSONArray srcArray01;
+  for (int n = 0; n < testValueCnt; n++) {
+    ostringstream os;
+    os << "testValue01" << n;
+    JSONString *srcString = new JSONString();
+    srcString->set(os.str());
+    srcArray01.add(srcString);
+  }
+
+  JSONArray dstArray;
+  BOOST_CHECK(dstArray.set(&srcArray01));
+  BOOST_CHECK_EQUAL(dstArray.size(), testValueCnt);
+  
+  JSONArray srcArray02;
+  for (int n = 0; n < testValueCnt; n++) {
+    ostringstream os;
+    os << "testValue02" << n;
+    JSONString *srcString = new JSONString();
+    srcString->set(os.str());
+    srcArray02.add(srcString);
+  }
+
+  BOOST_CHECK(dstArray.set(&srcArray02));
+  BOOST_CHECK_EQUAL(dstArray.size(), testValueCnt);
+}
+
+BOOST_AUTO_TEST_CASE(RoundJSONArrayAddTest) {
+  const int testValueCnt = 3;
+  
+  JSONArray srcArray01;
+  for (int n = 0; n < testValueCnt; n++) {
+    ostringstream os;
+    os << "testValue01" << n;
+    JSONString *srcString = new JSONString();
+    srcString->set(os.str());
+    srcArray01.add(srcString);
+  }
+  
+  JSONArray dstArray;
+  BOOST_CHECK(dstArray.add(&srcArray01));
+  BOOST_CHECK_EQUAL(dstArray.size(), testValueCnt);
+  
+  JSONArray srcArray02;
+  for (int n = 0; n < testValueCnt; n++) {
+    ostringstream os;
+    os << "testValue02" << n;
+    JSONString *srcString = new JSONString();
+    srcString->set(os.str());
+    srcArray02.add(srcString);
+  }
+  
+  BOOST_CHECK(dstArray.add(&srcArray02));
+  BOOST_CHECK_EQUAL(dstArray.size(), (testValueCnt * 2));
+}
+
+////////////////////////////////////////////////////////////
 // JSONDictionary
 ////////////////////////////////////////////////////////////
 
@@ -359,23 +438,6 @@ BOOST_AUTO_TEST_CASE(RoundJSONStringCopyTest) {
   JSONString *dstString;
   BOOST_CHECK(srcString.copy(&dstString));
   BOOST_CHECK(srcString.equals(dstString));
-}
-
-BOOST_AUTO_TEST_CASE(RoundJSONArrayCopyTest) {
-  const int testValueCnt = 3;
-
-  JSONArray srcArray;
-  for (int n = 0; n < testValueCnt; n++) {
-    ostringstream os;
-    os << "testValue" << n;
-    JSONString *srcString = new JSONString();
-    srcString->set(os.str());
-    srcArray.add(srcString);
-  }
-
-  JSONArray *dstArray;
-  BOOST_CHECK(srcArray.copy(&dstArray));
-  BOOST_CHECK(srcArray.equals(dstArray));
 }
 
 BOOST_AUTO_TEST_CASE(RoundJSONDictionaryCopyTest) {

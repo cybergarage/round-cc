@@ -68,6 +68,11 @@ const char *Round::JSONArray::toJSONString(std::string *stringBuf) const {
 }
 
 bool Round::JSONArray::set(const JSONArray *srcArray) {
+  clear();
+  return add(srcArray);
+}
+
+bool Round::JSONArray::add(const JSONArray *srcArray) {
   for (JSONArray::const_iterator obj = srcArray->begin(); obj != srcArray->end(); obj++) {
     JSONObject *copyObj = NULL;
     if (!(*obj)->copy(&copyObj))

@@ -135,6 +135,7 @@ public:
   const char *toJSONString(std::string *stringBuf) const;
 
   bool set(const JSONArray *jsonObj);
+  bool add(const JSONArray *jsonObj);
 
   void add(JSONObject *value);
   void add(const std::string &value);
