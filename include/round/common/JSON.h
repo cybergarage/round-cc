@@ -145,7 +145,7 @@ public:
   bool getString(size_t n, std::string *value) const ;
   bool getInteger(size_t n, int *value) const ;
 
-  void clear();
+  bool clear();
 };
 
 class JSONDictionary : public JSONObject, public std::map<std::string, JSONObject *> {
@@ -198,7 +198,7 @@ public:
   
   bool remove(const std::string &key);
 
-  void clear();
+  bool clear();
 };
 
 class JSONParser {

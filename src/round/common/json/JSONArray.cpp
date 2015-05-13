@@ -92,8 +92,12 @@ bool Round::JSONArray::copy(JSONObject **newObj) const {
   return false;
 }
 
-void Round::JSONArray::clear() {
-  for (JSONArray::iterator obj = begin(); obj != end(); obj++)
+bool Round::JSONArray::clear() {
+  for (JSONArray::iterator obj = begin(); obj != end(); obj++) {
     delete *obj;
+  }
+
   std::vector<JSONObject *>::clear();
+  
+  return true;
 }

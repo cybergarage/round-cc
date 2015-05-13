@@ -285,11 +285,14 @@ bool Round::JSONDictionary::remove(const std::string &key) {
   return true;
 }
 
-void Round::JSONDictionary::clear() {
+bool Round::JSONDictionary::clear() {
   for (JSONDictionary::iterator obj = begin(); obj != end(); obj++) {
-    if (obj->second)
+    if (obj->second) {
       delete obj->second;
+    }
   }
 
   std::map<std::string, JSONObject *>::clear();
+
+  return true;
 }
