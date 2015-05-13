@@ -95,6 +95,7 @@ class JSONInteger : public JSONString {
  public:
   JSONInteger();
   JSONInteger(int value);
+  JSONInteger(long value);
 
   int getType() const {return INTEGER;}
   bool copy(JSONObject **newObj) const;

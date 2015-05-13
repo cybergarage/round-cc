@@ -70,7 +70,7 @@ bool Round::JSONDictionary::set(const std::string &key, int value) {
 }
 
 bool Round::JSONDictionary::set(const std::string &key, long value) {
-  JSONInteger *jsonObj = new JSONInteger((int)value);
+  JSONInteger *jsonObj = new JSONInteger(value);
   return set(key, jsonObj);
 }
 

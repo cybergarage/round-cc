@@ -17,6 +17,10 @@ Round::JSONInteger::JSONInteger(int value) {
   set(value);
 }
 
+Round::JSONInteger::JSONInteger(long value) {
+  set(value);
+}
+
 bool Round::JSONInteger::copy(JSONObject **newObj) const {
   JSONInteger *dstObj = new JSONInteger();
   if (dstObj->set(this)) {
