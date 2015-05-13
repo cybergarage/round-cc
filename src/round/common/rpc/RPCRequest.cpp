@@ -48,6 +48,23 @@ bool Round::RPC::JSON::Request::isMethod(const std::string &method) const {
   return (method.compare(reqMethod) == 0) ? true : false;
 }
 
+bool Round::RPC::JSON::Request::isJSONParams() const {
+  if (!hasParams())
+    return false;
+
+  std::string params;
+  if (!getParams(&params))
+    return false;
+  
+  JSONParser jsonParser;
+  Error err;
+  
+  if (!jsonParser.parse(params, &err))
+    return false;
+  
+  return true;
+}
+
 void Round::RPC::JSON::Request::toHTTPPostRequest(uHTTP::HTTPRequest *httpReq) const {
   if (!httpReq)
     return;

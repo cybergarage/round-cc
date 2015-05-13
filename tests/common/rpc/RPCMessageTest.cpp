@@ -94,6 +94,23 @@ BOOST_AUTO_TEST_CASE(RPCRequestMethodTest) {
   BOOST_CHECK_EQUAL(id, TEST_ID);
 }
 
+BOOST_AUTO_TEST_CASE(RPCRequesParamTest) {
+  RPC::JSON::Request rpcReq;
+
+  BOOST_CHECK(!rpcReq.hasParams());
+  BOOST_CHECK(!rpcReq.isJSONParams());
+
+  const std::string TEST_PARAMS = "{\"value\":1}";
+  BOOST_CHECK(rpcReq.setParams(TEST_PARAMS));
+  BOOST_CHECK(rpcReq.hasParams());
+  BOOST_CHECK(!rpcReq.isJSONParams());
+
+  const std::string TEST_JSON_PARAMS = "{\"value\":1}";
+  BOOST_CHECK(rpcReq.setParams(TEST_JSON_PARAMS));
+  BOOST_CHECK(rpcReq.hasParams());
+  BOOST_CHECK(rpcReq.isJSONParams());
+}
+
 BOOST_AUTO_TEST_CASE(RPCResponseMethodTest) {
   RPC::JSON::Response rpcMsg;
   
