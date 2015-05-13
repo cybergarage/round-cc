@@ -55,8 +55,7 @@ public:
     return !isSync();
   }
 
-private:
-  
+  bool setParamsWithDefault(const std::string &params, const std::string &defaultParams);
   bool setParamsWithDefault(const NodeRequest *nodeReq, const std::string &defaultParams);
 };
 

@@ -73,5 +73,72 @@ BOOST_AUTO_TEST_CASE(NodeRequestCopyTest) {
   BOOST_CHECK(copyNodeReq.equals(nodeReq));
 }
 
+BOOST_AUTO_TEST_CASE(NodeRequestSetWithDefaultsTest) {
+  NodeRequest nodeReq;
+  std::string reqParams;
+  std::string defaults;
+  std::string params;
+  std::string param;
+  
+  // Request has no params (Use default params)
+
+  BOOST_CHECK(nodeReq.clear());
+  reqParams = "";
+  defaults = "default";
+  BOOST_CHECK(nodeReq.setParamsWithDefault(reqParams, defaults));
+  BOOST_CHECK(nodeReq.getParams(&params));
+  BOOST_CHECK_EQUAL(params.compare(defaults), 0);
+  
+  BOOST_CHECK(nodeReq.clear());
+  reqParams = "";
+  defaults = "{\"name\": \"John Smith\", \"age\": 33}";
+  BOOST_CHECK(nodeReq.setParamsWithDefault(reqParams, defaults));
+  BOOST_CHECK(nodeReq.getParams(&params));
+  BOOST_CHECK_EQUAL(params.compare(defaults), 0);
+  
+  // Request or default is not JSON format. (Use request params)
+  
+  BOOST_CHECK(nodeReq.clear());
+  reqParams = "hello";
+  defaults = "{\"name\": \"John Smith\", \"age\": 33}";
+  BOOST_CHECK(nodeReq.setParamsWithDefault(reqParams, defaults));
+  BOOST_CHECK(nodeReq.getParams(&params));
+  BOOST_CHECK_EQUAL(params.compare(reqParams), 0);
+  
+  BOOST_CHECK(nodeReq.clear());
+  reqParams = "{\"name\": \"John Smith\", \"age\": 33}";
+  defaults = "default";
+  BOOST_CHECK(nodeReq.setParamsWithDefault(reqParams, defaults));
+  BOOST_CHECK(nodeReq.getParams(&params));
+  BOOST_CHECK_EQUAL(params.compare(reqParams), 0);
+  
+  // Request and default are JSONDictionary (Merge params)
+  
+  BOOST_CHECK(nodeReq.clear());
+  reqParams = "{\"name\": \"John Smith\"}";
+  defaults = "{\"age\": 33}";
+  BOOST_CHECK(nodeReq.setParamsWithDefault(reqParams, defaults));
+  BOOST_CHECK(nodeReq.getParams(&params));
+  BOOST_CHECK_EQUAL(params.compare("{\"age\":33,\"name\":\"John Smith\"}"), 0);
+  
+  // Request and default are JSONArray (Merge params)
+  
+  BOOST_CHECK(nodeReq.clear());
+  reqParams = "[\"John Smith\"]";
+  defaults = "[33]";
+  BOOST_CHECK(nodeReq.setParamsWithDefault(reqParams, defaults));
+  BOOST_CHECK(nodeReq.getParams(&params));
+  BOOST_CHECK_EQUAL(params.compare("[\"John Smith\",33]"), 0);
+  
+  // Request and default are not same data type (Use request params)
+  
+  BOOST_CHECK(nodeReq.clear());
+  reqParams = "{\"age\":33,\"name\":\"John Smith\"}";
+  defaults = "[\"John Smith\",33]";
+  BOOST_CHECK(nodeReq.setParamsWithDefault(reqParams, defaults));
+  BOOST_CHECK(nodeReq.getParams(&params));
+  BOOST_CHECK_EQUAL(params.compare("{\"age\":33,\"name\":\"John Smith\"}"), 0);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
