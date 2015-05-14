@@ -17,8 +17,6 @@ Roundは、分散アプリケーション開発の基盤フレームワークで
 - 分散ファイルシステム (GFS, HDFS, ...)
 - 分散データベース (Dynamo, Cassndra, ...)
 
-Roundでの分散アプリケーション開発の詳細については「[Round Design Patterns](round_design_pattern.md)」を参照してください。
-
 ## 設計原則
 
 Roundは以下の原則に基づいて設計されています。

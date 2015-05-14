@@ -83,7 +83,7 @@ Round supports
 
 | Feature | Round | Cassandra |  |  |
 |---|---|---|---|---|
-| Component | MicroService | Monolithic |  |  |  |
+| Component | Micro | Monolithic |  |  |  |
 
 ## Refrences
 

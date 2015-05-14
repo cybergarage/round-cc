@@ -17,11 +17,6 @@ Round is a new basic framework, supports to develop various　distributed system
 - Distributed File Systems (GFS, HDFS, ...)
 - Distributed Database Systems (Dynamo, Cassandra, ...)
 
-About brief explanations to develop applications using Round, check or 
-
-
-
-
 ## Design Principles
 
 Round is designed on the basis of the following principles.
@@ -37,6 +32,16 @@ Orthogonality is another important one as well as simplicity. Considering those 
 The technical specifications of the core module are clearly defined and released free for users. Basically, the specifications are defined to extend some de facto standard specifications.
 
 The initial version is implemented with C++, whereas the core module can be done with other programming languages such as Java and Go based on the public specifications.
+
+## Design Scope
+
+Round's core functions are very small, and the all other extra functions for developing distributed systems or applications are implemented as core modules.
+
+Developers can build distributed applications using the core functions and modeules as the following.
+
+![round_design_scope](img/round_design_scope.png)
+
+Round supplies some useful core modules such as consensus protocol and failure detection as default. In addition, developers can build original distributed frameworks or consensus services to add developer's original core modules into Round using any programming languages.
 
 ## Design Features
 
