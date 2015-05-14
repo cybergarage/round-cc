@@ -171,7 +171,6 @@ const std::string RPC_RUN_HELLO = \
   "{\"jsonrpc\": \"2.0\"," \
   "\"method\": \"" RPC_ALIAS_HELLO_NAME "\"," \
   "\"id\": 1}";
-
   
 ////////////////////////////////////////////////
 // RPC
