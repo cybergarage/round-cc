@@ -22,6 +22,10 @@
 using namespace std;
 using namespace Round;
 
+////////////////////////////////////////////////
+// Core Functions
+////////////////////////////////////////////////
+
 void NodeTestController::runScriptManagerTest(Node *node) {
 
   NodeRequestParser reqParser;
@@ -30,6 +34,7 @@ void NodeTestController::runScriptManagerTest(Node *node) {
   NodeResponse nodeRes;
   Error error;
   clock_t prevClock, postClock;
+  std::string result;
   
   // Post Node Message (Overide 'set_method' method)
   
@@ -91,6 +96,8 @@ void NodeTestController::runScriptManagerTest(Node *node) {
   BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &error));
   postClock = node->getLocalClock();
   BOOST_CHECK(prevClock < postClock);
+  BOOST_CHECK(nodeRes.getResult(&result));
+  BOOST_CHECK(result.compare(RPC_SET_ECHO_PARAMS) == 0);
 
   // Post Node Message (Remove 'echo' method)
   
@@ -118,181 +125,49 @@ void NodeTestController::runScriptManagerTest(Node *node) {
   BOOST_CHECK(prevClock < postClock);
 }
 
-void NodeTestController::runSystemEchoTest(Round::Node *node) {
-  Error err;
-  BOOST_CHECK(node->isAlive(&err));
-}
+void NodeTestController::runAliasManagerTest(Round::Node *node) {
 
-void NodeTestController::runSystemGetNodeInfoTest(Round::Node *node) {
-  Error err;
-  std::string jsonString;
+  NodeRequestParser reqParser;
   
-  // Node information
-  
-  std::string nodeIp;
-  BOOST_CHECK(node->getRequestAddress(&nodeIp, &err));
-  
-  int nodePort;
-  BOOST_CHECK(node->getRequestPort(&nodePort, &err));
-  
-  std::string nodeCluster;
-  BOOST_CHECK(node->getClusterName(&nodeCluster, &err));
-
-  std::string nodeHash;
-  BOOST_CHECK(node->getHashCode(&nodeHash));
-  
-  // Response information
-
-  SystemGetNodeInfoRequest nodeReq;
+  NodeRequest *nodeReq;
   NodeResponse nodeRes;
+  Error error;
+  std::string result;
   
-  nodeReq.toJSONString(&jsonString);
-  RoundLogTrace(jsonString.c_str());
+  // Set 'echo' method
   
-  BOOST_CHECK(node->postMessage(&nodeReq, &nodeRes, &err));
+  BOOST_CHECK(reqParser.parse(Test::RPC_SET_ECHO, &error));
+  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
+  BOOST_CHECK(nodeReq);
+  BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &error));
+  
+  // Set 'hello' alias
+  
+  BOOST_CHECK(reqParser.parse(Test::RPC_SET_HELLO, &error));
+  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
+  BOOST_CHECK(nodeReq);
+  BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &error));
 
-  nodeRes.toJSONString(&jsonString);
-  RoundLogTrace(jsonString.c_str());
-
-  SystemGetNodeInfoResponse sysRes(&nodeRes);
+  // Run 'hello' alias
   
-  std::string resIp;
-  BOOST_CHECK(sysRes.getAddress(&resIp));
+  BOOST_CHECK(reqParser.parse(Test::RPC_RUN_HELLO, &error));
+  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
+  BOOST_CHECK(nodeReq);
+  BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &error));
+  BOOST_CHECK(nodeRes.getResult(&result));
+  BOOST_CHECK(result.compare(RPC_SET_ECHO_PARAMS) == 0);
   
-  int resPort;
-  BOOST_CHECK(sysRes.getPort(&resPort));
+  // Remove 'hello' alias
   
-  std::string resCluster;
-  BOOST_CHECK(sysRes.getCluster(&resCluster));
-  
-  std::string resHash;
-  BOOST_CHECK(sysRes.getHash(&resHash));
-
-  // Compare information
-
-  BOOST_CHECK_EQUAL(nodeIp.compare(resIp), 0);
-  BOOST_CHECK_EQUAL(nodePort, resPort);
-  BOOST_CHECK_EQUAL(nodeCluster.compare(resCluster), 0);
-  BOOST_CHECK_EQUAL(nodeHash.compare(resHash), 0);
+  BOOST_CHECK(reqParser.parse(Test::RPC_REMOVE_HELLO, &error));
+  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
+  BOOST_CHECK(nodeReq);
+  BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &error));
 }
 
-void NodeTestController::runSystemGetClusterInfoTest(Round::Node *node) {
-  Error err;
-  std::string jsonString;
-  
-  // Node information
-  
-  std::string nodeClusterName;
-  BOOST_CHECK(node->getClusterName(&nodeClusterName, &err));
-  
-  // Response information
-  
-  SystemGetClusterInfoRequest nodeReq;
-  NodeResponse nodeRes;
-  
-  nodeReq.toJSONString(&jsonString);
-  RoundLogTrace(jsonString.c_str());
-  
-  BOOST_CHECK(node->postMessage(&nodeReq, &nodeRes, &err));
-  
-  nodeRes.toJSONString(&jsonString);
-  RoundLogTrace(jsonString.c_str());
-  
-  // Check Response
-  
-  SystemGetClusterInfoResponse sysRes(&nodeRes);
-  
-  Cluster cluster;
-  BOOST_CHECK(sysRes.getCluster(&cluster));
-  BOOST_CHECK(cluster.hasNode(node));
-  BOOST_CHECK_EQUAL(nodeClusterName.compare(cluster.getName()), 0);
-}
-
-void NodeTestController::runSystemGetNetworkInfoTest(Round::Node *node) {
-  Error err;
-  std::string jsonString;
-  
-  // Node information
-  
-  std::string nodeClusterName;
-  BOOST_CHECK(node->getClusterName(&nodeClusterName, &err));
-  
-  // Response information
-  
-  SystemGetNetworkInfoRequest nodeReq;
-  NodeResponse nodeRes;
-  
-  nodeReq.toJSONString(&jsonString);
-  RoundLogTrace(jsonString.c_str());
-  
-  BOOST_CHECK(node->postMessage(&nodeReq, &nodeRes, &err));
-  
-  nodeRes.toJSONString(&jsonString);
-  RoundLogTrace(jsonString.c_str());
-  
-  // Check Response
-  
-  SystemGetNetworkInfoResponse sysRes(&nodeRes);
-  
-  ClusterList clusterList;
-  BOOST_CHECK(sysRes.getClusters(&clusterList));
-  BOOST_CHECK(clusterList.hasCluster(nodeClusterName));
-  
-  Cluster *cluster = clusterList.getCluster(nodeClusterName);
-  BOOST_CHECK(cluster);
-  BOOST_CHECK(cluster->hasNode(node));
-}
-
-void NodeTestController::runSystemKeyMethodsTest(Round::Node *node) {
-  Error err;
- 
-  string key = "key";
-  string value;
-  string valueBuf;
-  
-  BOOST_CHECK_EQUAL(node->getRegistry(key, &valueBuf, &err), false);
-  
-  value = "hello";
-  BOOST_CHECK(node->setRegistry(key, value, &err));
-  BOOST_CHECK_EQUAL(node->getRegistry(key, &valueBuf, &err), true);
-  BOOST_CHECK_EQUAL(valueBuf.compare(value), 0);
-  
-  value = "world";
-  BOOST_CHECK(node->setRegistry(key, value, &err));
-  BOOST_CHECK_EQUAL(node->getRegistry(key, &valueBuf, &err), true);
-  BOOST_CHECK_EQUAL(valueBuf.compare(value), 0);
-}
-
-void NodeTestController::runSystemMethodTest(Round::Node *node) {
-  // _echo()
-  runSystemEchoTest(node);
-  
-  // get_node_state()
-  runSystemGetNodeInfoTest(node);
-  
-  // get_cluster_state()
-  runSystemGetClusterInfoTest(node);
-
-  // get_network_state()
-  runSystemGetNetworkInfoTest(node);
-
-  // set_registry() and get_registry()
-  runSystemKeyMethodsTest(node);
-}
-
-void NodeTestController::runRpcTest(Round::Node *node) {
-  // echo (Add)
-  runSetEchoMethodTest(node);
-  
-  // echo (POST)
-  runPostEchoMethodTest(node);
-  
-  // echo (GET) only RemoteNode
-  RemoteNode *remoteNode = dynamic_cast<RemoteNode *>(node);
-  if (remoteNode) {
-    runGetEchoMethodTest(remoteNode, true);
-  }
-}
+////////////////////////////////////////////////
+// Basic Functions
+////////////////////////////////////////////////
 
 void NodeTestController::runRpcBatchTest(Round::Node *node) {
   // echo (Add)
@@ -445,5 +320,185 @@ void NodeTestController::runRpcHashTest(Round::Node **nodes, size_t nodeCnt) {
 
 void NodeTestController::runRpcTest(Round::Node **nodes, size_t nodeCnt) {
   runRpcHashTest(nodes, nodeCnt);
+}
+
+////////////////////////////////////////////////
+// System Methods
+////////////////////////////////////////////////
+
+void NodeTestController::runSystemEchoTest(Round::Node *node) {
+  Error err;
+  BOOST_CHECK(node->isAlive(&err));
+}
+
+void NodeTestController::runSystemGetNodeInfoTest(Round::Node *node) {
+  Error err;
+  std::string jsonString;
+  
+  // Node information
+  
+  std::string nodeIp;
+  BOOST_CHECK(node->getRequestAddress(&nodeIp, &err));
+  
+  int nodePort;
+  BOOST_CHECK(node->getRequestPort(&nodePort, &err));
+  
+  std::string nodeCluster;
+  BOOST_CHECK(node->getClusterName(&nodeCluster, &err));
+  
+  std::string nodeHash;
+  BOOST_CHECK(node->getHashCode(&nodeHash));
+  
+  // Response information
+  
+  SystemGetNodeInfoRequest nodeReq;
+  NodeResponse nodeRes;
+  
+  nodeReq.toJSONString(&jsonString);
+  RoundLogTrace(jsonString.c_str());
+  
+  BOOST_CHECK(node->postMessage(&nodeReq, &nodeRes, &err));
+  
+  nodeRes.toJSONString(&jsonString);
+  RoundLogTrace(jsonString.c_str());
+  
+  SystemGetNodeInfoResponse sysRes(&nodeRes);
+  
+  std::string resIp;
+  BOOST_CHECK(sysRes.getAddress(&resIp));
+  
+  int resPort;
+  BOOST_CHECK(sysRes.getPort(&resPort));
+  
+  std::string resCluster;
+  BOOST_CHECK(sysRes.getCluster(&resCluster));
+  
+  std::string resHash;
+  BOOST_CHECK(sysRes.getHash(&resHash));
+  
+  // Compare information
+  
+  BOOST_CHECK_EQUAL(nodeIp.compare(resIp), 0);
+  BOOST_CHECK_EQUAL(nodePort, resPort);
+  BOOST_CHECK_EQUAL(nodeCluster.compare(resCluster), 0);
+  BOOST_CHECK_EQUAL(nodeHash.compare(resHash), 0);
+}
+
+void NodeTestController::runSystemGetClusterInfoTest(Round::Node *node) {
+  Error err;
+  std::string jsonString;
+  
+  // Node information
+  
+  std::string nodeClusterName;
+  BOOST_CHECK(node->getClusterName(&nodeClusterName, &err));
+  
+  // Response information
+  
+  SystemGetClusterInfoRequest nodeReq;
+  NodeResponse nodeRes;
+  
+  nodeReq.toJSONString(&jsonString);
+  RoundLogTrace(jsonString.c_str());
+  
+  BOOST_CHECK(node->postMessage(&nodeReq, &nodeRes, &err));
+  
+  nodeRes.toJSONString(&jsonString);
+  RoundLogTrace(jsonString.c_str());
+  
+  // Check Response
+  
+  SystemGetClusterInfoResponse sysRes(&nodeRes);
+  
+  Cluster cluster;
+  BOOST_CHECK(sysRes.getCluster(&cluster));
+  BOOST_CHECK(cluster.hasNode(node));
+  BOOST_CHECK_EQUAL(nodeClusterName.compare(cluster.getName()), 0);
+}
+
+void NodeTestController::runSystemGetNetworkInfoTest(Round::Node *node) {
+  Error err;
+  std::string jsonString;
+  
+  // Node information
+  
+  std::string nodeClusterName;
+  BOOST_CHECK(node->getClusterName(&nodeClusterName, &err));
+  
+  // Response information
+  
+  SystemGetNetworkInfoRequest nodeReq;
+  NodeResponse nodeRes;
+  
+  nodeReq.toJSONString(&jsonString);
+  RoundLogTrace(jsonString.c_str());
+  
+  BOOST_CHECK(node->postMessage(&nodeReq, &nodeRes, &err));
+  
+  nodeRes.toJSONString(&jsonString);
+  RoundLogTrace(jsonString.c_str());
+  
+  // Check Response
+  
+  SystemGetNetworkInfoResponse sysRes(&nodeRes);
+  
+  ClusterList clusterList;
+  BOOST_CHECK(sysRes.getClusters(&clusterList));
+  BOOST_CHECK(clusterList.hasCluster(nodeClusterName));
+  
+  Cluster *cluster = clusterList.getCluster(nodeClusterName);
+  BOOST_CHECK(cluster);
+  BOOST_CHECK(cluster->hasNode(node));
+}
+
+void NodeTestController::runSystemRegistryTest(Round::Node *node) {
+  Error err;
+  
+  string key = "key";
+  string value;
+  string valueBuf;
+  
+  BOOST_CHECK_EQUAL(node->getRegistry(key, &valueBuf, &err), false);
+  
+  value = "hello";
+  BOOST_CHECK(node->setRegistry(key, value, &err));
+  BOOST_CHECK_EQUAL(node->getRegistry(key, &valueBuf, &err), true);
+  BOOST_CHECK_EQUAL(valueBuf.compare(value), 0);
+  
+  value = "world";
+  BOOST_CHECK(node->setRegistry(key, value, &err));
+  BOOST_CHECK_EQUAL(node->getRegistry(key, &valueBuf, &err), true);
+  BOOST_CHECK_EQUAL(valueBuf.compare(value), 0);
+}
+
+void NodeTestController::runSystemMethodTest(Round::Node *node) {
+  // _echo()
+  runSystemEchoTest(node);
+  
+  // get_node_state()
+  runSystemGetNodeInfoTest(node);
+  
+  // get_cluster_state()
+  runSystemGetClusterInfoTest(node);
+  
+  // get_network_state()
+  runSystemGetNetworkInfoTest(node);
+  
+  // set_registry() and get_registry()
+  runSystemRegistryTest(node);
+}
+
+void NodeTestController::runRpcTest(Round::Node *node) {
+  // echo (Add)
+  runSetEchoMethodTest(node);
+  
+  // echo (POST)
+  runPostEchoMethodTest(node);
+  
+  // echo (GET) only RemoteNode
+  RemoteNode *remoteNode = dynamic_cast<RemoteNode *>(node);
+  if (remoteNode) {
+    runGetEchoMethodTest(remoteNode, true);
+  }
 }
 

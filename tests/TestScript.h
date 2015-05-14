@@ -11,6 +11,7 @@
 #ifndef _ROUNDCC_TESTSCRIPT_H_
 #define _ROUNDCC_TESTSCRIPT_H_
 
+#include <round/Const.h>
 #include <round/core/Script.h>
 
 #include "RoundTest.h"
@@ -115,13 +116,18 @@ const std::string JS_INVALID_FUNCTION = \
   "  return params;";
 
 #define RPC_SET_ECHO_NAME   "echo"
+#define RPC_ALIAS_HELLO_NAME "hello"
 #define RPC_SET_ECHO_LANG   "js"
 #define RPC_SET_ECHO_CODE   "function echo(params) {return params;}"
 #define RPC_SET_ECHO_PARAMS "[1,2,3]"
-  
+
+////////////////////////////////////////////////
+// set_method
+////////////////////////////////////////////////
+
 const std::string RPC_SET_ECHO = \
   "{\"jsonrpc\": \"2.0\"," \
-   "\"method\": \"set_method\","
+   "\"method\": \"" ROUNDCC_SYSTEM_METHOD_SET_METHOD "\","
    "\"params\": {" \
        "\"language\": \"" RPC_SET_ECHO_LANG "\", " \
        "\"name\": \"" RPC_SET_ECHO_NAME "\", " \
@@ -130,7 +136,7 @@ const std::string RPC_SET_ECHO = \
 
 const std::string RPC_REMOVE_ECHO = \
   "{\"jsonrpc\": \"2.0\"," \
-  "\"method\": \"remove_method\","
+  "\"method\": \"" ROUNDCC_SYSTEM_METHOD_REMOVE_METHOD "\","
   "\"params\": {" \
   "\"name\": \"" RPC_SET_ECHO_NAME "\"" \
   "}, \"id\": 1}";
@@ -140,6 +146,36 @@ const std::string RPC_RUN_ECHO = \
    "\"method\": \"" RPC_SET_ECHO_NAME "\"," \
    "\"params\": " RPC_SET_ECHO_PARAMS "," \
    "\"id\": 1}";
+
+////////////////////////////////////////////////
+// set_alias
+////////////////////////////////////////////////
+  
+const std::string RPC_SET_HELLO = \
+  "{\"jsonrpc\": \"2.0\"," \
+  "\"method\": \"" ROUNDCC_SYSTEM_METHOD_SET_ALIAS "\","
+  "\"params\": {" \
+    "\"name\": \"" RPC_ALIAS_HELLO_NAME "\", " \
+    "\"method\": \"" RPC_SET_ECHO_NAME "\", " \
+    "\"defaults\": \"" RPC_SET_ECHO_PARAMS "\"" \
+  "}, \"id\": 1}";
+  
+const std::string RPC_REMOVE_HELLO = \
+  "{\"jsonrpc\": \"2.0\"," \
+  "\"method\": \"" ROUNDCC_SYSTEM_METHOD_REMOVE_ALIAS "\","
+  "\"params\": {" \
+  "\"name\": \"" RPC_ALIAS_HELLO_NAME "\"" \
+  "}, \"id\": 1}";
+  
+const std::string RPC_RUN_HELLO = \
+  "{\"jsonrpc\": \"2.0\"," \
+  "\"method\": \"" RPC_ALIAS_HELLO_NAME "\"," \
+  "\"id\": 1}";
+
+  
+////////////////////////////////////////////////
+// RPC
+////////////////////////////////////////////////
 
 const std::string RPC_RUN_BATCH_ECHO = \
   "[" \

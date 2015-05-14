@@ -97,6 +97,7 @@ class NodeTestController {
   }
 
   void runScriptManagerTest(Round::Node *node);
+  void runAliasManagerTest(Round::Node *node);
   void runSystemMethodTest(Round::Node *node);
   void runRpcTest(Round::Node *node);
   void runRpcTest(Round::Node **nodes, size_t nodeCnt);
@@ -109,7 +110,7 @@ class NodeTestController {
   void runSystemGetNodeInfoTest(Round::Node *node);
   void runSystemGetClusterInfoTest(Round::Node *node);
   void runSystemGetNetworkInfoTest(Round::Node *node);
-  void runSystemKeyMethodsTest(Round::Node *node);
+  void runSystemRegistryTest(Round::Node *node);
 
   void runSetEchoMethodTest(Round::Node *node);
   void runPostEchoMethodTest(Round::Node *node);

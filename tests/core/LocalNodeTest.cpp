@@ -166,6 +166,12 @@ BOOST_AUTO_TEST_CASE(LocalScriptManagerTest) {
   nodeTestController.runScriptManagerTest(&node);
 }
 
+BOOST_AUTO_TEST_CASE(LocalAliasManagerTest) {
+  TestLocalNode node;
+  NodeTestController nodeTestController;
+  nodeTestController.runAliasManagerTest(&node);
+}
+
 BOOST_AUTO_TEST_CASE(LocalNodeSystemMethodTest) {
   Error err;
   TestLocalNode node;
