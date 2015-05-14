@@ -17,35 +17,35 @@ Round is a new basic framework, supports to develop various　distributed system
 - Distributed File Systems (GFS, HDFS, ...)
 - Distributed Database Systems (Dynamo, Cassandra, ...)
 
-## Design Principles
+## Design of Round
+
+### Principles
 
 Round is designed on the basis of the following principles.
 
-### Simplicity
+#### Simplicity
 
 Simplicity is the most valued principle. The core module of Round is very simple, and has only minimum functions are implemented.
 
 Orthogonality is another important one as well as simplicity. Considering those principles, no redundancy functions are implemented to keep the core module simple.
 
-### Clarity
+#### Clarity
 
 The technical specifications of the core module are clearly defined and released free for users. Basically, the specifications are defined to extend some de facto standard specifications.
 
 The initial version is implemented with C++, whereas the core module can be done with other programming languages such as Java and Go based on the public specifications.
 
-## Design Scope
+### Scope
 
-Round's core functions are very small, and the all other extra functions for developing distributed systems or applications are implemented as core modules.
-
-Developers can build distributed applications using the core functions and modeules as the following.
+Round's core functions are very small, and the all other extra functions for developing distributed systems or applications are implemented as core modules. Developers can build distributed applications using the core functions and modeules as the following.
 
 ![round_design_scope](img/round_design_scope.png)
 
-Round supplies some useful core modules such as consensus protocol and failure detection as default. In addition, developers can build original distributed frameworks or consensus services to add developer's original core modules into Round using any programming languages.
+Round supplies some useful core modules such as consensus protocol and failure detection as default. In addition, developers can build original distributed frameworks or consensus services to add developer's original core modules into Round using any programming languages such as JavaScript and Lua.
 
-## Design Features
+###  Features
 
-### Zeroconf
+#### Zeroconf
 
 In typical cloud systems, users have to set some configuration to start distributed services. Round is designed not to set configurations by users using Zeroconf.
 
@@ -53,7 +53,7 @@ Zeroconf is a tecnology to find services without user configuration.　In Round,
 
 ![round_overview_zeroconf](img/round_overview_zeroconf.png)
 
-### Decentralized
+#### Decentralized
 
 Round is a decentralized and distributed system,
 every nodes in a cluster has equal roll, the cluster has no master node.
@@ -62,13 +62,13 @@ In typical distributed systems such as consensus services are centric which has 
 
 ![round_overview_zeroconf](img/round_overview_decentralized.png)
 
-### Autonomous
+#### Autonomous
 
 Each node run as an autonomous agent based on the specified behaviors by programming. They communicates synchronously or asynchronously messages to other nodes based on the specified behaviors autonomously.
 
 ![round_overview_autonomous](img/round_overview_autonomous.png)
 
-### Dynamics
+#### Dynamics
 
 The behaviors of node are defined using some dynamic and static programming language scripts, the behaviors can be changed to send the programming scripts dynamically.
 
