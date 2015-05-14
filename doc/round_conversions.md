@@ -4,27 +4,37 @@ English [Japanese](round_conversions_jp.md)
 
 # Conversions
 
-## Round Programming Model
+## Target Layers
 
 Round is designed to develop any distributed applications using the single programming model. The programming model is a computer which has some programmable engines with a memory, and it can receive and send messages with other nodes and clients.
 
 ![Round Programming Model](img/round_programming_model.png)
 
-## Existing Consensus Services
+Round is ......
+
+### Existing Consensus Services
 
 The existing distributed consensus service such as [Chubby \[1\]][1], [ZooKeeper \[2\]][2] supports the only following basic functions to build distributed applications.
 
 ![Chubby Programming Model](img/chubby_distributed_programming.png)
 
-### Functions
+#### Comparison Table
+
+| Feature | Round | [ZooKeeper \[1\]][1] | Consul | etcd | Chubby |
+|---|---|---|---|---|
+| Consensus Protocol | Dynamic | Static (ZAB) | Static (Raft) | Static (Raft) | Static (Paxos) |
+| Notification | Sync, Async | Sync | ? | ? | ? |
+| Membership | Multicast, Gossip | ? | ? | Gossip | ? |
+
+#### Functions
 
 Consensus service provides only two simple services, registry and event. Developer have to handle other functions such as request handlers with client and other nodes.
 
-#### Structured Registry
+##### Structured Registry
 
 Consensus service provides a structured registry which developer can access atomicity. The registry has a sequential number to access atomicity, then developer can use the registry as as mutex to handle critical section.
 
-#### Event
+##### Event
 
 The event service sends only the following notifications when other node status is changed.
 
@@ -35,7 +45,7 @@ The event service sends only the following notifications when other node status 
 
 The events are limited and static. In contrast, Round supports more useful events, developer can add user events easily.
 
-### Round Functions
+#### Round Functions
 
 In constract, Round supports all basic functions to develop distributed application, then eveloper only have to write application scripts.
 
@@ -47,9 +57,16 @@ In the existing distributed framework such as [MapReduce \[2\]][2] and [Storm \[
 
 [MapReduce \[2\]][2] assumes .... the programming code is static.
 
-![MapReduce Network Topology](img/mr_network_topology.png)
-
 [Storm \[4\]][4] ....
+
+### Comparison Table
+
+| Feature | Round | MapReduce | YARN | Spark | Storm |
+|---|---|---|---|---|
+| Programming Model | Dynamic | Static (MR) |  |  |  |
+| Logical Model | - | Static (MR) | ? | ? | ? |
+| Resource Management | - | X | O | | | |
+
 
 ### Round Functions
 
@@ -60,16 +77,13 @@ Round supports
 ..... the function is static, and it is difficult to change the algorithm.
 
 
-# Conversion
+## Existing Distributed Application
 
-| Category | Feature | Round | [ZooKeeper \[1\]][1] | Consul | etcd | Chubby |
-|---|---|---|---|---|---|
-| Basic | Implementation | C++ | Java | Go | Go | ? |
-| Notification | Synchronous | Asynchronous | Synchronous | | Synchronous | Synchronous |
-| Consensus Protocol | Paxos | O | O [1] | X | X | |
-| | [Raft][raft] | X | O [1] | [Raft][raft] | Raft |  |
-| Membership | Multicast | O | (none) | [O][gossip-consul] | ? | (?) |
-| | Gossip | O | X | X | X |  |  |
+### Comparison Table
+
+| Feature | Round | Cassandra |  |  |
+|---|---|---|---|---|
+| Component | MicroService | Monolithic |  |  |  |
 
 ## Refrences
 
