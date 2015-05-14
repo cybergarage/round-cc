@@ -10,6 +10,18 @@ Round is a new open source framework developed for distributed system developers
 
 The name "Round" derives from "[Knights of the Round Table](http://en.wikipedia.org/wiki/Round_Table)", meaning that every node in a cluster has an equal role and the cluster has no mater node.
 
+Round is a new basic framework, supports to develop various　distributed systems such as the following:
+
+- Consensus Services (Chubby, ZooKeeper, etcd, ...)
+- Distributed Frameworks (Hadoop, Storm, Spark ...)
+- Distributed File Systems (GFS, HDFS, ...)
+- Distributed Database Systems (Dynamo, Cassandra, ...)
+
+About brief explanations to develop applications using Round, check or 
+
+
+
+
 ## Design Principles
 
 Round is designed on the basis of the following principles.

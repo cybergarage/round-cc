@@ -13,9 +13,9 @@ Roundの名前は「[円卓の騎士](http://ja.wikipedia.org/wiki/円卓の騎�
 Roundは、分散アプリケーション開発の基盤フレームワークであり、以下のような多種多様な分散アプリケーションの開発を支援します。
 
 - コンセンサスサービス (Chubby, ZooKeeper, etcd ...)
-- 分散データベース (Cassndra, ...)
-- 分散ファイルシステム (GFS, ...)
-- 分散処理フレームワーク (Hadoop, Storm, ...)
+- 分散処理フレームワーク (Hadoop, Storm, Spark ...)
+- 分散ファイルシステム (GFS, HDFS, ...)
+- 分散データベース (Dynamo, Cassndra, ...)
 
 Roundでの分散アプリケーション開発の詳細については「[Round Design Patterns](round_design_pattern.md)」を参照してください。
 
