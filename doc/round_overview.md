@@ -17,7 +17,7 @@ Round is a new basic framework, supports to develop various　distributed system
 - Distributed File Systems (GFS, HDFS, ...)
 - Distributed Database Systems (Dynamo, Cassandra, ...)
 
-## Design of Round
+## Design Overview
 
 ### Principles
 
@@ -37,46 +37,29 @@ The initial version is implemented with C++, whereas the core module can be done
 
 ### Scope
 
-Round's core functions are very small, and the all other extra functions for developing distributed systems or applications are implemented as core modules. Developers can build distributed applications using the core functions and modeules as the following.
+Round's core functions are very small like [Microkernel](http://en.wikipedia.org/wiki/Microkernel), and the all other extra functions for developing distributed systems or applications are implemented as core modules. Developers can build distributed applications using the core functions and modules as the following.
 
 ![round_design_scope](img/round_design_scope.png)
 
-Round supplies some useful core modules such as consensus protocol and failure detection as default. In addition, developers can build original distributed frameworks or consensus services to add developer's original core modules into Round using any programming languages such as JavaScript and Lua.
+Round supplies some useful core modules such as consensus protocols and failure detections as default. In addition, developers can build original distributed frameworks or consensus services to add developer's original core modules using any programming languages such as JavaScript and Lua.
 
-###  Features
+## Architecture Overview
 
-#### Zeroconf
+### Programming Model
 
-In typical cloud systems, users have to set some configuration to start distributed services. Round is designed not to set configurations by users using Zeroconf.
+Programming model of Round is based on [Actor model][actor-model]. Round's cluster is consist of several nodes, and the each node is an actor which has a message queue to receive messages from clients or other nodes.
 
-Zeroconf is a tecnology to find services without user configuration.　In Round, all new nodes are added into a cluster without special configuration and the nodes are available automatically.
+![Round Programming Model](img/round_programming_model.png)
 
-![round_overview_zeroconf](img/round_overview_zeroconf.png)
+### Open Standard Protocols
 
-#### Decentralized
+Round consists only some open standard network protocols such as [UPnP][upnp-spec] and [JSON-RPC][json-rpc] with standard script engines such as [Java][java] and [JavaScript][js-spec].
 
-Round is a decentralized and distributed system,
-every nodes in a cluster has equal roll, the cluster has no master node.
+![round_protocol](./img/round_protocol.png)
 
-In typical distributed systems such as consensus services are centric which has a master node. However, Round has no master node.
+##  Features
 
-![round_overview_zeroconf](img/round_overview_decentralized.png)
-
-#### Autonomous
-
-Each node run as an autonomous agent based on the specified behaviors by programming. They communicates synchronously or asynchronously messages to other nodes based on the specified behaviors autonomously.
-
-![round_overview_autonomous](img/round_overview_autonomous.png)
-
-#### Dynamics
-
-The behaviors of node are defined using some dynamic and static programming language scripts, the behaviors can be changed to send the programming scripts dynamically.
-
-![round_overview_dynamics](img/round_overview_dynamics.png)
-
-## Support Functions
-
-Round offers the following functions to develop distributed system application easily.
+Round has the following features to develop distributed system application easily.
 
 ### Auto Configuration
 
@@ -86,6 +69,19 @@ New Round node is stared, it is added into a network automatically. Other nodes 
 
 In addition to the auto configuration, Round supports none auto configuration network and static configurations too.
 
+#### Autonomous
+
+Each node run as an autonomous agent based on the specified behaviors by user programming. They communicates synchronously or asynchronously messages to other nodes based on the specified behaviors autonomously.
+
+![round_overview_autonomous](img/round_overview_autonomous.png)
+
+[actor-model]: http://en.wikipedia.org/wiki/Actor_model
+[csp]: http://en.wikipedia.org/wiki/Communicating_sequential_processes
+[df-prog]: http://en.wikipedia.org/wiki/Dataflow_programming
+[upnp-spec]: http://upnp.org/sdcps-and-certification/standards/
+[json-rpc]: http://www.jsonrpc.org/specification
+[java]: https://java.com/
+[js-spec]: http://www.ecma-international.org/publications/standards/Ecma-262.htm
 
 ### Dynamic Programming
 
@@ -95,5 +91,3 @@ In Round, you can build distributed system applications to add programming scrip
 ![auto-configuration](img/round_overview_programming.png)
 
 Round supports some dynamic programming languages such ad JavaScript and Java, then you can develop distributed system applications using your favorite programming language. It supports some programming languages such C++.
-
-Monochrome iconset by [Danny Allen](http://dannya.org).
