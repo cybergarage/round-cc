@@ -19,7 +19,7 @@ Round is a new basic framework, supports to develop various　distributed system
 
 ## Design Overview
 
-### Principles
+### Design Principles
 
 Round is designed on the basis of the following principles.
 
@@ -31,17 +31,17 @@ Orthogonality is another important one as well as simplicity. Considering those 
 
 #### Clarity
 
-The technical specifications of the core module are clearly defined and released free for users. Basically, the specifications are defined to extend some de facto standard specifications.
+The technical specifications of the core functions are clearly defined and released free for users. Basically, the specifications are defined to extend some de facto standard specifications.
 
-The initial version is implemented with C++, whereas the core module can be done with other programming languages such as Java and Go based on the public specifications.
+The initial version of core functions are implemented with C++, whereas the core module can be done with other programming languages such as Java and Go based on the public specifications.
 
-### Scope
+### Target Scopes
 
-Round's core functions are very small like [Microkernel](http://en.wikipedia.org/wiki/Microkernel), and the all other extra functions for developing distributed systems or applications are implemented as core modules. Developers can build distributed applications using the core functions and modules as the following.
+Round's core functions are very small like [Microkernel](http://en.wikipedia.org/wiki/Microkernel), and the all other basic functions which are need for distributed frameworks or applications are supplied as core modules. Developers can build distributed frameworks or applications using the core functions and modules as the following.
 
 ![round_design_scope](img/round_design_scope.png)
 
-Round supplies some useful core modules such as consensus protocols and failure detections as default. In addition, developers can build original distributed frameworks or consensus services to add developer's original core modules using any programming languages such as JavaScript and Lua.
+Round supplies some useful core modules such as consensus protocols and failure detections for distributed systems as default. In addition, developers can add new original modules for distributed system such as consensus protocol using any programming languages such as JavaScript and Lua.
 
 ## Architecture Overview
 
@@ -53,7 +53,7 @@ Programming model of Round is based on [Actor model][actor-model]. Round's clust
 
 ### Open Standard Protocols
 
-Round consists only some open standard network protocols such as [UPnP][upnp-spec] and [JSON-RPC][json-rpc] with standard script engines such as [Java][java] and [JavaScript][js-spec].
+Round consists only some open standard network protocols such as [JSON-RPC][json-rpc] and [UPnP][upnp-spec] with standard script engines such as [Java][java] and [JavaScript][js-spec].
 
 ![round_protocol](./img/round_protocol.png)
 
@@ -61,7 +61,7 @@ Round consists only some open standard network protocols such as [UPnP][upnp-spe
 
 Round has the following features to develop distributed system application easily.
 
-### Auto Configuration
+### Zeroconf
 
 New Round node is stared, it is added into a network automatically. Other nodes in the same network are received some event messages when a node is added or removed.
 
@@ -69,11 +69,20 @@ New Round node is stared, it is added into a network automatically. Other nodes 
 
 In addition to the auto configuration, Round supports none auto configuration network and static configurations too.
 
-#### Autonomous
+### Autonomous
 
-Each node run as an autonomous agent based on the specified behaviors by user programming. They communicates synchronously or asynchronously messages to other nodes based on the specified behaviors autonomously.
+Each node run as an autonomous actor based on the specified behaviors by user programming. They communicates synchronously or asynchronously messages to other nodes based on the specified behaviors autonomously.
 
 ![round_overview_autonomous](img/round_overview_autonomous.png)
+
+### Dynamics
+
+Each node is an autonomous and a programmable [RPC](http://en.wikipedia.org/wiki/Remote_procedure_call) node.
+In Round, you can build distributed frameworks and applications to add behavior scripts and connect events into the scripts dynamically.
+
+![auto-configuration](img/round_overview_programming.png)
+
+Round supports some dynamic programming languages such ad JavaScript and Java, then you can develop distributed system applications using your favorite programming language.
 
 [actor-model]: http://en.wikipedia.org/wiki/Actor_model
 [csp]: http://en.wikipedia.org/wiki/Communicating_sequential_processes
@@ -82,12 +91,3 @@ Each node run as an autonomous agent based on the specified behaviors by user pr
 [json-rpc]: http://www.jsonrpc.org/specification
 [java]: https://java.com/
 [js-spec]: http://www.ecma-international.org/publications/standards/Ecma-262.htm
-
-### Dynamic Programming
-
-Round node is a programmable RPC ([Remote Procedure Call](http://en.wikipedia.org/wiki/Remote_procedure_call)) node.
-In Round, you can build distributed system applications to add programming scripts and connect events into the scripts dynamically.
-
-![auto-configuration](img/round_overview_programming.png)
-
-Round supports some dynamic programming languages such ad JavaScript and Java, then you can develop distributed system applications using your favorite programming language. It supports some programming languages such C++.

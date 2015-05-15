@@ -29,7 +29,29 @@ Roundは以下の原則に基づいて設計されています。
 
 コアモジュールの技術仕様については明確に定義されており利用者に公開されています。技術仕様は業界標準のネットワークプロトコルを拡張して定義されています。
 
-Roundの初期バージョンはC++で実装されていますが、公開されているRoundの技術仕様から、JavaやGoなどの他のプログラミング言語でコアモジュールを実装することも可能です。
+コア機能の初期バージョンはC++で実装されていますが、公開されている技術仕様から、JavaやGoなどの他のプログラミング言語でコアモジュールを実装することも可能です。
+
+## 対象領域
+
+Roundのコア機能は非常に小さく、分散システムやアプリケーション開発に必要となるその他の基本的な全てのファンクションはコアモジュールとして提供されています。開発者は分散フレームワークやアプリケーションをコア機能やコアモジュールを利用して構築できます。
+
+![round_design_scope](img/round_design_scope.png)
+
+Roundは、標準で分散システムのコンセンサスプロトコルや障害検知のような有用なコアモジュールを提供しています。また、開発者はコンセンサスプロトコルなどの新しい分散システムの独自モジュールを、JavaScriptやLuaなどの色々なプログラミング言語を用いて追加できます。
+
+## Architecture Overview
+
+### Programming Model
+
+Programming model of Round is based on [Actor model][actor-model]. Round's cluster is consist of several nodes, and the each node is an actor which has a message queue to receive messages from clients or other nodes.
+
+![Round Programming Model](img/round_programming_model.png)
+
+### Open Standard Protocols
+
+Round consists only some open standard network protocols such as [JSON-RPC][json-rpc] and [UPnP][upnp-spec] with standard script engines such as [Java][java] and [JavaScript][js-spec].
+
+![round_protocol](./img/round_protocol.png)
 
 ## 特徴
 
@@ -91,4 +113,10 @@ RoundはJavaScritやJavaなどの複数の動的プログラミング言語に�
 
 Roundは、自走設定に以外にも自動設定でないネットワークや固定的な設定にも対応しています。
 
-Monochrome iconset by [Danny Allen](http://dannya.org).
+[actor-model]: http://en.wikipedia.org/wiki/Actor_model
+[csp]: http://en.wikipedia.org/wiki/Communicating_sequential_processes
+[df-prog]: http://en.wikipedia.org/wiki/Dataflow_programming
+[upnp-spec]: http://upnp.org/sdcps-and-certification/standards/
+[json-rpc]: http://www.jsonrpc.org/specification
+[java]: https://java.com/
+[js-spec]: http://www.ecma-international.org/publications/standards/Ecma-262.htm
