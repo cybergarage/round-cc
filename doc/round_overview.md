@@ -53,17 +53,19 @@ Programming model of Round is based on [Actor model][actor-model]. Round's clust
 
 ### Open Standard Protocols
 
-Round consists only some open standard network protocols such as [JSON-RPC][json-rpc] and [UPnP][upnp-spec] with standard script engines such as [Java][java] and [JavaScript][js-spec].
+Round is consist of the following open standard network protocols such as [JSON-RPC][json-rpc] and [UPnP][upnp-spec].
 
 ![round_protocol](./img/round_protocol.png)
 
+In addition, Round supports several major programming languages such as Java, JavaScript and Lua. Developers can build distributed frameworks and applications using their favorite programming languages.
+
 ##  Features
 
-Round has the following features to develop distributed system application easily.
+In Round, there are the following features to develop distributed frameworks and applications easily.
 
 ### Zeroconf
 
-New Round node is stared, it is added into a network automatically. Other nodes in the same network are received some event messages when a node is added or removed.
+After new node is started, the node is added into a network automatically. Other nodes in the same network are received event messages when a node is added or removed.
 
 ![auto-configuration](img/round_overview_autoconfig.png)
 

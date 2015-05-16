@@ -39,21 +39,48 @@ Roundのコア機能は非常に小さく、分散システムやアプリケー
 
 Roundは、標準で分散システムのコンセンサスプロトコルや障害検知のような有用なコアモジュールを提供しています。また、開発者はコンセンサスプロトコルなどの新しい分散システムの独自モジュールを、JavaScriptやLuaなどの色々なプログラミング言語を用いて追加できます。
 
-## Architecture Overview
+## アーキテクチャ概要
 
-### Programming Model
+### プログラミングモデル
 
-Programming model of Round is based on [Actor model][actor-model]. Round's cluster is consist of several nodes, and the each node is an actor which has a message queue to receive messages from clients or other nodes.
+Roundのプログラミングモデルは[アクターモデル][actor-model]を基本としています。Roundのクラスターは複数のノードから構成されますが、各ノードはアクターでクライアントや他のノードからメッセージを受信するためのメッセージキューを持ちます。
 
-![Round Programming Model](img/round_programming_model.png)
+![Round Programming Model](img/round_overview_programming_model.png)
 
-### Open Standard Protocols
+### オープンスタンダード
 
-Round consists only some open standard network protocols such as [JSON-RPC][json-rpc] and [UPnP][upnp-spec] with standard script engines such as [Java][java] and [JavaScript][js-spec].
+Roundは[JSON-RPC][json-rpc]や[UPnP][upnp-spec]などのオープンスタンダードなネットワークプトロコルから構成されます。
 
 ![round_protocol](./img/round_protocol.png)
 
+また、RoundはJavaやJavaScript、Luaなどの主要なプログラミング言語に対応しています。開発者な好きなプログラミング言語で分散フレームワークやアプリケーションを構築できます。
+
 ## 特徴
+
+Roundは簡単に分散フレームワークやアプリケーションを開発できるように次のような特徴があります。
+
+### Zeroconf
+
+After new node is started, the node is added into a network automatically. Other nodes in the same network are received event messages when a node is added or removed.
+
+![auto-configuration](img/round_overview_autoconfig.png)
+
+In addition to the auto configuration, Round supports none auto configuration network and static configurations too.
+
+### Autonomous
+
+Each node run as an autonomous actor based on the specified behaviors by user programming. They communicates synchronously or asynchronously messages to other nodes based on the specified behaviors autonomously.
+
+![round_overview_autonomous](img/round_overview_autonomous.png)
+
+### Dynamics
+
+Each node is an autonomous and a programmable [RPC](http://en.wikipedia.org/wiki/Remote_procedure_call) node.
+In Round, you can build distributed frameworks and applications to add behavior scripts and connect events into the scripts dynamically.
+
+![auto-configuration](img/round_overview_programming.png)
+
+Round supports some dynamic programming languages such ad JavaScript and Java, then you can develop distributed system applications using your favorite programming language.
 
 ### Zeroconf
 
