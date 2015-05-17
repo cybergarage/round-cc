@@ -26,12 +26,6 @@ Round ...
 
 Asymmetric network topology is not always efficient ...
 
-## Autonomous
-
-Programming model of existing consensus services, like [Chubby \[1\]][1] and [Zookeeper \[4\]][4], has a simple shared key value store and notifies some provided network events. The programming codes which handles the provided events are separated the consensus services.
-
-Against the existing consensus service is a passive programming model, Round is a autonomous programming model like [Game of Life \[3\]][3]. Round includes programming codes in the node. The node can handle the provided events and occur original events itself.
-
 ## Dynamics
 
 In the typical distributed programming, developers create the distributed applications as static using some static programming languages such as Java and C.

@@ -77,48 +77,23 @@ Zeroconfとは、利用者による設定が不要な、サービス発見の技
 
 それに加えて、集中型の分散フレームワークやアプリケーションを構築するために、Roundは自動的にリーダーノードを選出します。
 
-### Autonomous
+### 自律的
 
-Each node run as an autonomous actor based on the specified behaviors by user programming. They communicates synchronously or asynchronously messages to other nodes based on the specified behaviors autonomously.
+各ノードは開発者により指定された振る舞い基づく自律的なエージェントとして動作します。各ノードは指定された振る舞いにより、同じクラスターや他のクラスターのノードとメッセージを自律的に交換します。
 
 ![round_overview_autonomous](img/round_overview_autonomous.png)
+
+Roundは[ライフゲーム][life-game]のよな自律的なプログラミングモデルです。各ノードは振る舞いのコードを自分自身で持っています。各ノードは指定された振る舞いのコードに従ってイベントを自律的に処理します。
 
 ### Dynamics
 
-Each node is an autonomous and a programmable [RPC](http://en.wikipedia.org/wiki/Remote_procedure_call) node.
-In Round, you can build distributed frameworks and applications to add behavior scripts and connect events into the scripts dynamically.
+Roundのノードは自律的でプログラミング可能な[RPC](rpc)ノードです。Roundでは、各ノードに動的にスクリプトを追加したり、イベントをそのスクリプトに関連付けたりしながら、分散システムアプリケーションを構築していきます。
 
 ![auto-configuration](img/round_overview_programming.png)
+
+RoundはJavaScritやJavaなどの複数の動的プログラミング言語に対応していますので、利用者の好みのプログラミング言語で分散システムアプリケーションが開発できます。
 
 Round supports some dynamic programming languages such ad JavaScript and Java, then you can develop distributed system applications using your favorite programming language.
-
-### 非集中型
-
-Roundは非集中型の分散システムで、クラスターにある全てのノードは等しい役割を持ちます。 典型的な幾つかのコンセンサスサービスのような分散システムは集中型でマスターノードが存在しますが、Roundにはマスターノードは存在しません。
-
-![round_overview_zeroconf](img/round_overview_decentralized.png)
-
-### 自律的
-
-各ノードは指定されたプログラミングにより指定された振る舞いにによる自律的なエージェントとして動作します。各ノードは指定された振る舞いにより、他ノードと同期または非同期のメッセージを自律的に交換します。
-
-![round_overview_autonomous](img/round_overview_autonomous.png)
-
-### 動的
-
-ノードの振る舞いは、動的または静的なプログラミング言語で定義されます。各ノードにプログラミング言語スクリプトを送信することにより、動的に振る舞いを変更できます。
-
-### 動的プログラミング
-
-Roundのノードはプログラミング可能なRPC([Remote Procedure Call](http://en.wikipedia.org/wiki/Remote_procedure_call))ノードです。Roundでは、各ノードに動的にスクリプトを追加したり、イベントをそのスクリプトに関連付けたりしながら、分散システムアプリケーションを構築していきます。
-
-![auto-configuration](img/round_core_module.png)
-
-### 複数プログラミング言語対応
-
-RoundはJavaScritやJavaなどの複数の動的プログラミング言語に対応していますので、利用者の好みのプログラミング言語で分散システムアプリケーションが開発できます。C++などの静的プログラミング言語にも対応しています。
-
-![auto-configuration](img/round_overview_programming.png)
 
 [actor-model]: http://en.wikipedia.org/wiki/Actor_model
 [csp]: http://en.wikipedia.org/wiki/Communicating_sequential_processes
@@ -127,3 +102,5 @@ RoundはJavaScritやJavaなどの複数の動的プログラミング言語に�
 [json-rpc]: http://www.jsonrpc.org/specification
 [java]: https://java.com/
 [js-spec]: http://www.ecma-international.org/publications/standards/Ecma-262.htm
+[life-game]: http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+[rpc]: http://en.wikipedia.org/wiki/Remote_procedure_call

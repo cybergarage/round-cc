@@ -84,13 +84,15 @@ In addition, Round has a function which elects a leader node to build centric di
 
 ### Autonomous
 
-Each node run as an autonomous actor based on the specified behaviors by user programming. They communicates synchronously or asynchronously messages to other nodes based on the specified behaviors autonomously.
+Each node run as an autonomous actor based on the specified behaviors by developers. The nodes communicates messages to other nodes in the same or other clusters based on the specified behaviors autonomously.
 
 ![round_overview_autonomous](img/round_overview_autonomous.png)
 
+Round is a autonomous programming model like [Game of Life][life-game]. The node has the behavior codes itself. The node runs based on the behavior codes and handles any events autonomously.
+
 ### Dynamics
 
-Each node is an autonomous and a programmable [RPC](http://en.wikipedia.org/wiki/Remote_procedure_call) node.
+Each node is an autonomous and a programmable [RPC][rpc] node.
 In Round, you can build distributed frameworks and applications to add behavior scripts and connect events into the scripts dynamically.
 
 ![auto-configuration](img/round_overview_programming.png)
@@ -104,3 +106,5 @@ Round supports some dynamic programming languages such ad JavaScript and Java, t
 [json-rpc]: http://www.jsonrpc.org/specification
 [java]: https://java.com/
 [js-spec]: http://www.ecma-international.org/publications/standards/Ecma-262.htm
+[life-game]: http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+[rpc]: http://en.wikipedia.org/wiki/Remote_procedure_call
