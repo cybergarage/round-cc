@@ -69,7 +69,7 @@ Roundは簡単に分散フレームワークやアプリケーションを開発
 
 Zeroconfとは、利用者による設定が不要な、サービス発見の技術です。Roundでは、すべての新規ノードは特別な設定なしにクラスターに追加され、自動的に利用可能となります。
 
-### Decentralized
+### 分散
 
 基本的に、Roundは非集中型の分散システムフレームワークであり、クラスターの全てのノードは等しい役割を持ち、マスターノードがありません。
 
@@ -85,15 +85,13 @@ Zeroconfとは、利用者による設定が不要な、サービス発見の技
 
 Roundは[ライフゲーム][life-game]のよな自律的なプログラミングモデルです。各ノードは振る舞いのコードを自分自身で持っています。各ノードは指定された振る舞いのコードに従ってイベントを自律的に処理します。
 
-### Dynamics
+### 動的
 
 Roundのノードは自律的でプログラミング可能な[RPC](rpc)ノードです。Roundでは、各ノードに動的にスクリプトを追加したり、イベントをそのスクリプトに関連付けたりしながら、分散システムアプリケーションを構築していきます。
 
 ![auto-configuration](img/round_overview_programming.png)
 
 RoundはJavaScritやJavaなどの複数の動的プログラミング言語に対応していますので、利用者の好みのプログラミング言語で分散システムアプリケーションが開発できます。
-
-Round supports some dynamic programming languages such ad JavaScript and Java, then you can develop distributed system applications using your favorite programming language.
 
 [actor-model]: http://en.wikipedia.org/wiki/Actor_model
 [csp]: http://en.wikipedia.org/wiki/Communicating_sequential_processes
