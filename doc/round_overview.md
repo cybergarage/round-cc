@@ -1,6 +1,6 @@
 ![round_logo](img/round_logo.png)
 
-English [Japanese](round_overview_jp.md)
+English / [Japanese](round_overview_jp.md)
 
 # Overview
 
