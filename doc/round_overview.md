@@ -65,11 +65,22 @@ In Round, there are the following features to develop distributed frameworks and
 
 ### Zeroconf
 
-After new node is started, the node is added into a network automatically. Other nodes in the same network are received event messages when a node is added or removed.
+In typical cloud systems, users have to set some configuration to start distributed services. Round is designed based on Zeroconf not to set any configurations by users.
+
+For example, a node is added into a cluster of Round automatically after the new node is started without configuration. Other nodes in the same network are received event messages when a node is added or removed.
 
 ![auto-configuration](img/round_overview_autoconfig.png)
 
-In addition to the auto configuration, Round supports none auto configuration network and static configurations too.
+Zeroconf is a tecnology to find services without user configuration. In Round, all new nodes are added into a cluster without special configuration and the nodes are available automatically.
+
+### Decentralized
+
+Basically, Round is a decentralized distributed system framework,
+every nodes in a cluster has equal roll, the cluster has no master node.
+
+![round_overview_zeroconf](img/round_overview_decentralized.png)
+
+In addition, Round has a function which elects a leader node to build centric distributed frameworks and applications automatically.
 
 ### Autonomous
 

@@ -59,13 +59,23 @@ Roundは[JSON-RPC][json-rpc]や[UPnP][upnp-spec]などのオープンスタン�
 
 Roundは簡単に分散フレームワークやアプリケーションを開発できるように次のような特徴があります。
 
-### Zeroconf
+### 自動認識
 
-After new node is started, the node is added into a network automatically. Other nodes in the same network are received event messages when a node is added or removed.
+一般的なクラウドシステムでは、分散サービスを起動するために利用者による設定が必要となります。RoundではZeroconfにより利用者による設定を極力不要になるよう設計されています。
+
+例えば、新しく起動されたRoundノードは、ネットワークに自動的に追加されます。同じネットワークの他のノードは、ノードが追加されたり削除されたりすると、そのイベントを受信します。
 
 ![auto-configuration](img/round_overview_autoconfig.png)
 
-In addition to the auto configuration, Round supports none auto configuration network and static configurations too.
+Zeroconfとは、利用者による設定が不要な、サービス発見の技術です。Roundでは、すべての新規ノードは特別な設定なしにクラスターに追加され、自動的に利用可能となります。
+
+### Decentralized
+
+基本的に、Roundは非集中型の分散システムフレームワークであり、クラスターの全てのノードは等しい役割を持ち、マスターノードがありません。
+
+![round_overview_zeroconf](img/round_overview_decentralized.png)
+
+それに加えて、集中型の分散フレームワークやアプリケーションを構築するために、Roundは自動的にリーダーノードを選出します。
 
 ### Autonomous
 
@@ -81,14 +91,6 @@ In Round, you can build distributed frameworks and applications to add behavior 
 ![auto-configuration](img/round_overview_programming.png)
 
 Round supports some dynamic programming languages such ad JavaScript and Java, then you can develop distributed system applications using your favorite programming language.
-
-### Zeroconf
-
-一般的なクラウドシステムでは、分散サービスを起動するために利用者による設定が必要となります。RoundではZeroconfにより利用者による設定を極力不要になるよう設計されています。
-
-Zeroconfとは、利用者による設定が不要な、サービス発見の技術です。Roundでは、すべての新規ノードは特別な設定なしにクラスターに追加され、自動的に利用可能となります。
-
-![round_overview_zeroconf](img/round_overview_zeroconf.png)
 
 ### 非集中型
 
@@ -106,20 +108,6 @@ Roundは非集中型の分散システムで、クラスターにある全ての
 
 ノードの振る舞いは、動的または静的なプログラミング言語で定義されます。各ノードにプログラミング言語スクリプトを送信することにより、動的に振る舞いを変更できます。
 
-![round_overview_dynamics](img/round_overview_dynamics.png)
-
-## 提供機能
-
-Roundは、分散システムアプリケーションを簡単に開発するために以下の機能を提供します。
-
-### 分散プログラミング
-
-Roundでは、分散アプリケーション開発に必要となる分散アルゴリズムをサポートしています。
-
-- リーダー選出
-- コンセンサスアルゴリズム (Paxos, Two-Phase Commit, ....)
-- ....
-
 ### 動的プログラミング
 
 Roundのノードはプログラミング可能なRPC([Remote Procedure Call](http://en.wikipedia.org/wiki/Remote_procedure_call))ノードです。Roundでは、各ノードに動的にスクリプトを追加したり、イベントをそのスクリプトに関連付けたりしながら、分散システムアプリケーションを構築していきます。
@@ -131,14 +119,6 @@ Roundのノードはプログラミング可能なRPC([Remote Procedure Call](ht
 RoundはJavaScritやJavaなどの複数の動的プログラミング言語に対応していますので、利用者の好みのプログラミング言語で分散システムアプリケーションが開発できます。C++などの静的プログラミング言語にも対応しています。
 
 ![auto-configuration](img/round_overview_programming.png)
-
-### 自動認識
-
-新しく起動されたRoundノードは、ネットワークに自動的に追加されます。同じネットワークの他のノードは、ノードが追加されたり削除されたりすると、そのイベントを受信します。
-
-![auto-configuration](img/round_overview_autoconfig.png)
-
-Roundは、自走設定に以外にも自動設定でないネットワークや固定的な設定にも対応しています。
 
 [actor-model]: http://en.wikipedia.org/wiki/Actor_model
 [csp]: http://en.wikipedia.org/wiki/Communicating_sequential_processes

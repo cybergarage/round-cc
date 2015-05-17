@@ -26,23 +26,6 @@ Round ...
 
 Asymmetric network topology is not always efficient ...
 
-## Zeroconf
-
-In typical cloud systems, users have to set some configuration to start distributed services. Round is designed not to set configurations by users using Zeroconf.
-
-Zeroconf is a tecnology to find services without user configuration.　In Round, all new nodes are added into a cluster without special configuration and the nodes are available automatically.
-
-![round_overview_zeroconf](img/round_overview_zeroconf.png)
-
-## Decentralized
-
-Round is a decentralized and distributed system,
-every nodes in a cluster has equal roll, the cluster has no master node.
-
-In typical distributed systems such as consensus services are centric which has a master node. However, Round has no master node.
-
-![round_overview_zeroconf](img/round_overview_decentralized.png)
-
 ## Autonomous
 
 Programming model of existing consensus services, like [Chubby \[1\]][1] and [Zookeeper \[4\]][4], has a simple shared key value store and notifies some provided network events. The programming codes which handles the provided events are separated the consensus services.
