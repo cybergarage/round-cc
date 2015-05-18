@@ -43,7 +43,7 @@ supported-language = ("js" | "java" | "tcl" | "lua")
 
 ##### Return values
 
-The set_method method doesn't return anything when the method is success, otherwise a error object.
+The set_method method doesn't return anything when the method is success, otherwise returns a error object.
 
 #### remove_method
 
@@ -59,7 +59,7 @@ name     = "name" ":" TOKEN
 
 ##### Return values
 
-The remove_method method doesn't return anything when the method is success, otherwise a error object.
+The remove_method method doesn't return anything when the method is success, otherwise returns a error object.
 
 #### set_route
 
@@ -93,7 +93,7 @@ dest-in-param-value-script = JS_SCRIPT
 
 ##### Return values
 
-The set_route method doesn't return anything when the method is success, otherwise a error object.
+The set_route method doesn't return anything when the method is success, otherwise returns a error object.
 
 #### remove_route
 
@@ -120,7 +120,7 @@ method-name       = TOKEN
 
 ##### Return values
 
-The remove_route method doesn't return anything when the method is success, otherwise a error object.
+The remove_route method doesn't return anything when the method is success, otherwise returns a error object.
 
 #### set_timer
 
@@ -140,7 +140,7 @@ loop           = "loop" ":" BOOL
 
 ##### Return values
 
-The set_timer method doesn't return anything when the method is success, otherwise a error object.
+The set_timer method doesn't return anything when the method is success, otherwise returns a error object.
 
 #### set_alias
 
@@ -163,7 +163,7 @@ The `default-params` are passed into the original method. If the alias is posted
 
 ##### Return values
 
-The set_alias method doesn't return anything when the method is success, otherwise a error object.
+The set_alias method doesn't return anything when the method is success, otherwise returns a error object.
 
 #### remove_alias
 
@@ -179,7 +179,7 @@ name     = "name" ":" TOKEN
 
 ##### Return values
 
-The remove_alias method doesn't return anything when the method is success, otherwise a error object.
+The remove_alias method doesn't return anything when the method is success, otherwise returns a error object.
 
 #### post_job
 
@@ -199,7 +199,7 @@ supported-language = ("js" | "java" | "tcl" | "lua")
 
 ##### Return values
 
-The post_job method returns a job result, otherwise a error object.
+The post_job method returns a job result, otherwise returns a error object.
 
 ### Native Methods
 
@@ -207,17 +207,50 @@ Round adds the following default native methods. The methods are implemented usi
 
 | Method Name | Description |
 | --- | --- |
+| add_node | Start a new node |
+| remove_node | Stop a specified node |
 | set_registry | Set a new registry into the local node |
-| get_registry | Get a registory from the local node |
+| get_registry | Get a registry from the local node |
+| remove_registry | Remove a specified registry from the local node |
 | get_network_state | Get a cluster list which a specified node knows |
 | get_cluster_state | Get a node list which a specified node is belong |
 | get_node_state | Get a node information |
 | get_node_config | Get the node configuration |
 | get_node_stats | Get the node statistics |
 
+#### add_node
+
+The add_node start a new node from the specified node. If a source node is specified, the new node copies the source node configuration.
+
+##### Parameters
+
+```
+add_node = "{" [source_node] "}"
+
+source_node = "src" ":" [cluster.] node
+cluster     = TOKEN
+node        = TOKEN
+```
+
+##### Return values
+
+The add_node method doesn't return anything when the method is success, otherwise returns a error object.
+
+#### remove_node
+
+The remove_node stop the specified node.
+
+##### Parameters
+
+The remove_node method has node parameter.
+
+##### Return values
+
+The remove_node method doesn't return anything when the method is success, otherwise returns a error object.
+
 #### set_registry
 
-The set_registry method setsa specified  key and value into the local node registry.
+The set_registry method sets a specified key and value into the local node registry.
 
 ##### Parameters
 
@@ -230,7 +263,7 @@ value = "value" ":" TOKEN
 
 ##### Return values
 
-The set_registry method doesn't return anything when the method is success, otherwise a error object.
+The set_registry method doesn't return anything when the method is success, otherwise returns a error object.
 
 #### get_registry
 
@@ -246,7 +279,7 @@ key = "key" ":" TOKEN
 
 ##### Return values
 
-The get_registry method a following JSON string, otherwise a error object.
+The get_registry method a following JSON string, otherwise returns a error object.
 
 ```
 result = "{" key value timestamp logical_timestamp"}"
@@ -256,6 +289,22 @@ value             = "value" ":" TOKEN
 timestamp         = "ts"    ":" NUMBER
 logical_timestamp = "lts"   ":" NUMBER
 ```
+
+#### remove_registry
+
+The remove_registry method remove a specified key from the local node registry.
+
+##### Parameters
+
+```
+remove_registry = "{" key "}"
+
+key   = "key" ":" TOKEN
+```
+
+##### Return values
+
+The remove_registry method doesn't return anything when the method is success, otherwise returns a error object.
 
 #### get_network_state
 
@@ -267,7 +316,7 @@ This method has no parameter.
 
 ##### Return values
 
-The get_network_state method returns a following JSON string, otherwise a error object.
+The get_network_state method returns a following JSON string, otherwise returns a error object.
 
 ```
 result = { network-state }
@@ -298,7 +347,7 @@ This method has no parameter.
 
 ##### Return values
 
-The get_cluster_state method returns a following JSON string, otherwise a error object.
+The get_cluster_state method returns a following JSON string, otherwise returns a error object.
 
 ```
 result = { cluster-state }
@@ -327,7 +376,7 @@ This method has no parameter.
 
 ##### Return values
 
-The get_node_state method returns a following JSON string, otherwise a error object.
+The get_node_state method returns a following JSON string, otherwise returns a error object.
 
 ```
 result = "{" cluster hash ip port state "}"
