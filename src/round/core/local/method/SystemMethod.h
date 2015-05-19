@@ -483,6 +483,29 @@ public:
   void setKey(const std::string &value);
 };
 
+// add_node
+
+class add_node : public system_method {
+public:
+  static const std::string NAME;
+  static const std::string SOURCE;
+public:
+  add_node();
+  ~add_node();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
+};
+
+// remove_node
+  
+class remove_node : public system_method {
+public:
+  static const std::string NAME;
+public:
+  remove_node();
+  ~remove_node();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
+};
+  
 // exec
   
 class execp : public system_method {

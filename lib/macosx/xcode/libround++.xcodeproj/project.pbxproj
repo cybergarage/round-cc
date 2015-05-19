@@ -213,6 +213,8 @@
 		21E1EB151A64FE2800FEABF6 /* NodeBatchRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E1EB121A64FE2800FEABF6 /* NodeBatchRequest.cpp */; };
 		21E1EB161A64FE2800FEABF6 /* NodeRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E1EB131A64FE2800FEABF6 /* NodeRequest.cpp */; };
 		21E1EB171A64FE2800FEABF6 /* NodeResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E1EB141A64FE2800FEABF6 /* NodeResponse.cpp */; };
+		21E918BF1B0AB6BC006DCAEF /* add_node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E918BD1B0AB6BC006DCAEF /* add_node.cpp */; };
+		21E918C01B0AB6BC006DCAEF /* remove_node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E918BE1B0AB6BC006DCAEF /* remove_node.cpp */; };
 		21F4CE671A63F0BA00E7F0CC /* Route.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4CE5D1A63F0BA00E7F0CC /* Route.cpp */; };
 		21F4CE691A63F0BA00E7F0CC /* RouteList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4CE5F1A63F0BA00E7F0CC /* RouteList.cpp */; };
 		21F4CE6A1A63F0BA00E7F0CC /* RouteManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4CE601A63F0BA00E7F0CC /* RouteManager.cpp */; };
@@ -453,6 +455,8 @@
 		21E1EB121A64FE2800FEABF6 /* NodeBatchRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeBatchRequest.cpp; sourceTree = "<group>"; };
 		21E1EB131A64FE2800FEABF6 /* NodeRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeRequest.cpp; sourceTree = "<group>"; };
 		21E1EB141A64FE2800FEABF6 /* NodeResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeResponse.cpp; sourceTree = "<group>"; };
+		21E918BD1B0AB6BC006DCAEF /* add_node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = add_node.cpp; sourceTree = "<group>"; };
+		21E918BE1B0AB6BC006DCAEF /* remove_node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = remove_node.cpp; sourceTree = "<group>"; };
 		21F4CE5D1A63F0BA00E7F0CC /* Route.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Route.cpp; sourceTree = "<group>"; };
 		21F4CE5F1A63F0BA00E7F0CC /* RouteList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RouteList.cpp; sourceTree = "<group>"; };
 		21F4CE601A63F0BA00E7F0CC /* RouteManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RouteManager.cpp; sourceTree = "<group>"; };
@@ -614,6 +618,8 @@
 		21B9119E1A6B5F4300C791FD /* method */ = {
 			isa = PBXGroup;
 			children = (
+				21E918BD1B0AB6BC006DCAEF /* add_node.cpp */,
+				21E918BE1B0AB6BC006DCAEF /* remove_node.cpp */,
 				21D50A9A1A819F39005C1F51 /* exec.cpp */,
 				2133317A1A773FAD00DB41AB /* get_cluster_state.cpp */,
 				2133317B1A773FAD00DB41AB /* get_network_state.cpp */,
@@ -1184,6 +1190,7 @@
 				21D8E2FF1A60E1E200E8A63F /* Finder.cpp in Sources */,
 				21D8E2F51A60E1E200E8A63F /* RemoteNode.cpp in Sources */,
 				21D8CA741A6B70FC002CBDC3 /* set_route.cpp in Sources */,
+				21E918C01B0AB6BC006DCAEF /* remove_node.cpp in Sources */,
 				216B580D1AD38C8600846C32 /* RegistryMap.cpp in Sources */,
 				218B34421AECD4C3009BE65F /* post_job.cpp in Sources */,
 				21C2236A1AC5264200209C1F /* LuaFunction.cpp in Sources */,
@@ -1195,6 +1202,7 @@
 				21D8E2DD1A60E1E200E8A63F /* ThreadList.cpp in Sources */,
 				21D8CA751A6B70FC002CBDC3 /* set_timer.cpp in Sources */,
 				21F4CE6A1A63F0BA00E7F0CC /* RouteManager.cpp in Sources */,
+				21E918BF1B0AB6BC006DCAEF /* add_node.cpp in Sources */,
 				21D8E2DE1A60E1E200E8A63F /* ThreadManager.cpp in Sources */,
 				21D7A5961A6BDE7C00D43061 /* help.cpp in Sources */,
 				21D8E2E51A60E1E200E8A63F /* LocalNode.cpp in Sources */,
