@@ -74,6 +74,10 @@ round> echo(0, "hello")
 "hello"
 ```
 
+## Adding Alias
+
+Developers can set aliases for defined methods in the node with default parameters.
+
 ## Registry
 
 The node has a local registry to store any key values in the node.
