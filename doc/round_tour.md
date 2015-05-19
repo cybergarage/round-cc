@@ -67,7 +67,7 @@ In this section, add a simple `echo` method which returns the given parameters a
 round> set_method(0, { "language":"js", "name":"echo", "code":"function echo(params) {return params;}" })
 ```
 
-The `set_method` is a embedded method to add new methods by developers. To confirm whether the `echo` method is added, call `echo` method:
+To confirm whether the `echo` method is added, call `echo` method:
 
 ```
 round> echo(0, "hello")
@@ -99,6 +99,24 @@ In this section, use route function.
 
 ```
 round> set_method(0, { "language":"js", "name":"echo", "code":"function echo(params) {return params;}" })
+```
+
+## Alias
+
+The alias function supports to create an alias method of defined methods in the local node with default parameters.
+
+In this section, add a simple `hello` alias using a'echo' method which returns the given parameters as it is using JavaScript. To add the `hello` alias, use `set_alias`:
+
+```
+round> set_method(0, { "language":"js", "name":"echo", "code":"function echo(params) {return params;}" })
+round> set_alias(0, { "name":"hello", "method":"echo", "defaults":"hello" })
+```
+
+To confirm whether the `echo` method is added, call `echo` method:
+
+```
+round> hello(0)
+"hello"
 ```
 
 ## Creating Triggers
