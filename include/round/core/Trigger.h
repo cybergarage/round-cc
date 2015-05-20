@@ -15,45 +15,36 @@
 #include <map>
 
 #include <round/common/Vector.h>
+#include <round/common/Thread.h>
+#include <round/core/Node.h>
 
 namespace Round {
 
-  
-class Trigger {
+class Trigger : public Thread<Node> {
   
 public:
   Trigger();
-  Trigger(const std::string &name, const std::string &obj, const std::string &defaults);
-  
+
   virtual ~Trigger();
 
-  bool isValid();
-  
   // Name
   
   bool setName(const std::string &value);
   bool getName(std::string *value) const;
   bool isName(const std::string &value) const;
   
-  // Object
-  
-  bool setObject(const std::string &value);
-  bool getObject(std::string *value) const;
-
-  // Default parameters
-  
-  bool setDefaults(const std::string &value);
-  bool getDefaults(std::string *value) const;
-
-  bool equals(const Trigger *otherTrigger) const;
-  
 private:
   
   std::string  name;
-  std::string  object;
-  std::string  defaults;
 };
 
+class TimerTrigger : public Trigger {
+public:
+  TimerTrigger();
+  ~TimerTrigger();
+  void run();
+};
+  
 class TriggerMap : public std::map<std::string, Trigger *> {
   
 public:

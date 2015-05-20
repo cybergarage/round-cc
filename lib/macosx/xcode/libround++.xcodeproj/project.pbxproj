@@ -41,6 +41,7 @@
 		21A0E7D71ABE523F009FA687 /* LuaEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A0E7D61ABE523F009FA687 /* LuaEngine.cpp */; };
 		21A0E7D91ABE5254009FA687 /* Lua.h in Headers */ = {isa = PBXBuildFile; fileRef = 21A0E7D81ABE5254009FA687 /* Lua.h */; };
 		21A1572B1A6D4FAC0024B627 /* verbose.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A1572A1A6D4FAC0024B627 /* verbose.cpp */; };
+		21A6EF521B0CB79700B33BB9 /* TimerTrigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A6EF511B0CB79700B33BB9 /* TimerTrigger.cpp */; };
 		21A7F60B1A69D10700FAC15B /* RQL.h in Headers */ = {isa = PBXBuildFile; fileRef = 21A7F60A1A69D10700FAC15B /* RQL.h */; };
 		21AAFCBF1A68C8E6008DEF0E /* Console.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AAFCBE1A68C8E6008DEF0E /* Console.h */; };
 		21B3293D1A6B82CA0077C313 /* Client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B329381A6B82CA0077C313 /* Client.cpp */; };
@@ -287,6 +288,7 @@
 		21A0E7D61ABE523F009FA687 /* LuaEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaEngine.cpp; sourceTree = "<group>"; };
 		21A0E7D81ABE5254009FA687 /* Lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lua.h; sourceTree = "<group>"; };
 		21A1572A1A6D4FAC0024B627 /* verbose.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = verbose.cpp; sourceTree = "<group>"; };
+		21A6EF511B0CB79700B33BB9 /* TimerTrigger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TimerTrigger.cpp; path = trigger/TimerTrigger.cpp; sourceTree = "<group>"; };
 		21A7F60A1A69D10700FAC15B /* RQL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RQL.h; sourceTree = "<group>"; };
 		21A9FFAA154014F300BDFCDC /* liblibround++.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "liblibround++.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21AAFCBE1A68C8E6008DEF0E /* Console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Console.h; sourceTree = "<group>"; };
@@ -980,6 +982,7 @@
 		21E918CF1B0C380F006DCAEF /* trigger */ = {
 			isa = PBXGroup;
 			children = (
+				21A6EF511B0CB79700B33BB9 /* TimerTrigger.cpp */,
 				21E918D01B0C3837006DCAEF /* Trigger.cpp */,
 				21E918D11B0C3837006DCAEF /* TriggerManager.cpp */,
 				21E918D21B0C3837006DCAEF /* TriggerMap.cpp */,
@@ -1304,6 +1307,7 @@
 				21F4CE671A63F0BA00E7F0CC /* Route.cpp in Sources */,
 				21D8E2B71A60E1E200E8A63F /* DictionaryKeyList.cpp in Sources */,
 				21D8E2B81A60E1E200E8A63F /* MD5.cpp in Sources */,
+				21A6EF521B0CB79700B33BB9 /* TimerTrigger.cpp in Sources */,
 				21E1EB171A64FE2800FEABF6 /* NodeResponse.cpp in Sources */,
 				21B911BC1A6B61CC00C791FD /* set_method.cpp in Sources */,
 				21D8E2CA1A60E1E200E8A63F /* JSONParser.cpp in Sources */,
