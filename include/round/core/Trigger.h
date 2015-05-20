@@ -43,6 +43,8 @@ public:
   TimerTrigger();
   ~TimerTrigger();
   void run();
+private:
+  bool update();
 };
   
 class TriggerMap : public std::map<std::string, Trigger *> {
@@ -54,7 +56,6 @@ public:
   
   bool hasTrigger(const std::string &name) const;
   Trigger *findTrigger(const std::string &name) const ;
-  bool getSourceObjects(const std::string &name, std::string *object) const ;
   
   bool addTrigger(Trigger *alias);
   bool setTrigger(Trigger *alias);
@@ -71,6 +72,9 @@ class TriggerManager : public TriggerMap {
   TriggerManager();
   virtual ~TriggerManager();
 
+  bool start();
+  bool stop();
+  
   void lock() {
     mutex.lock();
   }

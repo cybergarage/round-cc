@@ -18,10 +18,10 @@ Round::TriggerMap::~TriggerMap() {
 }
 
 void Round::TriggerMap::clear() {
-  for (TriggerMap::iterator aliasIt = begin(); aliasIt != end(); aliasIt++) {
-    Trigger *alias = aliasIt->second;
-    if (alias) {
-      delete alias;
+  for (TriggerMap::iterator triggerIt = begin(); triggerIt != end(); triggerIt++) {
+    Trigger *trigger = triggerIt->second;
+    if (trigger) {
+      delete trigger;
     }
   }
   std::map<std::string, Trigger*>::clear();
@@ -38,29 +38,22 @@ Round::Trigger *Round::TriggerMap::findTrigger(const std::string &name) const {
   return valueIt->second;
 }
 
-bool Round::TriggerMap::getSourceObjects(const std::string &name, std::string *object) const {
-  Trigger *alias = findTrigger(name);
-  if (!alias)
-    return NULL;
-  return alias->getObject(object);
-}
-
-bool Round::TriggerMap::addTrigger(Trigger *alias) {
+bool Round::TriggerMap::addTrigger(Trigger *trigger) {
   std::string name;
-  if (!alias->getName(&name))
+  if (!trigger->getName(&name))
     return false;
   
   if (hasTrigger(name))
     return false;
   
-  insert(std::pair<std::string, Trigger *>(name, alias));
+  insert(std::pair<std::string, Trigger *>(name, trigger));
 
   return true;
 }
 
-bool Round::TriggerMap::setTrigger(Trigger *alias) {
+bool Round::TriggerMap::setTrigger(Trigger *trigger) {
   std::string name;
-  if (!alias->getName(&name))
+  if (!trigger->getName(&name))
     return false;
 
   if (hasTrigger(name)) {
@@ -68,7 +61,7 @@ bool Round::TriggerMap::setTrigger(Trigger *alias) {
       return false;
   }
   
-  return addTrigger(alias);
+  return addTrigger(trigger);
 }
 
 bool Round::TriggerMap::removeTriggerByName(const std::string &name) {

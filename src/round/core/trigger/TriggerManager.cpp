@@ -16,4 +16,21 @@ Round::TriggerManager::TriggerManager() {
 }
 
 Round::TriggerManager::~TriggerManager() {
+  stop();
+}
+
+bool Round::TriggerManager::start() {
+  for (TriggerMap::iterator triggerIt = begin(); triggerIt != end(); triggerIt++) {
+    Trigger *trigger = triggerIt->second;
+    trigger->start();
+  }
+  return true;
+}
+
+bool Round::TriggerManager::stop() {
+  for (TriggerMap::iterator triggerIt = begin(); triggerIt != end(); triggerIt++) {
+    Trigger *trigger = triggerIt->second;
+    trigger->stop();
+  }
+  return true;
 }
