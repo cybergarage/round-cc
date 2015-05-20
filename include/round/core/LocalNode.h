@@ -21,6 +21,7 @@
 #include <round/core/Route.h>
 #include <round/core/Registry.h>
 #include <round/core/Alias.h>
+#include <round/core/Trigger.h>
 
 namespace Round {
 
@@ -103,6 +104,14 @@ public:
   
   LocalAliasManager();
   ~LocalAliasManager();
+};
+
+class LocalTriggerManager: public TriggerManager {
+    
+public:
+    
+  LocalTriggerManager();
+  ~LocalTriggerManager();
 };
 
 class LocalConfig : public Config {
@@ -256,6 +265,8 @@ private:
   bool hasRoute(const std::string &name);
   bool execRoute(const std::string &name, const NodeResponse *prevNodeRes, NodeResponse *nodeRes, Error *error);
   
+  bool execTrigger(const std::string &name, Error *error);
+  
 private:
 
   NodeGraph               nodeGraph;
@@ -271,6 +282,7 @@ private:
   LocalRegistry             nodeReg;
   LocalRouteManager         routeMgr;
   LocalAliasManager         aliasMgr;
+  LocalTriggerManager       triggerMgr;
 };
 
 }

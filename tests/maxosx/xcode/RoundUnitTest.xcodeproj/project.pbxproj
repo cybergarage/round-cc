@@ -59,6 +59,7 @@
 		21DA08B71A174A4900D3DCE0 /* NodeStatusTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08A41A174A4900D3DCE0 /* NodeStatusTest.cpp */; };
 		21DA08B91A174A4900D3DCE0 /* NodeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08A71A174A4900D3DCE0 /* NodeTest.cpp */; };
 		21DA08BC1A174BB700D3DCE0 /* NodeListTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08BB1A174BB700D3DCE0 /* NodeListTest.cpp */; };
+		21E918CB1B0C35EC006DCAEF /* TriggerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E918CA1B0C35EC006DCAEF /* TriggerTest.cpp */; };
 		21EBA0891A50205F0077A79A /* HashTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EBA0881A50205F0077A79A /* HashTest.cpp */; };
 		21F349921A5EDE670099B5B6 /* liblibmupnp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F3498F1A5EDE540099B5B6 /* liblibmupnp++.a */; };
 		21F49B121ABEE72700A932CC /* JavaScriptTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F49B071ABEE72700A932CC /* JavaScriptTest.cpp */; };
@@ -185,6 +186,7 @@
 		21DA08BB1A174BB700D3DCE0 /* NodeListTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeListTest.cpp; sourceTree = "<group>"; };
 		21DA08BD1A174C1300D3DCE0 /* TestNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestNode.h; path = ../../TestNode.h; sourceTree = "<group>"; };
 		21DE0ECF155B9EBA00A08E1F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		21E918CA1B0C35EC006DCAEF /* TriggerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TriggerTest.cpp; sourceTree = "<group>"; };
 		21EBA0881A50205F0077A79A /* HashTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HashTest.cpp; sourceTree = "<group>"; };
 		21EC22FE1A33E5C00074289E /* TestScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestScript.h; path = ../../TestScript.h; sourceTree = "<group>"; };
 		21F3498A1A5EDE540099B5B6 /* libmupnp++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libmupnp++.xcodeproj"; path = "../../../../mupnp/lib/macosx/xcode/libmupnp++.xcodeproj"; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 		21DA08931A174A4900D3DCE0 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				21E918CA1B0C35EC006DCAEF /* TriggerTest.cpp */,
 				216B580E1AD38CE900846C32 /* RegistryTest.cpp */,
 				21D50AAF1A824BC8005C1F51 /* AliasTest.cpp */,
 				2184F2111A1993B4007F1326 /* ClientCoreTest.cpp */,
@@ -486,6 +489,7 @@
 				2184F2041A18E359007F1326 /* ClientTest.cpp in Sources */,
 				21AD42AC1A13B7FC00741A08 /* SemaphoreTest.cpp in Sources */,
 				21ACE9901A5D596600568779 /* RPCTest.cpp in Sources */,
+				21E918CB1B0C35EC006DCAEF /* TriggerTest.cpp in Sources */,
 				2184F2201A19B9A0007F1326 /* NodeResponseTest.cpp in Sources */,
 				2184F2061A18E359007F1326 /* RemoteNodeTest.cpp in Sources */,
 				21F49B121ABEE72700A932CC /* JavaScriptTest.cpp in Sources */,

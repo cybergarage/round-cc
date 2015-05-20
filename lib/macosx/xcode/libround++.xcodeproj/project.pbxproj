@@ -215,6 +215,11 @@
 		21E1EB171A64FE2800FEABF6 /* NodeResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E1EB141A64FE2800FEABF6 /* NodeResponse.cpp */; };
 		21E918BF1B0AB6BC006DCAEF /* add_node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E918BD1B0AB6BC006DCAEF /* add_node.cpp */; };
 		21E918C01B0AB6BC006DCAEF /* remove_node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E918BE1B0AB6BC006DCAEF /* remove_node.cpp */; };
+		21E918CD1B0C3713006DCAEF /* Trigger.h in Headers */ = {isa = PBXBuildFile; fileRef = 21E918CC1B0C3713006DCAEF /* Trigger.h */; };
+		21E918D31B0C3837006DCAEF /* Trigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E918D01B0C3837006DCAEF /* Trigger.cpp */; };
+		21E918D41B0C3837006DCAEF /* TriggerManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E918D11B0C3837006DCAEF /* TriggerManager.cpp */; };
+		21E918D51B0C3837006DCAEF /* TriggerMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E918D21B0C3837006DCAEF /* TriggerMap.cpp */; };
+		21E918D71B0C392E006DCAEF /* LocalTriggerManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E918D61B0C392E006DCAEF /* LocalTriggerManager.cpp */; };
 		21F4CE671A63F0BA00E7F0CC /* Route.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4CE5D1A63F0BA00E7F0CC /* Route.cpp */; };
 		21F4CE691A63F0BA00E7F0CC /* RouteList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4CE5F1A63F0BA00E7F0CC /* RouteList.cpp */; };
 		21F4CE6A1A63F0BA00E7F0CC /* RouteManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4CE601A63F0BA00E7F0CC /* RouteManager.cpp */; };
@@ -457,6 +462,11 @@
 		21E1EB141A64FE2800FEABF6 /* NodeResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeResponse.cpp; sourceTree = "<group>"; };
 		21E918BD1B0AB6BC006DCAEF /* add_node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = add_node.cpp; sourceTree = "<group>"; };
 		21E918BE1B0AB6BC006DCAEF /* remove_node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = remove_node.cpp; sourceTree = "<group>"; };
+		21E918CC1B0C3713006DCAEF /* Trigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trigger.h; sourceTree = "<group>"; };
+		21E918D01B0C3837006DCAEF /* Trigger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Trigger.cpp; path = trigger/Trigger.cpp; sourceTree = "<group>"; };
+		21E918D11B0C3837006DCAEF /* TriggerManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TriggerManager.cpp; path = trigger/TriggerManager.cpp; sourceTree = "<group>"; };
+		21E918D21B0C3837006DCAEF /* TriggerMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TriggerMap.cpp; path = trigger/TriggerMap.cpp; sourceTree = "<group>"; };
+		21E918D61B0C392E006DCAEF /* LocalTriggerManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalTriggerManager.cpp; sourceTree = "<group>"; };
 		21F4CE5D1A63F0BA00E7F0CC /* Route.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Route.cpp; sourceTree = "<group>"; };
 		21F4CE5F1A63F0BA00E7F0CC /* RouteList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RouteList.cpp; sourceTree = "<group>"; };
 		21F4CE601A63F0BA00E7F0CC /* RouteManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RouteManager.cpp; sourceTree = "<group>"; };
@@ -602,6 +612,7 @@
 		21B911911A6B5E5400C791FD /* local */ = {
 			isa = PBXGroup;
 			children = (
+				21E918D61B0C392E006DCAEF /* LocalTriggerManager.cpp */,
 				219911121B01FA9600A6C5D6 /* LocalAliasManager.cpp */,
 				21B911921A6B5E5400C791FD /* LocalConfig.cpp */,
 				21B911931A6B5E5400C791FD /* LocalRegistry.cpp */,
@@ -730,6 +741,7 @@
 		21D8E1891A60E19300E8A63F /* core */ = {
 			isa = PBXGroup;
 			children = (
+				21E918CC1B0C3713006DCAEF /* Trigger.h */,
 				216B58051AD38B4C00846C32 /* Registry.h */,
 				21D50AA41A8249E5005C1F51 /* Alias.h */,
 				21D8E18A1A60E19300E8A63F /* ClientCore.h */,
@@ -901,6 +913,7 @@
 		21D8E2541A60E1E200E8A63F /* core */ = {
 			isa = PBXGroup;
 			children = (
+				21E918CF1B0C380F006DCAEF /* trigger */,
 				216B58071AD38B6C00846C32 /* registry */,
 				21D50AA61A824A9C005C1F51 /* alias */,
 				21D8E2751A60E1E200E8A63F /* ClientCore.cpp */,
@@ -962,6 +975,16 @@
 				21E1EB141A64FE2800FEABF6 /* NodeResponse.cpp */,
 			);
 			path = rpc;
+			sourceTree = "<group>";
+		};
+		21E918CF1B0C380F006DCAEF /* trigger */ = {
+			isa = PBXGroup;
+			children = (
+				21E918D01B0C3837006DCAEF /* Trigger.cpp */,
+				21E918D11B0C3837006DCAEF /* TriggerManager.cpp */,
+				21E918D21B0C3837006DCAEF /* TriggerMap.cpp */,
+			);
+			name = trigger;
 			sourceTree = "<group>";
 		};
 		21F4CE5C1A63F0BA00E7F0CC /* route */ = {
@@ -1052,6 +1075,7 @@
 				21D8E1DA1A60E19300E8A63F /* Round.h in Headers */,
 				21D8E1DD1A60E19300E8A63F /* Server.h in Headers */,
 				21D8E1B31A60E19300E8A63F /* HashObject.h in Headers */,
+				21E918CD1B0C3713006DCAEF /* Trigger.h in Headers */,
 				21D8E1AC1A60E19300E8A63F /* BitOption.h in Headers */,
 				21D8E1C01A60E19300E8A63F /* types.h in Headers */,
 				21D8E1B81A60E19300E8A63F /* platform.h in Headers */,
@@ -1176,11 +1200,13 @@
 				21B911B91A6B5F4300C791FD /* SystemMethodResponse.cpp in Sources */,
 				21F4CE6F1A63F0BA00E7F0CC /* ScriptMap.cpp in Sources */,
 				21D8E2C11A60E1E200E8A63F /* HashObject.cpp in Sources */,
+				21E918D41B0C3837006DCAEF /* TriggerManager.cpp in Sources */,
 				2133317F1A773FAD00DB41AB /* get_node_state.cpp in Sources */,
 				21526C8A1A6682F900CF3D12 /* RPCBatchRequest.cpp in Sources */,
 				21D50AA21A82322F005C1F51 /* get_registry.cpp in Sources */,
 				21D8E2BA1A60E1E200E8A63F /* SHA.cpp in Sources */,
 				21C0E1E11ADE172B002ABF65 /* SystemSetRegistryRequest.cpp in Sources */,
+				21E918D71B0C392E006DCAEF /* LocalTriggerManager.cpp in Sources */,
 				21D8E2DF1A60E1E200E8A63F /* ClientCore.cpp in Sources */,
 				21D8E2FB1A60E1E200E8A63F /* ServerNode.cpp in Sources */,
 				21D8E2B51A60E1E200E8A63F /* ConsistentHashObject.cpp in Sources */,
@@ -1216,6 +1242,7 @@
 				21FA93DD1A6E8FF10067314A /* method.cpp in Sources */,
 				21D8E3001A60E1E200E8A63F /* JavaEngine.cpp in Sources */,
 				21D8E2B31A60E1E200E8A63F /* ConsistentHashGraph.cpp in Sources */,
+				21E918D51B0C3837006DCAEF /* TriggerMap.cpp in Sources */,
 				21062D191A73D0EC00FCA587 /* rpm.cpp in Sources */,
 				21D8E2E01A60E1E200E8A63F /* Cluster.cpp in Sources */,
 				21D8E2CF1A60E1E200E8A63F /* MessageQueue.cpp in Sources */,
@@ -1262,6 +1289,7 @@
 				21B911991A6B5E5400C791FD /* LocalRegistry.cpp in Sources */,
 				21D8CA7A1A6B7781002CBDC3 /* system_method.cpp in Sources */,
 				21C366391AF6E8D4001CB74F /* remove_route.cpp in Sources */,
+				21E918D31B0C3837006DCAEF /* Trigger.cpp in Sources */,
 				21D8E2D21A60E1E200E8A63F /* NotificationObserver.cpp in Sources */,
 				21D8E2C51A60E1E200E8A63F /* JSONBoolean.cpp in Sources */,
 				21D8E2EE1A60E1E200E8A63F /* NodeFinderNotification.cpp in Sources */,

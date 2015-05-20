@@ -656,7 +656,7 @@ bool Round::LocalNode::execMethod(const NodeRequest *nodeReq, NodeResponse *node
 }
 
 ////////////////////////////////////////////////
-// Exce Route
+// Exec Route
 ////////////////////////////////////////////////
 
 bool Round::LocalNode::hasRoute(const std::string &name) {
@@ -715,4 +715,12 @@ bool Round::LocalNode::execRoute(const std::string &name, const NodeResponse *pr
   
   
   return isSuccess;
+}
+
+////////////////////////////////////////////////
+// Exec Trigger
+////////////////////////////////////////////////
+
+bool Round::LocalNode::execTrigger(const std::string &name, Error *error) {
+  return false;
 }
