@@ -26,21 +26,21 @@ BOOST_AUTO_TEST_CASE(RQLRequestParserTest) {
   
   RQLRequest rqlReq;
   
-  rql = "echo(*,hello)";
+  rql = "echo(?,hello)";
   BOOST_CHECK_EQUAL(rqlReq.parseQuery(rql, &err), true);
   BOOST_CHECK_EQUAL(rqlReq.getMethod(&method), true);
   BOOST_CHECK_EQUAL(method.compare("echo"), 0);
   BOOST_CHECK_EQUAL(rqlReq.getDest(&dest), true);
-  BOOST_CHECK_EQUAL(dest.compare("*"), 0);
+  BOOST_CHECK_EQUAL(dest.compare("?"), 0);
   BOOST_CHECK_EQUAL(rqlReq.getParams(&params), true);
   BOOST_CHECK_EQUAL(params.compare("hello"), 0);
   
-  rql = "hello(*)";
+  rql = "hello(?)";
   BOOST_CHECK_EQUAL(rqlReq.parseQuery(rql, &err), true);
   BOOST_CHECK_EQUAL(rqlReq.getMethod(&method), true);
   BOOST_CHECK_EQUAL(method.compare("hello"), 0);
   BOOST_CHECK_EQUAL(rqlReq.getDest(&dest), true);
-  BOOST_CHECK_EQUAL(dest.compare("*"), 0);
+  BOOST_CHECK_EQUAL(dest.compare("?"), 0);
   BOOST_CHECK_EQUAL(rqlReq.hasParams(), false);
 }
 
@@ -53,21 +53,21 @@ BOOST_AUTO_TEST_CASE(RQLRequestNoParamParserTest) {
 
   RQLRequest rqlReq;
   
-  rql = "echo(*,hello)";
+  rql = "echo(?,hello)";
   BOOST_CHECK_EQUAL(rqlReq.parseQuery(rql, &err), true);
   BOOST_CHECK_EQUAL(rqlReq.getMethod(&method), true);
   BOOST_CHECK_EQUAL(method.compare("echo"), 0);
   BOOST_CHECK_EQUAL(rqlReq.getDest(&dest), true);
-  BOOST_CHECK_EQUAL(dest.compare("*"), 0);
+  BOOST_CHECK_EQUAL(dest.compare("?"), 0);
   BOOST_CHECK_EQUAL(rqlReq.getParams(&params), true);
   BOOST_CHECK_EQUAL(params.compare("hello"), 0);
 
-  rql = "hello(*)";
+  rql = "hello(?)";
   BOOST_CHECK_EQUAL(rqlReq.parseQuery(rql, &err), true);
   BOOST_CHECK_EQUAL(rqlReq.getMethod(&method), true);
   BOOST_CHECK_EQUAL(method.compare("hello"), 0);
   BOOST_CHECK_EQUAL(rqlReq.getDest(&dest), true);
-  BOOST_CHECK_EQUAL(dest.compare("*"), 0);
+  BOOST_CHECK_EQUAL(dest.compare("?"), 0);
   BOOST_CHECK_EQUAL(rqlReq.hasParams(), false);
 }
 

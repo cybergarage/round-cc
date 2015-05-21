@@ -22,8 +22,10 @@ Round adds the following original fields to [JSON-RPC 2.0][json-rpc] specificati
 The dest field specifies a destination node of the request object. The node which is received the request object checks the hash code whether the node should execute the request object.  
 
 ```
-dest = [ "*" | "all" | SHA256-HASH ]
+dest = [ "?" | "*" | SHA256-HASH ]
 ```
+
+The node which is received the message is selected when the dest field is null. A random node is selected in the cluster when the dest field is "?". All node are selected in the cluster when the dest field is "\*".
 
 #### Request object
 

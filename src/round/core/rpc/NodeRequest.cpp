@@ -18,7 +18,7 @@
 #include <round/common/encoding/URL.h>
 
 const std::string Round::NodeRequest::SYNC = "sync";
-const std::string Round::NodeRequest::ANY = "*";
+const std::string Round::NodeRequest::ANY = ROUNDCC_SYSTEM_METHOD_DEST_ONE_NODE;
 
 Round::NodeRequest::NodeRequest() {
 }

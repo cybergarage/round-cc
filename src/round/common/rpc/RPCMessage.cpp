@@ -23,8 +23,8 @@ const std::string Round::RPC::JSON::Message::TIMESTAMP = "ts";
 const std::string Round::RPC::JSON::Message::QUORUM = "quorum";
 
 const std::string Round::RPC::JSON::Message::DEST = "dest";
-const std::string Round::RPC::JSON::Message::DEST_ANY = "*";
-const std::string Round::RPC::JSON::Message::DEST_ALL = "all";
+const std::string Round::RPC::JSON::Message::DEST_ANY = ROUNDCC_SYSTEM_METHOD_DEST_ONE_NODE;
+const std::string Round::RPC::JSON::Message::DEST_ALL = ROUNDCC_SYSTEM_METHOD_DEST_ALL_NODE;
 
 const std::string Round::RPC::JSON::Message::TYPE = "type";
 const std::string Round::RPC::JSON::Message::COND = "cond";
