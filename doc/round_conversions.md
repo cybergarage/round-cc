@@ -6,11 +6,9 @@ English [Japanese](round_conversions_jp.md)
 
 ## Target Layers
 
-Round is designed to develop any distributed applications using the single programming model. The programming model is a computer which has some programmable engines with a memory, and it can receive and send messages with other nodes and clients.
+Round's core functions are very small like [Microkernel](http://en.wikipedia.org/wiki/Microkernel), and the all other basic functions which are need for distributed frameworks or applications are supplied as core modules. Developers can build distributed frameworks or applications using the core functions and modules as the following.
 
-![Round Programming Model](img/round_programming_model.png)
-
-Round is ......
+![round_design_scope](img/round_design_scope.png)
 
 ### Existing Consensus Services
 
@@ -20,10 +18,11 @@ The existing distributed consensus service such as [Chubby \[1\]][1], [ZooKeeper
 
 #### Comparison Table
 
-| Feature | Round | [ZooKeeper \[1\]][1] | Consul | etcd | Chubby |
+| Feature | Round | ZooKeeper | Consul | etcd | Chubby |
 |---|---|---|---|---|
 | Consensus Protocol | Dynamic | Static (ZAB) | Static (Raft) | Static (Raft) | Static (Paxos) |
-| Notification | Sync, Async | Sync | ? | ? | ? |
+| Failure Detection | Dynamic | Static | Static | Static | Static |
+| Notification | Dynamic | Static | Static | Static | Static |
 | Membership | Multicast, Gossip | ? | ? | Gossip | ? |
 
 #### Functions
@@ -61,11 +60,11 @@ In the existing distributed framework such as [MapReduce \[2\]][2] and [Storm \[
 
 ### Comparison Table
 
-| Feature | Round | MapReduce | YARN | Spark | Storm |
+| Feature | Round | Hadoop | HiVE | YARN | Spark | Storm |
 |---|---|---|---|---|
-| Programming Model | Dynamic | Static (MR) |  |  |  |
-| Logical Model | - | Static (MR) | ? | ? | ? |
-| Resource Management | - | X | O | | | |
+| Programming Model | Application + DG | MapReduce | MapReduce + DAG | Application | DAG | Application + DG |
+| Data Model | None | KV | KV | None | KV | KV? |
+| Resource Management | O | O | O | O | X | ? |
 
 
 ### Round Functions
