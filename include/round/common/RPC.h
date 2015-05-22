@@ -91,7 +91,13 @@ class Message : public ::Round::Request {
   static const std::string COND;
   static const std::string DIGEST;
   static const std::string QUORUM;
-  
+
+public:
+
+  static bool IsDestAny(const std::string &dest);
+  static bool IsDestAll(const std::string &dest);
+  static bool IsDestHash(const std::string &dest);
+
  public:
   Message();
   virtual ~Message();

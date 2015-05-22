@@ -155,6 +155,24 @@ BOOST_AUTO_TEST_CASE(RPCResponseMethodTest) {
   BOOST_CHECK_EQUAL(dirResult.compare(TEST_RESULT_DIR_VALUE), 0);
 }
 
+BOOST_AUTO_TEST_CASE(RPCMessageDestTest) {
+  BOOST_CHECK(!RPC::JSON::Message::IsDestAll(""));
+  BOOST_CHECK(!RPC::JSON::Message::IsDestAll(ROUNDCC_SYSTEM_METHOD_DEST_ANY_NODE));
+  BOOST_CHECK(RPC::JSON::Message::IsDestAll(ROUNDCC_SYSTEM_METHOD_DEST_ALL_NODE));
+  
+  BOOST_CHECK(!RPC::JSON::Message::IsDestAny(""));
+  BOOST_CHECK(!RPC::JSON::Message::IsDestAny(ROUNDCC_SYSTEM_METHOD_DEST_ALL_NODE));
+  BOOST_CHECK(RPC::JSON::Message::IsDestAny(ROUNDCC_SYSTEM_METHOD_DEST_ANY_NODE));
+
+  std::string hashCode;
+  Round::HashObject::GetHashCode("hello", &hashCode);
+
+  BOOST_CHECK(!RPC::JSON::Message::IsDestHash(""));
+  BOOST_CHECK(!RPC::JSON::Message::IsDestHash(ROUNDCC_SYSTEM_METHOD_DEST_ALL_NODE));
+  BOOST_CHECK(!RPC::JSON::Message::IsDestHash(ROUNDCC_SYSTEM_METHOD_DEST_ALL_NODE));
+  BOOST_CHECK(RPC::JSON::Message::IsDestHash(hashCode));
+}
+
 BOOST_AUTO_TEST_CASE(RPCRequestExtentionMethodTest) {
   RPC::JSON::Message rpcMsg;
   
