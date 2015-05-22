@@ -262,7 +262,21 @@ BOOST_AUTO_TEST_CASE(RPCRequestExtentionMethodTest) {
   BOOST_CHECK(!rpcMsg.isDestHash());
   BOOST_CHECK(!rpcMsg.isDestOne());
 
-  BOOST_CHECK(rpcMsg.setDest(RPC::JSON::Message::DEST_ANY));
+  BOOST_CHECK(rpcMsg.setDestAll());
+  BOOST_CHECK(rpcMsg.isDestValid());
+  BOOST_CHECK(rpcMsg.isDestAll());
+  BOOST_CHECK(!rpcMsg.isDestAny());
+  BOOST_CHECK(!rpcMsg.isDestHash());
+  BOOST_CHECK(!rpcMsg.isDestOne());
+  
+  BOOST_CHECK(rpcMsg.setDest(RPC::JSON::Message::DEST_ALL));
+  BOOST_CHECK(rpcMsg.isDestValid());
+  BOOST_CHECK(rpcMsg.isDestAll());
+  BOOST_CHECK(!rpcMsg.isDestAny());
+  BOOST_CHECK(!rpcMsg.isDestHash());
+  BOOST_CHECK(!rpcMsg.isDestOne());
+  
+  BOOST_CHECK(rpcMsg.setDestAny());
   BOOST_CHECK(rpcMsg.isDestValid());
   BOOST_CHECK(rpcMsg.isDestAny());
   BOOST_CHECK(rpcMsg.isDestOne());

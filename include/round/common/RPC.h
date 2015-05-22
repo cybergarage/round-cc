@@ -156,6 +156,8 @@ public:
     return set(DEST, value);
   }
   
+  bool setDestAny();
+  bool setDestAll();
   bool setDest(HashObject *hashObj);
   
   bool getDest(std::string *value) const {

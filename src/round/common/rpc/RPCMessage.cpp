@@ -36,6 +36,14 @@ Round::RPC::JSON::Message::Message() {
 Round::RPC::JSON::Message::~Message() {
 }
 
+bool Round::RPC::JSON::Message::setDestAny() {
+  return setDest(DEST_ANY);
+}
+
+bool Round::RPC::JSON::Message::setDestAll() {
+  return setDest(DEST_ALL);
+}
+
 bool Round::RPC::JSON::Message::IsDestAny(const std::string &dest) {
   return (dest.compare(DEST_ANY) == 0) ? true : false;
 }
