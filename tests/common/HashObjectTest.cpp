@@ -43,6 +43,15 @@ private:
 
 BOOST_AUTO_TEST_SUITE(common)
 
+BOOST_AUTO_TEST_CASE(HashObjectStaticMethodTest) {
+  std::string hashCode;
+  Round::HashObject::GetHashCode("hello", &hashCode);
+  
+  BOOST_CHECK(!HashObject::IsHashCode(""));
+  BOOST_CHECK(!HashObject::IsHashCode("abcdefghijklmnopqrstu"));
+  BOOST_CHECK(HashObject::IsHashCode(hashCode));
+}
+
 BOOST_AUTO_TEST_CASE(HashObjectTest) {
   size_t hashCodeLength = HashObject::GetHashCodeLength();
   BOOST_CHECK(0 < hashCodeLength);
