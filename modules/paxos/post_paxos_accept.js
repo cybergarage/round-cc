@@ -1,14 +1,19 @@
 function post_paxos_accept(params) {
   var jsonParams = JSON.parse(result);
+  var pn = jsonParams.pn;
+
+  var lastPn = get_registry("_round.paxos.pn");
+
+  if (pn < lastPn) {
+    return "false";
+  }
+
+  set_registry(pn);
+  
   var methodName = jsonParams.method;
   var methodParams = jsonParams.params;
 
-  var pn = get_node ....
-  var prepareResults = post_method("all", "post_paxos_prepare", pn);
-  var jsonPrepareResults = JSON.parse(prepareResults);
+  var postResults = post_method(methodName, methodParams);
 
-  var acceptResults = post_method("all", "post_paxos_accept", pn + params);
-  var jsonAcceptResults = JSON.parse(acceptResults);
-
-  return params;
+  return "true";
 };
