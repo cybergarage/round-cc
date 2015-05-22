@@ -24,8 +24,45 @@ Round::Node::Node() {
 Round::Node::~Node() {
 }
 
+bool Round::Node::postMessage(const std::string &dest, const std::string &method, const std::string &params, std::string *result) {
+  if (RPC::JSON::Message::IsDestAll(dest))
+    return postMessageAll(method, params, result);
+
+  Round::Error error;
+  Node *targetNode = this;
+  
+  if (RPC::JSON::Message::IsDestHash(dest)) {
+    if (!findNode(dest, &targetNode, &error)) {
+      // TODO Set a error result.
+      return false;
+    }
+    return targetNode->postMessage(method, params, result);
+  }
+  
+  if (RPC::JSON::Message::IsDestAny(dest)) {
+    if (findAnyNode(&targetNode, &error))
+      return targetNode->postMessage(method, params, result);
+  }
+
+  return postMessage(method, params, result);
+}
+
 bool Round::Node::postMessage(const std::string &method, const std::string &params, std::string *result) {
   NodeRequest nodeReq;
+  nodeReq.setMethod(method);
+  nodeReq.setParams(params);
+  
+  NodeResponse nodeRes;
+  Error error;
+  bool isSuccess = postMessage(&nodeReq, &nodeRes, &error);
+  nodeRes.getResult(result);
+  
+  return isSuccess;
+}
+
+bool Round::Node::postMessageAll(const std::string &method, const std::string &params, std::string *result) {
+  NodeRequest nodeReq;
+  nodeReq.setDestAll();
   nodeReq.setMethod(method);
   nodeReq.setParams(params);
   
@@ -92,11 +129,27 @@ bool Round::Node::findNode(const std::string &nodeHash, Node **node, Error *erro
   Cluster cluster;
   if (!getCluster(&cluster, error))
     return false;
+  
   *node = cluster.getNodeByHashCode(nodeHash);
   if (!node) {
     // TODO Set error code
     return false;
   }
+  
+  return true;
+}
+
+bool Round::Node::findAnyNode(Node **node, Error *error) {
+  Cluster cluster;
+  if (!getCluster(&cluster, error))
+    return false;
+  
+  *node = cluster.getRandomNode();
+  if (!node) {
+    // TODO Set error code
+    return false;
+  }
+  
   return true;
 }
 

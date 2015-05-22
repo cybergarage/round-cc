@@ -145,15 +145,12 @@ int round_lua_postmethod(lua_State* L)
   
   std::string method = luaL_checkstring(L, 1);
   std::string params = luaL_checkstring(L, 2);
-  std::string obj = luaL_checkstring(L, 3);
+  std::string dest = luaL_checkstring(L, 3);
   
   Round::Node *localNode = round_lua_getlocalnode();
   if (localNode) {
-    Round::Node *targetNode;
     Round::Error error;
-    if (localNode->findNode(obj, &targetNode, &error)) {
-      isSuccess = targetNode->postMessage(method, params, &result);
-    }
+    isSuccess = localNode->postMessage(dest, method, params, &result);
   }
   
   lua_pushboolean(L, isSuccess);

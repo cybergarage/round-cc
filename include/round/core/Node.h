@@ -47,8 +47,12 @@ class Node : public NodeCore, public Cloneable<Node> {
   virtual bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) = 0;
   virtual bool postMessage(const NodeBatchRequest *nodeReq, NodeBatchResponse *nodeRes, Error *error) = 0;
   
+  bool postMessage(const std::string &dest, const std::string &method, const std::string &params, std::string *result);
   bool postMessage(const std::string &method, const std::string &params, std::string *result);
+  bool postMessageAll(const std::string &method, const std::string &params, std::string *result);
+
   bool findNode(const std::string &nodeHash, Node **node, Error *error);
+  bool findAnyNode(Node **node, Error *error);
   
   bool setRegistry(const Registry reg, Error *error);
   bool setRegistry(const std::string &key, const std::string &value, Error *error);

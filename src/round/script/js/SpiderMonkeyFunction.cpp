@@ -126,27 +126,22 @@ JSBool round_js_sm_postmethod(JSContext *cx, unsigned argc, jsval *vp) {
   if (argc < 2)
     return JS_FALSE;
 
-  Round::LocalNode *node = dynamic_cast<Round::LocalNode *>(round_js_sm_getlocalnode());
+  Round::Node *node = round_js_sm_getlocalnode();
   if (!node)
     return JS_FALSE;
   
   JS_BeginRequest(cx);
   
-  std::string method, params, obj;
+  std::string method, params, dest;
   JSSTRING_TO_STDSTRING(cx, vp, 0, &method);
   JSSTRING_TO_STDSTRING(cx, vp, 1, &params);
   if (3 <= argc) {
-    JSSTRING_TO_STDSTRING(cx, vp, 2, &obj);
+    JSSTRING_TO_STDSTRING(cx, vp, 2, &dest);
   }
   
-  Round::Node *targetNode;
   Round::Error error;
   std::string result;
-  bool isSuccess = false;
-  
-  if (node->findNode(obj, &targetNode, &error)) {
-    isSuccess = targetNode->postMessage(method, params, &result);
-  }
+  bool isSuccess = node->postMessage(dest, method, params, &result);
   
   if (isSuccess) {
     JS_SET_STDSTRING_RVAL(cx, vp, result);
