@@ -16,10 +16,10 @@ To build distributed frameworks and applications, Round supports the following w
 
 | Feature | Round | ZooKeeper | Consul | etcd | Chubby |
 |---|---|---|---|---|
-| Consensus Protocol | Dynamic | Static (ZAB) | Static (Raft) | Static (Raft) | Static (Paxos) |
-| Notification | Dynamic | Static | Static | Static | Static |
-| Membership | Multicast, Gossip | ? | ? | Gossip | ? |
-| Failure Detection | Dynamic | Static | Static | Static | Static |
+| Consensus Protocol | Pluggable | Static (ZAB) | Static (Raft) | Static (Raft) | Static (Paxos) |
+| Notification | Static + User  | Static | Static | Static | Static |
+| Membership | Pluggable | ? | ? | Gossip | ? |
+| Failure Detection | Pluggable | Static | Static | Static | Static |
 
 ### Existing Consensus Services
 
@@ -62,12 +62,12 @@ In the existing distributed framework such as [MapReduce \[2\]][2] and [Storm \[
 
 ### Comparison Table
 
-| Feature | Round | Hadoop | HiVE | YARN | Spark | Storm |
-|---|---|---|---|---|
-| Programming Model | Application + DG | MapReduce | MapReduce + DAG | Application | DAG | Application + DG |
-| Data Model | None | KV | KV | None | KV | KV? |
-| Resource Management | O | O | - | O | X | ? |
-| Consensus Service | O | ZooKeeper | - | ZooKeeper | - | ? |
+| Feature | Round | Hadoop | HiVE | YARN | Spark | Storm | Borg |
+|---|---|---|---|---|---|
+| Programming Model | Application + DG | MapReduce | MapReduce + DAG | Application | DAG | Application? + DG | Application |
+| Data Model | None | KV | KV | None | KV | KV? | None |
+| Resource Management | O | O | - | O | - | - | O |
+| Consensus Service | O | ZooKeeper | ? | ZooKeeper | ? | ? | etcd |
 
 
 ## Existing Distributed Application
