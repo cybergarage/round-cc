@@ -4,26 +4,28 @@ English [Japanese](round_conversions_jp.md)
 
 # Conversions
 
-## Target Layers
+## Conversion Layers
 
-Round's core functions are very small like [Microkernel](http://en.wikipedia.org/wiki/Microkernel), and the all other basic functions which are need for distributed frameworks or applications are supplied as core modules. Developers can build distributed frameworks or applications using the core functions and modules as the following.
+Round's core functions are very small like [Microkernel](http://en.wikipedia.org/wiki/Microkernel), and the all other basic functions to build distributed frameworks or applications are supplied as core modules.
+
+To build distributed frameworks and applications, Round supports the following wide layers from consensus service to application. Developers can build distributed frameworks or applications using the core functions and modules.
 
 ![round_design_scope](img/round_design_scope.png)
+
+### Comparison Table
+
+| Feature | Round | ZooKeeper | Consul | etcd | Chubby |
+|---|---|---|---|---|
+| Consensus Protocol | Dynamic | Static (ZAB) | Static (Raft) | Static (Raft) | Static (Paxos) |
+| Notification | Dynamic | Static | Static | Static | Static |
+| Membership | Multicast, Gossip | ? | ? | Gossip | ? |
+| Failure Detection | Dynamic | Static | Static | Static | Static |
 
 ### Existing Consensus Services
 
 The existing distributed consensus service such as [Chubby \[1\]][1], [ZooKeeper \[2\]][2] supports the only following basic functions to build distributed applications.
 
 ![Chubby Programming Model](img/chubby_distributed_programming.png)
-
-#### Comparison Table
-
-| Feature | Round | ZooKeeper | Consul | etcd | Chubby |
-|---|---|---|---|---|
-| Consensus Protocol | Dynamic | Static (ZAB) | Static (Raft) | Static (Raft) | Static (Paxos) |
-| Failure Detection | Dynamic | Static | Static | Static | Static |
-| Notification | Dynamic | Static | Static | Static | Static |
-| Membership | Multicast, Gossip | ? | ? | Gossip | ? |
 
 #### Functions
 
@@ -64,25 +66,23 @@ In the existing distributed framework such as [MapReduce \[2\]][2] and [Storm \[
 |---|---|---|---|---|
 | Programming Model | Application + DG | MapReduce | MapReduce + DAG | Application | DAG | Application + DG |
 | Data Model | None | KV | KV | None | KV | KV? |
-| Resource Management | O | O | O | O | X | ? |
-
-
-### Round Functions
-
-Round supports
-
-## Existing Service Framework
-
-..... the function is static, and it is difficult to change the algorithm.
+| Resource Management | O | O | - | O | X | ? |
+| Consensus Service | O | ZooKeeper | - | ZooKeeper | - | ? |
 
 
 ## Existing Distributed Application
 
+Some distributed applications is created on the consensus services or distributed frameworks ...
+
 ### Comparison Table
 
-| Feature | Round | Cassandra |  |  |
+| Feature | Round | Cassandra? |  |  |
 |---|---|---|---|---|
-| Component | Micro | Monolithic |  |  |  |
+| Component | Micro | Monolithic |  |  |
+| Structure | Flat ? | Deep ? |  |  |
+| Coupling | Loose | Tight ? |  |  |
+| Profiling | Aspect | ? |  |  |
+| Debbging | Aspect | Static |  |  | |
 
 ## Refrences
 
