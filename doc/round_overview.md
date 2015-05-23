@@ -38,7 +38,7 @@ The initial version of core functions are implemented with C++, whereas the core
 
 ### Target Scopes
 
-Round's core functions are very small like [Microkernel](http://en.wikipedia.org/wiki/Microkernel), and the all other basic functions which are need for distributed frameworks or applications are supplied as core modules. Developers can build distributed frameworks or applications using the core functions and modules as the following.
+Round's core functions are very small like [Microkernel](http://en.wikipedia.org/wiki/Microkernel), and the all other basic functions to build distributed frameworks or applications are supplied as core modules. Developers can build distributed frameworks or applications using the core functions and modules as the following.
 
 ![round_design_scope](img/round_design_scope.png)
 
