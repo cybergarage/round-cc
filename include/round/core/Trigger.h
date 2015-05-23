@@ -45,6 +45,8 @@ public:
   void run();
 private:
   bool update();
+private:
+  double currentTime;
 };
   
 class TriggerMap : public std::map<std::string, Trigger *> {

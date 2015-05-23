@@ -12,6 +12,7 @@
 #include <round/core/LocalNode.h>
 
 Round::TimerTrigger::TimerTrigger() {
+  this->currentTime = 0;
 }
 
 Round::TimerTrigger::~TimerTrigger() {
@@ -24,7 +25,6 @@ void Round::TimerTrigger::run() {
 }
 
 bool Round::TimerTrigger::update() {
-  static double currentTime = 0;
 /*
   double startTime = getStartTime();
   double stopTime = getStopTime();

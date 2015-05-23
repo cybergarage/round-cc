@@ -82,7 +82,8 @@ Some distributed applications is created on the consensus services or distribute
 | Structure | Flat ? | Deep ? |  |  |
 | Coupling | Loose | Tight ? |  |  |
 | Profiling | Aspect | ? |  |  |
-| Debbging | Aspect | Static |  |  | |
+| Debbging | Aspect | Static |  |  |
+| Visualization | O | - | - | - |
 
 ## Refrences
 
