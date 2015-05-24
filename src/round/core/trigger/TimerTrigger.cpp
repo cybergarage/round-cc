@@ -12,13 +12,26 @@
 #include <round/core/LocalNode.h>
 
 Round::TimerTrigger::TimerTrigger() {
+  init();
+}
+
+Round::TimerTrigger::TimerTrigger(const std::string &name, time_t duration, bool loop) {
+  init();
+  setName(name);
+  setDuration(duration);
+  setLoop(loop);
+}
+
+Round::TimerTrigger::~TimerTrigger() {
+}
+
+bool Round::TimerTrigger::init() {
   this->lastExecutedTime = 0;
   
   setDuration(0);
   setLoop(false);
-}
-
-Round::TimerTrigger::~TimerTrigger() {
+  
+  return true;
 }
 
 bool Round::TimerTrigger::setDuration(time_t value) {

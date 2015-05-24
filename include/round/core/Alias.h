@@ -45,7 +45,7 @@ public:
   bool setDefaults(const std::string &value);
   bool getDefaults(std::string *value) const;
 
-  bool equals(const Alias *otherAlias) const;
+  bool equals(const Alias *other) const;
   
 private:
   

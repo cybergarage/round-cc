@@ -35,3 +35,14 @@ bool Round::Trigger::getName(std::string *value) const {
 bool Round::Trigger::isName(const std::string &value) const {
   return (this->name.compare(value) == 0) ? true : false;
 }
+
+bool Round::Trigger::equals(const Trigger *other) const {
+  if (!other)
+    return false;
+  
+  std::string otherName;
+  if (!other->getName(&otherName))
+    return false;
+  
+  return (otherName.compare(this->name) == 0) ? true : false;
+}

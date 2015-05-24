@@ -33,6 +33,8 @@ public:
   bool getName(std::string *value) const;
   bool isName(const std::string &value) const;
   
+  bool equals(const Trigger *other) const;
+
 private:
   
   std::string  name;
@@ -41,6 +43,7 @@ private:
 class TimerTrigger : public Trigger {
 public:
   TimerTrigger();
+  TimerTrigger(const std::string &name, time_t duration, bool loop);
   ~TimerTrigger();
 
   bool setDuration(time_t value);
@@ -52,6 +55,7 @@ public:
   void run();
 
 private:
+  bool init();
   bool update();
 
 private:
@@ -73,7 +77,6 @@ public:
   bool addTrigger(Trigger *alias);
   bool setTrigger(Trigger *alias);
   bool removeTriggerByName(const std::string &name);
-  
   
   void clear();
 };
