@@ -241,6 +241,24 @@ bool Round::LocalNode::removeAliasByName(const std::string &name) {
 }
 
 ////////////////////////////////////////////////
+// Trigger
+////////////////////////////////////////////////
+
+bool Round::LocalNode::setTrigger(Trigger *trigger) {
+  this->triggerMgr.lock();
+  bool isSuccess = this->triggerMgr.setTrigger(trigger);
+  this->triggerMgr.unlock();
+  return isSuccess;
+}
+
+bool Round::LocalNode::removeTriggerByName(const std::string &name) {
+  this->triggerMgr.lock();
+  bool isSuccess = this->triggerMgr.removeTriggerByName(name);
+  this->triggerMgr.unlock();
+  return isSuccess;
+}
+
+////////////////////////////////////////////////
 // Registry
 ////////////////////////////////////////////////
 

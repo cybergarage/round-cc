@@ -12,10 +12,31 @@
 #include <round/core/LocalNode.h>
 
 Round::TimerTrigger::TimerTrigger() {
-  this->currentTime = 0;
+  this->lastExecutedTime = 0;
+  
+  setDuration(0);
+  setLoop(false);
 }
 
 Round::TimerTrigger::~TimerTrigger() {
+}
+
+bool Round::TimerTrigger::setDuration(time_t value) {
+  this->duration = value;
+  return true;
+}
+
+time_t Round::TimerTrigger::getDuration() const {
+  return this->duration;
+  }
+
+bool Round::TimerTrigger::setLoop(bool value) {
+  this->loop = value;
+  return true;
+}
+
+bool Round::TimerTrigger::isLoop() const {
+  return this->loop;
 }
 
 void Round::TimerTrigger::run() {

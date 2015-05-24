@@ -17,6 +17,21 @@ using namespace Round;
 
 BOOST_AUTO_TEST_SUITE(trigger)
 
+BOOST_AUTO_TEST_CASE(TimerTriggerTest) {
+  TimerTrigger trigger;
+  
+  const time_t TEST_DURATION = 1234;
+  BOOST_CHECK_EQUAL(trigger.getDuration(), 0);
+  BOOST_CHECK(trigger.setDuration(TEST_DURATION));
+  BOOST_CHECK_EQUAL(trigger.getDuration(), TEST_DURATION);
+
+  BOOST_CHECK_EQUAL(trigger.isLoop(), false);
+  BOOST_CHECK(trigger.setLoop(true));
+  BOOST_CHECK_EQUAL(trigger.isLoop(), true);
+  BOOST_CHECK(trigger.setLoop(false));
+  BOOST_CHECK_EQUAL(trigger.isLoop(), false);
+}
+
 BOOST_AUTO_TEST_CASE(TriggerTest) {
 }
 

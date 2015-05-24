@@ -196,6 +196,9 @@ class LocalNode : public Node, public NodeFinderObserver {
   bool setAlias(Alias *alias);
   bool removeAliasByName(const std::string &name);
   
+  bool setTrigger(Trigger *trigger);
+  bool removeTriggerByName(const std::string &name);
+  
   virtual bool start(Error *error);
   virtual bool stop(Error *error);
   

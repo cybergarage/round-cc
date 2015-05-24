@@ -124,17 +124,15 @@ The remove_route method doesn't return anything when the method is success, othe
 
 #### set_timer
 
-The set_timer method sets a new timer into the local node.
+The set_timer method sets a new timer into the local node. A trigger event occurs when the specified duration is over, and the timer is removed when the loop parameter is false. Otherwise, a next trigger occurs when the loop parameter is true.
 
 ##### Parameters
 
 ```
-set_timer = "{" name [start_time] [stop_time] [cycle_interval] [loop] "}"
+set_timer = "{" name duration [loop] "}"
 
 name           = "name" ":" TOKEN
-start_time     = "start_time" ":" INTEGER
-stop_time      = "stop_time" ":" INTEGER
-cycle_interval = "cycle_interval" ":" INTEGER
+duration       = "duration" ":" INTEGER (msec)
 loop           = "loop" ":" BOOL
 ```
 

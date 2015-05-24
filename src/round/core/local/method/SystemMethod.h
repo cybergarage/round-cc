@@ -132,6 +132,10 @@ public:
 class set_timer : public system_method {
 public:
   static const std::string NAME;
+  static const std::string TIMER_NAME;
+  static const std::string TIMER_DURATION;
+  static const std::string TIMER_LOOP;
+  
 public:
   set_timer();
   ~set_timer();

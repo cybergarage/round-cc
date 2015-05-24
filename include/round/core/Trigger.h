@@ -42,11 +42,22 @@ class TimerTrigger : public Trigger {
 public:
   TimerTrigger();
   ~TimerTrigger();
+
+  bool setDuration(time_t value);
+  time_t getDuration() const;
+  
+  bool setLoop(bool value);
+  bool isLoop() const;
+  
   void run();
+
 private:
   bool update();
+
 private:
-  double currentTime;
+  time_t duration;
+  bool loop;
+  double lastExecutedTime;
 };
   
 class TriggerMap : public std::map<std::string, Trigger *> {
