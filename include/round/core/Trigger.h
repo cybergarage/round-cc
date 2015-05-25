@@ -46,8 +46,8 @@ public:
   TimerTrigger(const std::string &name, time_t duration, bool loop);
   ~TimerTrigger();
 
-  bool setDuration(time_t value);
-  time_t getDuration() const;
+  bool setDuration(double value);
+  double getDuration() const;
   
   bool setLoop(bool value);
   bool isLoop() const;
@@ -58,8 +58,10 @@ private:
   bool init();
   bool update();
 
+  double getCurrentTime();
+
 private:
-  time_t duration;
+  double duration;
   bool loop;
   double lastExecutedTime;
 };
