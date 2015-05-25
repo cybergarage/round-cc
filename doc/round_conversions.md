@@ -15,7 +15,7 @@ To build distributed frameworks and applications, Round supports the following w
 ### Comparison Table
 
 | Feature | Round | ZooKeeper | Consul | etcd | Chubby |
-|---|---|---|---|---|
+|---|---|---|---|---|---|
 | Consensus Protocol | Pluggable | Static (ZAB) | Static (Raft) | Static (Raft) | Static (Paxos) |
 | Notification | Static + User  | Static | Static | Static | Static |
 | Membership | Pluggable | ? | ? | Gossip | ? |
