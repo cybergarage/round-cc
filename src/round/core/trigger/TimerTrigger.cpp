@@ -8,6 +8,7 @@
 *
 ******************************************************************/
 
+#include <sys/time.h>
 #include <round/core/Trigger.h>
 #include <round/core/LocalNode.h>
 
@@ -35,7 +36,17 @@ bool Round::TimerTrigger::init() {
 }
 
 double Round::TimerTrigger::getCurrentTime() {
-  return 0;
+  long    second;
+  int     milisecond;
+  
+  struct timeval  time;
+  struct timezone timeZone;
+  gettimeofday(&time, &timeZone);
+  
+  second = time.tv_sec;
+  milisecond = time.tv_usec / 1000;
+  
+  return ((double)second + ((double)milisecond / 1000.0));
 }
 
 bool Round::TimerTrigger::setDuration(double value) {
