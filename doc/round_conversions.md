@@ -18,7 +18,7 @@ To build distributed frameworks and applications, Round supports the following w
 |---|---|---|---|---|---|
 | Consensus Protocol | Pluggable | Static (ZAB) | Static (Raft) | Static (Raft) | Static (Paxos) |
 | Notification | Static + User  | Static | Static | Static | Static |
-| Membership | Pluggable | ? | ? | Gossip | ? |
+| Membership | Pluggable | Static(?) | Static(?) | Static(Gossip) | Static(?) |
 | Failure Detection | Pluggable | Static | Static | Static | Static |
 
 ### Existing Consensus Services
