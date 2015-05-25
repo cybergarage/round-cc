@@ -63,7 +63,7 @@ In the existing distributed framework such as [MapReduce \[2\]][2] and [Storm \[
 ### Comparison Table
 
 | Feature | Round | Hadoop | HiVE | YARN | Spark | Storm | Borg |
-|---|---|---|---|---|---|
+|---|---|---|---|---|---|---|---|
 | Programming Model | Application + DG | MapReduce | MapReduce + DAG | Application | DAG | Application? + DG | Application |
 | Data Model | None | KV | KV | None | KV | KV? | None |
 | Resource Management | O | O | - | O | - | - | O |
