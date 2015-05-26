@@ -48,7 +48,7 @@ Round supplies some useful core modules such as consensus protocols and failure 
 
 ### Programming Model
 
-Programming model of Round is based on [Actor model][actor-model]. Round's cluster is consist of several nodes, and the each node is an actor which has a message queue to receive messages from clients or other nodes.
+Programming model of Round is based on [Actor model][actor-model]. Round's cluster is consist of several nodes. The each node is an actor of [Lamport model][lamport-model] which has a logical clock and a message queue to receive messages from clients or other nodes.
 
 ![Round Programming Model](img/round_programming_model.png)
 
@@ -109,3 +109,4 @@ Round supports some dynamic programming languages such ad JavaScript and Java, t
 [js-spec]: http://www.ecma-international.org/publications/standards/Ecma-262.htm
 [life-game]: http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 [rpc]: http://en.wikipedia.org/wiki/Remote_procedure_call
+[lamport-model]: http://en.wikipedia.org/wiki/Lamport_timestamps
