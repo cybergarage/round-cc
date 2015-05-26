@@ -19,6 +19,8 @@ BOOST_AUTO_TEST_SUITE(trigger)
 
 BOOST_AUTO_TEST_CASE(TimerTriggerTest) {
   TimerTrigger trigger;
+
+  BOOST_CHECK(0.0 < trigger.getCurrentTime());
   
   const time_t TEST_DURATION = 1234;
   BOOST_CHECK_EQUAL(trigger.getDuration(), 0);

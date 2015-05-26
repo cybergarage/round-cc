@@ -258,6 +258,11 @@ bool Round::LocalNode::removeTriggerByName(const std::string &name) {
   return isSuccess;
 }
 
+bool Round::LocalNode::execTrigger(const std::string &name) {
+  Error err;
+  return execTrigger(name, &err);
+}
+
 ////////////////////////////////////////////////
 // Registry
 ////////////////////////////////////////////////

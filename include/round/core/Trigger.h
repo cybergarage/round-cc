@@ -35,7 +35,12 @@ public:
   
   bool equals(const Trigger *other) const;
 
-private:
+  // Node
+  
+  void setNode(Node *node) {setObject(node);}
+  Node *getNode() {return getObject();}
+
+protected:
   
   std::string  name;
 };
@@ -52,13 +57,13 @@ public:
   bool setLoop(bool value);
   bool isLoop() const;
   
+  double getCurrentTime();
+  
   void run();
 
 private:
   bool init();
   bool update();
-
-  double getCurrentTime();
 
 private:
   double duration;

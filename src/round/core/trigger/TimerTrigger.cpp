@@ -74,14 +74,22 @@ void Round::TimerTrigger::run() {
 }
 
 bool Round::TimerTrigger::update() {
+  LocalNode *node = dynamic_cast<LocalNode *>(getNode());
+  if (!node)
+    return false;
+  
   double currTime = getCurrentTime();
   
   if (this->lastExecutedTime < 0) {
+    if (!node->execTrigger(this->name))
+      return false;
     this->lastExecutedTime = currTime;
     return true;
   }
 
   if ((this->lastExecutedTime + this->duration) < currTime) {
+    if (!node->execTrigger(this->name))
+      return false;
     this->lastExecutedTime = currTime;
     return true;
   }

@@ -198,6 +198,7 @@ class LocalNode : public Node, public NodeFinderObserver {
   
   bool setTrigger(Trigger *trigger);
   bool removeTriggerByName(const std::string &name);
+  bool execTrigger(const std::string &name);
   
   virtual bool start(Error *error);
   virtual bool stop(Error *error);
