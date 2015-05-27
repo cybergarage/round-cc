@@ -40,6 +40,10 @@ public:
   void setNode(Node *node) {this->node = node;}
   Node *getNode() {return this->node;}
 
+  // update
+  
+  virtual bool update() = 0;
+  
 protected:
   
   Node *node;
@@ -60,11 +64,10 @@ public:
   
   double getCurrentTime();
   
-  void run();
+  bool update();
 
 private:
   bool init();
-  bool update();
 
 private:
   double duration;
@@ -90,7 +93,11 @@ public:
 };
 
 class TriggerManager : public TriggerMap, public Thread<Node> {
-    
+  
+public:
+  
+  static double DEFAULT_CYCLE_TIME;
+  
 public:
   
   TriggerManager();
@@ -106,10 +113,14 @@ public:
     mutex.unlock();
   }
   
+  void setCycleTime(double value) {this->cycleTime = value;}
+  double getCycleTime() {return this->cycleTime;}
+  
   void run();
   
 private:
   
+  double cycleTime;
   Mutex mutex;
 };
 

@@ -12,7 +12,10 @@
 
 #include <string.h>
 
+double Round::TriggerManager::DEFAULT_CYCLE_TIME = ROUNDCC_SYSTEM_TRIGGER_TIMER_PRECISION;
+
 Round::TriggerManager::TriggerManager() {
+  setCycleTime(DEFAULT_CYCLE_TIME);
 }
 
 Round::TriggerManager::~TriggerManager() {
@@ -29,6 +32,12 @@ bool Round::TriggerManager::start() {
 
 void Round::TriggerManager::run() {
   while (isRunnable() == true) {
-    sleep(1);
+    for (TriggerMap::iterator triggerIt = begin(); triggerIt != end(); triggerIt++) {
+      Trigger *trigger = triggerIt->second;
+      trigger->update();
+    }
+    
+    long execCycleTime = this->cycleTime * 1000.0;
+    sleep(execCycleTime);
   }
 }

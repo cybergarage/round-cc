@@ -116,6 +116,10 @@ bool Round::LocalNode::start(Error *error) {
     areAllOperationSucess = false;
   }
 
+  if (!this->triggerMgr.start()) {
+    areAllOperationSucess = false;
+  }
+  
   if (!areAllOperationSucess) {
     stop(error);
     return false;
@@ -139,6 +143,10 @@ bool Round::LocalNode::stop(Error *error) {
     areAllOperationSucess = false;
   }
   
+  if (!this->triggerMgr.stop()) {
+    areAllOperationSucess = false;
+  }
+
   if (areAllOperationSucess == true) {
     setState(NodeStatus::STOP);
   }

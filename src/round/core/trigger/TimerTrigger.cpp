@@ -67,9 +67,6 @@ bool Round::TimerTrigger::isLoop() const {
   return this->loop;
 }
 
-void Round::TimerTrigger::run() {
-}
-
 bool Round::TimerTrigger::update() {
   LocalNode *node = dynamic_cast<LocalNode *>(getNode());
   if (!node)

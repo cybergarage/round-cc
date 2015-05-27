@@ -45,7 +45,7 @@ bool Round::set_timer::exec(LocalNode *node, const NodeRequest *nodeReq, NodeRes
   if (!paramDict->get(TIMER_NAME, &name))
     return false;
   
-  time_t duration;
+  double duration;
   if (!paramDict->get(TIMER_DURATION, &duration))
     return false;
   
