@@ -20,7 +20,7 @@
 
 namespace Round {
 
-class Trigger : public Thread<Node> {
+class Trigger {
   
 public:
   Trigger();
@@ -37,11 +37,12 @@ public:
 
   // Node
   
-  void setNode(Node *node) {setObject(node);}
-  Node *getNode() {return getObject();}
+  void setNode(Node *node) {this->node = node;}
+  Node *getNode() {return this->node;}
 
 protected:
   
+  Node *node;
   std::string  name;
 };
 
@@ -88,15 +89,14 @@ public:
   void clear();
 };
 
-class TriggerManager : public TriggerMap {
+class TriggerManager : public TriggerMap, public Thread<Node> {
     
- public:
+public:
   
   TriggerManager();
   virtual ~TriggerManager();
 
   bool start();
-  bool stop();
   
   void lock() {
     mutex.lock();
@@ -105,6 +105,8 @@ class TriggerManager : public TriggerMap {
   void unlock() {
     mutex.unlock();
   }
+  
+  void run();
   
 private:
   

@@ -16,21 +16,19 @@ Round::TriggerManager::TriggerManager() {
 }
 
 Round::TriggerManager::~TriggerManager() {
-  stop();
 }
 
 bool Round::TriggerManager::start() {
+  Node *node = dynamic_cast<Node *>(getObject());
   for (TriggerMap::iterator triggerIt = begin(); triggerIt != end(); triggerIt++) {
     Trigger *trigger = triggerIt->second;
-    trigger->start();
+    trigger->setNode(node);
   }
-  return true;
+  return Thread<Node>::start();
 }
 
-bool Round::TriggerManager::stop() {
-  for (TriggerMap::iterator triggerIt = begin(); triggerIt != end(); triggerIt++) {
-    Trigger *trigger = triggerIt->second;
-    trigger->stop();
+void Round::TriggerManager::run() {
+  while (isRunnable() == true) {
+    sleep(1);
   }
-  return true;
 }
