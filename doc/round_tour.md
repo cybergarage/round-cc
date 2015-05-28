@@ -74,10 +74,6 @@ round> echo(0, "hello")
 "hello"
 ```
 
-## Adding Alias
-
-Developers can set aliases for defined methods in the node with default parameters.
-
 ## Registry
 
 The node has a local registry to store any key values in the node.
@@ -99,10 +95,12 @@ round> get_registry(0, {"key":"test"})
 
 The node has a route function. Using the route function, the developer can connect some methods like Unix pipes.
 
-In this section, use route function.
+In this section, add a simple route function which adds a current date prefix use route function.
 
 ```
 round> set_method(0, { "language":"js", "name":"echo", "code":"function echo(params) {return params;}" })
+round> set_method(0, { "language":"js", "name":"echo_date", "code":"function echo(params) {var now = new Date(); return now.toString() + " : " + params;}" })
+round> set_route()
 ```
 
 ## Alias
@@ -125,4 +123,10 @@ round> hello(0)
 
 ## Creating Triggers
 
-The node has some embedded default triggers.
+The node has some embedded default triggers. In addition to the default triggers, the developers can add user original triggers using `set_timer`.
+
+In this section, create a simple counter which is updated every second:
+
+```
+round> set_timer()
+```
