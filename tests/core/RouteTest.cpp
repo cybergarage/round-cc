@@ -231,7 +231,7 @@ BOOST_AUTO_TEST_CASE(RouteTest) {
   // type
   
   BOOST_CHECK_EQUAL(route.isValidType(), true);
-  BOOST_CHECK_EQUAL(route.isPipe(), false);
+  BOOST_CHECK_EQUAL(route.isPipe(), true);
   BOOST_CHECK_EQUAL(route.isEvent(), false);
   
   BOOST_CHECK_EQUAL(route.setType("balidtype"), true);
