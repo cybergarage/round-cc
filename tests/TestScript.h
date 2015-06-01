@@ -148,7 +148,7 @@ const std::string RPC_RUN_ECHO = \
    "\"id\": 1}";
 
 ////////////////////////////////////////////////
-// set_alias
+// Alias (Hello)
 ////////////////////////////////////////////////
   
 const std::string RPC_SET_HELLO = \
@@ -171,6 +171,47 @@ const std::string RPC_RUN_HELLO = \
   "{\"jsonrpc\": \"2.0\"," \
   "\"method\": \"" RPC_ALIAS_HELLO_NAME "\"," \
   "\"id\": 1}";
+
+////////////////////////////////////////////////
+// Route (Hello)
+////////////////////////////////////////////////
+
+#define RPC_ECHO_HELLO_NAME   "echo_hello"
+#define RPC_ECHO_HELLO_LANG   "js"
+#define RPC_ECHO_HELLO_PREFIX   "Hello "
+#define RPC_ECHO_HELLO_CODE   "function echo(params) {return '" RPC_ECHO_HELLO_PREFIX "'+ params;}"
+
+const std::string RPC_SET_ECHO_HELLO = \
+  "{\"jsonrpc\": \"2.0\"," \
+  "\"method\": \"" ROUNDCC_SYSTEM_METHOD_SET_METHOD "\","
+  "\"params\": {" \
+  "\"language\": \"" RPC_ECHO_HELLO_LANG "\", " \
+  "\"name\": \"" RPC_ECHO_HELLO_NAME "\", " \
+  "\"code\": \"" RPC_ECHO_HELLO_CODE "\"" \
+  "}, \"id\": 1}";
+
+const std::string RPC_REMOVE_ECHO_HELLO = \
+  "{\"jsonrpc\": \"2.0\"," \
+  "\"method\": \"" ROUNDCC_SYSTEM_METHOD_REMOVE_METHOD "\","
+  "\"params\": {" \
+  "\"name\": \"" RPC_ECHO_HELLO_NAME "\"" \
+  "}, \"id\": 1}";
+
+const std::string RPC_SET_ECHO_HELLO_ROUTE = \
+  "{\"jsonrpc\": \"2.0\"," \
+  "\"method\": \"" ROUNDCC_SYSTEM_METHOD_SET_ROUTE "\","
+  "\"params\": {" \
+  "\"name\": \"" RPC_ECHO_HELLO_NAME "\"," \
+  "\"src\": \"" RPC_SET_ECHO_NAME "\"," \
+  "\"dest\": \"" RPC_ECHO_HELLO_NAME "\"" \
+  "}, \"id\": 1}";
+
+const std::string RPC_REMOVE_ECHO_HELLO_ROUTE = \
+  "{\"jsonrpc\": \"2.0\"," \
+  "\"method\": \"" ROUNDCC_SYSTEM_METHOD_REMOVE_ROUTE "\","
+  "\"params\": {" \
+  "\"name\": \"" RPC_ECHO_HELLO_NAME "\"" \
+  "}, \"id\": 1}";
   
 ////////////////////////////////////////////////
 // RPC

@@ -23,7 +23,7 @@ using namespace std;
 using namespace Round;
 
 ////////////////////////////////////////////////
-// Core Functions
+// Core Functions (Script)
 ////////////////////////////////////////////////
 
 void NodeTestController::runScriptManagerTest(Node *node) {
@@ -85,6 +85,9 @@ void NodeTestController::runScriptManagerTest(Node *node) {
   postClock = node->getLocalClock();
   BOOST_CHECK(prevClock < postClock);
 
+  BOOST_CHECK(nodeRes.getResult(&result));
+  BOOST_CHECK(result.compare(RPC_SET_ECHO_PARAMS) == 0);
+  
   // Post Node Message (Override 'echo' method)
   
   BOOST_CHECK(reqParser.parse(Test::RPC_SET_ECHO, &error));
@@ -96,6 +99,7 @@ void NodeTestController::runScriptManagerTest(Node *node) {
   BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &error));
   postClock = node->getLocalClock();
   BOOST_CHECK(prevClock < postClock);
+  
   BOOST_CHECK(nodeRes.getResult(&result));
   BOOST_CHECK(result.compare(RPC_SET_ECHO_PARAMS) == 0);
 
@@ -124,6 +128,10 @@ void NodeTestController::runScriptManagerTest(Node *node) {
   postClock = node->getLocalClock();
   BOOST_CHECK(prevClock < postClock);
 }
+
+////////////////////////////////////////////////
+// Core Functions (Alias)
+////////////////////////////////////////////////
 
 void NodeTestController::runAliasManagerTest(Round::Node *node) {
 
@@ -160,6 +168,89 @@ void NodeTestController::runAliasManagerTest(Round::Node *node) {
   // Remove 'hello' alias
   
   BOOST_CHECK(reqParser.parse(Test::RPC_REMOVE_HELLO, &error));
+  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
+  BOOST_CHECK(nodeReq);
+  BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &error));
+}
+
+////////////////////////////////////////////////
+// Core Functions (Route)
+////////////////////////////////////////////////
+
+void NodeTestController::runRouteManagerTest(Round::Node *node) {
+  NodeRequestParser reqParser;
+  
+  NodeRequest *nodeReq;
+  NodeResponse nodeRes;
+  Error error;
+  std::string result;
+  
+  // Post Node Message (Set 'echo' method)
+  
+  BOOST_CHECK(reqParser.parse(Test::RPC_SET_ECHO, &error));
+  BOOST_CHECK(reqParser.getRootObject()->isDictionary());
+  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
+  BOOST_CHECK(nodeReq);
+  BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &error));
+  
+  // Post Node Message (Set 'echo_hello' method)
+  
+  BOOST_CHECK(reqParser.parse(Test::RPC_SET_ECHO_HELLO, &error));
+  BOOST_CHECK(reqParser.getRootObject()->isDictionary());
+  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
+  BOOST_CHECK(nodeReq);
+  BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &error));
+  
+  // Post Node Message (Run 'echo' method)
+  
+  BOOST_CHECK(reqParser.parse(Test::RPC_RUN_ECHO, &error));
+  BOOST_CHECK(reqParser.getRootObject()->isDictionary());
+  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
+  BOOST_CHECK(nodeReq);
+  
+  BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &error));
+  BOOST_CHECK(nodeRes.getResult(&result));
+  BOOST_CHECK(result.compare(RPC_SET_ECHO_PARAMS) == 0);
+
+  // Post Node Message (Set 'echo_hello' route)
+  
+  BOOST_CHECK(reqParser.parse(Test::RPC_SET_ECHO_HELLO_ROUTE, &error));
+  BOOST_CHECK(reqParser.getRootObject()->isDictionary());
+  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
+  BOOST_CHECK(nodeReq);
+  BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &error));
+  
+  // Post Node Message (Run 'echo' + 'echo_hello' method)
+  
+  BOOST_CHECK(reqParser.parse(Test::RPC_RUN_ECHO, &error));
+  BOOST_CHECK(reqParser.getRootObject()->isDictionary());
+  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
+  BOOST_CHECK(nodeReq);
+  
+  BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &error));
+  BOOST_CHECK(nodeRes.getResult(&result));
+  BOOST_CHECK(result.compare(RPC_ECHO_HELLO_PREFIX  " "  RPC_SET_ECHO_PARAMS) == 0);
+  
+  // Post Node Message (Remove 'echo_hello' route)
+  
+  BOOST_CHECK(reqParser.parse(Test::RPC_REMOVE_ECHO_HELLO_ROUTE, &error));
+  BOOST_CHECK(reqParser.getRootObject()->isDictionary());
+  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
+  BOOST_CHECK(nodeReq);
+  BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &error));
+
+  // Post Node Message (Remove 'echo' method)
+  
+  BOOST_CHECK(reqParser.parse(Test::RPC_REMOVE_ECHO, &error));
+  BOOST_CHECK(reqParser.getRootObject()->isDictionary());
+  nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
+  BOOST_CHECK(nodeReq);
+  BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &error));
+
+  // Post Node Message (Remove 'echo_hello' method)
+  
+  BOOST_CHECK(reqParser.parse(Test::RPC_REMOVE_ECHO_HELLO, &error));
+  BOOST_CHECK(reqParser.getRootObject()->isDictionary());
   nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
   BOOST_CHECK(nodeReq);
   BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &error));

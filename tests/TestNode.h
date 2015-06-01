@@ -98,6 +98,8 @@ class NodeTestController {
 
   void runScriptManagerTest(Round::Node *node);
   void runAliasManagerTest(Round::Node *node);
+  void runRouteManagerTest(Round::Node *node);
+  
   void runSystemMethodTest(Round::Node *node);
   void runRpcTest(Round::Node *node);
   void runRpcTest(Round::Node **nodes, size_t nodeCnt);

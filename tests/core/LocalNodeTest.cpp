@@ -172,6 +172,12 @@ BOOST_AUTO_TEST_CASE(LocalAliasManagerTest) {
   nodeTestController.runAliasManagerTest(&node);
 }
 
+BOOST_AUTO_TEST_CASE(LocalRouteManagerTest) {
+  TestLocalNode node;
+  NodeTestController nodeTestController;
+  nodeTestController.runRouteManagerTest(&node);
+}
+
 BOOST_AUTO_TEST_CASE(LocalNodeSystemMethodTest) {
   Error err;
   TestLocalNode node;
