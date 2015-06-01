@@ -99,8 +99,8 @@ In this section, add a simple route function which adds a current date prefix us
 
 ```
 round> set_method(0, { "language":"js", "name":"echo", "code":"function echo(params) {return params;}" })
-round> set_method(0, { "language":"js", "name":"echo_date", "code":"function echo(params) {var now = new Date(); return now.toString() + " : " + params;}" })
-round> set_route()
+round> set_method(0, { "language":"js", "name":"echo_date", "code":"function echo_log(params) {var now = new Date(); return now.toString() + " : " + params;}" })
+round> set_route(0, {"name":"echo", "src":"echo", "dest":"echo_log"})
 ```
 
 ## Alias
@@ -128,5 +128,5 @@ The node has some embedded default triggers. In addition to the default triggers
 In this section, create a simple counter which is updated every second:
 
 ```
-round> set_timer()
+round> set_timer(0, { "name":"", "duration":1.0 })
 ```

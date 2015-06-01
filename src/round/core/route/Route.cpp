@@ -26,15 +26,21 @@ const std::string Round::Route::TYPE_EVENT = "event";
 const std::string Round::Route::TYPE_PIPE = "pipe";
 
 Round::Route::Route() {
+  init();
 }
 
 Round::Route::Route(const std::string &name, const std::string &srcObj, const std::string &destObj) {
+  init();
   setName(name);
   setSource(srcObj);
   setDestination(destObj);  
 }
 
 Round::Route::~Route() {
+}
+
+void Round::Route::init() {
+  setType(TYPE_PIPE);
 }
 
 bool Round::Route::setName(const std::string &value) {

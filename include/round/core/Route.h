@@ -173,7 +173,7 @@ public:
   bool isEvent();
   bool isValidType();
 
-  // Type
+  // Condition
   
   bool setCondition(const std::string &value);
   
@@ -184,6 +184,10 @@ public:
   const std::string *getCondition() {
     return &this->cond;
   }
+  
+private:
+  
+  void init();
   
 private:
   
