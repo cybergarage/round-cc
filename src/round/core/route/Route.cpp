@@ -100,6 +100,8 @@ bool Round::Route::setType(const std::string &value) {
 }
 
 bool Round::Route::isPipe() {
+  if (this->type.length() <= 0)
+    return true;
   return (this->type.compare(TYPE_PIPE) == 0);
 }
 
