@@ -650,18 +650,15 @@ bool Round::LocalNode::execMethod(const NodeRequest *nodeReq, NodeResponse *node
     isMethodExecuted = true;
     isMethodSuccess = execStaticMethod(nodeReq, nodeRes, error);
   }
-  
-  if (isDynamicMethod(name)) {
+  else if (isDynamicMethod(name)) {
     isMethodExecuted = true;
     isMethodSuccess = execDynamicMethod(nodeReq, nodeRes, error);
   }
-  
-  if (isNativeMethod(name)) {
+  else if (isNativeMethod(name)) {
     isMethodExecuted = true;
     isMethodSuccess = execNativeMethod(nodeReq, nodeRes, error);
   }
-
-  if (isAliasMethod(name)) {
+  else if (isAliasMethod(name)) {
     isMethodExecuted = true;
     isMethodSuccess = execAliasMethod(nodeReq, nodeRes, error);
   }
@@ -674,12 +671,20 @@ bool Round::LocalNode::execMethod(const NodeRequest *nodeReq, NodeResponse *node
   if (!isMethodSuccess)
     return false;
   
-  if (!hasRoute(name))
+  this->routeMgr.lock();
+  if (!hasRoute(name)) {
+    this->routeMgr.unlock();
     return true;
+  }
+  this->routeMgr.unlock();
   
+  this->routeMgr.lock();
   NodeResponse routeNodeRes;
-  if (!execRoute(name, nodeRes, &routeNodeRes, error))
+  if (!execRoute(name, nodeRes, &routeNodeRes, error)) {
+    this->routeMgr.unlock();
     return false;
+  }  
+  this->routeMgr.unlock();
   
   nodeRes->set(&routeNodeRes);
   
@@ -691,21 +696,13 @@ bool Round::LocalNode::execMethod(const NodeRequest *nodeReq, NodeResponse *node
 ////////////////////////////////////////////////
 
 bool Round::LocalNode::hasRoute(const std::string &name) {
-  this->routeMgr.lock();
-
   bool hasRoute = this->routeMgr.hasRoute(name);
-  
-  this->routeMgr.unlock();
-
   return hasRoute;
 }
 
 bool Round::LocalNode::execRoute(const std::string &name, const NodeResponse *prevNodeRes, NodeResponse *nodeRes, Error *error) {
-  this->routeMgr.lock();
-  
   RouteList *routeList = this->routeMgr.getRouteList(name);
   if (!routeList) {
-    this->routeMgr.unlock();
     return false;
   }
 
@@ -741,9 +738,6 @@ bool Round::LocalNode::execRoute(const std::string &name, const NodeResponse *pr
       }
     }
   }
-  
-  this->routeMgr.unlock();
-  
   
   return isSuccess;
 }

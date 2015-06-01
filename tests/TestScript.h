@@ -179,7 +179,7 @@ const std::string RPC_RUN_HELLO = \
 #define RPC_ECHO_HELLO_NAME   "echo_hello"
 #define RPC_ECHO_HELLO_LANG   "js"
 #define RPC_ECHO_HELLO_PREFIX   "Hello "
-#define RPC_ECHO_HELLO_CODE   "function echo(params) {return '" RPC_ECHO_HELLO_PREFIX "'+ params;}"
+#define RPC_ECHO_HELLO_CODE   "function " RPC_ECHO_HELLO_NAME "(params) {return '" RPC_ECHO_HELLO_PREFIX "'+ params;}"
 
 const std::string RPC_SET_ECHO_HELLO = \
   "{\"jsonrpc\": \"2.0\"," \
