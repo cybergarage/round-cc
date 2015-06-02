@@ -180,6 +180,7 @@ const std::string RPC_RUN_HELLO = \
 #define RPC_ECHO_HELLO_LANG   "js"
 #define RPC_ECHO_HELLO_PREFIX   "Hello "
 #define RPC_ECHO_HELLO_CODE   "function " RPC_ECHO_HELLO_NAME "(params) {return '" RPC_ECHO_HELLO_PREFIX "'+ params;}"
+#define RPC_ECHO_HELLO_PARAM "Round"
 
 const std::string RPC_SET_ECHO_HELLO = \
   "{\"jsonrpc\": \"2.0\"," \
@@ -212,6 +213,12 @@ const std::string RPC_REMOVE_ECHO_HELLO_ROUTE = \
   "\"params\": {" \
   "\"name\": \"" RPC_ECHO_HELLO_NAME "\"" \
   "}, \"id\": 1}";
+
+const std::string RPC_RUN_ROUTE_ECHO = \
+  "{\"jsonrpc\": \"2.0\"," \
+  "\"method\": \"" RPC_SET_ECHO_NAME "\"," \
+  "\"params\": \"" RPC_ECHO_HELLO_PARAM "\"," \
+  "\"id\": 1}";
   
 ////////////////////////////////////////////////
 // RPC

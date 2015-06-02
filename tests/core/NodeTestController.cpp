@@ -203,14 +203,14 @@ void NodeTestController::runRouteManagerTest(Round::Node *node) {
   
   // Post Node Message (Run 'echo' method)
   
-  BOOST_CHECK(reqParser.parse(Test::RPC_RUN_ECHO, &error));
+  BOOST_CHECK(reqParser.parse(Test::RPC_RUN_ROUTE_ECHO, &error));
   BOOST_CHECK(reqParser.getRootObject()->isDictionary());
   nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
   BOOST_CHECK(nodeReq);
   
   BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &error));
   BOOST_CHECK(nodeRes.getResult(&result));
-  BOOST_CHECK(result.compare(RPC_SET_ECHO_PARAMS) == 0);
+  BOOST_CHECK(result.compare(RPC_ECHO_HELLO_PARAM) == 0);
 
   // Post Node Message (Set 'echo_hello' route)
   
@@ -222,14 +222,14 @@ void NodeTestController::runRouteManagerTest(Round::Node *node) {
   
   // Post Node Message (Run 'echo' + 'echo_hello' method)
   
-  BOOST_CHECK(reqParser.parse(Test::RPC_RUN_ECHO, &error));
+  BOOST_CHECK(reqParser.parse(Test::RPC_RUN_ROUTE_ECHO, &error));
   BOOST_CHECK(reqParser.getRootObject()->isDictionary());
   nodeReq = dynamic_cast<NodeRequest *>(reqParser.getRootObject());
   BOOST_CHECK(nodeReq);
   
   BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &error));
   BOOST_CHECK(nodeRes.getResult(&result));
-  BOOST_CHECK(result.compare(RPC_ECHO_HELLO_PREFIX  " "  RPC_SET_ECHO_PARAMS) == 0);
+  BOOST_CHECK(result.compare(RPC_ECHO_HELLO_PREFIX  " "  RPC_ECHO_HELLO_PARAM) == 0);
   
   // Post Node Message (Remove 'echo_hello' route)
   

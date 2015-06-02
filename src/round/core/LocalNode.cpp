@@ -671,20 +671,14 @@ bool Round::LocalNode::execMethod(const NodeRequest *nodeReq, NodeResponse *node
   if (!isMethodSuccess)
     return false;
   
-  this->routeMgr.lock();
   if (!hasRoute(name)) {
-    this->routeMgr.unlock();
     return true;
   }
-  this->routeMgr.unlock();
   
-  this->routeMgr.lock();
   NodeResponse routeNodeRes;
   if (!execRoute(name, nodeRes, &routeNodeRes, error)) {
-    this->routeMgr.unlock();
     return false;
   }  
-  this->routeMgr.unlock();
   
   nodeRes->set(&routeNodeRes);
   
