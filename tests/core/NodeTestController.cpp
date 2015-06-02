@@ -210,7 +210,7 @@ void NodeTestController::runRouteManagerTest(Round::Node *node) {
   
   BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &error));
   BOOST_CHECK(nodeRes.getResult(&result));
-  BOOST_CHECK(result.compare(RPC_ECHO_HELLO_PARAM) == 0);
+  BOOST_CHECK(result.compare("\"" RPC_ECHO_HELLO_PARAM "\"") == 0);
 
   // Post Node Message (Set 'echo_hello' route)
   
@@ -229,7 +229,7 @@ void NodeTestController::runRouteManagerTest(Round::Node *node) {
   
   BOOST_CHECK(node->postMessage(nodeReq, &nodeRes, &error));
   BOOST_CHECK(nodeRes.getResult(&result));
-  BOOST_CHECK(result.compare(RPC_ECHO_HELLO_PREFIX  " "  RPC_ECHO_HELLO_PARAM) == 0);
+  BOOST_CHECK(result.compare("\"" RPC_ECHO_HELLO_PREFIX  RPC_ECHO_HELLO_PARAM "\"") == 0);
   
   // Post Node Message (Remove 'echo_hello' route)
   
