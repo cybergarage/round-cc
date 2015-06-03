@@ -12,7 +12,6 @@ Round adds the following original fields to [JSON-RPC 2.0][json-rpc] specificati
 | - | - | - | - |
 | dest | - | - | |
 | cond | - | - |  |
-| type | - | - |  |
 | ts | - | - | The field is handled automatically by Round |
 | digest | - | (none) | - |
 
@@ -83,30 +82,6 @@ The 'prev_result' is enabled only when the request message is a batch request. U
 --> [
 {"jsonrpc": "2.0", "method": "deposit", .... },
 {"jsonrpc": "2.0", "method": "withdraw", "cond" : "(prev_result[\"success\"] == \"true\")" , .... },
-]
-```
-
-### type
-
-The field specifies a request type.
-
-```
-type = "paxos"
-```
-
-### paxos
-
-The paxos type uses to execute the request method in quorum mode. To enable the quorum type, you have to set a suitable 'extent' field such as 'all' or a number too.
-
-```
---> {"jsonrpc": "2.0", "method": "set_counter", "type": "paxos", ....}
-```
-
-The 'quorum' type request is a syntactic sugar function, and the messages is equals to the following a batch message.
-```
---> [
-{"jsonrpc": "2.0", "method": "_quorum_prepare", ....}
-{"jsonrpc": "2.0", "method": "set_counter", "cond" : "prev_result" , .... },
 ]
 ```
 
