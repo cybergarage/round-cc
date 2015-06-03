@@ -11,7 +11,6 @@ Round adds the following original fields to [JSON-RPC 2.0][json-rpc] specificati
 | Field | Descripton | Default | Detail |
 | - | - | - | - |
 | dest | - | - | |
-| quorum | - | 1 | |
 | cond | - | - |  |
 | type | - | - |  |
 | ts | - | - | The field is handled automatically by Round |
@@ -25,7 +24,9 @@ The dest field specifies a destination node of the request object. The node whic
 dest = [ "?" | "*" | SHA256-HASH ]
 ```
 
-The node which is received the message is selected when the dest field is null. A random node is selected in the cluster when the dest field is "?". All node are selected in the cluster when the dest field is "\*".
+A random node is selected in the cluster if the dest field is "?". All node are selected in the cluster when the dest field is "\*".
+
+If the dest field is null, the node which is received the message is selected.
 
 #### Request object
 
@@ -58,14 +59,6 @@ If the target nodes are two or more nodes, the response object has an array cont
 {"jsonrpc": "2.0", "result": 9, "id": "1", "dest": "xxxxxxxxxxxxxxxx", .....},
 {"jsonrpc": "2.0", "result": 2, "id": "1", "dest": "xxxxxxxxxxxxxxxx", .....},
 ]
-```
-
-### quorum
-
-The extent field specifies target nodes of the request object message.
-
-```
-quorum = NUMBER
 ```
 
 ### cond
