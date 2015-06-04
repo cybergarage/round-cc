@@ -13,12 +13,13 @@
 
 #include <round/core/local/method/SystemMethod.h>
 
-const std::string Round::SystemNodeInfoDict::NAME     = "name";
-const std::string Round::SystemNodeInfoDict::IP       = "ip";
-const std::string Round::SystemNodeInfoDict::PORT     = "port";
-const std::string Round::SystemNodeInfoDict::HASH     = "hash";
-const std::string Round::SystemNodeInfoDict::VER      = "version";
-const std::string Round::SystemNodeInfoDict::CLUSTER  = "cluster";
+const std::string Round::SystemNodeInfoDict::NAME     = ROUNDCC_SYSTEM_METHOD_PARAM_NAME;
+const std::string Round::SystemNodeInfoDict::ADDR     = ROUNDCC_SYSTEM_METHOD_PARAM_ADDR;
+const std::string Round::SystemNodeInfoDict::PORT     = ROUNDCC_SYSTEM_METHOD_PARAM_PORT;
+const std::string Round::SystemNodeInfoDict::HASH     = ROUNDCC_SYSTEM_METHOD_PARAM_HASH;
+const std::string Round::SystemNodeInfoDict::VER      = ROUNDCC_SYSTEM_METHOD_PARAM_VERSION;
+const std::string Round::SystemNodeInfoDict::CLUSTER  = ROUNDCC_SYSTEM_METHOD_PARAM_CLUSTER;
+const std::string Round::SystemNodeInfoDict::STATE    = ROUNDCC_SYSTEM_METHOD_PARAM_STATE;
 
 bool Round::SystemNodeInfoDict::setNode(Node *node) {
   Error error;
@@ -43,17 +44,23 @@ bool Round::SystemNodeInfoDict::setNode(Node *node) {
     return false;
   }
   
-  setIp(nodeAddr);
+  setAddress(nodeAddr);
   setPort(nodePort);
   setCluster(nodeCluster);
   setHash(nodeHash);
-  
+
+  LocalNode *localNode = dynamic_cast<LocalNode *>(node);
+  if (localNode) {
+    std::string stateString = localNode->getStateString();
+    setState(stateString);
+  };
+
   return true;
 }
 
 bool Round::SystemNodeInfoDict::getNode(RemoteNode *node) {
   std::string nodeAddr;
-  if (!getIp(&nodeAddr)) {
+  if (!getAddress(&nodeAddr)) {
     return false;
   }
   int nodePort;

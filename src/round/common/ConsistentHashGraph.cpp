@@ -29,6 +29,17 @@ bool Round::ConsistentHashGraph::hasNode(const ConsistentHashNode *targetNode) c
   return (0 <= getNodeIndex(targetNode)) ? true : false;
 }
 
+bool Round::ConsistentHashGraph::isLastNode(const ConsistentHashNode *targetNode) const {
+  size_t nodeIdx = getNodeIndex(targetNode);
+  return (nodeIdx == (size()-1));
+}
+
+Round::ConsistentHashNode *Round::ConsistentHashGraph::getLastNode() const {
+  if (size() <= 0)
+    return NULL;
+  return at(size()-1);
+}
+
 bool Round::ConsistentHashGraph::addNode(ConsistentHashNode *newNode) {
   if (hasNode(newNode))
     return false;

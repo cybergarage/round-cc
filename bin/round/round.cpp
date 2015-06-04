@@ -41,7 +41,7 @@ bool exec_console_command(Round::Console::Client &client, const Round::Console::
     return true;
   }
 
-  std::string errMsg = err.getMessage();
+  std::string errMsg = err.getDetailMessage();
   if (0 < errMsg.length()) {
     std::cerr << ROUND_CERR_PREFIX << errMsg << "'" << std::endl;
   }
@@ -60,7 +60,10 @@ bool exec_rpc_command(Round::Console::Client &client, const Round::Console::Inpu
     return true;
   }
   
-  std::string errMsg = err.getMessage();
+  std::string errMsg = err.getDetailMessage();
+  if (errMsg.length() <= 0) {
+    errMsg = err.getMessage();
+  }
   if (0 < errMsg.length()) {
     std::cerr << ROUND_CERR_PREFIX << errMsg << "'" << std::endl;
   }
@@ -76,27 +79,21 @@ int main(int argc, char *argv[])
   
   Round::Console::Client client;
   gConsoleClient = &client;
-  client.setProgramNameFromArgument(argv[0]);
+  client.setFirstArgument(argv[0]);
 
   // Parse command line options
   
-  std::string nodeHost;
-  int nodePort = 0;
+  std::string remoteHost;
   
   int ch;
-  while ((ch = getopt(argc, argv, "h:p:?")) != -1) {
+  while ((ch = getopt(argc, argv, "r:h")) != -1) {
     switch (ch) {
+      case 'r':
+        {
+          remoteHost = optarg;
+        }
+        break;
       case 'h':
-        {
-          nodeHost = optarg;
-        }
-        break;
-      case 'p':
-        {
-          nodePort = atoi(optarg);
-        }
-        break;
-      case '?':
       default:
         {
           client.usage();
@@ -120,6 +117,10 @@ int main(int argc, char *argv[])
   
   if (!client.start(&error)) {
     exit(EXIT_FAILURE);
+  }
+  
+  if (0 < remoteHost.length()) {
+    client.updateClusterFromRemoteNode(remoteHost, &error);
   }
   
   // Execute command

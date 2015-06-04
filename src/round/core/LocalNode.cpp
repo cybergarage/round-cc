@@ -16,8 +16,6 @@
 #include <round/core/RemoteNode.h>
 #include <round/core/local/method/SystemMethod.h>
 
-const std::string Round::LocalNode::DEFALUT_CLUSTER = ROUNDCC_PRODUCT_NAME;
-
 ////////////////////////////////////////////////
 // Constructor
 ////////////////////////////////////////////////
@@ -30,11 +28,13 @@ Round::LocalNode::~LocalNode() {
 }
 
 void Round::LocalNode::init() {
+  this->nodeReg.setNode(this);
+  this->scriptMgr.setNode(this);
   setState(NodeStatus::STOP);
 }
 
 ////////////////////////////////////////////////
-// Configuration
+// Config
 ////////////////////////////////////////////////
 
 bool Round::LocalNode::loadConfigFromString(const std::string &string, Error *error) {
@@ -54,11 +54,44 @@ bool Round::LocalNode::isConfigValid(Error *error) {
 }
 
 bool Round::LocalNode::getClusterName(std::string *name, Error *error) {
-  if (this->nodeConfig.getCluster(name, error))
-    return true;
+  return this->nodeConfig.getCluster(name, error);
+}
+
+bool Round::LocalNode::getConfig(JSONDictionary *jsonDict, Error *error) {
+  std::string value;
+  int ivalue;
+
+  // bind_addr
+  if (this->nodeConfig.getBindAddress(&value, error)) {
+    jsonDict->set(LocalConfig::BIND_ADDR, value);
+ }
+ 
+  // bind_port
+  if (this->nodeConfig.getBindPort(&ivalue, error)) {
+    jsonDict->set(LocalConfig::BIND_PORT, ivalue);
+  }
   
-  *name = DEFALUT_CLUSTER;
+  // cluster
+  if (getClusterName(&value, error)) {
+    jsonDict->set(LocalConfig::CLUSTER, value);
+  }
   
+  // log_file
+  if (this->nodeConfig.getLogFilename(&value, error)) {
+    jsonDict->set(LocalConfig::LOG_FILE, value);
+  }
+  
+  // methods
+  JSONArray *methods = new JSONArray();
+  if (methods) {
+    if (this->scriptMgr.toJSONArray(methods, error)) {
+      jsonDict->set(LocalConfig::METHODS, methods);
+    }
+    else {
+      delete methods;
+    }
+  }
+
   return true;
 }
 
@@ -83,6 +116,10 @@ bool Round::LocalNode::start(Error *error) {
     areAllOperationSucess = false;
   }
 
+  if (!this->triggerMgr.start()) {
+    areAllOperationSucess = false;
+  }
+  
   if (!areAllOperationSucess) {
     stop(error);
     return false;
@@ -106,6 +143,10 @@ bool Round::LocalNode::stop(Error *error) {
     areAllOperationSucess = false;
   }
   
+  if (!this->triggerMgr.stop()) {
+    areAllOperationSucess = false;
+  }
+
   if (areAllOperationSucess == true) {
     setState(NodeStatus::STOP);
   }
@@ -181,16 +222,77 @@ bool Round::LocalNode::setScript(const std::string &method, const std::string &l
   return this->scriptMgr.setScript(method, lang, code, encodeType, error);
 }
 
-////////////////////////////////////////////////
-// Memory
-////////////////////////////////////////////////
-
-bool Round::LocalNode::setKey(const std::string &key, const std::string &value) {
-  return this->memory.setKey(key, value);
+bool Round::LocalNode::removeScript(const std::string &method, Error *error) {
+  return this->scriptMgr.removeScript(method, error);
 }
 
-bool Round::LocalNode::getKey(const std::string &key, std::string *value) const {
-  return this->memory.getKey(key, value);
+bool Round::LocalNode::execJob(const std::string &lang, const std::string &script, int encodeType, std::string *result, Error *error) {
+  return this->scriptMgr.execScript(lang, script, encodeType, result, error);
+}
+
+////////////////////////////////////////////////
+// Alias
+////////////////////////////////////////////////
+
+bool Round::LocalNode::setAlias(Alias *alias) {
+  this->aliasMgr.lock();
+  bool isSuccess = this->aliasMgr.setAlias(alias);
+  this->aliasMgr.unlock();
+  return isSuccess;
+}
+
+bool Round::LocalNode::removeAliasByName(const std::string &name) {
+  this->aliasMgr.lock();
+  bool isSuccess = this->aliasMgr.removeAliasByName(name);
+  this->aliasMgr.unlock();
+  return isSuccess;
+}
+
+////////////////////////////////////////////////
+// Trigger
+////////////////////////////////////////////////
+
+bool Round::LocalNode::setTrigger(Trigger *trigger) {
+  this->triggerMgr.lock();
+  bool isSuccess = this->triggerMgr.setTrigger(trigger);
+  this->triggerMgr.unlock();
+  return isSuccess;
+}
+
+bool Round::LocalNode::removeTriggerByName(const std::string &name) {
+  this->triggerMgr.lock();
+  bool isSuccess = this->triggerMgr.removeTriggerByName(name);
+  this->triggerMgr.unlock();
+  return isSuccess;
+}
+
+bool Round::LocalNode::execTrigger(const std::string &name) {
+  Error err;
+  return execTrigger(name, &err);
+}
+
+////////////////////////////////////////////////
+// Registry
+////////////////////////////////////////////////
+
+bool Round::LocalNode::setRegistry(const std::string &key, const std::string &value) {
+  return this->nodeReg.set(key, value);
+}
+
+bool Round::LocalNode::getRegistry(const std::string &key, std::string *value) const {
+  return this->nodeReg.get(key, value);
+}
+
+bool Round::LocalNode::setRegistry(const Registry reg) {
+  return this->nodeReg.set(reg);
+}
+
+bool Round::LocalNode::getRegistry(const std::string &key, Registry *reg) const {
+  return this->nodeReg.get(key, reg);
+}
+
+bool Round::LocalNode::removeRegistry(const std::string &key) {
+  return this->nodeReg.remove(key);
 }
 
 ////////////////////////////////////////////////
@@ -205,17 +307,52 @@ bool Round::LocalNode::postMessage(const NodeRequest *nodeReq, NodeResponse *nod
   return execMessage(nodeReq, nodeRes, error);
 }
 
+bool Round::LocalNode::postMessage(const NodeBatchRequest *nodeBatchReq, NodeBatchResponse *nodeBatchRes, Error *error) {
+  return execMessage(nodeBatchReq, nodeBatchRes, error);
+}
+
 bool Round::LocalNode::pushMessage(const Message *nodeReq) {
   return this->nodeMsgMgr.pushMessage(nodeReq);
 }
 
-bool Round::LocalNode::waitMessage(const NodeRequest **nodeReq) {
-  *nodeReq = NULL;
-  const Message *nodeMsg = NULL;
-  if (!this->nodeMsgMgr.waitMessage(&nodeMsg))
+bool Round::LocalNode::waitMessage(const Message **nodeReq) {
+  if (!this->nodeMsgMgr.waitMessage(nodeReq))
     return false;
-  *nodeReq = dynamic_cast<const NodeRequest *>(nodeMsg);
-  return (*nodeReq) ? true : false;
+  return true;
+}
+
+////////////////////////////////////////////////
+// Route
+////////////////////////////////////////////////
+
+bool Round::LocalNode::setRoute(Route *route) {
+  this->routeMgr.lock();
+  
+  bool isSuccess = this->routeMgr.setRoute(route);
+  
+  this->routeMgr.unlock();
+
+  return isSuccess;
+}
+
+bool Round::LocalNode::removeSameRoute(const Route *route) {
+  this->routeMgr.lock();
+  
+  bool isSuccess = this->routeMgr.removeSameRoute(route);
+  
+  this->routeMgr.unlock();
+  
+  return isSuccess;
+}
+
+bool Round::LocalNode::removeRouteByName(const std::string &name) {
+  this->routeMgr.lock();
+  
+  bool isSuccess = this->routeMgr.removeRouteByName(name);
+  
+  this->routeMgr.unlock();
+  
+  return isSuccess;
 }
 
 ////////////////////////////////////////////////
@@ -285,7 +422,8 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
     setError(RPC::JSON::ErrorCodeInvalidParams, error);
     return false;
   }
-  bool                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               isDestHash = nodeReq->isDestHash();
+  
+  bool isDestHash = nodeReq->isDestHash();
   if (isDestHash) {
     std::string nodeHash;
     if (nodeReq->getDest(&nodeHash)) {
@@ -308,8 +446,9 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
   }
   
   // Exec Method (One node)
-  
-  if (isDestHash) {
+
+  bool isDestOne = nodeReq->isDestOne();
+  if (isDestOne) {
     return execMethod(nodeReq, nodeRes, error);
   }
   
@@ -345,6 +484,18 @@ bool Round::LocalNode::execMessage(const NodeRequest *nodeReq, NodeResponse *nod
   return true;
 }
 
+bool Round::LocalNode::execMessage(const NodeBatchRequest *nodeBatchReq, NodeBatchResponse *nodeBatchRes, Error *error) {
+  for (NodeBatchRequest::const_iterator jsonObj = nodeBatchReq->begin(); jsonObj != nodeBatchReq->end(); jsonObj++) {
+    const NodeRequest *nodeReq = (dynamic_cast<NodeRequest *>(*jsonObj));
+    if (!nodeReq)
+      continue;
+    NodeResponse *nodeRes = new NodeResponse();
+    execMessage(nodeReq, nodeRes, error);
+    nodeBatchRes->add(nodeRes);
+  }
+  return true;
+}
+
 ////////////////////////////////////////////////
 // Dynamic Method
 ////////////////////////////////////////////////
@@ -366,7 +517,7 @@ bool Round::LocalNode::execDynamicMethod(const NodeRequest *nodeReq, NodeRespons
   nodeReq->getParams(&params);
   
   std::string result;
-  bool isSuccess = this->scriptMgr.run(method, params, &result, error);
+  bool isSuccess = this->scriptMgr.execMethod(method, params, &result, error);
   if (isSuccess) {
     nodeRes->setResult(result);
   }
@@ -428,6 +579,50 @@ bool Round::LocalNode::execNativeMethod(const NodeRequest *nodeReq, NodeResponse
 }
 
 ////////////////////////////////////////////////
+// Alias Method
+////////////////////////////////////////////////
+
+bool Round::LocalNode::isAliasMethod(const std::string &method) {
+  this->aliasMgr.lock();
+  bool isAlias = this->aliasMgr.hasAlias(method);
+  this->aliasMgr.unlock();
+  return isAlias;
+}
+
+bool Round::LocalNode::execAliasMethod(const NodeRequest *aliasReq, NodeResponse *nodeRes, Error *error) {
+  std::string reqMethod;
+  aliasReq->getMethod(&reqMethod);
+  
+  this->aliasMgr.lock();
+  
+  Alias *alias = this->aliasMgr.findAlias(reqMethod);
+  if (!alias) {
+    this->aliasMgr.unlock();
+    return false;
+  }
+
+  std::string sourceMethod;
+  if (!alias->getObject(&sourceMethod)) {
+    this->aliasMgr.unlock();
+    return false;
+  }
+  
+  std::string defaultParams;
+  if (!alias->getDefaults(&defaultParams)) {
+    this->aliasMgr.unlock();
+    return false;
+  }
+  
+  this->aliasMgr.unlock();
+  
+  NodeRequest nodeReq;
+  nodeReq.setParamsWithDefault(aliasReq, defaultParams);
+  nodeReq.setMethod(sourceMethod);
+  
+  return execMethod(&nodeReq, nodeRes, error);
+}
+
+////////////////////////////////////////////////
 // Exce Method
 ////////////////////////////////////////////////
 
@@ -448,19 +643,103 @@ bool Round::LocalNode::execMethod(const NodeRequest *nodeReq, NodeResponse *node
     return false;
   }
   
+  bool isMethodExecuted = false;
+  bool isMethodSuccess = false;
+  
   if (isStaticMethod(name)) {
-    return execStaticMethod(nodeReq, nodeRes, error);
+    isMethodExecuted = true;
+    isMethodSuccess = execStaticMethod(nodeReq, nodeRes, error);
+  }
+  else if (isDynamicMethod(name)) {
+    isMethodExecuted = true;
+    isMethodSuccess = execDynamicMethod(nodeReq, nodeRes, error);
+  }
+  else if (isNativeMethod(name)) {
+    isMethodExecuted = true;
+    isMethodSuccess = execNativeMethod(nodeReq, nodeRes, error);
+  }
+  else if (isAliasMethod(name)) {
+    isMethodExecuted = true;
+    isMethodSuccess = execAliasMethod(nodeReq, nodeRes, error);
   }
   
-  if (isDynamicMethod(name)) {
-    return execDynamicMethod(nodeReq, nodeRes, error);
+  if (!isMethodExecuted) {
+    setError(RPC::JSON::ErrorCodeMethodNotFound, error);
+    return false;
+  }
+
+  if (!isMethodSuccess)
+    return false;
+  
+  if (!hasRoute(name)) {
+    return true;
   }
   
-  if (isNativeMethod(name)) {
-    return execNativeMethod(nodeReq, nodeRes, error);
+  NodeResponse routeNodeRes;
+  if (!execRoute(name, nodeRes, &routeNodeRes, error)) {
+    return false;
+  }  
+  
+  nodeRes->set(&routeNodeRes);
+  
+  return true;
+}
+
+////////////////////////////////////////////////
+// Exec Route
+////////////////////////////////////////////////
+
+bool Round::LocalNode::hasRoute(const std::string &name) {
+  bool hasRoute = this->routeMgr.hasRoute(name);
+  return hasRoute;
+}
+
+bool Round::LocalNode::execRoute(const std::string &name, const NodeResponse *prevNodeRes, NodeResponse *nodeRes, Error *error) {
+  RouteList *routeList = this->routeMgr.getRouteList(name);
+  if (!routeList) {
+    return false;
+  }
+
+  std::string params;
+  prevNodeRes->getResult(&params);
+  
+  // Set prev response if all route types are event.
+  nodeRes->setResult(params);
+  
+  bool isSuccess = true;
+  
+  for (RouteList::const_iterator routeIt = routeList->begin(); routeIt != routeList->end(); routeIt++) {
+    Route *route = *routeIt;
+    
+    // TODO Check cluser.node too.
+    std::string target;
+    if (!route->getDestinationTarget(&target))
+      continue;
+    
+    NodeRequest nodeReq;
+    nodeReq.setMethod(target);
+    nodeReq.setParams(params);
+
+    if (route->isEvent()) {
+      NodeResponse eventRes;
+      if (!execMethod(&nodeReq, &eventRes, error)) {
+        isSuccess = false;
+      }
+    }
+    else if (route->isPipe()) {
+      if (!execMethod(&nodeReq, nodeRes, error)) {
+        isSuccess = false;
+      }
+    }
   }
   
-  setError(RPC::JSON::ErrorCodeMethodNotFound, error);
-  
+  return isSuccess;
+}
+
+////////////////////////////////////////////////
+// Exec Trigger
+////////////////////////////////////////////////
+
+bool Round::LocalNode::execTrigger(const std::string &name, Error *error) {
   return false;
 }

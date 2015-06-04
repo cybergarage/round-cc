@@ -23,7 +23,6 @@ The sample is a simple only to echo the specified parameters.
 
 ```
 
-
 ## Chubby
 
 The sample is a simple distributed key value store to share same small data such as configuration data in all nodes in a cluster like Google's chubby [1]. The sample is based on [Quorum Pattern](./round_design_pattern.md).
@@ -73,15 +72,13 @@ The sample is a simple distributed key value store which is based on [eventual c
 }
 ```
 
-## CDN (Contents Delivery Network)
-
 ## Search Engine
 
-## Dynamic DNS
+## File Storage
 
-## DNS Server
+## Map Reduce
 
-## Time Server
+## CDN (Contents Delivery Network)
 
 # References
 

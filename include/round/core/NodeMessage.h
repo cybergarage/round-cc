@@ -32,6 +32,9 @@ public:
   
   NodeRequest();
   NodeRequest(const std::string &method);
+  NodeRequest(const NodeRequest *nodeReq);
+  NodeRequest(const NodeRequest *nodeReq, const std::string &defaultParams);
+  
   virtual ~NodeRequest();
    
   void setSourceNodeParameters(const Node *node);
@@ -51,19 +54,9 @@ public:
   bool isAsync() const {
     return !isSync();
   }
-  
-  bool setHttpRequest(uHTTP::HTTPRequest *httpReq);
-  
-  uHTTP::HTTPRequest *getHttpRequest() const {
-    return this->httpReq;
-  }
-  
- private:
-  
-  void init();
-  bool close();
-  
-  mutable uHTTP::HTTPRequest *httpReq;
+
+  bool setParamsWithDefault(const std::string &params, const std::string &defaultParams);
+  bool setParamsWithDefault(const NodeRequest *nodeReq, const std::string &defaultParams);
 };
 
 class NodeBatchRequest : public RPC::JSON::BatchRequest {
@@ -79,8 +72,16 @@ public:
   NodeResponse();
   virtual ~NodeResponse();
 };
+
+class NodeBatchResponse : public RPC::JSON::BatchResponse {
+    
+public:
+    
+  NodeBatchResponse();
+  virtual ~NodeBatchResponse();
+};
   
-class NodeRequestParser : public JSONParser {
+class NodeRequestParser : public RPC::JSON::Parser {
     
  public:
   NodeRequestParser() {

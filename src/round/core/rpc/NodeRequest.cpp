@@ -18,33 +18,24 @@
 #include <round/common/encoding/URL.h>
 
 const std::string Round::NodeRequest::SYNC = "sync";
-const std::string Round::NodeRequest::ANY = "*";
+const std::string Round::NodeRequest::ANY = ROUNDCC_SYSTEM_METHOD_DEST_ANY_NODE;
 
 Round::NodeRequest::NodeRequest() {
-  init();
 }
 
 Round::NodeRequest::NodeRequest(const std::string &method) {
-  init();
   setMethod(method);
 }
 
-void Round::NodeRequest::init() {
-  this->httpReq = NULL;
+Round::NodeRequest::NodeRequest(const NodeRequest *nodeReq) {
+  JSONDictionary::set(nodeReq);
+}
+
+Round::NodeRequest::NodeRequest(const NodeRequest *nodeReq, const std::string &defaultParams) {
+  setParamsWithDefault(nodeReq, defaultParams);
 }
 
 Round::NodeRequest::~NodeRequest() {
-  close();
-}
-
-bool Round::NodeRequest::close() {
-  if (!this->httpReq)
-    return false;
-  
-  delete this->httpReq;
-  this->httpReq = NULL;
-
-  return true;
 }
 
 void Round::NodeRequest::setSourceNodeParameters(const Node *node) {
@@ -53,11 +44,76 @@ void Round::NodeRequest::setSourceNodeParameters(const Node *node) {
   setTimestamp(localTs);
 }
 
-bool Round::NodeRequest::setHttpRequest(uHTTP::HTTPRequest *httpReq) {
-  close();
-  
-  this->httpReq = httpReq;
+bool Round::NodeRequest::setParamsWithDefault(const NodeRequest *nodeReq, const std::string &defaultParams) {
+  JSONDictionary::set(nodeReq);
 
+  // Request has no params (Use default params)
+  
+  std::string reqParams;
+  if (!nodeReq->getParams(&reqParams)) {
+    setParams(defaultParams);
+    return true;
+  }
+
+  return setParamsWithDefault(reqParams, defaultParams);
+}
+
+bool Round::NodeRequest::setParamsWithDefault(const std::string &reqParams, const std::string &defaultParams) {
+
+  // Request has no params (Use default params)
+  
+  if (reqParams.length() <= 0) {
+    setParams(defaultParams);
+    return true;
+  }
+
+  // Request or default is invalid JSON format. (Use request params)
+
+  Error error;
+  
+  JSONParser reqParamsJsonParser;
+  bool isReqJSONParams = reqParamsJsonParser.parse(reqParams, &error);
+  
+  JSONParser defaultParamsJsonParser;
+  bool isDefaultJSONParams = defaultParamsJsonParser.parse(defaultParams, &error);
+  
+  if (!isReqJSONParams || !isDefaultJSONParams) {
+    setParams(reqParams);
+    return true;
+  }
+  
+  // Request and default are JSONDictionary (Merge params)
+
+  JSONDictionary *reqParamDict = dynamic_cast<JSONDictionary *>(reqParamsJsonParser.getRootObject());
+  JSONDictionary *defaultParamDict = dynamic_cast<JSONDictionary *>(defaultParamsJsonParser.getRootObject());
+  if (reqParamDict && defaultParamDict)  {
+    JSONDictionary mergeDict;
+    mergeDict.add(reqParamDict);
+    mergeDict.add(defaultParamDict);
+    std::string mergeParams;
+    mergeDict.toJSONString(&mergeParams);
+    setParams(mergeParams);
+    return true;
+  }
+  
+  // Request and default are JSONArray (Merge params)
+  
+  JSONArray *reqParamArray = dynamic_cast<JSONArray *>(reqParamsJsonParser.getRootObject());
+  JSONArray *defaultParamArray = dynamic_cast<JSONArray *>(defaultParamsJsonParser.getRootObject());
+  if (reqParamArray && defaultParamArray)  {
+    JSONArray mergeArray;
+    mergeArray.add(reqParamArray);
+    mergeArray.add(defaultParamArray);
+    std::string mergeParams;
+    mergeArray.toJSONString(&mergeParams);
+    setParams(mergeParams);
+    return true;
+  }
+  
+  // Request and default are not same data type (Use request params)
+  
+  setParams(reqParams);
+  
   return true;
 }
 

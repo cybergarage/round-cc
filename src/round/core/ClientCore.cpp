@@ -8,9 +8,13 @@
  *
  ******************************************************************/
 
+#include <boost/lexical_cast.hpp>
+#include <boost/algorithm/string.hpp>
+
 #include <round/core/ClientCore.h>
 #include <round/core/Node.h>
 #include <round/common/RPC.h>
+#include <round/ui/console/Command.h>
 
 Round::ClientCore::ClientCore() {
   setTargetCluster(NULL);
@@ -69,8 +73,69 @@ Round::Cluster *Round::ClientCore::getCluster(const std::string &name) const {
   return this->clusterList.getCluster(name);
 }
 
-bool Round::ClientCore::findObjectNode(const std::string &obj, Node **node) {
-  return false;
+bool Round::ClientCore::findObjectNode(const std::string &obj, Node **foundNode, Error *err) {
+  std::vector<std::string> objList;
+  boost::split(objList, obj, boost::is_any_of(Round::Console::method::OBJECT_SEP));
+  if (objList.size() <= 0 && 2 < objList.size()) {
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
+    err->setDetailMessage(Console::method::ERROR_OBJECT_NOTSPECEFIED);
+    return false;
+  }
+  
+  std::string cluster;
+  std::string node;
+
+  if (objList.size() == 2) {
+    cluster = objList.at(0);
+    node = objList.at(1);
+  }
+  else {
+    node = objList.at(0);
+  }
+
+  // Select cluster
+  
+  Cluster *targetCluster = getTargetCluster();
+  if (0 < cluster.length()) {
+    targetCluster = getCluster(cluster);
+  }
+
+  if (!targetCluster) {
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
+    err->setDetailMessage(Console::method::ERROR_CLUSTER_NOTFOUND);
+    return false;
+  }
+
+  // Select node
+  
+  if (node.length() <= 0) {
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
+    err->setDetailMessage(Console::method::ERROR_NODE_NOTFOUND);
+    return false;
+  }
+  
+  Node *targetNode = NULL;
+  if (node.compare(NodeRequest::ANY) == 0) {
+    targetNode = targetCluster->getRandomNode();
+  }
+  else {
+    try {
+      size_t nodeIdx = boost::lexical_cast<size_t>(node);
+      targetNode = targetCluster->getNode(nodeIdx);
+    } catch(boost::bad_lexical_cast &) {
+      targetNode = targetCluster->getNodeByHashCode(node);
+    }
+  }
+
+  if (!targetNode) {
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeInvalidParams, err);
+    err->setDetailMessage(Console::method::ERROR_NODE_NOTFOUND);
+    return false;
+  }
+  
+  *foundNode = targetNode;
+  
+  return true;
 }
 
 bool Round::ClientCore::postMessage(NodeRequest *nodeReq, NodeResponse *nodeRes, Error *err) {
@@ -80,10 +145,8 @@ bool Round::ClientCore::postMessage(NodeRequest *nodeReq, NodeResponse *nodeRes,
   }
   
   Node *destNode;
-  if (!findObjectNode(dest, &destNode)) {
-    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeMovedPermanently, err);
+  if (!findObjectNode(dest, &destNode, err))
     return false;
-  }
 
   if (!nodeReq->isDestAll()) {
     nodeReq->setDest(destNode);
@@ -130,4 +193,47 @@ bool Round::ClientCore::nodeRemoved(Round::Node *node)  {
   this->mutex.unlock();
 
   return isNodeRemoved;
+}
+
+bool Round::ClientCore::updateClusterFromRemoteNode(RemoteNode *remoteNode, Error *error) {
+  Cluster remoteCluster;
+  NodeGraph remoteNodeGraph;
+  
+  if (!remoteNode->getCluster(&remoteCluster, error))
+    return false;
+  
+  std::string remoteClusterName = remoteCluster.getName();
+  if (!addCluster(remoteClusterName))
+    return false;
+  
+  Cluster *targetCluster = getCluster(remoteClusterName);
+  if (!targetCluster)
+    return false;
+  
+  if (!remoteNode->getCluster(targetCluster, error))
+    return false;
+  
+  return true;
+}
+
+bool Round::ClientCore::updateClusterFromRemoteNode(const std::string &ipaddr, int port, Error *error) {
+  RemoteNode remoteNode(ipaddr, port);
+  return updateClusterFromRemoteNode(&remoteNode, error);
+}
+
+bool Round::ClientCore::updateClusterFromRemoteNode(const std::string &host, Error *error) {
+  std::vector<std::string> hosts;
+  boost::split(hosts, host, boost::is_any_of(":"));
+
+  std::string ipaddr;
+  if (1 <= hosts.size()) {
+    ipaddr = hosts.at(0);
+  }
+    
+  int port = 0;
+  if (2 <= hosts.size()) {
+    port = atoi(hosts.at(1).c_str());
+  }
+  
+  return updateClusterFromRemoteNode(ipaddr, port, error);
 }

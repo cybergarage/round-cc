@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _ROUNDCC_SCRIPT_JAVA_H_
-#define _ROUNDCC_SCRIPT_JAVA_H_
+#ifndef _ROUNDCC_SYSTEM_METHOD_JAVA_H_
+#define _ROUNDCC_SYSTEM_METHOD_JAVA_H_
 
 #include <round/core/Script.h>
 
@@ -28,6 +28,7 @@ class JavaEngine : public ScriptEngine {
   
   bool compile(const Script *script) const;
   bool run(const Script *script, const std::string &params, std::string *results, Error *error) const;
+  bool run(const std::string &script, std::string *result, Error *error) const;
 };
   
 }

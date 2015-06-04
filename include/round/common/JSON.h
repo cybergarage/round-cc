@@ -16,7 +16,6 @@
 #include <map>
 #include <round/common/platform.h>
 #include <round/common/Error.h>
-#include <round/common/Dictionary.h>
 
 namespace Round {
 
@@ -89,14 +88,17 @@ class JSONNull : public JSONString {
  public:
   JSONNull();
   int getType() const {return NIL;}
+  bool copy(JSONObject **newObj) const;
 };
   
 class JSONInteger : public JSONString {
  public:
   JSONInteger();
   JSONInteger(int value);
+  JSONInteger(long value);
 
   int getType() const {return INTEGER;}
+  bool copy(JSONObject **newObj) const;
   const char *toJSONString(std::string *stringBuf) const;
 };
 
@@ -106,6 +108,7 @@ class JSONReal : public JSONString {
   JSONReal(double value);
     
   int getType() const {return REAL;}
+  bool copy(JSONObject **newObj) const;
   const char *toJSONString(std::string *stringBuf) const;
 };
   
@@ -133,6 +136,7 @@ public:
   const char *toJSONString(std::string *stringBuf) const;
 
   bool set(const JSONArray *jsonObj);
+  bool add(const JSONArray *jsonObj);
 
   void add(JSONObject *value);
   void add(const std::string &value);
@@ -141,7 +145,7 @@ public:
   bool getString(size_t n, std::string *value) const ;
   bool getInteger(size_t n, int *value) const ;
 
-  void clear();
+  bool clear();
 };
 
 class JSONDictionary : public JSONObject, public std::map<std::string, JSONObject *> {
@@ -159,6 +163,7 @@ public:
   const char *toJSONString(std::string *stringBuf) const;
 
   bool set(const JSONDictionary *jsonObj);
+  bool add(const JSONDictionary *jsonObj);
 
   bool set(const std::string &key, JSONObject *value);
   bool get(const std::string &key, JSONObject **value) const;
@@ -172,6 +177,8 @@ public:
   bool set(const std::string &key, size_t value);
   bool set(const std::string &key, double value);
 
+  bool get(const std::string &key, JSONDictionary **value) const;
+  bool get(const std::string &key, JSONArray **value) const;
   bool get(const std::string &key, JSONString **value) const;
   bool get(const std::string &key, std::string *value) const;
   bool get(const std::string &key, int *value) const;
@@ -191,7 +198,7 @@ public:
   
   bool remove(const std::string &key);
 
-  void clear();
+  bool clear();
 };
 
 class JSONParser {

@@ -68,6 +68,11 @@ const char *Round::JSONArray::toJSONString(std::string *stringBuf) const {
 }
 
 bool Round::JSONArray::set(const JSONArray *srcArray) {
+  clear();
+  return add(srcArray);
+}
+
+bool Round::JSONArray::add(const JSONArray *srcArray) {
   for (JSONArray::const_iterator obj = srcArray->begin(); obj != srcArray->end(); obj++) {
     JSONObject *copyObj = NULL;
     if (!(*obj)->copy(&copyObj))
@@ -87,8 +92,12 @@ bool Round::JSONArray::copy(JSONObject **newObj) const {
   return false;
 }
 
-void Round::JSONArray::clear() {
-  for (JSONArray::iterator obj = begin(); obj != end(); obj++)
+bool Round::JSONArray::clear() {
+  for (JSONArray::iterator obj = begin(); obj != end(); obj++) {
     delete *obj;
+  }
+
   std::vector<JSONObject *>::clear();
+  
+  return true;
 }

@@ -13,7 +13,7 @@
 #include <round/core/NodeStatus.h>
 
 Round::NodeStatus::NodeStatus() {
-  setState(UNKNOWN);
+  setState(STOP);
 }
 
 Round::NodeStatus::~NodeStatus() {
@@ -40,12 +40,10 @@ const char *Round::NodeStatus::GetStateString(int status) {
     return "activating";
   case ACTIVE:
     return "active";
-  case REPAIRING:
-    return "repairing";
-  case OPTIMIZING:
-    return "optimizing";
-  case FINALIZING:
-    return "finalizing";
+  case PROMICE:
+    return "promice";
+  case TERMINATING:
+    return "terminating";
   }  
   
   return "unknown";

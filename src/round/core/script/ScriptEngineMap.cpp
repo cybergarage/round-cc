@@ -11,10 +11,14 @@
 #include <round/core/Script.h>
 
 Round::ScriptEngineMap::ScriptEngineMap() {
+  init();
 }
 
 Round::ScriptEngineMap::~ScriptEngineMap() {
   clear();
+}
+
+void Round::ScriptEngineMap::init() {
 }
 
 bool Round::ScriptEngineMap::hasEngine(const std::string &lang) const {

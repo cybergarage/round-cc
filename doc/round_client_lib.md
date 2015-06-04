@@ -13,6 +13,10 @@ The libraries handles the RPC responses and updates local information of Client.
 - Nodes in clusters
 - Timestamp (Lamport Timestamp)
 
+## JavaScript
+
+Under Development :wink:
+
 ## C++
 
 Under Development :wink:
@@ -24,6 +28,10 @@ Under Development :wink:
 ## Go
 
 Under Development :wink:
+
+## Lua
+
+[JSON4Lua](http://json.luaforge.net)
 
 # Native Interfaces
 

@@ -23,8 +23,8 @@ const std::string Round::RPC::JSON::Message::TIMESTAMP = "ts";
 const std::string Round::RPC::JSON::Message::QUORUM = "quorum";
 
 const std::string Round::RPC::JSON::Message::DEST = "dest";
-const std::string Round::RPC::JSON::Message::DEST_ANY = "*";
-const std::string Round::RPC::JSON::Message::DEST_ALL = "all";
+const std::string Round::RPC::JSON::Message::DEST_ANY = ROUNDCC_SYSTEM_METHOD_DEST_ANY_NODE;
+const std::string Round::RPC::JSON::Message::DEST_ALL = ROUNDCC_SYSTEM_METHOD_DEST_ALL_NODE;
 
 const std::string Round::RPC::JSON::Message::TYPE = "type";
 const std::string Round::RPC::JSON::Message::COND = "cond";
@@ -36,14 +36,34 @@ Round::RPC::JSON::Message::Message() {
 Round::RPC::JSON::Message::~Message() {
 }
 
+bool Round::RPC::JSON::Message::setDestAny() {
+  return setDest(DEST_ANY);
+}
+
+bool Round::RPC::JSON::Message::setDestAll() {
+  return setDest(DEST_ALL);
+}
+
+bool Round::RPC::JSON::Message::IsDestAny(const std::string &dest) {
+  return (dest.compare(DEST_ANY) == 0) ? true : false;
+}
+
+bool Round::RPC::JSON::Message::IsDestAll(const std::string &dest) {
+  return (dest.compare(DEST_ALL) == 0) ? true : false;
+}
+
+bool Round::RPC::JSON::Message::IsDestHash(const std::string &dest) {
+  return HashObject::IsHashCode(dest);
+}
+
 bool Round::RPC::JSON::Message::isDestValid() const {
   if (!hasDest())
     return true;
-  if (isDestHash())
-    return true;
   if (isDestAll())
     return true;
-  return false;
+  if (isDestAny())
+    return true;
+  return isDestHash();
 }
 
 bool Round::RPC::JSON::Message::setDest(HashObject *hashObj) {
@@ -59,7 +79,7 @@ bool Round::RPC::JSON::Message::isDestAll() const {
   std::string dest;
   if (!getDest(&dest))
     return false;
-  return (dest.compare(DEST_ALL) == 0) ? true : false;
+  return IsDestAll(dest);
 }
 
 bool Round::RPC::JSON::Message::isDestAny() const {
@@ -68,7 +88,7 @@ bool Round::RPC::JSON::Message::isDestAny() const {
   std::string dest;
   if (!getDest(&dest))
     return false;
-  return (dest.compare(DEST_ANY) == 0) ? true : false;
+  return IsDestAny(dest);
 }
 
 bool Round::RPC::JSON::Message::isDestHash() const {
@@ -77,6 +97,15 @@ bool Round::RPC::JSON::Message::isDestHash() const {
   std::string dest;
   if (!getDest(&dest))
     return false;
-  return (dest.length() == HashObject::GetHashCodeLength());
+  return IsDestHash(dest);
 }
 
+bool Round::RPC::JSON::Message::isDestOne() const {
+  if (!hasDest())
+    return true;
+  if (isDestAny())
+    return true;
+  if (isDestAll())
+    return false;
+  return isDestHash();
+}

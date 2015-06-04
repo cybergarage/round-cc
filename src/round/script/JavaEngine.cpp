@@ -159,4 +159,9 @@ bool Round::JavaEngine::run(const Script *script, const std::string &params, std
   return true;
 }
 
+bool Round::JavaEngine::run(const std::string &script, std::string *result, Error *error) const {
+  // TODO : Not Supported yet
+  return false;
+}
+
 #endif

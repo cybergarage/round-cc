@@ -36,9 +36,7 @@ public:
   bool deviceNotifyReceived(mUPnP::SSDPPacket *ssdpPacket);
   bool deviceSearchResponseReceived(mUPnP::SSDPPacket *ssdpPacket);
 
-  void setEnabled(bool flag) {
-    this->enabled = flag;
-  }
+  bool setEnabled(bool flag);
   
   bool isEnabled() {
     return this->enabled;

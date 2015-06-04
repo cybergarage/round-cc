@@ -20,6 +20,8 @@ class HashObject {
   static size_t GetHashCodeLength();
   static bool GetStartHashCode(std::string *hashCode);
   static bool GetEndHashCode(std::string *hashCode);
+  static bool GetHashCode(const std::string &hashSeed, std::string *hashCode);
+  static bool IsHashCode(const std::string &hashCode);
 
  public:
   HashObject();

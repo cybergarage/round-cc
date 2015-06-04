@@ -11,7 +11,7 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="840.5686"
+   width="830.96558"
    height="220.71768"
    id="svg2"
    version="1.1"
@@ -136,7 +136,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="1.42779"
      inkscape:cx="533.43154"
-     inkscape:cy="86.783915"
+     inkscape:cy="86.783907"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -159,7 +159,7 @@
        enabled="true"
        snapvisiblegridlinesonly="true"
        originx="-108.71888px"
-       originy="-899.62885px" />
+       originy="-899.62886px" />
   </sodipodi:namedview>
   <metadata
      id="metadata7">
@@ -191,25 +191,14 @@
     <text
        xml:space="preserve"
        style="font-size:200px;font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Code Pro;-inkscape-font-specification:Source Code Pro Heavy"
-       x="358"
-       y="92.362183"
+       x="348.39694"
+       y="107.97291"
        id="text3013"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3021"
-         x="358"
-         y="92.362183">ROUND</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:32px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Code Pro;-inkscape-font-specification:Source Code Pro"
-       x="368"
-       y="124.36218"
-       id="text3023"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan3025"
-         x="368"
-         y="124.36218">Zeroconf Distributed Framework</tspan></text>
+         x="348.39694"
+         y="107.97291">ROUND</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
@@ -224,7 +213,7 @@
        sodipodi:cy="-139"
        sodipodi:rx="25"
        sodipodi:ry="25"
-       d="m -270.00958,-139 a 25,25 0 1 1 -50,0 25,25 0 1 1 50,0 z"
+       d="m -270.00958,-139 c 0,13.80712 -11.19288,25 -25,25 -13.80712,0 -25,-11.19288 -25,-25 0,-13.80712 11.19288,-25 25,-25 13.80712,0 25,11.19288 25,25 z"
        transform="matrix(0.69124424,0,0,0.69124424,-81.085928,-12.917057)" />
     <path
        sodipodi:type="arc"
@@ -234,7 +223,7 @@
        sodipodi:cy="-111.5"
        sodipodi:rx="22.5"
        sodipodi:ry="22.5"
-       d="m -80.00959,-111.5 a 22.5,22.5 0 1 1 -45,0 22.5,22.5 0 1 1 45,0 z"
+       d="m -80.00959,-111.5 c 0,12.426407 -10.073593,22.5 -22.5,22.5 -12.42641,0 -22.5,-10.073593 -22.5,-22.5 0,-12.42641 10.07359,-22.5 22.5,-22.5 12.426407,0 22.5,10.07359 22.5,22.5 z"
        transform="matrix(0.76804916,0,0,0.76804916,-25.277188,-23.36252)" />
     <path
        sodipodi:type="arc"
@@ -244,7 +233,7 @@
        sodipodi:cy="-111.5"
        sodipodi:rx="27.5"
        sodipodi:ry="27.5"
-       d="m -255.00958,-111.5 a 27.5,27.5 0 1 1 -55,0 27.5,27.5 0 1 1 55,0 z"
+       d="m -255.00958,-111.5 c 0,15.187831 -12.31217,27.5 -27.5,27.5 -15.18783,0 -27.5,-12.312169 -27.5,-27.5 0,-15.18783 12.31217,-27.5 27.5,-27.5 15.18783,0 27.5,12.31217 27.5,27.5 z"
        transform="matrix(0.63078217,0,0,0.63078217,-17.307582,-127.66779)" />
     <path
        sodipodi:type="arc"
@@ -254,7 +243,7 @@
        sodipodi:cy="-194"
        sodipodi:rx="30"
        sodipodi:ry="30"
-       d="m -165.00958,-194 a 30,30 0 1 1 -60,0 30,30 0 1 1 60,0 z"
+       d="m -165.00958,-194 c 0,16.56854 -13.43146,30 -30,30 -16.56855,0 -30,-13.43146 -30,-30 0,-16.56854 13.43145,-30 30,-30 16.56854,0 30,13.43146 30,30 z"
        transform="matrix(0.5790388,0,0,0.5790388,-82.091476,92.333528)" />
     <path
        sodipodi:type="arc"
@@ -264,7 +253,7 @@
        sodipodi:cy="-111.5"
        sodipodi:rx="27.5"
        sodipodi:ry="27.5"
-       d="m -260.00958,-111.5 a 27.5,27.5 0 1 1 -55,0 27.5,27.5 0 1 1 55,0 z"
+       d="m -260.00958,-111.5 c 0,15.187831 -12.31217,27.5 -27.5,27.5 -15.18783,0 -27.5,-12.312169 -27.5,-27.5 0,-15.18783 12.31217,-27.5 27.5,-27.5 15.18783,0 27.5,12.31217 27.5,27.5 z"
        transform="matrix(0.63078217,0,0,0.63078217,-72.653671,21.832212)" />
     <path
        sodipodi:type="arc"
@@ -274,7 +263,7 @@
        sodipodi:cy="-111.5"
        sodipodi:rx="27.5"
        sodipodi:ry="27.5"
-       d="m -260.00958,-111.5 a 27.5,27.5 0 1 1 -55,0 27.5,27.5 0 1 1 55,0 z"
+       d="m -260.00958,-111.5 c 0,15.187831 -12.31217,27.5 -27.5,27.5 -15.18783,0 -27.5,-12.312169 -27.5,-27.5 0,-15.18783 12.31217,-27.5 27.5,-27.5 15.18783,0 27.5,12.31217 27.5,27.5 z"
        transform="matrix(0.63078217,0,0,0.63078217,55.846324,21.332212)" />
     <path
        sodipodi:type="arc"
@@ -284,7 +273,7 @@
        sodipodi:cy="-204"
        sodipodi:rx="30"
        sodipodi:ry="30"
-       d="m -260.00958,-204 a 30,30 0 1 1 -60,0 30,30 0 1 1 60,0 z"
+       d="m -260.00958,-204 c 0,16.56854 -13.43146,30 -30,30 -16.56855,0 -30,-13.43146 -30,-30 0,-16.56854 13.43145,-30 30,-30 16.56854,0 30,13.43146 30,30 z"
        transform="matrix(0.5790388,0,0,0.5790388,-87.08279,-51.307804)" />
     <path
        sodipodi:type="arc"
@@ -294,7 +283,7 @@
        sodipodi:cy="-179"
        sodipodi:rx="40"
        sodipodi:ry="40"
-       d="m -225.00958,-179 a 40,40 0 1 1 -80,0 40,40 0 1 1 80,0 z"
+       d="m -225.00958,-179 c 0,22.09139 -17.90861,40 -40,40 -22.09139,0 -40,-17.90861 -40,-40 0,-22.09139 17.90861,-40 40,-40 22.09139,0 40,17.90861 40,40 z"
        transform="matrix(0.43598314,0,0,0.43598314,-19.46988,-90.200788)" />
   </g>
 </svg>

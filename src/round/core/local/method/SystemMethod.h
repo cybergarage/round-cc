@@ -11,9 +11,11 @@
 #ifndef _ROUNDCC_SYSTEMMETHOD_H_
 #define _ROUNDCC_SYSTEMMETHOD_H_
 
+#include <round/Const.h>
 #include <round/core/Method.h>
 #include <round/core/LocalNode.h>
 #include <round/core/RemoteNode.h>
+#include <round/core/Registry.h>
 
 namespace Round {
 
@@ -66,58 +68,137 @@ class set_method : public system_method {
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
+// remove_method
+
+class remove_method : public system_method {
+public:
+  static const std::string NAME;
+  static const std::string METHOD_NAME;
+public:
+  remove_method();
+  ~remove_method();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
+};
+  
+// post_job
+  
+class post_job : public system_method {
+public:
+  static const std::string NAME;
+  static const std::string JOB_LANGUAGE;
+  static const std::string JOB_CODE;
+  static const std::string JOB_ENCODE;
+  static const std::string JOB_ENCODE_BASE64;
+public:
+  post_job();
+  ~post_job();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
+};
+
 // set_route
   
 class set_route : public system_method {
-  public:
-    static const std::string NAME;
-  public:
+public:
+  static const std::string NAME;
+  static const std::string ROUTE_NAME;
+  static const std::string ROUTE_SRC;
+  static const std::string ROUTE_DEST;
+  static const std::string ROUTE_TYPE;
+  static const std::string ROUTE_PIPE;
+  static const std::string ROUTE_EVENT;
+  static const std::string ROUTE_COND;
+public:
     set_route();
     ~set_route();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
+// remove_route
+
+class remove_route : public system_method {
+public:
+  static const std::string NAME;
+  static const std::string ROUTE_NAME;
+  static const std::string ROUTE_SRC;
+  static const std::string ROUTE_DEST;
+public:
+  remove_route();
+  ~remove_route();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
+};
+  
 // set_timer
   
 class set_timer : public system_method {
 public:
   static const std::string NAME;
+  static const std::string TIMER_NAME;
+  static const std::string TIMER_DURATION;
+  static const std::string TIMER_LOOP;
+  
 public:
   set_timer();
   ~set_timer();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
+// remove_timer
+
+class remove_timer : public system_method {
+public:
+  static const std::string NAME;
+public:
+  remove_timer();
+  ~remove_timer();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
+};
+  
 // set_alias
   
 class set_alias : public system_method {
  public:
   static const std::string NAME;
+  static const std::string ALIAS_NAME;
+  static const std::string ALIAS_METHOD;
+  static const std::string ALIAS_DEFAULTS;
  public:
   set_alias();
   ~set_alias();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
-  
-// get_node_info
 
-class get_node_info : public system_method {
+// remove_alias
+
+class remove_alias : public system_method {
+public:
+  static const std::string NAME;
+  static const std::string ALIAS_NAME;
+public:
+  remove_alias();
+  ~remove_alias();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
+};
+  
+// get_node_state
+
+class get_node_state : public system_method {
 public:
   static const std::string NAME;
 public:
-  get_node_info();
-  ~get_node_info();
+  get_node_state();
+  ~get_node_state();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
 class SystemNodeInfoDict {
 public:
   static const std::string NAME;
-  static const std::string IP;
+  static const std::string ADDR;
   static const std::string PORT;
   static const std::string HASH;
   static const std::string VER;
   static const std::string CLUSTER;
+  static const std::string STATE;
   
 public:
   SystemNodeInfoDict() {
@@ -135,12 +216,12 @@ public:
   bool setNode(Node *node);
   bool getNode(RemoteNode *node);
   
-  bool setIp(const std::string &value) {
-    return (this->jsonDict) ? this->jsonDict->set(IP, value) : false;
+  bool setAddress(const std::string &value) {
+    return (this->jsonDict) ? this->jsonDict->set(ADDR, value) : false;
   }
   
-  bool getIp(std::string *value) const {
-    return (this->jsonDict) ? this->jsonDict->get(IP, value) : false;
+  bool getAddress(std::string *value) const {
+    return (this->jsonDict) ? this->jsonDict->get(ADDR, value) : false;
   }
   
   bool setPort(int value) {
@@ -167,6 +248,14 @@ public:
     return (this->jsonDict) ? this->jsonDict->get(HASH, value) : false;
   }
   
+  bool setState(const std::string &value) {
+    return (this->jsonDict) ? this->jsonDict->set(STATE, value) : false;
+  }
+  
+  bool getState(std::string *value) const {
+    return (this->jsonDict) ? this->jsonDict->get(STATE, value) : false;
+  }
+  
 private:
   JSONDictionary *jsonDict;
 };
@@ -174,7 +263,7 @@ private:
 class SystemGetNodeInfoRequest : public SystemMethodRequest {
  public:
   SystemGetNodeInfoRequest() {
-    setMethod(get_node_info::NAME);
+    setMethod(get_node_state::NAME);
   }
 };
 
@@ -187,12 +276,12 @@ class SystemGetNodeInfoResponse : public SystemMethodResponse {
     return getNodeInfoDict()->setNode(node);
   }
   
-  bool setIp(const std::string &value) {
-    return getNodeInfoDict()->setIp(value);
+  bool setAddress(const std::string &value) {
+    return getNodeInfoDict()->setAddress(value);
   }
   
-  bool getIp(std::string *value) const {
-    return getNodeInfoDict()->getIp(value);
+  bool getAddress(std::string *value) const {
+    return getNodeInfoDict()->getAddress(value);
   }
   
   bool setPort(int value) {
@@ -229,14 +318,25 @@ private:
   mutable SystemNodeInfoDict nodeInfoDict;
 };
 
-// get_cluster_info
-
-class get_cluster_info : public system_method {
+// get_node_config
+  
+class get_node_config : public system_method {
 public:
   static const std::string NAME;
 public:
-  get_cluster_info();
-  ~get_cluster_info();
+  get_node_config();
+  ~get_node_config();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
+};
+  
+// get_cluster_state
+
+class get_cluster_state : public system_method {
+public:
+  static const std::string NAME;
+public:
+  get_cluster_state();
+  ~get_cluster_state();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
@@ -270,7 +370,7 @@ public:
 class SystemGetClusterInfoRequest : public SystemMethodRequest {
 public:
   SystemGetClusterInfoRequest() {
-    setMethod(get_cluster_info::NAME);
+    setMethod(get_cluster_state::NAME);
   }
 };
   
@@ -300,73 +400,127 @@ class SystemGetNetworkInfoResponse : public SystemMethodResponse {
   JSONArray *getResultClusterArray();
 };
 
-// get_network_info
+// get_network_state
 
-class get_network_info : public system_method {
+class get_network_state : public system_method {
 public:
   static const std::string NAME;
 public:
-  get_network_info();
-  ~get_network_info();
+  get_network_state();
+  ~get_network_state();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
 class SystemGetNetworkInfoRequest : public SystemMethodRequest {
  public:
   SystemGetNetworkInfoRequest() {
-    setMethod(get_network_info::NAME);
+    setMethod(get_network_state::NAME);
   }
 };
   
-// set_key
+// set_registry
 
-class set_key : public system_method {
+class set_registry : public system_method {
  public:
   static const std::string NAME;
-  static const std::string KEY;
-  static const std::string VALUE;
  public:
-  set_key();
-  ~set_key();
+  set_registry();
+  ~set_registry();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
-class SystemSetKeyRequest : public SystemMethodRequest {
+class SystemSetRegistryRequest : public SystemMethodRequest {
  public:
-  SystemSetKeyRequest() {
-    setMethod(set_key::NAME);
+  SystemSetRegistryRequest() {
+    setMethod(set_registry::NAME);
   }
   
-  void setKey(const std::string &value) {
-    set(set_key::KEY, value);
-  }
-
-  void setValue(const std::string &value) {
-    set(set_key::VALUE, value);
-  }
+  void setRegistry(const Registry reg);
 };
 
-// get_key
+// get_registry
 
-class get_key : public system_method {
+class get_registry : public system_method {
 public:
   static const std::string NAME;
-  static const std::string KEY;
 public:
-  get_key();
-  ~get_key();
+  get_registry();
+  ~get_registry();
   bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
 
-class SystemGetKeyRequest : public SystemMethodRequest {
+class SystemGetRegistryRequest : public SystemMethodRequest {
 public:
-  SystemGetKeyRequest() {
-    setMethod(get_key::NAME);
+  SystemGetRegistryRequest() {
+    setMethod(get_registry::NAME);
   }
 
-  void setKey(const std::string &value) {
-    set(get_key::KEY, value);
+  void setKey(const std::string &value);
+};
+
+class SystemGetRegistryResponse : public SystemMethodResponse {
+  public:
+    SystemGetRegistryResponse(NodeResponse *nodeRes) : SystemMethodResponse(nodeRes) {
+    }
+  
+    bool setRegistry(const Registry reg);
+    bool getRegistry(Registry *reg);
+};
+
+// remove_registry
+
+class remove_registry : public system_method {
+public:
+  static const std::string NAME;
+public:
+  remove_registry();
+  ~remove_registry();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
+};
+  
+class SystemRemoveRegistryRequest : public SystemMethodRequest {
+public:
+  SystemRemoveRegistryRequest() {
+    setMethod(remove_registry::NAME);
   }
+  
+  void setKey(const std::string &value);
+};
+
+// add_node
+
+class add_node : public system_method {
+public:
+  static const std::string NAME;
+  static const std::string SOURCE;
+public:
+  add_node();
+  ~add_node();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
+};
+
+// remove_node
+  
+class remove_node : public system_method {
+public:
+  static const std::string NAME;
+public:
+  remove_node();
+  ~remove_node();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
+};
+  
+// exec
+  
+class execp : public system_method {
+public:
+  static const std::string NAME;
+  static const std::string CMD;
+  static const std::string ARGS;
+public:
+  execp();
+  ~execp();
+  bool exec(LocalNode *node, const NodeRequest *nodeReq, NodeResponse *nodeRes) const;
 };
   
 }

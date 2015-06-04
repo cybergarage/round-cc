@@ -37,6 +37,19 @@ bool Round::HashObject::GetEndHashCode(std::string *hashCode) {
   return true;
 }
 
+bool Round::HashObject::GetHashCode(const std::string &seedString, std::string *hashCode) {
+  if (seedString.length() <= 0) {
+    *hashCode = "";
+    return false;
+  }
+  SHA256::Hash(seedString, hashCode);
+  return true;
+}
+
+bool Round::HashObject::IsHashCode(const std::string &hashCode) {
+  return (hashCode.length() == HashObject::GetHashCodeLength()) ? true : false;
+}
+
 Round::HashObject::HashObject() {
 }
 
@@ -46,15 +59,7 @@ Round::HashObject::~HashObject() {
 bool Round::HashObject::getHashCode(std::string *hashCode) const {
   std::string seedString;
   getHashSeed(&seedString);
-
-  if (seedString.length() <= 0) {
-    *hashCode = "";
-    return false;
-  }
-
-  SHA256::Hash(seedString, hashCode);
-
-  return true;
+  return GetHashCode(seedString, hashCode);
 }
 
 int Round::HashObject::compare(const std::string &otherHashCode) const {

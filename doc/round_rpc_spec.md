@@ -11,9 +11,7 @@ Round adds the following original fields to [JSON-RPC 2.0][json-rpc] specificati
 | Field | Descripton | Default | Detail |
 | - | - | - | - |
 | dest | - | - | |
-| quorum | - | 1 | |
 | cond | - | - |  |
-| type | - | - |  |
 | ts | - | - | The field is handled automatically by Round |
 | digest | - | (none) | - |
 
@@ -22,8 +20,12 @@ Round adds the following original fields to [JSON-RPC 2.0][json-rpc] specificati
 The dest field specifies a destination node of the request object. The node which is received the request object checks the hash code whether the node should execute the request object.  
 
 ```
-dest = [ "*" | "all" | SHA256-HASH ]
+dest = [ "?" | "*" | SHA256-HASH ]
 ```
+
+A random node is selected in the cluster if the dest field is "?". All node are selected in the cluster when the dest field is "\*".
+
+If the dest field is null, the node which is received the message is selected.
 
 #### Request object
 
@@ -58,14 +60,6 @@ If the target nodes are two or more nodes, the response object has an array cont
 ]
 ```
 
-### quorum
-
-The extent field specifies target nodes of the request object message.
-
-```
-quorum = NUMBER
-```
-
 ### cond
 
 The field specifies a condition by JavaScript whether the message is executed. In the condition, you can use two variables, 'params' and 'prev_result'.
@@ -88,30 +82,6 @@ The 'prev_result' is enabled only when the request message is a batch request. U
 --> [
 {"jsonrpc": "2.0", "method": "deposit", .... },
 {"jsonrpc": "2.0", "method": "withdraw", "cond" : "(prev_result[\"success\"] == \"true\")" , .... },
-]
-```
-
-### type
-
-The field specifies a request type.
-
-```
-type = "paxos"
-```
-
-### paxos
-
-The paxos type uses to execute the request method in quorum mode. To enable the quorum type, you have to set a suitable 'extent' field such as 'all' or a number too.
-
-```
---> {"jsonrpc": "2.0", "method": "set_counter", "type": "paxos", ....}
-```
-
-The 'quorum' type request is a syntactic sugar function, and the messages is equals to the following a batch message.
-```
---> [
-{"jsonrpc": "2.0", "method": "_quorum_prepare", ....}
-{"jsonrpc": "2.0", "method": "set_counter", "cond" : "prev_result" , .... },
 ]
 ```
 

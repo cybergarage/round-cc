@@ -7,15 +7,17 @@
 ## Configuration File
 
 ```
-log = "/var/round"
-port = <port number>
-if = <if address>
-log_lovel = INFO
-```
-
-```
-log = "/var/round"
-port = auto
-if = auto
-log_lovel = INFO
+{
+  "bind_port": <port number>,
+  "bind_addr": "<if address>",
+  "cluster": "<name>",
+  "log_file": "file name",
+  "methods": [
+      <method_name> : {
+        "language" : <supported-language>
+        "code" : <code>
+        "encoding" : ("none" | "base64")
+      }
+    ]
+}
 ```

@@ -33,6 +33,11 @@ Round::UPnPNodeFinder::UPnPNodeFinder() {
 Round::UPnPNodeFinder::~UPnPNodeFinder() {
 }
 
+bool Round::UPnPNodeFinder::setEnabled(bool flag) {
+  this->enabled = flag;
+  return true;
+}
+
 bool Round::UPnPNodeFinder::start(Error *error) {
   if (!this->upnpControlPoint.start()) {
     error->setCode(ServerErrorCannotStartControlPoint);

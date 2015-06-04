@@ -21,15 +21,6 @@ static const std::string ENDPOINT     = "/rql";
 static const std::string QUERY        = "query";
 }
   
-class RQLParser  : public uSQL::SQLParser {
-
-public:
-
-  RQLParser();
-
-  bool parse(const std::string &query);
-};
-
 class RQLRequest : public NodeRequest {
 public:
     

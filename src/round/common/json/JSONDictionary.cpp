@@ -51,8 +51,8 @@ bool Round::JSONDictionary::hasKey(const std::string &key) const {
 }
 
 bool Round::JSONDictionary::set(const std::string &key, const std::string &value) {
-  JSONString *jsonString = new JSONString(value);
-  return set(key, jsonString);
+  JSONString *jsonObj = new JSONString(value);
+  return set(key, jsonObj);
 }
 
 bool Round::JSONDictionary::set(const std::string &key, const char *value) {
@@ -65,23 +65,23 @@ bool Round::JSONDictionary::set(const std::string &key, size_t value) {
 }
 
 bool Round::JSONDictionary::set(const std::string &key, int value) {
-  std::string strValue = boost::lexical_cast<std::string>(value);
-  return set(key, strValue);
+  JSONInteger *jsonObj = new JSONInteger(value);
+  return set(key, jsonObj);
 }
 
 bool Round::JSONDictionary::set(const std::string &key, long value) {
-  std::string strValue = boost::lexical_cast<std::string>(value);
-  return set(key, strValue);
+  JSONInteger *jsonObj = new JSONInteger(value);
+  return set(key, jsonObj);
 }
 
 bool Round::JSONDictionary::set(const std::string &key, bool value) {
-  int intValue = value ? 1 : 0;
-  return set(key, intValue);
+  JSONBoolean *jsonObj = new JSONBoolean(value);
+  return set(key, jsonObj);
 }
 
 bool Round::JSONDictionary::set(const std::string &key, double value) {
-  std::string strValue = boost::lexical_cast<std::string>(value);
-  return set(key, strValue);
+  JSONReal *jsonObj = new JSONReal(value);
+  return set(key, jsonObj);
 }
 
 bool Round::JSONDictionary::get(const std::string &key, std::string *value) const {
@@ -98,6 +98,22 @@ bool Round::JSONDictionary::get(const std::string &key, std::string *value) cons
   jsonObj->toJSONString(value);
   
   return true;
+}
+
+bool Round::JSONDictionary::get(const std::string &key, JSONDictionary **value) const {
+  JSONObject *jsonObj;
+  if (!get(key, &jsonObj))
+    return false;
+  *value = dynamic_cast<JSONDictionary *>(jsonObj);
+  return (*value) ? true : false;
+}
+
+bool Round::JSONDictionary::get(const std::string &key, JSONArray **value) const {
+  JSONObject *jsonObj;
+  if (!get(key, &jsonObj))
+    return false;
+  *value = dynamic_cast<JSONArray *>(jsonObj);
+  return (*value) ? true : false;
 }
 
 bool Round::JSONDictionary::get(const std::string &key, JSONString **value) const {
@@ -200,6 +216,15 @@ bool Round::JSONDictionary::set(const JSONDictionary *srcDict) {
   if (!srcDict)
     return false;
 
+  clear();
+  
+  return add(srcDict);
+}
+
+bool Round::JSONDictionary::add(const JSONDictionary *srcDict) {
+  if (!srcDict)
+    return false;
+
   for (JSONDictionary::const_iterator dict = srcDict->begin(); dict != srcDict->end(); dict++) {
     JSONObject *valueObj = dict->second;
     if (!valueObj)
@@ -260,11 +285,14 @@ bool Round::JSONDictionary::remove(const std::string &key) {
   return true;
 }
 
-void Round::JSONDictionary::clear() {
+bool Round::JSONDictionary::clear() {
   for (JSONDictionary::iterator obj = begin(); obj != end(); obj++) {
-    if (obj->second)
+    if (obj->second) {
       delete obj->second;
+    }
   }
 
   std::map<std::string, JSONObject *>::clear();
+
+  return true;
 }

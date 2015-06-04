@@ -13,12 +13,12 @@
 
 #include <round/core/local/method/SystemMethod.h>
 
-const std::string Round::set_method::NAME   = "set_method";
-const std::string Round::set_method::METHOD_LANGUAGE      = "language";
-const std::string Round::set_method::METHOD_NAME          = "name";
-const std::string Round::set_method::METHOD_CODE          = "code";
-const std::string Round::set_method::METHOD_ENCODE        = "encode";
-const std::string Round::set_method::METHOD_ENCODE_BASE64 = "base64";
+const std::string Round::set_method::NAME                 = ROUNDCC_SYSTEM_METHOD_SET_METHOD;
+const std::string Round::set_method::METHOD_LANGUAGE      = ROUNDCC_SYSTEM_METHOD_PARAM_LANGUAGE;
+const std::string Round::set_method::METHOD_NAME          = ROUNDCC_SYSTEM_METHOD_PARAM_NAME;
+const std::string Round::set_method::METHOD_CODE          = ROUNDCC_SYSTEM_METHOD_PARAM_CODE;
+const std::string Round::set_method::METHOD_ENCODE        = ROUNDCC_SYSTEM_METHOD_PARAM_ENCODE;
+const std::string Round::set_method::METHOD_ENCODE_BASE64 = ROUNDCC_SYSTEM_METHOD_PARAM_BASE64;
 
 
 Round::set_method::set_method() : system_method(NAME) {
@@ -49,7 +49,7 @@ bool Round::set_method::exec(LocalNode *node, const NodeRequest *nodeReq, NodeRe
   if (!jsonDict->get(METHOD_NAME, &scriptMethod) || (scriptMethod.length() <= 0))
     return false;
   
-  // Couldn't override 'set_method'
+  // Couldn't override static methods
   if (node->isStaticMethod(scriptMethod))
     return false;
   

@@ -9,6 +9,7 @@
 ******************************************************************/
 
 #include <round/core/Script.h>
+#include <round/core/local/method/SystemMethod.h>
 
 Round::ScriptMap::ScriptMap() {
 }
@@ -31,9 +32,21 @@ const Round::Script *Round::ScriptMap::getScript(const std::string &name) const 
 void Round::ScriptMap::clear() {
   for (ScriptMap::iterator scriptIt = begin(); scriptIt != end(); scriptIt++) {
     Script *script = scriptIt->second;
-    if (script)
+    if (script) {
       delete script;
+    }
   }
-  
   std::map<std::string, Script *>::clear();
+}
+
+bool Round::ScriptMap::toJSONArray(JSONArray *jsonArray) {
+  for (ScriptMap::iterator scriptIt = begin(); scriptIt != end(); scriptIt++) {
+    Script *script = scriptIt->second;
+    if (!script)
+      continue;
+    JSONDictionary *methodDict = new JSONDictionary();
+    script->toJSONDictionary(&methodDict);
+    jsonArray->add(methodDict);
+  }
+  return true;
 }

@@ -22,7 +22,16 @@ Round::LocalStaticMethodManager::~LocalStaticMethodManager() {
 
 void Round::LocalStaticMethodManager::init() {
   addMethod(new set_method());
+  addMethod(new remove_method());
+  
   addMethod(new set_route());
+  addMethod(new remove_route());
+  
   addMethod(new set_timer());
+  addMethod(new remove_timer());
+  
   addMethod(new set_alias());
+  addMethod(new remove_alias());
+  
+  addMethod(new post_job());
 }

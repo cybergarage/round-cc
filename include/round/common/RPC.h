@@ -11,6 +11,7 @@
 #ifndef _ROUNDCC_RPC_H_
 #define _ROUNDCC_RPC_H_
 
+#include <round/Const.h>
 #include <round/common/types.h>
 #include <round/common/Error.h>
 #include <round/common/Message.h>
@@ -34,7 +35,7 @@ enum {
   ErrorCodeInvalidParams             = -32602,
   ErrorCodeInternalError             = -32603,
   
-  ErrorCodeBadHashCode               = -32000,
+  ErrorCodeBadDestination            = -32000,
   ErrorCodeMovedPermanently          = -32001,
   
   ErrorConditionFailed               = -32010,
@@ -54,8 +55,8 @@ bool IsServerErrorCode(int jsonErrorCode);
 void ErrorCodeToError(int jsonErrorCode, Error *error);
 
 namespace HTTP {
-  static const std::string ENDPOINT     = "/rpc";
-  static const std::string CONTENT_TYPE = "application/json";
+  static const std::string ENDPOINT     = ROUNDCC_RPC_HTTP_ENDPOINT;
+  static const std::string CONTENT_TYPE = ROUNDCC_RPC_HTTP_CONTENT_TYPE;
   static const std::string METHOD       = uHTTP::HTTP::POST;
   static const std::string GET_METHOD   = uHTTP::HTTP::GET;
   static const std::string ACCEPT       = CONTENT_TYPE;
@@ -90,7 +91,13 @@ class Message : public ::Round::Request {
   static const std::string COND;
   static const std::string DIGEST;
   static const std::string QUORUM;
-  
+
+public:
+
+  static bool IsDestAny(const std::string &dest);
+  static bool IsDestAll(const std::string &dest);
+  static bool IsDestHash(const std::string &dest);
+
  public:
   Message();
   virtual ~Message();
@@ -149,6 +156,8 @@ class Message : public ::Round::Request {
     return set(DEST, value);
   }
   
+  bool setDestAny();
+  bool setDestAll();
   bool setDest(HashObject *hashObj);
   
   bool getDest(std::string *value) const {
@@ -160,10 +169,10 @@ class Message : public ::Round::Request {
   }
 
   bool isDestValid() const;
-  
   bool isDestAny() const;
   bool isDestAll() const;
   bool isDestHash() const;
+  bool isDestOne() const;
 
   // quorum
   
@@ -254,6 +263,12 @@ class Request : public Message {
     return get(PARAMS, value);
   }
   
+  bool hasParams() const {
+    return hasKey(PARAMS);
+  }
+  
+  bool isJSONParams() const;
+  
   void toHTTPPostRequest(uHTTP::HTTPRequest *httpReq) const;
   void toHTTPGetRequest(uHTTP::HTTPRequest *httpReq, bool jsonRpcEncodeEnable) const;
 };
@@ -264,6 +279,8 @@ class BatchRequest : public ::Round::BatchRequest {
     
   BatchRequest();
   ~BatchRequest();
+
+  void toHTTPPostRequest(uHTTP::HTTPRequest *httpReq) const;
 };
 
 class Response : public Message {
@@ -301,6 +318,32 @@ class Response : public Message {
   void toHTTPResponse(uHTTP::HTTPResponse *httpRes) const;
 };
 
+class BatchResponse : public JSONArray {
+    
+public:
+  BatchResponse();
+  virtual ~BatchResponse();
+
+  void toHTTPResponse(uHTTP::HTTPResponse *httpRes) const;
+};
+
+class Parser : public JSONParser {
+    
+  public:
+    
+  Parser();
+  virtual ~Parser();
+  
+  virtual JSONDictionary *createJSONDictionary() {
+    return new RPC::JSON::Request();
+  }
+    
+  virtual JSONArray *createJSONArray() {
+    return new RPC::JSON::BatchRequest();
+  }
+};
+  
+  
 }
   
 }

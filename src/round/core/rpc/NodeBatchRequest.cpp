@@ -12,7 +12,6 @@
 #include <sstream>
 
 #include <round/core/NodeMessage.h>
-#include <round/core/Node.h>
 
 Round::NodeBatchRequest::NodeBatchRequest() {
 }

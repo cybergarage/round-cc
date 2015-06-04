@@ -61,7 +61,7 @@ bool Round::SystemGetClusterInfoResponse::getCluster(Cluster *cluster) {
 // SystemGetNetworkInfoResponse
 ////////////////////////////////////////
 
-const std::string Round::SystemGetNetworkInfoResponse::CLUSTERS = "clusters";
+const std::string Round::SystemGetNetworkInfoResponse::CLUSTERS = ROUNDCC_SYSTEM_METHOD_PARAM_CLUSTERS;
 
 Round::JSONArray *Round::SystemGetNetworkInfoResponse::getResultClusterArray() {
   JSONDictionary *resultDict = this->nodeRes->getResultDict();

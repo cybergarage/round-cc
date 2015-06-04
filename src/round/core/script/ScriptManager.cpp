@@ -11,9 +11,17 @@
 #include <round/core/Script.h>
 
 Round::ScriptManager::ScriptManager() {
+  setNode(NULL);
 }
 
 Round::ScriptManager::~ScriptManager() {
+}
+
+void Round::ScriptManager::setNode(Node *node) {
+  this->node = node;
+  for (ScriptEngineMap::iterator engine = engines.begin(); engine != engines.end(); engine++) {
+    engine->second->setNode(node);
+  }
 }
 
 bool Round::ScriptManager::setScript(Script *script) {
@@ -31,6 +39,7 @@ bool Round::ScriptManager::setScript(Script *script) {
   }
   
   this->scripts[name] = script;
+  script->setNode(hasNode() ? getNode() : NULL);
   
   return true;
 }
@@ -50,6 +59,7 @@ bool Round::ScriptManager::setEngine(ScriptEngine *engine) {
   }
   
   this->engines[engineLang] = engine;
+  engine->setNode(getNode());
 
   return true;
 }
@@ -62,7 +72,7 @@ bool Round::ScriptManager::setScript(const std::string &method, const std::strin
   }
 
   if (code.length() <= 0)
-    return removeScript(method, lang, error);
+    return removeScript(method, error);
   
   Script *script = new Script(lang, method, code);
   if (!script) {
@@ -86,14 +96,9 @@ bool Round::ScriptManager::setScript(const std::string &method, const std::strin
   return true;
 }
 
-bool Round::ScriptManager::removeScript(const std::string &method, const std::string &lang, Error *error) {
+bool Round::ScriptManager::removeScript(const std::string &method, Error *error) {
   const Script *script = this->scripts.getScript(method);
   if (!script) {
-    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeMethodNotFound, error);
-    return false;
-  }
-  
-  if (!script->isLanguage(lang)) {
     RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeMethodNotFound, error);
     return false;
   }
@@ -101,7 +106,17 @@ bool Round::ScriptManager::removeScript(const std::string &method, const std::st
   return (this->scripts.erase(method) == 1) ? true : false;
 }
 
-bool Round::ScriptManager::run(const std::string &name, const std::string &params, std::string *results, Error *error) {
+bool Round::ScriptManager::execScript(const std::string &lang, const std::string &script, int encodeType, std::string *result, Error *error) {
+  const ScriptEngine *scriptEngine = this->engines.getEngine(lang);
+  if (!scriptEngine) {
+    RPC::JSON::ErrorCodeToError(RPC::JSON::ErrorCodeScriptEngineInternalError, error);
+    return false;
+  }
+  
+  return scriptEngine->run(script, result, error);
+}
+
+bool Round::ScriptManager::execMethod(const std::string &name, const std::string &params, std::string *results, Error *error) {
   error->setCode(ScriptEngineStatusOk);
   
   const Script *script = this->scripts.getScript(name);
@@ -124,3 +139,9 @@ bool Round::ScriptManager::run(const std::string &name, const std::string &param
   
   return scriptEngine->run(script, params, results, error);
 }
+
+bool Round::ScriptManager::toJSONArray(JSONArray *jsonArray, Error *error) {
+  this->scripts.toJSONArray(jsonArray);
+  return true;
+}
+

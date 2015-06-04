@@ -11,6 +11,7 @@
 #ifndef _ROUNDCC_TESTSCRIPT_H_
 #define _ROUNDCC_TESTSCRIPT_H_
 
+#include <round/Const.h>
 #include <round/core/Script.h>
 
 #include "RoundTest.h"
@@ -25,6 +26,10 @@ const std::string SCRIPT_COUNTER_NAME = "Counter"; // Only Java Platform
 const std::string SCRIPT_SETCOUNTER_NAME = "set_counter";
 const std::string SCRIPT_INCCOUNTER_NAME = "inc_counter";
 const std::string SCRIPT_GETCOUNTER_NAME = "get_counter";
+
+////////////////////////////////////////////////////////////
+// JavaScript
+////////////////////////////////////////////////////////////
 
 const std::string JS_ECHO_CODE = \
   "function echo(params) {"\
@@ -60,6 +65,10 @@ const std::string JS_GETCOUNTER_CODE = \
   "  return global.counter;"\
   "}";
   
+////////////////////////////////////////////////////////////
+// Java
+////////////////////////////////////////////////////////////
+
 const std::string JAVA_ECHO_SOURCE = "round/tests/scripts/echo.java";
 const std::string JAVA_ECHO_CODE = "yv66vgAAADIADwoAAwAMBwANBwAOAQAGPGluaXQ+AQADKClWAQAEQ29kZQEAD0xpbmVOdW1iZXJUYWJsZQEADnByb2Nlc3NNZXNzYWdlAQAmKExqYXZhL2xhbmcvU3RyaW5nOylMamF2YS9sYW5nL1N0cmluZzsBAApTb3VyY2VGaWxlAQAJZWNoby5qYXZhDAAEAAUBAARlY2hvAQAQamF2YS9sYW5nL09iamVjdAAhAAIAAwAAAAAAAgABAAQABQABAAYAAAAhAAEAAQAAAAUqtwABsQAAAAEABwAAAAoAAgAAAAIABAADAAEACAAJAAEABgAAABoAAQACAAAAAiuwAAAAAQAHAAAABgABAAAABQABAAoAAAACAAs=";
 
@@ -78,18 +87,47 @@ const std::string JAVA_GETCOUNTER_CODE = "yv66vgAAADIAGwoABQAOCQAPABAKABEAEgcAEw
 const std::string JAVA_INCCOUNTER_SOURCE = "round/tests/scripts/inc_counter.java";
 const std::string JAVA_INCCOUNTER_CODE = "yv66vgAAADIAGwoABQAOCQAPABAKABEAEgcAEwcAFAEABjxpbml0PgEAAygpVgEABENvZGUBAA9MaW5lTnVtYmVyVGFibGUBAA5wcm9jZXNzTWVzc2FnZQEAJihMamF2YS9sYW5nL1N0cmluZzspTGphdmEvbGFuZy9TdHJpbmc7AQAKU291cmNlRmlsZQEAEGluY19jb3VudGVyLmphdmEMAAYABwcAFQwAFgAXBwAYDAAZABoBAAtpbmNfY291bnRlcgEAEGphdmEvbGFuZy9PYmplY3QBAAdDb3VudGVyAQAFdmFsdWUBAAFJAQAQamF2YS9sYW5nL1N0cmluZwEAB3ZhbHVlT2YBABUoSSlMamF2YS9sYW5nL1N0cmluZzsAIQAEAAUAAAAAAAIAAQAGAAcAAQAIAAAAIQABAAEAAAAFKrcAAbEAAAABAAkAAAAKAAIAAAAFAAQABgABAAoACwABAAgAAAArAAIAAgAAAA+yAAIEYLMAArIAArgAA7AAAAABAAkAAAAKAAIAAAAJAAgACgABAAwAAAACAA0=";
 
+////////////////////////////////////////////////////////////
+// Lua
+////////////////////////////////////////////////////////////
+
+const std::string LUA_ECHO_CODE = \
+"function echo(params)\n"\
+"  return params\n"\
+"end";
+  
+const std::string LUA_SUM_CODE = \
+"function sum(jsonParams)\n"\
+"  local json = require(\"json\")\n"\
+"  local params = json.decode(jsonParams)\n"\
+"  local sum = 0\n"\
+"  for i, value in pairs(params) do\n"\
+"  sum = sum + value\n"\
+"  end\n"\
+"  return sum\n"\
+"  end\n";
+  
+////////////////////////////////////////////////////////////
+// Method Requests
+////////////////////////////////////////////////////////////
+
 const std::string JS_INVALID_FUNCTION = \
   "function echo(params) {"\
   "  return params;";
 
 #define RPC_SET_ECHO_NAME   "echo"
+#define RPC_ALIAS_HELLO_NAME "hello"
 #define RPC_SET_ECHO_LANG   "js"
 #define RPC_SET_ECHO_CODE   "function echo(params) {return params;}"
 #define RPC_SET_ECHO_PARAMS "[1,2,3]"
-  
+
+////////////////////////////////////////////////
+// set_method
+////////////////////////////////////////////////
+
 const std::string RPC_SET_ECHO = \
   "{\"jsonrpc\": \"2.0\"," \
-   "\"method\": \"set_method\","
+   "\"method\": \"" ROUNDCC_SYSTEM_METHOD_SET_METHOD "\","
    "\"params\": {" \
        "\"language\": \"" RPC_SET_ECHO_LANG "\", " \
        "\"name\": \"" RPC_SET_ECHO_NAME "\", " \
@@ -98,9 +136,8 @@ const std::string RPC_SET_ECHO = \
 
 const std::string RPC_REMOVE_ECHO = \
   "{\"jsonrpc\": \"2.0\"," \
-  "\"method\": \"set_method\","
+  "\"method\": \"" ROUNDCC_SYSTEM_METHOD_REMOVE_METHOD "\","
   "\"params\": {" \
-  "\"language\": \"" RPC_SET_ECHO_LANG "\", " \
   "\"name\": \"" RPC_SET_ECHO_NAME "\"" \
   "}, \"id\": 1}";
   
@@ -110,6 +147,95 @@ const std::string RPC_RUN_ECHO = \
    "\"params\": " RPC_SET_ECHO_PARAMS "," \
    "\"id\": 1}";
 
+////////////////////////////////////////////////
+// Alias (Hello)
+////////////////////////////////////////////////
+  
+const std::string RPC_SET_HELLO = \
+  "{\"jsonrpc\": \"2.0\"," \
+  "\"method\": \"" ROUNDCC_SYSTEM_METHOD_SET_ALIAS "\","
+  "\"params\": {" \
+    "\"name\": \"" RPC_ALIAS_HELLO_NAME "\", " \
+    "\"method\": \"" RPC_SET_ECHO_NAME "\", " \
+    "\"defaults\": \"" RPC_SET_ECHO_PARAMS "\"" \
+  "}, \"id\": 1}";
+  
+const std::string RPC_REMOVE_HELLO = \
+  "{\"jsonrpc\": \"2.0\"," \
+  "\"method\": \"" ROUNDCC_SYSTEM_METHOD_REMOVE_ALIAS "\","
+  "\"params\": {" \
+  "\"name\": \"" RPC_ALIAS_HELLO_NAME "\"" \
+  "}, \"id\": 1}";
+  
+const std::string RPC_RUN_HELLO = \
+  "{\"jsonrpc\": \"2.0\"," \
+  "\"method\": \"" RPC_ALIAS_HELLO_NAME "\"," \
+  "\"id\": 1}";
+
+////////////////////////////////////////////////
+// Route (Hello)
+////////////////////////////////////////////////
+
+#define RPC_ECHO_HELLO_NAME   "echo_hello"
+#define RPC_ECHO_HELLO_LANG   "js"
+#define RPC_ECHO_HELLO_PREFIX   "Hello "
+#define RPC_ECHO_HELLO_CODE   "function " RPC_ECHO_HELLO_NAME "(params) {return '" RPC_ECHO_HELLO_PREFIX "'+ params;}"
+#define RPC_ECHO_HELLO_PARAM "Round"
+
+const std::string RPC_SET_ECHO_HELLO = \
+  "{\"jsonrpc\": \"2.0\"," \
+  "\"method\": \"" ROUNDCC_SYSTEM_METHOD_SET_METHOD "\","
+  "\"params\": {" \
+  "\"language\": \"" RPC_ECHO_HELLO_LANG "\", " \
+  "\"name\": \"" RPC_ECHO_HELLO_NAME "\", " \
+  "\"code\": \"" RPC_ECHO_HELLO_CODE "\"" \
+  "}, \"id\": 1}";
+
+const std::string RPC_REMOVE_ECHO_HELLO = \
+  "{\"jsonrpc\": \"2.0\"," \
+  "\"method\": \"" ROUNDCC_SYSTEM_METHOD_REMOVE_METHOD "\","
+  "\"params\": {" \
+  "\"name\": \"" RPC_ECHO_HELLO_NAME "\"" \
+  "}, \"id\": 1}";
+
+const std::string RPC_SET_ECHO_HELLO_ROUTE = \
+  "{\"jsonrpc\": \"2.0\"," \
+  "\"method\": \"" ROUNDCC_SYSTEM_METHOD_SET_ROUTE "\","
+  "\"params\": {" \
+  "\"name\": \"" RPC_ECHO_HELLO_NAME "\"," \
+  "\"src\": \"" RPC_SET_ECHO_NAME "\"," \
+  "\"dest\": \"" RPC_ECHO_HELLO_NAME "\"" \
+  "}, \"id\": 1}";
+
+const std::string RPC_REMOVE_ECHO_HELLO_ROUTE = \
+  "{\"jsonrpc\": \"2.0\"," \
+  "\"method\": \"" ROUNDCC_SYSTEM_METHOD_REMOVE_ROUTE "\","
+  "\"params\": {" \
+  "\"name\": \"" RPC_ECHO_HELLO_NAME "\"" \
+  "}, \"id\": 1}";
+
+const std::string RPC_RUN_ROUTE_ECHO = \
+  "{\"jsonrpc\": \"2.0\"," \
+  "\"method\": \"" RPC_SET_ECHO_NAME "\"," \
+  "\"params\": \"" RPC_ECHO_HELLO_PARAM "\"," \
+  "\"id\": 1}";
+  
+////////////////////////////////////////////////
+// RPC
+////////////////////////////////////////////////
+
+const std::string RPC_RUN_BATCH_ECHO = \
+  "[" \
+  "{\"jsonrpc\": \"2.0\"," \
+  "\"method\": \"" RPC_SET_ECHO_NAME "\"," \
+  "\"params\": " RPC_SET_ECHO_PARAMS "," \
+  "\"id\": 1},"
+  "{\"jsonrpc\": \"2.0\"," \
+  "\"method\": \"" RPC_SET_ECHO_NAME "\"," \
+  "\"params\": " RPC_SET_ECHO_PARAMS "," \
+  "\"id\": 1}" \
+  "]";
+  
 const std::string RPC_SET_SETMETHOD = \
   "{\"jsonrpc\": \"2.0\"," \
   "\"method\": \"set_method\","

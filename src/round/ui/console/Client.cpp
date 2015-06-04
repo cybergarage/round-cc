@@ -24,25 +24,40 @@ Round::Console::Client::~Client() {
 }
 
 void Round::Console::Client::init() {
-  initOptions();
   initCommands();
-}
-
-void Round::Console::Client::initOptions() {
-  
+  initOptions();
 }
 
 void Round::Console::Client::initCommands() {
+  // real commands
+  addCommand(new Round::Console::shell());
+  addCommand(new Round::Console::help());
+  addCommand(new Round::Console::list());
+  addCommand(new Round::Console::search());
+  addCommand(new Round::Console::update());
+  addCommand(new Round::Console::version());
+  addCommand(new Round::Console::quit());
+  addCommand(new Round::Console::verbose());
+  addCommand(new Round::Console::use());
+  addCommand(new Round::Console::rpm());
   
+  // alias commands
+  addCommand(new Round::Console::exit());
+  addCommand(new Round::Console::question());
+  
+  // RPC method
+  addCommand(new Round::Console::method());
 }
 
-void Round::Console::Client::setProgramNameFromArgument(const std::string &argValue)
+void Round::Console::Client::initOptions() {
+  addOption(new Option('r', "<ipaddr:port>", "Update cluster on given host"));
+  addOption(new Option('h', "", "Prints this help message"));
+}
+void Round::Console::Client::setFirstArgument(const std::string &argValue)
 {
-  this->promptName = argValue;
-  size_t lastPathIndex = this->promptName.find_last_of("/");
-  if (lastPathIndex != std::string::npos)
-    this->promptName = this->promptName.substr((lastPathIndex + 1));
-  this->promptName = this->promptName;
+  Program::setFirstArgument(argValue);
+  
+  this->promptName = this->programName;
   this->promptName.append("> ");
 }
 
@@ -71,11 +86,6 @@ const char *Round::Console::Client::getBootMessage(std::string &buffer)
   return buffer.c_str();
 }
 
-const char *Round::Console::Client::getProgramName()
-{
-  return promptName.c_str();
-}
-
 const char *Round::Console::Client::getPromptName()
 {
   return promptName.c_str();
@@ -86,10 +96,10 @@ bool Round::Console::Client::isConsoleCommand(const Input &input) {
 }
 
 bool Round::Console::Client::isRPCCommand(const Input &input) {
-  size_t paramBeginIdx = input.line.find_first_of(rpc::PARAM_BEGIN);
+  size_t paramBeginIdx = input.line.find_first_of(method::PARAM_BEGIN);
   if (paramBeginIdx == std::string::npos)
     return false;
-  size_t paramEndIdx = input.line.find_first_of(rpc::PARAM_END);
+  size_t paramEndIdx = input.line.find_first_of(method::PARAM_END);
   if (paramEndIdx == std::string::npos)
     return false;
   return (paramBeginIdx < paramEndIdx) ? true : false;
@@ -108,25 +118,21 @@ bool Round::Console::Client::execConsoleCommand(const Input &input, Message *msg
 }
 
 bool Round::Console::Client::execRPCCommand(const Input &input, Message *msg, Error *err) {
-  Command *cmd = this->commands.getCommand(rpc::NAME);
+  Command *cmd = this->commands.getCommand(method::NAME);
   if (!cmd)
     return false;
   return cmd->exec(this, &input, msg, err);
 }
 
-bool Round::Console::Client::usage() {
-  Command *help = this->commands.getCommand(Round::Console::help::NAME);
-  if (!help)
-    return false;
-
+void Round::Console::Client::usage() {
   std::cout << "Usage: " << getProgramName() << " [-options] <command>" << std::endl;
   std::cout << std::endl;
-  help->exec(this, NULL, NULL, NULL);
-  std::cout << std::endl;
-  for (Options::iterator optIt=options.begin(); optIt != options.end(); optIt++) {
-    Option *opt = optIt->second;
-    std::cout << "-" << opt->getId() << Command::TAB << opt->getDescription() << std::endl;
-  }
   
-  return true;
+  printOptions();
+  
+  Command *help = this->commands.getCommand(Round::Console::help::NAME);
+  if (help) {
+    std::cout << std::endl;
+    help->exec(this, NULL, NULL, NULL);
+  }
 }

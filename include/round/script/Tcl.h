@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _ROUNDCC_SCRIPT_TCL_H_
-#define _ROUNDCC_SCRIPT_TCL_H_
+#ifndef _ROUNDCC_SYSTEM_METHOD_TCL_H_
+#define _ROUNDCC_SYSTEM_METHOD_TCL_H_
 
 #include <round/core/Script.h>
 
@@ -36,9 +36,7 @@ class TclEngine : public ScriptEngine {
   
   bool compile(const Script *script) const;
   bool run(const Script *script, const std::string &params, std::string *results, Error *error) const;
-
-private:
-  bool run(const std::string &source, std::string *results, Error *error) const;
+  bool run(const std::string &script, std::string *result, Error *error) const;
 
 private:
   struct Tcl_Interp *interp;

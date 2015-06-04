@@ -56,38 +56,3 @@ bool Round::JSONObject::equals(const JSONObject *otherObject) const {
 
   return (thisString.compare(otherString) == 0) ? true : false;
 }
-
-bool Round::JSONObject::copy(JSONObject **newObj) const {
-  if (getType() == STRING) {
-    const JSONString *srcString = static_cast<const JSONString *>(this);
-    JSONString *dstString = new JSONString();
-    if (dstString->set(srcString)) {
-      *newObj = dstString;
-      return true;
-    }
-    delete dstString;
-  }
-
-  if (getType() == ARRAY) {
-    const JSONArray *srcArray = static_cast<const JSONArray *>(this);
-    JSONArray *dstArray = new JSONArray();
-    if (dstArray->set(srcArray)) {
-      *newObj = dstArray;
-      return true;
-    }
-    delete dstArray;
-  }
-
-  if (getType() == DICTIONARY) {
-    const JSONDictionary *srcDict = static_cast<const JSONDictionary *>(this);
-    JSONDictionary *dstDict = new JSONDictionary();
-    if (dstDict->set(srcDict)) {
-      *newObj = dstDict;
-      return true;
-    }
-    delete dstDict;
-  }
-
-  return false;
-}
-

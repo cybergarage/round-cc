@@ -13,6 +13,8 @@
 
 #include <queue>
 
+#include <uhttp/http/HTTPRequest.h>
+
 #include <round/common/Clock.h>
 #include <round/common/JSON.h>
 #include <round/common/Mutex.h>
@@ -29,9 +31,20 @@ public:
   Message();
   virtual ~Message();
   
+  bool setHttpRequest(uHTTP::HTTPRequest *httpReq);
+  
+  uHTTP::HTTPRequest *getHttpRequest() const {
+    return this->httpReq;
+  }
+  
 private:
   
-  mutable void *userObject;
+  void init();
+  bool close();
+
+private:
+  
+  mutable uHTTP::HTTPRequest *httpReq;
 };
 
 class Request : public Message, public JSONDictionary {

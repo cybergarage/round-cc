@@ -16,9 +16,11 @@
 
 #include <round/common/Cloneable.h>
 #include <round/common/Error.h>
+#include <round/common/Mutex.h>
 #include <round/core/NodeCore.h>
 #include <round/core/NodeStatus.h>
 #include <round/core/Cluster.h>
+#include <round/core/Registry.h>
 
 namespace Round {
 
@@ -36,13 +38,27 @@ class Node : public NodeCore, public Cloneable<Node> {
  public:
   
   bool isAlive(Error *error);
+  bool isLeader(Error *error);
   
   bool getStatus(NodeStatus *status, Error *error);
   bool getCluster(Cluster *cluster, Error *error);
   bool getClusterList(ClusterList *clusterList, Error *error);
   
-  bool setKey(const std::string &key, const std::string &value, Error *error);
-  bool getKey(const std::string &key, std::string *value, Error *error);
+  virtual bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error) = 0;
+  virtual bool postMessage(const NodeBatchRequest *nodeReq, NodeBatchResponse *nodeRes, Error *error) = 0;
+  
+  bool postMessage(const std::string &dest, const std::string &method, const std::string &params, std::string *result);
+  bool postMessage(const std::string &method, const std::string &params, std::string *result);
+  bool postMessageAll(const std::string &method, const std::string &params, std::string *result);
+
+  bool findNode(const std::string &nodeHash, Node **node, Error *error);
+  bool findAnyNode(Node **node, Error *error);
+  
+  bool setRegistry(const Registry reg, Error *error);
+  bool setRegistry(const std::string &key, const std::string &value, Error *error);
+  bool getRegistry(const std::string &key, Registry *reg, Error *error);
+  bool getRegistry(const std::string &key, std::string *value, Error *error);
+  bool removeRegistry(const std::string &key, Error *error);
 
 public:
 
@@ -54,9 +70,18 @@ public:
     return this->weakFlag;
   }
   
+  void lock() {
+    this->mutex.lock();
+  }
+  
+  void unlock() {
+    this->mutex.unlock();
+  }
+  
 private:
   
   bool weakFlag;
+  Mutex mutex;
 };
 
 class NodeList : public std::vector<Node *> {

@@ -8,88 +8,40 @@
 *
 ******************************************************************/
 
+#include <round/Round.h>
 #include <round/core/LocalNode.h>
 #include <round/common/Error.h>
+#include <round/common/Random.h>
 
 #include <uhttp/net/HostInterface.h>
 
-const std::string Round::LocalConfig::DEFAULT_FILENAME = "/etc/round/roundd.ini";
+const std::string Round::LocalConfig::BIND_ADDR = "bind_addr";
+const std::string Round::LocalConfig::BIND_PORT = "bind_port";
+const std::string Round::LocalConfig::CLUSTER = "cluster";
+const std::string Round::LocalConfig::LOG_FILE = "log_file";
+const std::string Round::LocalConfig::METHODS = "methods";
+
 const std::string Round::LocalConfig::AUTO = "auto";
-const int Round::LocalConfig::DEFAULT_HTTPD_PORT = 38690;
+const std::string Round::LocalConfig::DEFALUT_CLUSTER = ROUNDCC_PRODUCT_NAME;
+int Round::LocalConfig::BIND_PORT_RANGE_MIN = 4004;
+int Round::LocalConfig::BIND_PORT_RANGE_MAX = 9999;
 
-Round::LocalConfig::LocalConfig() {}
+Round::LocalConfig::LocalConfig() {
+}
 
-Round::LocalConfig::~LocalConfig() {}
+Round::LocalConfig::~LocalConfig() {
+}
 
 bool Round::LocalConfig::isValid(Error *error) {
-  if (NodeConfig::isValid(error) == false)
-    return false;
   return true;
 }
 
-size_t Round::LocalConfig::getSectionCount() const {
-  return SectionCount;
-}
+////////////////////////////////////////
+// Getter
+////////////////////////////////////////
 
-size_t Round::LocalConfig::getSectionKeyCount(size_t section) const {
-  switch (section) {
-    case General:
-      return GeneralKeyCount;
-    case Httpd:
-      return HttpdKeyCount;
-  }
-
-  return 0;
-}
-
-const char *Round::LocalConfig::getSectionString(size_t type) const  {
-  switch (type) {
-    case General:
-      return "node";
-    case Httpd:
-      return "httpd";
-    case Log:
-      return "log";
-  }
-
-  return "";
-}
-
-const char *Round::LocalConfig::getSectionKeyString(size_t section, size_t key) const {
-  switch (section) {
-    case General:
-      switch (key) {
-        case Cluster:
-          return "cluster";
-        case DatabaseDir:
-          return "database_dir";
-      }
-      break;
-    case Httpd:
-      switch (key) {
-        case HttpdBindAddress:
-          return "bind_address";
-        case HttpdBindPort:
-          return "bind_port";
-      }
-      break;
-    case Log:
-      switch (key) {
-        case LogFile:
-          return "file";
-        case ErrorLogFile:
-          return "err";
-        case LogLevel:
-          return "level";
-      }
-      break;
-  }
-
-  return "";
-}
-
-bool Round::LocalConfig::getHttpdBindAddress(std::string *value, Error *error) const {
-  if (getValue(Httpd, HttpdBindAddress, value, error) == false)
+bool Round::LocalConfig::getBindAddress(std::string *value, Error *error) const {
+  if (getStringByPath(BIND_ADDR, value, error) == false)
     *value = AUTO;
   if (value->compare(AUTO) == 0) {
     std::string hostInterface = "127.0.0.1";
@@ -104,9 +56,41 @@ bool Round::LocalConfig::getHttpdBindAddress(std::string *value, Error *error) c
   return true;
 }
 
-bool Round::LocalConfig::getHttpdBindPort(int *value, Error *error) const {
-  bool hasPort = getValue(Httpd, HttpdBindPort, value, error);
-  if (hasPort == false)
-    *value = DEFAULT_HTTPD_PORT;
-  return hasPort;
+bool Round::LocalConfig::getBindPort(int *value, Error *error) const {
+  if (!getIntegerByPath(BIND_PORT, value, error)) {
+    Random randomPort(BIND_PORT_RANGE_MIN, BIND_PORT_RANGE_MAX);
+    *value = randomPort.rand();
+  }
+  return true;
+}
+
+bool Round::LocalConfig::getCluster(std::string *value, Error *error) const {
+  if (!getStringByPath(CLUSTER, value, error)) {
+    *value = DEFALUT_CLUSTER;
+  }
+  return true;
+}
+
+bool Round::LocalConfig::getLogFilename(std::string *value, Error *error) const {
+  return getStringByPath(LOG_FILE, value, error);
+}
+
+////////////////////////////////////////
+// Setter
+////////////////////////////////////////
+
+bool Round::LocalConfig::setBindAddress(const std::string &value, Error *error) {
+  return setStringByPath(BIND_ADDR, value, error);
+}
+
+bool Round::LocalConfig::setBindPort(int value, Error *error) {
+  return setIntegerByPath(BIND_PORT, value, error);
+}
+
+bool Round::LocalConfig::setCluster(const std::string &value, Error *error) {
+  return setStringByPath(CLUSTER, value, error);
+}
+
+bool Round::LocalConfig::setLogFilename(const std::string &value, Error *error) {
+  return setStringByPath(LOG_FILE, value, error);
 }

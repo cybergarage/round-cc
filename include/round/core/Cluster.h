@@ -63,8 +63,20 @@ class Cluster {
     return this->nodeGraph.hasNode(node);
   }
   
+  bool isLeaderNode(const Node *node) const {
+    return this->nodeGraph.isLeaderNode(node);
+  }
+  
   Node *getNode(size_t index) const {
     return this->nodeGraph.getNode(index);
+  }
+  
+  Node *getRandomNode() const {
+    return this->nodeGraph.getRandomNode();
+  }
+  
+  Node *getNodeByHashCode(const std::string &hashCode) const {
+    return this->nodeGraph.getNodeByHashCode(hashCode);
   }
   
   size_t getNodeSize() const {

@@ -22,22 +22,6 @@ Round::Console::Commands::~Commands()
 }
 
 void Round::Console::Commands::init() {
-  // real commands
-  addCommand(new shell());
-  addCommand(new help());
-  addCommand(new list());
-  addCommand(new search());
-  addCommand(new update());
-  addCommand(new version());
-  addCommand(new quit());
-  addCommand(new verbose());
-
-  // alias commands
-  addCommand(new exit());
-  addCommand(new question());
-
-  // RPC method
-  addCommand(new rpc());
 }
 
 void Round::Console::Commands::clear() {
@@ -54,7 +38,7 @@ bool Round::Console::Commands::addCommand(Command *cmd) {
 }
 
 bool Round::Console::Commands::isNonExecutedCommand(const Input *input) const {
-  if (input->cmd.compare(rpc::NAME) == 0)
+  if (input->cmd.compare(method::NAME) == 0)
     return true;
   return false;
 }

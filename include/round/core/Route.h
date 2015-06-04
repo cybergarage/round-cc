@@ -27,7 +27,7 @@ private:
 
 public:
   
-  static const int METHOD;
+  static const int TARGET;
   static const int NODE;
   static const int CLUSTER;
   
@@ -41,8 +41,8 @@ public:
 
   bool getObject(int objIdx, std::string *value) const;
 
-  bool getMethod(std::string *value) const {
-    return getObject(METHOD, value);
+  bool getTarget(std::string *value) const {
+    return getObject(TARGET, value);
   }
   
   bool getNode(std::string *value) const {
@@ -59,6 +59,8 @@ public:
   
   bool equals(const RouteObjects &otherObj) const;
   bool equals(const std::string &otherRoute) const;
+  
+  bool toString(std::string *value) const;
 };
   
 class Route {
@@ -74,53 +76,75 @@ public:
   
   static const std::string METHOD_DEFALUT;
 
+  static const std::string TYPE_EVENT;
+  static const std::string TYPE_PIPE;
+  
 public:
+  
   Route();
+  Route(const std::string &name, const std::string &srcObj, const std::string &destObj);
+  
   virtual ~Route();
 
   bool isValid();
+
+  // Name
   
   bool setName(const std::string &value);
   bool getName(std::string *value) const;
   bool isName(const std::string &value) const;
+  bool hasName() const;
+  
+  // Source
   
   bool setSource(const std::string &value);
-  bool setDestination(const std::string &value);
-  
+
   const RouteObjects &getSourceObjects() const {
     return this->srcObjects;
-  }
-  
-  const RouteObjects &getDestinationObjects() const {
-    return this->destObjects;
   }
   
   bool isSource(const std::string &value) const {
     return this->srcObjects.equals(value);
   }
   
-  bool isSourceMethod(const std::string &value) const {
-    return this->srcObjects.isMethod(value);
+  bool getSourcePath(std::string *value) const {
+    return this->srcObjects.toString(value);
   }
   
-  bool getSourceMethod(std::string *value) const {
-    return this->srcObjects.getMethod(value);
+  bool getSourceTarget(std::string *value) const {
+    return this->srcObjects.getTarget(value);
   }
   
   bool getSourceNode(std::string *value) const {
     return this->srcObjects.getNode(value);
   }
-
+  
   bool getSourceCluster(std::string *value) const {
     return this->srcObjects.getCluster(value);
   }
-
+  
+  bool isSourceMethod(const std::string &value) const {
+    return this->srcObjects.isMethod(value);
+  }
+  
+  // Destination
+  
+  bool setDestination(const std::string &value);
+  
+  const RouteObjects &getDestinationObjects() const {
+    return this->destObjects;
+  }
+  
   bool isDestination(const std::string &value) const {
     return this->destObjects.equals(value);
   }
   
-  bool getDestinationMethod(std::string *value) const {
-    return this->destObjects.getMethod(value);
+  bool getDestinationPath(std::string *value) const {
+    return this->destObjects.toString(value);
+  }
+  
+  bool getDestinationTarget(std::string *value) const {
+    return this->destObjects.getTarget(value);
   }
   
   bool getDestinationNode(std::string *value) const {
@@ -132,12 +156,46 @@ public:
   }
   
   bool equals(const Route *otherRoute) const;
+
+  // Type
+  
+  bool setType(const std::string &value);
+
+  bool hasType() {
+    return (0 < this->type.length());
+  }
+
+  const std::string *getType() {
+    return &this->type;
+  }
+  
+  bool isPipe();
+  bool isEvent();
+  bool isValidType();
+
+  // Condition
+  
+  bool setCondition(const std::string &value);
+  
+  bool hasCondition() {
+    return (0 < this->cond.length());
+  }
+  
+  const std::string *getCondition() {
+    return &this->cond;
+  }
+  
+private:
+  
+  void init();
   
 private:
   
   std::string  name;
   RouteObjects srcObjects;
   RouteObjects destObjects;
+  std::string type;
+  std::string cond;
 };
 
 class RouteList : public Vector<Route> {
@@ -147,28 +205,73 @@ class RouteList : public Vector<Route> {
   RouteList();
   ~RouteList();
   
-  bool addRoute(const std::string &name, const std::string &srcObject, const std::string &destObject);
-  bool setRoute(const std::string &name, const std::string &srcObject, const std::string &destObject);
+  bool addRoute(Route *route);
+  bool setRoute(Route *route);
 
-  Route *getRouteByName(const std::string &name) const ;
-  Route *getRouteBySouceObject(const std::string &srcObject) const ;
-  Route *getRouteBySouceMethod(const std::string &srcMethod) const ;
+  bool addRoute(const std::string &name, const std::string &srcObj, const std::string &destObj);
+  bool setRoute(const std::string &name, const std::string &srcObj, const std::string &destObj);
+  
+  Route *findSameRoute(const Route *otherRoute) const ;
+  Route *findRouteByName(const std::string &name) const ;
+  Route *findRouteBySouceObject(const std::string &srcObj) const ;
+  Route *findRouteBySouceMethod(const std::string &srcMethod) const ;
+
+  bool removeSameRoute(const Route *otherRoute);
+  bool removeRouteByName(const std::string &name);
 };
 
-class RouteEngine : public RouteList {
-    
+class RouteMap : public std::map<std::string, RouteList *> {
+  
 public:
-    
-  RouteEngine();
-  virtual ~RouteEngine();
-};
+  
+  RouteMap();
+  ~RouteMap();
 
-class RouteManager : public RouteEngine {
+  bool addRoute(Route *route);
+  bool setRoute(Route *route);
+  
+  bool addRoute(const std::string &name, const std::string &srcObj, const std::string &destObj);
+  bool setRoute(const std::string &name, const std::string &srcObj, const std::string &destObj);
+  
+  Route *findSameRoute(const Route *otherRoute) const ;
+  Route *findRouteByName(const std::string &name) const ;
+  
+  bool removeSameRoute(const Route *otherRoute);
+  bool removeRouteByName(const std::string &name);
+  
+  bool hasRoute(const std::string &src) const;
+  RouteList *getRouteList(const std::string &src) const;
+
+  void clear();
+  size_t count();
+  
+private:
+  
+  RouteList *findRouteListBySourcePath(const std::string &srcPath) const;
+  RouteList *findRouteListByRoute(const Route *route) const;
+  
+  RouteList *getRouteListBySourcePath(const std::string &srcPath);
+  RouteList *getRouteListByRoute(const Route *route);
+};
+  
+class RouteManager : public RouteMap {
     
  public:
   
   RouteManager();
   virtual ~RouteManager();
+
+  void lock() {
+    mutex.lock();
+  }
+  
+  void unlock() {
+    mutex.unlock();
+  }
+  
+private:
+  
+  Mutex mutex;
 };
 
 }

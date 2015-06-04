@@ -10,6 +10,7 @@
 
 #include <round/core/Node.h>
 #include <round/core/NodeGraph.h>
+#include <round/common/Random.h>
 
 Round::NodeGraph::NodeGraph() {
 }
@@ -57,11 +58,41 @@ bool Round::NodeGraph::removeNode(const Round::Node *node) {
 }
 
 Round::Node *Round::NodeGraph::getNode(size_t index) const {
+  if (size() < (index+1))
+    return NULL;
   return static_cast<Node *>(ConsistentHashGraph::at(index));
+}
+
+Round::Node *Round::NodeGraph::getRandomNode() const {
+  int nodeSize = (int)size();
+  Random nodeIdx(0, (nodeSize-1));
+  return getNode(nodeIdx.rand());
+}
+
+Round::Node *Round::NodeGraph::getNodeByHashCode(const std::string &hashCode) const {
+  for (NodeGraph::const_iterator content = begin(); content != end(); content++) {
+    Node *node = static_cast<Node *>(*content);
+    if (!node)
+      continue;
+    std::string nodeHash;
+    if (!node->getHashCode(&nodeHash))
+      continue;
+    if (hashCode.compare(nodeHash) == 0)
+      return node;
+  }
+  return NULL;
 }
 
 bool Round::NodeGraph::hasNode(const Round::Node *node) const {
   return ConsistentHashGraph::hasNode(node);
+}
+
+bool Round::NodeGraph::isLeaderNode(const Node *node) const {
+  return ConsistentHashGraph::isLastNode(node);
+}
+
+Round::Node *Round::NodeGraph::getLeaderNode() const {
+  return static_cast<Node *>(ConsistentHashGraph::getLastNode());
 }
 
 Round::Node *Round::NodeGraph::getOffsetNode(const Node *node, off_t offset) const {

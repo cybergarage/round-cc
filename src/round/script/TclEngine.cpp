@@ -41,14 +41,7 @@ Round::TclEngine::~TclEngine() {
 ////////////////////////////////////////////////
 
 bool Round::TclEngine::compile(const Script *script) const {
-  if (!script)
-    return false;
-  
-  std::string jsSource = script->getStringCode();
-  std::string results;
-  Error error;
-  
-  return run(jsSource, &results, &error);
+  return true;
 }
 
 ////////////////////////////////////////////////
@@ -56,25 +49,11 @@ bool Round::TclEngine::compile(const Script *script) const {
 ////////////////////////////////////////////////
 
 bool Round::TclEngine::run(const Script *tclScript, const std::string &params, std::string *results, Error *error) const {
-  std::stringstream tclSource;
-  
-  tclSource << tclScript->getCode() << std::endl;
-  
-  std::string jsonParams = boost::algorithm::replace_all_copy(params, "\"", "\\\"");
-  
-  tclSource << "set params = \"" << jsonParams << "\";" << std::endl;
-  tclSource << "set results = " << tclScript->getName() << "(params);" << std::endl;
-  tclSource << "results;";
-  
-  return run(tclSource.str(), results, error);
+  return false;
 }
 
-bool Round::TclEngine::run(const std::string &jsSource, std::string *results, Error *error) const {
-  /*
-  int isSuccess = Tcl_Eval(tcl_interp, jsSource.c_str()) ;
-  return (isSuccess == TCL_OK) ? true : false;
-   */
-  return true;
+bool Round::TclEngine::run(const std::string &script, std::string *result, Error *error) const {
+  return false;
 }
 
 #endif

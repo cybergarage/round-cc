@@ -15,6 +15,7 @@
 #include <round/core/Cluster.h>
 #include <round/core/NodeFinder.h>
 #include <round/core/NodeMessage.h>
+#include <round/core/RemoteNode.h>
 
 namespace Round {
   
@@ -48,6 +49,10 @@ public:
   
   bool postMessage(NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
 
+  bool updateClusterFromRemoteNode(RemoteNode *remoteNode, Error *error);
+  bool updateClusterFromRemoteNode(const std::string &ipaddr, int port, Error *error);
+  bool updateClusterFromRemoteNode(const std::string &host, Error *error);
+
 protected:
 
   void setTargetCluster(Cluster *cluster) {
@@ -60,7 +65,7 @@ protected:
 
 private:
   
-  bool findObjectNode(const std::string &obj, Node **node);
+  bool findObjectNode(const std::string &obj, Node **node, Error *error);
 
 private:
 

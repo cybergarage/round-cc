@@ -8,27 +8,36 @@
  *
  ******************************************************************/
 
-#ifndef _ROUNDCC_CONSOLE_CLIENT_H_
-#define _ROUNDCC_CONSOLE_CLIENT_H_
+#ifndef _ROUNDCC_CONSOLE_H_
+#define _ROUNDCC_CONSOLE_H_
 
 #include <map>
 #include <string>
 
 #include <round/Client.h>
+#include <round/Server.h>
 #include <round/common/Vector.h>
 
 namespace Round {
 
 namespace Console {
 
-class Option : public std::string {
+////////////////////////////////////////
+// Program
+////////////////////////////////////////
+
+class Option {
  public:
   char type;
+  std::string option;
+  std::string description;
   
  public:
     
-  Option(char c) {
+  Option(char c, const std::string &opt, const std::string &desc) {
     this->type = c;
+    this->option = opt;
+    this->description = desc;
   }
   
   virtual ~Option() {}
@@ -37,7 +46,13 @@ class Option : public std::string {
     return this->type;
   }
 
-  virtual const std::string getDescription() const = 0;
+  const std::string &getOption() {
+    return this->option;
+  }
+  
+  const std::string &getDescription() {
+    return this->description;
+  }
 };
   
 class Options : public std::map<char, Option*> {
@@ -46,11 +61,45 @@ class Options : public std::map<char, Option*> {
   Options();
   ~Options();
 
+  bool addOption(Option *opt);
+  
 private:
   void init();
   void clear();
 };
 
+class Program
+{
+public:
+    
+  Options options;
+    
+public:
+    
+  Program();
+  ~Program();
+    
+  void setFirstArgument(const std::string &argValue);
+  const char *getProgramName();
+  
+  void init();
+  void initOptions();
+    
+  bool addOption(Option *opt) {
+    return this->options.addOption(opt);
+  }
+
+  void printOptions();
+  
+protected:
+    
+  std::string programName;
+};
+
+////////////////////////////////////////
+// Client
+////////////////////////////////////////
+  
 typedef const std::string Param;
 
 class Params : public std::vector<std::string> {
@@ -88,6 +137,7 @@ class Command {
   static const std::string QUIT;
   static const std::string EXIT;
   static const std::string SHELL;
+  static const std::string DONE;
   
  public:
   std::string name;
@@ -110,6 +160,9 @@ class Command {
   virtual bool exec(Client *client, const Input *input, Message *msg, Error *err) const = 0;
   virtual const std::string getDescription() const = 0;
   virtual const std::string getOptionDescription() const {return "";};
+  
+  void sleep(int msec) const ;
+  void waitAnimation(int msec, const std::string &desc = "", const std::string &done = ROUNDCC_MESSAGE_DONE) const ;
 };
 
 class Commands : public std::map<std::string, Command*> {
@@ -131,11 +184,10 @@ private:
   bool isNonExecutedCommand(const Input *input) const;
 };
   
-class Client : public Round::Client
+class Client : public Round::Client, public Program
 {
 public:
   
-  Options options;
   Commands commands;
 
 public:
@@ -143,11 +195,14 @@ public:
   Client();
   ~Client();
   
-  void setProgramNameFromArgument(const std::string &argValue);
+  void setFirstArgument(const std::string &argValue);
   const char *getBootMessage(std::string &buffer);
-  const char *getProgramName();
   const char *getPromptName();
 
+  bool addCommand(Command *cmd) {
+    return this->commands.addCommand(cmd);
+  }
+  
   bool isQuitCommand(const Input &input);
   bool isShellCommand(const Input &input);
   bool isConsoleCommand(const Input &input);
@@ -156,20 +211,31 @@ public:
   bool execConsoleCommand(const Input &input, Message *msg, Error *err);
   bool execRPCCommand(const Input &input, Message *msg, Error *err);
   
-  bool usage();
-  
-private:
-
   void init();
-  void initOptions();
   void initCommands();
-  
+  void initOptions();
+  void usage();
+    
 private:
 
-  std::string programtName;
   std::string promptName;
 };
 
+////////////////////////////////////////
+// Server
+////////////////////////////////////////
+  
+class Server : public Round::Server, public Program
+{
+public:
+    
+  Server();
+  ~Server();
+    
+  void initOptions();
+  void usage();
+};
+  
 }
 
 }

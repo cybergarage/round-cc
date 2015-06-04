@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _ROUNDCC_SCRIPT_H_
-#define _ROUNDCC_SCRIPT_H_
+#ifndef _ROUNDCC_SYSTEM_METHOD_H_
+#define _ROUNDCC_SYSTEM_METHOD_H_
 
 #include <string>
 #include <map>
@@ -20,6 +20,8 @@
 #include <round/common/Error.h>
 #include <round/common/RPC.h>
 #include <round/common/Mutex.h>
+#include <round/common/JSON.h>
+#include <round/core/Node.h>
 
 namespace Round {
 
@@ -59,6 +61,8 @@ class Script {
   bool setCode(const byte *code, size_t codeLen);
   bool setCode(const std::string code);
 
+  bool isBinaryCode();
+  
   const byte *getCode() const {
     return this->code;
   }
@@ -80,6 +84,10 @@ class Script {
     return true;
   }
   
+  const bool hasEncording() const {
+    return (0 < this->codeEncoding) ? true : false;
+  }
+  
   int getEncording() const {
     return this->codeEncoding;
   }
@@ -96,12 +104,31 @@ class Script {
     return !isEncoding(ENCODING_NONE);
   }
   
- private:
+  bool toJSONDictionary(JSONDictionary **jsonDict);
+
+  void setNode(Node *node) {
+    this->node = node;
+  }
+  
+  Node *getNode() const {
+    return this->node;
+  }
+  
+  bool hasNode() const {
+    return (this->node) ? true : false;
+  }
+
+private:
+  
+  void init();
+  
+private:
   std::string language;
   std::string name;
   byte        *code;
   size_t      codeLen;
   int         codeEncoding;
+  Node        *node;
 };
 
 class ScriptMap : public std::map<std::string, Script *> {
@@ -115,6 +142,8 @@ public:
   const Script *getScript(const std::string &name) const;
 
   void clear();
+
+  bool toJSONArray(JSONArray *jsonArray);
 };
 
 enum ScriptEngineStatus {
@@ -134,6 +163,7 @@ public:
   
   virtual bool compile(const Script *script) const = 0;
   virtual bool run(const Script *script, const std::string &params, std::string *results, Error *error) const = 0;
+  virtual bool run(const std::string &script, std::string *result, Error *error) const = 0;
 
   void lock() const {
     mutex.lock();
@@ -143,10 +173,27 @@ public:
     mutex.unlock();
   }
   
+  void setNode(Node *node) {
+    this->node = node;
+  }
+  
+  Node *getNode() const {
+    return this->node;
+  }
+  
+  bool hasNode() const {
+    return (this->node) ? true : false;
+  }
+  
+private:
+  
+  void init();
+  
 private:
   
   std::string  language;
   mutable Mutex mutex;
+  Node          *node;
 };
 
 class ScriptEngineMap : public std::map<std::string, ScriptEngine *> {
@@ -160,17 +207,16 @@ class ScriptEngineMap : public std::map<std::string, ScriptEngine *> {
   const ScriptEngine *getEngine(const std::string &lang) const;
     
   void clear();
+
+private:
+  
+  void init();
+
+private:
+  
+  Node            *node;
 };
 
-class ScriptEngineList : public Vector<ScriptEngine> {
-    
- public:
-    
-  ScriptEngineList() {
-    setWeekContainer(true);
-  }
-};
-  
 class ScriptManager {
     
  public:
@@ -185,20 +231,34 @@ class ScriptManager {
     return this->scripts.hasScript(name);
   }
   
+  bool removeScript(const std::string &method, Error *error);
+  
   bool setEngine(ScriptEngine *engine);
   
   bool hasEngine(const std::string &lang) const {
     return this->engines.hasEngine(lang);
   }
   
-  bool run(const std::string &name, const std::string &params, std::string *results, Error *error);
+  bool execMethod(const std::string &name, const std::string &params, std::string *result, Error *error);
+  bool execScript(const std::string &lang, const std::string &script, int encodeType, std::string *result, Error *error);
+  
+  bool toJSONArray(JSONArray *jsonArray, Error *error);
+  
+  void setNode(Node *node);
+  
+  Node *getNode() const {
+    return this->node;
+  }
+
+  bool hasNode() const {
+    return (this->node) ? true : false;
+  }
   
  private:
 
-  bool removeScript(const std::string &method, const std::string &lang, Error *error);
-  
   ScriptMap       scripts;
   ScriptEngineMap engines;
+  Node            *node;
 };
 
 }

@@ -9,12 +9,25 @@
 ******************************************************************/
 
 #include <round/script/JavaScript.h>
+#include <round/script/js/SpiderMonkeyFunction.h>
 
 #if defined(ROUND_SUPPORT_JS_SM)
 
 ////////////////////////////////////////////////
 // Static
 ////////////////////////////////////////////////
+
+static JSFunctionSpec JS_SM_FUNCTIONS[] = {
+  JS_FN(ROUNDCC_SCRIPT_PRINT_METHOD, round_js_sm_print, 0, 0),
+  JS_FN(ROUNDCC_SYSTEM_METHOD_GET_NETWORK_STATE, round_js_sm_getnetworkstate, 0, 0),
+  JS_FN(ROUNDCC_SYSTEM_METHOD_GET_CLUSTER_STATE, round_js_sm_getclusterstate, 0, 0),
+  JS_FN(ROUNDCC_SYSTEM_METHOD_GET_NODE_STATE, round_js_sm_getnodestate, 0, 0),
+  JS_FN(ROUNDCC_SCRIPT_POST_METHOD, round_js_sm_postmethod, 0, 0),
+  JS_FN(ROUNDCC_SYSTEM_METHOD_SET_REGISTRY, round_js_sm_setregistry, 0, 0),
+  JS_FN(ROUNDCC_SYSTEM_METHOD_GET_REGISTRY, round_js_sm_getregistry, 0, 0),
+  JS_FN(ROUNDCC_SYSTEM_METHOD_REMOVE_REGISTRY, round_js_sm_removeregistry, 0, 0),
+  JS_FS_END
+};
 
 static void RoundJSReportError(JSContext *cx, const char *message, JSErrorReport *report)
 {
@@ -43,6 +56,8 @@ JSClass RoundJSGlobalClass = {
 ////////////////////////////////////////////////
 
 void Round::JavaScriptEngine::init() {
+  JS_SetCStringsAreUTF8();
+  
   rt = JS_NewRuntime(8L * 1024L * 1024L);
   if (!rt)
     return;
@@ -59,6 +74,8 @@ void Round::JavaScriptEngine::init() {
     return;
     
   JS_InitStandardClasses(cx, glob);
+  JS_DefineFunctions(cx, glob, JS_SM_FUNCTIONS);
+  
 }
 
 ////////////////////////////////////////////////
@@ -78,6 +95,10 @@ void Round::JavaScriptEngine::finalize() {
 bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *results, Error *error) const {
   if (!rt || !cx || !glob)
     return false;
+
+  lock();
+  
+  round_js_sm_setlocalnode(hasNode() ? getNode() : NULL);
   
   jsval rval;
   JSBool ok = JS_EvaluateScript(cx, glob, jsSource.c_str(), (uintN)jsSource.length(), "", 0, &rval);
@@ -88,6 +109,10 @@ bool Round::JavaScriptEngine::run(const std::string &jsSource, std::string *resu
       *results = JS_EncodeString(cx, rstr);
     }
   }
+  
+  round_js_sm_setlocalnode(NULL);
+  
+  unlock();
   
   return ok;
 }

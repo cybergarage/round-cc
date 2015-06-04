@@ -8,7 +8,9 @@
 *
 ******************************************************************/
 
+#include <boost/algorithm/string/replace.hpp>
 #include <boost/lexical_cast.hpp>
+
 #include <round/common/JSON.h>
 
 Round::JSONString::JSONString() {
@@ -151,18 +153,19 @@ bool Round::JSONString::get(double *value) const {
 }
 
 bool Round::JSONString::copy(JSONObject **newObj) const {
-  JSONString *dstString = new JSONString();
-  if (dstString->set(this)) {
-    *newObj = dstString;
+  JSONString *dstObj = new JSONString();
+  if (dstObj->set(this)) {
+    *newObj = dstObj;
     return true;
   }
-  delete dstString;
+  delete dstObj;
   return false;
 }
 
 const char *Round::JSONString::toJSONString(std::string *stringBuf) const {
   *stringBuf = "\"";
-  stringBuf->append(*this);
+  std::string escacedStr = boost::algorithm::replace_all_copy(*this, "\"", "\\\"");
+  stringBuf->append(escacedStr);
   stringBuf->append("\"");
   return stringBuf->c_str();
 }

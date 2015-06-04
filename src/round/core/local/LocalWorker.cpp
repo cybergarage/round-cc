@@ -31,41 +31,90 @@ void Round::LocalWorkder::post(uHTTP::HTTPRequest *httpReq, const NodeResponse *
   httpReq->post(&httpRes);
 }
 
+void Round::LocalWorkder::post(uHTTP::HTTPRequest *httpReq, const NodeBatchResponse *nodeBatchRes) {
+  int statusCode = uHTTP::HTTP::OK_REQUEST;
+  
+  uHTTP::HTTPResponse httpRes;
+  httpRes.setStatusCode(statusCode);
+  nodeBatchRes->toHTTPResponse(&httpRes);
+  
+  httpReq->post(&httpRes);
+}
+
 void Round::LocalWorkder::run() {
   LocalNode *node = getObject();
   if (!node)
     return;
   
   while (isRunnable()) {
-    const NodeRequest *nodeReq;
-    if (!node->waitMessage(&nodeReq))
+    const Message *nodeMsg;
+    if (!node->waitMessage(&nodeMsg))
       break;
     
-    if (!nodeReq)
+    if (!nodeMsg)
       break;
 
-    std::string reqStr;
-    nodeReq->toJSONString(&reqStr);
-    RoundLogTrace(reqStr.c_str());
+    // NodeRequest
     
-    NodeResponse nodeRes;
-    nodeRes.setVersion(RPC::JSON::VER);
+    const NodeRequest *nodeReq = dynamic_cast<const NodeRequest *>(nodeMsg);
+    if (nodeReq) {
+      std::string reqStr;
+      nodeReq->toJSONString(&reqStr);
+      RoundLogTrace(reqStr.c_str());
     
-    Error err;
+      NodeResponse nodeRes;
+      nodeRes.setVersion(RPC::JSON::VER);
     
-    if (!node->execMessage(nodeReq, &nodeRes, &err)) {
-      nodeRes.setError(&err);
-    }
+      Error err;
     
-    std::string resStr;
-    nodeRes.toJSONString(&resStr);
-    RoundLogTrace(resStr.c_str());
+      if (!node->execMessage(nodeReq, &nodeRes, &err)) {
+        nodeRes.setError(&err);
+      }
+    
+      std::string resStr;
+      nodeRes.toJSONString(&resStr);
+      RoundLogTrace(resStr.c_str());
 
-    uHTTP::HTTPRequest *httpReq = nodeReq->getHttpRequest();
-    if (httpReq) {
-      post(httpReq, &nodeRes);
+      uHTTP::HTTPRequest *httpReq = nodeReq->getHttpRequest();
+      if (httpReq) {
+        post(httpReq, &nodeRes);
+      }
+    
+      delete nodeReq;
+      
+      continue;
     }
     
-    delete nodeReq;
+    // NodeBatchRequest
+    
+    const NodeBatchRequest *nodeBatchReq = dynamic_cast<const NodeBatchRequest *>(nodeMsg);
+    if (nodeBatchReq) {
+      std::string reqStr;
+      nodeBatchReq->toJSONString(&reqStr);
+      RoundLogTrace(reqStr.c_str());
+      
+      Error err;
+      NodeBatchResponse nodeBatchRes;
+      if (!node->execMessage(nodeBatchReq, &nodeBatchRes, &err)) {
+        continue;
+      }
+      
+      std::string resStr;
+      nodeBatchRes.toJSONString(&resStr);
+      RoundLogTrace(resStr.c_str());
+      
+      uHTTP::HTTPRequest *httpReq = nodeBatchReq->getHttpRequest();
+      if (httpReq) {
+        post(httpReq, &nodeBatchRes);
+      }
+      
+      delete nodeBatchReq;
+      
+      continue;
+    }
+    
+    // Invalid Request
+    
+    delete nodeMsg;
   }
 }

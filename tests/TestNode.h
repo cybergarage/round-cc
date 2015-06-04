@@ -63,10 +63,6 @@ class TestLocalNode : public Round::LocalNode {
     return true;
   }
   
-  bool getClusterName(std::string *name,  Round::Error *error) {
-    return true;
-  }
-
   Round::NodeGraph *getNodeGraph() {
     return Round::LocalNode::getNodeGraph();
   }
@@ -78,7 +74,6 @@ class TestLocalNode : public Round::LocalNode {
 private:
 
   void initialize() {
-    getNodeConfig()->setDatabaseDirectory(".");
   }
   
   std::string address;
@@ -102,10 +97,14 @@ class NodeTestController {
   }
 
   void runScriptManagerTest(Round::Node *node);
+  void runAliasManagerTest(Round::Node *node);
+  void runRouteManagerTest(Round::Node *node);
+  
   void runSystemMethodTest(Round::Node *node);
-  void runUserMethodTest(Round::Node *node);
+  void runRpcTest(Round::Node *node);
   void runRpcTest(Round::Node **nodes, size_t nodeCnt);
-
+  void runRpcBatchTest(Round::Node *node);
+  
   void runGetEchoMethodTest(Round::RemoteNode *node, bool isJsonRpcEncodeEnabled);
   
  private:
@@ -113,9 +112,11 @@ class NodeTestController {
   void runSystemGetNodeInfoTest(Round::Node *node);
   void runSystemGetClusterInfoTest(Round::Node *node);
   void runSystemGetNetworkInfoTest(Round::Node *node);
-  void runSystemKeyMethodsTest(Round::Node *node);
+  void runSystemRegistryTest(Round::Node *node);
 
+  void runSetEchoMethodTest(Round::Node *node);
   void runPostEchoMethodTest(Round::Node *node);
+  void runPostBatchEchoMethodTest(Round::Node *node);
   
   void runRpcHashTest(Round::Node **nodes, size_t nodeCnt);
 };

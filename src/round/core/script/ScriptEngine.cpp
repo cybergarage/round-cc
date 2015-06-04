@@ -11,7 +11,12 @@
 #include <round/core/Script.h>
 
 Round::ScriptEngine::ScriptEngine(const std::string &language) {
+  init();
   this->language = language;
+}
+
+void Round::ScriptEngine::init() {
+  setNode(NULL);
 }
 
 Round::ScriptEngine::~ScriptEngine() {

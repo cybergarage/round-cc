@@ -12,12 +12,16 @@
 #define _ROUNDCC_LOCALNODE_H_
 
 #include <round/common/Thread.h>
+#include <round/common/Config.h>
 #include <round/core/Node.h>
 #include <round/core/NodeGraph.h>
 #include <round/core/NodeFinder.h>
-#include <round/core/NodeConfig.h>
 #include <round/core/Script.h>
 #include <round/core/Method.h>
+#include <round/core/Route.h>
+#include <round/core/Registry.h>
+#include <round/core/Alias.h>
+#include <round/core/Trigger.h>
 
 namespace Round {
 
@@ -32,6 +36,7 @@ class LocalWorkder : public Thread<LocalNode> {
   
  private:
   void post(uHTTP::HTTPRequest *httpReq, const NodeResponse *nodeRes);
+  void post(uHTTP::HTTPRequest *httpReq, const NodeBatchResponse *nodeBatchRes);
 };
 
 class LocalScriptManager : public ScriptManager {
@@ -42,7 +47,7 @@ class LocalScriptManager : public ScriptManager {
  public:
   LocalScriptManager();
   ~LocalScriptManager();
-
+  
  private:
   void init();
 };
@@ -65,105 +70,81 @@ class LocalNativeMethodManager : public MethodManager {
     void init();
 };
 
-class LocalMemory : public std::map<std::string, std::string> {
+class LocalRegistry : public RegistryManager {
     
 public:
     
-  LocalMemory();
-  ~LocalMemory();
+  LocalRegistry();
+  ~LocalRegistry();
+
+  void setNode(LocalNode *node);
+
+  bool set(const Registry reg);
+  bool set(const std::string &key, const std::string &value);
+
+private:
   
-  bool setKey(const std::string &key, const std::string &value);
-  bool getKey(const std::string &key, std::string *value) const;
+  LocalNode *node;
 };
 
-class LocalConfig : public NodeConfig {
+class LocalRouteManager: public RouteManager {
+    
+public:
+    
+  LocalRouteManager();
+  ~LocalRouteManager();
+
+private:
+  void init();
+};
+
+class LocalAliasManager: public AliasManager {
+  
+public:
+  
+  LocalAliasManager();
+  ~LocalAliasManager();
+};
+
+class LocalTriggerManager: public TriggerManager {
+    
+public:
+    
+  LocalTriggerManager();
+  ~LocalTriggerManager();
+};
+
+class LocalConfig : public Config {
  public:
-  static const std::string DEFAULT_FILENAME;
+  
+  static const std::string BIND_ADDR;
+  static const std::string BIND_PORT;
+  static const std::string CLUSTER;
+  static const std::string LOG_FILE;
+  static const std::string METHODS;
+
+  static const std::string DEFALUT_CLUSTER;
   static const std::string AUTO;
-  static const int DEFAULT_HTTPD_PORT;
-
-  enum Sections {
-    General = 0,
-    Httpd,
-    Log,
-    SectionCount,
-  };
-
-  enum GeneralSectionKeys {
-    Cluster = 0,
-    DatabaseDir,
-    GeneralKeyCount,
-  };
-
-  enum HttpdSectionKeys {
-    HttpdBindAddress = 0,
-    HttpdBindPort,
-    HttpdKeyCount,
-  };
-
-  enum LogSectionKeys {
-    LogFile = 0,
-    ErrorLogFile,
-    LogLevel,
-    LogKeyCount,
-  };
-
+  static int BIND_PORT_RANGE_MIN;
+  static int BIND_PORT_RANGE_MAX;
+  
  public:
   LocalConfig();
   ~LocalConfig();
 
   bool isValid(Error *error);
 
-  size_t getSectionCount() const;
-  size_t getSectionKeyCount(size_t section) const;
-  
-  const char *getSectionKeyString(size_t section, size_t n) const;
-  const char *getSectionString(size_t n) const;
-
  public:
-  bool getHttpdBindAddress(std::string *value, Error *error) const;
-  bool getHttpdBindPort(int *value, Error *error) const;
+  
+  bool getBindAddress(std::string *value, Error *error) const;
+  bool getBindPort(int *value, Error *error) const;
+  bool getCluster(std::string *value, Error *error) const;
+  bool getLogFilename(std::string *value, Error *error) const;
 
-  bool getCluster(std::string *value, Error *error) const {
-    return getValue(General, Cluster, value, error);
-  }
-  
-  bool getDatabaseDirectory(std::string *value, Error *error) const {
-    return getValue(General, DatabaseDir, value, error);
-  }
-
-  bool getLogFilename(std::string *value, Error *error) const {
-    return getValue(Log, LogFile, value, error);
-  }
-
-  bool getErrorLogFilename(std::string *value, Error *error) const {
-    return getValue(Log, ErrorLogFile, value, error);
-  }
-
-  bool setHttpdBindAddress(const std::string &value) {
-    return setValue(Httpd, HttpdBindAddress, value);
-  }
-  
-  bool setHttpdBindPort(int port) {
-    return setValue(Httpd, HttpdBindPort, port);
-  }
-  
-  bool setCluster(const std::string &value) {
-    return setValue(General, Cluster, value);
-  }
-  
-  bool setDatabaseDirectory(const std::string &value) {
-    return setValue(General, DatabaseDir, value);
-  }
-
-  bool setLogFilename(const std::string &value) {
-    return setValue(Log, LogFile, value);
-  }
-  
-  bool setErrorLogFilename(const std::string &value) {
-    return setValue(Log, ErrorLogFile, value);
-  }
-  
+  bool setBindAddress(const std::string &value, Error *error);
+  bool setBindPort(int value, Error *error);
+  bool setCluster(const std::string &value, Error *error);
+  bool setLogFilename(const std::string &value, Error *error);  
 };
   
 /**
@@ -171,8 +152,6 @@ class LocalConfig : public NodeConfig {
  */
 class LocalNode : public Node, public NodeFinderObserver {
  public:
-  
-  static const std::string DEFALUT_CLUSTER;
   
  public:
   LocalNode();
@@ -182,32 +161,66 @@ class LocalNode : public Node, public NodeFinderObserver {
   
   bool addMethod(Method *method);
   bool setScript(const std::string &method, const std::string &lang, const std::string &script, int encodeType, Error *error);
+  bool removeScript(const std::string &method, Error *error);
   
-  bool setKey(const std::string &key, const std::string &value);
-  bool getKey(const std::string &key, std::string *value) const;
+  bool execJob(const std::string &lang, const std::string &script, int encodeType, std::string *result, Error *error);
   
+  bool setRegistry(const std::string &key, const std::string &value);
+  bool getRegistry(const std::string &key, std::string *value) const;
+  
+  bool setRegistry(const Registry reg);
+  bool getRegistry(const std::string &key, Registry *reg) const;
+  bool removeRegistry(const std::string &key);
+
   bool postMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  bool postMessage(const NodeBatchRequest *nodeReq, NodeBatchResponse *nodeRes, Error *error);
   
   bool loadConfigFromString(const std::string &string, Error *error);
   bool loadConfigFromFile(const std::string &filename, Error *error);
   bool isConfigValid(Error *error);
+  bool getConfig(JSONDictionary *jsonDict, Error *error);
   
   bool nodeAdded(Node *node);
   bool nodeRemoved(Node *node);
 
   bool pushMessage(const Message *nodeReq);
-  bool waitMessage(const NodeRequest **nodeReq);
+  bool waitMessage(const Message **nodeReq);
   bool execMessage(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  bool execMessage(const NodeBatchRequest *nodeReq, NodeBatchResponse *nodeRes, Error *error);
+
+  bool setRoute(Route *route);
+  bool removeSameRoute(const Route *route);
+  bool removeRouteByName(const std::string &name);
+  bool execRoute(const std::string &src, const std::string &params);
+  
+  bool setAlias(Alias *alias);
+  bool removeAliasByName(const std::string &name);
+  
+  bool setTrigger(Trigger *trigger);
+  bool removeTriggerByName(const std::string &name);
+  bool execTrigger(const std::string &name);
   
   virtual bool start(Error *error);
   virtual bool stop(Error *error);
   
   bool restart(Error *error);
   
-  LocalConfig *getNodeConfig() {
+  LocalConfig *getConfig() {
     return &this->nodeConfig;
   }
 
+  bool setBindAddress(const std::string &value, Error *error) {
+    return this->nodeConfig.setBindAddress(value, error);
+  }
+  
+  bool setBindPort(int value, Error *error) {
+    return this->nodeConfig.setBindPort(value, error);
+  }
+  
+  bool setCluster(const std::string &value, Error *error) {
+    return this->nodeConfig.setCluster(value, error);
+  }
+  
   NodeGraph *getNodeGraph() {
     return &this->nodeGraph;
   }
@@ -221,14 +234,18 @@ class LocalNode : public Node, public NodeFinderObserver {
 
   bool isStaticMethod(const std::string &method);
 
+  NodeStatus::State getState() const {
+    return this->nodeStatus.getState();
+  }
+  
+  const char *getStateString() const {
+    return this->nodeStatus.getStateString();
+  }
+  
 protected:
 
   void setState(NodeStatus::State value) {
     this->nodeStatus.setState(value);
-  }
-
-  NodeStatus::State getState() {
-    return this->nodeStatus.getState();
   }
 
 private:
@@ -246,6 +263,14 @@ private:
   bool isNativeMethod(const std::string &method);
   bool execNativeMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
 
+  bool isAliasMethod(const std::string &method);
+  bool execAliasMethod(const NodeRequest *nodeReq, NodeResponse *nodeRes, Error *error);
+  
+  bool hasRoute(const std::string &name);
+  bool execRoute(const std::string &name, const NodeResponse *prevNodeRes, NodeResponse *nodeRes, Error *error);
+  
+  bool execTrigger(const std::string &name, Error *error);
+  
 private:
 
   NodeGraph               nodeGraph;
@@ -258,7 +283,10 @@ private:
   LocalScriptManager        scriptMgr;
   LocalStaticMethodManager  staticMethodMgr;
   LocalNativeMethodManager  sysMethodMgr;
-  LocalMemory               memory;
+  LocalRegistry             nodeReg;
+  LocalRouteManager         routeMgr;
+  LocalAliasManager         aliasMgr;
+  LocalTriggerManager       triggerMgr;
 };
 
 }

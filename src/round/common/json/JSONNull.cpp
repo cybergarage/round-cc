@@ -12,3 +12,8 @@
 
 Round::JSONNull::JSONNull() {
 }
+
+bool Round::JSONNull::copy(JSONObject **newObj) const {
+  JSONNull *dstObj = new JSONNull();
+  return true;
+}
