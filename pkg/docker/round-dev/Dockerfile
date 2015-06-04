@@ -40,8 +40,8 @@ RUN ./bootstrap && ./configure && make && make install
 # Round
 RUN apt-get install -y libboost-all-dev libssl-dev libjansson-dev openjdk-6-jdk libmozjs185-dev libv8-dev tcl-dev
 WORKDIR /root
-#RUN git clone https://github.com/cybergarage/Round.git round
-COPY round /root/round
+RUN git clone https://github.com/cybergarage/Round.git round
+#COPY round /root/round
 WORKDIR round
 RUN ./bootstrap && ./configure_ubuntu --enable-script-java=no && make && make install
 
