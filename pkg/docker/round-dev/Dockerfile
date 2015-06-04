@@ -6,7 +6,7 @@ RUN apt-get update && apt-get upgrade -y
 
 # Install base packages
 RUN apt-get install -y git g++ make automake autoconf
-RUN apt-get install -y build-essential devscripts debheper dh-make fakeroot pbuilder cdbs
+RUN apt-get install -y build-essential devscripts debhelper dh-make fakeroot pbuilder cdbs
 
 # Set Packaging ENV
 ENV DEBFULLNAME "Satoshi Konno"
