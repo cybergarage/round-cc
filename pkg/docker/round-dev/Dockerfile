@@ -6,7 +6,8 @@ RUN apt-get update && apt-get upgrade -y
 
 # Install base packages
 RUN apt-get install -y git g++ make automake autoconf
-RUN apt-get install -y build-essential devscripts debhelper dh-make fakeroot pbuilder cdbs
+RUN apt-get install -y libboost-all-dev
+# RUN apt-get install -y build-essential devscripts debhelper dh-make fakeroot pbuilder cdbs
 
 # Set Packaging ENV
 ENV DEBFULLNAME "Satoshi Konno"
@@ -31,11 +32,11 @@ WORKDIR mupnp
 RUN ./bootstrap && ./configure && make && make install
 
 # uSQL for C++
-RUN apt-get install -y libantlr3c-dev
-WORKDIR /root
-RUN git clone https://github.com/cybergarage/uSQL4CC.git usql
-WORKDIR usql
-RUN ./bootstrap && ./configure && make && make install
+#RUN apt-get install -y libantlr3c-dev
+#WORKDIR /root
+#RUN git clone https://github.com/cybergarage/uSQL4CC.git usql
+#WORKDIR usql
+#RUN ./bootstrap && ./configure && make && make install
 
 # Round
 RUN apt-get install -y libboost-all-dev libssl-dev libjansson-dev openjdk-6-jdk libmozjs185-dev libv8-dev tcl-dev
