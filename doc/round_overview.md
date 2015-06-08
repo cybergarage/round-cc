@@ -48,7 +48,7 @@ Round supplies some useful core modules such as consensus protocols and failure 
 
 ### Programming Model
 
-Round supports both [message passing][parallel-model] model and [shared memory][parallel-model] model as parallel distributed programming model.
+Round supports both [message passing model][msgp-model] and [shared memory model][shmem-model] as the parallel distributed programming model. In Round, the message passing model originates in [actor model][actor-model] and [CSP][csp-model] (Communicating Sequential Processes), and the shared memory model is based on [Paxos][paxos] protocol.
 
 Round's cluster is consist of several nodes. The each node is an actor of [Lamport model][lamport-model] which has a logical clock and a message queue to receive messages from clients or other nodes.
 
@@ -113,3 +113,7 @@ Round supports some dynamic programming languages such ad JavaScript and Java, t
 [rpc]: http://en.wikipedia.org/wiki/Remote_procedure_call
 [lamport-model]: http://en.wikipedia.org/wiki/Lamport_timestamps
 [parallel-model]: http://en.wikipedia.org/wiki/Parallel_programming_model
+[msgp-model]: http://en.wikipedia.org/wiki/Message_passing
+[shmem-model]: http://en.wikipedia.org/wiki/Parallel_programming_model
+[csp-model]: http://en.wikipedia.org/wiki/Communicating_sequential_processes
+[paxos]: http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf
