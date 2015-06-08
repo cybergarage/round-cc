@@ -44,7 +44,9 @@ Roundは、標準で分散システムのコンセンサスプロトコルや障
 
 ### プログラミングモデル
 
-Roundのプログラミングモデルは[アクターモデル][actor-model]を基本としています。Roundのクラスターは複数のノードから構成されます。各ノードは[Lamportモデル][lamport-model]のアクターでクライアントや他のノードからメッセージを受信するための論理クロックとメッセージキューを持ちます。
+Roundは並列分散プログラミングモデルとして[メッセージパッシング (message passing)][parallel-model]モデルと[共有メモリ (shared memory)][parallel-model]モデルの両方に対応しています。
+
+Roundのクラスターは複数のノードから構成されます。各ノードは[Lamportモデル][lamport-model]のアクターでクライアントや他のノードからメッセージを受信するための論理クロックとメッセージキューを持ちます。
 
 ![Round Programming Model](img/round_overview_programming_model.png)
 
@@ -104,3 +106,4 @@ RoundはJavaScritやJavaなどの複数の動的プログラミング言語に�
 [life-game]: http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 [rpc]: http://en.wikipedia.org/wiki/Remote_procedure_call
 [lamport-model]: http://en.wikipedia.org/wiki/Lamport_timestamps
+[parallel-model]: http://en.wikipedia.org/wiki/Parallel_programming_model
