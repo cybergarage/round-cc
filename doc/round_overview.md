@@ -114,6 +114,6 @@ Round supports some dynamic programming languages such ad JavaScript and Java, t
 [lamport-model]: http://en.wikipedia.org/wiki/Lamport_timestamps
 [parallel-model]: http://en.wikipedia.org/wiki/Parallel_programming_model
 [msgp-model]: http://en.wikipedia.org/wiki/Message_passing
-[shmem-model]: http://en.wikipedia.org/wiki/Parallel_programming_model
+[shmem-model]: http://en.wikipedia.org/wiki/Shared_memory_(interprocess_communication) 
 [csp-model]: http://en.wikipedia.org/wiki/Communicating_sequential_processes
 [paxos]: http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf

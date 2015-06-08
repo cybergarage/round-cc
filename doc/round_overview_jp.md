@@ -108,6 +108,6 @@ RoundはJavaScritやJavaなどの複数の動的プログラミング言語に�
 [lamport-model]: http://en.wikipedia.org/wiki/Lamport_timestamps
 [parallel-model]: http://en.wikipedia.org/wiki/Parallel_programming_model
 [msgp-model]: http://en.wikipedia.org/wiki/Message_passing
-[shmem-model]: http://en.wikipedia.org/wiki/Parallel_programming_model
+[shmem-model]: http://en.wikipedia.org/wiki/Shared_memory_(interprocess_communication)
 [csp-model]: http://en.wikipedia.org/wiki/Communicating_sequential_processes
 [paxos]: http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf
