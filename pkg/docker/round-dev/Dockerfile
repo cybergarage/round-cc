@@ -7,6 +7,7 @@ RUN apt-get update && apt-get upgrade -y
 # Install base packages
 RUN apt-get install -y git g++ make automake autoconf
 RUN apt-get install -y libboost-all-dev
+RUN apt-get install -y curl
 # RUN apt-get install -y build-essential devscripts debhelper dh-make fakeroot pbuilder cdbs
 
 # Set Packaging ENV
@@ -44,7 +45,7 @@ WORKDIR /root
 RUN git clone https://github.com/cybergarage/Round.git round
 #COPY round /root/round
 WORKDIR round
-RUN ./bootstrap && ./configure_ubuntu --enable-script-java=no && make && make install
+RUN ./bootstrap && ./configure_ubuntu --enable-script-java=no --enable-script-lua=no && make && make install
 
 # JNI
 WORKDIR /root
