@@ -6,7 +6,7 @@ English / [Japanese](round_overview_jp.md)
 
 ## What is Round ?
 
-Round is a new open source framework developed for distributed system developers and researchers to build distributed applications concisely.
+Round is a new open source framework developed for distributed system developers and researchers to build distributed applications and frameworks more easily.
 
 The name "Round" derives from "[Knights of the Round Table](http://en.wikipedia.org/wiki/Round_Table)", meaning that every node in a cluster has an equal role and the cluster has no mater node.
 
