@@ -11,6 +11,10 @@
 #ifndef _ROUNDCC_SYSTEM_METHOD_LUA_H_
 #define _ROUNDCC_SYSTEM_METHOD_LUA_H_
 
+#include <round/common/platform.h>
+
+#if defined(ROUND_SUPPORT_LUA)
+
 #include <string>
 #include <round/core/Script.h>
 
@@ -45,5 +49,7 @@ private:
 };
   
 }
+
+#endif
 
 #endif

@@ -13,6 +13,8 @@
 
 #include <round/script/Lua.h>
 
+#if defined(ROUND_SUPPORT_LUA)
+
 int round_lua_getnetworkstate(lua_State* L);
 int round_lua_getclusterstate(lua_State* L);
 int round_lua_getnodestate(lua_State* L);
@@ -24,5 +26,7 @@ int round_lua_postmethod(lua_State* L);
 void round_lua_setlocalnode(Round::Node *);
 Round::Node *round_lua_getlocalnode();
 bool round_lua_haslocalnode();
+
+#endif
 
 #endif

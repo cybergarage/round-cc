@@ -19,7 +19,7 @@
 #include <round/script/Lua.h>
 #include <round/script/lua/LuaFunction.h>
 
-#if defined(ROUND_SUPPORT_TCL)
+#if defined(ROUND_SUPPORT_LUA)
 
 const std::string Round::LuaEngine::LANGUAGE = "lua";
 

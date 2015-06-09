@@ -158,7 +158,7 @@ bool Round::RouteMap::removeSameRoute(const Route *otherRoute) {
 }
 
 bool Round::RouteMap::removeRouteByName(const std::string &name) {
-  for (RouteMap::const_iterator routeMapIt = begin(); routeMapIt != end(); routeMapIt++) {
+  for (RouteMap::iterator routeMapIt = begin(); routeMapIt != end(); routeMapIt++) {
     RouteList *routeList = routeMapIt->second;
     if (routeList->removeRouteByName(name)) {
       if (routeList->size() <= 0) {

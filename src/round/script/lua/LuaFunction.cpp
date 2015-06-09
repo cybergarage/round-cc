@@ -11,6 +11,8 @@
 #include <round/script/lua/LuaFunction.h>
 #include <round/core/local/method/SystemMethod.h>
 
+#if defined(ROUND_SUPPORT_LUA)
+
 // FIXME : Update not to use the global variable
 static Round::Node *gRoundLuaEngineLocalNode = NULL;
 
@@ -158,3 +160,5 @@ int round_lua_postmethod(lua_State* L)
   
   return 2;
 }
+
+#endif
