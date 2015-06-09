@@ -45,6 +45,8 @@ WORKDIR /root
 RUN git clone https://github.com/cybergarage/Round.git round
 #COPY round /root/round
 WORKDIR round
+RUN git pull
+RUN git pull
 RUN ./bootstrap && ./configure_ubuntu --enable-script-java=no --enable-script-lua=no && make && make install
 
 # JNI
