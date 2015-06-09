@@ -11,7 +11,6 @@
 #ifndef _ROUNDCC_RQL_H_
 #define _ROUNDCC_RQL_H_
 
-#include <usql/SQLParser.h>
 #include <round/core/Node.h>
 
 namespace Round {
