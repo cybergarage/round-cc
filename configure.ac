@@ -249,8 +249,7 @@ AC_ARG_ENABLE(
 if [ test $ROUND_SUPPORT_LUA = yes ]; then
 AC_CHECK_HEADERS([lua.h],,
 	[AC_CHECK_HEADERS([lua.h],,[AC_MSG_ERROR(Round for C++ needs LUA $LUA_VERSION later)])])
-	AC_CHECK_LIB([lua],[main])
-        LUA_LIBS=`lua-config --libs`
+	AC_CHECK_LIB([lua],[main],,[LUA_LIBS=`lua-config --libs`])
         AC_SUBST(LUA_LIBS)
 	AC_DEFINE([ROUND_SUPPORT_LUA],1,[Lua])
 fi
