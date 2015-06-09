@@ -11,6 +11,8 @@
 #ifndef _ROUNDCC_CONST_H_
 #define _ROUNDCC_CONST_H_
 
+namespace Round {
+
 #define ROUNDCC_SYSTEM_TRIGGER_TIMER_PRECISION 0.1
 #define ROUNDCC_RPC_HTTP_ENDPOINT "/rpc"
 #define ROUNDCC_RPC_HTTP_CONTENT_TYPE "application/json"
@@ -72,5 +74,7 @@
 #define ROUNDCC_SCRIPT_SEARCH_METHOD_WAIT_MSEC 5000
 #define ROUNDCC_MESSAGE_SEARCHING "Searching"
 #define ROUNDCC_MESSAGE_DONE "Done"
+
+}
 
 #endif
