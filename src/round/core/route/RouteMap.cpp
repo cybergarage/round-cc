@@ -145,7 +145,7 @@ Round::Route *Round::RouteMap::findRouteByName(const std::string &name) const {
 bool Round::RouteMap::removeSameRoute(const Route *otherRoute) {
   RouteList *routeList = findRouteListByRoute(otherRoute);
   if (!routeList)
-    return NULL;
+    return false;
    if (!routeList->removeSameRoute(otherRoute))
      return false;
   if (routeList->size() <= 0) {

@@ -22,20 +22,24 @@ Round::Client::~Client() {
 
 bool Round::Client::start(Error *error) {
   if (finderEnabled()) {
-    if (!this-finder.start(error) == false)
+    if (!this->finder.start(error))
       return false;
   }
   return true;
 }
 
 bool Round::Client::stop(Error *error) {
-  if (!this-finder.stop(error) == false)
-    return false;
+  if (finderEnabled()) {
+    if (!this->finder.stop(error))
+      return false;
+  }
   return true;
 }
 
 bool Round::Client::search(Error *error) {
-  if (!this-finder.search(error) == false)
-    return false;
+  if (finderEnabled()) {
+    if (!this->finder.search(error))
+      return false;
+  }
   return true;
 }
