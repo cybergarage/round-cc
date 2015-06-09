@@ -243,7 +243,7 @@ AC_ARG_ENABLE(
 			ROUND_SUPPORT_LUA=no
 		fi
 	],[
-		ROUND_SUPPORT_LUA=yes
+		ROUND_SUPPORT_LUA=no
 	]
 )
 if [ test $ROUND_SUPPORT_LUA = yes ]; then
