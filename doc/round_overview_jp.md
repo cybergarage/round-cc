@@ -6,7 +6,7 @@
 
 ## Roundとは ?
 
-Roundは分散システム開発者や研究者向けの新しいオープンソースのフレームワークです。 Roundは、利用者が簡潔に分散アプリケーションを開発するのを支援します。
+Roundは分散システム開発者や研究者向けの新しいオープンソースのフレームワークです。 Roundは、利用者がより簡単に分散アプリケーションやフレームワークを開発するのを支援します。
 
 Roundの名前は「[円卓の騎士](http://ja.wikipedia.org/wiki/円卓の騎士)」に由来しており、クラスターの全てのノードが等しい役割を持ち、マスターノードが存在していないことを意味しています。
 
@@ -44,7 +44,9 @@ Roundは、標準で分散システムのコンセンサスプロトコルや障
 
 ### プログラミングモデル
 
-Roundのプログラミングモデルは[アクターモデル][actor-model]を基本としています。Roundのクラスターは複数のノードから構成されます。各ノードは[Lamportモデル][lamport-model]のアクターでクライアントや他のノードからメッセージを受信するための論理クロックとメッセージキューを持ちます。
+Roundは並列分散プログラミングモデルとして[メッセージパッシング (message passing)][msgp-model]モデルと[共有メモリ (shared memory)][shmem-model]モデルの両方に対応しています。Roundのメッセージパッシングモデルは[アクターモデル][actor-model]と[CSP][csp-model] (Communicating Sequential Processes)に影響を受けており、共有メモリモデルは[Paxos][paxos]プロトコルに基づいています。
+
+Roundのクラスターは複数のノードから構成されます。各ノードは[Lamportモデル][lamport-model]のアクターでクライアントや他のノードからメッセージを受信するための論理クロックとメッセージキューを持ちます。
 
 ![Round Programming Model](img/round_overview_programming_model.png)
 
@@ -104,3 +106,8 @@ RoundはJavaScritやJavaなどの複数の動的プログラミング言語に�
 [life-game]: http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 [rpc]: http://en.wikipedia.org/wiki/Remote_procedure_call
 [lamport-model]: http://en.wikipedia.org/wiki/Lamport_timestamps
+[parallel-model]: http://en.wikipedia.org/wiki/Parallel_programming_model
+[msgp-model]: http://en.wikipedia.org/wiki/Message_passing
+[shmem-model]: http://en.wikipedia.org/wiki/Shared_memory_(interprocess_communication)
+[csp-model]: http://en.wikipedia.org/wiki/Communicating_sequential_processes
+[paxos]: http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf

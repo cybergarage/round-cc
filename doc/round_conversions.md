@@ -16,6 +16,8 @@ To build distributed frameworks and applications, Round supports the following w
 
 | Feature | Round | ZooKeeper | Consul | etcd | Chubby |
 |---|---|---|---|---|---|
+| Shared Memory | O | O | O | O | O |
+| Message Passing | O | X | X | X | X |
 | Consensus Protocol | Pluggable | Static (ZAB) | Static (Raft) | Static (Raft) | Static (Paxos) |
 | Notification | Static + User  | Static | Static | Static | Static |
 | Membership | Pluggable | Static(?) | Static(?) | Static(Gossip) | Static(?) |

@@ -6,7 +6,7 @@ English / [Japanese](round_overview_jp.md)
 
 ## What is Round ?
 
-Round is a new open source framework developed for distributed system developers and researchers to build distributed applications concisely.
+Round is a new open source framework developed for distributed system developers and researchers to build distributed applications and frameworks more easily.
 
 The name "Round" derives from "[Knights of the Round Table](http://en.wikipedia.org/wiki/Round_Table)", meaning that every node in a cluster has an equal role and the cluster has no mater node.
 
@@ -48,7 +48,9 @@ Round supplies some useful core modules such as consensus protocols and failure 
 
 ### Programming Model
 
-Programming model of Round is based on [Actor model][actor-model]. Round's cluster is consist of several nodes. The each node is an actor of [Lamport model][lamport-model] which has a logical clock and a message queue to receive messages from clients or other nodes.
+Round supports both [message passing model][msgp-model] and [shared memory model][shmem-model] as the parallel distributed programming model. In Round, the message passing model originates in [actor model][actor-model] and [CSP][csp-model] (Communicating Sequential Processes), and the shared memory model is based on [Paxos][paxos] protocol.
+
+Round's cluster is consist of several nodes. The each node is an actor of [Lamport model][lamport-model] which has a logical clock and a message queue to receive messages from clients or other nodes.
 
 ![Round Programming Model](img/round_programming_model.png)
 
@@ -110,3 +112,8 @@ Round supports some dynamic programming languages such ad JavaScript and Java, t
 [life-game]: http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 [rpc]: http://en.wikipedia.org/wiki/Remote_procedure_call
 [lamport-model]: http://en.wikipedia.org/wiki/Lamport_timestamps
+[parallel-model]: http://en.wikipedia.org/wiki/Parallel_programming_model
+[msgp-model]: http://en.wikipedia.org/wiki/Message_passing
+[shmem-model]: http://en.wikipedia.org/wiki/Shared_memory_(interprocess_communication) 
+[csp-model]: http://en.wikipedia.org/wiki/Communicating_sequential_processes
+[paxos]: http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf
