@@ -19,6 +19,8 @@
 using namespace std;
 using namespace Round;
 
+#if defined(ROUND_SUPPORT_LUA)
+
 BOOST_AUTO_TEST_SUITE(script)
 
 ////////////////////////////////////////////////////////////
@@ -274,3 +276,5 @@ BOOST_AUTO_TEST_CASE(LuaPostMethodTest) {
 }
 
 BOOST_AUTO_TEST_SUITE_END()
+
+#endif
