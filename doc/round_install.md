@@ -13,7 +13,7 @@ Official binary distributions are available for Linux and Mac OS X. If a binary 
 To get started with Docker on Linux, run the following in a terminal:
 
 ```
-docker run cybergarage/round:<version>
+docker run cybergarage/round:latest
 ```
 
 ### MacOSX
