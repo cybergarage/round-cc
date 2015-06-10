@@ -94,7 +94,7 @@ Roundのノードは自律的でプログラミング可能な[RPC](rpc)ノー�
 
 ![auto-configuration](img/round_overview_programming.png)
 
-RoundはJavaScritやJavaなどの複数の動的プログラミング言語に対応していますので、利用者の好みのプログラミング言語で分散システムアプリケーションが開発できます。
+RoundはJavaScriptやJavaなどの複数の動的プログラミング言語に対応していますので、利用者の好みのプログラミング言語で分散システムアプリケーションが開発できます。
 
 [actor-model]: http://en.wikipedia.org/wiki/Actor_model
 [csp]: http://en.wikipedia.org/wiki/Communicating_sequential_processes

@@ -99,8 +99,15 @@ In this section, add a simple route function which adds a current date prefix us
 
 ```
 round> set_method(0, { "language":"js", "name":"echo", "code":"function echo(params) {return params;}" })
-round> set_method(0, { "language":"js", "name":"echo_date", "code":"function echo_log(params) {var now = new Date(); return now.toString() + " : " + params;}" })
+round> set_method(0, { "language":"js", "name":"echo_log", "code":"function echo_log(params) {var now = new Date(); return now.toString() + ' : ' + params;}" })
 round> set_route(0, {"name":"echo", "src":"echo", "dest":"echo_log"})
+```
+
+To confirm whether the route is added, call `echo` method:
+
+```
+round> echo(0, "hello")
+"Thu Jun 11 2015 01:13:49 GMT+0900 (JST) : hello"
 ```
 
 ## Alias
