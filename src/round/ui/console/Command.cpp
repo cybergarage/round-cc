@@ -16,6 +16,7 @@ const std::string Round::Console::Command::TAB = "    ";
 const std::string Round::Console::Command::QUIT = "quit";
 const std::string Round::Console::Command::EXIT = "exit";
 const std::string Round::Console::Command::SHELL = "shell";
+const std::string Round::Console::Command::DAEMON = "daemon";
 
 Round::Console::Command::Command(const std::string &name)
 {
@@ -44,6 +45,10 @@ bool Round::Console::Command::IsQuit(const Input *input) {
 
 bool Round::Console::Command::IsShell(const Input *input) {
   return IsCommand(SHELL, input);
+}
+
+bool Round::Console::Command::IsDaemon(const Input *input) {
+  return IsCommand(DAEMON, input);
 }
 
 void Round::Console::Command::sleep(int msec) const {

@@ -25,6 +25,14 @@ public:
   const std::string getDescription() const;
 };
 
+class daemon : public Command {
+public:
+  static const std::string NAME;
+  daemon() : Command(NAME) {}
+  bool exec(Round::Console::Client *client, const Input *input, Message *msg, Error *err) const;
+  const std::string getDescription() const;
+};
+  
 class version : public Command {
 public:
   static const std::string NAME;
