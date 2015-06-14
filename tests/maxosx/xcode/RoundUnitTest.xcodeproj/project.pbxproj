@@ -17,6 +17,7 @@
 		21688A541A38C87E00908890 /* NodeTestController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21688A531A38C87E00908890 /* NodeTestController.cpp */; };
 		216B580F1AD38CE900846C32 /* RegistryTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216B580E1AD38CE900846C32 /* RegistryTest.cpp */; };
 		217727821A2CE5E4001B4CE0 /* RPCMessageTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217727811A2CE5E4001B4CE0 /* RPCMessageTest.cpp */; };
+		217F6E5A1B2D24290038DE7C /* DomainSocketTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217F6E591B2D24290038DE7C /* DomainSocketTest.cpp */; };
 		2184F2041A18E359007F1326 /* ClientTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F1FF1A18E359007F1326 /* ClientTest.cpp */; };
 		2184F2051A18E359007F1326 /* NodeFinderTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2001A18E359007F1326 /* NodeFinderTest.cpp */; };
 		2184F2061A18E359007F1326 /* RemoteNodeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2184F2011A18E359007F1326 /* RemoteNodeTest.cpp */; };
@@ -140,6 +141,7 @@
 		21688A531A38C87E00908890 /* NodeTestController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeTestController.cpp; sourceTree = "<group>"; };
 		216B580E1AD38CE900846C32 /* RegistryTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RegistryTest.cpp; sourceTree = "<group>"; };
 		217727811A2CE5E4001B4CE0 /* RPCMessageTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCMessageTest.cpp; sourceTree = "<group>"; };
+		217F6E591B2D24290038DE7C /* DomainSocketTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DomainSocketTest.cpp; sourceTree = "<group>"; };
 		2184F1FF1A18E359007F1326 /* ClientTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClientTest.cpp; sourceTree = "<group>"; };
 		2184F2001A18E359007F1326 /* NodeFinderTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeFinderTest.cpp; sourceTree = "<group>"; };
 		2184F2011A18E359007F1326 /* RemoteNodeTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RemoteNodeTest.cpp; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 		21AD42771A13B7FC00741A08 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				217F6E591B2D24290038DE7C /* DomainSocketTest.cpp */,
 				2111D8391A5AC2F0007DCF40 /* URLTest.cpp */,
 				213E910A1A4AA707001C2ED9 /* Base64Test.cpp */,
 				21AD428B1A13B7FC00741A08 /* BitOptionTest.cpp */,
@@ -485,6 +488,7 @@
 				21D50AB01A824BC8005C1F51 /* AliasTest.cpp in Sources */,
 				219B12161A874A3200644AFC /* RQLTest.cpp in Sources */,
 				21688A541A38C87E00908890 /* NodeTestController.cpp in Sources */,
+				217F6E5A1B2D24290038DE7C /* DomainSocketTest.cpp in Sources */,
 				21DA08AB1A174A4900D3DCE0 /* ClusterListTest.cpp in Sources */,
 				2184F2041A18E359007F1326 /* ClientTest.cpp in Sources */,
 				21AD42AC1A13B7FC00741A08 /* SemaphoreTest.cpp in Sources */,
