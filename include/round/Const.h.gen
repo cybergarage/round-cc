@@ -16,12 +16,31 @@ print<<HEADER;
 namespace Round {
 
 HEADER
-@const_lines = `curl -s https://raw.githubusercontent.com/cybergarage/round-common/master/src/constants.csv | awk '/./' | awk '\$0 !~ /^#/{print \$0}'`;
+@const_lines = `curl -s https://raw.githubusercontent.com/cybergarage/round-common/master/const/constants.csv | awk '/./' | awk '\$0 !~ /^#/{print \$0}'`;
 foreach $const_line (@const_lines) {
   @const = split(/,/, $const_line);
   $const[0] =~ s/([a-z])/\u$1/g;
   print "#define ROUNDCC_" . $const[0] . " " . $const[1];
 }
+
+print "\n";
+@const_lines = `curl -s https://raw.githubusercontent.com/cybergarage/round-common/master/const/rpc_errors.csv | awk '/./' | awk '\$0 !~ /^#/{print \$0}'`;
+foreach $const_line (@const_lines) {
+  @const = split(/,/, $const_line);
+  $const[0] =~ s/([a-z])/\u$1/g;
+  print "#define ROUNDCC_RPC_" . $const[0] . " " . $const[1] . "\n";
+}
+print "\n";
+foreach $const_line (@const_lines) {
+  @const = split(/,/, $const_line);
+  $const[0] =~ s/([a-z])/\u$1/g;
+  chomp($const[2]);
+  if (length($const[2]) <= 2) {
+    next;
+  }
+  print "#define ROUNDCC_RPC_" . $const[0] . "_MSG  " . $const[2] . "\n";
+}
+
 print<<FOTTER;
 
 }

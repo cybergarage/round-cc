@@ -89,27 +89,25 @@ int Round::RPC::JSON::HTTP::ErrorCodeToHTTPStatusCode(int jsonErrorCode) {
 const std::string &Round::RPC::JSON::ErrorCodeToString(int jsonErrorCode) {
   
   if (gJsonRpcErrorStrings.size() <= 0) {
-    gJsonRpcErrorStrings[ErrorCodeUnknown]        = "Unknown Error";
-    gJsonRpcErrorStrings[ErrorCodeParserError]    = "Parse error";
-    gJsonRpcErrorStrings[ErrorCodeInvalidRequest] = "Invalid Request";
-    gJsonRpcErrorStrings[ErrorCodeMethodNotFound] = "Method not found";
-    gJsonRpcErrorStrings[ErrorCodeInvalidParams]  = "Invalid params";
-    gJsonRpcErrorStrings[ErrorCodeInternalError]  = "Internal error";
+    gJsonRpcErrorStrings[ErrorCodeUnknown]        = ROUNDCC_RPC_ERROR_CODE_UNKNOWN_MSG;
+    gJsonRpcErrorStrings[ErrorCodeParserError]    = ROUNDCC_RPC_ERROR_CODE_PARSER_ERROR_MSG;
+    gJsonRpcErrorStrings[ErrorCodeInvalidRequest] = ROUNDCC_RPC_ERROR_CODE_INVALID_QEQUEST_MSG;
+    gJsonRpcErrorStrings[ErrorCodeMethodNotFound] = ROUNDCC_RPC_ERROR_CODE_METHOD_NOT_FOUND_MSG;
+    gJsonRpcErrorStrings[ErrorCodeInvalidParams]  = ROUNDCC_RPC_ERROR_CODE_INVALID_PARAMS_MSG;
+    gJsonRpcErrorStrings[ErrorCodeInternalError]  = ROUNDCC_RPC_ERROR_CODE_INTERNAL_ERROR_MSG;
     
-    gJsonRpcErrorStrings[ErrorCodeBadDestination]       = "Bad Destination";
-    gJsonRpcErrorStrings[ErrorCodeMovedPermanently]     = "Moved Permanently";
+    gJsonRpcErrorStrings[ErrorCodeBadDestination]       = ROUNDCC_RPC_ERROR_CODE_BAD_DESTINATION_MSG;
+    gJsonRpcErrorStrings[ErrorCodeMovedPermanently]     = ROUNDCC_RPC_ERROR_CODE_MOVED_PERMANENTLY_MSG;
     
-    gJsonRpcErrorStrings[ErrorCodeScriptEngineInternalError]  = "Script Engine Internal Error";
-    gJsonRpcErrorStrings[ErrorCodeScriptEngineNotFound]       = "Script Engine Not Found";
-    gJsonRpcErrorStrings[ErrorCodeScriptCompileError]         = "Script Compile Error";
-    gJsonRpcErrorStrings[ErrorCodeScriptRuntimeError]         = "Script Runtime Error";
-    
-    gJsonRpcErrorStrings[ErrorCodeServerError]    = "Server error";
+    gJsonRpcErrorStrings[ErrorCodeScriptEngineInternalError]  = ROUNDCC_RPC_ERROR_CODE_SCRIPT_ENGINE_INTERNAL_ERROR_MSG;
+    gJsonRpcErrorStrings[ErrorCodeScriptEngineNotFound]       = ROUNDCC_RPC_ERROR_CODE_SCRIPT_ENGINE_NOT_FOUND_MSG;
+    gJsonRpcErrorStrings[ErrorCodeScriptCompileError]         = ROUNDCC_RPC_ERROR_CODE_SCRIPT_COMPILE_ERROR_MSG;
+    gJsonRpcErrorStrings[ErrorCodeScriptRuntimeError]         = ROUNDCC_RPC_ERROR_CODE_SCRIPT_RUNTIME_ERROR_MSG;
   }
 
   if (gJsonRpcErrorStrings.find(jsonErrorCode) == gJsonRpcErrorStrings.end()) {
     if (IsServerErrorCode(jsonErrorCode)) {
-      jsonErrorCode = ErrorCodeServerError;
+      jsonErrorCode = ErrorCodeInternalError;
     }
     else {
       jsonErrorCode = ErrorCodeUnknown;
