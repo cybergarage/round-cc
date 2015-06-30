@@ -23,7 +23,6 @@ class Registry {
   
 public:
 
-  static const std::string NAME;
   static const std::string KEY;
   static const std::string VALUE;
   static const std::string TS;
