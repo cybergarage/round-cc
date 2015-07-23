@@ -23,7 +23,6 @@ static size_t GetJsonRpcAllErrorCodes(std::vector<int> &errorCodes) {
   errorCodes.push_back(RPC::JSON::ErrorCodeInvalidParams);
   errorCodes.push_back(RPC::JSON::ErrorCodeServerErrorMax);
   errorCodes.push_back(RPC::JSON::ErrorCodeServerErrorMin);
-  errorCodes.push_back(RPC::JSON::ErrorCodeServerError);
   
   return errorCodes.size();
 }
