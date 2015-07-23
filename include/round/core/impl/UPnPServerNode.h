@@ -25,6 +25,7 @@ namespace Round {
 class UPnPServerNode : public ServerNode, public mUPnP::Device {
  public:
   static const std::string DEVICE_TYPE;
+  static const std::string SERVICE_TYPE;
 
   public:
   
