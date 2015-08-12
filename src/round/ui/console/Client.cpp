@@ -113,6 +113,10 @@ bool Round::Console::Client::isShellCommand(const Input &input) {
   return Command::IsShell(&input);
 }
 
+bool Round::Console::Client::isDaemonCommand(const Input &input) {
+  return Command::IsDaemon(&input);
+}
+
 bool Round::Console::Client::execConsoleCommand(const Input &input, Message *msg, Error *err) {
   return this->commands.execCommand(this, &input, msg, err);
 }

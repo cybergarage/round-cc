@@ -28,26 +28,25 @@ namespace JSON {
 static const std::string VER = "2.0";
 
 enum {
-  ErrorCodeUnknown                   = 0,
-  ErrorCodeParserError               = -32700,
-  ErrorCodeInvalidRequest            = -32600,
-  ErrorCodeMethodNotFound            = -32601,
-  ErrorCodeInvalidParams             = -32602,
-  ErrorCodeInternalError             = -32603,
+  ErrorCodeUnknown                   = ROUNDCC_RPC_ERROR_CODE_UNKNOWN,
+  ErrorCodeParserError               = ROUNDCC_RPC_ERROR_CODE_PARSER_ERROR,
+  ErrorCodeInvalidRequest            = ROUNDCC_RPC_ERROR_CODE_INVALID_QEQUEST,
+  ErrorCodeMethodNotFound            = ROUNDCC_RPC_ERROR_CODE_METHOD_NOT_FOUND,
+  ErrorCodeInvalidParams             = ROUNDCC_RPC_ERROR_CODE_INVALID_PARAMS,
+  ErrorCodeInternalError             = ROUNDCC_RPC_ERROR_CODE_INTERNAL_ERROR,
   
-  ErrorCodeBadDestination            = -32000,
-  ErrorCodeMovedPermanently          = -32001,
+  ErrorCodeBadDestination            = ROUNDCC_RPC_ERROR_CODE_BAD_DESTINATION,
+  ErrorCodeMovedPermanently          = ROUNDCC_RPC_ERROR_CODE_MOVED_PERMANENTLY,
   
-  ErrorConditionFailed               = -32010,
+  ErrorConditionFailed               = ROUNDCC_RPC_ERROR_CODE_CONDITION_FAILED,
   
-  ErrorCodeScriptEngineInternalError = -32020,
-  ErrorCodeScriptEngineNotFound      = -32021,
-  ErrorCodeScriptCompileError        = -32022,
-  ErrorCodeScriptRuntimeError        = -32023,
+  ErrorCodeScriptEngineInternalError = ROUNDCC_RPC_ERROR_CODE_SCRIPT_ENGINE_INTERNAL_ERROR,
+  ErrorCodeScriptEngineNotFound      = ROUNDCC_RPC_ERROR_CODE_SCRIPT_ENGINE_NOT_FOUND,
+  ErrorCodeScriptCompileError        = ROUNDCC_RPC_ERROR_CODE_SCRIPT_COMPILE_ERROR,
+  ErrorCodeScriptRuntimeError        = ROUNDCC_RPC_ERROR_CODE_SCRIPT_RUNTIME_ERROR,
   
-  ErrorCodeServerErrorMax            = -32000,
-  ErrorCodeServerErrorMin            = -32099,
-  ErrorCodeServerError               = ErrorCodeServerErrorMax,
+  ErrorCodeServerErrorMax            = ROUNDCC_RPC_ERROR_CODE_SERVER_ERROR_MAX,
+  ErrorCodeServerErrorMin            = ROUNDCC_RPC_ERROR_CODE_SERVER_ERROR_MIN,
 };
 
 const std::string &ErrorCodeToString(int jsonErrorCode);

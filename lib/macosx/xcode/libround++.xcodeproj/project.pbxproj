@@ -34,6 +34,10 @@
 		216B580D1AD38C8600846C32 /* RegistryMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216B580B1AD38C8600846C32 /* RegistryMap.cpp */; };
 		216CAAD81A78834800396ED8 /* LocalRouteManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216CAAD71A78834800396ED8 /* LocalRouteManager.cpp */; };
 		217342FD1A6CB3C000ADA1C8 /* question.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217342FC1A6CB3C000ADA1C8 /* question.cpp */; };
+		217386DB1B61307D008365D1 /* UPnPServerDesc.h in Headers */ = {isa = PBXBuildFile; fileRef = 217386DA1B61307D008365D1 /* UPnPServerDesc.h */; };
+		217F6E561B2D21AC0038DE7C /* DomainSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217F6E551B2D21AC0038DE7C /* DomainSocket.cpp */; };
+		217F6E581B2D21C30038DE7C /* DomainSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 217F6E571B2D21C30038DE7C /* DomainSocket.h */; };
+		217F6E5C1B2D2FB30038DE7C /* DomainServerSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217F6E5B1B2D2FB30038DE7C /* DomainServerSocket.cpp */; };
 		218B34421AECD4C3009BE65F /* post_job.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218B34411AECD4C3009BE65F /* post_job.cpp */; };
 		219911131B01FA9600A6C5D6 /* LocalAliasManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 219911121B01FA9600A6C5D6 /* LocalAliasManager.cpp */; };
 		219CE2761A6DD8F2008A6CBD /* RQLRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 219CE2751A6DD8F2008A6CBD /* RQLRequest.cpp */; };
@@ -77,6 +81,7 @@
 		21C3663A1AF6E8D4001CB74F /* remove_timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C366351AF6E8D4001CB74F /* remove_timer.cpp */; };
 		21C3663C1AF76C78001CB74F /* SystemRemoveRegistryRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C3663B1AF76C78001CB74F /* SystemRemoveRegistryRequest.cpp */; };
 		21C3663E1AF8DACC001CB74F /* RouteMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C3663D1AF8DACC001CB74F /* RouteMap.cpp */; };
+		21CB55681B2C2191004CD94A /* daemon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21CB55671B2C2191004CD94A /* daemon.cpp */; };
 		21CBBAAD1B005C0F00C778F0 /* AliasMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21CBBAAC1B005C0F00C778F0 /* AliasMap.cpp */; };
 		21D03AD41A63C4A60098122A /* Route.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D03AD31A63C4A60098122A /* Route.h */; };
 		21D50A9B1A819F39005C1F51 /* exec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50A9A1A819F39005C1F51 /* exec.cpp */; };
@@ -281,6 +286,10 @@
 		216B580B1AD38C8600846C32 /* RegistryMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RegistryMap.cpp; sourceTree = "<group>"; };
 		216CAAD71A78834800396ED8 /* LocalRouteManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalRouteManager.cpp; sourceTree = "<group>"; };
 		217342FC1A6CB3C000ADA1C8 /* question.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = question.cpp; sourceTree = "<group>"; };
+		217386DA1B61307D008365D1 /* UPnPServerDesc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPnPServerDesc.h; sourceTree = "<group>"; };
+		217F6E551B2D21AC0038DE7C /* DomainSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DomainSocket.cpp; sourceTree = "<group>"; };
+		217F6E571B2D21C30038DE7C /* DomainSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DomainSocket.h; sourceTree = "<group>"; };
+		217F6E5B1B2D2FB30038DE7C /* DomainServerSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DomainServerSocket.cpp; sourceTree = "<group>"; };
 		218B34411AECD4C3009BE65F /* post_job.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = post_job.cpp; sourceTree = "<group>"; };
 		219911121B01FA9600A6C5D6 /* LocalAliasManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalAliasManager.cpp; sourceTree = "<group>"; };
 		219CE2751A6DD8F2008A6CBD /* RQLRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RQLRequest.cpp; sourceTree = "<group>"; };
@@ -325,6 +334,7 @@
 		21C366351AF6E8D4001CB74F /* remove_timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = remove_timer.cpp; sourceTree = "<group>"; };
 		21C3663B1AF76C78001CB74F /* SystemRemoveRegistryRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemRemoveRegistryRequest.cpp; sourceTree = "<group>"; };
 		21C3663D1AF8DACC001CB74F /* RouteMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RouteMap.cpp; sourceTree = "<group>"; };
+		21CB55671B2C2191004CD94A /* daemon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = daemon.cpp; sourceTree = "<group>"; };
 		21CBBAAC1B005C0F00C778F0 /* AliasMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AliasMap.cpp; sourceTree = "<group>"; };
 		21D03AD31A63C4A60098122A /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
 		21D50A9A1A819F39005C1F51 /* exec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exec.cpp; sourceTree = "<group>"; };
@@ -594,6 +604,7 @@
 		21B329421A6B939D0077C313 /* cmd */ = {
 			isa = PBXGroup;
 			children = (
+				21CB55671B2C2191004CD94A /* daemon.cpp */,
 				21D7A5A21A6BF4A500D43061 /* exit.cpp */,
 				21D7A5931A6BDE7C00D43061 /* help.cpp */,
 				21B329471A6B94720077C313 /* list.cpp */,
@@ -714,6 +725,7 @@
 		21D8E1721A60E19300E8A63F /* common */ = {
 			isa = PBXGroup;
 			children = (
+				217F6E571B2D21C30038DE7C /* DomainSocket.h */,
 				213331821A7794E500DB41AB /* Config.h */,
 				21D8E1731A60E19300E8A63F /* BitOption.h */,
 				21D8E1741A60E19300E8A63F /* Clock.h */,
@@ -818,6 +830,8 @@
 		21D8E1E81A60E1E200E8A63F /* common */ = {
 			isa = PBXGroup;
 			children = (
+				217F6E5B1B2D2FB30038DE7C /* DomainServerSocket.cpp */,
+				217F6E551B2D21AC0038DE7C /* DomainSocket.cpp */,
 				213332581A77950300DB41AB /* Config.cpp */,
 				21D8E2091A60E1E200E8A63F /* BitOption.cpp */,
 				21D8E20A1A60E1E200E8A63F /* Clock.cpp */,
@@ -946,6 +960,7 @@
 		21D8E2781A60E1E200E8A63F /* impl */ = {
 			isa = PBXGroup;
 			children = (
+				217386DA1B61307D008365D1 /* UPnPServerDesc.h */,
 				21D8E2831A60E1E200E8A63F /* HTTPUServer.cpp */,
 				21D8E2841A60E1E200E8A63F /* UPnPNodeFinder.cpp */,
 				21D8E2851A60E1E200E8A63F /* UPnPServerNode.cpp */,
@@ -1039,6 +1054,7 @@
 				21AAFCBF1A68C8E6008DEF0E /* Console.h in Headers */,
 				21D8E1C21A60E19300E8A63F /* ClientCore.h in Headers */,
 				21D8E1D11A60E19300E8A63F /* NodeFinder.h in Headers */,
+				217F6E581B2D21C30038DE7C /* DomainSocket.h in Headers */,
 				21D8E1B21A60E19300E8A63F /* Error.h in Headers */,
 				21D8E1CE1A60E19300E8A63F /* Node.h in Headers */,
 				21D8E1BF1A60E19300E8A63F /* Thread.h in Headers */,
@@ -1063,6 +1079,7 @@
 				21D8E1D01A60E19300E8A63F /* NodeCore.h in Headers */,
 				21D8E1C41A60E19300E8A63F /* ErrorNo.h in Headers */,
 				2155C4391AB928F900A5E55C /* SpiderMonkeyFunction.h in Headers */,
+				217386DB1B61307D008365D1 /* UPnPServerDesc.h in Headers */,
 				21D8E1B11A60E19300E8A63F /* Dictionary.h in Headers */,
 				21D8E1D71A60E19300E8A63F /* ServerNode.h in Headers */,
 				21D8E1C81A60E19300E8A63F /* UPnPServerNode.h in Headers */,
@@ -1164,6 +1181,7 @@
 				21D8E2C41A60E1E200E8A63F /* JSONArray.cpp in Sources */,
 				21D8E2EF1A60E1E200E8A63F /* NodeFinderObserver.cpp in Sources */,
 				21B3293D1A6B82CA0077C313 /* Client.cpp in Sources */,
+				21CB55681B2C2191004CD94A /* daemon.cpp in Sources */,
 				21D50AA31A82322F005C1F51 /* set_registry.cpp in Sources */,
 				21C366381AF6E8D4001CB74F /* remove_registry.cpp in Sources */,
 				21D7A59F1A6BF1E100D43061 /* version.cpp in Sources */,
@@ -1201,6 +1219,7 @@
 				21D7A5A51A6BF4A500D43061 /* quit.cpp in Sources */,
 				21D8E2E41A60E1E200E8A63F /* UPnPServerNode.cpp in Sources */,
 				21B911B91A6B5F4300C791FD /* SystemMethodResponse.cpp in Sources */,
+				217F6E5C1B2D2FB30038DE7C /* DomainServerSocket.cpp in Sources */,
 				21F4CE6F1A63F0BA00E7F0CC /* ScriptMap.cpp in Sources */,
 				21D8E2C11A60E1E200E8A63F /* HashObject.cpp in Sources */,
 				21E918D41B0C3837006DCAEF /* TriggerManager.cpp in Sources */,
@@ -1306,6 +1325,7 @@
 				219EA4371A6BB0BD00F3D89B /* Input.cpp in Sources */,
 				21F4CE671A63F0BA00E7F0CC /* Route.cpp in Sources */,
 				21D8E2B71A60E1E200E8A63F /* DictionaryKeyList.cpp in Sources */,
+				217F6E561B2D21AC0038DE7C /* DomainSocket.cpp in Sources */,
 				21D8E2B81A60E1E200E8A63F /* MD5.cpp in Sources */,
 				21A6EF521B0CB79700B33BB9 /* TimerTrigger.cpp in Sources */,
 				21E1EB171A64FE2800FEABF6 /* NodeResponse.cpp in Sources */,

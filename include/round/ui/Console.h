@@ -138,6 +138,7 @@ class Command {
   static const std::string EXIT;
   static const std::string SHELL;
   static const std::string DONE;
+  static const std::string DAEMON;
   
  public:
   std::string name;
@@ -154,6 +155,7 @@ class Command {
   static bool IsCommand(const std::string &name, const Input *input);
   static bool IsQuit(const Input *input);
   static bool IsShell(const Input *input);
+  static bool IsDaemon(const Input *input);
   
   bool isCommand(const Input *input);
   
@@ -206,6 +208,7 @@ public:
   bool isQuitCommand(const Input &input);
   bool isShellCommand(const Input &input);
   bool isConsoleCommand(const Input &input);
+  bool isDaemonCommand(const Input &input);
   bool isRPCCommand(const Input &input);
   
   bool execConsoleCommand(const Input &input, Message *msg, Error *err);

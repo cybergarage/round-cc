@@ -6,7 +6,7 @@
 
 To compile from source, install the following packages on your platform.
 
-| Package | Version | Mandatory ｜
+| Package | Version | Mandatory |
 |---|---|---|
 | [OpenSSL](https://www.openssl.org) | 1.0.1 or later | O |
 | [libxml2](http://xmlsoft.org/) | 2.2 or later | O |
@@ -17,6 +17,7 @@ To compile from source, install the following packages on your platform.
 | [Chrome V8](https://developers.google.com/v8/) | 3.25.30 or later | - |
 | [Java (JNI)](https://java.com/) | 1.6.0 or later | - |
 | [Tcl](http://www.tcl.tk/) | 8.5.9 or later | - |
+| [Lua](http://www.lua.org/) | 5.2.0 or later | - |
 
 ### Installation
 

@@ -81,13 +81,11 @@ The each node can propagate a received message from clients or other nodes to ot
 
 Each node can be received various predefind events, you can connect the events into defined methods using the routing. The developer can create original events too.
 
-## Failure Detection
+## Process
 
-Any node can vote a failure suspicion into other nodes in the same cluster when the voted node suspects failure to other node or itself. The algorithm of failure detection is programmable using some triggers such as timer trigger. .....
+Round's server process is `roundd`, ane the client process is `round`.
 
-## Security
-
-Round supports a security model based on [HMAC](https://tools.ietf.org/html/rfc2104) to reject unreliable messages from evil users. ......
+![Round Programming Model](img/round_process.png)
 
 # References
 
