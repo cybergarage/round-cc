@@ -360,7 +360,8 @@ AC_CHECK_LIB([mupnp++],[main],,[AC_MSG_ERROR(Round for C++ needs libclink++ $MUP
 AC_ARG_ENABLE([tests], AC_HELP_STRING([--enable-tests], [ build tests (default = no) ]), [build_tests="yes"], [])
 AM_CONDITIONAL(UNITTESTS,test "$build_tests" = yes)
 if [ test "$build_tests" = yes ]; then
-	AC_CHECK_LIB([boost_unit_test_framework-mt],[main],,[AC_MSG_ERROR(Round unittests need boost::unit_test_framework-mt)])
+	AC_CHECK_LIB([boost_unit_test_framework-mt],[main],,
+		[AC_CHECK_LIB([boost_unit_test_framework],[main],,[AC_MSG_ERROR(Round for C++ needs boost::boost_unit_test_framework)])])
 fi
 
 ##############################
