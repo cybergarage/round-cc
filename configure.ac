@@ -28,7 +28,7 @@ UHTTP_VERSION=0.6.0
 MUPNPCC_VERSION=3.0.0
 
 ##############################
-# Checks for programs.
+# Check Compiler
 ##############################
 
 AC_PROG_CC
@@ -37,13 +37,13 @@ AC_PROG_RANLIB
 AC_LANG_CPLUSPLUS
 
 ##############################
-# Checks for header files.
+# Check standard header files.
 ##############################
 
 AC_HEADER_STDC
 
 ##############################
-# Checks for libtool.
+# Check libtool.
 ##############################
 
 AC_ARG_WITH(libtool,
@@ -54,7 +54,7 @@ AC_ARG_WITH(libtool,
 AM_CONDITIONAL(HAVE_LIBTOOL, test $with_libtool = yes)
 
 ##############################
-# Checks for BOOST 
+# Checks boost Libraries
 ##############################
 
 AC_CHECK_LIB([boost_system-mt],[main],,
@@ -67,7 +67,7 @@ AC_CHECK_LIB([boost_thread-mt],[main],,
 	[AC_CHECK_LIB([boost_thread],[main],,[AC_MSG_ERROR(Round for C++ needs boost::thread-mt)])])
 
 ##############################
-# Checks for Basic Libraries
+# Checks Standard Libraries
 ##############################
 
 AC_CHECK_LIB([pthread],[main],,[AC_MSG_ERROR(Round for C++ needs POSIX thread library)]) 
@@ -75,7 +75,7 @@ AC_CHECK_LIB([crypto],[main],,[AC_MSG_ERROR(Round for C++ needs OpenSSL)])
 AC_CHECK_LIB([edit],[main],,[AC_MSG_ERROR(Round for C++ needs libedit)])
 
 ##############################
-# Checks for Expat libraries.
+# Checks Expat
 ##############################
 
 AC_ARG_ENABLE(expat,
@@ -98,7 +98,7 @@ if [ test $ROUND_USE_EXPAT = yes ]; then
 fi
 
 ##############################
-# Checks for libxml2 libraries.
+# Check libxml2
 ##############################
 
 AC_ARG_ENABLE(libxml2,
@@ -128,7 +128,7 @@ if [ test $ROUND_USE_LIBXML2 = yes ]; then
 fi
 
 ##############################
-# Checks for default XML parser
+# Checks XML parsers
 ##############################
 
 if [ test $ROUND_USE_LIBXML2 != yes ]; then
@@ -149,7 +149,7 @@ fi
 fi
 
 ##############################
-# Checks for script options.
+# Checks Enable Options
 ##############################
 
 # JavaScript
@@ -255,7 +255,7 @@ AC_CHECK_HEADERS([lua.h],,
 fi
 
 ##############################
-# Checks for JSON Libraries
+# Checks JSON Libraries
 ##############################
 
 AC_ARG_ENABLE(
@@ -288,7 +288,7 @@ if [ test $ROUND_USE_JSON_JANSSON = yes ]; then
 	],
 	[],
 	[AC_MSG_RESULT(yes)
-	AC_DEFINE([ROUND_USE_JANSSON_JSON_OBJECT_FOREACH],1,[boost::random])],
+	AC_DEFINE([ROUND_USE_JANSSON_JSON_OBJECT_FOREACH],1,[json_object_foreach])],
 	[AC_MSG_RESULT(no)]
 	)
 
@@ -306,13 +306,13 @@ if [ test $ROUND_USE_JSON_JANSSON = yes ]; then
 	],
 	[],
 	[AC_MSG_RESULT(yes)
-	AC_DEFINE([ROUND_USE_JANSSON_JSON_ARRAY_FOREACH],1,[boost::random])],
+	AC_DEFINE([ROUND_USE_JANSSON_JSON_ARRAY_FOREACH],1,[json_array_foreach])],
 	[AC_MSG_RESULT(no)]
 	)
 fi
 
 ##############################
-# Checks for compile
+# Check boost functions
 ##############################
 
 AC_MSG_CHECKING(boost::random)
@@ -347,20 +347,27 @@ AC_DEFINE([HAVE_BOOST_UNITTEST_LOGLEVEL],1,[boost::unit_test])],
 )
 
 ##############################
-# Checks for Cyber Garage Libraries
+# Check Cyber Garage Libraries
 ##############################
 
 AC_CHECK_LIB([uhttp++],[main],,[AC_MSG_ERROR(Round for C++ needs libuhttp++ $UHTTP_VERSION later)])
-AC_CHECK_LIB([mupnp++],[main],,[AC_MSG_ERROR(Round for C++ needs libclink++ $MUPNPCC_VERSION later)])
+AC_CHECK_LIB([mupnp++],[main],,[AC_MSG_ERROR(Round for C++ needs libmupnp++ $MUPNPCC_VERSION later)])
 
 ##############################
-# Checks for test options.
+# Testing
 ##############################
 
-AC_ARG_ENABLE([tests], AC_HELP_STRING([--enable-tests], [ build tests (default = no) ]), [build_tests="yes"], [])
-AM_CONDITIONAL(UNITTESTS,test "$build_tests" = yes)
+AC_ARG_ENABLE(
+[tests],
+AC_HELP_STRING([--enable-tests], [ build tests (default = no) ]),
+[case "${enableval}" in
+yes | no ) build_tests="${enableval}" ;;
+esac],
+[]
+)
+AM_CONDITIONAL(ROUND_ENABLE_TESTS,test "$build_tests" = yes)
 if [ test "$build_tests" = yes ]; then
-	AC_CHECK_LIB([boost_unit_test_framework-mt],[main],,[AC_MSG_ERROR(Round unittests need boost::unit_test_framework-mt)])
+AC_CHECK_LIB([boost_unit_test_framework-mt],[main],,[AC_MSG_ERROR(mUPnP unittests need boost::unit_test_framework)])
 fi
 
 ##############################

@@ -14,6 +14,8 @@
 namespace Round {
 
 #define ROUNDCC_SYSTEM_TRIGGER_TIMER_PRECISION 0.1
+#define ROUNDCC_UPNP_DEVICE_TYPE "urn:cybergarage-org:device:round:1"
+#define ROUNDCC_UPNP_SERVICE_TYPE "urn:cybergarage-org:service:round:1"
 #define ROUNDCC_RPC_HTTP_ENDPOINT "/rpc"
 #define ROUNDCC_RPC_HTTP_CONTENT_TYPE "application/json"
 #define ROUNDCC_NODE_STATUS_UNKNOWN 0
