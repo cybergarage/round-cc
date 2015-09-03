@@ -34,6 +34,7 @@
 		216B580D1AD38C8600846C32 /* RegistryMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216B580B1AD38C8600846C32 /* RegistryMap.cpp */; };
 		216CAAD81A78834800396ED8 /* LocalRouteManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216CAAD71A78834800396ED8 /* LocalRouteManager.cpp */; };
 		217342FD1A6CB3C000ADA1C8 /* question.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217342FC1A6CB3C000ADA1C8 /* question.cpp */; };
+		217386DB1B61307D008365D1 /* UPnPServerDesc.h in Headers */ = {isa = PBXBuildFile; fileRef = 217386DA1B61307D008365D1 /* UPnPServerDesc.h */; };
 		217F6E561B2D21AC0038DE7C /* DomainSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217F6E551B2D21AC0038DE7C /* DomainSocket.cpp */; };
 		217F6E581B2D21C30038DE7C /* DomainSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 217F6E571B2D21C30038DE7C /* DomainSocket.h */; };
 		217F6E5C1B2D2FB30038DE7C /* DomainServerSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217F6E5B1B2D2FB30038DE7C /* DomainServerSocket.cpp */; };
@@ -285,6 +286,7 @@
 		216B580B1AD38C8600846C32 /* RegistryMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RegistryMap.cpp; sourceTree = "<group>"; };
 		216CAAD71A78834800396ED8 /* LocalRouteManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalRouteManager.cpp; sourceTree = "<group>"; };
 		217342FC1A6CB3C000ADA1C8 /* question.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = question.cpp; sourceTree = "<group>"; };
+		217386DA1B61307D008365D1 /* UPnPServerDesc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPnPServerDesc.h; sourceTree = "<group>"; };
 		217F6E551B2D21AC0038DE7C /* DomainSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DomainSocket.cpp; sourceTree = "<group>"; };
 		217F6E571B2D21C30038DE7C /* DomainSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DomainSocket.h; sourceTree = "<group>"; };
 		217F6E5B1B2D2FB30038DE7C /* DomainServerSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DomainServerSocket.cpp; sourceTree = "<group>"; };
@@ -958,6 +960,7 @@
 		21D8E2781A60E1E200E8A63F /* impl */ = {
 			isa = PBXGroup;
 			children = (
+				217386DA1B61307D008365D1 /* UPnPServerDesc.h */,
 				21D8E2831A60E1E200E8A63F /* HTTPUServer.cpp */,
 				21D8E2841A60E1E200E8A63F /* UPnPNodeFinder.cpp */,
 				21D8E2851A60E1E200E8A63F /* UPnPServerNode.cpp */,
@@ -1076,6 +1079,7 @@
 				21D8E1D01A60E19300E8A63F /* NodeCore.h in Headers */,
 				21D8E1C41A60E19300E8A63F /* ErrorNo.h in Headers */,
 				2155C4391AB928F900A5E55C /* SpiderMonkeyFunction.h in Headers */,
+				217386DB1B61307D008365D1 /* UPnPServerDesc.h in Headers */,
 				21D8E1B11A60E19300E8A63F /* Dictionary.h in Headers */,
 				21D8E1D71A60E19300E8A63F /* ServerNode.h in Headers */,
 				21D8E1C81A60E19300E8A63F /* UPnPServerNode.h in Headers */,
