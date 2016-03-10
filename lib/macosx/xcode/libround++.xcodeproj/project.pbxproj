@@ -1437,8 +1437,9 @@
 					../../../include,
 					../../../src,
 					/usr/local/include,
-					/opt/local/include,
+					/usr/local/opt/openssl/include,
 				);
+				LIBRARY_SEARCH_PATHS = /usr/local/opt/openssl/lib;
 				PRODUCT_NAME = "libround++";
 				SDKROOT = macosx;
 			};
@@ -1455,8 +1456,9 @@
 					../../../include,
 					../../../src,
 					/usr/local/include,
-					/opt/local/include,
+					/usr/local/opt/openssl/include,
 				);
+				LIBRARY_SEARCH_PATHS = /usr/local/opt/openssl/lib;
 				PRODUCT_NAME = "libround++";
 				SDKROOT = macosx;
 			};
