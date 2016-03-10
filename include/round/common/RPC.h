@@ -30,7 +30,7 @@ static const std::string VER = "2.0";
 enum {
   ErrorCodeUnknown                   = ROUNDCC_RPC_ERROR_CODE_UNKNOWN,
   ErrorCodeParserError               = ROUNDCC_RPC_ERROR_CODE_PARSER_ERROR,
-  ErrorCodeInvalidRequest            = ROUNDCC_RPC_ERROR_CODE_INVALID_QEQUEST,
+  ErrorCodeInvalidRequest            = ROUNDCC_RPC_ERROR_CODE_INVALID_REQUEST,
   ErrorCodeMethodNotFound            = ROUNDCC_RPC_ERROR_CODE_METHOD_NOT_FOUND,
   ErrorCodeInvalidParams             = ROUNDCC_RPC_ERROR_CODE_INVALID_PARAMS,
   ErrorCodeInternalError             = ROUNDCC_RPC_ERROR_CODE_INTERNAL_ERROR,

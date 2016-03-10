@@ -41,6 +41,13 @@ foreach $const_line (@const_lines) {
   print "#define ROUNDCC_RPC_" . $const[0] . "_MSG  " . $const[2] . "\n";
 }
 
+@const_lines = `curl -s https://raw.githubusercontent.com/cybergarage/round-common/master/const/messages.csv | awk '/./' | awk '\$0 !~ /^#/{print \$0}'`;
+foreach $const_line (@const_lines) {
+  @const = split(/,/, $const_line);
+  $const[0] =~ s/([a-z])/\u$1/g;
+  print "#define ROUNDCC_MESSAGE_" . $const[0] . " " . $const[1];
+}
+
 print<<FOTTER;
 
 }
