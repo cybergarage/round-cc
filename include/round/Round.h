@@ -13,8 +13,8 @@
 
 #include <string>
 
-static const std::string ROUNDCC_PRODUCT_NAME = "round";
-static const std::string ROUNDCC_PRODUCT_VERSION = "0.1";
+#define ROUNDCC_PRODUCT_NAME "round"
+#define ROUNDCC_PRODUCT_VERSION "0.1"
 
 #include <round/common/Error.h>
 #include <round/core/Log.h>

@@ -8,11 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		211FBA371A1478C500B9B71E /* liblibround++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 211FBA361A1478BA00B9B71E /* liblibround++.a */; };
-		214E57A81A68C81800699FDD /* liblibmupnp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2193C2281A68BD530006EF34 /* liblibmupnp++.a */; };
 		214E57AA1A68C82000699FDD /* JavaVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 214E57A91A68C82000699FDD /* JavaVM.framework */; };
 		214E57AC1A68C82700699FDD /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 214E57AB1A68C82700699FDD /* Tcl.framework */; };
-		219C1B1E1A6D5688001DB20E /* libusql++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 219C1B191A6D5657001DB20E /* libusql++.a */; };
-		21BB27CD15AE63A500FBA099 /* libuhttp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BB27BE15AE635300FBA099 /* libuhttp++.a */; };
 		21E6F32B15493EE800F7077B /* roundd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E6F32A15493EE800F7077B /* roundd.cpp */; };
 /* End PBXBuildFile section */
 
@@ -30,48 +27,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 21A9FFA9154014F300BDFCDC;
 			remoteInfo = "libround++";
-		};
-		2193C2271A68BD530006EF34 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2193C2231A68BD530006EF34 /* libmupnp++.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 219C21ED155C7877003ABA46;
-			remoteInfo = "libmupnp++";
-		};
-		219C1B181A6D5657001DB20E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 219C1B131A6D5657001DB20E /* libusql++.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2147B0C1192DC16E00F06DB4;
-			remoteInfo = "libusql++";
-		};
-		219C1B1A1A6D567D001DB20E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2193C2231A68BD530006EF34 /* libmupnp++.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 219C21EC155C7877003ABA46;
-			remoteInfo = "libmupnp++";
-		};
-		219C1B1C1A6D5681001DB20E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 219C1B131A6D5657001DB20E /* libusql++.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 2147B0C0192DC16E00F06DB4;
-			remoteInfo = "libusql++";
-		};
-		21BB27BD15AE635300FBA099 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 21BB27B615AE635200FBA099 /* libuhttp.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 21E1EB1C1535D1E0005AA247;
-			remoteInfo = libuhttp;
-		};
-		21BB27CA15AE638200FBA099 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 21BB27B615AE635200FBA099 /* libuhttp.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 21E1EB1B1535D1E0005AA247;
-			remoteInfo = libuhttp;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -92,9 +47,6 @@
 		214E57A91A68C82000699FDD /* JavaVM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaVM.framework; path = System/Library/Frameworks/JavaVM.framework; sourceTree = SDKROOT; };
 		214E57AB1A68C82700699FDD /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = System/Library/Frameworks/Tcl.framework; sourceTree = SDKROOT; };
 		2191B3BB15493B4C003B80F4 /* roundd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = roundd; sourceTree = BUILT_PRODUCTS_DIR; };
-		2193C2231A68BD530006EF34 /* libmupnp++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libmupnp++.xcodeproj"; path = "../../../../../mupnp/lib/macosx/xcode/libmupnp++.xcodeproj"; sourceTree = "<group>"; };
-		219C1B131A6D5657001DB20E /* libusql++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libusql++.xcodeproj"; path = "../../../../../usql/lib/macosx/xcode/libusql++.xcodeproj"; sourceTree = "<group>"; };
-		21BB27B615AE635200FBA099 /* libuhttp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuhttp.xcodeproj; path = ../../../../../uhttp/lib/macosx/xcode/libuhttp.xcodeproj; sourceTree = "<group>"; };
 		21E6F32A15493EE800F7077B /* roundd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = roundd.cpp; path = ../../roundd.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,10 +57,7 @@
 			files = (
 				214E57AA1A68C82000699FDD /* JavaVM.framework in Frameworks */,
 				214E57AC1A68C82700699FDD /* Tcl.framework in Frameworks */,
-				219C1B1E1A6D5688001DB20E /* libusql++.a in Frameworks */,
-				214E57A81A68C81800699FDD /* liblibmupnp++.a in Frameworks */,
 				211FBA371A1478C500B9B71E /* liblibround++.a in Frameworks */,
-				21BB27CD15AE63A500FBA099 /* libuhttp++.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,39 +89,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2193C2241A68BD530006EF34 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2193C2281A68BD530006EF34 /* liblibmupnp++.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		219C1B141A6D5657001DB20E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				219C1B191A6D5657001DB20E /* libusql++.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		21BB27B715AE635200FBA099 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				21BB27BE15AE635300FBA099 /* libuhttp++.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		21E6F31E15493EB300F7077B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				214E57A91A68C82000699FDD /* JavaVM.framework */,
 				214E57AB1A68C82700699FDD /* Tcl.framework */,
-				219C1B131A6D5657001DB20E /* libusql++.xcodeproj */,
-				2193C2231A68BD530006EF34 /* libmupnp++.xcodeproj */,
 				211FBA301A1478BA00B9B71E /* libround++.xcodeproj */,
-				21BB27B615AE635200FBA099 /* libuhttp.xcodeproj */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -199,10 +121,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				219C1B1D1A6D5681001DB20E /* PBXTargetDependency */,
-				219C1B1B1A6D567D001DB20E /* PBXTargetDependency */,
 				212200CA1A14F31D0099B245 /* PBXTargetDependency */,
-				21BB27CB15AE638200FBA099 /* PBXTargetDependency */,
 			);
 			name = roundd;
 			productName = fractald;
@@ -215,7 +134,7 @@
 		2191B3B215493B4C003B80F4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0720;
 			};
 			buildConfigurationList = 2191B3B515493B4C003B80F4 /* Build configuration list for PBXProject "roundd" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -229,20 +148,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 2193C2241A68BD530006EF34 /* Products */;
-					ProjectRef = 2193C2231A68BD530006EF34 /* libmupnp++.xcodeproj */;
-				},
-				{
 					ProductGroup = 211FBA311A1478BA00B9B71E /* Products */;
 					ProjectRef = 211FBA301A1478BA00B9B71E /* libround++.xcodeproj */;
-				},
-				{
-					ProductGroup = 21BB27B715AE635200FBA099 /* Products */;
-					ProjectRef = 21BB27B615AE635200FBA099 /* libuhttp.xcodeproj */;
-				},
-				{
-					ProductGroup = 219C1B141A6D5657001DB20E /* Products */;
-					ProjectRef = 219C1B131A6D5657001DB20E /* libusql++.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -258,27 +165,6 @@
 			fileType = archive.ar;
 			path = "liblibround++.a";
 			remoteRef = 211FBA351A1478BA00B9B71E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2193C2281A68BD530006EF34 /* liblibmupnp++.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "liblibmupnp++.a";
-			remoteRef = 2193C2271A68BD530006EF34 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		219C1B191A6D5657001DB20E /* libusql++.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libusql++.a";
-			remoteRef = 219C1B181A6D5657001DB20E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		21BB27BE15AE635300FBA099 /* libuhttp++.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libuhttp++.a";
-			remoteRef = 21BB27BD15AE635300FBA099 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -300,21 +186,6 @@
 			name = "libround++";
 			targetProxy = 212200C91A14F31D0099B245 /* PBXContainerItemProxy */;
 		};
-		219C1B1B1A6D567D001DB20E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "libmupnp++";
-			targetProxy = 219C1B1A1A6D567D001DB20E /* PBXContainerItemProxy */;
-		};
-		219C1B1D1A6D5681001DB20E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "libusql++";
-			targetProxy = 219C1B1C1A6D5681001DB20E /* PBXContainerItemProxy */;
-		};
-		21BB27CB15AE638200FBA099 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = libuhttp;
-			targetProxy = 21BB27CA15AE638200FBA099 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -333,6 +204,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;

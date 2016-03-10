@@ -12,7 +12,6 @@
 		21062D191A73D0EC00FCA587 /* rpm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21062D181A73D0EC00FCA587 /* rpm.cpp */; };
 		210A64C11A6A317900E8F61D /* Method.h in Headers */ = {isa = PBXBuildFile; fileRef = 210A64C01A6A317900E8F61D /* Method.h */; };
 		210CC5781AF1176B0010599C /* SystemGetRegistryRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210CC5771AF1176B0010599C /* SystemGetRegistryRequest.cpp */; };
-		210E5FE21A5EDFDA005667CB /* liblibmupnp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 210E5FDF1A5EDFC9005667CB /* liblibmupnp++.a */; };
 		2133317D1A773FAD00DB41AB /* get_cluster_state.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2133317A1A773FAD00DB41AB /* get_cluster_state.cpp */; };
 		2133317E1A773FAD00DB41AB /* get_network_state.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2133317B1A773FAD00DB41AB /* get_network_state.cpp */; };
 		2133317F1A773FAD00DB41AB /* get_node_state.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2133317C1A773FAD00DB41AB /* get_node_state.cpp */; };
@@ -48,6 +47,7 @@
 		21A6EF521B0CB79700B33BB9 /* TimerTrigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A6EF511B0CB79700B33BB9 /* TimerTrigger.cpp */; };
 		21A7F60B1A69D10700FAC15B /* RQL.h in Headers */ = {isa = PBXBuildFile; fileRef = 21A7F60A1A69D10700FAC15B /* RQL.h */; };
 		21AAFCBF1A68C8E6008DEF0E /* Console.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AAFCBE1A68C8E6008DEF0E /* Console.h */; };
+		21ACFD171C91484D000AB153 /* liblibmupnp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21ACFD141C914834000AB153 /* liblibmupnp++.a */; };
 		21B3293D1A6B82CA0077C313 /* Client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B329381A6B82CA0077C313 /* Client.cpp */; };
 		21B3293E1A6B82CA0077C313 /* Command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B329391A6B82CA0077C313 /* Command.cpp */; };
 		21B3293F1A6B82CA0077C313 /* Commands.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B3293A1A6B82CA0077C313 /* Commands.cpp */; };
@@ -242,16 +242,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		210E5FDE1A5EDFC9005667CB /* PBXContainerItemProxy */ = {
+		21ACFD131C914834000AB153 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 210E5FDA1A5EDFC9005667CB /* libmupnp++.xcodeproj */;
+			containerPortal = 21ACFD0E1C914833000AB153 /* libmupnp++.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 219C21ED155C7877003ABA46;
 			remoteInfo = "libmupnp++";
 		};
-		210E5FE01A5EDFD5005667CB /* PBXContainerItemProxy */ = {
+		21ACFD151C914847000AB153 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 210E5FDA1A5EDFC9005667CB /* libmupnp++.xcodeproj */;
+			containerPortal = 21ACFD0E1C914833000AB153 /* libmupnp++.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 219C21EC155C7877003ABA46;
 			remoteInfo = "libmupnp++";
@@ -264,7 +264,6 @@
 		21062D181A73D0EC00FCA587 /* rpm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rpm.cpp; sourceTree = "<group>"; };
 		210A64C01A6A317900E8F61D /* Method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Method.h; sourceTree = "<group>"; };
 		210CC5771AF1176B0010599C /* SystemGetRegistryRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemGetRegistryRequest.cpp; sourceTree = "<group>"; };
-		210E5FDA1A5EDFC9005667CB /* libmupnp++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libmupnp++.xcodeproj"; path = "../../../../mupnp/lib/macosx/xcode/libmupnp++.xcodeproj"; sourceTree = "<group>"; };
 		2133317A1A773FAD00DB41AB /* get_cluster_state.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = get_cluster_state.cpp; sourceTree = "<group>"; };
 		2133317B1A773FAD00DB41AB /* get_network_state.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = get_network_state.cpp; sourceTree = "<group>"; };
 		2133317C1A773FAD00DB41AB /* get_node_state.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = get_node_state.cpp; sourceTree = "<group>"; };
@@ -301,6 +300,7 @@
 		21A7F60A1A69D10700FAC15B /* RQL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RQL.h; sourceTree = "<group>"; };
 		21A9FFAA154014F300BDFCDC /* liblibround++.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "liblibround++.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21AAFCBE1A68C8E6008DEF0E /* Console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Console.h; sourceTree = "<group>"; };
+		21ACFD0E1C914833000AB153 /* libmupnp++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libmupnp++.xcodeproj"; path = "../../../../mupnp-cc/lib/macosx/xcode/libmupnp++.xcodeproj"; sourceTree = "<group>"; };
 		21B329381A6B82CA0077C313 /* Client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Client.cpp; sourceTree = "<group>"; };
 		21B329391A6B82CA0077C313 /* Command.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Command.cpp; sourceTree = "<group>"; };
 		21B3293A1A6B82CA0077C313 /* Commands.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Commands.cpp; sourceTree = "<group>"; };
@@ -499,21 +499,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				210E5FE21A5EDFDA005667CB /* liblibmupnp++.a in Frameworks */,
+				21ACFD171C91484D000AB153 /* liblibmupnp++.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		210E5FDB1A5EDFC9005667CB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				210E5FDF1A5EDFC9005667CB /* liblibmupnp++.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		212C05A81A695F6100F6CB0B /* rql */ = {
 			isa = PBXGroup;
 			children = (
@@ -573,6 +565,14 @@
 			isa = PBXGroup;
 			children = (
 				21A9FFAA154014F300BDFCDC /* liblibround++.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		21ACFD0F1C914833000AB153 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21ACFD141C914834000AB153 /* liblibmupnp++.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -690,7 +690,7 @@
 		21CD1B95192DC7E000452ADF /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				210E5FDA1A5EDFC9005667CB /* libmupnp++.xcodeproj */,
+				21ACFD0E1C914833000AB153 /* libmupnp++.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1121,7 +1121,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				210E5FE11A5EDFD5005667CB /* PBXTargetDependency */,
+				21ACFD161C914847000AB153 /* PBXTargetDependency */,
 			);
 			name = "libround++";
 			productName = libfractal;
@@ -1134,7 +1134,7 @@
 		21A9FFA1154014F300BDFCDC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0720;
 			};
 			buildConfigurationList = 21A9FFA4154014F300BDFCDC /* Build configuration list for PBXProject "libround++" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1148,8 +1148,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 210E5FDB1A5EDFC9005667CB /* Products */;
-					ProjectRef = 210E5FDA1A5EDFC9005667CB /* libmupnp++.xcodeproj */;
+					ProductGroup = 21ACFD0F1C914833000AB153 /* Products */;
+					ProjectRef = 21ACFD0E1C914833000AB153 /* libmupnp++.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1160,11 +1160,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		210E5FDF1A5EDFC9005667CB /* liblibmupnp++.a */ = {
+		21ACFD141C914834000AB153 /* liblibmupnp++.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "liblibmupnp++.a";
-			remoteRef = 210E5FDE1A5EDFC9005667CB /* PBXContainerItemProxy */;
+			remoteRef = 21ACFD131C914834000AB153 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1343,10 +1343,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		210E5FE11A5EDFD5005667CB /* PBXTargetDependency */ = {
+		21ACFD161C914847000AB153 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "libmupnp++";
-			targetProxy = 210E5FE01A5EDFD5005667CB /* PBXContainerItemProxy */;
+			targetProxy = 21ACFD151C914847000AB153 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1365,6 +1365,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;

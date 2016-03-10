@@ -91,7 +91,7 @@ const std::string &Round::RPC::JSON::ErrorCodeToString(int jsonErrorCode) {
   if (gJsonRpcErrorStrings.size() <= 0) {
     gJsonRpcErrorStrings[ErrorCodeUnknown]        = ROUNDCC_RPC_ERROR_CODE_UNKNOWN_MSG;
     gJsonRpcErrorStrings[ErrorCodeParserError]    = ROUNDCC_RPC_ERROR_CODE_PARSER_ERROR_MSG;
-    gJsonRpcErrorStrings[ErrorCodeInvalidRequest] = ROUNDCC_RPC_ERROR_CODE_INVALID_QEQUEST_MSG;
+    gJsonRpcErrorStrings[ErrorCodeInvalidRequest] = ROUNDCC_RPC_ERROR_CODE_INVALID_REQUEST_MSG;
     gJsonRpcErrorStrings[ErrorCodeMethodNotFound] = ROUNDCC_RPC_ERROR_CODE_METHOD_NOT_FOUND_MSG;
     gJsonRpcErrorStrings[ErrorCodeInvalidParams]  = ROUNDCC_RPC_ERROR_CODE_INVALID_PARAMS_MSG;
     gJsonRpcErrorStrings[ErrorCodeInternalError]  = ROUNDCC_RPC_ERROR_CODE_INTERNAL_ERROR_MSG;

@@ -50,7 +50,6 @@
 		21B1DF061A32E6590070B65D /* RPCMethodTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B1DF051A32E6590070B65D /* RPCMethodTest.cpp */; };
 		21B51EC91A4E38C0003BBA3C /* VectorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B51EC81A4E38C0003BBA3C /* VectorTest.cpp */; };
 		21B854081A60EF31009E6ECB /* Tcl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B854071A60EF31009E6ECB /* Tcl.framework */; };
-		21CD1BC6192DC94E00452ADF /* libuhttp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CD1BBF192DC91D00452ADF /* libuhttp++.a */; };
 		21D50AB01A824BC8005C1F51 /* AliasTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D50AAF1A824BC8005C1F51 /* AliasTest.cpp */; };
 		21D9C9111A355961008008B3 /* ScriptManagerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D9C9101A355961008008B3 /* ScriptManagerTest.cpp */; };
 		21DA08AB1A174A4900D3DCE0 /* ClusterListTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08981A174A4900D3DCE0 /* ClusterListTest.cpp */; };
@@ -62,7 +61,6 @@
 		21DA08BC1A174BB700D3DCE0 /* NodeListTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DA08BB1A174BB700D3DCE0 /* NodeListTest.cpp */; };
 		21E918CB1B0C35EC006DCAEF /* TriggerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E918CA1B0C35EC006DCAEF /* TriggerTest.cpp */; };
 		21EBA0891A50205F0077A79A /* HashTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EBA0881A50205F0077A79A /* HashTest.cpp */; };
-		21F349921A5EDE670099B5B6 /* liblibmupnp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F3498F1A5EDE540099B5B6 /* liblibmupnp++.a */; };
 		21F49B121ABEE72700A932CC /* JavaScriptTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F49B071ABEE72700A932CC /* JavaScriptTest.cpp */; };
 		21F49B131ABEE72700A932CC /* JavaTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F49B081ABEE72700A932CC /* JavaTest.cpp */; };
 		21F49B141ABEE72700A932CC /* LuaTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F49B091ABEE72700A932CC /* LuaTest.cpp */; };
@@ -77,40 +75,19 @@
 			remoteGlobalIDString = 21A9FFA9154014F300BDFCDC;
 			remoteInfo = "libround++";
 		};
+		213A3CD91C912D8200492E85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 213A3CD51C912D8100492E85 /* libmupnp++.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 219C21ED155C7877003ABA46;
+			remoteInfo = "libmupnp++";
+		};
 		215C20B71A13B6A000CE71E2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 215C20B21A13B6A000CE71E2 /* libround++.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 21A9FFAA154014F300BDFCDC;
 			remoteInfo = "libround++";
-		};
-		21CD1BBE192DC91D00452ADF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 21CD1BBA192DC91D00452ADF /* libuhttp.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 21E1EB1C1535D1E0005AA247;
-			remoteInfo = libuhttp;
-		};
-		21CD1BC4192DC94100452ADF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 21CD1BBA192DC91D00452ADF /* libuhttp.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 21E1EB1B1535D1E0005AA247;
-			remoteInfo = libuhttp;
-		};
-		21F3498E1A5EDE540099B5B6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 21F3498A1A5EDE540099B5B6 /* libmupnp++.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 219C21ED155C7877003ABA46;
-			remoteInfo = "libmupnp++";
-		};
-		21F349901A5EDE610099B5B6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 21F3498A1A5EDE540099B5B6 /* libmupnp++.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 219C21EC155C7877003ABA46;
-			remoteInfo = "libmupnp++";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -131,6 +108,7 @@
 		210E578A1A29A73E000B60FC /* JavaVM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaVM.framework; path = System/Library/Frameworks/JavaVM.framework; sourceTree = SDKROOT; };
 		2111D8391A5AC2F0007DCF40 /* URLTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = URLTest.cpp; sourceTree = "<group>"; };
 		213862DB1A45711100311FAE /* JSONRPCParserTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONRPCParserTest.cpp; sourceTree = "<group>"; };
+		213A3CD51C912D8100492E85 /* libmupnp++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libmupnp++.xcodeproj"; path = "../../../../mupnp-cc/lib/macosx/xcode/libmupnp++.xcodeproj"; sourceTree = "<group>"; };
 		213E910A1A4AA707001C2ED9 /* Base64Test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Base64Test.cpp; sourceTree = "<group>"; };
 		213E910C1A4AAAB7001C2ED9 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
 		2143143C15401BEE009CC3FA /* RoundUnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RoundUnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,7 +154,6 @@
 		21B1DF051A32E6590070B65D /* RPCMethodTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPCMethodTest.cpp; sourceTree = "<group>"; };
 		21B51EC81A4E38C0003BBA3C /* VectorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VectorTest.cpp; sourceTree = "<group>"; };
 		21B854071A60EF31009E6ECB /* Tcl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tcl.framework; path = System/Library/Frameworks/Tcl.framework; sourceTree = SDKROOT; };
-		21CD1BBA192DC91D00452ADF /* libuhttp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuhttp.xcodeproj; path = ../../../../uhttp/lib/macosx/xcode/libuhttp.xcodeproj; sourceTree = "<group>"; };
 		21D50AAF1A824BC8005C1F51 /* AliasTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AliasTest.cpp; sourceTree = "<group>"; };
 		21D9C9101A355961008008B3 /* ScriptManagerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptManagerTest.cpp; sourceTree = "<group>"; };
 		21DA08981A174A4900D3DCE0 /* ClusterListTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClusterListTest.cpp; sourceTree = "<group>"; };
@@ -191,7 +168,6 @@
 		21E918CA1B0C35EC006DCAEF /* TriggerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TriggerTest.cpp; sourceTree = "<group>"; };
 		21EBA0881A50205F0077A79A /* HashTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HashTest.cpp; sourceTree = "<group>"; };
 		21EC22FE1A33E5C00074289E /* TestScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestScript.h; path = ../../TestScript.h; sourceTree = "<group>"; };
-		21F3498A1A5EDE540099B5B6 /* libmupnp++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libmupnp++.xcodeproj"; path = "../../../../mupnp/lib/macosx/xcode/libmupnp++.xcodeproj"; sourceTree = "<group>"; };
 		21F49B071ABEE72700A932CC /* JavaScriptTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JavaScriptTest.cpp; sourceTree = "<group>"; };
 		21F49B081ABEE72700A932CC /* JavaTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JavaTest.cpp; sourceTree = "<group>"; };
 		21F49B091ABEE72700A932CC /* LuaTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaTest.cpp; sourceTree = "<group>"; };
@@ -205,15 +181,21 @@
 			files = (
 				210E578C1A29A73E000B60FC /* JavaVM.framework in Frameworks */,
 				21B854081A60EF31009E6ECB /* Tcl.framework in Frameworks */,
-				21F349921A5EDE670099B5B6 /* liblibmupnp++.a in Frameworks */,
 				21AD42AF1A13B88C00741A08 /* liblibround++.a in Frameworks */,
-				21CD1BC6192DC94E00452ADF /* libuhttp++.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		213A3CD61C912D8100492E85 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				213A3CDA1C912D8200492E85 /* liblibmupnp++.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		2143143115401BEE009CC3FA = {
 			isa = PBXGroup;
 			children = (
@@ -250,8 +232,7 @@
 				210E578A1A29A73E000B60FC /* JavaVM.framework */,
 				21DE0ECF155B9EBA00A08E1F /* Security.framework */,
 				215C20B21A13B6A000CE71E2 /* libround++.xcodeproj */,
-				21F3498A1A5EDE540099B5B6 /* libmupnp++.xcodeproj */,
-				21CD1BBA192DC91D00452ADF /* libuhttp.xcodeproj */,
+				213A3CD51C912D8100492E85 /* libmupnp++.xcodeproj */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -315,14 +296,6 @@
 			path = ../../common;
 			sourceTree = "<group>";
 		};
-		21CD1BBB192DC91D00452ADF /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				21CD1BBF192DC91D00452ADF /* libuhttp++.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		21DA08931A174A4900D3DCE0 /* core */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,14 +329,6 @@
 			path = ../../core;
 			sourceTree = "<group>";
 		};
-		21F3498B1A5EDE540099B5B6 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				21F3498F1A5EDE540099B5B6 /* liblibmupnp++.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		21F49AFF1ABEE72700A932CC /* script */ = {
 			isa = PBXGroup;
 			children = (
@@ -389,9 +354,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				21F349911A5EDE610099B5B6 /* PBXTargetDependency */,
 				210E578E1A29A793000B60FC /* PBXTargetDependency */,
-				21CD1BC5192DC94100452ADF /* PBXTargetDependency */,
 			);
 			name = RoundUnitTest;
 			productName = RoundUnitTest;
@@ -404,7 +367,7 @@
 		2143143315401BEE009CC3FA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0720;
 			};
 			buildConfigurationList = 2143143615401BEE009CC3FA /* Build configuration list for PBXProject "RoundUnitTest" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -418,16 +381,12 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 21F3498B1A5EDE540099B5B6 /* Products */;
-					ProjectRef = 21F3498A1A5EDE540099B5B6 /* libmupnp++.xcodeproj */;
+					ProductGroup = 213A3CD61C912D8100492E85 /* Products */;
+					ProjectRef = 213A3CD51C912D8100492E85 /* libmupnp++.xcodeproj */;
 				},
 				{
 					ProductGroup = 215C20B31A13B6A000CE71E2 /* Products */;
 					ProjectRef = 215C20B21A13B6A000CE71E2 /* libround++.xcodeproj */;
-				},
-				{
-					ProductGroup = 21CD1BBB192DC91D00452ADF /* Products */;
-					ProjectRef = 21CD1BBA192DC91D00452ADF /* libuhttp.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -438,25 +397,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		213A3CDA1C912D8200492E85 /* liblibmupnp++.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "liblibmupnp++.a";
+			remoteRef = 213A3CD91C912D8200492E85 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		215C20B81A13B6A000CE71E2 /* liblibround++.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "liblibround++.a";
 			remoteRef = 215C20B71A13B6A000CE71E2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		21CD1BBF192DC91D00452ADF /* libuhttp++.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libuhttp++.a";
-			remoteRef = 21CD1BBE192DC91D00452ADF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		21F3498F1A5EDE540099B5B6 /* liblibmupnp++.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "liblibmupnp++.a";
-			remoteRef = 21F3498E1A5EDE540099B5B6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -532,16 +484,6 @@
 			name = "libround++";
 			targetProxy = 210E578D1A29A793000B60FC /* PBXContainerItemProxy */;
 		};
-		21CD1BC5192DC94100452ADF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = libuhttp;
-			targetProxy = 21CD1BC4192DC94100452ADF /* PBXContainerItemProxy */;
-		};
-		21F349911A5EDE610099B5B6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "libmupnp++";
-			targetProxy = 21F349901A5EDE610099B5B6 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -560,6 +502,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_CPP_RTTI = YES;
