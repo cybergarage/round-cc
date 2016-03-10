@@ -13,8 +13,8 @@
 
 #include <string.h>
 
-const int Round::Script::ENCODING_NONE = 0;
-const int Round::Script::ENCODING_BASE64 = 1;
+const int Round::Script::ENCODING_NONE = ROUNDCC_ENCODING_NONE;
+const int Round::Script::ENCODING_BASE64 = ROUNDCC_ENCODING_BASE64;
 
 Round::Script::Script(const std::string &lang) {
   init();
